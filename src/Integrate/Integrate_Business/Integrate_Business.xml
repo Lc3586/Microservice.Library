@@ -1,0 +1,732 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Integrate_Business</name>
+    </assembly>
+    <members>
+        <member name="T:Integrate_Business.BaseBusiness`1">
+            <summary>
+            描述：业务处理基类
+            作者：Coldairarrow
+            </summary>
+            <typeparam name="T">泛型约束（数据库实体）</typeparam>
+        </member>
+        <member name="M:Integrate_Business.BaseBusiness`1.#ctor">
+            <summary>
+            无参构造函数
+            </summary>
+        </member>
+        <member name="M:Integrate_Business.BaseBusiness`1.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="conStr">连接名或连接字符串</param>
+        </member>
+        <member name="M:Integrate_Business.BaseBusiness`1.#ctor(System.String,System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="conStr">连接名或连接字符串</param>
+            <param name="entityAssembly">实体类命名空间</param>
+        </member>
+        <member name="M:Integrate_Business.BaseBusiness`1.#ctor(System.String,Library.Models.DatabaseType)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="conStr">连接名或连接字符串</param>
+            <param name="dbType">数据库类型</param>
+        </member>
+        <member name="M:Integrate_Business.BaseBusiness`1.#ctor(System.String,System.String,Library.Models.DatabaseType)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="conStr">连接名或连接字符串</param>
+            <param name="entityAssembly">实体类命名空间</param>
+            <param name="dbType">数据库类型</param>
+        </member>
+        <member name="P:Integrate_Business.BaseBusiness`1.Service">
+            <summary>
+            底层仓储接口,支持跨表操作
+            注：仅支持单线程操作
+            </summary>
+            <value>
+            The service.
+            </value>
+        </member>
+        <member name="M:Integrate_Business.BaseBusiness`1.GetNewService">
+            <summary>
+            获取新的数据仓储
+            注:支持多线程(每个线程需要单独的IRepository)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Integrate_Business.BaseBusiness`1.GetNewService(System.String,Library.Models.DatabaseType)">
+            <summary>
+            获取新的数据仓储
+            注:支持多线程(每个线程需要单独的IRepository)
+            </summary>
+            <param name="conString">连接字符串</param>
+            <param name="dbType">数据库类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Integrate_Business.BaseBusiness`1.Insert(`0)">
+            <summary>
+            添加数据
+            </summary>
+            <param name="entity">实体对象</param>
+        </member>
+        <member name="M:Integrate_Business.BaseBusiness`1.Insert(System.Collections.Generic.List{`0})">
+            <summary>
+            添加多条数据
+            </summary>
+            <param name="entities">实体对象集合</param>
+        </member>
+        <member name="M:Integrate_Business.BaseBusiness`1.BulkInsert(System.Collections.Generic.List{`0})">
+            <summary>
+            批量添加数据,速度快
+            </summary>
+            <param name="entities"></param>
+        </member>
+        <member name="M:Integrate_Business.BaseBusiness`1.DeleteAll">
+            <summary>
+            删除所有数据
+            </summary>
+        </member>
+        <member name="M:Integrate_Business.BaseBusiness`1.Delete(System.String)">
+            <summary>
+            删除指定主键数据
+            </summary>
+            <param name="key"></param>
+        </member>
+        <member name="M:Integrate_Business.BaseBusiness`1.Delete(System.Collections.Generic.List{System.String})">
+            <summary>
+            通过主键删除多条数据
+            </summary>
+            <param name="keys"></param>
+        </member>
+        <member name="M:Integrate_Business.BaseBusiness`1.Delete(`0)">
+            <summary>
+            删除单条数据
+            </summary>
+            <param name="entity">实体对象</param>
+        </member>
+        <member name="M:Integrate_Business.BaseBusiness`1.Delete(System.Collections.Generic.List{`0})">
+            <summary>
+            删除多条数据
+            </summary>
+            <param name="entities">实体对象集合</param>
+        </member>
+        <member name="M:Integrate_Business.BaseBusiness`1.Delete(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            删除指定条件数据
+            </summary>
+            <param name="condition">筛选条件</param>
+        </member>
+        <member name="M:Integrate_Business.BaseBusiness`1.Delete_Sql(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            使用SQL语句按照条件删除数据
+            用法:Delete_Sql"Base_User"(x=&gt;x.Id == "Admin")
+            注：生成的SQL类似于DELETE FROM [Base_User] WHERE [Name] = 'xxx' WHERE [Id] = 'Admin'
+            </summary>
+            <param name="where">条件</param>
+            <returns>
+            影响条数
+            </returns>
+        </member>
+        <member name="M:Integrate_Business.BaseBusiness`1.Update(`0)">
+            <summary>
+            更新一条数据
+            </summary>
+            <param name="entity">实体对象</param>
+        </member>
+        <member name="M:Integrate_Business.BaseBusiness`1.Update(System.Collections.Generic.List{`0})">
+            <summary>
+            更新多条数据
+            </summary>
+            <param name="entities">数据列表</param>
+        </member>
+        <member name="M:Integrate_Business.BaseBusiness`1.UpdateAny(`0,System.Collections.Generic.List{System.String})">
+            <summary>
+            更新一条数据,某些属性
+            </summary>
+            <param name="entity">实体对象</param>
+            <param name="properties">需要更新的字段</param>
+        </member>
+        <member name="M:Integrate_Business.BaseBusiness`1.UpdateAny(System.Collections.Generic.List{`0},System.Collections.Generic.List{System.String})">
+            <summary>
+            更新多条数据,某些属性
+            </summary>
+            <param name="entities">数据列表</param>
+            <param name="properties">需要更新的字段</param>
+        </member>
+        <member name="M:Integrate_Business.BaseBusiness`1.UpdateWhere(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Action{`0})">
+            <summary>
+            指定条件更新
+            </summary>
+            <param name="whereExpre">筛选表达式</param>
+            <param name="set">更改属性回调</param>
+        </member>
+        <member name="M:Integrate_Business.BaseBusiness`1.UpdateWhere_Sql(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.ValueTuple{System.String,System.Object}[])">
+            <summary>
+            使用SQL语句按照条件更新
+            用法:UpdateWhere_Sql"Base_User"(x=&gt;x.Id == "Admin",("Name","小明"))
+            注：生成的SQL类似于UPDATE [TABLE] SET [Name] = 'xxx' WHERE [Id] = 'Admin'
+            </summary>
+            <param name="where">筛选条件</param>
+            <param name="values">字段值设置</param>
+            <returns>
+            影响条数
+            </returns>
+        </member>
+        <member name="M:Integrate_Business.BaseBusiness`1.GetEntity(System.Object[])">
+            <summary>
+            获取实体
+            </summary>
+            <param name="keyValue">主键</param>
+            <returns></returns>
+        </member>
+        <member name="M:Integrate_Business.BaseBusiness`1.GetList">
+            <summary>
+            获取表的所有数据，当数据量很大时不要使用！
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Integrate_Business.BaseBusiness`1.GetIQueryable">
+            <summary>
+            获取实体对应的表，延迟加载，主要用于支持Linq查询操作
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Integrate_Business.BaseBusiness`1.GetPagination``1(System.Linq.IQueryable{``0},Library.Models.Pagination)">
+            <summary>
+            获取分页后的数据
+            </summary>
+            <typeparam name="U">实体类型</typeparam>
+            <param name="query">数据源IQueryable</param>
+            <param name="pagination">分页参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Integrate_Business.BaseBusiness`1.GetPagination``1(System.Linq.IQueryable{``0},System.Int32,System.Int32,System.String,System.String,System.Int32@,System.Int32@)">
+            <summary>
+            获取分页后的数据
+            </summary>
+            <typeparam name="U">实体参数</typeparam>
+            <param name="query">IQueryable数据源</param>
+            <param name="pageIndex">当前页</param>
+            <param name="pageRows">每页行数</param>
+            <param name="orderColumn">排序列</param>
+            <param name="orderType">排序类型</param>
+            <param name="count">总记录数</param>
+            <param name="pages">总页数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Integrate_Business.BaseBusiness`1.GetDataTableWithSql(System.String)">
+            <summary>
+            通过Sql查询返回DataTable
+            </summary>
+            <param name="sql">sql语句</param>
+            <returns></returns>
+        </member>
+        <member name="M:Integrate_Business.BaseBusiness`1.GetDataTableWithSql(System.String,System.Collections.Generic.List{System.Data.Common.DbParameter})">
+            <summary>
+            通过Sql参数查询返回DataTable
+            </summary>
+            <param name="sql">Sql语句</param>
+            <param name="parameters">查询参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Integrate_Business.BaseBusiness`1.GetListBySql``1(System.String)">
+            <summary>
+            通过sql返回List
+            </summary>
+            <param name="sqlStr">sql语句</param>
+            <returns></returns>
+        </member>
+        <member name="M:Integrate_Business.BaseBusiness`1.GetListBySql``1(System.String,System.Collections.Generic.List{System.Data.Common.DbParameter})">
+            <summary>
+            通过sql返回list
+            </summary>
+            <param name="sqlStr">sql语句</param>
+            <param name="param">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Integrate_Business.BaseBusiness`1.ExecuteSql(System.String)">
+            <summary>
+            执行Sql语句
+            </summary>
+            <param name="sql">Sql语句</param>
+        </member>
+        <member name="M:Integrate_Business.BaseBusiness`1.Success">
+            <summary>
+            返回成功
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Integrate_Business.BaseBusiness`1.Success``1(``0)">
+            <summary>
+            返回成功
+            </summary>
+            <param name="data">返回数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Integrate_Business.BaseBusiness`1.Success``1(``0,System.String)">
+            <summary>
+            返回成功
+            </summary>
+            <param name="data">返回数据</param>
+            <param name="msg">返回消息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Integrate_Business.BaseBusiness`1.Error">
+            <summary>
+            返回错误
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Integrate_Business.BaseBusiness`1.Error(System.String)">
+            <summary>
+            返回错误
+            </summary>
+            <param name="msg">错误提示</param>
+            <returns></returns>
+        </member>
+        <member name="M:Integrate_Business.BaseBusiness`1.GetOptionList(System.String,System.String)">
+            <summary>
+            构建前端Select远程搜索数据
+            </summary>
+            <param name="selectedValueJson">已选择的项，JSON数组</param>
+            <param name="q">查询关键字</param>
+            <returns></returns>
+        </member>
+        <member name="M:Integrate_Business.BaseBusiness`1.GetOptionList(System.String,System.String,System.String,System.String,System.Linq.IQueryable{`0})">
+            <summary>
+            构建前端Select远程搜索数据
+            </summary>
+            <param name="selectedValueJson">已选择的项，JSON数组</param>
+            <param name="q">查询关键字</param>
+            <param name="textFiled">文本字段</param>
+            <param name="valueField">值字段</param>
+            <param name="source">指定数据源</param>
+            <returns></returns>
+        </member>
+        <member name="M:Integrate_Business.BaseBusiness`1.Dispose">
+            <summary>
+            执行与释放或重置非托管资源关联的应用程序定义的任务。
+            </summary>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:Integrate_Business.Base_Manage.Base_ActionBusiness.GetTheData(System.String)">
+            <summary>
+            获取指定的单条数据
+            </summary>
+            <param name="id">主键</param>
+            <returns></returns>
+        </member>
+        <member name="P:Integrate_Business.Base_Manage.Base_ActionDTO.Type">
+            <summary>
+            类型,菜单=0,页面=1,权限=2
+            </summary>
+        </member>
+        <member name="P:Integrate_Business.Base_Manage.Base_ActionDTO.Url">
+            <summary>
+            菜单地址
+            </summary>
+        </member>
+        <member name="P:Integrate_Business.Base_Manage.Base_ActionDTO.NeedAction">
+            <summary>
+            是否需要权限(仅页面有效)
+            </summary>
+        </member>
+        <member name="P:Integrate_Business.Base_Manage.Base_ActionDTO.Icon">
+            <summary>
+            图标
+            </summary>
+        </member>
+        <member name="P:Integrate_Business.Base_Manage.Base_ActionDTO.Sort">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="M:Integrate_Business.Base_Manage.Base_AppSecretBusiness.GetTheData(System.String)">
+            <summary>
+            获取指定的单条数据
+            </summary>
+            <param name="id">主键</param>
+            <returns></returns>
+        </member>
+        <member name="M:Integrate_Business.Base_Manage.Base_AppSecretBusiness.AddData(Integrate_Entity.Base_Manage.Base_AppSecret)">
+            <summary>
+            添加数据
+            </summary>
+            <param name="newData">数据</param>
+        </member>
+        <member name="M:Integrate_Business.Base_Manage.Base_AppSecretBusiness.UpdateData(Integrate_Entity.Base_Manage.Base_AppSecret)">
+            <summary>
+            更新数据
+            </summary>
+        </member>
+        <member name="M:Integrate_Business.Base_Manage.Base_DbLinkBusiness.GetTheData(System.String)">
+            <summary>
+            获取指定的单条数据
+            </summary>
+            <param name="id">主键</param>
+            <returns></returns>
+        </member>
+        <member name="M:Integrate_Business.Base_Manage.Base_DbLinkBusiness.AddData(Integrate_Entity.Base_Manage.Base_DbLink)">
+            <summary>
+            添加数据
+            </summary>
+            <param name="newData">数据</param>
+        </member>
+        <member name="M:Integrate_Business.Base_Manage.Base_DbLinkBusiness.UpdateData(Integrate_Entity.Base_Manage.Base_DbLink)">
+            <summary>
+            更新数据
+            </summary>
+        </member>
+        <member name="M:Integrate_Business.Base_Manage.Base_LogBusiness.GetLogList(Library.Models.Pagination,System.String,System.String,System.String,System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime})">
+            <summary>
+            获取日志列表
+            </summary>
+            <param name="logContent">日志内容</param>
+            <param name="logType">日志类型</param>
+            <param name="level">日志级别</param>
+            <param name="opUserName">操作人用户名</param>
+            <param name="startTime">开始时间</param>
+            <param name="endTime">结束时间</param>
+            <param name="pagination">分页参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Integrate_Business.Base_Manage.BuildCodeBusiness.GetAllDbLink">
+            <summary>
+            获取所有数据库连接
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Integrate_Business.Base_Manage.BuildCodeBusiness.GetDbTableList(System.String)">
+            <summary>
+            获取数据库所有表
+            </summary>
+            <param name="linkId">数据库连接Id</param>
+            <returns></returns>
+        </member>
+        <member name="T:Integrate_Business.BusRepository">
+            <summary>
+            业务仓储类,全局控制业务相关操作
+            软删除:查询:获取Deleted=false,删除:更新获取Deleted=true
+            其它:按照具体业务修改
+            </summary>
+        </member>
+        <member name="T:Integrate_Business.Operator">
+            <summary>
+            操作者
+            </summary>
+        </member>
+        <member name="P:Integrate_Business.Operator.UserId">
+            <summary>
+            当前操作者UserId
+            </summary>
+        </member>
+        <member name="M:Integrate_Business.Operator.IsAdmin">
+            <summary>
+            判断是否为超级管理员
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Integrate_Business.Config.SystemConfig">
+            <summary>
+            系统配置
+            </summary>
+        </member>
+        <member name="F:Integrate_Business.Config.SystemConfig.systemConfig">
+            <summary>
+            系统配置
+            </summary>
+        </member>
+        <member name="P:Integrate_Business.Config.SystemConfig.AdminId">
+            <summary>
+            超级管理员Id
+            </summary>
+        </member>
+        <member name="P:Integrate_Business.Config.SystemConfig.ProjectName">
+            <summary>
+            项目名称
+            </summary>
+        </member>
+        <member name="P:Integrate_Business.Config.SystemConfig.WebRootUrl">
+            <summary>
+            网站根地址
+            </summary>
+        </member>
+        <member name="P:Integrate_Business.Config.SystemConfig.PublishRootUrl">
+            <summary>
+            发布后网站根地址
+            </summary>
+        </member>
+        <member name="P:Integrate_Business.Config.SystemConfig.localRootUrl">
+            <summary>
+            本地调试根地址
+            </summary>
+        </member>
+        <member name="P:Integrate_Business.Config.SystemConfig.RunMode">
+            <summary>
+            运行模式
+            </summary>
+        </member>
+        <member name="P:Integrate_Business.Config.SystemConfig.DeleteMode">
+            <summary>
+            数据删除模式,默认逻辑删除
+            </summary>
+        </member>
+        <member name="P:Integrate_Business.Config.SystemConfig.JWTSecret">
+            <summary>
+            JWT秘钥
+            </summary>
+        </member>
+        <member name="P:Integrate_Business.Config.SystemConfig.WorkerId">
+            <summary>
+            工作ID
+            </summary>
+        </member>
+        <member name="P:Integrate_Business.Config.SystemConfig.DefaultDatabaseType">
+            <summary>
+            默认数据库类型
+            </summary>
+        </member>
+        <member name="P:Integrate_Business.Config.SystemConfig.DefaultDatabaseConnectString">
+            <summary>
+            默认数据库连接字符串
+            </summary>
+        </member>
+        <member name="P:Integrate_Business.Config.SystemConfig.DefaultCacheType">
+            <summary>
+            默认缓存类型
+            </summary>
+        </member>
+        <member name="P:Integrate_Business.Config.SystemConfig.RedisConfig">
+            <summary>
+            Redis配置
+            </summary>
+        </member>
+        <member name="P:Integrate_Business.Config.SystemConfig.DefaultLoggerType">
+            <summary>
+            默认日志类型
+            </summary>
+        </member>
+        <member name="P:Integrate_Business.Config.SystemConfig.ElasticSearchNodes">
+            <summary>
+            ElasticSearch集群
+            </summary>
+        </member>
+        <member name="P:Integrate_Business.Config.SystemConfig.FxAssembly">
+            <summary>
+            框架自定义类命名空间
+            </summary>
+        </member>
+        <member name="P:Integrate_Business.Config.SystemConfig._FxAssembly">
+            <summary>
+            框架自定义类命名空间
+            </summary>
+        </member>
+        <member name="P:Integrate_Business.Config.SystemConfig.FxTypes">
+            <summary>
+            框架自定义类
+            </summary>
+        </member>
+        <member name="T:Integrate_Business.IBaseBusiness`1">
+            <summary>
+            业务逻辑
+            </summary>
+            <typeparam name="T">实体泛型</typeparam>
+            <seealso cref="!:Library.IDataRepository.ITransaction" />
+        </member>
+        <member name="M:Integrate_Business.IBaseBusiness`1.Insert(`0)">
+            <summary>
+            添加数据
+            </summary>
+            <param name="entity">实体对象</param>
+        </member>
+        <member name="M:Integrate_Business.IBaseBusiness`1.Insert(System.Collections.Generic.List{`0})">
+            <summary>
+            添加多条数据
+            </summary>
+            <param name="entities">实体对象集合</param>
+        </member>
+        <member name="M:Integrate_Business.IBaseBusiness`1.BulkInsert(System.Collections.Generic.List{`0})">
+            <summary>
+            批量添加数据,速度快
+            </summary>
+            <param name="entities"></param>
+        </member>
+        <member name="M:Integrate_Business.IBaseBusiness`1.DeleteAll">
+            <summary>
+            删除所有数据
+            </summary>
+        </member>
+        <member name="M:Integrate_Business.IBaseBusiness`1.Delete(System.String)">
+            <summary>
+            删除指定主键数据
+            </summary>
+            <param name="key"></param>
+        </member>
+        <member name="M:Integrate_Business.IBaseBusiness`1.Delete(System.Collections.Generic.List{System.String})">
+            <summary>
+            通过主键删除多条数据
+            </summary>
+            <param name="keys"></param>
+        </member>
+        <member name="M:Integrate_Business.IBaseBusiness`1.Delete(`0)">
+            <summary>
+            删除单条数据
+            </summary>
+            <param name="entity">实体对象</param>
+        </member>
+        <member name="M:Integrate_Business.IBaseBusiness`1.Delete(System.Collections.Generic.List{`0})">
+            <summary>
+            删除多条数据
+            </summary>
+            <param name="entities">实体对象集合</param>
+        </member>
+        <member name="M:Integrate_Business.IBaseBusiness`1.Delete(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            删除指定条件数据
+            </summary>
+            <param name="condition">筛选条件</param>
+        </member>
+        <member name="M:Integrate_Business.IBaseBusiness`1.Delete_Sql(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Deletes the SQL.
+            </summary>
+            <param name="where">The where.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Integrate_Business.IBaseBusiness`1.Update(`0)">
+            <summary>
+            更新单条数据
+            </summary>
+            <param name="entity"></param>
+        </member>
+        <member name="M:Integrate_Business.IBaseBusiness`1.Update(System.Collections.Generic.List{`0})">
+            <summary>
+            更新多条数据
+            </summary>
+            <param name="entities"></param>
+        </member>
+        <member name="M:Integrate_Business.IBaseBusiness`1.UpdateAny(`0,System.Collections.Generic.List{System.String})">
+            <summary>
+            更新单条数据指定属性
+            </summary>
+            <param name="entity">实体对象</param>
+            <param name="properties">属性</param>
+        </member>
+        <member name="M:Integrate_Business.IBaseBusiness`1.UpdateAny(System.Collections.Generic.List{`0},System.Collections.Generic.List{System.String})">
+            <summary>
+            更新多条数据执行属性
+            </summary>
+            <param name="entities">实体对象集合</param>
+            <param name="properties">属性</param>
+        </member>
+        <member name="M:Integrate_Business.IBaseBusiness`1.UpdateWhere(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Action{`0})">
+            <summary>
+            通过条件更新数据
+            </summary>
+            <param name="whereExpre">筛选条件</param>
+            <param name="set">更新操作</param>
+        </member>
+        <member name="M:Integrate_Business.IBaseBusiness`1.UpdateWhere_Sql(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.ValueTuple{System.String,System.Object}[])">
+            <summary>
+            使用SQL语句按照条件更新
+            用法:UpdateWhere_Sql"Base_User"(x=>x.Id == "Admin",("Name","小明"))
+            注：生成的SQL类似于UPDATE [TABLE] SET [Name] = 'xxx' WHERE [Id] = 'Admin'
+            </summary>
+            <param name="where">筛选条件</param>
+            <param name="values">字段值设置</param>
+            <returns>影响条数</returns>
+        </member>
+        <member name="M:Integrate_Business.IBaseBusiness`1.GetEntity(System.Object[])">
+            <summary>
+            通过主键获取单条数据
+            </summary>
+            <param name="keyValue">主键</param>
+            <returns></returns>
+        </member>
+        <member name="M:Integrate_Business.IBaseBusiness`1.GetList">
+            <summary>
+            获取所有数据
+            注:会获取所有数据,数据量大请勿使用
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Integrate_Business.IBaseBusiness`1.GetIQueryable">
+            <summary>
+            获取IQueryable
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Integrate_Business.IBaseBusiness`1.GetDataTableWithSql(System.String)">
+            <summary>
+            通过SQL获取DataTable
+            </summary>
+            <param name="sql">SQL</param>
+            <returns></returns>
+        </member>
+        <member name="M:Integrate_Business.IBaseBusiness`1.GetDataTableWithSql(System.String,System.Collections.Generic.List{System.Data.Common.DbParameter})">
+            <summary>
+            通过SQL获取DataTable
+            </summary>
+            <param name="sql">SQL</param>
+            <param name="parameters">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Integrate_Business.IBaseBusiness`1.GetListBySql``1(System.String)">
+            <summary>
+            通过SQL获取List
+            </summary>
+            <typeparam name="U">泛型</typeparam>
+            <param name="sqlStr">SQL</param>
+            <returns></returns>
+        </member>
+        <member name="M:Integrate_Business.IBaseBusiness`1.GetListBySql``1(System.String,System.Collections.Generic.List{System.Data.Common.DbParameter})">
+            <summary>
+            通过SQL获取List
+            </summary>
+            <typeparam name="U">泛型</typeparam>
+            <param name="sqlStr">SQL</param>
+            <param name="param">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Integrate_Business.IBaseBusiness`1.ExecuteSql(System.String)">
+            <summary>
+            执行SQL语句
+            </summary>
+            <param name="sql">SQL</param>
+        </member>
+        <member name="M:Integrate_Business.IBaseBusiness`1.ExecuteSql(System.String,System.Collections.Generic.List{System.Data.Common.DbParameter})">
+            <summary>
+            执行SQL语句
+            </summary>
+            <param name="sql">SQL</param>
+            <param name="spList">参数</param>
+        </member>
+        <member name="T:Integrate_Business.IOperator">
+            <summary>
+            操作者
+            </summary>
+        </member>
+        <member name="P:Integrate_Business.IOperator.UserId">
+            <summary>
+            当前操作者UserId
+            </summary>
+        </member>
+        <member name="M:Integrate_Business.IOperator.IsAdmin">
+            <summary>
+            判断是否为超级管理员
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Integrate_Business.Logger.#cctor">
+            <summary>
+            配置Logger
+            </summary>
+        </member>
+    </members>
+</doc>

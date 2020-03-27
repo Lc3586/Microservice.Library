@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Label="Globals">
+    
+    
+    
+    
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Library.DataAccess</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Collection\Library.Collection.csproj" />
+    <ProjectReference Include="..\ConsistentHash\Library.ConsistentHash.csproj" />
+    <ProjectReference Include="..\Container\Library.Container.csproj" />
+    <ProjectReference Include="..\DataRepository\Library.DataRepository.csproj" />
+    <ProjectReference Include="..\DataRepository_DM\Library.DataRepository_DM.csproj" />
+    <ProjectReference Include="..\DataRepository_MySql\Library.DataRepository_MySql.csproj" />
+    <ProjectReference Include="..\DataRepository_PostgreSql\Library.DataRepository_PostgreSql.csproj" />
+    <ProjectReference Include="..\DataRepository_SqlServer\Library.DataRepository_SqlServer.csproj" />
+    <ProjectReference Include="..\Extention\Library.Extention.csproj" />
+    <ProjectReference Include="..\SnowflakeId\Library.Snowflake.csproj" />
+    <ProjectReference Include="..\TypeTool\Library.TypeTool.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LINQKit.Core" Version="1.1.16" />
+  </ItemGroup>
+
+</Project>

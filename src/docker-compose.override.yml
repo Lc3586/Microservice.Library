@@ -1,0 +1,27 @@
+version: '3.4'
+
+services:
+  idash:
+    container_name: idash
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:9001;http://+:9000
+      - ASPNETCORE_HTTPS_PORT=9001
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+  ssh:
+    container_name: ssh
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:9003;http://+:9002
+      - ASPNETCORE_HTTPS_PORT=9003
+    ports:
+      - "9002:9002"
+      - "9003:9003"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro

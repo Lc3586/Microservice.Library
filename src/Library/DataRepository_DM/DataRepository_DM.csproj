@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Library.DataRepository_DM</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="2.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DataRepository\DataRepository.csproj" />
+    <ProjectReference Include="..\Extention\Extention.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="DmProvider">
+      <HintPath>..\..\packages\dmdbms.drivers\DmProvider\netstandard2.0\DmProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="DmProvider.resources">
+      <HintPath>..\..\packages\dmdbms.drivers\DmProvider\netstandard2.0\zh-CN\DmProvider.resources.dll</HintPath>
+    </Reference>
+    <Reference Include="EFDmProvider">
+      <HintPath>..\..\packages\dmdbms.drivers\EFDmProvider\EFDmProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore.Dm">
+      <HintPath>..\..\packages\dmdbms.drivers\EFCore.Dm\netstandard2.0\Microsoft.EntityFrameworkCore.Dm.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Label="Globals">
+    
+    
+    
+    
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Library.WebApp</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Cache\Library.Cache.csproj" />
+    <ProjectReference Include="..\Configuration\Library.Configuration.csproj" />
+    <ProjectReference Include="..\Container\Library.Container.csproj" />
+    <ProjectReference Include="..\Extention\Library.Extention.csproj" />
+  </ItemGroup>
+
+</Project>

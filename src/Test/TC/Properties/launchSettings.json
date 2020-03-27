@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "TC": {
+      "commandName": "Project",
+      "commandLineArgs": "elasticsearch search"
+    }
+  }
+}

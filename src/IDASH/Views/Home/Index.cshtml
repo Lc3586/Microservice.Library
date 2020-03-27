@@ -1,0 +1,39 @@
+﻿@{
+    var version = typeof(IdentityServer4.Hosting.IdentityServerMiddleware).Assembly.GetName().Version.ToString();
+}
+
+<div class="welcome-page">
+    <div class="row page-header">
+        <div class="col-sm-10">
+            <h1>
+                <img class="icon" src="~/icon.jpg">
+                欢迎使用 IdentityServer4
+                <small>(版本 @version)</small>
+            </h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-8">
+            <p>
+                IdentityServer 发布了一个
+                <a href="~/.well-known/openid-configuration">说明 文档</a>
+                您能在这找到元数据和终端、密钥等材料的链接地址.
+            </p>
+        </div>
+        <div class="col-sm-8">
+            <p>
+                点击 <a href="~/grants">这里</a> 来管理您的历史授权.
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <p>
+                这里有
+                <a href="https://github.com/identityserver/IdentityServer4">githun源代码存储库</a>,
+                和 <a href="https://github.com/identityserver/IdentityServer4.Samples">使用示例</a>的链接.
+            </p>
+        </div>
+    </div>
+</div>

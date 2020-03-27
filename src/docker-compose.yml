@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  idash:
+    image: ${DOCKER_REGISTRY-}idash
+    build:
+      context: .
+      dockerfile: IDASH/Dockerfile
+
+  ssh:
+    image: ${DOCKER_REGISTRY-}ssh
+    build:
+      context: .
+      dockerfile: SSH/Dockerfile
+

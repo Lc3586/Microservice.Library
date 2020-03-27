@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "T4CAGC": {
+      "commandName": "Project",
+      "commandLineArgs": "generate model_entity -t sys_application"
+    }
+  }
+}
