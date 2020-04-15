@@ -1,4 +1,5 @@
-﻿using Library.Models;
+﻿using FreeSql.Internal;
+using Library.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -149,6 +150,11 @@ namespace Integrate_Business.Config
         /// </summary>
         public List<Type> FxTypes { get; set; }
 
+        /// <summary>
+        /// 启用AutoMapper
+        /// </summary>
+        public bool EnableAutoMapper { get; set; }
+
         #endregion
 
         #region ElasticSearch
@@ -156,7 +162,7 @@ namespace Integrate_Business.Config
         /// <summary>
         /// 启用ElasticSearch
         /// </summary>
-        public bool ElasticsearchEnable { get; set; }
+        public bool EnableElasticsearch { get; set; }
 
         /// <summary>
         /// ElasticSearch集群
@@ -171,6 +177,17 @@ namespace Integrate_Business.Config
         /// 启用FreeSql
         /// </summary>
         public bool EnableFreeSql { get; set; }
+
+        /// <summary>
+        /// 自动同步实体结构到数据库，程序运行中检查实体表是否存在，然后创建或修改
+        /// </summary>
+        public bool FreeSqlAutoSyncStructure { get; set; }
+
+        /// <summary>
+        /// 实体类名 -> 数据库表名，命名转换（类名、属性名都生效）
+        /// 优先级小于 [Table(Name = "xxx")]、[Column(Name = "xxx")]
+        /// </summary>
+        public NameConvertType? FreeSqlSyncStructureNameConvert { get; set; }
 
         /// <summary>
         /// 启动时同步实体类型集合到数据库

@@ -13,10 +13,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\Library\DataMapping\Library.DataMapping.csproj" />
     <ProjectReference Include="..\..\Library\OpenApi\Library.OpenApi.csproj" />
     <ProjectReference Include="..\Integrate_Entity\Integrate_Entity.csproj" />

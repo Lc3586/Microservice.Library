@@ -75,5 +75,19 @@ namespace Library.Extention
             end:
             return result;
         }
+
+        /// <summary>
+        /// int转bool
+        /// </summary>
+        /// <param name="value">值</param>
+        /// <returns></returns>
+        public static bool ToBool(this int value)
+        {
+            if (value == 0)
+                return false;
+            if (value == 1)
+                return true;
+            return Convert.ToBoolean(value);
+        }
     }
 }

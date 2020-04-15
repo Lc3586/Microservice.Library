@@ -7,7 +7,7 @@ using System.Data;
 using System.Data.Common;
 using System.Linq;
 using DbColumn = Library.Models.DbColumn;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 
 namespace Library.DataRepository_SqlServer
 {

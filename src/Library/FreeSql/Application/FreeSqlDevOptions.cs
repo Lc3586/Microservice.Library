@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FreeSql.Internal;
+using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Text;
@@ -26,14 +27,10 @@ namespace Library.FreeSql.Application
         public bool? AutoSyncStructure { get; set; }
 
         /// <summary>
-        /// 转小写同步结构
+        /// 实体类名 -> 数据库表名，命名转换（类名、属性名都生效）
+        /// 优先级小于 [Table(Name = "xxx")]、[Column(Name = "xxx")]
         /// </summary>
-        public bool? SyncStructureToLower { get; set; }
-
-        /// <summary>
-        /// 转大写同步结构
-        /// </summary>
-        public bool? SyncStructureToUpper { get; set; }
+        public NameConvertType? SyncStructureNameConvert { get; set; }
 
         /// <summary>
         /// 将数据库的主键、自增、索引设置导入，适用 DbFirst 模式，

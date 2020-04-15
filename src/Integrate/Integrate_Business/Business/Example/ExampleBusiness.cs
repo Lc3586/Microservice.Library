@@ -18,6 +18,7 @@ using Library.Elasticsearch.Gen;
 using ExampleEntity = Integrate_Entity.Example.Example;//当类和命名空间重名时使用别名（任何情况下都要避免出现重名）
 using Library.FreeSql.Gen;
 using Library.FreeSql.Extention;
+using Library.DataMapping.Gen;
 
 namespace Integrate_Business.Example
 {
@@ -32,8 +33,12 @@ namespace Integrate_Business.Example
         /// 在构造函数中注入DI系统中注册的依赖
         /// </summary>
         /// <param name="freeSqlProvider">ORM（仅作示范，在实际业务中根据需要来注入依赖）</param>
-        public ExampleBusiness(IFreeSqlProvider freeSqlProvider)
+        /// <param name="autoMapperProvider">映射器</param>
+        public ExampleBusiness(
+            IFreeSqlProvider freeSqlProvider,
+            IAutoMapperProvider autoMapperProvider)
         {
+            mapper = autoMapperProvider.GetMapper();
             orm = freeSqlProvider.GetFreeSql();
         }
 
@@ -45,12 +50,12 @@ namespace Integrate_Business.Example
         {
             #region 从数据库查询数据
 
-            Func<dynamic, ExampleDTO.List> select = (a) => new ExampleDTO.List
+            var select = SelectExtention.Select<ExampleDTO.List>((a) =>
             {
-                Id = a["Id"].ToString()
-            };
+                a.Id_ = a.Id.ToString();
+            });
 
-            //var q = from a in orm.ToDynamic<ExampleEntity, ExampleDTO.List>(pagination, "_List")
+            //var q = from a in orm.ToDynamic<ExampleEntity, ExampleDTO.List>(pagination, typeof(BindRecordDTO.List).GetNamesWithTagAndOther(true, "_List"))
             //        select @select.Invoke(a) as BindConfigDTO.List;
 
             //return q.ToList();
@@ -81,16 +86,16 @@ namespace Integrate_Business.Example
 
         public ExampleDTO.Edit GetEdit(string id)
         {
-            //return Mapper.Map<ExampleDTO.Edit>(repository.GetAndCheckNull(Convert.ToInt64(id)));//数据库获取实体
+            //return mapper.Map<ExampleDTO.Edit>(repository.GetAndCheckNull(Convert.ToInt64(id)));//数据库获取实体
             var data = ExampleData.FirstOrDefault(o => o.Id.ToString() == id);
-            return Mapper.Map<ExampleDTO.Edit>(data);//实体映射到业务模型
+            return mapper.Map<ExampleDTO.Edit>(data);//实体映射到业务模型
         }
 
         public ExampleDTO.Detail GetDetail(string id)
         {
-            //return Mapper.Map<ExampleDTO.Detail>(repository.GetAndCheckNull(Convert.ToInt64(id)));//数据库获取实体
+            //return mapper.Map<ExampleDTO.Detail>(repository.GetAndCheckNull(Convert.ToInt64(id)));//数据库获取实体
             var data = ExampleData.FirstOrDefault(o => o.Id.ToString() == id);
-            return Mapper.Map<ExampleDTO.Detail>(data);//实体映射到业务模型
+            return mapper.Map<ExampleDTO.Detail>(data);//实体映射到业务模型
         }
 
         //[DataRepeatValidate(
@@ -98,7 +103,7 @@ namespace Integrate_Business.Example
         //    new string[] { "名称" })]//去重判断（查询数据库）
         public AjaxResult Create(ExampleDTO.Create data)
         {
-            var newData = Mapper.Map<ExampleEntity>(data);//业务模型映射到实体
+            var newData = mapper.Map<ExampleEntity>(data);//业务模型映射到实体
             //repository.Insert(newData.InitEntity());//插入数据库
 
             ExampleData.Add(newData.InitEntity());
@@ -122,13 +127,13 @@ namespace Integrate_Business.Example
 
             #endregion 
 
-            var oldData = ExampleData.FirstOrDefault(o => o.Id == data.Id.ConvertToAny<long>());
+            var oldData = ExampleData.FirstOrDefault(o => o.Id == data.Id_.ConvertToAny<long>());
             if (oldData == null)
                 return Error("未找到数据");//返回错误
             data.ModifyEntity();//更改实体
             ExampleData.ForEach(o =>
             {
-                if (o.Id == data.Id.ConvertToAny<long>())
+                if (o.Id == data.Id_.ConvertToAny<long>())
                     o = data;
             });
             return Success();//返回成功
@@ -153,6 +158,7 @@ namespace Integrate_Business.Example
         #endregion
 
         #region 私有成员
+        IMapper mapper { get; set; }
 
         IFreeSql orm { get; set; }
 

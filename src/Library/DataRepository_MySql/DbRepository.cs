@@ -753,7 +753,7 @@ namespace Library.DataRepository_MySql
         /// <returns></returns>
         public List<T> GetListBySql<T>(string sqlStr, List<DbParameter> parameters) where T : class, new()
         {
-            return Db.Set<T>().FromSql(sqlStr, parameters.ToArray()).ToList();
+            return Db.Set<T>().FromSqlRaw(sqlStr, parameters.ToArray()).ToList();
         }
 
         #endregion

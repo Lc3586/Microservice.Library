@@ -1,5 +1,7 @@
 ﻿using AspNetCore.Security.CAS;
 using Integrate_Business.Config;
+using Integrate_Business.IAM;
+using Integrate_Model.IAM;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -29,7 +31,7 @@ namespace Integrate_Api
                     {
                         OnSigningIn = context =>
                         {
-                            //UserBusiness.RemoveCache(context.Principal.Claims?.FirstOrDefault(o => o.Type == "id").Value);
+                            UserBusiness.RemoveCache(context.Principal.Claims?.FirstOrDefault(o => o.Type == "id").Value);
                             return Task.FromResult(0);
                         },
                         //OnSignedIn = context =>
@@ -86,7 +88,7 @@ namespace Integrate_Api
         }
 
         /// <summary>
-        /// 注：方法正在UseNvc之前
+        /// 注：方法在UseMvc之前
         /// </summary>
         /// <param name="app"></param>
         public static void RegisterApplication(IApplicationBuilder app)

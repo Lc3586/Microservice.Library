@@ -1,15 +1,70 @@
 ﻿using FreeSql;
 using Library.Models;
-using Library.OpenApi.Annotations;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace Library.FreeSql.Extention
 {
     public static class SelectExtention
     {
+
+        public static Func<dynamic, TReturn> Select<TReturn>(Func<TReturn, TReturn> func) where TReturn : new()
+        {
+            return (a) =>
+            {
+                var type = typeof(TReturn);
+                var result = new TReturn();
+                foreach (var item in a as Dictionary<string, object>)
+                {
+                    type.GetProperty(item.Key, BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public | BindingFlags.Static).SetValue(result, item.Value);
+                }
+                return func.Invoke(result);
+            };
+        }
+
+        /// <summary>
+        /// 指定返回数据
+        /// </summary>
+        /// <typeparam name="TReturn">返回类型</typeparam>
+        /// <param name="action">处理数据</param>
+        /// <returns></returns>
+        public static Func<dynamic, TReturn> Select<TReturn>(Action<TReturn> action = null) where TReturn : new()
+        {
+            return (a) =>
+            {
+                var type = typeof(TReturn);
+                var result = new TReturn();
+
+                foreach (var item in a as Dictionary<string, object>)
+                {
+                    var prop = type.GetProperty(item.Key, BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public | BindingFlags.Static);
+                    object value = item.Value;
+                    if (item.Value.GetType() != prop.PropertyType)
+                    {
+                        if (prop.PropertyType.IsGenericType && prop.PropertyType.GetGenericTypeDefinition().Equals(typeof(Nullable<>)))
+                        {
+                            NullableConverter newNullableConverter = new NullableConverter(prop.PropertyType);
+                            value = newNullableConverter.ConvertFrom(item.Value);
+                        }
+                        else
+                        {
+                            value = Convert.ChangeType(item.Value, prop.PropertyType);
+                        }
+                    }
+                    prop.SetValue(result, value);
+                }
+
+                if (action != null)
+                    action.Invoke(result);
+
+                return result;
+            };
+        }
+
         /// <summary>
         /// 获取分页后的数据
         /// </summary>
@@ -38,31 +93,6 @@ namespace Library.FreeSql.Extention
                 throw new MessageException("排序条件不支持");
             pagination.records = source.Count();
             return source.Page(pagination.PageIndex, pagination.PageRows);
-        }
-
-        /// <summary>
-        /// 返回动态类型的数据
-        /// <para>根据OpenApi架构特性匹配字段<see cref="OpenApiSchemaAttribute"/></para>
-        /// </summary>
-        /// <typeparam name="TSource">实体类型</typeparam>
-        /// <typeparam name="TDto">业务模型类型</typeparam>
-        /// <param name="orm"></param>
-        /// <param name="pagination">分页菜蔬</param>
-        /// <param name="otherTags">需要额外匹配的标签</param>
-        /// <returns></returns>
-        public static List<dynamic> ToDynamic<TSource, TDto>(this IFreeSql orm, Pagination pagination = null, params string[] otherTags) where TSource : class
-        {
-            var columns = orm.CodeFirst.GetTableByEntity(typeof(TSource)).ColumnsByCs;
-            var fields = string.Join(
-                ",",
-                typeof(TDto).GetNamesWithTagAndOther(true, otherTags)
-                    .Select(o => $"a.\"{columns[o].Attribute.Name}\""));
-
-            var select = orm.Select<TSource>();
-            if (pagination != null)
-                select = select.AsAlias((type, old) => "a")
-                                .GetPagination(pagination, "a");
-            return orm.Ado.Query<dynamic>(select.ToSql(fields));
         }
     }
 }

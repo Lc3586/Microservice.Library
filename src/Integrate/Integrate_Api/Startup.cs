@@ -16,12 +16,18 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Library.Models;
 using Library.DataMapping;
-using AutoMapper;
+using Library.Configuration;
+using Library.Extention;
 using Coldairarrow.Util;
 using Library.DataAccess;
+using Library.Elasticsearch;
 using Library.Cache;
 using Integrate_Business.Config;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Castle.Core.Logging;
+using AutoMapper;
+using Integrate_Api.Configura;
 
 namespace Integrate_Api
 {
@@ -70,11 +76,15 @@ namespace Integrate_Api
             if (SystemConfig.systemConfig.CASEnable)
                 CASConfigura.RegisterServices(services);
 
-            if (SystemConfig.systemConfig.ElasticsearchEnable)
+            if (SystemConfig.systemConfig.EnableElasticsearch)
                 ElasticsearchConfigura.RegisterServices(services);
 
             if (SystemConfig.systemConfig.EnableFreeSql)
                 FreeSqlConfigura.RegisterServices(services);
+
+            if (SystemConfig.systemConfig.EnableAutoMapper)
+                AutoMapperConfigura.RegisterServices(services);
+
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
@@ -134,6 +144,9 @@ namespace Integrate_Api
             if (SystemConfig.systemConfig.CASEnable)
                 CASConfigura.RegisterApplication(app);
 
+            if (SystemConfig.systemConfig.EnableFreeSql)
+                FreeSqlConfigura.RegisterApplication(app);
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
@@ -158,41 +171,8 @@ namespace Integrate_Api
             });
 
             AutofacHelper.Container = app.ApplicationServices.GetAutofacRoot();
-            InitAutoMapper();
+
             InitId();
-        }
-
-        private void InitAutoMapper()
-        {
-            List<(Type from, Type target, bool enableForMember, bool isFrom)> maps = new List<(Type from, Type target, bool enableForMember, bool isFrom)>();
-
-            maps.AddRange(SystemConfig.systemConfig.FxTypes.Where(x => x.GetCustomAttribute<MapToAttribute>() != null)
-                .Select(x =>
-                {
-                    var attribute = x.GetCustomAttribute<MapToAttribute>();
-                    return (x, attribute.TargetType, attribute.EnableForMember, false);
-                }));
-            maps.AddRange(SystemConfig.systemConfig.FxTypes.Where(x => x.GetCustomAttribute<MapFromAttribute>() != null)
-                .Select(x =>
-                {
-                    var attribute = x.GetCustomAttribute<MapFromAttribute>();
-                    return (attribute.FromType, x, attribute.EnableForMember, true);
-                }));
-
-            Mapper.Initialize(cfg =>
-            {
-                maps.ForEach(aMap =>
-                {
-                    var map = cfg.CreateMap(aMap.from, aMap.target);
-                    if (aMap.enableForMember)
-                    {
-                        (aMap.isFrom ?
-                            aMap.target.GetForMembersOptions(aMap.isFrom) :
-                            aMap.from.GetForMembersOptions(aMap.isFrom))?
-                        .ForEach(o => map.ForMember(o.Name, o.Option));
-                    }
-                });
-            });
         }
 
         private void InitId()

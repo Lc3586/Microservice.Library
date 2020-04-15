@@ -11,12 +11,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System.Linq.Expressions;
-using System.Data.SqlClient;
 using Library.Models;
 using System.Text.RegularExpressions;
 using System.Linq.Dynamic.Core;
 using Microsoft.EntityFrameworkCore.Query.Internal;
 using Microsoft.EntityFrameworkCore.Query;
+using Microsoft.Data.SqlClient;
 
 namespace Library.DataRepository_SqlServer
 {
@@ -730,7 +730,7 @@ namespace Library.DataRepository_SqlServer
         /// <returns></returns>
         public List<T> GetListBySql<T>(string sqlStr, List<DbParameter> parameters) where T : class, new()
         {
-            return Db.Set<T>().FromSql(sqlStr, parameters.ToArray()).ToList();
+            return Db.Set<T>().FromSqlRaw(sqlStr, parameters.ToArray()).ToList();
         }
 
         #endregion
@@ -780,27 +780,28 @@ namespace Library.DataRepository_SqlServer
 
         public (string sql, IReadOnlyDictionary<string, object> parameters) ToSql(IQueryable query)
         {
-            var queryCompiler = (QueryCompiler)QueryCompilerField.GetValue(query.Provider);
-            var queryContextFactory = (IQueryContextFactory)queryContextFactoryField.GetValue(queryCompiler);
-            var logger = (Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger<DbLoggerCategory.Query>)loggerField.GetValue(queryCompiler);
-            var queryContext = queryContextFactory.Create();
-            var modelGenerator = (QueryModelGenerator)QueryModelGeneratorField.GetValue(queryCompiler);
-            var newQueryExpression = modelGenerator.ExtractParameters(logger, query.Expression, queryContext);
-            var queryModel = modelGenerator.ParseQuery(newQueryExpression);
-            var database = (IDatabase)DataBaseField.GetValue(queryCompiler);
-            var databaseDependencies = (DatabaseDependencies)DatabaseDependenciesField.GetValue(database);
-            var queryCompilationContext = databaseDependencies.QueryCompilationContextFactory.Create(false);
-            var modelVisitor = (RelationalQueryModelVisitor)queryCompilationContext.CreateQueryModelVisitor();
+            throw new NotImplementedException();
+            //var queryCompiler = (QueryCompiler)QueryCompilerField.GetValue(query.Provider);
+            //var queryContextFactory = (IQueryContextFactory)queryContextFactoryField.GetValue(queryCompiler);
+            //var logger = (Microsoft.EntityFrameworkCore.Diagnostics.IDiagnosticsLogger<DbLoggerCategory.Query>)loggerField.GetValue(queryCompiler);
+            //var queryContext = queryContextFactory.Create();
+            //var modelGenerator = (QueryModelGenerator)QueryModelGeneratorField.GetValue(queryCompiler);
+            //var newQueryExpression = modelGenerator.ExtractParameters(logger, query.Expression, queryContext);
+            //var queryModel = modelGenerator.ParseQuery(newQueryExpression);
+            //var database = (IDatabase)DataBaseField.GetValue(queryCompiler);
+            //var databaseDependencies = (DatabaseDependencies)DatabaseDependenciesField.GetValue(database);
+            //var queryCompilationContext = databaseDependencies.QueryCompilationContextFactory.Create(false);
+            //var modelVisitor = (RelationalQueryModelVisitor)queryCompilationContext.CreateQueryModelVisitor();
 
-            modelVisitor.GetType()
-                .GetMethod("CreateQueryExecutor")
-                .MakeGenericMethod(query.ElementType)
-                .Invoke(modelVisitor, new object[] { queryModel });
+            //modelVisitor.GetType()
+            //    .GetMethod("CreateQueryExecutor")
+            //    .MakeGenericMethod(query.ElementType)
+            //    .Invoke(modelVisitor, new object[] { queryModel });
 
-            var command = modelVisitor.Queries.First().CreateDefaultQuerySqlGenerator()
-                .GenerateSql(queryContext.ParameterValues);
+            //var command = modelVisitor.Queries.First().CreateDefaultQuerySqlGenerator()
+            //    .GenerateSql(queryContext.ParameterValues);
 
-            return (command.CommandText, queryContext.ParameterValues);
+            //return (command.CommandText, queryContext.ParameterValues);
         }
 
         #endregion

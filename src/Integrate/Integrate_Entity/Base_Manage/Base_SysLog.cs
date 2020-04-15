@@ -1,4 +1,4 @@
-﻿using Library.Elasticsearch;
+﻿using Library.Elasticsearch.Annotations;
 using Nest;
 using System;
 using System.ComponentModel.DataAnnotations;
@@ -10,7 +10,7 @@ namespace Integrate_Entity.Base_Manage
     /// 系统日志表
     /// </summary>
     [Table("Base_Log")]
-    [ElasticsearchIndices(IndicesSubType = NestIndexSubType.Month)]
+    [ElasticsearchIndiceExtention(Version = "v1", IndicesSubType = NestIndexSubType.Month)]
     [ElasticsearchType(RelationName = "Base_Log", IdProperty = nameof(Id))]
     public class Base_Log
     {

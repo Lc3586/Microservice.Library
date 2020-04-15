@@ -270,6 +270,7 @@ namespace Library.OpenApi.Annotations
         public static IOpenApiAny GetOrNullFor(this Type type)
         {
             var example = new OpenApiObject();
+
             IOpenApiAny any;
 
             var tag = type.GetMainTag();

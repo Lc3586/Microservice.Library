@@ -1,4 +1,5 @@
-﻿using Library.Elasticsearch.Annotations;
+﻿using FreeSql.DataAnnotations;
+using Library.Elasticsearch.Annotations;
 using Library.Json.Converters;
 using Library.OpenApi.Annotations;
 using Nest;
@@ -34,7 +35,6 @@ namespace Integrate_Entity.Example
         #region FreeSql CodeFirst模式
         //[FreeSql.DataAnnotations.Column(IsPrimary = true)]
         #endregion
-        [OpenApiSubTag("_List")]
         public long Id { get; set; }
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace Integrate_Entity.Example
         /// 最近编辑时间
         /// </summary>
         [Date(Format = "yyyy-MM-dd HH:mm:ss")]
-        [OpenApiSubTag("List", "Detail", "_Edit")]
+        [OpenApiSubTag("List", "Detail")]
         [OpenApiSchema(OpenApiSchemaType._string, "", OpenApiSchemaFormat.string_datetime)]
         [JsonConverter(typeof(DateTimeConverter), "yyyy-MM-dd HH:mm:ss")]
         public DateTime ModifyTime { get; set; }

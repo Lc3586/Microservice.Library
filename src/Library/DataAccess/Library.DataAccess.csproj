@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="LINQKit.Core" Version="1.1.16" />
+    <PackageReference Include="LINQKit.Core" Version="1.1.17" />
   </ItemGroup>
 
 </Project>

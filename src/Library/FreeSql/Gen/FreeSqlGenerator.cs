@@ -41,9 +41,6 @@ namespace Library.FreeSql.Gen
             if (_options.FreeSqlGeneratorOptions.GenerateCommandParameterWithLambda.HasValue)
                 freeSqlBuilder = freeSqlBuilder.UseGenerateCommandParameterWithLambda(_options.FreeSqlGeneratorOptions.GenerateCommandParameterWithLambda.Value);
 
-            if (_options.FreeSqlGeneratorOptions.EntityPropertyNameConvert.HasValue)
-                freeSqlBuilder = freeSqlBuilder.UseEntityPropertyNameConvert(_options.FreeSqlGeneratorOptions.EntityPropertyNameConvert.Value);
-
             if (_options.FreeSqlGeneratorOptions.HandleCommandLog != null ||
                 _options.FreeSqlGeneratorOptions.MonitorCommandExecuting != null ||
                 _options.FreeSqlGeneratorOptions.MonitorCommandExecuted != null)
@@ -52,29 +49,27 @@ namespace Library.FreeSql.Gen
                     new Action<System.Data.Common.DbCommand>((cmd) => { }),
                     _options.FreeSqlGeneratorOptions.MonitorCommandExecuted ??
                     new Action<System.Data.Common.DbCommand, string>((cmd, log) =>
+                    {
+                        if (_options.FreeSqlGeneratorOptions.HandleCommandLog != null)
                         {
-                            if (_options.FreeSqlGeneratorOptions.HandleCommandLog != null)
-                            {
-                                _options.FreeSqlGeneratorOptions.HandleCommandLog.Invoke(log);
-                            }
-                        }));
+                            _options.FreeSqlGeneratorOptions.HandleCommandLog.Invoke(log);
+                        }
+                    }));
 
             //开发配置
             if (_options.FreeSqlDevOptions?.AutoSyncStructure.HasValue == true)
                 freeSqlBuilder = freeSqlBuilder.UseAutoSyncStructure(_options.FreeSqlDevOptions.AutoSyncStructure.Value);
 
-            if (_options.FreeSqlDevOptions?.SyncStructureToLower.HasValue == true)
-                freeSqlBuilder = freeSqlBuilder.UseSyncStructureToLower(_options.FreeSqlDevOptions.SyncStructureToLower.Value);
-
-            if (_options.FreeSqlDevOptions?.SyncStructureToUpper.HasValue == true)
-                freeSqlBuilder = freeSqlBuilder.UseSyncStructureToUpper(_options.FreeSqlDevOptions.SyncStructureToUpper.Value);
+            if (_options.FreeSqlDevOptions?.SyncStructureNameConvert.HasValue == true)
+                freeSqlBuilder = freeSqlBuilder.UseNameConvert(_options.FreeSqlDevOptions.SyncStructureNameConvert.Value);
 
             if (_options.FreeSqlDevOptions?.ConfigEntityFromDbFirst.HasValue == true)
                 freeSqlBuilder = freeSqlBuilder.UseConfigEntityFromDbFirst(_options.FreeSqlDevOptions.ConfigEntityFromDbFirst.Value);
 
             freeSql = freeSqlBuilder.Build();
+            //freeSql.Ado.MasterPool.Statistics;
             if (_options.FreeSqlDevOptions?.SyncStructureOnStartup == true)
-                CodeFirstExtention.SyncStructure(freeSql.CodeFirst, new EntityFactory(_options.FreeSqlDbContextOptions).GetEntitys(_options.FreeSqlDbContextOptions.EntityKey).ToArray());
+                freeSql.CodeFirst.SyncStructure(new EntityFactory(_options.FreeSqlDbContextOptions).GetEntitys(_options.FreeSqlDbContextOptions.EntityKey).ToArray());
 
             return freeSql;
         }

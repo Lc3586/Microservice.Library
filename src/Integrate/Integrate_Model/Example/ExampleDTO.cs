@@ -1,14 +1,10 @@
 ﻿using AutoMapper;
-using Library.DataMapping;
-using Library.Extention;
+using Library.DataMapping.Annotations;
 using Library.OpenApi.Annotations;
-using Nest;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq.Expressions;
-using System.Text;
 using ExampleEntity = Integrate_Entity.Example.Example;//当类和命名空间重名时使用别名（任何情况下都要避免出现重名）
 
 namespace Integrate_Model.Example
@@ -29,7 +25,7 @@ namespace Integrate_Model.Example
             /// Id
             /// </summary>
             [OpenApiSchema(OpenApiSchemaType._integer, OpenApiSchemaFormat.integer_int64)]//接口框架属性
-            public new string Id { get; set; }
+            public string Id_ { get; set; }
         }
 
         /// <summary>
@@ -43,7 +39,7 @@ namespace Integrate_Model.Example
             /// Id
             /// </summary>
             [OpenApiSchema(OpenApiSchemaType._integer, OpenApiSchemaFormat.integer_int64)]//接口框架属性
-            public new string Id { get; set; }
+            public string Id_ { get; set; }
 
             /// <summary>
             /// 来源成员映射选项
@@ -55,7 +51,7 @@ namespace Integrate_Model.Example
                 {
                     return new List<(string, Action<IMemberConfigurationExpression>)>()
                        {
-                            ("Id",o => o.MapFrom(s=>((ExampleEntity)s).Id.ToString()))
+                            ("Id_",o => o.MapFrom(s=>((ExampleEntity)s).Id.ToString()))
                        };
                 }
             }
@@ -84,22 +80,7 @@ namespace Integrate_Model.Example
             /// </summary>
             [OpenApiSchema(OpenApiSchemaType._integer, OpenApiSchemaFormat.integer_int64)]//接口框架属性
             [Required(ErrorMessage = "Id不可为空")]//非空验证
-            public new string Id { get; set; }
-
-            /// <summary>
-            /// 当前成员映射选项
-            /// </summary>
-            [OpenApiIgnore]
-            public static List<(string, Action<IMemberConfigurationExpression>)> ToForMembersOptions
-            {
-                get
-                {
-                    return new List<(string, Action<IMemberConfigurationExpression>)>()
-                        {
-                            ("Id",o => o.MapFrom(s=>Convert.ToInt64(((Edit)s).Id)))
-                        };
-                }
-            }
+            public string Id_ { get; set; }
 
             /// <summary>
             /// 来源成员映射选项
@@ -111,8 +92,23 @@ namespace Integrate_Model.Example
                 {
                     return new List<(string, Action<IMemberConfigurationExpression>)>()
                        {
-                            ("Id",o => o.MapFrom(s=>((ExampleEntity)s).Id.ToString()))
+                            ("Id_",o => o.MapFrom(s=>((ExampleEntity)s).Id.ToString()))
                        };
+                }
+            }
+
+            /// <summary>
+            /// 当前成员映射选项
+            /// </summary>
+            [OpenApiIgnore]
+            public static List<(string, Action<IMemberConfigurationExpression>)> ToForMembersOptions
+            {
+                get
+                {
+                    return new List<(string, Action<IMemberConfigurationExpression>)>()
+                        {
+                            ("Id",o => o.MapFrom(s=>Convert.ToInt64(((Edit)s).Id_)))
+                        };
                 }
             }
         }

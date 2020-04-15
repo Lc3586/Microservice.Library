@@ -12,6 +12,7 @@ namespace Library.Models
     /// 数据表格分页
     /// </summary>
     [OpenApiSchemaStrictMode]
+    [OpenApiMainTag("Pagination")]
     public class Pagination
     {
         #region 构造函数
@@ -435,49 +436,56 @@ namespace Library.Models
         /// <summary>
         /// 当前页码
         /// </summary>
-        [OpenApiSchema(OpenApiSchemaType._integer, OpenApiSchemaFormat.integer_int32)]
+        [OpenApiSchema(OpenApiSchemaType._integer, OpenApiSchemaFormat.integer_int32, 1)]
+        [OpenApiSubTag("Pagination")]
         public int PageIndex { get => _pageIndex; set => _pageIndex = value; }
 
         /// <summary>
         /// 每页数据量
         /// </summary>
-        [OpenApiSchema(OpenApiSchemaType._integer, OpenApiSchemaFormat.integer_int32)]
+        [OpenApiSchema(OpenApiSchemaType._integer, OpenApiSchemaFormat.integer_int32, 10)]
+        [OpenApiSubTag("Pagination")]
         public int PageRows { get => _pageRows; set => _pageRows = value; }
 
         /// <summary>
         /// 排序列
         /// </summary>
-        [OpenApiSchema(OpenApiSchemaType._string)]
+        [OpenApiSchema(OpenApiSchemaType._string, Value = "CreateTime")]
+        [OpenApiSubTag("Pagination")]
         public string SortField { get => _sortField; set => _sortField = value; }
 
         /// <summary>
         /// 排序类型
         /// </summary>
-        [OpenApiSchema(OpenApiSchemaType._string)]
+        [OpenApiSchema(OpenApiSchemaType._string, Value = "desc")]
+        [OpenApiSubTag("Pagination")]
         public string SortType { get => _sortType; set => _sortType = value; }
 
         /// <summary>
         /// 高级排序
         /// </summary>
         [OpenApiSchema(OpenApiSchemaType._string)]
+        [OpenApiSubTag("Pagination")]
         public string AdvancedSort { get => _advancedSort; set => _advancedSort = value; }
 
         /// <summary>
         /// 筛选条件
         /// </summary>
         [OpenApiSchema(OpenApiSchemaType._string)]
+        [OpenApiSubTag("Pagination")]
         public string Filter { get => _filter; set => _filter = value; }
 
         /// <summary>
-        /// 筛选条件
+        /// 架构
         /// </summary>
         [OpenApiSchema(OpenApiSchemaType._string, null, "defaul")]
+        [OpenApiSubTag("Pagination")]
         public Schema Schema { get => _schema; set => _schema = value; }
 
         /// <summary>
         /// 总记录数
         /// </summary>
-        [OpenApiSchema(OpenApiSchemaType._string)]
+        [OpenApiSchema(OpenApiSchemaType._integer, OpenApiSchemaFormat.integer_int64)]
         public long RecordCount { get => _recordCount; set => _recordCount = value; }
 
         /// <summary>

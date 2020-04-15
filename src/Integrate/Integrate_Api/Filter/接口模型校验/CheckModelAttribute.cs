@@ -9,6 +9,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Library.OpenApi.Annotations;
+using System.Reflection;
 
 namespace Integrate_Api
 {
@@ -37,13 +38,14 @@ namespace Integrate_Api
             foreach (var parameter in context.ActionDescriptor.Parameters)
             {
                 var mainTag = parameter.ParameterType.GetMainTag();
+                var strictMode = parameter.ParameterType.GetCustomAttribute<OpenApiSchemaStrictModeAttribute>() != null;
                 if (mainTag.IsNullOrEmpty())
                     continue;
                 else
                     hasTag = true;
                 foreach (var property in parameter.ParameterType.GetProperties())
                 {
-                    if (property.DeclaringType?.Name == parameter.ParameterType.Name || property.HasTag(mainTag))
+                    if ((!strictMode && property.DeclaringType?.Name == parameter.ParameterType.Name) || property.HasTag(mainTag))
                         propNames.Add(property.Name);
                 }
             }

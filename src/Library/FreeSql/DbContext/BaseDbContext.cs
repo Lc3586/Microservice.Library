@@ -9,7 +9,6 @@ using FreeSql;
 using JetBrains.Annotations;
 using Library.FreeSql.Application;
 using Library.FreeSql.Gen;
-using Microsoft.Extensions.Logging;
 
 namespace Library.FreeSql.Repository
 {

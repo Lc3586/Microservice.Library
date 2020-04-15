@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using FreeSql;
@@ -55,10 +54,5 @@ namespace Library.FreeSql.Application
         /// 是否生成命令参数化执行，针对 lambda 表达式解析
         /// </summary>
         public bool? GenerateCommandParameterWithLambda { get; set; }
-
-        /// <summary>
-        /// 自动转换实体属性名称 Entity Property -> Db Filed
-        /// </summary>
-        public StringConvertType? EntityPropertyNameConvert { get; set; }
     }
 }

@@ -7,6 +7,7 @@ using Library.WebApp;
 using Integrate_Model.System;
 using System.Linq;
 using Library.Extention;
+using Integrate_Business.Base_Manage;
 
 namespace Integrate_Business
 {
