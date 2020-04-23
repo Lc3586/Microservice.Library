@@ -9,8 +9,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FreeSql.All" Version="1.3.2" />
-    <PackageReference Include="JetBrains.Annotations" Version="2019.1.3" />
+    <PackageReference Include="FreeSql.All" Version="1.4.0-preview0415" />
+    <PackageReference Include="FreeSql.Provider.Dameng" Version="1.4.0-preview0415" />
+    <PackageReference Include="JetBrains.Annotations" Version="2020.1.0" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="3.1.3" />
   </ItemGroup>
 

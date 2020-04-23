@@ -1,6 +1,6 @@
 ﻿using Integrate_Business.Config;
 using Library.Cache;
-using Library.Extention;
+using Library.Extension;
 using System.Collections.Generic;
 
 namespace Integrate_Business.Cache

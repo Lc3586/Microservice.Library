@@ -1,4 +1,4 @@
-﻿using Library.Extention;
+﻿using Library.Extension;
 using StackExchange.Redis;
 using System;
 

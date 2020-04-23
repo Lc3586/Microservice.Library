@@ -1,5 +1,5 @@
 ﻿using Integrate_Business.Base_Manage;
-using Library.Extention;
+using Library.Extension;
 using Library.Models;
 using Microsoft.AspNetCore.Mvc;
 

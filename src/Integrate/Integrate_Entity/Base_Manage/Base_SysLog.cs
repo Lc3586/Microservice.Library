@@ -10,7 +10,7 @@ namespace Integrate_Entity.Base_Manage
     /// 系统日志表
     /// </summary>
     [Table("Base_Log")]
-    [ElasticsearchIndiceExtention(Version = "v1", IndicesSubType = NestIndexSubType.Month)]
+    [ElasticsearchIndiceExtension(Version = "v1", IndicesSubType = NestIndexSubType.Month)]
     [ElasticsearchType(RelationName = "Base_Log", IdProperty = nameof(Id))]
     public class Base_Log
     {

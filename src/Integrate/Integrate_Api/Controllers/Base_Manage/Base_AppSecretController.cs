@@ -1,7 +1,7 @@
 using Integrate_Business.Base_Manage;
 using Integrate_Business.Util;
 using Integrate_Entity.Base_Manage;
-using Library.Extention;
+using Library.Extension;
 using Library.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;

@@ -1,6 +1,6 @@
 using Integrate_Entity.Base_Manage;
 using Library.Container;
-using Library.Extention;
+using Library.Extension;
 using Library.Models;
 using Library.LinqTool;
 using System.Collections.Generic;

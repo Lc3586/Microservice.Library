@@ -1,4 +1,4 @@
-﻿using Library.Extention;
+﻿using Library.Extension;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
 using System;

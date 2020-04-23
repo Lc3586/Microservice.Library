@@ -1,7 +1,7 @@
 ﻿using Integrate_Business.Example;
 using Library.Models;
 using Integrate_Model.Example;
-using Library.Extention;
+using Library.Extension;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;

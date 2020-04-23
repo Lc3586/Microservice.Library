@@ -20,7 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Configuration\Library.Configuration.csproj" />
-    <ProjectReference Include="..\Extention\Library.Extention.csproj" />
+    <ProjectReference Include="..\Extension\Library.Extension.csproj" />
   </ItemGroup>
 
 </Project>

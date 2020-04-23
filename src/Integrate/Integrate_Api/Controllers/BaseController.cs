@@ -1,5 +1,5 @@
 ﻿using Library.Models;
-using Library.Extention;
+using Library.Extension;
 using Library.OpenApi.JsonSerialization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;

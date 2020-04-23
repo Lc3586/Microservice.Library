@@ -1,5 +1,5 @@
 ﻿using Dm;
-using Library.Extention;
+using Library.Extension;
 using Library.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;

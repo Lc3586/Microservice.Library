@@ -2,7 +2,7 @@ using Library.Container;
 using Library.Models;
 using Library.LinqTool;
 using Newtonsoft.Json;
-using Library.Extention;
+using Library.Extension;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,12 +50,14 @@ namespace Integrate_Business.Example
         {
             #region 从数据库查询数据
 
-            var select = SelectExtention.Select<ExampleDTO.List>((a) =>
+            var select = SelectExtension.Select<ExampleDTO.List>((d, a) =>
             {
                 a.Id_ = a.Id.ToString();
             });
 
-            //var q = from a in orm.ToDynamic<ExampleEntity, ExampleDTO.List>(pagination, typeof(BindRecordDTO.List).GetNamesWithTagAndOther(true, "_List"))
+            //var q = from a in orm            
+            //            .Select<ExampleEntity>()
+            //            .ToDynamic<ExampleEntity, ExampleDTO.List>(orm, pagination, typeof(ExampleDTO.List).GetNamesWithTagAndOther(true, "_List"))
             //        select @select.Invoke(a) as BindConfigDTO.List;
 
             //return q.ToList();

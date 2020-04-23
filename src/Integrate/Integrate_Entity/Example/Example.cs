@@ -19,7 +19,7 @@ namespace Integrate_Entity.Example
     /// </summary>
     [FreeSql.DataAnnotations.Table(DisableSyncStructure = true)]//FreeSql使用CodeFirst模式时必须添加此特性
     //[System.ComponentModel.DataAnnotations.Schema.Table("Example")]//数据库表名
-    [ElasticsearchIndiceExtention(Version = "v1", IndicesSubType = NestIndexSubType.None)]//搜索服务索引拓展功能
+    [ElasticsearchIndiceExtension(Version = "v1", IndicesSubType = NestIndexSubType.None)]//搜索服务索引拓展功能
     [ElasticsearchType(RelationName = "Example", IdProperty = nameof(Id))]//搜索服务索引类型信息
     public class Example
     {

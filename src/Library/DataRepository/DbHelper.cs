@@ -5,7 +5,7 @@ using System.Data.Common;
 using System.Text;
 using System.Threading;
 using System.Linq;
-using Library.Extention;
+using Library.Extension;
 using Library.Models;
 using DbColumn = Library.Models.DbColumn;
 

@@ -1,5 +1,5 @@
 ﻿using Integrate_Business.Config;
-using Library.Extention;
+using Library.Extension;
 using Library.Models;
 using Library.Http;
 using System;

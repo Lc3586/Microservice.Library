@@ -1,4 +1,4 @@
-﻿using Library.Extention;
+﻿using Library.Extension;
 using Library.Models;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;

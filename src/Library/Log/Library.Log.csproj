@@ -9,15 +9,16 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>Library.Extention</RootNamespace>
+    <RootNamespace>Library.Log</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NodaTime" Version="2.4.7" />
+    <PackageReference Include="NLog" Version="4.7.0" />
+    <PackageReference Include="NLog.Config" Version="4.7.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LibraryModels\Library.Models.csproj" />
+    <ProjectReference Include="..\Extension\Library.Extension.csproj" />
   </ItemGroup>
 
 </Project>

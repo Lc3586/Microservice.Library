@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
-using Library.Extention;
+using Library.Extension;
 using System;
 using Integrate_Business.Config;
 using Library.Models;

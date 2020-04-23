@@ -1,5 +1,5 @@
 ﻿using Library.ConsistentHash;
-using Library.Extention;
+using Library.Extension;
 
 namespace Library.DataAccess
 {

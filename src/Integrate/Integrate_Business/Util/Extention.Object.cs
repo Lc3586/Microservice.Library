@@ -2,7 +2,7 @@
 using Coldairarrow.Util;
 using Integrate_Model.System;
 using Library.Container;
-using Library.Extention;
+using Library.Extension;
 
 namespace Integrate_Business.Util
 {

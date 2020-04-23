@@ -7,7 +7,7 @@ using IDASH.Models;
 using IDASH.Validator;
 using IdentityServer4;
 using IdentityServer4.Quickstart.UI;
-using Library.Extention;
+using Library.Extension;
 using Microsoft.AspNetCore.Authentication.QQ;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

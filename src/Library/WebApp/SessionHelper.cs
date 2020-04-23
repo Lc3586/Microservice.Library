@@ -1,6 +1,6 @@
 ﻿using Library.Cache;
 using Library.Configuration;
-using Library.Extention;
+using Library.Extension;
 
 namespace Library.WebApp
 {

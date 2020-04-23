@@ -7,7 +7,7 @@ using System.Text;
 namespace Library.Elasticsearch
 {
     [ElasticsearchType(RelationName = "ElasticsearchTestModel_v1", IdProperty = nameof(Id))]
-    [ElasticsearchIndiceExtention(IndicesSubType = NestIndexSubType.Week)]
+    [ElasticsearchIndiceExtension(IndicesSubType = NestIndexSubType.Week)]
     class ElasticsearchTestModel
     {
         /// <summary>

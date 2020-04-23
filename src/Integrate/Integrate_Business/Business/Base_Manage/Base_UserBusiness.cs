@@ -1,5 +1,5 @@
 using Integrate_Entity.Base_Manage;
-using Library.Extention;
+using Library.Extension;
 using Library.Container;
 using Library.DataRepository;
 using Library.DataMapping;

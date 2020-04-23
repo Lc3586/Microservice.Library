@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Library.Extention;
+using Library.Extension;
 using Integrate_Business.Util;
 
 namespace Integrate_Api

@@ -1,5 +1,5 @@
 ﻿using Library.DataAccess;
-using Library.Extention;
+using Library.Extension;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;

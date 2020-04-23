@@ -1,4 +1,4 @@
-﻿using Library.Extention;
+﻿using Library.Extension;
 using Library.OpenApi.Annotations;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;

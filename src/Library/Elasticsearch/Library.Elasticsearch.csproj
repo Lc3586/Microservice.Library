@@ -20,7 +20,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ConsoleTool\Library.ConsoleTool.csproj" />
-    <ProjectReference Include="..\Extention\Library.Extention.csproj" />
     <ProjectReference Include="..\HardwareInfo\Library.HardwareInfo.csproj" />
     <ProjectReference Include="..\SnowflakeId\Library.Snowflake.csproj" />
   </ItemGroup>

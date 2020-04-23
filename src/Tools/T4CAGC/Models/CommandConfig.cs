@@ -1,4 +1,4 @@
-﻿using Library.Extention;
+﻿using Library.Extension;
 using McMaster.Extensions.CommandLineUtils;
 using System;
 using System.Collections.Generic;

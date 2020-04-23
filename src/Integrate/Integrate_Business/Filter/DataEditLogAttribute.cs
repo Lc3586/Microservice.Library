@@ -1,5 +1,5 @@
 ﻿using Castle.DynamicProxy;
-using Library.Extention;
+using Library.Extension;
 using Library.Models;
 
 namespace Integrate_Business

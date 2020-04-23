@@ -6,7 +6,7 @@ using Library.Log;
 using Library.WebApp;
 using Integrate_Model.System;
 using System.Linq;
-using Library.Extention;
+using Library.Extension;
 using Integrate_Business.Base_Manage;
 
 namespace Integrate_Business

@@ -2,7 +2,7 @@
 using Integrate_Business.Config;
 using Integrate_Entity.Base_Manage;
 using Library.Container;
-using Library.Extention;
+using Library.Extension;
 using Library.JWT;
 using Library.Models;
 using System;

@@ -68,7 +68,7 @@ namespace Library.FreeSql.Gen
 
             freeSql = freeSqlBuilder.Build();
             //freeSql.Ado.MasterPool.Statistics;
-            if (_options.FreeSqlDevOptions?.SyncStructureOnStartup == true)
+            if (_options.FreeSqlDevOptions?.AutoSyncStructure.HasValue == true && _options.FreeSqlDevOptions?.SyncStructureOnStartup == true)
                 freeSql.CodeFirst.SyncStructure(new EntityFactory(_options.FreeSqlDbContextOptions).GetEntitys(_options.FreeSqlDbContextOptions.EntityKey).ToArray());
 
             return freeSql;

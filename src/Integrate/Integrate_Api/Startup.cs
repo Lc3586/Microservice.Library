@@ -17,7 +17,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Library.Models;
 using Library.DataMapping;
 using Library.Configuration;
-using Library.Extention;
+using Library.Extension;
 using Coldairarrow.Util;
 using Library.DataAccess;
 using Library.Elasticsearch;

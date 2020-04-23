@@ -1,5 +1,5 @@
 ﻿using Library.Elasticsearch.Annotations;
-using Library.Extention;
+using Library.Extension;
 using Nest;
 using System;
 using System.Collections.Generic;

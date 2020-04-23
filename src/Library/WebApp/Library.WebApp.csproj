@@ -20,7 +20,6 @@
     <ProjectReference Include="..\Cache\Library.Cache.csproj" />
     <ProjectReference Include="..\Configuration\Library.Configuration.csproj" />
     <ProjectReference Include="..\Container\Library.Container.csproj" />
-    <ProjectReference Include="..\Extention\Library.Extention.csproj" />
   </ItemGroup>
 
 </Project>

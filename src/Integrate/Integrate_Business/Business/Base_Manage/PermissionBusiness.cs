@@ -2,7 +2,7 @@
 using Integrate_Entity.Base_Manage;
 using Library.Container;
 using Library.LinqTool;
-using Library.Extention;
+using Library.Extension;
 using System.Collections.Generic;
 using System.Linq;
 using static Integrate_Entity.Base_Manage.EnumType;

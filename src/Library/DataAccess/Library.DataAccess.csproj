@@ -21,7 +21,6 @@
     <ProjectReference Include="..\DataRepository_MySql\Library.DataRepository_MySql.csproj" />
     <ProjectReference Include="..\DataRepository_PostgreSql\Library.DataRepository_PostgreSql.csproj" />
     <ProjectReference Include="..\DataRepository_SqlServer\Library.DataRepository_SqlServer.csproj" />
-    <ProjectReference Include="..\Extention\Library.Extention.csproj" />
     <ProjectReference Include="..\SnowflakeId\Library.Snowflake.csproj" />
     <ProjectReference Include="..\TypeTool\Library.TypeTool.csproj" />
   </ItemGroup>

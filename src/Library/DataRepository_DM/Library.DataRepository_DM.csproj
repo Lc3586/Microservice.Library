@@ -19,7 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DataRepository\Library.DataRepository.csproj" />
-    <ProjectReference Include="..\Extention\Library.Extention.csproj" />
+    <ProjectReference Include="..\Extension\Library.Extension.csproj" />
   </ItemGroup>
 
   <ItemGroup>

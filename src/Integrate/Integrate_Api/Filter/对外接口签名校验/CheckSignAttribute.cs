@@ -2,7 +2,7 @@
 using Integrate_Business.Config;
 using Library.Cache;
 using Library.Container;
-using Library.Extention;
+using Library.Extension;
 using Library.Http;
 using Library.Models;
 using Library.Log;

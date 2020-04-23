@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Library.Snowflake;
-using Library.Extention;
+using Library.Extension;
 using Library.ConsoleTool;
 using Library.HardwareInfo;
 

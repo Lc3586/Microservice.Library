@@ -1,6 +1,6 @@
 ﻿using IDASH.Models;
 using IdentityServer4.Models;
-using Library.Extention;
+using Library.Extension;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using System;

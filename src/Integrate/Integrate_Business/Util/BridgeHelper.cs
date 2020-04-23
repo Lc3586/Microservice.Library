@@ -1,7 +1,7 @@
 ﻿using Library.Models;
 using System;
 using System.Collections.Generic;
-using Library.Extention;
+using Library.Extension;
 using Microsoft.AspNetCore.Http;
 
 namespace Integrate_Business.Util

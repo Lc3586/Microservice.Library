@@ -1,6 +1,6 @@
 ﻿using Library.Http;
 using Library.Models;
-using Library.Extention;
+using Library.Extension;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System;

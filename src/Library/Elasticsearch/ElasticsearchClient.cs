@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Library.Extention;
+using Library.Extension;
 using Library.Models;
 using Elasticsearch.Net;
 using Library.Elasticsearch.Gen;

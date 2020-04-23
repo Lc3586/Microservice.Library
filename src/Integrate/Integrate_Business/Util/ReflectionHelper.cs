@@ -1,7 +1,7 @@
 ﻿using Library.Models;
 using System;
 using System.Collections.Generic;
-using Library.Extention;
+using Library.Extension;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 

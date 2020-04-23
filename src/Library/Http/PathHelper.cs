@@ -1,5 +1,5 @@
 ﻿using Library.Container;
-using Library.Extention;
+using Library.Extension;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Routing;
