@@ -22,7 +22,6 @@ namespace Microsoft.Extensions.DependencyInjection
 
             //注册生成器和依赖
             services.AddTransient(s => s.GetRequiredService<IOptions<FreeSqlGenOptions>>().Value);
-
             services.AddSingleton<IFreeSqlProvider, FreeSqlGenerator>();
 
             if (setupAction != null) services.ConfigureFreeSql(setupAction);

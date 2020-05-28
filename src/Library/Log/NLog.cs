@@ -6,171 +6,220 @@ using System.Text;
 
 namespace Library.Log
 {
-    public static class NLogHelper
+    public class NLogHelper
     {
-        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+        public NLogHelper()
+        {
+
+        }
+
+        public NLogHelper(string loggerName)
+        {
+            LoggerName = loggerName;
+        }
+
+        public Logger GetLogger()
+        {
+            return LoggerName.IsNullOrEmpty() ? Logger : LogManager.GetLogger(LoggerName);
+        }
+
+        private string LoggerName { get; set; }
+
+        private static Logger Logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// 关闭日志
         /// </summary>
         public static bool Off = false;
 
-        #region 常规
+        #region 普通
 
-        public static void I(string msg)
+        public void I(string msg)
         {
             if (Off) return;
 
-            Logger.Info(msg);
+            GetLogger().Info(msg);
         }
 
-        public static void I(string Title, string msg)
+        public void I(string Title, string msg)
         {
             if (Off) return;
 
-            Logger.Info(Title + "\r\n" + msg);
+            GetLogger().Info(Title + "\r\n" + msg);
         }
 
-        public static void I(System.Exception ex)
+        public void I(System.Exception ex)
         {
             if (Off) return;
 
-            Logger.Info(ex.GetExceptionAllMsg());
+            GetLogger().Info(ex.GetExceptionAllMsg());
         }
 
-        public static void I(string Title, System.Exception ex)
+        public void I(string Title, System.Exception ex)
         {
             if (Off) return;
 
-            Logger.Info(Title + "\r\n" + ex.GetExceptionAllMsg());
+            GetLogger().Info(Title + "\r\n" + ex.GetExceptionAllMsg());
         }
 
         #endregion
 
         #region 调试
 
-        public static void D(string msg)
+        public void D(string msg)
         {
             if (Off) return;
 
-            Logger.Debug(msg);
+            GetLogger().Debug(msg);
         }
 
-        public static void D(string Title, string msg)
+        public void D(string Title, string msg)
         {
             if (Off) return;
 
-            Logger.Debug(Title + "\r\n" + msg);
+            GetLogger().Debug(Title + "\r\n" + msg);
         }
 
-        public static void D(System.Exception ex)
+        public void D(System.Exception ex)
         {
             if (Off) return;
 
-            Logger.Debug(ex.GetExceptionAllMsg());
+            GetLogger().Debug(ex.GetExceptionAllMsg());
         }
 
-        public static void D(string Title, System.Exception ex)
+        public void D(string Title, System.Exception ex)
         {
             if (Off) return;
 
-            Logger.Debug(Title + "\r\n" + ex.GetExceptionAllMsg());
+            GetLogger().Debug(Title + "\r\n" + ex.GetExceptionAllMsg());
+        }
+
+        #endregion
+
+        #region 追踪
+
+        public void T(string msg)
+        {
+            if (Off) return;
+
+            GetLogger().Trace(msg);
+        }
+
+        public void T(string Title, string msg)
+        {
+            if (Off) return;
+
+            GetLogger().Trace(Title + "\r\n" + msg);
+        }
+
+        public void T(System.Exception ex)
+        {
+            if (Off) return;
+
+            GetLogger().Trace(ex.GetExceptionAllMsg());
+        }
+
+        public void T(string Title, System.Exception ex)
+        {
+            if (Off) return;
+
+            GetLogger().Trace(Title + "\r\n" + ex.GetExceptionAllMsg());
         }
 
         #endregion
 
         #region 警告
 
-        public static void W(string msg)
+        public void W(string msg)
         {
             if (Off) return;
 
-            Logger.Warn(msg);
+            GetLogger().Warn(msg);
         }
 
-        public static void W(string Title, string msg)
+        public void W(string Title, string msg)
         {
             if (Off) return;
 
-            Logger.Warn(Title + "\r\n" + msg);
+            GetLogger().Warn(Title + "\r\n" + msg);
         }
 
-        public static void W(System.Exception ex)
+        public void W(System.Exception ex)
         {
             if (Off) return;
 
-            Logger.Warn(ex.GetExceptionAllMsg());
+            GetLogger().Warn(ex.GetExceptionAllMsg());
         }
 
-        public static void W(string Title, System.Exception ex)
+        public void W(string Title, System.Exception ex)
         {
             if (Off) return;
 
-            Logger.Warn(Title + "\r\n" + ex.GetExceptionAllMsg());
+            GetLogger().Warn(Title + "\r\n" + ex.GetExceptionAllMsg());
         }
 
         #endregion
 
         #region 错误
 
-        public static void E(string msg)
+        public void E(string msg)
         {
             if (Off) return;
 
-            Logger.Error(msg);
+            GetLogger().Error(msg);
         }
 
-        public static void E(string Title, string msg)
+        public void E(string Title, string msg)
         {
             if (Off) return;
 
-            Logger.Error(Title + "\r\n" + msg);
+            GetLogger().Error(Title + "\r\n" + msg);
         }
 
-        public static void E(System.Exception ex)
+        public void E(System.Exception ex)
         {
             if (Off) return;
 
-            Logger.Error(ex.GetExceptionAllMsg());
+            GetLogger().Error(ex.GetExceptionAllMsg());
         }
 
-        public static void E(string Title, System.Exception ex)
+        public void E(string Title, System.Exception ex)
         {
             if (Off) return;
 
-            Logger.Error(Title + "\r\n" + ex.GetExceptionAllMsg());
+            GetLogger().Error(Title + "\r\n" + ex.GetExceptionAllMsg());
         }
 
         #endregion
 
         #region 灾难
 
-        public static void F(string msg)
+        public void F(string msg)
         {
             if (Off) return;
 
-            Logger.Fatal(msg);
+            GetLogger().Fatal(msg);
         }
 
-        public static void F(string Title, string msg)
+        public void F(string Title, string msg)
         {
             if (Off) return;
 
-            Logger.Fatal(Title + "\r\n" + msg);
+            GetLogger().Fatal(Title + "\r\n" + msg);
         }
 
-        public static void F(System.Exception ex)
+        public void F(System.Exception ex)
         {
             if (Off) return;
 
-            Logger.Fatal(ex.GetExceptionAllMsg());
+            GetLogger().Fatal(ex.GetExceptionAllMsg());
         }
 
-        public static void F(string Title, System.Exception ex)
+        public void F(string Title, System.Exception ex)
         {
             if (Off) return;
 
-            Logger.Fatal(Title + "\r\n" + ex.GetExceptionAllMsg());
+            GetLogger().Fatal(Title + "\r\n" + ex.GetExceptionAllMsg());
         }
 
         #endregion

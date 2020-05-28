@@ -9,6 +9,19 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.1-alpha</Version>
+    <Authors>LCTR</Authors>
+    <Product>LCTR</Product>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Description>ID工具
+
+原作者：https://github.com/Coldairarrow</Description>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>Library.IdTool.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

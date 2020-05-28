@@ -10,15 +10,33 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Library.Models</RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.1-alpha</Version>
+    <Authors>LCTR</Authors>
+    <Company>LCTR</Company>
+    <Product>LCTR</Product>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Description>类库基础模型</Description>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>\Library.Models.xml</DocumentationFile>
+    <DocumentationFile>F:\图锐信息\项目框架学习\项目框架\微服务架构\Microservice\src\Library\LibraryModels\Library.Models.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>\Library.Models.xml</DocumentationFile>
+    <DocumentationFile>Library.Models.xml</DocumentationFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Library.Models.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Library.Models.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />

@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Library.Elasticsearch
 {
+    /// <summary>
+    /// 生成选项
+    /// </summary>
     public class ElasticsearchGeneratorOptions
     {
         public ElasticsearchGeneratorOptions()

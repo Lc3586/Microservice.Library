@@ -1,0 +1,560 @@
+﻿/*
+ *协议配置示例模板
+*/
+/*
+ *协议配置示例模板
+*/
+/*
+ *协议配置示例模板
+*/
+{
+  "JT809": {
+    //数据流是否遵循大端
+    "BigEndian": true,
+    //编码
+    "Encoding": "gbk",
+    //帧头
+    "HeadFlag": {
+      "CodeType": "string_x4",
+      "Value": "0x5b"
+    },
+    //帧尾
+    "EndFlag": {
+      "CodeType": "string_x4",
+      "Value": "0x5d"
+    },
+    //转义
+    "Escapes": {
+      "0x5b": [ "0x5a", "0x01" ],
+      "0x5a": [ "0x5a", "0x02" ],
+      "0x5d": [ "0x5e", "0x01" ],
+      "0x5e": [ "0x5e", "0x02" ]
+    },
+    //数据映射
+    "DataMappings": {
+      //报警
+      "Alarm": [
+        {
+          "Matching": "0",
+          "Value": "紧急报警，触动报警开关后触发"
+        },
+        {
+          "Matching": "1",
+          "Value": "超速报警"
+        },
+        {
+          "Matching": "4",
+          "Value": "GNSS模块发生故障"
+        },
+        {
+          "Matching": "5",
+          "Value": "GNSS天线未接或被剪断"
+        },
+        {
+          "Matching": "6",
+          "Value": "GNSS天线短路"
+        },
+        {
+          "Matching": "7",
+          "Value": "终端主电源欠压"
+        },
+        {
+          "Matching": "8",
+          "Value": "终端主电源掉电"
+        },
+        {
+          "Matching": "23",
+          "Value": "路线偏离报警"
+        },
+        {
+          "Matching": "32",
+          "Value": "滞站报警"
+        },
+        {
+          "Matching": "33",
+          "Value": "飞站报警"
+        },
+        {
+          "Matching": "34",
+          "Value": "越站报警"
+        },
+        {
+          "Matching": "35",
+          "Value": "过疏报警"
+        },
+        {
+          "Matching": "36",
+          "Value": "过密报警"
+        },
+        {
+          "Matching": "47",
+          "Value": "轻度超速"
+        },
+        {
+          "Matching": "48",
+          "Value": "中度超速"
+        },
+        {
+          "Matching": "49",
+          "Value": "严重超速"
+        },
+        {
+          "Matching": "50",
+          "Value": "设备故障"
+        },
+        {
+          "Matching": "59",
+          "Value": ""
+        },
+        {
+          "Matching": "60",
+          "Value": ""
+        },
+        {
+          "Matching": "61",
+          "Value": ""
+        },
+        {
+          "Matching": "62",
+          "Value": ""
+        },
+        {
+          "Matching": "63",
+          "Value": ""
+        }
+      ],
+      //状态
+      "State": [],
+      //定点类型
+      "Point": [
+        {
+          "Matching": "F",
+          "Value": "停靠站"
+        },
+        {
+          "Matching": "f",
+          "Value": "终点站"
+        },
+        {
+          "Matching": "l",
+          "Value": "停车场"
+        },
+        {
+          "Matching": "i",
+          "Value": "加油站"
+        },
+        {
+          "Matching": "B",
+          "Value": "起点站"
+        }
+      ],
+      "InOutStation": [
+        {
+          "Matching": "00",
+          "Value": "进站点"
+        },
+        {
+          "Matching": "01",
+          "Value": "出站点"
+        }
+      ]
+    },
+    //内部结构实体映射
+    "InternalEntitysMappings": {
+      "header": {
+        "Path": null,
+        "TypeName": "Library.SuperSocket.JTProtocol.MessageHeader"
+      },
+      "0x0201": {
+        "Path": "Server.dll",
+        "TypeName": "Server.Entity.CarPosition"
+      },
+      "0x0203": {
+        "Path": "Server.dll",
+        "TypeName": "Server.Entity.CarInOutStation"
+      },
+      "0x0208": {
+        "Path": null,
+        "TypeName": null
+      },
+      "0x0501": {
+        "Path": null,
+        "TypeName": null
+      }
+    },
+    //CRC数据校验设置
+    "Crc16Ccitt": {
+      //初始值
+      "InitialCrcValue": 0,
+      //需要跳过部分的长度[头，尾]
+      "Skip": [ 0, 2 ],
+      //取crc数据的位置
+      "Take": -2,
+      "Property": "CRCCode"
+    },
+    //加密设置
+    "Encrypt": {
+      "Targets": {
+        "MessageBody": {
+          "Flag": "MessageHeader.EncryptFlag",
+          "Key": "MessageHeader.EncrtptKey"
+        }
+      }
+    },
+    //结构
+    "Structures": {
+      "MessageHeader": {
+        "Order": 1,
+        "Property": "MessageHeader",
+        "Explain": "数据头",
+        "Length": 22,
+        "StructureType": "internal",
+        "CodeType": "object",
+        "InternalPropertyForKey": null,
+        "Internal": {
+          "header": {
+            "MsgLength": {
+              "Order": 1,
+              "Property": "MsgLength",
+              "Explain": "数据长度",
+              "Length": 4,
+              "CodeType": "uint32"
+            },
+            "Msg_SN": {
+              "Order": 2,
+              "Property": "Msg_SN",
+              "Explain": "报文序列号",
+              "Length": 4,
+              "CodeType": "uint32"
+            },
+            "Msg_ID": {
+              "Order": 3,
+              "Property": "Msg_ID",
+              "Explain": "协议号",
+              "Length": 2,
+              "CodeType": "uint16"
+            },
+            "MsgGnsscenterID": {
+              "Order": 4,
+              "Property": "MsgGnsscenterID",
+              "Explain": "下级平台接入码",
+              "Length": 4,
+              "CodeType": "uint32"
+            },
+            "VersionFlag": {
+              "Order": 5,
+              "Property": "VersionFlag",
+              "Explain": "协议版本号",
+              "Length": 3,
+              "CodeType": "bytes"
+            },
+            "EncryptFlag": {
+              "Order": 6,
+              "Property": "EncryptFlag",
+              "Explain": "报文加密标识位",
+              "Length": 1,
+              "CodeType": "boolean"
+            },
+            "EncrtptKey": {
+              "Order": 7,
+              "Property": "EncrtptKey",
+              "Explain": "数据加密的密钥",
+              "Length": 4,
+              "CodeType": "uint32"
+            }
+          }
+        }
+      },
+      "MessageBody": {
+        "Order": 2,
+        "Property": "MessageBody",
+        "Explain": "数据体",
+        "Length": null,
+        "StructureType": "internal",
+        "CodeType": "object",
+        "InternalPropertyForKey": {
+          "Property": "MessageHeader.Msg_ID",
+          "Encode": "uint16",
+          "Decode": "string_x4"
+        },
+        "Internal": {
+          //车辆定位信息
+          "0x0201": {
+            "CarPlate": {
+              "Order": 1,
+              "Property": "CarPlate",
+              "Explain": "车牌号",
+              "Length": 21,
+              "CodeType": "string"
+            },
+            "Tel": {
+              "Order": 2,
+              "Property": "Tel",
+              "Explain": "手机号码",
+              "Length": 6,
+              "CodeType": "data",
+              "CompileExpression": "Tel.TrimStart('0')"
+            },
+            //定位基本信息-起
+            "Alarm": {
+              "Order": 3,
+              "Property": "Alarm",
+              "Explain": "报警",
+              "Length": 8,
+              "CodeType": "data_split",
+              "DataMapping": "Alarm"
+            },
+            "State": {
+              "Order": 4,
+              "Property": "State",
+              "Explain": "状态",
+              "Length": 8,
+              "CodeType": "data_split",
+              "DataMapping": "State"
+            },
+            "Longitude": {
+              "Order": 5,
+              "Property": "Longitude",
+              "Explain": "经度",
+              "Length": 4,
+              "CodeType": "uint32",
+              "CompileExpression": "Longitude*106m/1000000"
+            },
+            "Latitude": {
+              "Order": 6,
+              "Property": "Latitude",
+              "Explain": "纬度",
+              "Length": 4,
+              "CodeType": "uint32",
+              "CompileExpression": "Latitude*106m/1000000"
+            },
+            "Altitude": {
+              "Order": 7,
+              "Property": "Altitude",
+              "Explain": "高程",
+              "Length": 2,
+              "CodeType": "uint16"
+            },
+            "Speed": {
+              "Order": 8,
+              "Property": "Speed",
+              "Explain": "速度",
+              "Length": 2,
+              "CodeType": "uint16"
+            },
+            "Direction": {
+              "Order": 9,
+              "Property": "Direction",
+              "Explain": "方向",
+              "Length": 2,
+              "CodeType": "uint16"
+            },
+            "Mileage": {
+              "Order": 10,
+              "Property": "Mileage",
+              "Explain": "总里程",
+              "Length": 4,
+              "CodeType": "uint32"
+            },
+            "GPSTime": {
+              "Order": 11,
+              "Property": "GPSTime",
+              "Explain": "GPS时间",
+              "Length": 7,
+              "CodeType": "date"
+            },
+            //定位基本信息-讫
+            "Additional": {
+              "Order": 12,
+              "Property": "Additional",
+              "Explain": "附加信息",
+              "Length": null,
+              "StructureType": "additional",
+              "CodeType": "object",
+              "Additional": {
+                "Length": 1,
+                "CodeType": "string_x4",
+                "Switch": {
+                  "0xf0": {
+                    "Order": 1,
+                    "Property": "DriverId",
+                    "Explain": "驾驶员Id",
+                    "CodeType": "uint32"
+                  },
+                  "0xf1": {
+                    "Order": 1,
+                    "Property": "RouteId",
+                    "Explain": "路线Id",
+                    "CodeType": "uint32"
+                  },
+                  "0xf2": {
+                    "Order": 1,
+                    "Property": "StationIndex",
+                    "Explain": "站点序号",
+                    "CodeType": "uint16"
+                  },
+                  "0xf3": {
+                    "Order": 1,
+                    "Property": "StationMileage",
+                    "Explain": "站间里程",
+                    "CodeType": "uint32"
+                  },
+                  "0xf4": {
+                    "Order": 1,
+                    "Property": "DriverName",
+                    "Explain": "驾驶员姓名",
+                    "CodeType": "string"
+                  },
+                  "0xf5": {
+                    "Order": 1,
+                    "Property": "DriverTel",
+                    "Explain": "驾驶员手机号",
+                    "CodeType": "data",
+                    "CompileExpression": "DriverTel.TrimStart('0')"
+                  }
+                }
+              }
+            }
+          },
+          //车辆进出站信息
+          "0x0203": {
+            "CarPlate": {
+              "Order": 1,
+              "Property": "CarPlate",
+              "Explain": "车牌号",
+              "Length": 21,
+              "CodeType": "string"
+            },
+            "Tel": {
+              "Order": 2,
+              "Property": "Tel",
+              "Explain": "手机号码",
+              "Length": 6,
+              "CodeType": "data"
+            },
+            //定位基本信息-起
+            "Alarm": {
+              "Order": 3,
+              "Property": "Alarm",
+              "Explain": "报警",
+              "Length": 8,
+              "CodeType": "data_split",
+              "DataMapping": "Alarm"
+            },
+            "State": {
+              "Order": 4,
+              "Property": "State",
+              "Explain": "状态",
+              "Length": 8,
+              "CodeType": "data_split",
+              "DataMapping": "State"
+            },
+            "Longitude": {
+              "Order": 5,
+              "Property": "Longitude",
+              "Explain": "经度",
+              "Length": 4,
+              "CodeType": "uint32"
+            },
+            "Latitude": {
+              "Order": 6,
+              "Property": "Latitude",
+              "Explain": "纬度",
+              "Length": 4,
+              "CodeType": "uint32"
+            },
+            "Altitude": {
+              "Order": 7,
+              "Property": "Altitude",
+              "Explain": "高程",
+              "Length": 2,
+              "CodeType": "int16"
+            },
+            "Speed": {
+              "Order": 8,
+              "Property": "Speed",
+              "Explain": "速度",
+              "Length": 2,
+              "CodeType": "int16"
+            },
+            "Direction": {
+              "Order": 9,
+              "Property": "Direction",
+              "Explain": "方向",
+              "Length": 2,
+              "CodeType": "int16"
+            },
+            "Mileage": {
+              "Order": 10,
+              "Property": "Mileage",
+              "Explain": "总里程",
+              "Length": 4,
+              "CodeType": "uint32"
+            },
+            "GPSTime": {
+              "Order": 11,
+              "Property": "GPSTime",
+              "Explain": "GPS时间",
+              "Length": 7,
+              "CodeType": "date"
+            },
+            //定位基本信息-讫
+            "DriverId": {
+              "Order": 12,
+              "Property": "DriverId",
+              "Explain": "驾驶员Id",
+              "Length": 4,
+              "CodeType": "uint32"
+            },
+            "RouteId": {
+              "Order": 13,
+              "Property": "RouteId",
+              "Explain": "路线Id",
+              "Length": 4,
+              "CodeType": "uint32"
+            },
+            "StationIndex": {
+              "Order": 14,
+              "Property": "StationIndex",
+              "Explain": "站点序号",
+              "Length": 2,
+              "CodeType": "uint16"
+            },
+            "PointType": {
+              "Order": 15,
+              "Property": "PointType",
+              "Explain": "定点类型",
+              "Length": 1,
+              "CodeType": "string",
+              "DataMapping": "Point"
+            },
+            "InOutStationType": {
+              "Order": 16,
+              "Property": "InOutStationType",
+              "Explain": "进、出站类型",
+              "Length": 1,
+              "CodeType": "byte",
+              "DataMapping": "InOutStation"
+            },
+            "StationMileage": {
+              "Order": 17,
+              "Property": "StationMileage",
+              "Explain": "站间里程",
+              "Length": 4,
+              "CodeType": "uint32"
+            }
+
+          },
+          //CAN数据上报指令
+          "0x0208": {
+
+          },
+          //调度信息下发
+          "0x0501": {
+
+          }
+        }
+      }
+    }
+  }
+}

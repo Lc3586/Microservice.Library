@@ -20,12 +20,19 @@ namespace Library.FreeSql.Application
 
         public void Configure(FreeSqlGeneratorOptions options)
         {
-            options = _freeSqlGenOptions.FreeSqlGeneratorOptions;
+            DeepCopy(_freeSqlGenOptions.FreeSqlGeneratorOptions, options);
         }
 
-        public void DeepCopy(FreeSqlGeneratorOptions source, FreeSqlGeneratorOptions target)
+        private void DeepCopy(FreeSqlGeneratorOptions source, FreeSqlGeneratorOptions target)
         {
-
+            target.DatabaseType = source.DatabaseType;
+            target.ConnectionString = source.ConnectionString;
+            target.HandleCommandLog = source.HandleCommandLog;
+            target.MonitorCommandExecuting = source.MonitorCommandExecuting;
+            target.MonitorCommandExecuted = source.MonitorCommandExecuted;
+            target.LazyLoading = source.LazyLoading;
+            target.NoneCommandParameter = source.NoneCommandParameter;
+            target.GenerateCommandParameterWithLambda = source.GenerateCommandParameterWithLambda;
         }
     }
 }

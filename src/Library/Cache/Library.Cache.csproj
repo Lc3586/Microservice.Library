@@ -10,6 +10,20 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Library.Cache</RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.1-alpha</Version>
+    <Authors>LCTR</Authors>
+    <Company>LCTR</Company>
+    <Product>LCTR</Product>
+    <Description>提供缓存功能
+系统缓存
+Redis缓存</Description>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>Library.Cache.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

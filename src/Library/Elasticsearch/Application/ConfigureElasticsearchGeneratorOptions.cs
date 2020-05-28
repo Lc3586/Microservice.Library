@@ -21,10 +21,10 @@ namespace Library.Elasticsearch
 
         public void Configure(ElasticsearchGeneratorOptions options)
         {
-            options = _elasticsearchGenOptions.ElasticsearchGeneratorOptions;
+            DeepCopy(_elasticsearchGenOptions.ElasticsearchGeneratorOptions, options);
         }
 
-        public void DeepCopy(ElasticsearchGeneratorOptions source, ElasticsearchGeneratorOptions target)
+        private void DeepCopy(ElasticsearchGeneratorOptions source, ElasticsearchGeneratorOptions target)
         {
             target.ConnectionSettings = source.ConnectionSettings;
             target.NumberOfShards = source.NumberOfShards;

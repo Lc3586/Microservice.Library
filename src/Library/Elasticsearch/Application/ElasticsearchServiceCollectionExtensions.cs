@@ -11,6 +11,12 @@ namespace Microsoft.Extensions.DependencyInjection
 {
     public static class ElasticsearchServiceCollectionExtensions
     {
+        /// <summary>
+        /// 注册ES
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="setupAction"></param>
+        /// <returns></returns>
         public static IServiceCollection AddElasticsearch(
             this IServiceCollection services,
             Action<ElasticsearchGenOptions> setupAction = null)

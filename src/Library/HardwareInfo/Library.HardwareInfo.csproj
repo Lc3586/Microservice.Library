@@ -10,6 +10,18 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Library.HardwareInfo</RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.1-alpha</Version>
+    <Authors>LCTR</Authors>
+    <Company>LCTR</Company>
+    <Product>LCTR</Product>
+    <Description>获取硬件信息</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>Library.HardwareInfo.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

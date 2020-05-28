@@ -10,6 +10,18 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Library.Elasticsearch</RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.8-alpha</Version>
+    <Authors>LCTR</Authors>
+    <Company>LCTR</Company>
+    <Product>LCTR</Product>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Description>通过依赖注入的方式使用Elasticsearch</Description>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>Library.Elasticsearch.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

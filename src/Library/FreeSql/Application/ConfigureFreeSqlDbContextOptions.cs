@@ -20,12 +20,15 @@ namespace Library.FreeSql.Application
 
         public void Configure(FreeSqlDbContextOptions options)
         {
-            options = _freeSqlGenOptions.FreeSqlDbContextOptions;
+            DeepCopy(_freeSqlGenOptions.FreeSqlDbContextOptions, options);
         }
 
-        public void DeepCopy(FreeSqlDbContextOptions source, FreeSqlDbContextOptions target)
+        private void DeepCopy(FreeSqlDbContextOptions source, FreeSqlDbContextOptions target)
         {
-
+            target.EntityAssembly = source.EntityAssembly;
+            target.EntityKey = source.EntityKey;
+            target.EnableAddOrUpdateNavigateList = source.EnableAddOrUpdateNavigateList;
+            target.OnEntityChange = source.OnEntityChange;
         }
     }
 }

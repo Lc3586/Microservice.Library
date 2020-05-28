@@ -20,12 +20,15 @@ namespace Library.FreeSql.Application
 
         public void Configure(FreeSqlDevOptions options)
         {
-            options = _freeSqlGenOptions.FreeSqlDevOptions;
+            DeepCopy(_freeSqlGenOptions.FreeSqlDevOptions, options);
         }
 
-        public void DeepCopy(FreeSqlDevOptions source, FreeSqlDevOptions target)
+        private void DeepCopy(FreeSqlDevOptions source, FreeSqlDevOptions target)
         {
-
+            target.SyncStructureOnStartup = source.SyncStructureOnStartup;
+            target.AutoSyncStructure = source.AutoSyncStructure;
+            target.SyncStructureNameConvert = source.SyncStructureNameConvert;
+            target.ConfigEntityFromDbFirst = source.ConfigEntityFromDbFirst;
         }
     }
 }

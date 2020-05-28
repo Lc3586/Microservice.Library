@@ -9,41 +9,42 @@ namespace Library.Configuration
     /// </summary>
     public class ConfigHelper
     {
-        static ConfigHelper()
+        public ConfigHelper(string jsonFile)
         {
-            Init();
+            Init(jsonFile);
         }
 
-        public static void Configure(string jsonFile)
+        void Init(string jsonFile = null)
         {
-            Init();
-        }
-
-        private static void Init(string jsonFile = "appsettings.json")
-        {
-            IConfiguration config = AutofacHelper.GetService<IConfiguration>();
-            if (config == null)
+            if (jsonFile == null)
             {
-                var builder = new ConfigurationBuilder()
-                    .SetBasePath(AppContext.BaseDirectory)
-                    .AddJsonFile(jsonFile);
-
-                config = builder.Build();
+                if (Config != null)
+                    return;
+                IConfiguration config = AutofacHelper.GetService<IConfiguration>();
+                if (config == null)
+                    config = GetConfigFormFile();
+                Config = config;
             }
-
-            _Config = config;
+            else
+                Config = GetConfigFormFile(jsonFile);
         }
 
-        private static IConfiguration _Config { get; set; }
+        static IConfiguration GetConfigFormFile(string jsonFile = "appsettings.json")
+        {
+            return new ConfigurationBuilder()
+                         .SetBasePath(AppContext.BaseDirectory)
+                         .AddJsonFile(jsonFile)
+                         .Build();
+        }
 
-        private static IConfiguration Config { get { return _Config; } }
+        static IConfiguration Config { get; set; }
 
         /// <summary>
         /// 从AppSettings获取key的值
         /// </summary>
         /// <param name="key">key</param>
         /// <returns></returns>
-        public static string GetValue(string key)
+        public string GetValue(string key)
         {
             return Config[key];
         }
@@ -53,7 +54,7 @@ namespace Library.Configuration
         /// </summary>
         /// <param name="key">key</param>
         /// <returns></returns>
-        public static T GetValue<T>(string key)
+        public T GetValue<T>(string key)
         {
             return Config.GetValue<T>(key);
         }
@@ -64,7 +65,7 @@ namespace Library.Configuration
         /// <param name="key">key</param>
         /// <param name="Default">默认值</param>
         /// <returns></returns>
-        public static T GetValue<T>(string key, T Default = default)
+        public T GetValue<T>(string key, T Default = default)
         {
             T Value = Config.GetValue<T>(key);
             return Value == null ? Default : Value;
@@ -75,7 +76,7 @@ namespace Library.Configuration
         /// </summary>
         /// <param name="nameOfCon">连接字符串名</param>
         /// <returns></returns>
-        public static string GetConnectionString(string nameOfCon)
+        public string GetConnectionString(string nameOfCon)
         {
             return Config.GetConnectionString(nameOfCon);
         }
@@ -86,7 +87,7 @@ namespace Library.Configuration
         /// <typeparam name="T"></typeparam>
         /// <param name="section">板块</param>
         /// <returns></returns>
-        public static T GetModel<T>(string section)
+        public T GetModel<T>(string section)
         {
             return Config.GetSection(section).Get<T>();
         }

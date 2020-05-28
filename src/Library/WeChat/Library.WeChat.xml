@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Library.WeChat</name>
+    </assembly>
+    <members>
+        <member name="M:Library.WeChat.Helper.RefundQuery(System.String,System.String,System.String,System.Nullable{System.Int32})">
+            <summary>
+            查询退款
+            </summary>
+            <param name="outTradeNo"></param>
+            <param name="outRefundNo"></param>
+            <param name="refundId"></param>
+            <param name="offset"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.WeChat.Helper.SendTemplateMessage(System.String,System.String,System.String,System.Object)">
+            <summary>
+            发送模板消息
+            </summary>
+            <param name="openid"></param>
+            <param name="templateId"></param>
+            <param name="url"></param>
+            <param name="data"></param>
+        </member>
+        <member name="T:Library.WeChat.Model.WeixinConfig">
+            <summary>
+            配置
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeixinUserInfo.openid">
+            <summary>用户的唯一标识</summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeixinUserInfo.nickname">
+            <summary>用户昵称</summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeixinUserInfo.sex">
+            <summary>用户的性别，值为1时是男性，值为2时是女性，值为0时是未知</summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeixinUserInfo.province">
+            <summary>用户个人资料填写的省份</summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeixinUserInfo.city">
+            <summary>普通用户个人资料填写的城市</summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeixinUserInfo.country">
+            <summary>国家，如中国为CN</summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeixinUserInfo.headimgurl">
+            <summary>
+            用户头像，最后一个数值代表正方形头像大小（有0、46、64、96、132数值可选，0代表640*640正方形头像），用户没有头像时该项为空
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeixinUserInfo.privilege">
+            <summary>
+            用户特权信息，json 数组，如微信沃卡用户为（chinaunicom）
+            作者注：其实这个格式称不上JSON，只是个单纯数组。
+            </summary>
+        </member>
+    </members>
+</doc>

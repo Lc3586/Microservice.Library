@@ -14,7 +14,7 @@ namespace Library.Extension
         /// <param name="expandoObj">动态对象</param>
         /// <param name="propertyName">属性名</param>
         /// <param name="value">属性值</param>
-        public static void AddProperty(this ExpandoObject expandoObj,string propertyName,object value)
+        public static void AddProperty(this ExpandoObject expandoObj, string propertyName, object value)
         {
             var obj = (IDictionary<string, object>)expandoObj;
             if (obj.ContainsKey(propertyName))
@@ -98,7 +98,7 @@ namespace Library.Extension
                 {
                     dt.Columns.Add(aProperty);
                 });
-                dataList.ForEach((aData,index) =>
+                dataList.ForEach((aData, index) =>
                 {
                     dt.Rows.Add(dt.NewRow());
                     properties.ForEach(aProperty =>
@@ -107,9 +107,8 @@ namespace Library.Extension
                     });
                 });
             }
-            
+
             return dt;
         }
-
     }
 }
