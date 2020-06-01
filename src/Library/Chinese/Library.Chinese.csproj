@@ -11,7 +11,13 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Library.Chinese</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.0-alpha</Version>
+    <Version>1.0.1-alpha</Version>
+    <Authors>LCTR</Authors>
+    <Product>LCTR</Product>
+    <Description>提取文字的拼音</Description>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/Lc3586/Microservice/tree/master/src/Library/Chinese</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>

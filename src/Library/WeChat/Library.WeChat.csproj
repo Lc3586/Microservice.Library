@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Library.WeChat</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.4-alpha</Version>
+    <Version>1.0.5-alpha</Version>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Authors>LCTR</Authors>
@@ -12,6 +12,7 @@
     <Description>微信模板消息推送
 微信支付
 微信退款</Description>
+    <PackageProjectUrl>https://github.com/Lc3586/Microservice/tree/master/src/Library/WeChat</PackageProjectUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

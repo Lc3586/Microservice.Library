@@ -10,7 +10,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Library.Configuration</RootNamespace>
-    <Version>1.0.2-alpha</Version>
+    <Version>1.0.3-alpha</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>LCTR</Authors>
     <Product>LCTR</Product>
@@ -19,6 +19,7 @@
     <Description>系统配置拓展功能
 
 原作者：https://github.com/Coldairarrow</Description>
+    <PackageProjectUrl>https://github.com/Lc3586/Microservice/tree/master/src/Library/Configuration</PackageProjectUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

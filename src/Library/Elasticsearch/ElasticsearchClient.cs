@@ -34,6 +34,15 @@ namespace Library.Elasticsearch
         public string IndiceName { get; set; }
 
         /// <summary>
+        /// 获取ES客户端
+        /// </summary>
+        /// <returns></returns>
+        public ElasticClient GetClient()
+        {
+            return ElasticClient;
+        }
+
+        /// <summary>
         /// 索引是否存在
         /// </summary>
         /// <param name="indices">索引</param>
@@ -418,7 +427,8 @@ namespace Library.Elasticsearch
             object id,
             bool isThrow = false) where T : class
         {
-            var response = ElasticClient.Get(new DocumentPath<T>(new Id(id)).Index(RelationName));
+            //var response = ElasticClient.Get(new DocumentPath<T>(new Id(id)), s => s.Index(RelationName));
+            var response = ElasticClient.Get<T>(new GetRequest(RelationName, new Id(id)));
             if (!response.IsValid)
                 if (isThrow)
                     throw new ElasticsearchError(response);

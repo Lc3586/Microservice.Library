@@ -11,13 +11,14 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Library.Elasticsearch</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.8-alpha</Version>
+    <Version>1.0.12-alpha</Version>
     <Authors>LCTR</Authors>
     <Company>LCTR</Company>
     <Product>LCTR</Product>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Description>通过依赖注入的方式使用Elasticsearch</Description>
+    <PackageProjectUrl>https://github.com/Lc3586/Microservice/tree/master/src/Library/Elasticsearch</PackageProjectUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

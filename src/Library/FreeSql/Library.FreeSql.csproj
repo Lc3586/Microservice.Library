@@ -3,13 +3,14 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.1-alpha</Version>
+    <Version>1.0.2-alpha</Version>
     <Authors>LCTR</Authors>
     <Product>LCTR</Product>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Description>通过依赖注入的方式使用FreeSql
 并且额外提供了一些拓展功能</Description>
+    <PackageProjectUrl>https://github.com/Lc3586/Microservice/tree/master/src/Library/FreeSql</PackageProjectUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

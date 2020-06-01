@@ -11,7 +11,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Library.Container</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.1-alpha</Version>
+    <Version>1.0.2-alpha</Version>
     <Authors>LCTR</Authors>
     <Product>LCTR</Product>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -19,6 +19,7 @@
     <Description>IOC容器
 
 原作者：https://github.com/Coldairarrow</Description>
+    <PackageProjectUrl>https://github.com/Lc3586/Microservice/tree/master/src/Library/Container</PackageProjectUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

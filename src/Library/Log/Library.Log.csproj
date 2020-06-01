@@ -11,7 +11,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Library.Log</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.4-alpha</Version>
+    <Version>1.0.5-alpha</Version>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Authors>LCTR</Authors>
     <Company>LCTR</Company>
@@ -20,6 +20,7 @@
 
 参考项目：https://github.com/Coldairarrow</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/Lc3586/Microservice/tree/master/src/Library/Log</PackageProjectUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

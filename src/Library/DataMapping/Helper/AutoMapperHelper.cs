@@ -2,6 +2,11 @@
 
 namespace Library.DataMapping.Helper
 {
+    /// <summary>
+    /// AutoMapper帮助类
+    /// </summary>
+    /// <typeparam name="TSouurce"></typeparam>
+    /// <typeparam name="TDestination"></typeparam>
     public class AutoMapperHelper<TSouurce, TDestination>
     {
         public AutoMapperHelper()
@@ -16,7 +21,7 @@ namespace Library.DataMapping.Helper
             return Mapper;
         }
 
-        public TDestination Map(TDestination model)
+        public TDestination Map(object model)
         {
             return Mapper.Map<TDestination>(model);
         }

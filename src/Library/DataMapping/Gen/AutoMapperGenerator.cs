@@ -21,12 +21,16 @@ namespace Library.DataMapping.Gen
 
         private IMapper mapper;
 
+        /// <summary>
+        /// 获取映射器
+        /// </summary>
+        /// <returns></returns>
         public IMapper GetMapper()
         {
             if (mapper != null)
                 return mapper;
 
-            List<(Type from, Type target, bool enableForMember, bool isFrom)> maps = new List<(Type from, Type target, bool enableForMember, bool isFrom)>();
+            var maps = new List<(Type from, Type target, bool enableForMember, bool isFrom)>();
 
             maps.AddRange(_options.AutoMapperGeneratorOptions.Types.Where(x => x.GetCustomAttribute<MapToAttribute>() != null)
                 .Select(x =>

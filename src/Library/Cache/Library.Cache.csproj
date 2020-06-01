@@ -11,7 +11,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Library.Cache</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.1-alpha</Version>
+    <Version>1.0.2-alpha</Version>
     <Authors>LCTR</Authors>
     <Company>LCTR</Company>
     <Product>LCTR</Product>
@@ -20,6 +20,7 @@
 Redis缓存</Description>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/Lc3586/Microservice/tree/master/src/Library/Cache</PackageProjectUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

@@ -11,7 +11,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Library.Extension</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.1-alpha</Version>
+    <Version>1.0.2-alpha</Version>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Copyright></Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -19,6 +19,7 @@
     <Company>LCTR</Company>
     <Authors>LCTR</Authors>
     <Description>各种拓展功能</Description>
+    <PackageProjectUrl>https://github.com/Lc3586/Microservice/tree/master/src/Library/Extension</PackageProjectUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

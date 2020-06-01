@@ -8,6 +8,9 @@ using System.Text;
 
 namespace Library.DataMapping.Extention
 {
+    /// <summary>
+    /// 拓展方法
+    /// </summary>
     public static class MapExtention
     {
         /// <summary>
@@ -15,6 +18,7 @@ namespace Library.DataMapping.Extention
         /// <para>默认为类型名称</para>
         /// </summary>
         /// <param name="type">目标对象</param>
+        /// <param name="isFrom">是否为映射来源</param>
         /// <remarks>LCTR 2020-03-10</remarks>
         /// <returns></returns>
         public static List<(string Name, Action<IMemberConfigurationExpression> Option)> GetForMembersOptions(this Type type, bool isFrom)

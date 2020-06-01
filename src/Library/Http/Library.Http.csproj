@@ -11,7 +11,15 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Library.Http</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.0-alpha</Version>
+    <Version>1.0.1-alpha</Version>
+    <Authors>LCTR</Authors>
+    <Product>LCTR</Product>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Description>模拟Http请求的方法
+
+参考项目 : https://github.com/Coldairarrow/Colder.Admin.AntdVue</Description>
+    <PackageProjectUrl>https://github.com/Lc3586/Microservice/tree/master/src/Library/HardwareInfo</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>

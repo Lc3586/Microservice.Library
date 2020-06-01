@@ -11,7 +11,19 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Library.DataMapping</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.0-alpha</Version>
+    <Version>1.0.2-alpha</Version>
+    <Authors>LCTR</Authors>
+    <Product>LCTR</Product>
+    <Description>数据模型映射功能
+
+参考项目 : https://github.com/Coldairarrow/Colder.Admin.AntdVue</Description>
+    <PackageProjectUrl>https://github.com/Lc3586/Microservice/tree/master/src/Library/DataMapping</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>Library.DataMapping.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

@@ -14,9 +14,18 @@ namespace Library.DataMapping.Gen
         IMapper GetMapper();
     }
 
-    public class FreeSqlError : InvalidOperationException
+    /// <summary>
+    /// 异常
+    /// </summary>
+    /// <returns></returns>
+    public class AutoMapperError : InvalidOperationException
     {
-        public FreeSqlError(string title, string message = null)
+        /// <summary>
+        /// 异常
+        /// </summary>
+        /// <param name="title">标题</param>
+        /// <param name="message">内容</param>
+        public AutoMapperError(string title, string message = null)
             : base($"{title} : {message}")
         {
 
