@@ -4,8 +4,39 @@ using System.Text;
 
 namespace Library.ConsoleTool
 {
+    /// <summary>
+    /// 拓展方法
+    /// </summary>
     public static class Extension
     {
+        /// <summary>
+        /// 控制台输出
+        /// </summary>
+        /// <param name="data">数据</param>
+        /// <param name="color">颜色(默认白色)</param>
+        /// <param name="tag">标签</param>
+        /// <param name="line">是否整行(默认true)</param>
+        /// <param name="blankline">空行数</param>
+        /// <returns></returns>
+        public static void ConsoleWrite(this object data, ConsoleColor color = ConsoleColor.White, string tag = null, bool line = true, int blankline = 0)
+        {
+            ConsoleColor _color = Console.ForegroundColor;
+            if (line)
+                Console.Write("\n");
+            if (!string.IsNullOrEmpty(tag))
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.Write(tag + " : ");
+            }
+            Console.ForegroundColor = color;
+            Console.Write(data);
+            Console.ForegroundColor = _color;
+            while (blankline > 0)
+            {
+                Console.Write("\n");
+                blankline--;
+            }
+        }
 
         /// <summary>
         /// 控制台读取用户输入的信息
