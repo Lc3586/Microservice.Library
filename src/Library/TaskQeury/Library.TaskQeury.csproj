@@ -11,7 +11,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Library.TaskQeury</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.0-alpha</Version>
+    <Version>1.0.1-alpha</Version>
   </PropertyGroup>
 
 </Project>

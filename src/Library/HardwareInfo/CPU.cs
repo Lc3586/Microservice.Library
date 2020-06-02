@@ -7,24 +7,27 @@ namespace Library.HardwareInfo
     /// </summary>
     public static class CPU
     {
-        public static double[] UsageInfo = null;
-
-        private static PerformanceCounter[] counters = null;
+        private static PerformanceCounter[] Counters = null;
+        private static object Lock = new { };
 
         public static double[] CPUUsageInfo()
         {
-            if (counters == null)
+            lock (Lock)
             {
-                counters = new PerformanceCounter[System.Environment.ProcessorCount];
-                for (int i = 0; i < counters.Length; i++)
+                if (Counters == null)
                 {
-                    counters[i] = new PerformanceCounter("Processor", "% Processor Time", i.ToString());
+                    Counters = new PerformanceCounter[System.Environment.ProcessorCount];
+                    for (int i = 0; i < Counters.Length; i++)
+                    {
+                        Counters[i] = new PerformanceCounter("Processor", "% Processor Time", i.ToString());
+                    }
                 }
             }
-            UsageInfo = new double[counters.Length];
-            for (int i = 0; i < counters.Length; i++)
-                UsageInfo[i] = counters[i].NextValue();
-            return UsageInfo;
+
+            var usageInfo = new double[Counters.Length];
+            for (int i = 0; i < Counters.Length; i++)
+                usageInfo[i] = Counters[i].NextValue();
+            return usageInfo;
         }
     }
 }
