@@ -306,6 +306,16 @@ namespace Library.Extension
         }
 
         /// <summary>
+        /// 转换为decimal
+        /// </summary>
+        /// <param name="str">字符串</param>
+        /// <returns></returns>
+        public static decimal ToDecimal(this string str)
+        {
+            return Convert.ToDecimal(str);
+        }
+
+        /// <summary>
         /// string转byte[]
         /// </summary>
         /// <param name="str">字符串</param>

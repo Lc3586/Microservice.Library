@@ -11,9 +11,14 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Description>Json推展功能</Description>
     <PackageProjectUrl>https://github.com/Lc3586/Microservice/tree/master/src/Library/Json</PackageProjectUrl>
+    <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>Library.Json.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <DocumentationFile>Library.Json.xml</DocumentationFile>
   </PropertyGroup>
 

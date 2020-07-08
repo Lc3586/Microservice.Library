@@ -11,9 +11,14 @@
     <Description>通过依赖注入的方式使用FreeSql
 并且额外提供了一些拓展功能</Description>
     <PackageProjectUrl>https://github.com/Lc3586/Microservice/tree/master/src/Library/FreeSql</PackageProjectUrl>
+    <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>Library.FreeSql.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <DocumentationFile>Library.FreeSql.xml</DocumentationFile>
   </PropertyGroup>
 

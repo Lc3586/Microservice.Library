@@ -110,5 +110,92 @@ namespace Library.Extension
 
             return dt;
         }
+
+        /// <summary>
+        /// 将DataSet转为动态属性对象ExpandoObject列表(第一张表)
+        /// </summary>
+        /// <param name="dataSet"></param>
+        /// <returns></returns>
+        public static List<ExpandoObject> ToExpandoObjectList(this DataSet dataSet)
+        {
+            if (dataSet == null || dataSet.Tables.Count == 0 || dataSet.Tables[0].Rows.Count == 0)
+                return null;
+
+            return ToExpandoObjectList(dataSet.Tables[0]);
+        }
+
+        /// <summary>
+        /// 将DataTable转为动态属性对象ExpandoObject列表
+        /// </summary>
+        /// <param name="dataTable"></param>
+        /// <returns></returns>
+        public static List<ExpandoObject> ToExpandoObjectList(this DataTable dataTable)
+        {
+            if (dataTable == null || dataTable.Rows.Count == 0)
+                return null;
+
+            var expandoObjectList = new List<ExpandoObject>();
+            var rowsArray = new DataRow[dataTable.Rows.Count];
+            dataTable.Rows.CopyTo(rowsArray, 0);
+
+            foreach (var item in rowsArray)
+                expandoObjectList.Add(ToExpandoObject(item, dataTable.Columns));
+
+            return expandoObjectList;
+        }
+
+        /// <summary>
+        /// 将DataSet转为动态属性对象ExpandoObject
+        /// </summary>
+        /// <param name="dataSet"></param>
+        /// <returns></returns>
+        public static ExpandoObject ToExpandoObject(this DataSet dataSet)
+        {
+            if (dataSet == null || dataSet.Tables.Count == 0 || dataSet.Tables[0].Rows.Count == 0)
+                return null;
+
+            return ToExpandoObject(dataSet.Tables[0]);
+        }
+
+        /// <summary>
+        /// 将DataTable转为动态属性对象ExpandoObject
+        /// </summary>
+        /// <param name="dataTable"></param>
+        /// <returns></returns>
+        public static ExpandoObject ToExpandoObject(this DataTable dataTable)
+        {
+            if (dataTable == null || dataTable.Rows.Count == 0)
+                return null;
+
+            return ToExpandoObject(dataTable.Rows[0], dataTable.Columns);
+        }
+
+        /// <summary>
+        /// 将DataRow转为动态属性对象ExpandoObject
+        /// </summary>
+        /// <param name="row"></param>
+        /// <param name="columns"></param>
+        /// <returns></returns>
+        private static ExpandoObject ToExpandoObject(DataRow row, DataColumnCollection columns = null)
+        {
+            var expandoObject = new ExpandoObject();
+            var obj = (IDictionary<string, object>)expandoObject;
+
+            DataColumn[] columnsArray;
+            if (columns == null)
+                columnsArray = row.GetColumnsInError();
+            else
+            {
+                columnsArray = new DataColumn[columns.Count];
+                columns.CopyTo(columnsArray, 0);
+            }
+
+            foreach (var item in columnsArray)
+            {
+                obj.Add(item.ColumnName, row[item]);
+            }
+
+            return expandoObject;
+        }
     }
 }

@@ -13,9 +13,14 @@
 微信支付
 微信退款</Description>
     <PackageProjectUrl>https://github.com/Lc3586/Microservice/tree/master/src/Library/WeChat</PackageProjectUrl>
+    <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>Library.WeChat.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <DocumentationFile>Library.WeChat.xml</DocumentationFile>
   </PropertyGroup>
 

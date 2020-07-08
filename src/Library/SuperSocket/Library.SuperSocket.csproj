@@ -13,9 +13,14 @@
 黑名单
 JT协议</Description>
     <PackageProjectUrl>https://github.com/Lc3586/Microservice/tree/master/src/Library/SuperSocket</PackageProjectUrl>
+    <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>Library.SuperSocket.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <DocumentationFile>Library.SuperSocket.xml</DocumentationFile>
   </PropertyGroup>
 

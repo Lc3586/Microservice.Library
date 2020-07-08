@@ -276,11 +276,13 @@ namespace Library.Extension
                         switch (obj.ToString().ToLower())
                         {
                             case "1":
+                            case "y":
                             case "yes":
                             case "true":
                                 result = true;
                                 break;
                             case "0":
+                            case "n":
                             case "no":
                             case "false":
                                 result = false;

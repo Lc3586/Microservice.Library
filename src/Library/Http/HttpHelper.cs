@@ -48,11 +48,13 @@ namespace Library.Http
         /// <param name="url">地址</param>
         /// <param name="paramters">参数</param>
         /// <param name="headers">请求头</param>
+        /// <param name="timeout">请求超时时间</param>
+        /// <param name="readWriteTimeout">数据下载超时时间</param>
         /// <param name="cerFile">证书</param>
         /// <returns></returns>
-        public static string GetData(string url, Dictionary<string, object> paramters = null, Dictionary<string, string> headers = null, X509Certificate cerFile = null)
+        public static string GetData(string url, Dictionary<string, object> paramters = null, Dictionary<string, string> headers = null, int timeout = 0, int readWriteTimeout = 0, X509Certificate cerFile = null)
         {
-            return RequestData(HttpMethod.Get, url, paramters, headers, ContentType.Form, cerFile).Item2;
+            return RequestData(HttpMethod.Get, url, paramters, headers, timeout, readWriteTimeout, ContentType.Form, cerFile).Item2;
         }
 
         /// <summary>
@@ -62,11 +64,13 @@ namespace Library.Http
         /// <param name="url">地址</param>
         /// <param name="paramters">参数</param>
         /// <param name="headers">请求头</param>
+        /// <param name="timeout">请求超时时间</param>
+        /// <param name="readWriteTimeout">数据下载超时时间</param>
         /// <param name="cerFile">证书</param>
         /// <returns></returns>
-        public static (HttpStatusCode StatusCode, string ResponseData) GetDataWithState(string url, Dictionary<string, object> paramters = null, Dictionary<string, string> headers = null, X509Certificate cerFile = null)
+        public static (HttpStatusCode StatusCode, string ResponseData) GetDataWithState(string url, Dictionary<string, object> paramters = null, Dictionary<string, string> headers = null, int timeout = 0, int readWriteTimeout = 0, X509Certificate cerFile = null)
         {
-            return RequestData(HttpMethod.Get, url, paramters, headers, ContentType.Form, cerFile);
+            return RequestData(HttpMethod.Get, url, paramters, headers, timeout, readWriteTimeout, ContentType.Form, cerFile);
         }
 
         /// <summary>
@@ -76,17 +80,19 @@ namespace Library.Http
         /// <param name="url">地址</param>
         /// <param name="paramters">参数</param>
         /// <param name="headers">请求头</param>
+        /// <param name="timeout">请求超时时间</param>
+        /// <param name="readWriteTimeout">数据下载超时时间</param>
         /// <param name="contentType">请求的ContentType</param>
         /// <param name="cerFile">证书</param>
         /// <returns></returns>
-        public static string PostData(string url, Dictionary<string, object> paramters = null, Dictionary<string, string> headers = null, ContentType contentType = ContentType.Form, X509Certificate cerFile = null)
+        public static string PostData(string url, Dictionary<string, object> paramters = null, Dictionary<string, string> headers = null, int timeout = 0, int readWriteTimeout = 0, ContentType contentType = ContentType.Form, X509Certificate cerFile = null)
         {
             Dictionary<ContentType, string> mapping = new Dictionary<ContentType, string>();
             mapping.Add(ContentType.Form, "application/x-www-form-urlencoded");
             mapping.Add(ContentType.Json, "application/json");
 
             string body = BuildBody(paramters, contentType);
-            return PostData(url, body, mapping[contentType], headers, cerFile);
+            return PostData(url, body, mapping[contentType], headers, cerFile, timeout, readWriteTimeout);
         }
 
         /// <summary>
@@ -96,17 +102,19 @@ namespace Library.Http
         /// <param name="url">地址</param>
         /// <param name="paramters">参数</param>
         /// <param name="headers">请求头</param>
+        /// <param name="timeout">请求超时时间</param>
+        /// <param name="readWriteTimeout">数据下载超时时间</param>
         /// <param name="contentType">请求的ContentType</param>
         /// <param name="cerFile">证书</param>
         /// <returns></returns>
-        public static (HttpStatusCode StatusCode, string ResponseData) PostDataWithState(string url, Dictionary<string, object> paramters = null, Dictionary<string, string> headers = null, ContentType contentType = ContentType.Form, X509Certificate cerFile = null)
+        public static (HttpStatusCode StatusCode, string ResponseData) PostDataWithState(string url, Dictionary<string, object> paramters = null, Dictionary<string, string> headers = null, int timeout = 0, int readWriteTimeout = 0, ContentType contentType = ContentType.Form, X509Certificate cerFile = null)
         {
             Dictionary<ContentType, string> mapping = new Dictionary<ContentType, string>();
             mapping.Add(ContentType.Form, "application/x-www-form-urlencoded");
             mapping.Add(ContentType.Json, "application/json");
 
             string body = BuildBody(paramters, contentType);
-            return PostDataWithState(url, body, mapping[contentType], headers, cerFile);
+            return PostDataWithState(url, body, mapping[contentType], headers, cerFile, timeout, readWriteTimeout);
         }
 
         /// <summary>
@@ -118,10 +126,12 @@ namespace Library.Http
         /// <param name="contentType">请求的ContentType</param>
         /// <param name="headers">请求头</param>
         /// <param name="cerFile">证书</param>
+        /// <param name="timeout">请求超时时间</param>
+        /// <param name="readWriteTimeout">数据下载超时时间</param>
         /// <returns></returns>
-        public static string PostData(string url, string body, string contentType, Dictionary<string, string> headers, X509Certificate cerFile)
+        public static string PostData(string url, string body, string contentType, Dictionary<string, string> headers, X509Certificate cerFile, int timeout = 0, int readWriteTimeout = 0)
         {
-            return RequestData("POST", url, body, contentType, headers, cerFile).Item2;
+            return RequestData("POST", url, body, contentType, headers, timeout, readWriteTimeout, cerFile).Item2;
         }
 
         /// <summary>
@@ -133,10 +143,12 @@ namespace Library.Http
         /// <param name="contentType">请求的ContentType</param>
         /// <param name="headers">请求头</param>
         /// <param name="cerFile">证书</param>
+        /// <param name="timeout">请求超时时间</param>
+        /// <param name="readWriteTimeout">数据下载超时时间</param>
         /// <returns></returns>
-        public static (HttpStatusCode, string) PostDataWithState(string url, string body, string contentType, Dictionary<string, string> headers, X509Certificate cerFile)
+        public static (HttpStatusCode StatusCode, string ResponseData) PostDataWithState(string url, string body, string contentType, Dictionary<string, string> headers, X509Certificate cerFile, int timeout = 0, int readWriteTimeout = 0)
         {
-            return RequestData("POST", url, body, contentType, headers, cerFile);
+            return RequestData("POST", url, body, contentType, headers, timeout, readWriteTimeout, cerFile);
         }
 
         /// <summary>
@@ -147,10 +159,12 @@ namespace Library.Http
         /// <param name="url">URL地址</param>
         /// <param name="paramters">参数</param>
         /// <param name="headers">请求头信息</param>
+        /// <param name="timeout">请求超时时间</param>
+        /// <param name="readWriteTimeout">数据下载超时时间</param>
         /// <param name="contentType">请求数据类型</param>
         /// <param name="cerFile">证书</param>
         /// <returns></returns>
-        public static (HttpStatusCode, string) RequestData(HttpMethod method, string url, Dictionary<string, object> paramters = null, Dictionary<string, string> headers = null, ContentType contentType = ContentType.Form, X509Certificate cerFile = null)
+        public static (HttpStatusCode StatusCode, string ResponseData) RequestData(HttpMethod method, string url, Dictionary<string, object> paramters = null, Dictionary<string, string> headers = null, int timeout = 0, int readWriteTimeout = 0, ContentType contentType = ContentType.Form, X509Certificate cerFile = null)
         {
             if (string.IsNullOrEmpty(url))
                 throw new Exception("请求地址不能为NULL或空！");
@@ -180,7 +194,7 @@ namespace Library.Http
             }
 
             string body = BuildBody(paramters, contentType);
-            return RequestData(method.ToString().ToUpper(), newUrl, body, GetContentTypeStr(contentType), headers, cerFile);
+            return RequestData(method.ToString().ToUpper(), newUrl, body, GetContentTypeStr(contentType), headers, timeout, readWriteTimeout, cerFile);
         }
 
         /// <summary>
@@ -192,15 +206,21 @@ namespace Library.Http
         /// <param name="body">请求的body内容</param>
         /// <param name="contentType">请求数据类型</param>
         /// <param name="headers">请求头</param>
+        /// <param name="timeout">请求超时时间</param>
+        /// <param name="readWriteTimeout">数据下载超时时间</param>
         /// <param name="cerFile">证书</param>
         /// <returns></returns>
-        public static (HttpStatusCode, string) RequestData(string method, string url, string body, string contentType, Dictionary<string, string> headers = null, X509Certificate cerFile = null)
+        public static (HttpStatusCode StatusCode, string ResponseData) RequestData(string method, string url, string body, string contentType, Dictionary<string, string> headers = null, int timeout = 0, int readWriteTimeout = 0, X509Certificate cerFile = null)
         {
             if (string.IsNullOrEmpty(url))
                 throw new Exception("请求地址不能为NULL或空！");
 
             string newUrl = url;
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(newUrl);
+            if (timeout > 0)
+                request.Timeout = timeout;
+            if (readWriteTimeout > 0)
+                request.ReadWriteTimeout = readWriteTimeout;
             request.Method = method.ToUpper();
             request.ContentType = contentType;
             headers?.ForEach(aHeader =>
@@ -497,8 +517,10 @@ namespace Library.Http
         /// <param name="body">请求body</param>
         /// <param name="appId">应用Id</param>
         /// <param name="appSecret">应用密钥</param>
+        /// <param name="timeout">请求超时时间</param>
+        /// <param name="readWriteTimeout">数据下载超时时间</param>
         /// <returns></returns>
-        public static (HttpStatusCode, string) SafeSignRequest(string url, string body, string appId, string appSecret)
+        public static (HttpStatusCode StatusCode, string ResponseData) SafeSignRequest(string url, string body, string appId, string appSecret, int timeout = 0, int readWriteTimeout = 0)
         {
             string time = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             string guid = Guid.NewGuid().ToString();
@@ -510,7 +532,7 @@ namespace Library.Http
                 {"sign",BuildApiSign(appId,appSecret,guid,time.ToDateTime(),body) }
             };
 
-            return RequestData("post", url, body, "application/json", headers);
+            return RequestData("post", url, body, "application/json", headers, timeout, readWriteTimeout);
         }
 
         /// <summary>

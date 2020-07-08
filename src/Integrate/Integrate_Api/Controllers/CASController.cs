@@ -36,16 +36,16 @@ namespace Integrate_Api.Controllers
         [AllowAnonymous]
         public async Task Login(string returnUrl)
         {
-            if (SystemConfig.systemConfig.casCustom)
-            {
-                Context.Response.Redirect(SystemConfig.systemConfig.casCustomloginUrl + "?service=" + returnUrl);
-                await Task.FromResult(0);
-            }
-            else
-            {
-                var props = new AuthenticationProperties { RedirectUri = returnUrl };
-                await Context.ChallengeAsync("CAS", props);
-            }
+            //if (SystemConfig.systemConfig.casCustom)
+            //{
+            //    Context.Response.Redirect(SystemConfig.systemConfig.casCustomloginUrl + "?service=" + returnUrl);
+            //    await Task.FromResult(0);
+            //}
+            //else
+            //{
+            //    var props = new AuthenticationProperties { RedirectUri = returnUrl };
+            //    await Context.ChallengeAsync("CAS", props);
+            //}
         }
 
         /// <summary>
@@ -119,19 +119,19 @@ namespace Integrate_Api.Controllers
         [HttpGet("casLogout")]
         public async Task LogOut(CASModel.LogOut logOut)
         {
-            if (SystemConfig.systemConfig.casCustom)
-            {
-                await CASHelper.DeleteTGT(logOut);
-            }
-            else
-            {
-                if (logOut?.LogoutCAS == true)
-                    Context.Response.Redirect($"{SystemConfig.systemConfig.casBaseUrl}/logout");
-                else
-                    await Context.SignOutAsync();
-            }
-            if (!string.IsNullOrEmpty(logOut.ReturnUrl))
-                Context.Response.Redirect(logOut.ReturnUrl);
+            //if (SystemConfig.systemConfig.casCustom)
+            //{
+            //    await CASHelper.DeleteTGT(logOut);
+            //}
+            //else
+            //{
+            //    if (logOut?.LogoutCAS == true)
+            //        Context.Response.Redirect($"{SystemConfig.systemConfig.casBaseUrl}/logout");
+            //    else
+            //        await Context.SignOutAsync();
+            //}
+            //if (!string.IsNullOrEmpty(logOut.ReturnUrl))
+            //    Context.Response.Redirect(logOut.ReturnUrl);
         }
     }
 }
