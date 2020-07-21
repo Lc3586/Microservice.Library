@@ -19,15 +19,25 @@ namespace Library.FreeSql.Gen
             _options = options ?? new FreeSqlGenOptions();
         }
 
-        private IFreeSql freeSql;
+        protected IFreeSql _freeSql;
 
-        public IFreeSql GetFreeSql()
+        protected IFreeSql freeSql
         {
-            if (freeSql != null)
-                return freeSql;
+            get
+            {
+                SyncStructure();
+                return _freeSql;
+            }
+            set
+            {
+                _freeSql = value;
+            }
+        }
 
+        public FreeSqlBuilder GetFreeSqlBuilder()
+        {
             var freeSqlBuilder = new FreeSqlBuilder()
-             .UseConnectionString(_options.FreeSqlGeneratorOptions.DatabaseType, _options.FreeSqlGeneratorOptions.ConnectionString);
+                .UseConnectionString(_options.FreeSqlGeneratorOptions.DatabaseType, _options.FreeSqlGeneratorOptions.ConnectionString);
 
             _options.FreeSqlDbContextOptions.EntityKey = _options.FreeSqlGeneratorOptions.ConnectionString;
 
@@ -66,12 +76,26 @@ namespace Library.FreeSql.Gen
             if (_options.FreeSqlDevOptions?.ConfigEntityFromDbFirst.HasValue == true)
                 freeSqlBuilder = freeSqlBuilder.UseConfigEntityFromDbFirst(_options.FreeSqlDevOptions.ConfigEntityFromDbFirst.Value);
 
-            freeSql = freeSqlBuilder.Build();
+            return freeSqlBuilder;
+        }
+
+        public IFreeSql GetFreeSql()
+        {
+            if (freeSql != null)
+                return freeSql;
+
+            freeSql = GetFreeSqlBuilder().Build();
+
+            SyncStructure();
+
+            return freeSql;
+        }
+
+        public void SyncStructure()
+        {
             //freeSql.Ado.MasterPool.Statistics;
             if (_options.FreeSqlDevOptions?.AutoSyncStructure.HasValue == true && _options.FreeSqlDevOptions?.SyncStructureOnStartup == true)
                 freeSql.CodeFirst.SyncStructure(new EntityFactory(_options.FreeSqlDbContextOptions).GetEntitys(_options.FreeSqlDbContextOptions.EntityKey).ToArray());
-
-            return freeSql;
         }
 
         public BaseDbContext GetDbContext()

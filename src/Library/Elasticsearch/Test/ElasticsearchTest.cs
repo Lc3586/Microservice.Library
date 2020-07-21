@@ -93,7 +93,7 @@ namespace Library.Elasticsearch
             if (consoleLog)
             {
                 Console.WriteLine($"总计插入{total}条数据...");
-                progressBar = new ProgressBar(Console.CursorLeft, Console.CursorTop, CPULowUsageCount, 100, ProgressBar.ProgressBarType.Multicolor);
+                progressBar = new ProgressBar(CPULowUsageCount, 100, ProgressBar.ProgressBarType.Multicolor);
             }
 
             var bulk = new int[CPULowUsageCount, 3];
@@ -139,7 +139,7 @@ namespace Library.Elasticsearch
                         ESHelper.AddBulk(models, true);
                         if (consoleLog)
                         {
-                            progressBar.Dispaly((decimal)bulk[curr_i, 2] / bulk[curr_i, 0] * 100, $"{ bulk[curr_i, 2]}条", curr_i);
+                            progressBar.Normal((decimal)bulk[curr_i, 2] / bulk[curr_i, 0] * 100, $"{ bulk[curr_i, 2]}条", curr_i);
                         }
                     }
 

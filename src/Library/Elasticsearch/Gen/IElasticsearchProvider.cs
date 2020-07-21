@@ -15,19 +15,4 @@ namespace Library.Elasticsearch.Gen
         /// <returns></returns>
         ElasticsearchClient GetElasticsearch<T>(DateTime? state = null) where T : class;
     }
-
-    public class ElasticsearchError : InvalidOperationException
-    {
-        public ElasticsearchError(IResponse response)
-            : base($"{response.ServerError?.Error?.Reason} : {response.DebugInformation}")
-        {
-
-        }
-
-        public ElasticsearchError(string title, string message = null)
-            : base($"{title} : {message}")
-        {
-
-        }
-    }
 }

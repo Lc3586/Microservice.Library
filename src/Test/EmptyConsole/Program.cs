@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Management;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.ServiceProcess;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper.Internal;
 using Library.ConsoleTool;
 
 namespace EmptyConsole
@@ -15,6 +17,21 @@ namespace EmptyConsole
     {
         static void Main(string[] args)
         {
+            var member_F = typeof(A).GetMember("Field")?.FirstOrDefault(m => m.MemberType == MemberTypes.Field || m.MemberType == MemberTypes.Property);
+
+
+            var member_P = typeof(A).GetMember("Property")?.FirstOrDefault(m => m.MemberType == MemberTypes.Field || m.MemberType == MemberTypes.Property);
+
+            var value_F = member_F.GetMemberValue(typeof(A));
+            var value_P = member_P.GetMemberValue(typeof(A));
+
+            var model = new A { Property_="666" };
+
+            var member_PP = typeof(A).GetMember("Property_")?.FirstOrDefault(m => m.MemberType == MemberTypes.Field || m.MemberType == MemberTypes.Property);
+
+            var value_PP = member_PP.GetMemberValue(model);
+
+
             var mnc = System.Environment.UserDomainName;
             mnc = System.Environment.UserName;
             try
@@ -194,6 +211,12 @@ namespace EmptyConsole
 
         public class A
         {
+            public static string Field = "666";
+
+            public static string Property { get; set; } = "666";
+
+            public string Property_ { get; set; }
+
             public static List<object> SA { get { return new List<object>() { 6, 6, 6 }; } }
 
             //public object F0 { get; set; }

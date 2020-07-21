@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <RootNamespace>Library.SuperSocket</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.2-alpha</Version>
+    <Version>1.0.3-alpha</Version>
     <Authors>LCTR</Authors>
     <Product>LCTR</Product>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -40,12 +40,10 @@ JT协议</Description>
 
   <ItemGroup>
     <PackageReference Include="Flee" Version="1.2.2" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.3" />
-    <PackageReference Include="Microsoft.Extensions.Options" Version="3.1.3" />
     <PackageReference Include="SuperSocket.Client" Version="2.0.0-preview3-06" />
     <PackageReference Include="SuperSocket.SessionContainer" Version="2.0.0-preview3-06" />
     <PackageReference Include="SuperSocket.WebSocket.Server" Version="2.0.0-preview3-06" />
-    <PackageReference Include="System.Text.Encoding.CodePages" Version="4.7.0" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="4.7.1" />
   </ItemGroup>
 
   <ItemGroup>

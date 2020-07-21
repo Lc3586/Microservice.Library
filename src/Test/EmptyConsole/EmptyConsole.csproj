@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Library\ConsoleTool\Library.ConsoleTool.csproj" />
+    <ProjectReference Include="..\..\Library\DataMapping\Library.DataMapping.csproj" />
     <ProjectReference Include="..\..\Library\HardwareInfo\Library.HardwareInfo.csproj" />
   </ItemGroup>
 

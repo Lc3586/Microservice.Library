@@ -7,6 +7,9 @@ using Library.Models;
 using Elasticsearch.Net;
 using Library.Elasticsearch.Gen;
 using Library.Elasticsearch.Annotations;
+using Library.Elasticsearch.Application;
+using System.Linq;
+using System.Linq.Expressions;
 
 namespace Library.Elasticsearch
 {
@@ -37,7 +40,7 @@ namespace Library.Elasticsearch
         /// 获取ES客户端
         /// </summary>
         /// <returns></returns>
-        public ElasticClient GetClient()
+        public static ElasticClient GetClient()
         {
             return ElasticClient;
         }
@@ -420,15 +423,17 @@ namespace Library.Elasticsearch
         /// <summary>
         /// 获取数据
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="indice">索引</param>
+        /// <param name="id">ID</param>
         /// <param name="isThrow">抛出异常</param>
         /// <returns></returns>
-        public T Get<T>(
+        public static T Get<T>(
+            string indice,
             object id,
             bool isThrow = false) where T : class
         {
             //var response = ElasticClient.Get(new DocumentPath<T>(new Id(id)), s => s.Index(RelationName));
-            var response = ElasticClient.Get<T>(new GetRequest(RelationName, new Id(id)));
+            var response = ElasticClient.Get<T>(new GetRequest(indice, new Id(id)));
             if (!response.IsValid)
                 if (isThrow)
                     throw new ElasticsearchError(response);
@@ -438,14 +443,61 @@ namespace Library.Elasticsearch
         }
 
         /// <summary>
+        /// 获取数据
+        /// </summary>
+        /// <param name="id">ID</param>
+        /// <param name="isThrow">抛出异常</param>
+        /// <returns></returns>
+        public T Get<T>(
+            object id,
+            bool isThrow = false) where T : class
+        {
+            var response = ElasticClient.Get<T>(new GetRequest(IndiceName, new Id(id)));
+            if (!response.IsValid)
+                if (isThrow)
+                    throw new ElasticsearchError(response);
+                else
+                    return null;
+            return response.Source;
+        }
+
+        /// <summary>
+        /// 获取数据
+        /// </summary>
+        /// <param name="field">字段</param>
+        /// <param name="value">值</param>
+        /// <param name="isThrow">抛出异常</param>
+        /// <returns></returns>
+        public T Get<T, TValue>(
+            Expression<Func<T, TValue>> field,
+            object value,
+            bool isThrow = false) where T : class
+        {
+            var response = ElasticClient.Search<T>(s =>
+               s.Size(1)
+               .Index(RelationName)
+               .Query(q =>
+                   q.Bool(b =>
+                       b.Must(m =>
+                           m.Term(qs =>
+                               qs.Field(field).Value(value))))));
+
+            if (!response.IsValid)
+                if (isThrow)
+                    throw new ElasticsearchError(response);
+                else
+                    return null;
+
+            return response.Documents?.CastToList<T>()?.FirstOrDefault();
+        }
+
+        /// <summary>
         /// 搜索
         /// </summary>
         /// <param name="selector"></param>
         /// <param name="isThrow">抛出异常</param>
         /// <returns></returns>
-#pragma warning disable CA1822 // Mark members as static
-        public List<T> Search<T>(
-#pragma warning restore CA1822 // Mark members as static
+        public static List<T> Search<T>(
             Func<SearchDescriptor<T>, ISearchRequest> selector = null,
             bool isThrow = false) where T : class
         {

@@ -1,9 +1,8 @@
 ﻿using Library.Elasticsearch.Annotations;
+using Library.Elasticsearch.Application;
 using Library.Extension;
 using Nest;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Library.Elasticsearch.Gen
 {

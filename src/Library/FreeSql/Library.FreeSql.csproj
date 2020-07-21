@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.2-alpha</Version>
+    <Version>1.0.6-alpha</Version>
     <Authors>LCTR</Authors>
     <Product>LCTR</Product>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -22,15 +22,18 @@
     <DocumentationFile>Library.FreeSql.xml</DocumentationFile>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>Library.FreeSql.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <Folder Include="Test\" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FreeSql.All" Version="1.4.0-preview0415" />
-    <PackageReference Include="FreeSql.Provider.Dameng" Version="1.4.0-preview0415" />
+    <PackageReference Include="FreeSql.All" Version="1.6.0" />
     <PackageReference Include="JetBrains.Annotations" Version="2020.1.0" />
-    <PackageReference Include="Microsoft.Extensions.Options" Version="3.1.3" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="3.1.5" />
   </ItemGroup>
 
   <ItemGroup>

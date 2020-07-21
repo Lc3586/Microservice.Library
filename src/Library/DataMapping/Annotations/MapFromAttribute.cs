@@ -5,27 +5,29 @@ namespace Library.DataMapping.Annotations
     /// <summary>
     /// 映射来源
     /// </summary>
-    public class MapFromAttribute : Attribute
+    public class MapFromAttribute : Attribute, IMapAttribute
     {
         /// <summary>
         /// 映射来源
         /// </summary>
-        /// <param name="fromType">类型</param>
-        /// <param name="enableForMember">启用单个成员自定义配置</param>
-        public MapFromAttribute(Type fromType, bool enableForMember = false)
+        /// <param name="type">类型</param>
+        /// <param name="enableMemberMap">启用成员映射</param>
+        public MapFromAttribute(Type type, bool enableMemberMap = false)
         {
-            FromType = fromType;
-            EnableForMember = enableForMember;
+            Type = type;
+            EnableMemberMap = enableMemberMap;
         }
+
+        public bool IsFrom => true;
 
         /// <summary>
         /// 类型
         /// </summary>
-        public Type FromType { get; }
+        public Type Type { get; }
 
         /// <summary>
         /// 启用单个成员自定义配置
         /// </summary>
-        public bool EnableForMember { get; }
+        public bool EnableMemberMap { get; }
     }
 }

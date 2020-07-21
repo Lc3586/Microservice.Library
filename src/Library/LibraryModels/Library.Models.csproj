@@ -8,7 +8,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Library.Models</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.2-alpha</Version>
+    <Version>1.0.3-alpha</Version>
     <Authors>LCTR</Authors>
     <Company>LCTR</Company>
     <Product>LCTR</Product>
@@ -47,7 +47,7 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
-    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.0.23" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.1.7" />
   </ItemGroup>
 
   <ItemGroup>

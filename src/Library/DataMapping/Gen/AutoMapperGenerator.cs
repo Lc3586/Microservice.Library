@@ -30,33 +30,14 @@ namespace Library.DataMapping.Gen
             if (mapper != null)
                 return mapper;
 
-            var maps = new List<(Type from, Type target, bool enableForMember, bool isFrom)>();
-
-            maps.AddRange(_options.AutoMapperGeneratorOptions.Types.Where(x => x.GetCustomAttribute<MapToAttribute>() != null)
-                .Select(x =>
-                {
-                    var attribute = x.GetCustomAttribute<MapToAttribute>();
-                    return (x, attribute.TargetType, attribute.EnableForMember, false);
-                }));
-            maps.AddRange(_options.AutoMapperGeneratorOptions.Types.Where(x => x.GetCustomAttribute<MapFromAttribute>() != null)
-                .Select(x =>
-                {
-                    var attribute = x.GetCustomAttribute<MapFromAttribute>();
-                    return (attribute.FromType, x, attribute.EnableForMember, true);
-                }));
-
             var config = new MapperConfiguration(cfg =>
             {
-                maps.ForEach(aMap =>
+                _options.AutoMapperGeneratorOptions.Types.ForEach(x =>
                 {
-                    var map = cfg.CreateMap(aMap.from, aMap.target);
-                    if (aMap.enableForMember)
-                    {
-                        (aMap.isFrom ?
-                            aMap.target.GetForMembersOptions(aMap.isFrom) :
-                            aMap.from.GetForMembersOptions(aMap.isFrom))?
-                        .ForEach(o => map.ForMember(o.Name, o.Option));
-                    }
+                    if (_options.AutoMapperGeneratorOptions.EnableMapFrom)
+                        cfg.CreateMap<MapFromAttribute>(x);
+                    if (_options.AutoMapperGeneratorOptions.EnableMapTo)
+                        cfg.CreateMap<MapToAttribute>(x);
                 });
             });
 
