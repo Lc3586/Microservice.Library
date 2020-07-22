@@ -51,10 +51,10 @@ namespace Library.FreeSql.Extention
         private IEnumerable<Type> InitEntityType()
         {
             if (_freeSqlDbContextOptions == null)
-                throw new FreeSqlError("FreeSqlDbContextOptions不能为空");
+                throw new FreeSqlException("FreeSqlDbContextOptions不能为空");
             var assembly = Assembly.Load(_freeSqlDbContextOptions.EntityAssembly);
             if (assembly == null)
-                throw new FreeSqlError($"命名空间{_freeSqlDbContextOptions.EntityAssembly}不存在");
+                throw new FreeSqlException($"命名空间{_freeSqlDbContextOptions.EntityAssembly}不存在");
             return assembly.GetTypes()
                 .Where(x => x.GetCustomAttribute(typeof(TableAttribute), false) != null);
         }

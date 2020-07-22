@@ -73,7 +73,7 @@ namespace Library.Elasticsearch
             var response = ElasticClient.Indices.UpdateSettings(indices, selector);
             ElasticClient.Indices.Open(indices);
             if (!response.IsValid && isThrow)
-                throw new ElasticsearchError(response);
+                throw new ElasticsearchException(response);
             return response.IsValid;
         }
 
@@ -100,7 +100,7 @@ namespace Library.Elasticsearch
 
             var aliasPut = ElasticClient.Indices.PutAlias(IndiceName, alias, s => s.Index(IndiceName));
             if (!aliasPut.IsValid && isThrow)
-                throw new ElasticsearchError(aliasPut);
+                throw new ElasticsearchException(aliasPut);
             return aliasPut.IsValid;
         }
 
@@ -116,7 +116,7 @@ namespace Library.Elasticsearch
         {
             var response = ElasticClient.Index(model, s => s.Index(IndiceName));
             if (!response.IsValid && isThrow)
-                throw new ElasticsearchError(response);
+                throw new ElasticsearchException(response);
             return response.IsValid;
         }
 
@@ -133,7 +133,7 @@ namespace Library.Elasticsearch
         {
             var response = ElasticClient.Index(models, s => s.Index(IndiceName));
             if (!response.IsValid && isThrow)
-                throw new ElasticsearchError(response);
+                throw new ElasticsearchException(response);
             return response.IsValid;
         }
 
@@ -149,7 +149,7 @@ namespace Library.Elasticsearch
         {
             var response = ElasticClient.Bulk(b => b.Index(IndiceName).CreateMany(models));
             if (!response.IsValid && isThrow)
-                throw new ElasticsearchError(response);
+                throw new ElasticsearchException(response);
             return response.IsValid;
         }
 
@@ -174,7 +174,7 @@ namespace Library.Elasticsearch
 
             var response = ElasticClient.IndexDocument(model);
             if (!response.IsValid && isThrow)
-                throw new ElasticsearchError(response);
+                throw new ElasticsearchException(response);
             return response.IsValid;
         }
 
@@ -193,7 +193,7 @@ namespace Library.Elasticsearch
         {
             var response = ElasticClient.IndexDocument(models);
             if (!response.IsValid && isThrow)
-                throw new ElasticsearchError(response);
+                throw new ElasticsearchException(response);
             return response.IsValid;
         }
 
@@ -209,7 +209,7 @@ namespace Library.Elasticsearch
         {
             var response = ElasticClient.Bulk(b => b.Index(RelationName).IndexMany(models));
             if (!response.IsValid && isThrow)
-                throw new ElasticsearchError(response);
+                throw new ElasticsearchException(response);
             return response.IsValid;
         }
 
@@ -225,7 +225,7 @@ namespace Library.Elasticsearch
         {
             var response = ElasticClient.Delete(new DocumentPath<T>(new Id(id)).Index(RelationName));
             if (!response.IsValid && isThrow)
-                throw new ElasticsearchError(response);
+                throw new ElasticsearchException(response);
             return response.IsValid;
         }
 
@@ -241,7 +241,7 @@ namespace Library.Elasticsearch
         {
             var response = ElasticClient.Bulk(b => b.Index(RelationName).DeleteMany<T>(ids));
             if (!response.IsValid && isThrow)
-                throw new ElasticsearchError(response);
+                throw new ElasticsearchException(response);
             return response.IsValid;
         }
 
@@ -257,7 +257,7 @@ namespace Library.Elasticsearch
         {
             var response = ElasticClient.Bulk(b => b.Index(RelationName).DeleteMany<T>(ids));
             if (!response.IsValid && isThrow)
-                throw new ElasticsearchError(response);
+                throw new ElasticsearchException(response);
             return response.IsValid;
         }
 
@@ -273,7 +273,7 @@ namespace Library.Elasticsearch
         {
             var response = ElasticClient.Bulk(b => b.Index(RelationName).DeleteMany<T>(models));
             if (!response.IsValid && isThrow)
-                throw new ElasticsearchError(response);
+                throw new ElasticsearchException(response);
             return response.IsValid;
         }
 
@@ -291,7 +291,7 @@ namespace Library.Elasticsearch
         {
             var response = ElasticClient.Update<T, object>(new DocumentPath<T>(new Id(id)).Index(RelationName), p => p.Doc(partial));
             if (!response.IsValid && isThrow)
-                throw new ElasticsearchError(response);
+                throw new ElasticsearchException(response);
             return response.IsValid;
         }
 
@@ -314,7 +314,7 @@ namespace Library.Elasticsearch
                 Bulk.Update<T, object>(u => u.Id(new Id(ids[i])).Doc(partial));
             var response = ElasticClient.Bulk(Bulk);
             if (!response.IsValid && isThrow)
-                throw new ElasticsearchError(response);
+                throw new ElasticsearchException(response);
             return response.IsValid;
         }
 
@@ -339,7 +339,7 @@ namespace Library.Elasticsearch
                 Bulk.Update<T, object>(u => u.Id(new Id(ids[i])).Doc(partials[i]));
             var response = ElasticClient.Bulk(Bulk);
             if (!response.IsValid && isThrow)
-                throw new ElasticsearchError(response);
+                throw new ElasticsearchException(response);
             return response.IsValid;
         }
 
@@ -359,7 +359,7 @@ namespace Library.Elasticsearch
                 return false;
             var response = ElasticClient.Bulk(b => b.Index(RelationName).UpdateMany<T, object>(models, (u1, u2) => u1.IdFrom(u2).Doc(partial)));
             if (!response.IsValid && isThrow)
-                throw new ElasticsearchError(response);
+                throw new ElasticsearchException(response);
             return response.IsValid;
         }
 
@@ -384,7 +384,7 @@ namespace Library.Elasticsearch
                 Bulk.Update<T, object>(u => u.IdFrom(models[i]).Doc(partial[i]));
             var response = ElasticClient.Bulk(Bulk);
             if (!response.IsValid && isThrow)
-                throw new ElasticsearchError(response);
+                throw new ElasticsearchException(response);
             return response.IsValid;
         }
 
@@ -400,7 +400,7 @@ namespace Library.Elasticsearch
         {
             var response = ElasticClient.Update(new DocumentPath<T>(Id.From(model)).Index(RelationName), p => p.Doc(model));
             if (!response.IsValid && isThrow)
-                throw new ElasticsearchError(response);
+                throw new ElasticsearchException(response);
             return response.IsValid;
         }
 
@@ -416,7 +416,7 @@ namespace Library.Elasticsearch
         {
             var response = ElasticClient.Bulk(b => b.Index(RelationName).UpdateMany<T>(models, (u1, u2) => u1.IdFrom(u2).Doc(u2)));
             if (!response.IsValid && isThrow)
-                throw new ElasticsearchError(response);
+                throw new ElasticsearchException(response);
             return response.IsValid;
         }
 
@@ -436,7 +436,7 @@ namespace Library.Elasticsearch
             var response = ElasticClient.Get<T>(new GetRequest(indice, new Id(id)));
             if (!response.IsValid)
                 if (isThrow)
-                    throw new ElasticsearchError(response);
+                    throw new ElasticsearchException(response);
                 else
                     return null;
             return response.Source;
@@ -455,7 +455,7 @@ namespace Library.Elasticsearch
             var response = ElasticClient.Get<T>(new GetRequest(IndiceName, new Id(id)));
             if (!response.IsValid)
                 if (isThrow)
-                    throw new ElasticsearchError(response);
+                    throw new ElasticsearchException(response);
                 else
                     return null;
             return response.Source;
@@ -484,7 +484,7 @@ namespace Library.Elasticsearch
 
             if (!response.IsValid)
                 if (isThrow)
-                    throw new ElasticsearchError(response);
+                    throw new ElasticsearchException(response);
                 else
                     return null;
 
@@ -504,7 +504,7 @@ namespace Library.Elasticsearch
             var response = ElasticClient.Search<T>(selector);
             if (!response.IsValid)
                 if (isThrow)
-                    throw new ElasticsearchError(response);
+                    throw new ElasticsearchException(response);
                 else
                     return null;
             return response.Documents.CastToList<T>();
@@ -527,7 +527,7 @@ namespace Library.Elasticsearch
             if (!response.IsValid)
             {
                 if (isThrow)
-                    throw new ElasticsearchError(response);
+                    throw new ElasticsearchException(response);
                 else
                     return 0L;
             }
@@ -556,7 +556,7 @@ namespace Library.Elasticsearch
             if (!response.IsValid)
             {
                 if (isThrow)
-                    throw new ElasticsearchError(response);
+                    throw new ElasticsearchException(response);
                 else
                     return null;
             }
@@ -693,7 +693,7 @@ namespace Library.Elasticsearch
                     if (!response.IsValid || response.ScrollId == null)
                     {
                         if (isThrow)
-                            throw new ElasticsearchError(response);
+                            throw new ElasticsearchException(response);
                         break;
                     }
 
@@ -709,7 +709,7 @@ namespace Library.Elasticsearch
                 if (!response.IsValid)
                 {
                     if (isThrow)
-                        throw new ElasticsearchError(response);
+                        throw new ElasticsearchException(response);
                 }
                 else
                     data.AddRange(response.Documents);
@@ -843,7 +843,7 @@ namespace Library.Elasticsearch
                     if (!response.IsValid || response.ScrollId == null)
                     {
                         if (isThrow)
-                            throw new ElasticsearchError(response);
+                            throw new ElasticsearchException(response);
                         break;
                     }
 
@@ -859,7 +859,7 @@ namespace Library.Elasticsearch
                 if (!response.IsValid)
                 {
                     if (isThrow)
-                        throw new ElasticsearchError(response);
+                        throw new ElasticsearchException(response);
                 }
                 else
                     data.AddRange(response.Documents);
@@ -880,7 +880,7 @@ namespace Library.Elasticsearch
         {
             var response = ElasticClient.Count<T>();
             if (!response.IsValid)
-                throw new ElasticsearchError(response);
+                throw new ElasticsearchException(response);
             return response.Count;
         }
 
@@ -899,7 +899,7 @@ namespace Library.Elasticsearch
                 request.Query = query;
             var response = ElasticClient.Count(request);
             if (!response.IsValid)
-                throw new ElasticsearchError(response);
+                throw new ElasticsearchException(response);
             return response.Count;
         }
 

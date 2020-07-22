@@ -28,7 +28,7 @@ namespace Library.Elasticsearch.Gen
             elasticsearch.RelationName = type.GetRelationName();
             elasticsearch.IndiceName = type.GetIndicesName(state ?? DateTime.Now);
             if (elasticsearch.IndiceName.IsNullOrEmpty())
-                throw new ElasticsearchError("索引名称不可为空");
+                throw new ElasticsearchException("索引名称不可为空");
 
             if (ElasticsearchClient.ElasticClient == null)
                 ElasticsearchClient.ElasticClient = new ElasticClient(_options.ConnectionSettings);//.DefaultMappingFor<T>(s => s.IndexName(elasticsearch.indiceName)));
@@ -37,7 +37,7 @@ namespace Library.Elasticsearch.Gen
             if (!elasticsearch.ExistsIndices(elasticsearch.IndiceName))
             {
                 if (!type.IsAutoCreate())
-                    throw new ElasticsearchError("索引不存在");
+                    throw new ElasticsearchException("索引不存在");
                 var create = ElasticsearchClient.ElasticClient.Indices.Create(
                     elasticsearch.IndiceName,
                     i => i.Settings(s =>
@@ -51,7 +51,7 @@ namespace Library.Elasticsearch.Gen
                             return m;
                         }));
                 if (!create.IsValid)
-                    throw new ElasticsearchError(create.ServerError.Error.Reason, create.DebugInformation);
+                    throw new ElasticsearchException(create.ServerError.Error.Reason, create.DebugInformation);
             }
 
             if (elasticsearch.RelationName != elasticsearch.IndiceName)
