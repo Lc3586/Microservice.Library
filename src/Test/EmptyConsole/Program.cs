@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Management;
@@ -9,7 +10,13 @@ using System.ServiceProcess;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper.Internal;
+using FreeSql;
 using Library.ConsoleTool;
+using Library.FreeSql.Annotations;
+using Library.FreeSql.Application;
+using Library.FreeSql.Extention;
+using Library.FreeSql.Gen;
+using Oracle.ManagedDataAccess.Client;
 
 namespace EmptyConsole
 {
@@ -17,6 +24,33 @@ namespace EmptyConsole
     {
         static void Main(string[] args)
         {
+            var orm = new FreeSqlGenerator(new FreeSqlGenOptions
+            {
+                FreeSqlGeneratorOptions = new FreeSqlGeneratorOptions
+                {
+                    ConnectionString = "user id=SAFETYEDU2;password=sedu#2019;data source=//122.112.150.191:1521/ORCL;Pooling=true;Min Pool Size=1;",
+                    DatabaseType = DataType.Oracle,
+                    LazyLoading = true,
+
+                    MonitorCommandExecuting = (cmd) =>
+                    {
+                        Console.WriteLine(cmd.CommandText);
+                    },
+                    MonitorCommandExecuted = (cmd, log) =>
+                    {
+                        Console.WriteLine($"命令 {cmd},日志 {log}.");
+                    },
+                    HandleCommandLog = (content) =>
+                    {
+                        Console.WriteLine(content);
+                    },
+                }
+            }).GetFreeSql();
+
+            var response = new A();
+
+            var rows = orm.Ado.ExecuteStoredProcedureWithModels(null, "PROC_WG2008",new B(), response);
+
             var member_F = typeof(A).GetMember("Field")?.FirstOrDefault(m => m.MemberType == MemberTypes.Field || m.MemberType == MemberTypes.Property);
 
 
@@ -25,7 +59,7 @@ namespace EmptyConsole
             var value_F = member_F.GetMemberValue(typeof(A));
             var value_P = member_P.GetMemberValue(typeof(A));
 
-            var model = new A { Property_="666" };
+            var model = new A { Property_ = "666" };
 
             var member_PP = typeof(A).GetMember("Property_")?.FirstOrDefault(m => m.MemberType == MemberTypes.Field || m.MemberType == MemberTypes.Property);
 
@@ -211,6 +245,20 @@ namespace EmptyConsole
 
         public class A
         {
+            /// <summary>
+            /// 返回消息代码
+            /// </summary>
+            /// <remarks>0表示返回成功</remarks>
+            [DbParameter(Name = "ReturnValue1", DataType = FreeSql.DataType.Oracle, DbType = OracleDbType.Int32, Direction = ParameterDirection.Output)]
+            public string ret_code { get; set; }
+
+            /// <summary>
+            /// 返回信息描述
+            /// </summary>
+            /// <remarks>允许传空值</remarks>
+            [DbParameter(Name = "ReturnValue2", DataType = FreeSql.DataType.Oracle, DbType = OracleDbType.Varchar2, Size = 50, Direction = ParameterDirection.Output)]
+            public string ret_info { get; set; }
+
             public static string Field = "666";
 
             public static string Property { get; set; } = "666";
@@ -266,7 +314,131 @@ namespace EmptyConsole
 
         public class B
         {
+            /// <summary>
+            /// 医院代码
+            /// </summary>
+            [DbParameter(Name = "value_yybh", DataType = FreeSql.DataType.Oracle, DbType = OracleDbType.Varchar2, Direction = ParameterDirection.Input)]
+            public string org_code { get; set; }
 
+            /// <summary>
+            /// 分院编号
+            /// </summary>
+            [DbParameter(Name = "value_fybh", DataType = FreeSql.DataType.Oracle, DbType = OracleDbType.Varchar2, Direction = ParameterDirection.Input)]
+            public string fybh { get; set; }
+
+            /// <summary>
+            /// 挂号日期
+            /// </summary>
+            /// <remarks>yyyy-MM-dd</remarks>
+            [DbParameter(Name = "value_ghrq", DataType = FreeSql.DataType.Oracle, DbType = OracleDbType.Date, Direction = ParameterDirection.Input)]
+            public DateTime ghrq { get; set; }
+
+            /// <summary>
+            /// 挂号科室代码
+            /// </summary>
+            /// <remarks>医院本地科室代码</remarks>
+            [DbParameter(Name = "value_ksdm", DataType = FreeSql.DataType.Oracle, DbType = OracleDbType.Varchar2, Direction = ParameterDirection.Input)]
+            public string ghksdm { get; set; }
+
+            /// <summary>
+            /// 医生编号
+            /// </summary>
+            /// <remarks>医院代码(8位)+医生本地代码</remarks>
+            [DbParameter(Name = "value_ysgh", DataType = FreeSql.DataType.Oracle, DbType = OracleDbType.Varchar2, Direction = ParameterDirection.Input)]
+            public string ghysbh2 { get; set; }
+
+            /// <summary>
+            /// 门诊时间
+            /// </summary>
+            /// <remarks>A=上午/P=下午/F=全天/N=夜间</remarks>
+            [DbParameter(Name = "value_zblb", DataType = FreeSql.DataType.Oracle, DbType = OracleDbType.Varchar2, Direction = ParameterDirection.Input)]
+            public string mzsj { get; set; }
+
+            /// <summary>
+            /// 预约号子
+            /// </summary>
+            [DbParameter(Name = "value_yyxh", DataType = FreeSql.DataType.Oracle, DbType = OracleDbType.Varchar2, Direction = ParameterDirection.Input)]
+            public string num { get; set; }
+
+            /// <summary>
+            /// 保险号
+            /// </summary>
+            /// <remarks>医保号、农保号、通用就诊卡明码</remarks>
+            [DbParameter(Name = "value_bxno", DataType = FreeSql.DataType.Oracle, DbType = OracleDbType.Varchar2, Direction = ParameterDirection.Input)]
+            public string gfno { get; set; }
+
+            /// <summary>
+            /// 支付方式
+            /// </summary>
+            /// <remarks>1短信 2网银 3其他</remarks>
+            [DbParameter(Name = "value_zffs", DataType = FreeSql.DataType.Oracle, DbType = OracleDbType.Varchar2, Direction = ParameterDirection.Input)]
+            public string zffs { get; set; }
+
+            /// <summary>
+            /// 收款实体
+            /// </summary>
+            /// <remarks>这里是收款银行代码、短信运营商代码、或其他收款方代码</remarks>
+            [DbParameter(Name = "value_zfyh", DataType = FreeSql.DataType.Oracle, DbType = OracleDbType.Int32, Direction = ParameterDirection.Input)]
+            public string zfyh { get; set; }
+
+            /// <summary>
+            /// 支付流水号
+            /// </summary>
+            [DbParameter(Name = "value_zflsh", DataType = FreeSql.DataType.Oracle, DbType = OracleDbType.Varchar2, Direction = ParameterDirection.Input)]
+            public string zflsh { get; set; }
+
+            /// <summary>
+            /// 支付金额
+            /// </summary>
+            [DbParameter(Name = "value_zfje", DataType = FreeSql.DataType.Oracle, DbType = OracleDbType.Int32, Direction = ParameterDirection.Input)]
+            public decimal zfje { get; set; }
+
+            /// <summary>
+            /// 支付时间
+            /// </summary>
+            /// <remarks>yyyy-MM-dd HH:mm:ss</remarks>
+            [DbParameter(Name = "value_zfsj", DataType = FreeSql.DataType.Oracle, DbType = OracleDbType.Date, Direction = ParameterDirection.Input)]
+            public DateTime zfsj { get; set; }
+
+            /// <summary>
+            /// 挂号来源
+            /// </summary>
+            /// <remarks>20预约挂号平台</remarks>
+            [DbParameter(Name = "value_ghly", DataType = FreeSql.DataType.Oracle, DbType = OracleDbType.Varchar2, Direction = ParameterDirection.Input)]
+            public string ghly { get; set; }
+
+            /// <summary>
+            /// 预约流水号
+            /// </summary>
+            /// <remarks>可唯一识别预约记录</remarks>
+            [DbParameter(Name = "value_yylsh", DataType = FreeSql.DataType.Oracle, DbType = OracleDbType.Varchar2, Direction = ParameterDirection.Input)]
+            public string yylsh { get; set; }
+
+            /// <summary>
+            /// 会员号
+            /// </summary>
+            /// <remarks>平台会员标识</remarks>
+            [DbParameter(Name = "value_personid", DataType = FreeSql.DataType.Oracle, DbType = OracleDbType.Varchar2, Direction = ParameterDirection.Input)]
+            public string personid { get; set; }
+
+            /// <summary>
+            /// 手机号
+            /// </summary>
+            [DbParameter(Name = "value_sjh", DataType = FreeSql.DataType.Oracle, DbType = OracleDbType.Varchar2, Direction = ParameterDirection.Input)]
+            public string sjh { get; set; }
+
+            /// <summary>
+            /// 验证码
+            /// </summary>
+            [DbParameter(Name = "value_ghyzm", DataType = FreeSql.DataType.Oracle, DbType = OracleDbType.Varchar2, Direction = ParameterDirection.Input)]
+            public string ghyzm { get; set; }
+
+            /// <summary>
+            /// 平台来源分点(新增)
+            /// </summary>
+            /// <remarks>数据源来自R301的平台来源分点代码PTLYFDDM</remarks>
+            [DbParameter(Name = "value_ptlyfd", DataType = FreeSql.DataType.Oracle, DbType = OracleDbType.Varchar2, Direction = ParameterDirection.Input)]
+            public string ptlyfd { get; set; }
         }
     }
 }
