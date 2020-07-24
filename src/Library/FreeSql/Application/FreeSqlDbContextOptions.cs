@@ -6,7 +6,7 @@ using System.Text;
 namespace Library.FreeSql.Application
 {
     /// <summary>
-    /// 数据上下文选项
+    /// 数据库上下文配置
     /// </summary>
     public class FreeSqlDbContextOptions
     {

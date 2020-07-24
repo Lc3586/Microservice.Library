@@ -6,6 +6,9 @@ using System.Text;
 
 namespace Library.FreeSql.Gen
 {
+    /// <summary>
+    /// 单库构造器
+    /// </summary>
     public interface IFreeSqlProvider
     {
         /// <summary>

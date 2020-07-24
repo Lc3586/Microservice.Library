@@ -7,7 +7,7 @@ using System.Text;
 namespace Library.FreeSql.Application
 {
     /// <summary>
-    /// 开发选项
+    /// 开发配置
     /// </summary>
     public class FreeSqlDevOptions
     {

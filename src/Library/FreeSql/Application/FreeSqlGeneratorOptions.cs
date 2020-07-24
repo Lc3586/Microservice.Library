@@ -7,6 +7,9 @@ using System.Data.Common;
 
 namespace Library.FreeSql.Application
 {
+    /// <summary>
+    /// 生成配置
+    /// </summary>
     public class FreeSqlGeneratorOptions
     {
         public FreeSqlGeneratorOptions()
