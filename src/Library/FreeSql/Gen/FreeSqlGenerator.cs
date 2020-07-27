@@ -10,6 +10,9 @@ using System.Text;
 
 namespace Library.FreeSql.Gen
 {
+    /// <summary>
+    /// 单库生成器
+    /// </summary>
     public class FreeSqlGenerator : IFreeSqlProvider
     {
         private readonly FreeSqlGenOptions _options;

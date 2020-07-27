@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.2.1-alpha</Version>
+    <Version>1.2.6-alpha</Version>
     <Authors>LCTR</Authors>
     <Product>LCTR</Product>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
