@@ -19,7 +19,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>F:\图锐信息\项目框架学习\项目框架\微服务架构\Microservice\src\Library\LibraryModels\Library.Models.xml</DocumentationFile>
+    <DocumentationFile>Library.Models.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
