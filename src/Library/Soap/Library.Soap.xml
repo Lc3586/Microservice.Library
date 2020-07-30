@@ -1,0 +1,151 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Library.Soap</name>
+    </assembly>
+    <members>
+        <member name="T:Library.Soap.Application.SaopClientGeneratorOptions">
+            <summary>
+            生成选项
+            </summary>
+        </member>
+        <member name="P:Library.Soap.Application.SaopClientGeneratorOptions.SoapClients">
+            <summary>
+            Soap客户端
+            </summary>
+        </member>
+        <member name="T:Library.Soap.Application.SoapClientOptions">
+            <summary>
+            Soap客户端配置
+            </summary>
+        </member>
+        <member name="P:Library.Soap.Application.SoapClientOptions.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Library.Soap.Application.SoapClientOptions.Uri">
+            <summary>
+            资源位置
+            </summary>
+        </member>
+        <member name="P:Library.Soap.Application.SoapClientOptions.ServiceType">
+            <summary>
+            服务接口类
+            Assembly 命名空间
+            Type 类型名称
+            </summary>
+        </member>
+        <member name="T:Library.Soap.Application.SoapException">
+            <summary>
+            Soap异常
+            </summary>
+        </member>
+        <member name="T:Library.Soap.Application.SoapServerOptions">
+            <summary>
+            Soap服务端配置
+            </summary>
+        </member>
+        <member name="P:Library.Soap.Application.SoapServerOptions.Path">
+            <summary>
+            路径
+            </summary>
+        </member>
+        <member name="P:Library.Soap.Application.SoapServerOptions.ServiceType">
+            <summary>
+            服务接口类
+            Assembly 命名空间
+            Type 类型名称
+            </summary>
+        </member>
+        <member name="P:Library.Soap.Application.SoapServerOptions.ImplementationType">
+            <summary>
+            服务实现类
+            Assembly 命名空间
+            Type 类型名称
+            </summary>
+        </member>
+        <member name="P:Library.Soap.Application.SoapServerOptions.Serializer">
+            <summary>
+            序列化类型
+            </summary>
+        </member>
+        <member name="T:Library.Soap.Gen.ISoapClientProvider">
+            <summary>
+            Soap构造器接口类
+            </summary>
+        </member>
+        <member name="M:Library.Soap.Gen.ISoapClientProvider.GetClient(System.String)">
+            <summary>
+            获取客户端
+            </summary>
+            <param name="name">名称</param>
+            <returns>客户端</returns>
+        </member>
+        <member name="M:Library.Soap.Gen.ISoapClientProvider.GetClient(System.Type)">
+            <summary>
+            获取客户端
+            </summary>
+            <typeparam name="type">客户端类型</typeparam>
+            <returns>客户端</returns>
+        </member>
+        <member name="M:Library.Soap.Gen.ISoapClientProvider.GetClients">
+            <summary>
+            获取所有客户端
+            <para>Name 名称</para>
+            <para>Type 类型</para>
+            <para>Client 客户端</para>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Soap.Gen.ISoapClientProvider.GetClient``1">
+            <summary>
+            获取客户端
+            </summary>
+            <typeparam name="TChannel">客户端类型</typeparam>
+            <returns>客户端</returns>
+        </member>
+        <member name="T:Library.Soap.Gen.SoapClientGenerator">
+            <summary>
+            Soap构造器
+            </summary>
+        </member>
+        <member name="M:Library.Soap.Gen.SoapClientGenerator.Init">
+            <summary>
+            初始化
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.SoapServiceCollectionExtensions.AddSoapServer(Microsoft.Extensions.DependencyInjection.IServiceCollection,Library.Soap.Application.SoapServerOptions[])">
+            <summary>
+            添加Soap服务端
+            <para>还需要调用app.AddSoapServer()</para>
+            </summary>
+            <param name="services"></param>
+            <param name="options"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.SoapServiceCollectionExtensions.AddSoapServer(Microsoft.AspNetCore.Builder.IApplicationBuilder,Library.Soap.Application.SoapServerOptions[])">
+            <summary>
+            添加Soap服务端
+            </summary>
+            <param name="app"></param>
+            <param name="options"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.SoapServiceCollectionExtensions.AddSoapClient(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Library.Soap.Application.SaopClientGeneratorOptions})">
+            <summary>
+            注册Soap客户端
+            </summary>
+            <param name="services"></param>
+            <param name="setupAction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.SoapServiceCollectionExtensions.ConfigureSoapClient(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Library.Soap.Application.SaopClientGeneratorOptions})">
+            <summary>
+            配置Soap客户端
+            </summary>
+            <param name="services"></param>
+            <param name="setupAction"></param>
+        </member>
+    </members>
+</doc>
