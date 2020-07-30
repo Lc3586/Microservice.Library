@@ -7,9 +7,17 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Library.DataRepository_DM</RootNamespace>
-    <Version>1.0.0-alpha</Version>
+    <Version>1.0.1-alpha</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Drivers\DmConnect\Properties\Resources.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Drivers\DmConnect\Properties\Resources.resx" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.1" />
@@ -26,7 +34,7 @@
       <HintPath>Drivers\DmProvider\netstandard2.0\DmProvider.dll</HintPath>
     </Reference>
     <Reference Include="DmProvider.resources">
-      <HintPath>..\..\packages\dmdbms.drivers\DmProvider\netstandard2.0\zh-CN\DmProvider.resources.dll</HintPath>
+      <HintPath>Drivers\DmProvider\netstandard2.0\zh-CN\DmProvider.resources.dll</HintPath>
     </Reference>
     <Reference Include="EFDmProvider">
       <HintPath>..\..\packages\dmdbms.drivers\EFDmProvider\EFDmProvider.dll</HintPath>

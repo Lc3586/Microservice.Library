@@ -20,10 +20,13 @@ namespace Library.Configuration
             {
                 if (Config != null)
                     return;
-                IConfiguration config = AutofacHelper.GetService<IConfiguration>();
-                if (config == null)
-                    config = GetConfigFormFile();
-                Config = config;
+                if (AutofacHelper.Container != null)
+                {
+                    IConfiguration config = AutofacHelper.GetService<IConfiguration>();
+                    if (config != null)
+                        return;
+                }
+                Config = GetConfigFormFile();
             }
             else
                 Config = GetConfigFormFile(jsonFile);

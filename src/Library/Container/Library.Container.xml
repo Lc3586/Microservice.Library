@@ -12,11 +12,28 @@
             <typeparam name="T">接口类型</typeparam>
             <returns></returns>
         </member>
+        <member name="M:Library.Container.AutofacHelper.TryGetService``1(``0@)">
+            <summary>
+            获取全局服务
+            警告：此方法使用不当会造成内存溢出,一般开发请勿使用此方法,请使用GetScopeService
+            </summary>
+            <typeparam name="T">接口类型</typeparam>
+            <param name="service">服务</param>
+            <returns></returns>
+        </member>
         <member name="M:Library.Container.AutofacHelper.GetScopeService``1">
             <summary>
             获取当前请求为生命周期的服务
             </summary>
             <typeparam name="T">接口类型</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Container.AutofacHelper.TryGetScopeService``1(``0@)">
+            <summary>
+            获取当前请求为生命周期的服务
+            </summary>
+            <typeparam name="T">接口类型</typeparam>
+            <param name="service">服务</param>
             <returns></returns>
         </member>
         <member name="T:Library.Container.IDependency">
