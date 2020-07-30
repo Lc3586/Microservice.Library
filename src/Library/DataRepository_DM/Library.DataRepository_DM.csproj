@@ -23,7 +23,7 @@
 
   <ItemGroup>
     <Reference Include="DmProvider">
-      <HintPath>..\..\packages\dmdbms.drivers\DmProvider\netstandard2.0\DmProvider.dll</HintPath>
+      <HintPath>Drivers\DmProvider\netstandard2.0\DmProvider.dll</HintPath>
     </Reference>
     <Reference Include="DmProvider.resources">
       <HintPath>..\..\packages\dmdbms.drivers\DmProvider\netstandard2.0\zh-CN\DmProvider.resources.dll</HintPath>
