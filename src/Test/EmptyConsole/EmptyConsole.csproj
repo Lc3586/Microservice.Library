@@ -14,8 +14,10 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Library\ConsoleTool\Library.ConsoleTool.csproj" />
     <ProjectReference Include="..\..\Library\DataMapping\Library.DataMapping.csproj" />
+    <ProjectReference Include="..\..\Library\Extension\Library.Extension.csproj" />
     <ProjectReference Include="..\..\Library\FreeSql\Library.FreeSql.csproj" />
     <ProjectReference Include="..\..\Library\HardwareInfo\Library.HardwareInfo.csproj" />
+    <ProjectReference Include="..\..\Library\Soap\Library.Soap.csproj" />
   </ItemGroup>
 
 </Project>

@@ -16,14 +16,28 @@ using Library.FreeSql.Annotations;
 using Library.FreeSql.Application;
 using Library.FreeSql.Extention;
 using Library.FreeSql.Gen;
+using Library.Extension;
 using Oracle.ManagedDataAccess.Client;
+using System.Text.RegularExpressions;
+using System.Web;
 
 namespace EmptyConsole
 {
     class Program
     {
+        private class DTO
+        {
+            public string org_code { get; set; }
+
+            public string fybh { get; set; }
+
+            public DateTime ghrq { get; set; }
+        }
+
         static void Main(string[] args)
         {
+            var xmlString = HttpUtility.HtmlEncode("<resquest><org_code>666</org_code><fybh>00001</fybh><ghrq>2020-07-29</ghrq></resquest>");
+
             var orm = new FreeSqlGenerator(new FreeSqlGenOptions
             {
                 FreeSqlGeneratorOptions = new FreeSqlGeneratorOptions
@@ -49,7 +63,7 @@ namespace EmptyConsole
 
             var response = new A();
 
-            var rows = orm.Ado.ExecuteStoredProcedureWithModels(null, "PROC_WG2008",new B(), response);
+            var rows = orm.Ado.ExecuteStoredProcedureWithModels(null, "PROC_WG2008", new B(), response);
 
             var member_F = typeof(A).GetMember("Field")?.FirstOrDefault(m => m.MemberType == MemberTypes.Field || m.MemberType == MemberTypes.Property);
 
@@ -154,7 +168,7 @@ namespace EmptyConsole
 
             tcs.SetResult(true);
 
-            var input = Extension.ReadInput();
+            var input = Library.ConsoleTool.Extension.ReadInput();
             var flag = Convert.ToBoolean("0");
             var ca = Encoding.ASCII.GetBytes(new char[] { '李' });
             ca = Encoding.ASCII.GetBytes(new char[] { 'l' });

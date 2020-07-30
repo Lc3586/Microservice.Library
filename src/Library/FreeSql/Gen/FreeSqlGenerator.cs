@@ -15,95 +15,97 @@ namespace Library.FreeSql.Gen
     /// </summary>
     public class FreeSqlGenerator : IFreeSqlProvider
     {
-        private readonly FreeSqlGenOptions _options;
+        private readonly FreeSqlGenOptions Options;
 
         public FreeSqlGenerator(FreeSqlGenOptions options)
         {
-            _options = options ?? new FreeSqlGenOptions();
+            Options = options ?? new FreeSqlGenOptions();
         }
 
-        protected IFreeSql _freeSql;
+        protected IFreeSql orm;
 
-        protected IFreeSql freeSql
+        protected IFreeSql Orm
         {
             get
             {
                 SyncStructure();
-                return _freeSql;
+                return orm;
             }
             set
             {
-                _freeSql = value;
+                orm = value;
             }
         }
 
         public FreeSqlBuilder GetFreeSqlBuilder()
         {
             var freeSqlBuilder = new FreeSqlBuilder()
-                .UseConnectionString(_options.FreeSqlGeneratorOptions.DatabaseType, _options.FreeSqlGeneratorOptions.ConnectionString);
+                .UseConnectionString(Options.FreeSqlGeneratorOptions.DatabaseType, Options.FreeSqlGeneratorOptions.ConnectionString);
 
-            _options.FreeSqlDbContextOptions.EntityKey = _options.FreeSqlGeneratorOptions.ConnectionString;
+            Options.FreeSqlDbContextOptions.EntityKey = Options.FreeSqlGeneratorOptions.ConnectionString;
 
             //基础配置
-            if (_options.FreeSqlGeneratorOptions.LazyLoading.HasValue)
-                freeSqlBuilder = freeSqlBuilder.UseGenerateCommandParameterWithLambda(_options.FreeSqlGeneratorOptions.LazyLoading.Value);
+            if (Options.FreeSqlGeneratorOptions.LazyLoading.HasValue)
+                freeSqlBuilder.UseGenerateCommandParameterWithLambda(Options.FreeSqlGeneratorOptions.LazyLoading.Value);
 
-            if (_options.FreeSqlGeneratorOptions.NoneCommandParameter.HasValue)
-                freeSqlBuilder = freeSqlBuilder.UseNoneCommandParameter(_options.FreeSqlGeneratorOptions.NoneCommandParameter.Value);
+            if (Options.FreeSqlGeneratorOptions.NoneCommandParameter.HasValue)
+                freeSqlBuilder.UseNoneCommandParameter(Options.FreeSqlGeneratorOptions.NoneCommandParameter.Value);
 
-            if (_options.FreeSqlGeneratorOptions.GenerateCommandParameterWithLambda.HasValue)
-                freeSqlBuilder = freeSqlBuilder.UseGenerateCommandParameterWithLambda(_options.FreeSqlGeneratorOptions.GenerateCommandParameterWithLambda.Value);
+            if (Options.FreeSqlGeneratorOptions.GenerateCommandParameterWithLambda.HasValue)
+                freeSqlBuilder.UseGenerateCommandParameterWithLambda(Options.FreeSqlGeneratorOptions.GenerateCommandParameterWithLambda.Value);
 
-            if (_options.FreeSqlGeneratorOptions.HandleCommandLog != null ||
-                _options.FreeSqlGeneratorOptions.MonitorCommandExecuting != null ||
-                _options.FreeSqlGeneratorOptions.MonitorCommandExecuted != null)
-                freeSqlBuilder = freeSqlBuilder.UseMonitorCommand(
-                    _options.FreeSqlGeneratorOptions.MonitorCommandExecuting ??
-                    new Action<System.Data.Common.DbCommand>((cmd) => { }),
-                    _options.FreeSqlGeneratorOptions.MonitorCommandExecuted ??
-                    new Action<System.Data.Common.DbCommand, string>((cmd, log) =>
-                    {
-                        if (_options.FreeSqlGeneratorOptions.HandleCommandLog != null)
-                        {
-                            _options.FreeSqlGeneratorOptions.HandleCommandLog.Invoke(log);
-                        }
-                    }));
+            if (Options.FreeSqlGeneratorOptions.HandleCommandLog != null ||
+                Options.FreeSqlGeneratorOptions.MonitorCommandExecuting != null ||
+                Options.FreeSqlGeneratorOptions.MonitorCommandExecuted != null)
+                freeSqlBuilder.UseMonitorCommand(
+                   Options.FreeSqlGeneratorOptions.MonitorCommandExecuting ??
+                   new Action<System.Data.Common.DbCommand>((cmd) => { }),
+                   Options.FreeSqlGeneratorOptions.MonitorCommandExecuted ??
+                   new Action<System.Data.Common.DbCommand, string>((cmd, log) =>
+                   {
+                       if (Options.FreeSqlGeneratorOptions.HandleCommandLog != null)
+                       {
+                           Options.FreeSqlGeneratorOptions.HandleCommandLog.Invoke(log);
+                       }
+                   }));
 
             //开发配置
-            if (_options.FreeSqlDevOptions?.AutoSyncStructure.HasValue == true)
-                freeSqlBuilder = freeSqlBuilder.UseAutoSyncStructure(_options.FreeSqlDevOptions.AutoSyncStructure.Value);
+            if (Options.FreeSqlDevOptions?.AutoSyncStructure.HasValue == true)
+                freeSqlBuilder.UseAutoSyncStructure(Options.FreeSqlDevOptions.AutoSyncStructure.Value);
 
-            if (_options.FreeSqlDevOptions?.SyncStructureNameConvert.HasValue == true)
-                freeSqlBuilder = freeSqlBuilder.UseNameConvert(_options.FreeSqlDevOptions.SyncStructureNameConvert.Value);
+            if (Options.FreeSqlDevOptions?.SyncStructureNameConvert.HasValue == true)
+                freeSqlBuilder.UseNameConvert(Options.FreeSqlDevOptions.SyncStructureNameConvert.Value);
 
-            if (_options.FreeSqlDevOptions?.ConfigEntityFromDbFirst.HasValue == true)
-                freeSqlBuilder = freeSqlBuilder.UseConfigEntityFromDbFirst(_options.FreeSqlDevOptions.ConfigEntityFromDbFirst.Value);
+            if (Options.FreeSqlDevOptions?.ConfigEntityFromDbFirst.HasValue == true)
+                freeSqlBuilder.UseConfigEntityFromDbFirst(Options.FreeSqlDevOptions.ConfigEntityFromDbFirst.Value);
+
+            Options.SetupBuilder?.Invoke(freeSqlBuilder);
 
             return freeSqlBuilder;
         }
 
         public IFreeSql GetFreeSql()
         {
-            if (freeSql != null)
-                return freeSql;
+            if (Orm != null)
+                return Orm;
 
-            freeSql = GetFreeSqlBuilder().Build();
+            Orm = GetFreeSqlBuilder().Build();
 
             SyncStructure();
 
-            return freeSql;
+            return Orm;
         }
 
         public void SyncStructure()
         {
             //freeSql.Ado.MasterPool.Statistics;
-            if (_options.FreeSqlDevOptions?.AutoSyncStructure.HasValue == true && _options.FreeSqlDevOptions?.SyncStructureOnStartup == true)
-                freeSql.CodeFirst.SyncStructure(new EntityFactory(_options.FreeSqlDbContextOptions).GetEntitys(_options.FreeSqlDbContextOptions.EntityKey).ToArray());
+            if (Options.FreeSqlDevOptions?.AutoSyncStructure.HasValue == true && Options.FreeSqlDevOptions?.SyncStructureOnStartup == true)
+                Orm.CodeFirst.SyncStructure(new EntityFactory(Options.FreeSqlDbContextOptions).GetEntitys(Options.FreeSqlDbContextOptions.EntityKey).ToArray());
         }
 
         public BaseDbContext GetDbContext()
         {
-            var db = new BaseDbContext(GetFreeSql(), _options.FreeSqlDbContextOptions);
+            var db = new BaseDbContext(GetFreeSql(), Options.FreeSqlDbContextOptions);
             return db;
         }
     }
