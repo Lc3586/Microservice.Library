@@ -9,7 +9,7 @@ namespace Library.Configuration
     /// </summary>
     public class ConfigHelper
     {
-        public ConfigHelper(string jsonFile)
+        public ConfigHelper(string jsonFile = null)
         {
             Init(jsonFile);
         }
