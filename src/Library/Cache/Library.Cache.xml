@@ -1,0 +1,186 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Library.Cache</name>
+    </assembly>
+    <members>
+        <member name="T:Library.Cache.CacheHelper">
+            <summary>
+            缓存帮助类
+            </summary>
+        </member>
+        <member name="M:Library.Cache.CacheHelper.Init">
+            <summary>
+            初始化
+            </summary>
+        </member>
+        <member name="P:Library.Cache.CacheHelper._Cache">
+            <summary>
+            默认缓存
+            </summary>
+        </member>
+        <member name="P:Library.Cache.CacheHelper.Cache">
+            <summary>
+            默认缓存
+            </summary>
+        </member>
+        <member name="P:Library.Cache.CacheHelper._SystemCache">
+            <summary>
+            系统缓存
+            </summary>
+        </member>
+        <member name="P:Library.Cache.CacheHelper.SystemCache">
+            <summary>
+            系统缓存
+            </summary>
+        </member>
+        <member name="P:Library.Cache.CacheHelper._RedisCache">
+            <summary>
+            Redis缓存
+            </summary>
+        </member>
+        <member name="P:Library.Cache.CacheHelper.RedisCache">
+            <summary>
+            Redis缓存
+            </summary>
+        </member>
+        <member name="T:Library.Cache.CacheOption">
+            <summary>
+            缓存配置
+            </summary>
+        </member>
+        <member name="F:Library.Cache.CacheOption.Option">
+            <summary>
+            配置
+            </summary>
+        </member>
+        <member name="M:Library.Cache.CacheOption.Configure(System.Action{Library.Cache.CacheOption})">
+            <summary>
+            配置
+            </summary>
+            <param name="setupAction"></param>
+        </member>
+        <member name="P:Library.Cache.CacheOption.CacheType">
+            <summary>
+            缓存类型
+            </summary>
+        </member>
+        <member name="P:Library.Cache.CacheOption.RedisConfig">
+            <summary>
+            Redis配置
+            </summary>
+        </member>
+        <member name="T:Library.Cache.ICache">
+            <summary>
+            缓存操作接口类
+            </summary>
+        </member>
+        <member name="M:Library.Cache.ICache.SetCache(System.String,System.Object)">
+            <summary>
+            设置缓存
+            </summary>
+            <param name="key">主键</param>
+            <param name="value">值</param>
+            <typeparam name="T">数据类型</typeparam>
+        </member>
+        <member name="M:Library.Cache.ICache.SetCache(System.String,System.Object,System.TimeSpan)">
+            <summary>
+            设置缓存
+            注：默认过期类型为绝对过期
+            </summary>
+            <param name="key">主键</param>
+            <param name="value">值</param>
+            <param name="timeout">过期时间间隔</param>
+            <typeparam name="T">数据类型</typeparam>
+        </member>
+        <member name="M:Library.Cache.ICache.SetCache(System.String,System.Object,System.TimeSpan,Library.Cache.ExpireType)">
+            <summary>
+            设置缓存
+            注：默认过期类型为绝对过期
+            </summary>
+            <param name="key">主键</param>
+            <param name="value">值</param>
+            <param name="timeout">过期时间间隔</param>
+            <param name="expireType">过期类型</param>
+            <typeparam name="T">数据类型</typeparam>
+        </member>
+        <member name="M:Library.Cache.ICache.SetKeyExpire(System.String,System.TimeSpan)">
+            <summary>
+            设置键失效时间
+            </summary>
+            <param name="key">键值</param>
+            <param name="expire">从现在起时间间隔</param>
+        </member>
+        <member name="M:Library.Cache.ICache.GetCache(System.String)">
+            <summary>
+            获取缓存
+            </summary>
+            <param name="key">主键</param>
+        </member>
+        <member name="M:Library.Cache.ICache.GetCache``1(System.String)">
+            <summary>
+            获取缓存
+            </summary>
+            <param name="key">主键</param>
+            <typeparam name="T">数据类型</typeparam>
+        </member>
+        <member name="M:Library.Cache.ICache.ContainsKey(System.String)">
+            <summary>
+            是否存在键值
+            </summary>
+            <param name="key">主键</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Cache.ICache.RemoveCache(System.String)">
+            <summary>
+            清除缓存
+            </summary>
+            <param name="key">主键</param>
+        </member>
+        <member name="T:Library.Cache.ValueInfoEntry">
+            <summary>
+            值信息
+            </summary>
+        </member>
+        <member name="T:Library.Cache.ExpireType">
+            <summary>
+            过期类型
+            </summary>
+        </member>
+        <member name="F:Library.Cache.ExpireType.Absolute">
+            <summary>
+            绝对过期
+            注：即自创建一段时间后就过期
+            </summary>
+        </member>
+        <member name="F:Library.Cache.ExpireType.Relative">
+            <summary>
+            相对过期
+            注：即该键未被访问后一段时间后过期，若此键一直被访问则过期时间自动延长
+            </summary>
+        </member>
+        <member name="T:Library.Cache.RedisCache">
+            <summary>
+            Redis缓存
+            </summary>
+        </member>
+        <member name="M:Library.Cache.RedisCache.#ctor">
+            <summary>
+            默认构造函数
+            注：使用默认配置，即localhost:6379,无密码
+            </summary>
+        </member>
+        <member name="M:Library.Cache.RedisCache.#ctor(System.String,System.Int32)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="config">配置字符串</param>
+            <param name="databaseIndex">数据库索引</param>
+        </member>
+        <member name="T:Library.Cache.SystemCache">
+            <summary>
+            系统缓存帮助类
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Library.Json</name>
+    </assembly>
+    <members>
+        <member name="T:Library.Json.Serialization.JsonPropertyContractResolver">
+            <summary>
+            自定义分解器
+            </summary>
+        </member>
+        <member name="M:Library.Json.Serialization.JsonPropertyContractResolver.#ctor(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            
+            </summary>
+            <param name="excludedProperties">要输出的属性</param>
+        </member>
+    </members>
+</doc>

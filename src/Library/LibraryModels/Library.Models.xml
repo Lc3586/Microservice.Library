@@ -1,0 +1,1250 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Library.Models</name>
+    </assembly>
+    <members>
+        <member name="T:Library.Models.AjaxResult">
+            <summary>
+            Ajax请求结果
+            </summary>
+        </member>
+        <member name="P:Library.Models.AjaxResult.Success">
+            <summary>
+            是否成功
+            </summary>
+        </member>
+        <member name="P:Library.Models.AjaxResult.ErrorCode">
+            <summary>
+            错误代码
+            <see cref="T:Library.Models.ErrorCode"/>
+            </summary>
+        </member>
+        <member name="P:Library.Models.AjaxResult.Msg">
+            <summary>
+            返回消息
+            </summary>
+        </member>
+        <member name="T:Library.Models.AjaxResult`1">
+            <summary>
+            Ajax请求结果
+            </summary>
+        </member>
+        <member name="P:Library.Models.AjaxResult`1.Data">
+            <summary>
+            返回数据
+            </summary>
+        </member>
+        <member name="P:Library.Models.AjaxResult`1.Total">
+            <summary>
+            总数据量（仅分页时有效）
+            </summary>
+        </member>
+        <member name="T:Library.Models.AjaxDevelopmentResult`1">
+            <summary>
+            Ajax请求结果（开发模式）
+            </summary>
+        </member>
+        <member name="P:Library.Models.AjaxDevelopmentResult`1.Data">
+            <summary>
+            返回数据
+            </summary>
+        </member>
+        <member name="P:Library.Models.AjaxDevelopmentResult`1.Total">
+            <summary>
+            总数据量（仅分页时有效）
+            </summary>
+        </member>
+        <member name="P:Library.Models.AjaxDevelopmentResult`1.ExMsg">
+            <summary>
+            异常信息
+            </summary>
+        </member>
+        <member name="T:Library.Models.ErrorCode">
+            <summary>
+            异常代码
+            </summary>
+        </member>
+        <member name="F:Library.Models.ErrorCode.none">
+            <summary>
+            无
+            </summary>
+        </member>
+        <member name="F:Library.Models.ErrorCode.nologin">
+            <summary>
+            未登录
+            </summary>
+        </member>
+        <member name="F:Library.Models.ErrorCode.unauthorized">
+            <summary>
+            未授权
+            </summary>
+        </member>
+        <member name="F:Library.Models.ErrorCode.forbidden">
+            <summary>
+            权限不足
+            </summary>
+        </member>
+        <member name="F:Library.Models.ErrorCode.validation">
+            <summary>
+            验证失败
+            </summary>
+        </member>
+        <member name="F:Library.Models.ErrorCode.error">
+            <summary>
+            系统错误
+            </summary>
+        </member>
+        <member name="M:Library.Models.AjaxResultFactory.Success">
+            <summary>
+            返回成功
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Models.AjaxResultFactory.Success``1">
+            <summary>
+            返回成功
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Models.AjaxResultFactory.Success(System.String)">
+            <summary>
+            返回成功
+            </summary>
+            <param name="msg">返回的消息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Models.AjaxResultFactory.Success``1(System.String)">
+            <summary>
+            返回成功
+            </summary>
+            <param name="msg">返回的消息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Models.AjaxResultFactory.Success``1(``0)">
+            <summary>
+            返回成功
+            </summary>
+            <param name="data">返回的数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Models.AjaxResultFactory.Success``1(System.String,``0)">
+            <summary>
+            返回成功
+            </summary>
+            <param name="msg">返回的消息</param>
+            <param name="data">返回的数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Models.AjaxResultFactory.Error">
+            <summary>
+            返回错误
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Models.AjaxResultFactory.Error``1">
+            <summary>
+            返回错误
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Models.AjaxResultFactory.Error(System.String,Library.Models.ErrorCode)">
+            <summary>
+            返回错误
+            </summary>
+            <param name="msg">返回的消息</param>
+            <param name="errorCode">错误代码<see cref="T:Library.Models.ErrorCode"/></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Models.AjaxResultFactory.Error``1(System.String,Library.Models.ErrorCode)">
+            <summary>
+            返回错误
+            </summary>
+            <param name="msg">返回的消息</param>
+            <param name="errorCode">错误代码<see cref="T:Library.Models.ErrorCode"/></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Models.AjaxResultFactory.Error``1(``0,Library.Models.ErrorCode)">
+            <summary>
+            返回错误
+            </summary>
+            <param name="data">返回的数据</param>
+            <param name="errorCode">错误代码<see cref="T:Library.Models.ErrorCode"/></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Models.AjaxResultFactory.Error``1(System.String,``0,Library.Models.ErrorCode)">
+            <summary>
+            返回成功
+            </summary>
+            <param name="msg">返回的消息</param>
+            <param name="data">返回的数据</param>
+            <param name="errorCode">错误代码<see cref="T:Library.Models.ErrorCode"/></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Models.AjaxResultFactory.Error``1(System.String,System.String,``0,Library.Models.ErrorCode)">
+            <summary>
+            返回错误（开发模式）
+            </summary>
+            <param name="msg">返回的消息</param>
+            <param name="exMsg">异常信息</param>
+            <param name="data">返回的数据</param>
+            <param name="errorCode">错误代码<see cref="T:Library.Models.ErrorCode"/></param>
+            <returns></returns>
+        </member>
+        <member name="T:Library.Models.CacheType">
+            <summary>
+            缓存类型
+            </summary>
+        </member>
+        <member name="F:Library.Models.CacheType.SystemCache">
+            <summary>
+            系统缓存
+            </summary>
+        </member>
+        <member name="F:Library.Models.CacheType.RedisCache">
+            <summary>
+            Redis缓存
+            </summary>
+        </member>
+        <member name="T:Library.Models.CASModel">
+            <summary>
+            CAS模型
+            </summary>
+        </member>
+        <member name="T:Library.Models.CASModel.AuthorizedInfo">
+            <summary>
+            验证后的身份信息
+            </summary>
+        </member>
+        <member name="P:Library.Models.CASModel.AuthorizedInfo.AppName">
+            <summary>
+            应用名称
+            </summary>
+        </member>
+        <member name="P:Library.Models.CASModel.AuthorizedInfo.Id">
+            <summary>
+            ID
+            </summary>
+        </member>
+        <member name="P:Library.Models.CASModel.AuthorizedInfo.Account">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="P:Library.Models.CASModel.AuthorizedInfo.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="T:Library.Models.CASModel.GetTGT">
+            <summary>
+            获取tgt
+            </summary>
+        </member>
+        <member name="P:Library.Models.CASModel.GetTGT.Username">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:Library.Models.CASModel.GetTGT.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="T:Library.Models.CASModel.GetST">
+            <summary>
+            获取票据
+            </summary>
+        </member>
+        <member name="P:Library.Models.CASModel.GetST.Service">
+            <summary>
+            服务地址
+            </summary>
+        </member>
+        <member name="T:Library.Models.CASModel.GetUserInfo">
+            <summary>
+            获取用户信息
+            </summary>
+        </member>
+        <member name="P:Library.Models.CASModel.GetUserInfo.ST">
+            <summary>
+            票据
+            </summary>
+        </member>
+        <member name="P:Library.Models.CASModel.GetUserInfo.Service">
+            <summary>
+            服务地址
+            </summary>
+        </member>
+        <member name="T:Library.Models.CASModel.UserInfo">
+            <summary>
+            用户信息
+            </summary>
+        </member>
+        <member name="P:Library.Models.CASModel.UserInfo.name">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:Library.Models.CASModel.UserInfo.id">
+            <summary>
+            id
+            </summary>
+        </member>
+        <member name="P:Library.Models.CASModel.UserInfo.account">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="T:Library.Models.CASModel.LogOut">
+            <summary>
+            登出
+            </summary>
+        </member>
+        <member name="P:Library.Models.CASModel.LogOut.LogoutCAS">
+            <summary>
+            注销cas（当前账号登录的所有应用都会注销）
+            </summary>
+        </member>
+        <member name="P:Library.Models.CASModel.LogOut.ReturnUrl">
+            <summary>
+            登出后跳转地址
+            </summary>
+        </member>
+        <member name="T:Library.Models.MessageException">
+            <summary>
+            消息异常
+            </summary>
+        </member>
+        <member name="M:Library.Models.MessageException.#ctor(System.String,Library.Models.ErrorCode,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="msg">消息</param>
+            <param name="code">错误代码</param>
+            <param name="innerException">内部异常</param>
+        </member>
+        <member name="P:Library.Models.MessageException.Msg">
+            <summary>
+            消息
+            </summary>
+        </member>
+        <member name="P:Library.Models.MessageException.Code">
+            <summary>
+            错误代码
+            </summary>
+        </member>
+        <member name="P:Library.Models.MessageException.InnerException">
+            <summary>
+            内部异常
+            </summary>
+        </member>
+        <member name="T:Library.Models.ValidationException">
+            <summary>
+            验证异常
+            </summary>
+        </member>
+        <member name="M:Library.Models.ValidationException.#ctor(System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="msg">消息</param>
+            <param name="innerException">内部异常</param>
+        </member>
+        <member name="M:Library.Models.ValidationException.#ctor(System.Object,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="data">数据</param>
+            <param name="innerException">内部异常</param>
+        </member>
+        <member name="M:Library.Models.ValidationException.#ctor(System.String,System.Object,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="msg">消息</param>
+            <param name="data">数据</param>
+            <param name="innerException">内部异常</param>
+        </member>
+        <member name="P:Library.Models.ValidationException.Msg">
+            <summary>
+            消息
+            </summary>
+        </member>
+        <member name="P:Library.Models.ValidationException.Data">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="P:Library.Models.ValidationException.InnerException">
+            <summary>
+            内部异常
+            </summary>
+        </member>
+        <member name="T:Library.Models.DatabaseType">
+            <summary>
+            数据库类型
+            </summary>
+        </member>
+        <member name="F:Library.Models.DatabaseType.Odbc">
+            <summary>
+            通用的 Odbc 实现，只能做基本的 Crud 操作 <para></para>
+            不支持实体结构迁移、不支持分页（只能 Take 查询） <para></para>
+            
+            通用实现为了让用户自己适配更多的数据库，比如连接 mssql 2000、db2 等数据库<para></para>
+            默认适配 SqlServer，可以继承后重新适配 FreeSql.Odbc.Default.OdbcAdapter，最好去看下代码 <para></para>
+            
+            适配新的 OdbcAdapter，请在 FreeSqlBuilder.Build 之后调用 IFreeSql.SetOdbcAdapter 方法设置
+            </summary>
+        </member>
+        <member name="F:Library.Models.DatabaseType.OdbcDameng">
+            <summary>
+            武汉达梦数据库有限公司，基于 Odbc 的实现
+            </summary>
+        </member>
+        <member name="F:Library.Models.DatabaseType.MsAccess">
+            <summary>
+            Microsoft Office Access 是由微软发布的关联式数据库管理系统
+            </summary>
+        </member>
+        <member name="F:Library.Models.DatabaseType.Dameng">
+            <summary>
+            武汉达梦数据库有限公司，基于 DmProvider.dll 的实现
+            </summary>
+        </member>
+        <member name="T:Library.Models.DbTableInfo">
+            <summary>
+            表结构
+            </summary>
+        </member>
+        <member name="P:Library.Models.DbTableInfo.TableName">
+            <summary>
+            表名称
+            </summary>
+        </member>
+        <member name="P:Library.Models.DbTableInfo.NameSpace">
+            <summary>
+            命名空间
+            </summary>
+        </member>
+        <member name="P:Library.Models.DbTableInfo.ClassName">
+            <summary>
+            类名
+            </summary>
+        </member>
+        <member name="P:Library.Models.DbTableInfo.SchemaName">
+            <summary>
+            表的架构
+            </summary>
+        </member>
+        <member name="P:Library.Models.DbTableInfo.Rows">
+            <summary>
+            表的记录数
+            </summary>
+        </member>
+        <member name="P:Library.Models.DbTableInfo.HasPrimaryKey">
+            <summary>
+            含有主键
+            </summary>
+        </member>
+        <member name="P:Library.Models.DbTableInfo.PrimaryKey">
+            <summary>
+            主键名称
+            <para>;号拼接</para>
+            </summary>
+        </member>
+        <member name="P:Library.Models.DbTableInfo.Description">
+            <summary>
+            备注与说明
+            </summary>
+        </member>
+        <member name="P:Library.Models.DbTableInfo.Column">
+            <summary>
+            表字段结构集合
+            </summary>
+        </member>
+        <member name="T:Library.Models.DbColumn">
+            <summary>
+            表字段结构
+            </summary>
+        </member>
+        <member name="P:Library.Models.DbColumn.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Library.Models.DbColumn.DisplayName">
+            <summary>
+            显示名称
+            </summary>
+        </member>
+        <member name="P:Library.Models.DbColumn.DataType">
+            <summary>
+            数据类型
+            </summary>
+        </member>
+        <member name="P:Library.Models.DbColumn.CSharpType">
+            <summary>
+            数据库类型对应的C#类型
+            </summary>
+        </member>
+        <member name="P:Library.Models.DbColumn.CSharpTypeName">
+            <summary>
+            数据库类型对应的C#类型名称
+            </summary>
+        </member>
+        <member name="P:Library.Models.DbColumn.IsNumber">
+            <summary>
+            为数值
+            </summary>
+        </member>
+        <member name="P:Library.Models.DbColumn.IsDateTime">
+            <summary>
+            为日期时间
+            </summary>
+        </member>
+        <member name="P:Library.Models.DbColumn.HasOption">
+            <summary>
+            为选项
+            </summary>
+        </member>
+        <member name="P:Library.Models.DbColumn.Range_Min">
+            <summary>
+            范围最小值
+            </summary>
+        </member>
+        <member name="P:Library.Models.DbColumn.Range_Max">
+            <summary>
+            范围最大值
+            </summary>
+        </member>
+        <member name="P:Library.Models.DbColumn.Options">
+            <summary>
+            选项
+            </summary>
+        </member>
+        <member name="P:Library.Models.DbColumn.IsPrimaryKey">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="P:Library.Models.DbColumn.IsForeignKey">
+            <summary>
+            外键
+            </summary>
+        </member>
+        <member name="P:Library.Models.DbColumn.FKTableNames">
+            <summary>
+            外键关系表集合
+            </summary>
+        </member>
+        <member name="P:Library.Models.DbColumn.ByteLength">
+            <summary>
+            字节长度
+            </summary>
+        </member>
+        <member name="P:Library.Models.DbColumn.CharLength">
+            <summary>
+            字符长度
+            </summary>
+        </member>
+        <member name="P:Library.Models.DbColumn.Precision">
+            <summary>
+            精度
+            </summary>
+        </member>
+        <member name="P:Library.Models.DbColumn.Scale">
+            <summary>
+            小数位
+            </summary>
+        </member>
+        <member name="P:Library.Models.DbColumn.IsIdentity">
+            <summary>
+            自增列
+            </summary>
+        </member>
+        <member name="P:Library.Models.DbColumn.Default">
+            <summary>
+            默认值
+            </summary>
+        </member>
+        <member name="P:Library.Models.DbColumn.IsNullable">
+            <summary>
+            可为空
+            </summary>
+        </member>
+        <member name="P:Library.Models.DbColumn.IsNullableType">
+            <summary>
+            可为空类型
+            </summary>
+        </member>
+        <member name="P:Library.Models.DbColumn.Comment">
+            <summary>
+            注释
+            </summary>
+        </member>
+        <member name="P:Library.Models.DbColumn.Description_Other">
+            <summary>
+            其他说明
+            </summary>
+        </member>
+        <member name="M:Library.Models.DbColumn.Init(Library.Models.DatabaseType,System.Boolean)">
+            <summary>
+            初始化
+            </summary>
+            <param name="dbType">数据库类型</param>
+            <param name="errorUseDefault">异常时使用默认值</param>
+            <returns></returns>
+        </member>
+        <member name="T:Library.Models.DbType2CSharpType">
+            <summary>
+            数据库数据类型转C#数据类型
+            <!--LCTR 2019-06-10-->
+            </summary>
+        </member>
+        <member name="M:Library.Models.DbType2CSharpType.GetCSharpTypeName(Library.Models.DatabaseType,System.String)">
+            <summary>
+            获取数据库数据类型对应的C#数据类型名称
+            </summary>
+            <param name="dbType">数据库类型</param>
+            <param name="dataType">数据库数据类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Models.DbType2CSharpType.GetCSharpType(Library.Models.DatabaseType,System.String)">
+            <summary>
+            获取数据库数据类型对应的C#数据类型
+            </summary>
+            <param name="dbType">数据库类型</param>
+            <param name="dataType">数据库数据类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Models.DbType2CSharpType.GetCSharpTypeName_MySQL(System.String)">
+            <summary>
+            获取MySQL数据库数据类型对应的C#数据类型名称
+            </summary>
+            <param name="dataType">数据库数据类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Models.DbType2CSharpType.GetCSharpType_MySQL(System.String)">
+            <summary>
+            获取MySQL数据库数据类型对应的C#数据类型
+            </summary>
+            <param name="dataType">数据库数据类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Models.DbType2CSharpType.GetCsharpTypeName_SQLServer(System.String)">
+            <summary>
+            获取SQLServer数据库数据类型对应的C#数据类型名称
+            </summary>
+            <param name="dataType">数据库数据类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Models.DbType2CSharpType.GetCsharpType_SQLServer(System.String)">
+            <summary>
+            获取SQLServer数据库数据类型对应的C#数据类型
+            </summary>
+            <param name="dataType">数据库数据类型</param>
+            <returns></returns>
+        </member>
+        <member name="T:Library.Models.DeleteMode">
+            <summary>
+            删除模式
+            </summary>
+        </member>
+        <member name="F:Library.Models.DeleteMode.Physic">
+            <summary>
+            物理删除,即直接从数据库删除
+            </summary>
+        </member>
+        <member name="F:Library.Models.DeleteMode.Logic">
+            <summary>
+            逻辑删除,即仅将Deleted字段置为true
+            </summary>
+        </member>
+        <member name="T:Library.Models.DynamicModel">
+            <summary>
+            动态数据模型类
+            </summary>
+        </member>
+        <member name="P:Library.Models.DynamicModel.Item(System.String)">
+            <summary>
+            索引器
+            </summary>
+        </member>
+        <member name="M:Library.Models.DynamicModel.AddProperty(System.String,System.Object)">
+            <summary>
+            添加属性
+            </summary>
+            <param name="key">属性名</param>
+            <param name="obj">属性值</param>
+        </member>
+        <member name="M:Library.Models.DynamicModel.SetProperty(System.String,System.Object)">
+            <summary>
+            设置属性值
+            </summary>
+            <param name="key">属性名</param>
+            <param name="obj">属性值</param>
+        </member>
+        <member name="M:Library.Models.DynamicModel.GetProperty(System.String)">
+            <summary>
+            获取属性值
+            </summary>
+            <param name="key">属性名</param>
+            <returns></returns>
+        </member>
+        <member name="T:Library.Models.FileEntry">
+            <summary>
+            文件信息
+            </summary>
+        </member>
+        <member name="P:Library.Models.FileEntry.FileName">
+            <summary>
+            文件名
+            </summary>
+        </member>
+        <member name="P:Library.Models.FileEntry.FileBytes">
+            <summary>
+            文件字节
+            </summary>
+        </member>
+        <member name="T:Library.Models.Filter">
+            <summary>
+            筛选
+            <para>LCTR 2019-06-04</para>
+            </summary>
+        </member>
+        <member name="P:Library.Models.Filter.Group">
+            <summary>
+            分组
+            </summary>
+        </member>
+        <member name="P:Library.Models.Filter.Param">
+            <summary>
+            条件
+            </summary>
+        </member>
+        <member name="T:Library.Models.GroupFilter">
+            <summary>
+            分组
+            </summary>
+        </member>
+        <member name="P:Library.Models.GroupFilter.AndOr">
+            <summary>
+            true:AND,false:OR
+            </summary>
+        </member>
+        <member name="P:Library.Models.GroupFilter.Filter">
+            <summary>
+            筛选
+            </summary>
+        </member>
+        <member name="T:Library.Models.FilterParam">
+            <summary>
+            条件
+            </summary>
+        </member>
+        <member name="P:Library.Models.FilterParam.Field">
+            <summary>
+            字段
+            </summary>
+        </member>
+        <member name="P:Library.Models.FilterParam.Compare">
+            <summary>
+            比较方式
+            </summary>
+        </member>
+        <member name="P:Library.Models.FilterParam.Value">
+            <summary>
+            值
+            </summary>
+        </member>
+        <member name="T:Library.Models.CompareType">
+            <summary>
+            比较类型
+            </summary>
+        </member>
+        <member name="F:Library.Models.CompareType.IN">
+            <summary>
+            包含
+            </summary>
+        </member>
+        <member name="F:Library.Models.CompareType.BIN">
+            <summary>
+            被包含
+            </summary>
+        </member>
+        <member name="F:Library.Models.CompareType.SIN">
+            <summary>
+            包含
+            <para>集合</para>
+            </summary>
+        </member>
+        <member name="F:Library.Models.CompareType.NSIN">
+            <summary>
+            不包含
+            <para>集合</para>
+            </summary>
+        </member>
+        <member name="F:Library.Models.CompareType.EQ">
+            <summary>
+            相等
+            </summary>
+        </member>
+        <member name="F:Library.Models.CompareType.NE">
+            <summary>
+            不相等
+            </summary>
+        </member>
+        <member name="F:Library.Models.CompareType.LE">
+            <summary>
+            小于等于
+            </summary>
+        </member>
+        <member name="F:Library.Models.CompareType.LT">
+            <summary>
+            小于
+            </summary>
+        </member>
+        <member name="F:Library.Models.CompareType.GE">
+            <summary>
+            大于等于
+            </summary>
+        </member>
+        <member name="F:Library.Models.CompareType.GT">
+            <summary>
+            大于
+            </summary>
+        </member>
+        <member name="T:Library.Models.LoggerType">
+            <summary>
+            日志操作类型
+            </summary>
+        </member>
+        <member name="F:Library.Models.LoggerType.Console">
+            <summary>
+            输出到控制台
+            </summary>
+        </member>
+        <member name="F:Library.Models.LoggerType.File">
+            <summary>
+            使用txt文件记录日志,默认存放目录为/A_Logs/yyy-MM/yyyy-MM-dd.txt
+            </summary>
+        </member>
+        <member name="F:Library.Models.LoggerType.RDBMS">
+            <summary>
+            使用关系型数据库记录日志,例如SQlServer、MySQL、Oracle等
+            </summary>
+        </member>
+        <member name="F:Library.Models.LoggerType.ElasticSearch">
+            <summary>
+            使用ElasticSearch记录日志
+            </summary>
+        </member>
+        <member name="T:Library.Models.LogType">
+            <summary>
+            系统日志类型
+            </summary>
+        </member>
+        <member name="T:Library.Models.ModelErrorsInfo">
+            <summary>
+            模型验证错误信息
+            </summary>
+        </member>
+        <member name="P:Library.Models.ModelErrorsInfo.FullKey">
+            <summary>
+            全名
+            </summary>
+        </member>
+        <member name="P:Library.Models.ModelErrorsInfo.Key">
+            <summary>
+            字段名称
+            </summary>
+        </member>
+        <member name="P:Library.Models.ModelErrorsInfo.Value">
+            <summary>
+            值
+            </summary>
+        </member>
+        <member name="P:Library.Models.ModelErrorsInfo.Errors">
+            <summary>
+            错误信息
+            </summary>
+        </member>
+        <member name="P:Library.Models.ModelErrorsInfo.ErrorInfo">
+            <summary>
+            错误提示
+            </summary>
+        </member>
+        <member name="T:Library.Models.Pagination">
+            <summary>
+            数据表格分页
+            </summary>
+        </member>
+        <member name="P:Library.Models.Pagination._schema">
+            <summary>
+            架构
+            </summary>
+        </member>
+        <member name="P:Library.Models.Pagination._pageIndex">
+            <summary>
+            当前页码
+            </summary>
+        </member>
+        <member name="P:Library.Models.Pagination._pageRows">
+            <summary>
+            每页行数
+            </summary>
+        </member>
+        <member name="P:Library.Models.Pagination._sortField">
+            <summary>
+            排序列
+            </summary>
+        </member>
+        <member name="P:Library.Models.Pagination._sortType">
+            <summary>
+            排序类型
+            </summary>
+        </member>
+        <member name="P:Library.Models.Pagination._advancedSort">
+            <summary>
+            高级排序
+            </summary>
+        </member>
+        <member name="P:Library.Models.Pagination._filter">
+            <summary>
+            筛选条件
+            </summary>
+        </member>
+        <member name="M:Library.Models.Pagination.FilterToSql(System.String@,System.String)">
+            <summary>
+            筛选条件转sql语句
+            </summary>
+            <param name="sql">sql语句</param>
+            <param name="alias">别名</param>
+            <returns>筛选条件是否有误</returns>
+        </member>
+        <member name="M:Library.Models.Pagination.OrderByToSql(System.String@,System.String)">
+            <summary>
+            排序条件转sql语句
+            </summary>
+            <param name="sql">sql语句</param>
+            <param name="alias">别名</param>
+            <returns>排序条件是否有误</returns>
+        </member>
+        <member name="M:Library.Models.Pagination.FilterToLinqDynamic``1(System.Linq.IQueryable{``0}@)">
+            <summary>
+            筛选条件转动态linq
+            </summary>
+            <param name="LinqDynamic">动态linq</param>
+            <returns>筛选条件是否有误</returns>
+        </member>
+        <member name="M:Library.Models.Pagination.OrderByToLinqDynamic``1(System.Linq.IQueryable{``0}@)">
+            <summary>
+            排序条件转动态linq
+            </summary>
+            <typeparam name="TSource"></typeparam>
+            <param name="LinqDynamic">动态linq</param>
+            <returns>排序条件是否有误</returns>
+        </member>
+        <member name="P:Library.Models.Pagination._recordCount">
+            <summary>
+            总记录数
+            </summary>
+        </member>
+        <member name="P:Library.Models.Pagination._pageCount">
+            <summary>
+            总页数
+            </summary>
+        </member>
+        <member name="P:Library.Models.Pagination.PageIndex">
+            <summary>
+            当前页码
+            </summary>
+        </member>
+        <member name="P:Library.Models.Pagination.PageRows">
+            <summary>
+            每页数据量
+            </summary>
+        </member>
+        <member name="P:Library.Models.Pagination.SortField">
+            <summary>
+            排序列
+            </summary>
+        </member>
+        <member name="P:Library.Models.Pagination.SortType">
+            <summary>
+            排序类型
+            </summary>
+        </member>
+        <member name="P:Library.Models.Pagination.AdvancedSort">
+            <summary>
+            高级排序
+            </summary>
+        </member>
+        <member name="P:Library.Models.Pagination.Filter">
+            <summary>
+            筛选条件
+            </summary>
+        </member>
+        <member name="P:Library.Models.Pagination.Schema">
+            <summary>
+            架构
+            </summary>
+        </member>
+        <member name="P:Library.Models.Pagination.RecordCount">
+            <summary>
+            总记录数
+            </summary>
+        </member>
+        <member name="P:Library.Models.Pagination.PageCount">
+            <summary>
+            总页数
+            </summary>
+        </member>
+        <member name="P:Library.Models.Pagination.page">
+            <summary>
+            当前页
+            </summary>
+        </member>
+        <member name="P:Library.Models.Pagination.rows">
+            <summary>
+            每页数据量
+            </summary>
+        </member>
+        <member name="P:Library.Models.Pagination.sidx">
+            <summary>
+            排序列
+            </summary>
+        </member>
+        <member name="P:Library.Models.Pagination.sord">
+            <summary>
+            排序类型
+            </summary>
+        </member>
+        <member name="P:Library.Models.Pagination.records">
+            <summary>
+            总记录数
+            </summary>
+        </member>
+        <member name="P:Library.Models.Pagination.total">
+            <summary>
+            总页数
+            </summary>
+        </member>
+        <member name="P:Library.Models.Pagination.sort">
+            <summary>
+            排序列
+            </summary>
+        </member>
+        <member name="P:Library.Models.Pagination.order">
+            <summary>
+            排序类型
+            </summary>
+        </member>
+        <member name="M:Library.Models.Pagination.BuildResult(System.Object,System.Boolean,System.String)">
+            <summary>
+            输出
+            </summary>
+            <param name="data">数据</param>
+            <param name="success">成功与否</param>
+            <param name="error">异常信息</param>
+            <returns></returns>
+        </member>
+        <member name="T:Library.Models.Pagination.Result">
+            <summary>
+            返回信息
+            </summary>
+        </member>
+        <member name="T:Library.Models.Pagination.Result.Layui">
+            <summary>
+            Layui方案
+            </summary>
+        </member>
+        <member name="P:Library.Models.Pagination.Result.Layui.data">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="P:Library.Models.Pagination.Result.Layui.code">
+            <summary>
+            状态码
+            <para>成功0，失败-1</para>
+            </summary>
+        </member>
+        <member name="P:Library.Models.Pagination.Result.Layui.msg">
+            <summary>
+            信息
+            </summary>
+        </member>
+        <member name="P:Library.Models.Pagination.Result.Layui.count">
+            <summary>
+            总记录数
+            </summary>
+        </member>
+        <member name="P:Library.Models.Pagination.Result.Layui.costtime">
+            <summary>
+            耗时（毫秒）
+            </summary>
+        </member>
+        <member name="T:Library.Models.Pagination.Result.JqGrid">
+            <summary>
+            JqGrid方案
+            </summary>
+        </member>
+        <member name="P:Library.Models.Pagination.Result.JqGrid.rows">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="P:Library.Models.Pagination.Result.JqGrid.total">
+            <summary>
+            总页数
+            </summary>
+        </member>
+        <member name="P:Library.Models.Pagination.Result.JqGrid.page">
+            <summary>
+            当前页码
+            </summary>
+        </member>
+        <member name="P:Library.Models.Pagination.Result.JqGrid.records">
+            <summary>
+            总记录数
+            </summary>
+        </member>
+        <member name="P:Library.Models.Pagination.Result.JqGrid.costtime">
+            <summary>
+            耗时（毫秒）
+            </summary>
+        </member>
+        <member name="T:Library.Models.Pagination.Result.Easyui">
+            <summary>
+            Easyui DataGrid方案
+            </summary>
+        </member>
+        <member name="P:Library.Models.Pagination.Result.Easyui.rows">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="P:Library.Models.Pagination.Result.Easyui.total">
+            <summary>
+            总记录数
+            </summary>
+        </member>
+        <member name="P:Library.Models.Pagination.Result.Easyui.currentPage">
+            <summary>
+            当前页码
+            </summary>
+        </member>
+        <member name="P:Library.Models.Pagination.Result.Easyui.pageSize">
+            <summary>
+            每页数据量
+            </summary>
+        </member>
+        <member name="P:Library.Models.Pagination.Result.Easyui.costtime">
+            <summary>
+            耗时（毫秒）
+            </summary>
+        </member>
+        <member name="T:Library.Models.Schema">
+            <summary>
+            架构
+            </summary>
+        </member>
+        <member name="F:Library.Models.Schema.defaul">
+            <summary>
+            默认
+            </summary>
+        </member>
+        <member name="F:Library.Models.Schema.layui">
+            <summary>
+            layui
+            <para>https://www.layui.com/doc/modules/table.html#response</para>
+            </summary>
+        </member>
+        <member name="F:Library.Models.Schema.jqGrid">
+            <summary>
+            jqGrid
+            <para>https://blog.mn886.net/jqGrid/api/jsondata/index.jsp</para>
+            </summary>
+        </member>
+        <member name="F:Library.Models.Schema.easyui">
+            <summary>
+            easyui
+            <para>http://www.jeasyui.net/plugins/183.html</para>
+            </summary>
+        </member>
+        <member name="F:Library.Models.Schema.bootstrapTable">
+            <summary>
+            bootstrapTable
+            <para>https://bootstrap-table.com/docs/api/table-options/</para>
+            </summary>
+        </member>
+        <member name="F:Library.Models.Schema.antdVue">
+            <summary>
+            Ant Design + Vue
+            <para>https://www.antdv.com/components/list-cn/#api</para>
+            </summary>
+        </member>
+        <member name="F:Library.Models.Schema.elementVue">
+            <summary>
+            element + Vue
+            </summary>
+        </member>
+        <member name="T:Library.Models.RunMode">
+            <summary>
+            运行模式
+            </summary>
+        </member>
+        <member name="F:Library.Models.RunMode.LocalTest">
+            <summary>
+            本地测试模式
+            </summary>
+        </member>
+        <member name="F:Library.Models.RunMode.LocalTest_Strict">
+            <summary>
+            本地测试模式（严格）
+            </summary>
+        </member>
+        <member name="F:Library.Models.RunMode.Publish">
+            <summary>
+            发布模式
+            </summary>
+        </member>
+        <member name="T:Library.Models.TreeModel">
+            <summary>
+            树模型（可以作为父类）
+            </summary>
+        </member>
+        <member name="P:Library.Models.TreeModel.Id">
+            <summary>
+            唯一标识Id
+            </summary>
+        </member>
+        <member name="P:Library.Models.TreeModel.Value">
+            <summary>
+            数据值
+            </summary>
+        </member>
+        <member name="P:Library.Models.TreeModel.ParentId">
+            <summary>
+            父Id
+            </summary>
+        </member>
+        <member name="P:Library.Models.TreeModel.Level">
+            <summary>
+            节点深度
+            </summary>
+        </member>
+        <member name="P:Library.Models.TreeModel.Text">
+            <summary>
+            显示的内容
+            </summary>
+        </member>
+        <member name="P:Library.Models.TreeModel.Children">
+            <summary>
+            孩子节点
+            </summary>
+        </member>
+    </members>
+</doc>

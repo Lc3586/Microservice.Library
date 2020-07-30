@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Library.Configuration</name>
+    </assembly>
+    <members>
+        <member name="T:Library.Configuration.ConfigHelper">
+            <summary>
+            配置文件帮助类
+            </summary>
+        </member>
+        <member name="M:Library.Configuration.ConfigHelper.GetValue(System.String)">
+            <summary>
+            从AppSettings获取key的值
+            </summary>
+            <param name="key">key</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Configuration.ConfigHelper.GetValue``1(System.String)">
+            <summary>
+            从AppSettings获取key的值
+            </summary>
+            <param name="key">key</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Configuration.ConfigHelper.GetValue``1(System.String,``0)">
+            <summary>
+            从AppSettings获取key的值
+            </summary>
+            <param name="key">key</param>
+            <param name="Default">默认值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Configuration.ConfigHelper.GetConnectionString(System.String)">
+            <summary>
+            获取连接字符串
+            </summary>
+            <param name="nameOfCon">连接字符串名</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Configuration.ConfigHelper.GetModel``1(System.String)">
+            <summary>
+            获取模型
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="section">板块</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

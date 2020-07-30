@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Library.Container</name>
+    </assembly>
+    <members>
+        <member name="M:Library.Container.AutofacHelper.GetService``1">
+            <summary>
+            获取全局服务
+            警告：此方法使用不当会造成内存溢出,一般开发请勿使用此方法,请使用GetScopeService
+            </summary>
+            <typeparam name="T">接口类型</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Container.AutofacHelper.GetScopeService``1">
+            <summary>
+            获取当前请求为生命周期的服务
+            </summary>
+            <typeparam name="T">接口类型</typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:Library.Container.IDependency">
+            <summary>
+            注入标记
+            </summary>
+        </member>
+        <member name="T:Library.Container.IFilter">
+            <summary>
+            过滤器
+            </summary>
+        </member>
+        <member name="M:Library.Container.IFilter.OnActionExecuting(Castle.DynamicProxy.IInvocation)">
+            <summary>
+            执行前
+            </summary>
+            <param name="invocation">执行信息</param>
+        </member>
+        <member name="M:Library.Container.IFilter.OnActionExecuted(Castle.DynamicProxy.IInvocation)">
+            <summary>
+            执行后
+            </summary>
+            <param name="invocation">执行信息</param>
+        </member>
+        <member name="T:Library.Container.IocHelper">
+            <summary>
+            Ioc容器帮助类
+            </summary>
+        </member>
+        <member name="M:Library.Container.IocHelper.RegisterType``2">
+            <summary>
+            注册类型
+            </summary>
+            <typeparam name="TFrom">定义类型</typeparam>
+            <typeparam name="TTo">实现类型</typeparam>
+        </member>
+        <member name="M:Library.Container.IocHelper.RegisterType``2(System.String)">
+            <summary>
+            注册类型
+            </summary>
+            <param name="name">注册名</param>
+            <typeparam name="TFrom">定义类型</typeparam>
+            <typeparam name="TTo">实现类型</typeparam>
+        </member>
+        <member name="M:Library.Container.IocHelper.RegisterType(System.Type,System.Type,System.String)">
+            <summary>
+            注册类型
+            </summary>
+            <param name="typeFrom">定义类型</param>
+            <param name="typeTo">实现类型</param>
+            <param name="name">注册名</param>
+        </member>
+        <member name="M:Library.Container.IocHelper.Resolve``1">
+            <summary>
+            获取对象
+            </summary>
+            <typeparam name="T">对象类型</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Container.IocHelper.Resolve``1(System.Object[])">
+            <summary>
+            获取对象
+            </summary>
+            <typeparam name="T">对象类型</typeparam>
+            <param name="paramters">构造参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Container.IocHelper.Resolve``1(System.String)">
+            <summary>
+            获取对象
+            </summary>
+            <typeparam name="T">对象类型</typeparam>
+            <param name="name">注册名</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Container.IocHelper.Resolve``1(System.String,System.Object[])">
+            <summary>
+            获取对象
+            </summary>
+            <typeparam name="T">对象类型</typeparam>
+            <param name="name">注册名</param>
+            <param name="paramters">构造参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Container.IocHelper.Resolve(System.Type,System.String,System.Object[])">
+            <summary>
+            获取对象
+            </summary>
+            <param name="typeFrom">对象类型</param>
+            <param name="name">注册名</param>
+            <param name="paramters">构造参数</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
