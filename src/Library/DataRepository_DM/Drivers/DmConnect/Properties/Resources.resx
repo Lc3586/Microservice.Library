@@ -1,0 +1,490 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Category_DataType" xml:space="preserve">
+    <value>Data Type</value>
+  </data>
+  <data name="Category_Identifier" xml:space="preserve">
+    <value>(Identifier)</value>
+  </data>
+  <data name="DataView_Dm" xml:space="preserve">
+    <value>Dm</value>
+  </data>
+  <data name="DropConfirmationCaption" xml:space="preserve">
+    <value>Drop {0}?</value>
+  </data>
+  <data name="ErrorTitle" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ErrorAttemptingToDrop" xml:space="preserve">
+    <value>The following error occured while attempting to drop the {0} '{1}': {2}</value>
+  </data>
+  <data name="DropConfirmation" xml:space="preserve">
+    <value>Are you sure you want to drop the {0} '{1}'?</value>
+  </data>
+  <data name="Description_CheckOption" xml:space="preserve">
+    <value>The check option specified by the WITH CHECK OPTION clause in the view definition.</value>
+  </data>
+  <data name="Description_CreateDate" xml:space="preserve">
+    <value>The date the database object was created.</value>
+  </data>
+  <data name="Description_Default" xml:space="preserve">
+    <value>The default value used for new instances of this database object.</value>
+  </data>
+  <data name="Description_Function" xml:space="preserve">
+    <value>The function that owns this database object.</value>
+  </data>
+  <data name="Description_IsOutput" xml:space="preserve">
+    <value>Indicates if the parent object can return values in this database object.</value>
+  </data>
+  <data name="Description_IsUpdatable" xml:space="preserve">
+    <value>Indicates whether the results of the view can be updated.</value>
+  </data>
+  <data name="Description_Length" xml:space="preserve">
+    <value>The maximum length (in characters) that can be stored in this database object.</value>
+  </data>
+  <data name="Description_Name" xml:space="preserve">
+    <value>The name of the database object.</value>
+  </data>
+  <data name="Description_Nullable" xml:space="preserve">
+    <value>Indicates if null values are allowed in this database object.</value>
+  </data>
+  <data name="Description_Ordinal" xml:space="preserve">
+    <value>The position of this object in the parent database object definition.</value>
+  </data>
+  <data name="Description_Precision" xml:space="preserve">
+    <value>For numeric data, the maximum number of decimal digits that can be stored in this database object.</value>
+  </data>
+  <data name="Description_ProviderType" xml:space="preserve">
+    <value>The SqlDbType representation of the data type.</value>
+  </data>
+  <data name="Description_Scale" xml:space="preserve">
+    <value>For numeric data, the maximum number of decimal digits that can be stored in this database object to the right of a decimal point.</value>
+  </data>
+  <data name="Description_Schema" xml:space="preserve">
+    <value>The schema that contains the database object.</value>
+  </data>
+  <data name="Description_StoredProcedure" xml:space="preserve">
+    <value>The stored procedure that owns this database object.</value>
+  </data>
+  <data name="Description_SystemType" xml:space="preserve">
+    <value>The native SQL Server data type.</value>
+  </data>
+  <data name="Description_Table" xml:space="preserve">
+    <value>The table that owns this database object.</value>
+  </data>
+  <data name="Description_Type" xml:space="preserve">
+    <value>The type of the database object.</value>
+  </data>
+  <data name="Description_UpdateDate" xml:space="preserve">
+    <value>The date the database object was last updated.</value>
+  </data>
+  <data name="Description_View" xml:space="preserve">
+    <value>The view that owns this database object.</value>
+  </data>
+  <data name="Node_Functions" xml:space="preserve">
+    <value>Functions</value>
+  </data>
+  <data name="Node_StoredProcedures" xml:space="preserve">
+    <value>Stored Procedures</value>
+  </data>
+  <data name="Node_Tables" xml:space="preserve">
+    <value>Tables</value>
+  </data>
+  <data name="Node_Users" xml:space="preserve">
+    <value>Users</value>
+  </data>
+  <data name="Node_Views" xml:space="preserve">
+    <value>Views</value>
+  </data>
+  <data name="Property_CheckOption" xml:space="preserve">
+    <value>Check Option</value>
+  </data>
+  <data name="Property_CreateDate" xml:space="preserve">
+    <value>Create Date</value>
+  </data>
+  <data name="Property_Default" xml:space="preserve">
+    <value>Default Value</value>
+  </data>
+  <data name="Property_Function" xml:space="preserve">
+    <value>Function</value>
+  </data>
+  <data name="Property_IsOutput" xml:space="preserve">
+    <value>Is Output</value>
+  </data>
+  <data name="Property_IsUpdatable" xml:space="preserve">
+    <value>Is Updatable</value>
+  </data>
+  <data name="Property_Length" xml:space="preserve">
+    <value>Length</value>
+  </data>
+  <data name="Property_Name" xml:space="preserve">
+    <value>(Name)</value>
+  </data>
+  <data name="Property_Nullable" xml:space="preserve">
+    <value>Is Nullable</value>
+  </data>
+  <data name="Property_Ordinal" xml:space="preserve">
+    <value>Ordinal</value>
+  </data>
+  <data name="Property_Precision" xml:space="preserve">
+    <value>Precision</value>
+  </data>
+  <data name="Property_ProviderType" xml:space="preserve">
+    <value>Provider Type</value>
+  </data>
+  <data name="Property_Scale" xml:space="preserve">
+    <value>Scale</value>
+  </data>
+  <data name="Property_Schema" xml:space="preserve">
+    <value>Schema</value>
+  </data>
+  <data name="Property_StoredProcedure" xml:space="preserve">
+    <value>Stored Procedure</value>
+  </data>
+  <data name="Property_SystemType" xml:space="preserve">
+    <value>System Type</value>
+  </data>
+  <data name="Property_Table" xml:space="preserve">
+    <value>Table</value>
+  </data>
+  <data name="Property_Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="Property_UpdateDate" xml:space="preserve">
+    <value>Update Date</value>
+  </data>
+  <data name="Property_View" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="Provider_Description" xml:space="preserve">
+    <value>This is a sample DDEX provider included with the VSIP SDK.  You can use this provider to connect to instances of DM.</value>
+  </data>
+  <data name="Provider_DisplayName" xml:space="preserve">
+    <value>.NET Framework Data Provider for Dm</value>
+  </data>
+  <data name="Provider_ShortDisplayName" xml:space="preserve">
+    <value>Dm</value>
+  </data>
+  <data name="Type_Column" xml:space="preserve">
+    <value>Table Column</value>
+  </data>
+  <data name="Type_Function" xml:space="preserve">
+    <value>Function</value>
+  </data>
+  <data name="Type_FunctionColumn" xml:space="preserve">
+    <value>Function Column</value>
+  </data>
+  <data name="Type_FunctionParameter" xml:space="preserve">
+    <value>Function Parameter</value>
+  </data>
+  <data name="Type_StoredProcedure" xml:space="preserve">
+    <value>Stored Procedure</value>
+  </data>
+  <data name="Type_StoredProcedureColumn" xml:space="preserve">
+    <value>Stored Procedure Column</value>
+  </data>
+  <data name="Type_StoredProcedureParameter" xml:space="preserve">
+    <value>Stored Procedure Parameter</value>
+  </data>
+  <data name="Type_Table" xml:space="preserve">
+    <value>Table</value>
+  </data>
+  <data name="Type_User" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="Type_View" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="Type_ViewColumn" xml:space="preserve">
+    <value>View Column</value>
+  </data>
+  <data name="Value_AggregateFunction" xml:space="preserve">
+    <value>Aggregate</value>
+  </data>
+  <data name="Value_BigInt" xml:space="preserve">
+    <value>bigint</value>
+  </data>
+  <data name="Value_Binary" xml:space="preserve">
+    <value>binary</value>
+  </data>
+  <data name="Value_Bit" xml:space="preserve">
+    <value>bit</value>
+  </data>
+  <data name="Value_Char" xml:space="preserve">
+    <value>char</value>
+  </data>
+  <data name="Value_DateTime" xml:space="preserve">
+    <value>datetime</value>
+  </data>
+  <data name="Value_Float" xml:space="preserve">
+    <value>float</value>
+  </data>
+  <data name="Value_Image" xml:space="preserve">
+    <value>image</value>
+  </data>
+  <data name="Value_InlineTableValuedFunction" xml:space="preserve">
+    <value>Inline Table-valued</value>
+  </data>
+  <data name="Value_Int" xml:space="preserve">
+    <value>int</value>
+  </data>
+  <data name="Value_Money" xml:space="preserve">
+    <value>money</value>
+  </data>
+  <data name="Value_NChar" xml:space="preserve">
+    <value>nchar</value>
+  </data>
+  <data name="Value_No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Value_NText" xml:space="preserve">
+    <value>ntext</value>
+  </data>
+  <data name="Value_Numeric" xml:space="preserve">
+    <value>numeric</value>
+  </data>
+  <data name="Value_NVarChar" xml:space="preserve">
+    <value>nvarchar</value>
+  </data>
+  <data name="Value_Real" xml:space="preserve">
+    <value>real</value>
+  </data>
+  <data name="Value_Row" xml:space="preserve">
+    <value>row</value>
+  </data>
+  <data name="Value_ScalarFunction" xml:space="preserve">
+    <value>Scalar</value>
+  </data>
+  <data name="Value_SmallDateTime" xml:space="preserve">
+    <value>smalldatetime</value>
+  </data>
+  <data name="Value_SmallInt" xml:space="preserve">
+    <value>smallint</value>
+  </data>
+  <data name="Value_SmallMoney" xml:space="preserve">
+    <value>smallmoney</value>
+  </data>
+  <data name="Value_SqlVariant" xml:space="preserve">
+    <value>sql_variant</value>
+  </data>
+  <data name="Value_TableValuedFunction" xml:space="preserve">
+    <value>Table-valued</value>
+  </data>
+  <data name="Value_Text" xml:space="preserve">
+    <value>text</value>
+  </data>
+  <data name="Value_Timestamp" xml:space="preserve">
+    <value>timestamp</value>
+  </data>
+  <data name="Value_TinyInt" xml:space="preserve">
+    <value>tinyint</value>
+  </data>
+  <data name="Value_Udt" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Value_UniqueIdentiifer" xml:space="preserve">
+    <value>uniqueidentifier</value>
+  </data>
+  <data name="Value_VarBinary" xml:space="preserve">
+    <value>varbinary</value>
+  </data>
+  <data name="Value_VarChar" xml:space="preserve">
+    <value>varchar</value>
+  </data>
+  <data name="Value_Xml" xml:space="preserve">
+    <value>xml</value>
+  </data>
+  <data name="Value_Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="UnableToRetrieveDatabaseList" xml:space="preserve">
+    <value>Unable to retrieve the list of databases</value>
+  </data>
+  <data name="Menus.ctmenu" xml:space="preserve">
+    <value>1000</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="ArrowKey" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ArrowKey.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bannrbmp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bannrbmp.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Key" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Key.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Allow_Nulls" xml:space="preserve">
+    <value>Allow Nulls</value>
+  </data>
+  <data name="AutoIncrement" xml:space="preserve">
+    <value>AutoIncrement</value>
+  </data>
+  <data name="Create_Table" xml:space="preserve">
+    <value>Create Table</value>
+  </data>
+  <data name="Data_Type" xml:space="preserve">
+    <value>Data Type</value>
+  </data>
+  <data name="Default_Value" xml:space="preserve">
+    <value>Default Value</value>
+  </data>
+  <data name="Desc_General" xml:space="preserve">
+    <value>The name of this column</value>
+  </data>
+  <data name="General" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="Options" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="ATTR_Prec" xml:space="preserve">
+    <value>Precision</value>
+  </data>
+  <data name="ATTR_Scale" xml:space="preserve">
+    <value>Scale</value>
+  </data>
+  <data name="Alter_Table" xml:space="preserve">
+    <value>Alter Table</value>
+  </data>
+  <data name="ADD_INDEX" xml:space="preserve">
+    <value>Add Indexes</value>
+  </data>
+  <data name="ADD_PK" xml:space="preserve">
+    <value>Add Primary Key</value>
+  </data>
+  <data name="DEL_COLUMN" xml:space="preserve">
+    <value>Delete Row</value>
+  </data>
+  <data name="G_SQL" xml:space="preserve">
+    <value>Generate SQL Script</value>
+  </data>
+  <data name="AlterConfirmation" xml:space="preserve">
+    <value>Are you sure you want to  save changes?</value>
+  </data>
+  <data name="AlterConfirmationCaption" xml:space="preserve">
+    <value>Save?</value>
+  </data>
+  <data name="ErrorDupilicationName" xml:space="preserve">
+    <value>ErrorDupilicationName</value>
+  </data>
+  <data name="ErrorInvalidDataType" xml:space="preserve">
+    <value>Invalid data type</value>
+  </data>
+</root>

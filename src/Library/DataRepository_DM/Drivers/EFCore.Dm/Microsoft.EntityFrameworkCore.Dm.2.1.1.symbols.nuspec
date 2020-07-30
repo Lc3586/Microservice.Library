@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Microsoft.EntityFrameworkCore.Dm</id>
+    <version>2.1.1</version>
+    <authors>Dm</authors>
+    <owners>Dm</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://raw.githubusercontent.com/aspnet/Home/2.0.0/LICENSE.txt</licenseUrl>
+    <projectUrl>https://go.microsoft.com/fwlink/?LinkID=288859</projectUrl>
+    <iconUrl>https://github.com/aspnet/EntityFramework.git</iconUrl>
+    <description>Dm database provider for Entity Framework Core2.1</description>
+    <copyright>Copy right(C) DM</copyright>
+    <tags>Dm</tags>
+    <serviceable>true</serviceable>
+    <repository url="git" />
+    <dependencies>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="DmProvider" version="1.1.0" exclude="Build,Analyzers" />
+        <dependency id="Internal.AspNetCore.Sdk" version="2.1.1-rtm-15790" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.EntityFrameworkCore.Relational" version="2.1.1" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>
