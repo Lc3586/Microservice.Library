@@ -710,18 +710,11 @@
             <param name="obj">对象</param>
             <returns></returns>
         </member>
-        <member name="M:Library.Extension.Extension.ToXmlStr``1(``0)">
-            <summary>
-            将对象序列化为XML字符串
-            </summary>
-            <typeparam name="T">对象类型</typeparam>
-            <param name="obj">对象</param>
-            <returns></returns>
-        </member>
         <member name="M:Library.Extension.Extension.ToXmlStr``1(``0,System.String)">
             <summary>
             将对象序列化为XML字符串
             </summary>
+            <remarks>先转为json字符串再转为xml文档</remarks>
             <typeparam name="T">对象类型</typeparam>
             <param name="obj">对象</param>
             <param name="rootNodeName">根节点名(建议设为xml)</param>

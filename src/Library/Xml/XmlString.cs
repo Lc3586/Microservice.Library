@@ -9,16 +9,16 @@ namespace Library.Xml
     /// <summary>
     /// Xml字符串处理
     /// </summary>
-    public class XmlString
+    public static class XmlString
     {
         /// <summary>
         /// 对象序列化为Xml字符串
         /// </summary>
         /// <param name="obj">对象</param>
         /// <returns></returns>
-        public static string Serialize(object obj)
+        public static string Serialize(this object obj)
         {
-            Type type = obj.GetType();
+            var type = obj.GetType();
             MemoryStream Stream = new MemoryStream();
             XmlSerializer xml = new XmlSerializer(type);
             try
