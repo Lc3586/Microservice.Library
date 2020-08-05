@@ -89,7 +89,10 @@ namespace Library.Extension
             PropertyInfo[] infos = t.GetType().GetProperties();
             for (int i = 0; i < infos.Length; i++)
             {
-                jsonStr = jsonStr + "\"" + infos[i].Name + "\":\"" + infos[i].GetValue(t).ToString() + "\"";
+                if (infos[i].CustomAttributes.Any_Ex(a => a.AttributeType == typeof(JsonIgnoreAttribute)))
+                    continue;
+
+                jsonStr = $"{jsonStr}\"{infos[i].Name}\":\"{infos[i].GetValue(t)?.ToString()}\"";
                 if (i != infos.Length - 1)
                     jsonStr += ",";
             }
@@ -114,32 +117,18 @@ namespace Library.Extension
         /// <summary>
         /// 将对象序列化为XML字符串
         /// </summary>
-        /// <typeparam name="T">对象类型</typeparam>
-        /// <param name="obj">对象</param>
-        /// <returns></returns>
-        public static string ToXmlStr<T>(this T obj)
-        {
-            var jsonStr = obj.ToJson();
-            var xmlDoc = JsonConvert.DeserializeXmlNode(jsonStr);
-            string xmlDocStr = xmlDoc.InnerXml;
-
-            return xmlDocStr;
-        }
-
-        /// <summary>
-        /// 将对象序列化为XML字符串
-        /// </summary>
+        /// <remarks>先转为json字符串再转为xml文档</remarks>
         /// <typeparam name="T">对象类型</typeparam>
         /// <param name="obj">对象</param>
         /// <param name="rootNodeName">根节点名(建议设为xml)</param>
         /// <returns></returns>
-        public static string ToXmlStr<T>(this T obj, string rootNodeName)
+        public static string ToXmlStr<T>(this T obj, string rootNodeName = null)
         {
-            var jsonStr = obj.ToJson();
+            var jsonStr = obj.EntityToJson();
             var xmlDoc = JsonConvert.DeserializeXmlNode(jsonStr, rootNodeName);
             string xmlDocStr = xmlDoc.InnerXml;
 
-            return xmlDocStr;
+            return xmlDocStr.Replace("><", ">\r\n<");
         }
 
         /// <summary>

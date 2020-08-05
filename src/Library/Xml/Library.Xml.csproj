@@ -8,7 +8,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Library.Xml</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.0-alpha</Version>
+    <Version>1.0.2-alpha</Version>
   </PropertyGroup>
 
 </Project>
