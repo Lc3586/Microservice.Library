@@ -147,7 +147,7 @@ namespace Library.FreeSql.Extention
             string where = string.Empty;
             if (pagination.FilterToSql(ref where, alias))
             {
-                if (!string.IsNullOrEmpty(where))
+                if (!string.IsNullOrWhiteSpace(where))
                     source.Where(where);
             }
             else
@@ -156,7 +156,7 @@ namespace Library.FreeSql.Extention
             string orderby = string.Empty;
             if (pagination.OrderByToSql(ref orderby, alias))
             {
-                if (!string.IsNullOrEmpty(orderby))
+                if (!string.IsNullOrWhiteSpace(orderby))
                     source.OrderBy(orderby);
             }
             else

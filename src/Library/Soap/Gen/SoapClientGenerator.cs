@@ -37,7 +37,7 @@ namespace Library.Soap.Gen
             _options.SoapClients.ForEach(client =>
             {
                 var binding = new BasicHttpBinding();
-                var endpoint = new EndpointAddress(new Uri(string.Format(client.Uri, Environment.MachineName)));
+                var endpoint = new EndpointAddress(new Uri(client.Uri));
 
                 var channelType = Assembly
                                         .Load(client.ServiceType.Assembly)

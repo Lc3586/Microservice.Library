@@ -124,7 +124,7 @@ namespace Library.Extension
         /// <returns></returns>
         public static string ToXmlStr<T>(this T obj, string rootNodeName = null)
         {
-            var jsonStr = obj.EntityToJson();
+            var jsonStr = obj.ToJson();
             var xmlDoc = JsonConvert.DeserializeXmlNode(jsonStr, rootNodeName);
             string xmlDocStr = xmlDoc.InnerXml;
 

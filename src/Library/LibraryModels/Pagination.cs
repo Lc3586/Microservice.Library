@@ -169,7 +169,8 @@ namespace Library.Models
                         j++;
                 }
 
-                sql += ' ' + predicate + ' ';
+                if (!string.IsNullOrWhiteSpace(predicate))
+                    sql += ' ' + predicate + ' ';
 
                 return true;
             }
@@ -224,7 +225,8 @@ namespace Library.Models
                     predicate += $" {SortField} {(string.IsNullOrEmpty(SortType) ? "asc" : SortType)}";
                 }
 
-                sql += ' ' + predicate + ' ';
+                if (!string.IsNullOrWhiteSpace(predicate))
+                    sql += ' ' + predicate + ' ';
 
                 return true;
             }
@@ -336,7 +338,8 @@ namespace Library.Models
                         j++;
                 }
 
-                LinqDynamic = (IQueryable<TSource>)typeof(DynamicQueryableExtensions)
+                if (!string.IsNullOrWhiteSpace(predicate))
+                    LinqDynamic = (IQueryable<TSource>)typeof(DynamicQueryableExtensions)
                                                 .GetMethods()
                                                 .FirstOrDefault(o =>
                                                                     o.Name == "Where"
