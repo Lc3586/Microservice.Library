@@ -32,6 +32,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Library\ConsoleTool\Library.ConsoleTool.csproj" />
+    <ProjectReference Include="..\..\Library\Extension\Library.Extension.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="mscorlib">
       <HintPath>mscorlib</HintPath>
     </Reference>

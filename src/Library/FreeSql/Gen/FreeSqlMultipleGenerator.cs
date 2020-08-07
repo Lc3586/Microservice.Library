@@ -3,6 +3,8 @@ using FreeSql.Internal;
 using Library.FreeSql.Application;
 using Library.FreeSql.Extention;
 using Library.FreeSql.Repository;
+using Org.BouncyCastle.Asn1.Cms;
+using Org.BouncyCastle.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -25,7 +27,7 @@ namespace Library.FreeSql.Gen
 
             if (Options.UseIdleBus)
             {
-                IdleBus = new IdleBus<TKey, IFreeSql>();
+                IdleBus = new IdleBus<TKey, IFreeSql>(Options.Idle);
                 IdleBus.Notice += Notice;
             }
             else

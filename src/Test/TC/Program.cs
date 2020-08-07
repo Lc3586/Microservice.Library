@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using System;
 using System.Threading.Tasks;
 using Library.Extension;
+using Library.ConsoleTool;
 using System.Linq;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;

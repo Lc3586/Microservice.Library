@@ -8,7 +8,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Library.Log</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.7-alpha</Version>
+    <Version>1.0.8-alpha</Version>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Authors>LCTR</Authors>
     <Company>LCTR</Company>

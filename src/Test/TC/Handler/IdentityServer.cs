@@ -1,6 +1,7 @@
 ﻿using IdentityModel.Client;
 using Library.Cache;
 using Library.Extension;
+using Library.ConsoleTool;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -128,7 +129,7 @@ namespace TC.Handler
             }
 
             if (clientSecret.IsNullOrEmpty())
-                clientSecret = Library.Extension.Extention.ReadPassword("请输入客户端密钥：");
+                clientSecret = Library.ConsoleTool.Extension.ReadPassword("请输入客户端密钥：");
 
             ("call " + disco.TokenEndpoint + " ... ").ConsoleWrite(ConsoleColor.White, "info");
             $" {{ ClientId = {clientId}, ClientSecret = {clientSecret.Replace('*', 0)}, Scope = {scope} }} ... ".ConsoleWrite(ConsoleColor.White, "params", false);
@@ -192,10 +193,10 @@ namespace TC.Handler
             }
 
             if (clientSecret.IsNullOrEmpty())
-                clientSecret = Library.Extension.Extention.ReadPassword("请输入客户端密钥：");
+                clientSecret = Library.ConsoleTool.Extension.ReadPassword("请输入客户端密钥：");
 
             if (password.IsNullOrEmpty())
-                password = Library.Extension.Extention.ReadPassword("请输入用户密钥：");
+                password = Library.ConsoleTool.Extension.ReadPassword("请输入用户密钥：");
 
             ("call " + disco.TokenEndpoint + " ... ").ConsoleWrite(ConsoleColor.White, "info");
             $" {{ ClientId = {clientId}, ClientSecret = {clientSecret.Replace('*', 0)}, Scope = {scope}, UserName = {userName}, Password = {password.Replace('*', 0)} }} ... ".ConsoleWrite(ConsoleColor.White, "params", false);

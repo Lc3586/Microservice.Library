@@ -245,6 +245,11 @@
             <para>如果留着引用，对象空闲或超时会被回收，导致报错（对象已释放，无法访问）</para>
             </summary>
         </member>
+        <member name="F:Library.FreeSql.Application.FreeSqlMultipleGenOptions`1.Idle">
+            <summary>
+            指定IdleBus空闲时间
+            </summary>
+        </member>
         <member name="F:Library.FreeSql.Application.FreeSqlMultipleGenOptions`1.Notice">
             <summary>
             通知事件处理方法
@@ -255,6 +260,14 @@
             键:库标识
             值:生成配置
             </summary>
+        </member>
+        <member name="M:Library.FreeSql.Application.FreeSqlMultipleGenOptions`1.SetUpIdle(System.TimeSpan)">
+            <summary>
+            指定IdleBus空闲时间
+            </summary>
+            <remarks>默认一分钟</remarks>
+            <param name="idle">空闲时间</param>
+            <returns></returns>
         </member>
         <member name="M:Library.FreeSql.Application.FreeSqlMultipleGenOptions`1.DisableIdleBus">
             <summary>

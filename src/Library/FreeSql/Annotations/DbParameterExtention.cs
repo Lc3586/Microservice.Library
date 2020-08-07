@@ -123,8 +123,7 @@ namespace Library.FreeSql.Annotations
             {
                 var parameter = allParameter.ElementAt(i);
                 allParameterArray[i] = parameter.Value;
-                if (parameter.Value.Direction == System.Data.ParameterDirection.InputOutput ||
-                        parameter.Value.Direction == System.Data.ParameterDirection.Output)
+                if (parameter.Value.Direction != ParameterDirection.Input)
                     outParameter.Add(parameter.Key, parameter.Value);
             }
 

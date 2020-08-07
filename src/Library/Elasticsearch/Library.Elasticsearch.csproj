@@ -8,7 +8,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Library.Elasticsearch</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.16-alpha</Version>
+    <Version>1.0.17-alpha</Version>
     <Authors>LCTR</Authors>
     <Company>LCTR</Company>
     <Product>LCTR</Product>

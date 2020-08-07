@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Library\Cache\Library.Cache.csproj" />
+    <ProjectReference Include="..\..\Library\ConsoleTool\Library.ConsoleTool.csproj" />
     <ProjectReference Include="..\..\Library\Elasticsearch\Library.Elasticsearch.csproj" />
   </ItemGroup>
 
