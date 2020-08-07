@@ -1074,19 +1074,36 @@
             <param name="type">对象类型</param>
             <returns></returns>
         </member>
-        <member name="M:Library.Extension.Extension.XmlStrToObject``1(System.String)">
+        <member name="M:Library.Extension.Extension.XmlStrToObject``1(System.String,Newtonsoft.Json.JsonSerializerSettings,System.Boolean,System.Boolean)">
             <summary>
             将XML字符串反序列化为对象
             </summary>
             <typeparam name="T">对象类型</typeparam>
             <param name="xmlStr">XML字符串</param>
+            <param name="settings">序列化设置</param>
+            <param name="emptyToNull">空字符转为Null</param>
+            <param name="removeRootNode">移除根节点</param>
             <returns></returns>
         </member>
-        <member name="M:Library.Extension.Extension.XmlStrToJObject(System.String)">
+        <member name="M:Library.Extension.Extension.XmlStrToObject(System.String,System.Type,Newtonsoft.Json.JsonSerializerSettings,System.Boolean,System.Boolean)">
             <summary>
             将XML字符串反序列化为对象
             </summary>
             <param name="xmlStr">XML字符串</param>
+            <param name="type">对象类型</param>
+            <param name="settings">序列化设置</param>
+            <param name="emptyToNull">空字符转为Null</param>
+            <param name="removeRootNode">移除根节点</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Extension.Extension.XmlStrToJObject(System.String,Newtonsoft.Json.JsonSerializerSettings,System.Boolean,System.Boolean)">
+            <summary>
+            将XML字符串反序列化为对象
+            </summary>
+            <param name="xmlStr">XML字符串</param>
+            <param name="settings">序列化设置</param>
+            <param name="emptyToNull">空字符转为Null</param>
+            <param name="removeRootNode">移除根节点</param>
             <returns></returns>
         </member>
         <member name="M:Library.Extension.Extension.ToList``1(System.String)">

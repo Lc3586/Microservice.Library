@@ -8,10 +8,8 @@ using System.Data.SqlClient;
 using System.Data.SQLite;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using Dm;
 using FreeSql;
-using Library.FreeSql.Annotations;
 using Library.FreeSql.Application;
 using MySql.Data.MySqlClient;
 using Newtonsoft.Json;
@@ -143,7 +141,9 @@ namespace Library.FreeSql.Annotations
             foreach (var parameter in outputParameters)
             {
                 object value = null;
-                if (parameter.Value.Value != null)
+
+                var property = parameter.Value.Value.GetType().GetProperty("IsNull");
+                if (property != null && !(bool)property.GetValue(parameter.Value.Value))
                 {
                     var _value = parameter.Value.Value.GetPropertyValue("Value");
                     try

@@ -413,28 +413,55 @@ namespace Library.Extension
         /// </summary>
         /// <typeparam name="T">对象类型</typeparam>
         /// <param name="xmlStr">XML字符串</param>
+        /// <param name="settings">序列化设置</param>
+        /// <param name="emptyToNull">空字符转为Null</param>
+        /// <param name="removeRootNode">移除根节点</param>
         /// <returns></returns>
-        public static T XmlStrToObject<T>(this string xmlStr)
+        public static T XmlStrToObject<T>(this string xmlStr, JsonSerializerSettings settings = null, bool emptyToNull = false, bool removeRootNode = false)
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(xmlStr);
-            string jsonJsonStr = JsonConvert.SerializeXmlNode(doc);
-
-            return JsonConvert.DeserializeObject<T>(jsonJsonStr);
+            return (T)xmlStr.XmlStrToObject(typeof(T), settings, emptyToNull, removeRootNode);
         }
 
         /// <summary>
         /// 将XML字符串反序列化为对象
         /// </summary>
         /// <param name="xmlStr">XML字符串</param>
+        /// <param name="type">对象类型</param>
+        /// <param name="settings">序列化设置</param>
+        /// <param name="emptyToNull">空字符转为Null</param>
+        /// <param name="removeRootNode">移除根节点</param>
         /// <returns></returns>
-        public static JObject XmlStrToJObject(this string xmlStr)
+        public static object XmlStrToObject(this string xmlStr, Type type, JsonSerializerSettings settings = null, bool emptyToNull = false, bool removeRootNode = false)
         {
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(xmlStr);
             string jsonJsonStr = JsonConvert.SerializeXmlNode(doc);
 
-            return JsonConvert.DeserializeObject<JObject>(jsonJsonStr);
+            if (emptyToNull)
+            {
+                jsonJsonStr = jsonJsonStr.Replace("\"\"", "null");
+            }
+
+            if (removeRootNode)
+            {
+                var head = jsonJsonStr.IndexOf(":{");
+                jsonJsonStr = jsonJsonStr.Substring(head + 1, jsonJsonStr.LastIndexOf("}}") - head);
+            }
+
+            return JsonConvert.DeserializeObject(jsonJsonStr, type, settings);
+        }
+
+        /// <summary>
+        /// 将XML字符串反序列化为对象
+        /// </summary>
+        /// <param name="xmlStr">XML字符串</param>
+        /// <param name="settings">序列化设置</param>
+        /// <param name="emptyToNull">空字符转为Null</param>
+        /// <param name="removeRootNode">移除根节点</param>
+        /// <returns></returns>
+        public static JObject XmlStrToJObject(this string xmlStr, JsonSerializerSettings settings = null, bool emptyToNull = false, bool removeRootNode = false)
+        {
+            return xmlStr.XmlStrToObject<JObject>(settings, emptyToNull, removeRootNode);
         }
 
         /// <summary>

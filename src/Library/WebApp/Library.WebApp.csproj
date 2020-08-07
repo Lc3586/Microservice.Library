@@ -8,7 +8,10 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Library.WebApp</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.1-alpha</Version>
+    <Version>1.0.2-alpha</Version>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/Lc3586/Microservice/tree/master/src/Library/WebApp</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,8 +20,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Cache\Library.Cache.csproj" />
-    <ProjectReference Include="..\Configuration\Library.Configuration.csproj" />
-    <ProjectReference Include="..\Container\Library.Container.csproj" />
   </ItemGroup>
 
 </Project>
