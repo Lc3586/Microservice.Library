@@ -11,6 +11,7 @@ using System.Reflection;
 using Dm;
 using FreeSql;
 using Library.FreeSql.Application;
+using Microsoft.Data.SqlClient;
 using MySql.Data.MySqlClient;
 using Newtonsoft.Json;
 using Npgsql;
