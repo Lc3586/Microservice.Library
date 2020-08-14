@@ -19,7 +19,8 @@ namespace Library.FreeSql.Application
         /// <summary>
         /// 启动时同步实体类型集合到数据库
         /// </summary>
-        public bool? SyncStructureOnStartup { get; set; }
+        /// <remarks>默认false</remarks>
+        public bool SyncStructureOnStartup { get; set; } = false;
 
         /// <summary>
         /// 自动同步实体结构到数据库，程序运行中检查实体表是否存在，然后创建或修改

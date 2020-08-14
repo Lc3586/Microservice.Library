@@ -22,20 +22,7 @@ namespace Library.FreeSql.Gen
             Options = options ?? new FreeSqlGenOptions();
         }
 
-        protected IFreeSql orm;
-
-        protected IFreeSql Orm
-        {
-            get
-            {
-                SyncStructure();
-                return orm;
-            }
-            set
-            {
-                orm = value;
-            }
-        }
+        protected IFreeSql Orm;
 
         public FreeSqlBuilder GetFreeSqlBuilder()
         {
@@ -99,7 +86,7 @@ namespace Library.FreeSql.Gen
         public void SyncStructure()
         {
             //freeSql.Ado.MasterPool.Statistics;
-            if (Options.FreeSqlDevOptions?.AutoSyncStructure.HasValue == true && Options.FreeSqlDevOptions?.SyncStructureOnStartup == true)
+            if (Options.FreeSqlDevOptions?.AutoSyncStructure == true && Options.FreeSqlDevOptions?.SyncStructureOnStartup == true)
                 Orm.CodeFirst.SyncStructure(new EntityFactory(Options.FreeSqlDbContextOptions).GetEntitys(Options.FreeSqlDbContextOptions.EntityKey).ToArray());
         }
 

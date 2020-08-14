@@ -137,6 +137,7 @@
             <summary>
             启动时同步实体类型集合到数据库
             </summary>
+            <remarks>默认false</remarks>
         </member>
         <member name="P:Library.FreeSql.Application.FreeSqlDevOptions.AutoSyncStructure">
             <summary>

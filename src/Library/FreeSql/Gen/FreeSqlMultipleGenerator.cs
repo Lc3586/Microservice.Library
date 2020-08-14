@@ -210,7 +210,7 @@ namespace Library.FreeSql.Gen
         private void SyncStructure(TKey key, IFreeSql orm)
         {
             var options = Options.KeyOptionsCollection[key];
-            if (options.FreeSqlDevOptions?.AutoSyncStructure.HasValue == true && options.FreeSqlDevOptions?.SyncStructureOnStartup == true)
+            if (options.FreeSqlDevOptions?.AutoSyncStructure == true && options.FreeSqlDevOptions?.SyncStructureOnStartup == true)
                 orm.CodeFirst.SyncStructure(new EntityFactory(options.FreeSqlDbContextOptions).GetEntitys(options.FreeSqlDbContextOptions.EntityKey).ToArray());
         }
 
