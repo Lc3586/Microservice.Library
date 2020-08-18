@@ -25,7 +25,7 @@ namespace Library.Models
             _sortType = "asc";
             PageIndex = 1;
             PageRows = 50;
-            _schema = Schema.layui;
+            _schema = Schema.defaul;
         }
 
         #endregion
@@ -559,8 +559,6 @@ namespace Library.Models
 
         #endregion
 
-
-
         #endregion
 
         #region 输出
@@ -577,6 +575,22 @@ namespace Library.Models
             _watch.Stop();
             switch (_schema)
             {
+                case Schema.defaul:
+                case Schema.elementVue:
+                    return new AjaxResult<object>()
+                    {
+                        Success = success,
+                        ErrorCode = (int)(success ? ErrorCode.none : ErrorCode.error),
+                        Msg = error,
+                        Data = new
+                        {
+                            PageTotal = PageCount,
+                            Total = RecordCount,
+                            PageIndex,
+                            PageSize = PageRows,
+                            List = data
+                        }
+                    };
                 case Schema.antdVue:
                     return new
                     {
@@ -604,7 +618,6 @@ namespace Library.Models
                         pageSize = PageRows,
                         costtime = _watch.ElapsedMilliseconds
                     };
-                case Schema.defaul:
                 case Schema.layui:
                 default:
                     return new Result.Layui()
