@@ -577,7 +577,7 @@ namespace Library.Models
             {
                 case Schema.defaul:
                 case Schema.elementVue:
-                    return new AjaxResult<object>()
+                    return new
                     {
                         Success = success,
                         ErrorCode = (int)(success ? ErrorCode.none : ErrorCode.error),
