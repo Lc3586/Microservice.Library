@@ -24,12 +24,12 @@ namespace Microsoft.Extensions.DependencyInjection
 
             services.AddSingleton<IAutoMapperProvider, AutoMapperGenerator>();
 
-            if (setupAction != null) services.ConfigureFreeSql(setupAction);
+            if (setupAction != null) services.ConfigureAutoMapper(setupAction);
 
             return services;
         }
 
-        public static void ConfigureFreeSql(
+        public static void ConfigureAutoMapper(
             this IServiceCollection services,
             Action<AutoMapperGenOptions> setupAction)
         {

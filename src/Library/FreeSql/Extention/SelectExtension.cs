@@ -116,14 +116,36 @@ namespace Library.FreeSql.Extention
 
             foreach (var item in data as Dictionary<string, object>)
             {
+                var type_value = item.Value.GetType();
+
+                if (type_value == typeof(DBNull))
+                    continue;
+
                 var prop = type.GetProperty(item.Key, BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public | BindingFlags.Static);
+
+                if (prop == null)
+                    continue;
+
                 object value = item.Value;
-                if (item.Value.GetType() != prop.PropertyType)
+
+                if (type_value != prop.PropertyType)
                 {
                     if (prop.PropertyType.IsGenericType && prop.PropertyType.GetGenericTypeDefinition().Equals(typeof(Nullable<>)))
                     {
                         NullableConverter newNullableConverter = new NullableConverter(prop.PropertyType);
-                        value = newNullableConverter.ConvertFrom(item.Value);
+                        try
+                        {
+                            if (!newNullableConverter.CanConvertFrom(item.Value.GetType()))
+                            {
+                                value = Convert.ChangeType(item.Value, newNullableConverter.UnderlyingType);
+                            }
+                            else
+                                value = newNullableConverter.ConvertFrom(item.Value);
+                        }
+                        catch
+                        {
+                            value = newNullableConverter.ConvertFromString(item.Value?.ToString());
+                        }
                     }
                     else
                     {

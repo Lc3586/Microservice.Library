@@ -15,7 +15,7 @@ namespace Library.DataMapping.Application
         /// <summary>
         /// 映射选项
         /// </summary>
-        public Dictionary<string, Action<IMemberConfigurationExpression<TSource, TDestination, object>>> Options { get; set; } = new Dictionary<string, Action<IMemberConfigurationExpression<TSource, TDestination, object>>>();
+        public Dictionary<string, Action<IMemberConfigurationExpression>> Options { get; set; } = new Dictionary<string, Action<IMemberConfigurationExpression>>();
 
         /// <summary>
         /// 添加成员配置表达式
@@ -25,7 +25,7 @@ namespace Library.DataMapping.Application
         /// <returns></returns>
         public MemberMapOptions<TSource, TDestination> Add(string name, Action<IMemberConfigurationExpression<TSource, TDestination, object>> option)
         {
-            Options.Add(name, option);
+            Options.Add(name, option as Action<IMemberConfigurationExpression>);
             return this;
         }
 
@@ -35,7 +35,7 @@ namespace Library.DataMapping.Application
         /// <param name="name">名称</param>
         /// <param name="option">选项</param>
         /// <returns></returns>
-        public MemberMapOptions<TSource, TDestination> Add<TSourceMember>(string name, Expression<Func<TSource, TSourceMember>> option)
+        public MemberMapOptions<TSource, TDestination> Add<TSourceMember>(string name, Expression<Func<object, TSourceMember>> option)
         {
             Options.Add(name, o => o.MapFrom(option));
             return this;

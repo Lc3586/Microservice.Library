@@ -97,7 +97,7 @@
             <param name="option">选项</param>
             <returns></returns>
         </member>
-        <member name="M:Library.DataMapping.Application.MemberMapOptions`2.Add``1(System.String,System.Linq.Expressions.Expression{System.Func{`0,``0}})">
+        <member name="M:Library.DataMapping.Application.MemberMapOptions`2.Add``1(System.String,System.Linq.Expressions.Expression{System.Func{System.Object,``0}})">
             <summary>
             添加成员映射表达式
             </summary>

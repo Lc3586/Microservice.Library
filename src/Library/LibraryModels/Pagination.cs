@@ -95,7 +95,7 @@ namespace Library.Models
 
                     string field = jt.Value<string>("field");
                     if (alias != null)
-                        field = $"{alias}\"{field}\"";
+                        field = $"{alias}.\"{field}\"";
                     string value = jt.Value<string>("value");
 
                     bool skip = false;
