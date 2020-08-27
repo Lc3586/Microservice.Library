@@ -1,6 +1,8 @@
-﻿using SoapCore;
+﻿using Microsoft.AspNetCore.Http;
+using SoapCore;
 using System;
 using System.Collections.Generic;
+using System.ServiceModel.Channels;
 using System.Text;
 
 namespace Library.Soap.Application
@@ -33,5 +35,21 @@ namespace Library.Soap.Application
         /// 序列化类型
         /// </summary>
         public SoapSerializer Serializer { get; set; }
+
+        /// <summary>
+        /// 编码器选项
+        /// </summary>
+        public SoapEncoderOptions[] EncoderOptions { get; set; }
+
+        /// <summary>
+        /// 自定义响应
+        /// </summary>
+        /// <remarks>必须设置HttpContextGetter!</remarks>
+        public string CustomResponse { get; set; }
+
+        /// <summary>
+        /// Http获取器
+        /// </summary>
+        public Func<HttpContext> HttpContextGetter { get; set; }
     }
 }

@@ -1,11 +1,13 @@
 ﻿using Library.Soap;
 using Library.Soap.Application;
+using Library.Soap.Filter;
 using Library.Soap.Gen;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 using SoapCore;
+using SoapCore.Extensibility;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -27,16 +29,31 @@ namespace Microsoft.Extensions.DependencyInjection
             this IServiceCollection services,
             params SoapServerOptions[] options)
         {
+            bool messageInspector2Added = false;
             foreach (var server in options)
             {
-                services.TryAddScoped(
-                    Assembly
+                var serviceType = Assembly
                         .Load(server.ServiceType.Assembly)
-                        .GetType(server.ServiceType.Type, true, true),
-                    Assembly
+                        .GetType(server.ServiceType.Type, true, true);
+
+                var implementationType = Assembly
                         .Load(server.ImplementationType.Assembly)
-                        .GetType(server.ImplementationType.Type, true, true));
+                        .GetType(server.ImplementationType.Type, true, true);
+
+                services.TryAddScoped(serviceType, implementationType);
+
+                if (server.CustomResponse != null)
+                {
+                    if (!messageInspector2Added)
+                    {
+                        services.AddSingleton<IMessageInspector2, MessageInspector2>();
+                        messageInspector2Added = true;
+                    }
+
+                    MessageInspector2.CustomResponses.Add(serviceType, (server.HttpContextGetter, server.CustomResponse));
+                }
             }
+
 
             services.AddMvc(x => x.EnableEndpointRouting = false);
             services.AddSoapCore();
@@ -60,7 +77,10 @@ namespace Microsoft.Extensions.DependencyInjection
                                         .Load(server.ServiceType.Assembly)
                                         .GetType(server.ServiceType.Type, true, true);
 
-                app.UseSoapEndpoint(channelType, server.Path, new BasicHttpBinding(), server.Serializer);
+                if (server.EncoderOptions == null)
+                    app.UseSoapEndpoint(channelType, server.Path, new BasicHttpBinding(), server.Serializer);
+                else
+                    app.UseSoapEndpoint(channelType, server.Path, server.EncoderOptions, server.Serializer);
             }
 
             app.UseMvc();

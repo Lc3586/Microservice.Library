@@ -70,6 +70,48 @@
             序列化类型
             </summary>
         </member>
+        <member name="P:Library.Soap.Application.SoapServerOptions.EncoderOptions">
+            <summary>
+            编码器选项
+            </summary>
+        </member>
+        <member name="P:Library.Soap.Application.SoapServerOptions.CustomResponse">
+            <summary>
+            自定义响应
+            </summary>
+            <remarks>必须设置HttpContextGetter!</remarks>
+        </member>
+        <member name="P:Library.Soap.Application.SoapServerOptions.HttpContextGetter">
+            <summary>
+            Http获取器
+            </summary>
+        </member>
+        <member name="T:Library.Soap.Filter.MessageInspector2">
+            <summary>
+            消息拦截器
+            </summary>
+        </member>
+        <member name="F:Library.Soap.Filter.MessageInspector2.CustomResponses">
+            <summary>
+            自定义输出
+            </summary>
+        </member>
+        <member name="M:Library.Soap.Filter.MessageInspector2.AfterReceiveRequest(System.ServiceModel.Channels.Message@,SoapCore.ServiceModel.ServiceDescription)">
+            <summary>
+            接收后
+            </summary>
+            <param name="message"></param>
+            <param name="serviceDescription"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Soap.Filter.MessageInspector2.BeforeSendReply(System.ServiceModel.Channels.Message@,SoapCore.ServiceModel.ServiceDescription,System.Object)">
+            <summary>
+            发送前
+            </summary>
+            <param name="reply"></param>
+            <param name="serviceDescription"></param>
+            <param name="correlationState"></param>
+        </member>
         <member name="T:Library.Soap.Gen.ISoapClientProvider">
             <summary>
             Soap构造器接口类
