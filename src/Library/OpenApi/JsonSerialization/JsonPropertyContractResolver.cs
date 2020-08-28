@@ -16,60 +16,53 @@ namespace Library.OpenApi.JsonSerialization
     public class JsonPropertyContractResolver<TOpenApiSchema> : DefaultContractResolver
     {
         /// <summary>
-        /// 最终要输出的属性
+        /// 输出的属性
         /// </summary>
-        List<string> lstExclude;
+        Dictionary<Type, List<string>> LstClude;
+
+        /// <summary>
+        /// 忽略的属性
+        /// </summary>
+        Dictionary<Type, List<string>> IgnoreProperties;
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="path">路径</param>
-        /// <param name="excludedProperties">要额外输出的属性</param>
-        public JsonPropertyContractResolver(string[] exceptionProperties, string[] ignoreProperties)
+        /// <param name="exceptionProperties">额外输出的属性</param>
+        /// <param name="ignoreProperties">忽略的属性</param>
+        public JsonPropertyContractResolver(Dictionary<Type, List<string>> exceptionProperties, Dictionary<Type, List<string>> ignoreProperties)
         {
-            lstExclude = exceptionProperties?.ToList();
+            LstClude = exceptionProperties;
 
-            if (lstExclude == null)
-                lstExclude = new List<string>();
+            if (LstClude == null)
+                LstClude = new Dictionary<Type, List<string>>();
 
-            if (ignoreProperties != null)
-                lstExclude.RemoveAll(o => ignoreProperties.Contains(o));
+            IgnoreProperties = ignoreProperties;
 
-            var type = typeof(TOpenApiSchema);
+            if (IgnoreProperties != null)
+                foreach (var lst in LstClude)
+                {
+                    lst.Value.RemoveAll(o => ignoreProperties[lst.Key].Contains(o));
+                }
 
-            var tag = type.GetMainTag();
-            var hasTag = !string.IsNullOrEmpty(tag);
-            var strictMode = type.GetCustomAttribute<OpenApiSchemaStrictModeAttribute>() != null;
-
-            foreach (var prop in type.GetProperties())
+            typeof(TOpenApiSchema).FilterModel((type, prop) =>
             {
-                if (prop.PropertyType.IsNotPublic)
-                    continue;
+                if (!LstClude.ContainsKey(type))
+                    LstClude.Add(type, new List<string>());
 
-                if (ignoreProperties?.Contains(prop.Name) == true)
-                    continue;
-
-                if (strictMode &&
-                    !prop.CustomAttributes.Any(o =>
-                        o.AttributeType == typeof(OpenApiSchemaAttribute)))
-                    continue;
-
-                if (prop.GetCustomAttribute<OpenApiIgnoreAttribute>() != null)
-                    continue;
-
-                if (prop.DeclaringType?.Name != type.Name)
-                    if (hasTag)
-                        if (!prop.HasTag(tag))
-                            continue;
-
-                lstExclude.Add(prop.Name);
-            }
+                LstClude[type].Add(prop.Name);
+            },
+            (type, prop) =>
+            {
+                return IgnoreProperties?[type]?.Contains(prop.Name) != true;
+            },
+            true);
         }
 
         protected override IList<JsonProperty> CreateProperties(Type type, MemberSerialization memberSerialization)
         {
             var result = base.CreateProperties(type, memberSerialization).ToList();
-            return lstExclude.Any() ? result.FindAll(p => lstExclude.Contains(p.PropertyName)) : result;
+            return LstClude.Any() ? result.FindAll(p => LstClude[type].Contains(p.PropertyName)) : result;
         }
     }
 }

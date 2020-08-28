@@ -263,15 +263,18 @@ namespace Library.OpenApi.Annotations
         }
 
         /// <summary>
-        /// 获取或创建接口初始类
+        /// 过滤模型
         /// </summary>
-        /// <param name="type"></param>
-        /// <returns></returns>
-        public static IOpenApiAny GetOrNullFor(this Type type)
+        /// <param name="type">类型</param>
+        /// <param name="after">处理成员之后</param>
+        /// <param name="befor">处理成员之前(返回false,跳过该成员)</param>
+        /// <param name="innerModel">处理内部模型</param>
+        internal static void FilterModel(this Type type, Action<Type, PropertyInfo> after, Func<Type, PropertyInfo, bool> befor = null, bool innerModel = false)
         {
-            var example = new OpenApiObject();
-
-            IOpenApiAny any;
+            if (type.IsArray)
+                type = type.Assembly.GetType(type.FullName.Replace("[]", string.Empty));
+            else if (type.IsGenericType)
+                type = type.GenericTypeArguments[0];
 
             var tag = type.GetMainTag();
             var hasTag = !string.IsNullOrEmpty(tag);
@@ -279,12 +282,15 @@ namespace Library.OpenApi.Annotations
 
             foreach (var prop in type.GetProperties())
             {
+                if (befor?.Invoke(type, prop) == false)
+                    continue;
+
                 if (prop.PropertyType.IsNotPublic)
                     continue;
 
-                if (strictMode &&
-                    !prop.CustomAttributes.Any(o =>
-                        o.AttributeType == typeof(OpenApiSchemaAttribute)))
+                var schemaAttribute = prop.GetCustomAttribute<OpenApiSchemaAttribute>();
+
+                if (strictMode && schemaAttribute == null)
                     continue;
 
                 if (prop.GetCustomAttribute<OpenApiIgnoreAttribute>() != null)
@@ -295,13 +301,33 @@ namespace Library.OpenApi.Annotations
                         if (!prop.HasTag(tag))
                             continue;
 
-                any = prop.PropertyType.IsArray
-                    || prop.PropertyType.IsGenericType ?
-                        new OpenApiArray { prop.CreateFor() } :
-                        prop.CreateFor();
+                if (innerModel && schemaAttribute?.Type == OpenApiSchemaType._model)
+                    prop.PropertyType.FilterModel(after, befor, innerModel);
 
-                example.Add(prop.Name, any);
+                after.Invoke(type, prop);
             }
+        }
+
+        /// <summary>
+        /// 获取或创建接口初始类
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static IOpenApiAny GetOrNullFor(this Type type)
+        {
+            var example = new OpenApiObject();
+
+            IOpenApiAny any;
+
+            type.FilterModel((_type, prop) =>
+             {
+                 any = prop.PropertyType.IsArray
+                     || prop.PropertyType.IsGenericType ?
+                         new OpenApiArray { prop.CreateFor() } :
+                         prop.CreateFor();
+
+                 example.Add(prop.Name, any);
+             });
 
             return example;
         }
@@ -314,13 +340,6 @@ namespace Library.OpenApi.Annotations
         public static IOpenApiAny CreateFor(this PropertyInfo property)
         {
             IOpenApiAny any;
-
-            var type = property.PropertyType;
-
-            if (type.IsArray)
-                type = type.Assembly.GetType(type.FullName.Replace("[]", string.Empty));
-            else if (type.IsGenericType)
-                type = type.GenericTypeArguments[0];
 
             var schemaAttribute = property.GetCustomAttribute<OpenApiSchemaAttribute>();
 
@@ -385,7 +404,7 @@ namespace Library.OpenApi.Annotations
                     }
                     break;
                 case OpenApiSchemaType._model:
-                    any = type.GetOrNullFor();
+                    any = property.PropertyType.GetOrNullFor();
                     break;
                 case OpenApiSchemaType._string:
                 default:

@@ -129,6 +129,15 @@
             <param name="typedValue"></param>
             <returns></returns>
         </member>
+        <member name="M:Library.OpenApi.Annotations.OpenApiExtention.FilterModel(System.Type,System.Action{System.Type,System.Reflection.PropertyInfo},System.Func{System.Type,System.Reflection.PropertyInfo,System.Boolean},System.Boolean)">
+            <summary>
+            过滤模型
+            </summary>
+            <param name="type">类型</param>
+            <param name="after">处理成员之后</param>
+            <param name="befor">处理成员之前(返回false,跳过该成员)</param>
+            <param name="innerModel">处理内部模型</param>
+        </member>
         <member name="M:Library.OpenApi.Annotations.OpenApiExtention.GetOrNullFor(System.Type)">
             <summary>
             获取或创建接口初始类
@@ -237,12 +246,30 @@
             Json拓展
             </summary>
         </member>
+        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToJson``1(``0,System.String[])">
+            <summary>
+            将对象序列化成Json字符串
+            </summary>
+            <param name="obj">需要序列化的对象</param>
+            <param name="exceptionProperties">要例外输出的属性</param>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <returns></returns>
+        </member>
         <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToJson``1(System.Object,System.String[])">
             <summary>
             将对象序列化成Json字符串
             </summary>
             <param name="obj">需要序列化的对象</param>
             <param name="exceptionProperties">要例外输出的属性</param>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToJsonIgnore``1(``0,System.String[])">
+            <summary>
+            将对象序列化成Json字符串
+            </summary>
+            <param name="obj">需要序列化的对象</param>
+            <param name="ignoreProperties">忽略的属性</param>
             <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
             <returns></returns>
         </member>
@@ -265,23 +292,56 @@
             <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
             <returns></returns>
         </member>
+        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToJsonSpecifyType``1(System.Object,System.ValueTuple{System.Type,System.Collections.Generic.List{System.String}}[])">
+            <summary>
+            将对象序列化成Json字符串
+            </summary>
+            <param name="obj">需要序列化的对象</param>
+            <param name="exceptionProperties">要例外输出的属性</param>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToJsonIgnoreSpecifyType``1(System.Object,System.ValueTuple{System.Type,System.Collections.Generic.List{System.String}}[])">
+            <summary>
+            将对象序列化成Json字符串
+            </summary>
+            <param name="obj">需要序列化的对象</param>
+            <param name="ignoreProperties">忽略的属性</param>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToJsonSpecifyType``1(System.Object,System.Collections.Generic.Dictionary{System.Type,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.Type,System.Collections.Generic.List{System.String}})">
+            <summary>
+            将对象序列化成Json字符串
+            </summary>
+            <param name="obj">需要序列化的对象</param>
+            <param name="exceptionProperties">要例外输出的属性</param>
+            <param name="ignoreProperties">忽略的属性</param>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <returns></returns>
+        </member>
         <member name="T:Library.OpenApi.JsonSerialization.JsonPropertyContractResolver`1">
             <summary>
             自定义分解器
             </summary>
             <typeparam name="T">指定接口架构类型</typeparam>
         </member>
-        <member name="F:Library.OpenApi.JsonSerialization.JsonPropertyContractResolver`1.lstExclude">
+        <member name="F:Library.OpenApi.JsonSerialization.JsonPropertyContractResolver`1.LstClude">
             <summary>
-            最终要输出的属性
+            输出的属性
             </summary>
         </member>
-        <member name="M:Library.OpenApi.JsonSerialization.JsonPropertyContractResolver`1.#ctor(System.String[],System.String[])">
+        <member name="F:Library.OpenApi.JsonSerialization.JsonPropertyContractResolver`1.IgnoreProperties">
+            <summary>
+            忽略的属性
+            </summary>
+        </member>
+        <member name="M:Library.OpenApi.JsonSerialization.JsonPropertyContractResolver`1.#ctor(System.Collections.Generic.Dictionary{System.Type,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.Type,System.Collections.Generic.List{System.String}})">
             <summary>
             
             </summary>
-            <param name="path">路径</param>
-            <param name="excludedProperties">要额外输出的属性</param>
+            <param name="exceptionProperties">额外输出的属性</param>
+            <param name="ignoreProperties">忽略的属性</param>
         </member>
     </members>
 </doc>
