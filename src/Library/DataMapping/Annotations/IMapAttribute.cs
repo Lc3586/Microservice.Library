@@ -14,11 +14,6 @@ namespace Library.DataMapping.Annotations
         /// <summary>
         /// 类型
         /// </summary>
-        Type Type { get; }
-
-        /// <summary>
-        /// 启用单个成员自定义配置
-        /// </summary>
-        bool EnableMemberMap { get; }
+        Type[] Type { get; }
     }
 }

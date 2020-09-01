@@ -116,6 +116,9 @@ namespace Library.FreeSql.Extention
 
             foreach (var item in data as Dictionary<string, object>)
             {
+                if (item.Value == null)
+                    continue;
+
                 var type_value = item.Value.GetType();
 
                 if (type_value == typeof(DBNull))
@@ -183,7 +186,6 @@ namespace Library.FreeSql.Extention
             }
             else
                 throw new MessageException("排序条件不支持");
-            pagination.records = source.Count();
             return source.Page(pagination.PageIndex, pagination.PageRows);
         }
 

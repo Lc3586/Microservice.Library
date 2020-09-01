@@ -9,13 +9,12 @@ namespace Library.DataMapping.Annotations
     {
         /// <summary>
         /// 映射来源
+        /// <para>如要设置成员映射选项, 请在类中设置公共的静态字段或属性<![CDATA[MemberMapOptions<TSource, TDestination> FromMemberMapOptions]]>, 并调用Add方法赋值</para>
         /// </summary>
         /// <param name="type">类型</param>
-        /// <param name="enableMemberMap">启用成员映射</param>
-        public MapFromAttribute(Type type, bool enableMemberMap = false)
+        public MapFromAttribute(params Type[] type)
         {
             Type = type;
-            EnableMemberMap = enableMemberMap;
         }
 
         public bool IsFrom => true;
@@ -23,11 +22,6 @@ namespace Library.DataMapping.Annotations
         /// <summary>
         /// 类型
         /// </summary>
-        public Type Type { get; }
-
-        /// <summary>
-        /// 启用单个成员自定义配置
-        /// </summary>
-        public bool EnableMemberMap { get; }
+        public Type[] Type { get; }
     }
 }

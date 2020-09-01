@@ -47,17 +47,18 @@ namespace Library.DataMapping.Extention
             if (attribute == null)
                 return;
 
-            var map = attribute.IsFrom ? configure.CreateMap(attribute.Type, type) : configure.CreateMap(type, attribute.Type);
-            if (!attribute.EnableMemberMap)
-                return;
-
-            var options = type.GetMemberMapOptions(attribute.IsFrom);
-
-            if (options != null)
+            foreach (var item in attribute.Type)
             {
-                foreach (var option in type.GetMemberMapOptions(attribute.IsFrom))
+                var map = attribute.IsFrom ? configure.CreateMap(item, type) : configure.CreateMap(type, item);
+
+                var options = type.GetMemberMapOptions(attribute.IsFrom);
+
+                if (options != null)
                 {
-                    map.ForMember(option.Key, option.Value);
+                    foreach (var option in type.GetMemberMapOptions(attribute.IsFrom))
+                    {
+                        map.ForMember(option.Key, option.Value);
+                    }
                 }
             }
         }
