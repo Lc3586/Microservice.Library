@@ -195,8 +195,9 @@ namespace Library.Extension
         /// <typeparam name="T">参数</typeparam>
         /// <param name="one">原表达式</param>
         /// <param name="another">新的表达式</param>
+        /// <param name="type">连接类型</param>
         /// <returns></returns>
-        public static Expression<Func<T, bool>> And<T>(this Expression<Func<T, bool>> one, Expression<Func<T, bool>> another)
+        public static Expression<Func<T, bool>> Concat<T>(this Expression<Func<T, bool>> one, Expression<Func<T, bool>> another, ConcatType type)
         {
             //创建新参数
             var newParameter = Expression.Parameter(typeof(T), "parameter");
@@ -204,9 +205,51 @@ namespace Library.Extension
             var parameterReplacer = new ParameterReplaceVisitor(newParameter);
             var left = parameterReplacer.Visit(one.Body);
             var right = parameterReplacer.Visit(another.Body);
-            var body = Expression.And(left, right);
+            BinaryExpression body;
+
+            switch (type)
+            {
+                case ConcatType.And:
+                    body = Expression.And(left, right);
+                    break;
+                case ConcatType.AndAlso:
+                    body = Expression.AndAlso(left, right);
+                    break;
+                case ConcatType.Or:
+                    body = Expression.Or(left, right);
+                    break;
+                case ConcatType.OrElse:
+                    body = Expression.OrElse(left, right);
+                    break;
+                default:
+                    throw new ApplicationException($"未知的连接类型 {type}");
+            }
 
             return Expression.Lambda<Func<T, bool>>(body, newParameter);
+        }
+
+        /// <summary>
+        /// 连接表达式与运算
+        /// </summary>
+        /// <typeparam name="T">参数</typeparam>
+        /// <param name="one">原表达式</param>
+        /// <param name="another">新的表达式</param>
+        /// <returns></returns>
+        public static Expression<Func<T, bool>> And<T>(this Expression<Func<T, bool>> one, Expression<Func<T, bool>> another)
+        {
+            return one.Concat(another, ConcatType.And);
+        }
+
+        /// <summary>
+        /// 连接表达式与运算
+        /// </summary>
+        /// <typeparam name="T">参数</typeparam>
+        /// <param name="one">原表达式</param>
+        /// <param name="another">新的表达式</param>
+        /// <returns></returns>
+        public static Expression<Func<T, bool>> AndAlso<T>(this Expression<Func<T, bool>> one, Expression<Func<T, bool>> another)
+        {
+            return one.Concat(another, ConcatType.AndAlso);
         }
 
         /// <summary>
@@ -218,15 +261,19 @@ namespace Library.Extension
         /// <returns></returns>
         public static Expression<Func<T, bool>> Or<T>(this Expression<Func<T, bool>> one, Expression<Func<T, bool>> another)
         {
-            //创建新参数
-            var newParameter = Expression.Parameter(typeof(T), "parameter");
+            return one.Concat(another, ConcatType.Or);
+        }
 
-            var parameterReplacer = new ParameterReplaceVisitor(newParameter);
-            var left = parameterReplacer.Visit(one.Body);
-            var right = parameterReplacer.Visit(another.Body);
-            var body = Expression.Or(left, right);
-
-            return Expression.Lambda<Func<T, bool>>(body, newParameter);
+        /// <summary>
+        /// 连接表达式或运算
+        /// </summary>
+        /// <typeparam name="T">参数</typeparam>
+        /// <param name="one">原表达式</param>
+        /// <param name="another">新表达式</param>
+        /// <returns></returns>
+        public static Expression<Func<T, bool>> OrElse<T>(this Expression<Func<T, bool>> one, Expression<Func<T, bool>> another)
+        {
+            return one.Concat(another, ConcatType.OrElse);
         }
 
         #endregion
@@ -411,5 +458,16 @@ namespace Library.Extension
 
             return base.VisitMember(node);
         }
+    }
+
+    /// <summary>
+    /// 连接类型
+    /// </summary>
+    public enum ConcatType
+    {
+        And,
+        AndAlso,
+        Or,
+        OrElse
     }
 }

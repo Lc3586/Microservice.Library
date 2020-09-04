@@ -186,7 +186,11 @@ namespace Library.FreeSql.Extention
             }
             else
                 throw new MessageException("排序条件不支持");
-            return source.Page(pagination.PageIndex, pagination.PageRows);
+
+            if (pagination.PageIndex == -1)
+                return source;
+            else
+                return source.Page(pagination.PageIndex, pagination.PageRows);
         }
 
         /// <summary>

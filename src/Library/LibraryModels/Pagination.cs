@@ -438,6 +438,7 @@ namespace Library.Models
 
         /// <summary>
         /// 当前页码
+        /// <para>值为-1时表示不分页</para>
         /// </summary>
         [OpenApiSchema(OpenApiSchemaType._integer, OpenApiSchemaFormat.integer_int32, 1)]
         [OpenApiSubTag("Pagination")]

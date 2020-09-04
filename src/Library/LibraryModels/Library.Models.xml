@@ -959,6 +959,7 @@
         <member name="P:Library.Models.Pagination.PageIndex">
             <summary>
             当前页码
+            <para>值为-1时表示不分页</para>
             </summary>
         </member>
         <member name="P:Library.Models.Pagination.PageRows">

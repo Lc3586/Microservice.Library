@@ -480,6 +480,16 @@
             <param name="expression">拓展表达式</param>
             <returns></returns>
         </member>
+        <member name="M:Library.Extension.Extension.Concat``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},Library.Extension.ConcatType)">
+            <summary>
+            连接表达式与运算
+            </summary>
+            <typeparam name="T">参数</typeparam>
+            <param name="one">原表达式</param>
+            <param name="another">新的表达式</param>
+            <param name="type">连接类型</param>
+            <returns></returns>
+        </member>
         <member name="M:Library.Extension.Extension.And``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
             <summary>
             连接表达式与运算
@@ -489,7 +499,25 @@
             <param name="another">新的表达式</param>
             <returns></returns>
         </member>
+        <member name="M:Library.Extension.Extension.AndAlso``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            连接表达式与运算
+            </summary>
+            <typeparam name="T">参数</typeparam>
+            <param name="one">原表达式</param>
+            <param name="another">新的表达式</param>
+            <returns></returns>
+        </member>
         <member name="M:Library.Extension.Extension.Or``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            连接表达式或运算
+            </summary>
+            <typeparam name="T">参数</typeparam>
+            <param name="one">原表达式</param>
+            <param name="another">新表达式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Extension.Extension.OrElse``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
             <summary>
             连接表达式或运算
             </summary>
@@ -1274,6 +1302,11 @@
         <member name="T:Library.Extension.ParameterReplaceVisitor">
             <summary>
             继承ExpressionVisitor类，实现参数替换统一
+            </summary>
+        </member>
+        <member name="T:Library.Extension.ConcatType">
+            <summary>
+            连接类型
             </summary>
         </member>
     </members>
