@@ -984,6 +984,16 @@
         <member name="P:Library.Models.Pagination.Filter">
             <summary>
             筛选条件
+            <para>in 包含</para>
+            <para>bin 被包含</para>
+            <para>eq 相等</para>
+            <para>ne 不相等</para>
+            <para>le 小于等于</para>
+            <para>lt 小于</para>
+            <para>ge 大于等于</para>
+            <para>gt 大于</para>
+            <para>sin 在集合中（,号分隔）</para>
+            <para>nsin 不在集合中（,号分隔）</para>
             </summary>
         </member>
         <member name="P:Library.Models.Pagination.Schema">
@@ -1209,6 +1219,11 @@
         <member name="F:Library.Models.RunMode.Publish">
             <summary>
             发布模式
+            </summary>
+        </member>
+        <member name="F:Library.Models.RunMode.Publish_Swagger">
+            <summary>
+            发布模式（开放接口文档）
             </summary>
         </member>
         <member name="T:Library.Models.TreeModel">

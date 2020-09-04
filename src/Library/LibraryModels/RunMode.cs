@@ -22,6 +22,11 @@ namespace Library.Models
         /// <summary>
         /// 发布模式
         /// </summary>
-        Publish
+        Publish,
+
+        /// <summary>
+        /// 发布模式（开放接口文档）
+        /// </summary>
+        Publish_Swagger
     }
 }

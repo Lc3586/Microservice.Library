@@ -424,7 +424,7 @@ namespace Library.Models
             {
                 long pages = _recordCount / _pageRows;
                 long pageCount = _recordCount % _pageRows == 0 ? pages : pages + 1;
-                return pages;
+                return pageCount;
             }
         }
 
@@ -473,6 +473,16 @@ namespace Library.Models
 
         /// <summary>
         /// 筛选条件
+        /// <para>in 包含</para>
+        /// <para>bin 被包含</para>
+        /// <para>eq 相等</para>
+        /// <para>ne 不相等</para>
+        /// <para>le 小于等于</para>
+        /// <para>lt 小于</para>
+        /// <para>ge 大于等于</para>
+        /// <para>gt 大于</para>
+        /// <para>sin 在集合中（,号分隔）</para>
+        /// <para>nsin 不在集合中（,号分隔）</para>
         /// </summary>
         [OpenApiSchema(OpenApiSchemaType._string)]
         [OpenApiSubTag("Pagination")]
