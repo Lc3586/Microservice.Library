@@ -776,7 +776,7 @@ namespace Library.Models
         /// <summary>
         /// 字段
         /// </summary>
-        [OpenApiSchema(OpenApiSchemaType.@enum)]
+        [OpenApiSchema(OpenApiSchemaType.@string)]
         public string Field { get; set; }
 
         /// <summary>
