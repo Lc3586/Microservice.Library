@@ -210,7 +210,7 @@ namespace Library.FreeSql.Extention
                  ",",
                  fields == null ?
                      columns.Select(o => $"a.\"{o.Value.Attribute.Name}\"") :
-                     fields.Select(o => $"a.\"{columns[o].Attribute.Name}\""));
+                     fields.Select(o => $"a.\"{(columns.ContainsKey(o) ? columns[o].Attribute.Name : o)}\""));
 
             if (pagination != null)
                 source = source.AsAlias((type, old) => type == typeof(TDto) ? "a" : old)
@@ -237,9 +237,9 @@ namespace Library.FreeSql.Extention
                  ",",
                  fields == null ?
                      table.Columns.Concat(table_join0.Columns).Select(o => $"a.\"{o.Value.Attribute.Name}\"") :
-                     fields.Select(o => table.Columns.ContainsKey(o) ?
+                     fields.Select(o => table.Columns.ContainsKey(o) || table_join0.Columns.ContainsKey(o) ? (table.Columns.ContainsKey(o) ?
                          $"a.\"{table.Columns[o].Attribute.Name}\"" :
-                         $"a__{table_join0.DbName}.\"{table_join0.Columns[o].Attribute.Name}\""));
+                         $"a__{table_join0.DbName}.\"{table_join0.Columns[o].Attribute.Name}\"") : $"a.\"{o}\""));
 
             if (pagination != null)
                 source = source.AsAlias((type, old) => type == typeof(TDto) ? "a" : old)

@@ -55,7 +55,7 @@ namespace Library.DataMapping.Extention
 
                 if (options != null)
                 {
-                    foreach (var option in type.GetMemberMapOptions(attribute.IsFrom))
+                    foreach (var option in options)
                     {
                         map.ForMember(option.Key, option.Value);
                     }

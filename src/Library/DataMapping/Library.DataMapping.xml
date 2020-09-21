@@ -19,13 +19,7 @@
             映射来源
             </summary>
         </member>
-        <member name="M:Library.DataMapping.Annotations.MapFromAttribute.#ctor(System.Type[])">
-            <summary>
-            映射来源
-            <para>如要设置成员映射选项, 请在类中设置公共的静态字段或属性<![CDATA[MemberMapOptions<TSource, TDestination> FromMemberMapOptions]]>, 并调用Add方法赋值</para>
-            </summary>
-            <param name="type">类型</param>
-        </member>
+        <!-- Badly formed XML comment ignored for member "M:Library.DataMapping.Annotations.MapFromAttribute.#ctor(System.Type[])" -->
         <member name="P:Library.DataMapping.Annotations.MapFromAttribute.Type">
             <summary>
             类型
@@ -73,7 +67,7 @@
             映射选项
             </summary>
         </member>
-        <member name="M:Library.DataMapping.Application.MemberMapOptions`2.Add(System.String,System.Action{AutoMapper.IMemberConfigurationExpression{`0,`1,System.Object}})">
+        <member name="M:Library.DataMapping.Application.MemberMapOptions`2.Add(System.String,System.Action{AutoMapper.IMemberConfigurationExpression})">
             <summary>
             添加成员配置表达式
             </summary>
@@ -81,7 +75,7 @@
             <param name="option">选项</param>
             <returns></returns>
         </member>
-        <member name="M:Library.DataMapping.Application.MemberMapOptions`2.Add``1(System.String,System.Linq.Expressions.Expression{System.Func{System.Object,``0}})">
+        <member name="M:Library.DataMapping.Application.MemberMapOptions`2.Add``1(System.String,System.Func{`0,``0})">
             <summary>
             添加成员映射表达式
             </summary>

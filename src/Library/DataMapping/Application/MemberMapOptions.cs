@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 
@@ -10,7 +11,7 @@ namespace Library.DataMapping.Application
     /// 成员映射
     /// </summary>
     /// <remarks>必须设置为静态属性或字段</remarks>
-    public class MemberMapOptions<TSource, TDestination>
+    public class MemberMapOptions<TSource, TDestination> where TSource : class where TDestination : class
     {
         /// <summary>
         /// 映射选项
@@ -23,9 +24,9 @@ namespace Library.DataMapping.Application
         /// <param name="name">名称</param>
         /// <param name="option">选项</param>
         /// <returns></returns>
-        public MemberMapOptions<TSource, TDestination> Add(string name, Action<IMemberConfigurationExpression<TSource, TDestination, object>> option)
+        public MemberMapOptions<TSource, TDestination> Add(string name, Action<IMemberConfigurationExpression> option)
         {
-            Options.Add(name, option as Action<IMemberConfigurationExpression>);
+            Options.Add(name, option);
             return this;
         }
 
@@ -35,9 +36,9 @@ namespace Library.DataMapping.Application
         /// <param name="name">名称</param>
         /// <param name="option">选项</param>
         /// <returns></returns>
-        public MemberMapOptions<TSource, TDestination> Add<TSourceMember>(string name, Expression<Func<object, TSourceMember>> option)
+        public MemberMapOptions<TSource, TDestination> Add<TSourceMember>(string name, Func<TSource, TSourceMember> option)
         {
-            Options.Add(name, o => o.MapFrom(option));
+            Options.Add(name, o => o.MapFrom(source => option.Invoke(source as TSource)));
             return this;
         }
     }
