@@ -33,11 +33,6 @@ namespace Library.Models
         /// 返回数据
         /// </summary>
         public T Data { get; set; }
-
-        /// <summary>
-        /// 总数据量（仅分页时有效）
-        /// </summary>
-        public int Total { get; set; }
     }
 
     /// <summary>
@@ -49,11 +44,6 @@ namespace Library.Models
         /// 返回数据
         /// </summary>
         public T Data { get; set; }
-
-        /// <summary>
-        /// 总数据量（仅分页时有效）
-        /// </summary>
-        public int Total { get; set; }
 
         /// <summary>
         /// 异常信息
@@ -86,6 +76,10 @@ namespace Library.Models
         /// 验证失败
         /// </summary>
         validation,
+        /// <summary>
+        /// 业务错误
+        /// </summary>
+        business,
         /// <summary>
         /// 系统错误
         /// </summary>

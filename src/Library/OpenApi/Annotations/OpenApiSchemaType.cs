@@ -9,10 +9,34 @@ namespace Library.OpenApi.Annotations
     /// </summary>
     public class OpenApiSchemaType
     {
-        public const string _boolean = "boolean";
-        public const string _integer = "integer";
-        public const string _number = "number";
-        public const string _string = "string";
-        public const string _model = "model";
+        /// <summary>
+        /// 布尔
+        /// </summary>
+        public const string @boolean = "boolean";
+
+        /// <summary>
+        /// 整数
+        /// </summary>
+        public const string integer = "integer";
+
+        /// <summary>
+        /// 数值
+        /// </summary>
+        public const string number = "number";
+
+        /// <summary>
+        /// 字符串
+        /// </summary>
+        public const string @string = "string";
+
+        /// <summary>
+        /// 枚举
+        /// </summary>
+        public const string @enum = "enum";
+
+        /// <summary>
+        /// 嵌套模型
+        /// </summary>
+        public const string model = "model";
     }
 }

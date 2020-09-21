@@ -35,11 +35,6 @@
             返回数据
             </summary>
         </member>
-        <member name="P:Library.Models.AjaxResult`1.Total">
-            <summary>
-            总数据量（仅分页时有效）
-            </summary>
-        </member>
         <member name="T:Library.Models.AjaxDevelopmentResult`1">
             <summary>
             Ajax请求结果（开发模式）
@@ -48,11 +43,6 @@
         <member name="P:Library.Models.AjaxDevelopmentResult`1.Data">
             <summary>
             返回数据
-            </summary>
-        </member>
-        <member name="P:Library.Models.AjaxDevelopmentResult`1.Total">
-            <summary>
-            总数据量（仅分页时有效）
             </summary>
         </member>
         <member name="P:Library.Models.AjaxDevelopmentResult`1.ExMsg">
@@ -88,6 +78,11 @@
         <member name="F:Library.Models.ErrorCode.validation">
             <summary>
             验证失败
+            </summary>
+        </member>
+        <member name="F:Library.Models.ErrorCode.business">
+            <summary>
+            业务错误
             </summary>
         </member>
         <member name="F:Library.Models.ErrorCode.error">
@@ -985,16 +980,6 @@
         <member name="P:Library.Models.Pagination.Filter">
             <summary>
             筛选条件
-            <para>in 包含</para>
-            <para>bin 被包含</para>
-            <para>eq 相等</para>
-            <para>ne 不相等</para>
-            <para>le 小于等于</para>
-            <para>lt 小于</para>
-            <para>ge 大于等于</para>
-            <para>gt 大于</para>
-            <para>sin 在集合中（,号分隔）</para>
-            <para>nsin 不在集合中（,号分隔）</para>
             </summary>
         </member>
         <member name="P:Library.Models.Pagination.Schema">
@@ -1155,6 +1140,174 @@
         <member name="P:Library.Models.Pagination.Result.Easyui.costtime">
             <summary>
             耗时（毫秒）
+            </summary>
+        </member>
+        <member name="T:Library.Models.PaginationFilter">
+            <summary>
+            分页筛选条件
+            </summary>
+        </member>
+        <member name="P:Library.Models.PaginationFilter.Field">
+            <summary>
+            要比较的字段
+            <para>注意区分大小写</para>
+            </summary>
+        </member>
+        <member name="P:Library.Models.PaginationFilter.Value">
+            <summary>
+            用于比较的值
+            </summary>
+        </member>
+        <member name="P:Library.Models.PaginationFilter.Compare">
+            <summary>
+            比较类型
+            </summary>
+        </member>
+        <member name="P:Library.Models.PaginationFilter.Group">
+            <summary>
+            分组设置
+            </summary>
+        </member>
+        <member name="T:Library.Models.FilterGroupSetting">
+            <summary>
+            分组设置
+            </summary>
+        </member>
+        <member name="P:Library.Models.FilterGroupSetting.Flag">
+            <summary>
+            分组标识
+            <para>用于标识分组的开始和结束</para>
+            </summary>
+        </member>
+        <member name="P:Library.Models.FilterGroupSetting.Relation">
+            <summary>
+            组内关系
+            </summary>
+        </member>
+        <member name="T:Library.Models.PaginationAdvancedSort">
+            <summary>
+            分页高级排序
+            </summary>
+        </member>
+        <member name="P:Library.Models.PaginationAdvancedSort.Field">
+            <summary>
+            字段
+            </summary>
+        </member>
+        <member name="P:Library.Models.PaginationAdvancedSort.Type">
+            <summary>
+            类型
+            </summary>
+        </member>
+        <member name="T:Library.Models.FilterCompare">
+            <summary>
+            筛选条件比较类型
+            </summary>
+        </member>
+        <member name="F:Library.Models.FilterCompare.in">
+            <summary>
+            包含
+            </summary>
+        </member>
+        <member name="F:Library.Models.FilterCompare.bin">
+            <summary>
+            被包含
+            </summary>
+        </member>
+        <member name="F:Library.Models.FilterCompare.eq">
+            <summary>
+            相等
+            </summary>
+        </member>
+        <member name="F:Library.Models.FilterCompare.ne">
+            <summary>
+            不相等
+            </summary>
+        </member>
+        <member name="F:Library.Models.FilterCompare.le">
+            <summary>
+            小于等于
+            </summary>
+        </member>
+        <member name="F:Library.Models.FilterCompare.lt">
+            <summary>
+            小于
+            </summary>
+        </member>
+        <member name="F:Library.Models.FilterCompare.ge">
+            <summary>
+            大于等于
+            </summary>
+        </member>
+        <member name="F:Library.Models.FilterCompare.gt">
+            <summary>
+            大于
+            </summary>
+        </member>
+        <member name="F:Library.Models.FilterCompare.sin">
+            <summary>
+            在集合中
+            <para>,号分隔</para>
+            <para>值不是数字的情况下需要用单引号将值括起来</para>
+            <para>完整示例:(1, 2, 3)、('A', 'B', 'C')</para>
+            </summary>
+        </member>
+        <member name="F:Library.Models.FilterCompare.nsin">
+            <summary>
+            不在集合中
+            <para>,号分隔</para>
+            <para>值不是数字的情况下需要用单引号将值括起来</para>
+            <para>完整示例:(1, 2, 3)、('A', 'B', 'C')</para>
+            </summary>
+        </member>
+        <member name="T:Library.Models.FilterGroupFlag">
+            <summary>
+            筛选条件分组标识
+            </summary>
+        </member>
+        <member name="F:Library.Models.FilterGroupFlag.start">
+            <summary>
+            开始
+            </summary>
+        </member>
+        <member name="F:Library.Models.FilterGroupFlag.keep">
+            <summary>
+            还在分组内
+            </summary>
+        </member>
+        <member name="F:Library.Models.FilterGroupFlag.end">
+            <summary>
+            结束
+            </summary>
+        </member>
+        <member name="T:Library.Models.FilterGroupRelation">
+            <summary>
+            筛选条件分组关系类型
+            </summary>
+        </member>
+        <member name="F:Library.Models.FilterGroupRelation.and">
+            <summary>
+            并且
+            </summary>
+        </member>
+        <member name="F:Library.Models.FilterGroupRelation.or">
+            <summary>
+            或
+            </summary>
+        </member>
+        <member name="T:Library.Models.SortType">
+            <summary>
+            排序类型
+            </summary>
+        </member>
+        <member name="F:Library.Models.SortType.asc">
+            <summary>
+            正序
+            </summary>
+        </member>
+        <member name="F:Library.Models.SortType.desc">
+            <summary>
+            倒数
             </summary>
         </member>
         <member name="T:Library.Models.Schema">

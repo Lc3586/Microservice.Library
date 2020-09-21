@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Linq.Dynamic.Core;
@@ -22,7 +23,7 @@ namespace Library.Models
             _watch.Start();
 
             _sortField = "Id";
-            _sortType = "asc";
+            _sortType = SortType.desc;
             PageIndex = 1;
             PageRows = 50;
             _schema = Schema.defaul;
@@ -55,17 +56,17 @@ namespace Library.Models
         /// <summary>
         /// 排序类型
         /// </summary>
-        private string _sortType { get; set; }
+        private SortType _sortType { get; set; }
 
         /// <summary>
         /// 高级排序
         /// </summary>
-        private string _advancedSort { get; set; }
+        private List<PaginationAdvancedSort> _advancedSort { get; set; }
 
         /// <summary>
         /// 筛选条件
         /// </summary>
-        private string _filter { get; set; }
+        private List<PaginationFilter> _filter { get; set; }
 
         /// <summary>
         /// 筛选条件转sql语句
@@ -75,33 +76,30 @@ namespace Library.Models
         /// <returns>筛选条件是否有误</returns>
         public bool FilterToSql(ref string sql, string alias = null)
         {
-            if (string.IsNullOrWhiteSpace(_filter))
+            if (_filter == null || !_filter.Any())
                 return true;
             try
             {
-                JArray ja = JArray.Parse(_filter);
-                if (ja == null || !ja.Any())
-                    return false;
-
                 string predicate = string.Empty;
 
-                for (int i = 0, j = i; i < ja.Count; i++)
+                for (int i = 0, j = i; i < _filter.Count; i++)
                 {
-                    var jt = ja[i];
-                    if (!jt.HasValues)
+                    var filter = _filter[i];
+                    if (filter == null)
                         continue;
-                    if ((jt.Value<string>("group") ?? string.Empty) == "start")
+
+                    if (filter.Group?.Flag == FilterGroupFlag.start)
                         predicate += "(";
 
-                    string field = jt.Value<string>("field");
+                    string field = filter.Field;
                     if (alias != null)
                         field = $"{alias}.\"{field}\"";
-                    string value = jt.Value<string>("value");
+                    string value = filter.Value.ToString();
 
                     bool skip = false;
-                    switch (jt.Value<string>("compare"))
+                    switch (filter.Compare)
                     {
-                        case "in":
+                        case FilterCompare.@in:
                             if (string.IsNullOrEmpty(value))
                             {
                                 skip = true;
@@ -109,7 +107,7 @@ namespace Library.Models
                             }
                             predicate += $"{field} LIKE '{value}'";
                             break;
-                        case "bin":
+                        case FilterCompare.bin:
                             if (string.IsNullOrEmpty(value))
                             {
                                 skip = true;
@@ -117,28 +115,28 @@ namespace Library.Models
                             }
                             predicate += $"'{value}' LIKE CONCAT('%',{field},'%')";
                             break;
-                        case "eq":
+                        case FilterCompare.eq:
                             predicate += $"{field} = '{value}'";
                             break;
-                        case "ne":
+                        case FilterCompare.ne:
                             predicate += $"{field} != '{value}'";
                             break;
-                        case "le":
+                        case FilterCompare.le:
                             predicate += $"{field} <= '{value}'";
                             break;
-                        case "lt":
+                        case FilterCompare.lt:
                             predicate += $"{field} < '{value}'";
                             break;
-                        case "ge":
+                        case FilterCompare.ge:
                             predicate += $"{field} >= '{value}'";
                             break;
-                        case "gt":
+                        case FilterCompare.gt:
                             predicate += $"{field} > '{value}'";
                             break;
-                        case "sin":
+                        case FilterCompare.sin:
                             predicate += $"{field} IN ({value})";
                             break;
-                        case "nsin":
+                        case FilterCompare.nsin:
                             predicate += $"{field} NOT IN ({value})";
                             break;
                         default:
@@ -146,13 +144,12 @@ namespace Library.Models
                             break;
                     }
 
-
-                    if ((jt.Value<string>("group") ?? string.Empty) == "end")
+                    if (filter.Group?.Flag == FilterGroupFlag.end)
                         predicate += ")";
 
-                    if (!skip && i != ja.Count - 1)
+                    if (!skip && i != _filter.Count - 1)
                     {
-                        string relation = jt.Value<string>("relation");
+                        string relation = filter.Group.Relation.ToString();
                         switch (relation)
                         {
                             case "or":
@@ -192,24 +189,19 @@ namespace Library.Models
             {
                 string predicate = string.Empty;
 
-                if (!string.IsNullOrEmpty(AdvancedSort))
+                if (AdvancedSort != null && AdvancedSort.Any())
                 {
-                    JArray ja = JArray.Parse(AdvancedSort);
-                    if (ja == null || !ja.Any())
-                        return false;
-
                     predicate = " ";
 
-                    for (int i = 0, j = i; i < ja.Count; i++)
+                    foreach (var item in AdvancedSort)
                     {
-                        var jt = ja[i];
-                        if (!jt.HasValues)
+                        if (item == null)
                             continue;
 
-                        string field = jt.Value<string>("field");
+                        string field = item.Field;
                         if (alias != null)
                             field = $"{alias}.\"{field}\"";
-                        string type = jt.Value<string>("type");
+                        string type = item.Type.ToString();
 
 
                         if (string.IsNullOrEmpty(type))
@@ -222,7 +214,7 @@ namespace Library.Models
                 {
                     if (alias != null)
                         SortField = $"{alias}.\"{SortField}\"";
-                    predicate += $" {SortField} {(string.IsNullOrEmpty(SortType) ? "asc" : SortType)}";
+                    predicate += $" {SortField} {SortType}";
                 }
 
                 if (!string.IsNullOrWhiteSpace(predicate))
@@ -245,31 +237,29 @@ namespace Library.Models
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(_filter))
+                if (_filter == null || !_filter.Any())
                     return true;
-
-                JArray ja = JArray.Parse(_filter);
-                if (ja == null || !ja.Any())
-                    return false;
 
                 string predicate = string.Empty;
                 List<object> args = new List<object>();
 
-                for (int i = 0, j = i; i < ja.Count; i++)
+                for (int i = 0, j = i; i < _filter.Count; i++)
                 {
-                    var jt = ja[i];
-                    if (!jt.HasValues)
+                    var filter = _filter[i];
+                    if (filter == null)
                         continue;
-                    if ((jt.Value<string>("group") ?? string.Empty) == "start")
+
+                    if (filter.Group?.Flag == FilterGroupFlag.start)
                         predicate += "(";
 
-                    string field = jt.Value<string>("field");
-                    string value = jt.Value<string>("value");
+                    string field = filter.Field;
+                    object value = filter.Value;
+
                     bool skip = false;
-                    switch (jt.Value<string>("compare"))
+                    switch (filter.Compare)
                     {
-                        case "in":
-                            if (string.IsNullOrEmpty(value))
+                        case FilterCompare.@in:
+                            if (string.IsNullOrEmpty(value.ToString()))
                             {
                                 skip = true;
                                 break;
@@ -277,8 +267,8 @@ namespace Library.Models
                             predicate += $"{field}.Contains(@{j})";
                             args.Add(value);
                             break;
-                        case "bin":
-                            if (string.IsNullOrEmpty(value))
+                        case FilterCompare.bin:
+                            if (string.IsNullOrEmpty(value.ToString()))
                             {
                                 skip = true;
                                 break;
@@ -286,50 +276,52 @@ namespace Library.Models
                             predicate += $"@{j}.Contains({field})";
                             args.Add(value);
                             break;
-                        case "eq":
+                        case FilterCompare.eq:
                             predicate += $"{field} == @{j}";
                             args.Add(value);
                             break;
-                        case "ne":
+                        case FilterCompare.ne:
                             predicate += $"!{field}.Equals(@{j})";
                             args.Add(value);
                             break;
-                        case "le":
+                        case FilterCompare.le:
                             predicate += $"{field} <= @{j}";
                             args.Add(value);
                             break;
-                        case "lt":
+                        case FilterCompare.lt:
                             predicate += $"{field} < @{j}";
                             args.Add(value);
                             break;
-                        case "ge":
+                        case FilterCompare.ge:
                             predicate += $"{field} >= @{j}";
                             args.Add(value);
                             break;
-                        case "gt":
+                        case FilterCompare.gt:
                             predicate += $"{field} > @{j}";
                             args.Add(value);
                             break;
+                        case FilterCompare.sin:
+                        case FilterCompare.nsin:
                         default:
                             skip = true;
                             break;
                     }
 
-
-                    if ((jt.Value<string>("group") ?? string.Empty) == "end")
+                    if (filter.Group?.Flag == FilterGroupFlag.end)
                         predicate += ")";
 
-                    if (!skip && i != ja.Count - 1)
+                    if (!skip && i != _filter.Count - 1)
                     {
-                        string relation = jt.Value<string>("relation");
-                        switch (relation)
+                        string relation = filter.Group.Relation.ToString();
+                        switch (filter.Group.Relation)
                         {
-                            case "or":
+                            case FilterGroupRelation.and:
+                                predicate += $" && ";
+                                break;
+                            case FilterGroupRelation.or:
                                 predicate += $" || ";
                                 break;
-                            case "and":
                             default:
-                                predicate += $" && ";
                                 break;
                         }
                     }
@@ -370,25 +362,17 @@ namespace Library.Models
         {
             try
             {
-                if (!string.IsNullOrEmpty(AdvancedSort))
+                if (AdvancedSort != null && AdvancedSort.Any())
                 {
-                    JArray ja = JArray.Parse(AdvancedSort);
-                    if (ja == null || !ja.Any())
-                        return false;
-
                     IOrderedQueryable<TSource> orderByLinq = null;
-                    for (int i = 0, j = i; i < ja.Count; i++)
+
+                    foreach (var item in AdvancedSort)
                     {
-                        var jt = ja[i];
-                        if (!jt.HasValues)
+                        if (item == null)
                             continue;
 
-                        string field = jt.Value<string>("field");
-                        string type = jt.Value<string>("type");
-
-
-                        if (string.IsNullOrEmpty(type))
-                            type = "asc";
+                        string field = item.Field;
+                        string type = item.Type.ToString();
 
                         if (orderByLinq == null)
                             orderByLinq = LinqDynamic.OrderBy($"{field} {type}");
@@ -400,7 +384,7 @@ namespace Library.Models
                 }
                 else if (!string.IsNullOrEmpty(SortField))
                 {
-                    LinqDynamic = LinqDynamic.OrderBy($"{SortField} {(string.IsNullOrEmpty(SortType) ? "asc" : SortType)}");
+                    LinqDynamic = LinqDynamic.OrderBy($"{SortField} {SortType}");
                 }
                 return true;
             }
@@ -440,72 +424,55 @@ namespace Library.Models
         /// 当前页码
         /// <para>值为-1时表示不分页</para>
         /// </summary>
-        [OpenApiSchema(OpenApiSchemaType._integer, OpenApiSchemaFormat.integer_int32, 1)]
-        [OpenApiSubTag("Pagination")]
+        [OpenApiSchema(OpenApiSchemaType.integer, OpenApiSchemaFormat.integer_int32, 1)]
         public int PageIndex { get => _pageIndex; set => _pageIndex = value; }
 
         /// <summary>
         /// 每页数据量
         /// </summary>
-        [OpenApiSchema(OpenApiSchemaType._integer, OpenApiSchemaFormat.integer_int32, 10)]
-        [OpenApiSubTag("Pagination")]
+        [OpenApiSchema(OpenApiSchemaType.integer, OpenApiSchemaFormat.integer_int32, 50)]
         public int PageRows { get => _pageRows; set => _pageRows = value; }
 
         /// <summary>
         /// 排序列
         /// </summary>
-        [OpenApiSchema(OpenApiSchemaType._string, Value = "CreateTime")]
-        [OpenApiSubTag("Pagination")]
+        [OpenApiSchema(OpenApiSchemaType.@string, Value = "Id")]
         public string SortField { get => _sortField; set => _sortField = value; }
 
         /// <summary>
         /// 排序类型
         /// </summary>
-        [OpenApiSchema(OpenApiSchemaType._string, Value = "desc")]
-        [OpenApiSubTag("Pagination")]
-        public string SortType { get => _sortType; set => _sortType = value; }
+        [OpenApiSchema(OpenApiSchemaType.@enum, Value = SortType.desc)]
+        public SortType SortType { get => _sortType; set => _sortType = value; }
 
         /// <summary>
         /// 高级排序
         /// </summary>
-        [OpenApiSchema(OpenApiSchemaType._string)]
-        [OpenApiSubTag("Pagination")]
-        public string AdvancedSort { get => _advancedSort; set => _advancedSort = value; }
+        [OpenApiSchema(OpenApiSchemaType.@string)]
+        public List<PaginationAdvancedSort> AdvancedSort { get => _advancedSort; set => _advancedSort = value; }
 
         /// <summary>
         /// 筛选条件
-        /// <para>in 包含</para>
-        /// <para>bin 被包含</para>
-        /// <para>eq 相等</para>
-        /// <para>ne 不相等</para>
-        /// <para>le 小于等于</para>
-        /// <para>lt 小于</para>
-        /// <para>ge 大于等于</para>
-        /// <para>gt 大于</para>
-        /// <para>sin 在集合中（,号分隔）</para>
-        /// <para>nsin 不在集合中（,号分隔）</para>
         /// </summary>
-        [OpenApiSchema(OpenApiSchemaType._string)]
-        [OpenApiSubTag("Pagination")]
-        public string Filter { get => _filter; set => _filter = value; }
+        [OpenApiSchema(OpenApiSchemaType.model)]
+        public List<PaginationFilter> Filter { get => _filter; set => _filter = value; }
 
         /// <summary>
         /// 架构
         /// </summary>
-        [OpenApiSchema(OpenApiSchemaType._string, null, "defaul")]
-        [OpenApiSubTag("Pagination")]
+        [OpenApiSchema(OpenApiSchemaType.@enum, null, Schema.defaul)]
         public Schema Schema { get => _schema; set => _schema = value; }
 
         /// <summary>
         /// 总记录数
         /// </summary>
-        [OpenApiSchema(OpenApiSchemaType._integer, OpenApiSchemaFormat.integer_int64)]
+        //[OpenApiSchema(OpenApiSchemaType.integer, OpenApiSchemaFormat.integer_int64)]
         public long RecordCount { get => _recordCount; set => _recordCount = value; }
 
         /// <summary>
         /// 总页数
         /// </summary>
-        [OpenApiSchema(OpenApiSchemaType._integer, OpenApiSchemaFormat.integer_int64)]
+        //[OpenApiSchema(OpenApiSchemaType.integer, OpenApiSchemaFormat.integer_int64)]
         public long PageCount { get => _pageCount; }
 
         #endregion
@@ -530,7 +497,7 @@ namespace Library.Models
         /// <summary>
         /// 排序类型
         /// </summary>
-        public string sord { get => _sortType; set => _sortType = value; }
+        public SortType sord { get => _sortType; set => _sortType = value; }
 
         /// <summary>
         /// 总记录数
@@ -560,7 +527,7 @@ namespace Library.Models
         /// <summary>
         /// 排序类型
         /// </summary>
-        public string order { get => _sortType; set => _sortType = value; }
+        public SortType order { get => _sortType; set => _sortType = value; }
 
         #endregion
 
@@ -745,7 +712,198 @@ namespace Library.Models
         #endregion
     }
 
+    /// <summary>
+    /// 分页筛选条件
+    /// </summary>
+    [OpenApiSchemaStrictMode]
+    [OpenApiMainTag("PaginationFilter")]
+    public class PaginationFilter
+    {
+        /// <summary>
+        /// 要比较的字段
+        /// <para>注意区分大小写</para>
+        /// </summary>
+        [OpenApiSchema(OpenApiSchemaType.@string)]
+        public string Field { get; set; }
 
+        /// <summary>
+        /// 用于比较的值
+        /// </summary>
+        [OpenApiSchema(OpenApiSchemaType.@string)]
+        public object Value { get; set; }
+
+        /// <summary>
+        /// 比较类型
+        /// </summary>
+        [OpenApiSchema(OpenApiSchemaType.@enum)]
+        public FilterCompare Compare { get; set; }
+
+        /// <summary>
+        /// 分组设置
+        /// </summary>
+        [OpenApiSchema(OpenApiSchemaType.@model)]
+        public FilterGroupSetting Group { get; set; }
+    }
+
+    /// <summary>
+    /// 分组设置
+    /// </summary>
+    [OpenApiSchemaStrictMode]
+    [OpenApiMainTag("FilterGroupSetting")]
+    public class FilterGroupSetting
+    {
+        /// <summary>
+        /// 分组标识
+        /// <para>用于标识分组的开始和结束</para>
+        /// </summary>
+        [OpenApiSchema(OpenApiSchemaType.@string)]
+        public FilterGroupFlag Flag { get; set; }
+
+        /// <summary>
+        /// 组内关系
+        /// </summary>
+        [OpenApiSchema(OpenApiSchemaType.@enum)]
+        public FilterGroupRelation Relation { get; set; }
+    }
+
+    /// <summary>
+    /// 分页高级排序
+    /// </summary>
+    [OpenApiSchemaStrictMode]
+    [OpenApiMainTag("PaginationAdvancedSort")]
+    public class PaginationAdvancedSort
+    {
+        /// <summary>
+        /// 字段
+        /// </summary>
+        [OpenApiSchema(OpenApiSchemaType.@enum)]
+        public string Field { get; set; }
+
+        /// <summary>
+        /// 类型
+        /// </summary>
+        [OpenApiSchema(OpenApiSchemaType.@enum)]
+        public SortType Type { get; set; }
+    }
+
+    /// <summary>
+    /// 筛选条件比较类型
+    /// </summary>
+    public enum FilterCompare
+    {
+        /// <summary>
+        /// 包含
+        /// </summary>
+        [Description("包含")]
+        @in,
+        /// <summary>
+        /// 被包含
+        /// </summary>
+        [Description("被包含")]
+        bin,
+        /// <summary>
+        /// 相等
+        /// </summary>
+        [Description("相等")]
+        eq,
+        /// <summary>
+        /// 不相等
+        /// </summary>
+        [Description("不相等")]
+        ne,
+        /// <summary>
+        /// 小于等于
+        /// </summary>
+        [Description("小于等于")]
+        le,
+        /// <summary>
+        /// 小于
+        /// </summary>
+        [Description("小于")]
+        lt,
+        /// <summary>
+        /// 大于等于
+        /// </summary>
+        [Description("大于等于")]
+        ge,
+        /// <summary>
+        /// 大于
+        /// </summary>
+        [Description("大于")]
+        gt,
+        /// <summary>
+        /// 在集合中
+        /// <para>,号分隔</para>
+        /// <para>值不是数字的情况下需要用单引号将值括起来</para>
+        /// <para>完整示例:(1, 2, 3)、('A', 'B', 'C')</para>
+        /// </summary>
+        [Description("在集合中\r\n,号分隔\r\n值不是数字的情况下需要用单引号将值括起来\r\n完整示例:(1, 2, 3)、('A', 'B', 'C')")]
+        sin,
+        /// <summary>
+        /// 不在集合中
+        /// <para>,号分隔</para>
+        /// <para>值不是数字的情况下需要用单引号将值括起来</para>
+        /// <para>完整示例:(1, 2, 3)、('A', 'B', 'C')</para>
+        /// </summary>
+        [Description("不在集合中\r\n,号分隔\r\n值不是数字的情况下需要用单引号将值括起来\r\n完整示例:(1, 2, 3)、('A', 'B', 'C')")]
+        nsin
+    }
+
+    /// <summary>
+    /// 筛选条件分组标识
+    /// </summary>
+    public enum FilterGroupFlag
+    {
+        /// <summary>
+        /// 开始
+        /// </summary>
+        [Description("开始")]
+        start,
+        /// <summary>
+        /// 还在分组内
+        /// </summary>
+        [Description("还在分组内")]
+        keep,
+        /// <summary>
+        /// 结束
+        /// </summary>
+        [Description("结束")]
+        end
+    }
+
+    /// <summary>
+    /// 筛选条件分组关系类型
+    /// </summary>
+    public enum FilterGroupRelation
+    {
+        /// <summary>
+        /// 并且
+        /// </summary>
+        [Description("并且")]
+        and,
+        /// <summary>
+        /// 或
+        /// </summary>
+        [Description("或")]
+        or
+    }
+
+    /// <summary>
+    /// 排序类型
+    /// </summary>
+    public enum SortType
+    {
+        /// <summary>
+        /// 正序
+        /// </summary>
+        [Description("正序")]
+        asc,
+        /// <summary>
+        /// 倒数
+        /// </summary>
+        [Description("倒数")]
+        desc
+    }
 
     /// <summary>
     /// 架构
@@ -755,35 +913,42 @@ namespace Library.Models
         /// <summary>
         /// 默认
         /// </summary>
+        [Description("默认")]
         defaul,
         /// <summary>
         /// layui
         /// <para>https://www.layui.com/doc/modules/table.html#response</para>
         /// </summary>
+        [Description("layui\r\nhttps://www.layui.com/doc/modules/table.html#response")]
         layui,
         /// <summary>
         /// jqGrid
         /// <para>https://blog.mn886.net/jqGrid/api/jsondata/index.jsp</para>
         /// </summary>
+        [Description("jqGrid\r\nhttps://blog.mn886.net/jqGrid/api/jsondata/index.jsp")]
         jqGrid,
         /// <summary>
         /// easyui
         /// <para>http://www.jeasyui.net/plugins/183.html</para>
         /// </summary>
+        [Description("easyui\r\nhttp://www.jeasyui.net/plugins/183.html")]
         easyui,
         /// <summary>
         /// bootstrapTable
         /// <para>https://bootstrap-table.com/docs/api/table-options/</para>
         /// </summary>
+        [Description("bootstrapTable\r\nhttps://bootstrap-table.com/docs/api/table-options/")]
         bootstrapTable,
         /// <summary>
         /// Ant Design + Vue
         /// <para>https://www.antdv.com/components/list-cn/#api</para>
         /// </summary>
+        [Description("Ant Design + Vue\r\nhttps://www.antdv.com/components/list-cn/#api")]
         antdVue,
         /// <summary>
         /// element + Vue
         /// </summary>
+        [Description("element + Vue")]
         elementVue,
     }
 }

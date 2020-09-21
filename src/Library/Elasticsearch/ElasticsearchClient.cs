@@ -674,7 +674,7 @@ namespace Library.Elasticsearch
                 {
                     s = s.Size(pagination.PageRows)
                          .From((pagination.PageIndex - 1) * pagination.PageRows)
-                         .Sort(so => so.Field(typeof(T).GetProperty(pagination.SortField), pagination.SortType == "asc" ? SortOrder.Ascending : SortOrder.Descending));
+                         .Sort(so => so.Field(typeof(T).GetProperty(pagination.SortField), pagination.SortType == SortType.asc ? SortOrder.Ascending : SortOrder.Descending));
                 }
                 else
                     Transfinite = Total<T>() > 10000;

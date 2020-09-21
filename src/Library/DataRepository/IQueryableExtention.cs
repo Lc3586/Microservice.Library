@@ -27,7 +27,7 @@ namespace Library.DataRepository
         /// <param name="count">总记录数</param>
         /// <param name="pages">总页数</param>
         /// <returns></returns>
-        public static IQueryable<T> GetPagination<T>(this IQueryable<T> source, int pageIndex, int pageRows, string orderColumn, string orderType, ref int count, ref int pages)
+        public static IQueryable<T> GetPagination<T>(this IQueryable<T> source, int pageIndex, int pageRows, string orderColumn, SortType orderType, ref int count, ref int pages)
         {
             Pagination pagination = new Pagination
             {
