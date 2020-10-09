@@ -349,3 +349,5 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 EmptyConsole
+/src/Integrate_EF/Integrate_Api/appsettings.json
+/src/Integrate_FreeSql/Integrate_Api/appsettings.json
