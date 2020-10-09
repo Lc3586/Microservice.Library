@@ -45,6 +45,71 @@
             接口架构格式
             </summary>
         </member>
+        <member name="F:Library.OpenApi.Annotations.OpenApiSchemaFormat.integer_byte">
+            <summary>
+            字节
+            </summary>
+        </member>
+        <member name="F:Library.OpenApi.Annotations.OpenApiSchemaFormat.integer_byte_array">
+            <summary>
+            字节数组
+            </summary>
+        </member>
+        <member name="F:Library.OpenApi.Annotations.OpenApiSchemaFormat.integer_binary">
+            <summary>
+            二进制数组
+            </summary>
+        </member>
+        <member name="F:Library.OpenApi.Annotations.OpenApiSchemaFormat.integer_int32">
+            <summary>
+            32位整数
+            </summary>
+        </member>
+        <member name="F:Library.OpenApi.Annotations.OpenApiSchemaFormat.integer_int64">
+            <summary>
+            64位整数
+            </summary>
+        </member>
+        <member name="F:Library.OpenApi.Annotations.OpenApiSchemaFormat.number_float">
+            <summary>
+            单精度浮点数
+            </summary>
+        </member>
+        <member name="F:Library.OpenApi.Annotations.OpenApiSchemaFormat.number_double">
+            <summary>
+            双精度浮点数
+            </summary>
+        </member>
+        <member name="F:Library.OpenApi.Annotations.OpenApiSchemaFormat.number_decimal">
+            <summary>
+            高精度浮点数
+            </summary>
+        </member>
+        <member name="F:Library.OpenApi.Annotations.OpenApiSchemaFormat.string_date">
+            <summary>
+            日期
+            </summary>
+        </member>
+        <member name="F:Library.OpenApi.Annotations.OpenApiSchemaFormat.string_datetime">
+            <summary>
+            日期和时间
+            </summary>
+        </member>
+        <member name="F:Library.OpenApi.Annotations.OpenApiSchemaFormat.string_date_original">
+            <summary>
+            原始时间
+            </summary>
+        </member>
+        <member name="F:Library.OpenApi.Annotations.OpenApiSchemaFormat.string_password">
+            <summary>
+            密文
+            </summary>
+        </member>
+        <member name="F:Library.OpenApi.Annotations.OpenApiSchemaFormat.enum_description">
+            <summary>
+            包含注释
+            </summary>
+        </member>
         <member name="T:Library.OpenApi.Annotations.OpenApiSchemaStrictModeAttribute">
             <summary>
             接口架构严格模式

@@ -1,4 +1,6 @@
 ﻿using Library.OpenApi.Annotations;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -422,6 +424,7 @@ namespace Library.Models
 
         /// <summary>
         /// 当前页码
+        /// <para>默认值 1</para>
         /// <para>值为-1时表示不分页</para>
         /// </summary>
         [OpenApiSchema(OpenApiSchemaType.integer, OpenApiSchemaFormat.integer_int32, 1)]
@@ -429,26 +432,30 @@ namespace Library.Models
 
         /// <summary>
         /// 每页数据量
+        /// <para>默认值 50</para>
         /// </summary>
         [OpenApiSchema(OpenApiSchemaType.integer, OpenApiSchemaFormat.integer_int32, 50)]
         public int PageRows { get => _pageRows; set => _pageRows = value; }
 
         /// <summary>
         /// 排序列
+        /// <para>默认值 Id</para>
         /// </summary>
         [OpenApiSchema(OpenApiSchemaType.@string, Value = "Id")]
         public string SortField { get => _sortField; set => _sortField = value; }
 
         /// <summary>
         /// 排序类型
+        /// <para>默认值 desc</para>
         /// </summary>
-        [OpenApiSchema(OpenApiSchemaType.@enum, Value = SortType.desc)]
+        [OpenApiSchema(OpenApiSchemaType.@enum, OpenApiSchemaFormat.enum_description, Value = SortType.desc)]
+        [JsonConverter(typeof(StringEnumConverter))]
         public SortType SortType { get => _sortType; set => _sortType = value; }
 
         /// <summary>
         /// 高级排序
         /// </summary>
-        [OpenApiSchema(OpenApiSchemaType.@string)]
+        [OpenApiSchema(OpenApiSchemaType.model)]
         public List<PaginationAdvancedSort> AdvancedSort { get => _advancedSort; set => _advancedSort = value; }
 
         /// <summary>
@@ -459,8 +466,10 @@ namespace Library.Models
 
         /// <summary>
         /// 架构
+        /// <para>默认值 defaul</para>
         /// </summary>
-        [OpenApiSchema(OpenApiSchemaType.@enum, null, Schema.defaul)]
+        [OpenApiSchema(OpenApiSchemaType.@enum, OpenApiSchemaFormat.enum_description, Schema.defaul)]
+        [JsonConverter(typeof(StringEnumConverter))]
         public Schema Schema { get => _schema; set => _schema = value; }
 
         /// <summary>
@@ -734,14 +743,16 @@ namespace Library.Models
 
         /// <summary>
         /// 比较类型
+        /// <para>默认值 eq</para>
         /// </summary>
-        [OpenApiSchema(OpenApiSchemaType.@enum)]
-        public FilterCompare Compare { get; set; }
+        [OpenApiSchema(OpenApiSchemaType.@enum, OpenApiSchemaFormat.enum_description, FilterCompare.eq)]
+        [JsonConverter(typeof(StringEnumConverter))]
+        public FilterCompare Compare { get; set; } = FilterCompare.eq;
 
         /// <summary>
         /// 分组设置
         /// </summary>
-        [OpenApiSchema(OpenApiSchemaType.@model)]
+        [OpenApiSchema(OpenApiSchemaType.model)]
         public FilterGroupSetting Group { get; set; }
     }
 
@@ -754,16 +765,20 @@ namespace Library.Models
     {
         /// <summary>
         /// 分组标识
+        /// <para>默认值 keep</para>
         /// <para>用于标识分组的开始和结束</para>
         /// </summary>
-        [OpenApiSchema(OpenApiSchemaType.@string)]
-        public FilterGroupFlag Flag { get; set; }
+        [OpenApiSchema(OpenApiSchemaType.@enum, OpenApiSchemaFormat.enum_description, FilterGroupFlag.keep)]
+        [JsonConverter(typeof(StringEnumConverter))]
+        public FilterGroupFlag Flag { get; set; } = FilterGroupFlag.keep;
 
         /// <summary>
         /// 组内关系
+        /// <para>默认值 and</para>
         /// </summary>
-        [OpenApiSchema(OpenApiSchemaType.@enum)]
-        public FilterGroupRelation Relation { get; set; }
+        [OpenApiSchema(OpenApiSchemaType.@enum, OpenApiSchemaFormat.enum_description, FilterGroupRelation.and)]
+        [JsonConverter(typeof(StringEnumConverter))]
+        public FilterGroupRelation Relation { get; set; } = FilterGroupRelation.and;
     }
 
     /// <summary>
@@ -781,13 +796,25 @@ namespace Library.Models
 
         /// <summary>
         /// 类型
+        /// <para>默认值 desc</para>
         /// </summary>
-        [OpenApiSchema(OpenApiSchemaType.@enum)]
-        public SortType Type { get; set; }
+        [OpenApiSchema(OpenApiSchemaType.@enum, OpenApiSchemaFormat.enum_description, SortType.desc)]
+        [JsonConverter(typeof(StringEnumConverter))]
+        public SortType Type { get; set; } = SortType.desc;
     }
 
     /// <summary>
     /// 筛选条件比较类型
+    /// <para>in / 0 (包含)</para>
+    /// <para>bin / 1 (被包含)</para>
+    /// <para>eq / 2 (相等)</para>
+    /// <para>ne / 3 (不相等)</para>
+    /// <para>le / 4 (小于等于)</para>
+    /// <para>lt / 5 (小于)</para>
+    /// <para>ge / 6 (大于等于)</para>
+    /// <para>gt / 7 (大于)</para>
+    /// <para>sin / 8 (在集合中 <para>,号分隔</para><para>值不是数字的情况下需要用单引号将值括起来</para><para>完整示例:(1, 2, 3)、('A', 'B', 'C')</para>)</para>
+    /// <para>nsin / 9 (不在集合中 <para>,号分隔</para><para>值不是数字的情况下需要用单引号将值括起来</para><para>完整示例:(1, 2, 3)、('A', 'B', 'C')</para>)</para>
     /// </summary>
     public enum FilterCompare
     {
@@ -837,7 +864,7 @@ namespace Library.Models
         /// <para>值不是数字的情况下需要用单引号将值括起来</para>
         /// <para>完整示例:(1, 2, 3)、('A', 'B', 'C')</para>
         /// </summary>
-        [Description("在集合中\r\n,号分隔\r\n值不是数字的情况下需要用单引号将值括起来\r\n完整示例:(1, 2, 3)、('A', 'B', 'C')")]
+        [Description("在集合中")]
         sin,
         /// <summary>
         /// 不在集合中
@@ -845,12 +872,15 @@ namespace Library.Models
         /// <para>值不是数字的情况下需要用单引号将值括起来</para>
         /// <para>完整示例:(1, 2, 3)、('A', 'B', 'C')</para>
         /// </summary>
-        [Description("不在集合中\r\n,号分隔\r\n值不是数字的情况下需要用单引号将值括起来\r\n完整示例:(1, 2, 3)、('A', 'B', 'C')")]
+        [Description("不在集合中")]
         nsin
     }
 
     /// <summary>
     /// 筛选条件分组标识
+    /// <para>start / 0 (开始)</para>
+    /// <para>keep / 1 (还在分组内)</para>
+    /// <para>end / 2 (结束)</para>
     /// </summary>
     public enum FilterGroupFlag
     {
@@ -873,6 +903,8 @@ namespace Library.Models
 
     /// <summary>
     /// 筛选条件分组关系类型
+    /// <para>and / 0 (并且)</para>
+    /// <para>or / 1 (或)</para>
     /// </summary>
     public enum FilterGroupRelation
     {
@@ -890,6 +922,8 @@ namespace Library.Models
 
     /// <summary>
     /// 排序类型
+    /// <para>asc / 0 (正序)</para>
+    /// <para>desc / 1 (倒序)</para>
     /// </summary>
     public enum SortType
     {
@@ -899,14 +933,21 @@ namespace Library.Models
         [Description("正序")]
         asc,
         /// <summary>
-        /// 倒数
+        /// 倒序
         /// </summary>
-        [Description("倒数")]
+        [Description("倒序")]
         desc
     }
 
     /// <summary>
     /// 架构
+    /// <para>defaul / 0 (默认)</para>
+    /// <para>layui / 1 (layui <para>https://www.layui.com/doc/modules/table.html#response</para>)</para>
+    /// <para>jqGrid / 2 (jqGrid <para>https://blog.mn886.net/jqGrid/api/jsondata/index.jsp</para>)</para>
+    /// <para>easyui / 3 (easyui <para>http://www.jeasyui.net/plugins/183.html</para>)</para>
+    /// <para>bootstrapTable / 4 (bootstrapTable <para>https://bootstrap-table.com/docs/api/table-options/</para>)</para>
+    /// <para>antdVue / 5 (Ant Design + Vue <para>https://www.antdv.com/components/list-cn/#api</para>)</para>
+    /// <para>elementVue / 6 (element + Vue)</para>
     /// </summary>
     public enum Schema
     {
@@ -919,31 +960,31 @@ namespace Library.Models
         /// layui
         /// <para>https://www.layui.com/doc/modules/table.html#response</para>
         /// </summary>
-        [Description("layui\r\nhttps://www.layui.com/doc/modules/table.html#response")]
+        [Description("layui")]
         layui,
         /// <summary>
         /// jqGrid
         /// <para>https://blog.mn886.net/jqGrid/api/jsondata/index.jsp</para>
         /// </summary>
-        [Description("jqGrid\r\nhttps://blog.mn886.net/jqGrid/api/jsondata/index.jsp")]
+        [Description("jqGrid")]
         jqGrid,
         /// <summary>
         /// easyui
         /// <para>http://www.jeasyui.net/plugins/183.html</para>
         /// </summary>
-        [Description("easyui\r\nhttp://www.jeasyui.net/plugins/183.html")]
+        [Description("easyui")]
         easyui,
         /// <summary>
         /// bootstrapTable
         /// <para>https://bootstrap-table.com/docs/api/table-options/</para>
         /// </summary>
-        [Description("bootstrapTable\r\nhttps://bootstrap-table.com/docs/api/table-options/")]
+        [Description("bootstrapTable")]
         bootstrapTable,
         /// <summary>
         /// Ant Design + Vue
         /// <para>https://www.antdv.com/components/list-cn/#api</para>
         /// </summary>
-        [Description("Ant Design + Vue\r\nhttps://www.antdv.com/components/list-cn/#api")]
+        [Description("Ant Design + Vue")]
         antdVue,
         /// <summary>
         /// element + Vue

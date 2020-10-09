@@ -954,22 +954,26 @@
         <member name="P:Library.Models.Pagination.PageIndex">
             <summary>
             当前页码
+            <para>默认值 1</para>
             <para>值为-1时表示不分页</para>
             </summary>
         </member>
         <member name="P:Library.Models.Pagination.PageRows">
             <summary>
             每页数据量
+            <para>默认值 50</para>
             </summary>
         </member>
         <member name="P:Library.Models.Pagination.SortField">
             <summary>
             排序列
+            <para>默认值 Id</para>
             </summary>
         </member>
         <member name="P:Library.Models.Pagination.SortType">
             <summary>
             排序类型
+            <para>默认值 desc</para>
             </summary>
         </member>
         <member name="P:Library.Models.Pagination.AdvancedSort">
@@ -985,6 +989,7 @@
         <member name="P:Library.Models.Pagination.Schema">
             <summary>
             架构
+            <para>默认值 defaul</para>
             </summary>
         </member>
         <member name="P:Library.Models.Pagination.RecordCount">
@@ -1161,6 +1166,7 @@
         <member name="P:Library.Models.PaginationFilter.Compare">
             <summary>
             比较类型
+            <para>默认值 eq</para>
             </summary>
         </member>
         <member name="P:Library.Models.PaginationFilter.Group">
@@ -1176,12 +1182,14 @@
         <member name="P:Library.Models.FilterGroupSetting.Flag">
             <summary>
             分组标识
+            <para>默认值 keep</para>
             <para>用于标识分组的开始和结束</para>
             </summary>
         </member>
         <member name="P:Library.Models.FilterGroupSetting.Relation">
             <summary>
             组内关系
+            <para>默认值 and</para>
             </summary>
         </member>
         <member name="T:Library.Models.PaginationAdvancedSort">
@@ -1197,11 +1205,22 @@
         <member name="P:Library.Models.PaginationAdvancedSort.Type">
             <summary>
             类型
+            <para>默认值 desc</para>
             </summary>
         </member>
         <member name="T:Library.Models.FilterCompare">
             <summary>
             筛选条件比较类型
+            <para>in / 0 (包含)</para>
+            <para>bin / 1 (被包含)</para>
+            <para>eq / 2 (相等)</para>
+            <para>ne / 3 (不相等)</para>
+            <para>le / 4 (小于等于)</para>
+            <para>lt / 5 (小于)</para>
+            <para>ge / 6 (大于等于)</para>
+            <para>gt / 7 (大于)</para>
+            <para>sin / 8 (在集合中 <para>,号分隔</para><para>值不是数字的情况下需要用单引号将值括起来</para><para>完整示例:(1, 2, 3)、('A', 'B', 'C')</para>)</para>
+            <para>nsin / 9 (不在集合中 <para>,号分隔</para><para>值不是数字的情况下需要用单引号将值括起来</para><para>完整示例:(1, 2, 3)、('A', 'B', 'C')</para>)</para>
             </summary>
         </member>
         <member name="F:Library.Models.FilterCompare.in">
@@ -1263,6 +1282,9 @@
         <member name="T:Library.Models.FilterGroupFlag">
             <summary>
             筛选条件分组标识
+            <para>start / 0 (开始)</para>
+            <para>keep / 1 (还在分组内)</para>
+            <para>end / 2 (结束)</para>
             </summary>
         </member>
         <member name="F:Library.Models.FilterGroupFlag.start">
@@ -1283,6 +1305,8 @@
         <member name="T:Library.Models.FilterGroupRelation">
             <summary>
             筛选条件分组关系类型
+            <para>and / 0 (并且)</para>
+            <para>or / 1 (或)</para>
             </summary>
         </member>
         <member name="F:Library.Models.FilterGroupRelation.and">
@@ -1298,6 +1322,8 @@
         <member name="T:Library.Models.SortType">
             <summary>
             排序类型
+            <para>asc / 0 (正序)</para>
+            <para>desc / 1 (倒序)</para>
             </summary>
         </member>
         <member name="F:Library.Models.SortType.asc">
@@ -1307,12 +1333,19 @@
         </member>
         <member name="F:Library.Models.SortType.desc">
             <summary>
-            倒数
+            倒序
             </summary>
         </member>
         <member name="T:Library.Models.Schema">
             <summary>
             架构
+            <para>defaul / 0 (默认)</para>
+            <para>layui / 1 (layui <para>https://www.layui.com/doc/modules/table.html#response</para>)</para>
+            <para>jqGrid / 2 (jqGrid <para>https://blog.mn886.net/jqGrid/api/jsondata/index.jsp</para>)</para>
+            <para>easyui / 3 (easyui <para>http://www.jeasyui.net/plugins/183.html</para>)</para>
+            <para>bootstrapTable / 4 (bootstrapTable <para>https://bootstrap-table.com/docs/api/table-options/</para>)</para>
+            <para>antdVue / 5 (Ant Design + Vue <para>https://www.antdv.com/components/list-cn/#api</para>)</para>
+            <para>elementVue / 6 (element + Vue)</para>
             </summary>
         </member>
         <member name="F:Library.Models.Schema.defaul">

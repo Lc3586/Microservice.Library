@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Label="Globals">
+    <Platforms>AnyCPU;x64</Platforms>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>\Integrate_Business.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <DocumentationFile>\Integrate_Business.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>\Integrate_Business.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <DocumentationFile>\Integrate_Business.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Integrate_Business.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Library\DataAccess\Library.DataAccess.csproj" />
+    <ProjectReference Include="..\..\Library\File\Library.File.csproj" />
+    <ProjectReference Include="..\..\Library\Html\Library.Html.csproj" />
+    <ProjectReference Include="..\..\Library\Http\Library.Http.csproj" />
+    <ProjectReference Include="..\..\Library\IdTool\Library.IdTool.csproj" />
+    <ProjectReference Include="..\..\Library\LinqTool\Library.LinqTool.csproj" />
+    <ProjectReference Include="..\..\Library\Log\Library.Log.csproj" />
+    <ProjectReference Include="..\..\Library\SelectOption\Library.SelectOption.csproj" />
+    <ProjectReference Include="..\..\Library\Tree\Library.Tree.csproj" />
+    <ProjectReference Include="..\..\Library\WebApp\Library.WebApp.csproj" />
+    <ProjectReference Include="..\Integrate_Model\Integrate_Model.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Business\System\" />
+  </ItemGroup>
+
+</Project>
