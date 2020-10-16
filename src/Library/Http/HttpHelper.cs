@@ -225,7 +225,10 @@ namespace Library.Http
             request.ContentType = contentType;
             headers?.ForEach(aHeader =>
             {
-                request.Headers.Add(aHeader.Key, aHeader.Value);
+                if (aHeader.Key == "Content-Type")
+                    request.ContentType = aHeader.Value;
+                else
+                    request.Headers.Add(aHeader.Key, aHeader.Value);
             });
 
             //HTTPS证书
