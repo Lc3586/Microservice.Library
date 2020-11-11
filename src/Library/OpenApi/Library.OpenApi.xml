@@ -110,6 +110,12 @@
             包含注释
             </summary>
         </member>
+        <member name="F:Library.OpenApi.Annotations.OpenApiSchemaFormat.model_once">
+            <summary>
+            只解析一次
+            <para>防止无限递归</para>
+            </summary>
+        </member>
         <member name="T:Library.OpenApi.Annotations.OpenApiSchemaStrictModeAttribute">
             <summary>
             接口架构严格模式
@@ -337,18 +343,20 @@
             <param name="befor">处理成员之前(返回false,跳过该成员)</param>
             <param name="innerModel">处理内部模型</param>
         </member>
-        <member name="M:Library.OpenApi.Extention.OpenApiExtention.GetOrNullFor(System.Type)">
+        <member name="M:Library.OpenApi.Extention.OpenApiExtention.GetOrNullFor(System.Type,System.Boolean)">
             <summary>
             获取或创建接口初始类
             </summary>
             <param name="type"></param>
+            <param name="innerModel">处理内部模型</param>
             <returns></returns>
         </member>
-        <member name="M:Library.OpenApi.Extention.OpenApiExtention.CreateFor(System.Reflection.PropertyInfo)">
+        <member name="M:Library.OpenApi.Extention.OpenApiExtention.CreateFor(System.Reflection.PropertyInfo,System.Boolean)">
             <summary>
             创建接口初始类
             </summary>
             <param name="property"></param>
+            <param name="innerModel">处理内部模型</param>
             <returns></returns>
         </member>
         <member name="M:Library.OpenApi.Extention.OpenApiExtention.GetEnumOpenApiAny(System.Type,System.Object)">

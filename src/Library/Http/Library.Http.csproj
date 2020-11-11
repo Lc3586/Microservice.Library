@@ -44,7 +44,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Container\Library.Container.csproj" />
     <ProjectReference Include="..\Extension\Library.Extension.csproj" />
-    <ProjectReference Include="..\JWT\Library.JWT.csproj" />
   </ItemGroup>
 
 </Project>

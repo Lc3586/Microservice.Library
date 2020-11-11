@@ -255,6 +255,37 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Library.Http.JWTHelper.GetToken(System.String,System.String)">
+            <summary>
+            生成Token
+            </summary>
+            <param name="payloadJsonStr">数据JSON字符串</param>
+            <param name="secret">密钥</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Http.JWTHelper.GetPayload(System.String)">
+            <summary>
+            获取Token中的数据
+            </summary>
+            <param name="token">token</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Http.JWTHelper.GetPayload``1(System.String)">
+            <summary>
+            获取Token中的数据
+            </summary>
+            <typeparam name="T">泛型</typeparam>
+            <param name="token">token</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Http.JWTHelper.CheckToken(System.String,System.String)">
+            <summary>
+            校验Token
+            </summary>
+            <param name="token">token</param>
+            <param name="secret">密钥</param>
+            <returns></returns>
+        </member>
         <member name="M:Library.Http.PathHelper.GetUrl(System.String)">
             <summary>
             获取Url

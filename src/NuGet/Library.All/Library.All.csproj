@@ -62,7 +62,6 @@
     <ProjectReference Include="..\..\Library\Http\Library.Http.csproj" />
     <ProjectReference Include="..\..\Library\IdTool\Library.IdTool.csproj" />
     <ProjectReference Include="..\..\Library\Json\Library.Json.csproj" />
-    <ProjectReference Include="..\..\Library\JWT\Library.JWT.csproj" />
     <ProjectReference Include="..\..\Library\LibraryModels\Library.Models.csproj" />
     <ProjectReference Include="..\..\Library\LinqTool\Library.LinqTool.csproj" />
     <ProjectReference Include="..\..\Library\Log\Library.Log.csproj" />

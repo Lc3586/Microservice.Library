@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library.JWT
+namespace Library.Http
 {
     public static class JWTHelper
     {

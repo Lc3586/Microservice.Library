@@ -73,5 +73,11 @@ namespace Library.OpenApi.Annotations
         /// 包含注释
         /// </summary>
         public const string enum_description = "description";
+
+        /// <summary>
+        /// 只解析一次
+        /// <para>防止无限递归</para>
+        /// </summary>
+        public const string model_once = "once";
     }
 }

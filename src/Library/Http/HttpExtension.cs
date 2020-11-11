@@ -1,5 +1,4 @@
-﻿using Library.JWT;
-using Library.Models;
+﻿using Library.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc.Filters;
