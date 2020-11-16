@@ -304,7 +304,7 @@ namespace Library.OpenApi.Extention
                             continue;
 
                 if (innerModel && schemaAttribute?.Type == OpenApiSchemaType.model)
-                    prop.PropertyType.FilterModel(after, befor, innerModel);
+                    prop.PropertyType.FilterModel(after, befor, schemaAttribute?.Format != OpenApiSchemaFormat.model_once);
 
                 after.Invoke(type, prop);
             }

@@ -151,7 +151,7 @@ namespace Library.Models
 
                     if (!skip && i != _filter.Count - 1)
                     {
-                        string relation = filter.Group.Relation.ToString();
+                        string relation = filter.Group?.Relation.ToString();
                         switch (relation)
                         {
                             case "or":
