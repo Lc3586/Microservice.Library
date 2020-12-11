@@ -910,6 +910,11 @@
             筛选条件
             </summary>
         </member>
+        <member name="P:Library.Models.Pagination._dynamicFilterInfo">
+            <summary>
+            筛选条件
+            </summary>
+        </member>
         <member name="M:Library.Models.Pagination.FilterToSql(System.String@,System.String)">
             <summary>
             筛选条件转sql语句
@@ -982,6 +987,11 @@
             </summary>
         </member>
         <member name="P:Library.Models.Pagination.Filter">
+            <summary>
+            筛选条件（已弃用）
+            </summary>
+        </member>
+        <member name="P:Library.Models.Pagination.DynamicFilterInfo">
             <summary>
             筛选条件
             </summary>
@@ -1171,6 +1181,44 @@
         </member>
         <member name="P:Library.Models.PaginationFilter.Group">
             <summary>
+            分组设置（已弃用）
+            </summary>
+        </member>
+        <member name="P:Library.Models.PaginationFilter.DynamicFilterInfo">
+            <summary>
+            分组设置
+            </summary>
+        </member>
+        <member name="T:Library.Models.PaginationDynamicFilterInfo">
+            <summary>
+            分页筛选条件
+            </summary>
+        </member>
+        <member name="P:Library.Models.PaginationDynamicFilterInfo.Field">
+            <summary>
+            要比较的字段
+            <para>注意区分大小写</para>
+            </summary>
+        </member>
+        <member name="P:Library.Models.PaginationDynamicFilterInfo.Value">
+            <summary>
+            用于比较的值
+            </summary>
+        </member>
+        <member name="P:Library.Models.PaginationDynamicFilterInfo.Compare">
+            <summary>
+            比较类型
+            <para>默认值 eq</para>
+            </summary>
+        </member>
+        <member name="P:Library.Models.PaginationDynamicFilterInfo.Relation">
+            <summary>
+            组内关系
+            <para>默认值 and</para>
+            </summary>
+        </member>
+        <member name="P:Library.Models.PaginationDynamicFilterInfo.DynamicFilterInfo">
+            <summary>
             分组设置
             </summary>
         </member>
@@ -1212,25 +1260,63 @@
             <summary>
             筛选条件比较类型
             <para>in / 0 (包含)</para>
-            <para>bin / 1 (被包含)</para>
-            <para>eq / 2 (相等)</para>
-            <para>ne / 3 (不相等)</para>
-            <para>le / 4 (小于等于)</para>
-            <para>lt / 5 (小于)</para>
-            <para>ge / 6 (大于等于)</para>
-            <para>gt / 7 (大于)</para>
-            <para>sin / 8 (在集合中 <para>,号分隔</para><para>值不是数字的情况下需要用单引号将值括起来</para><para>完整示例:(1, 2, 3)、('A', 'B', 'C')</para>)</para>
-            <para>nsin / 9 (不在集合中 <para>,号分隔</para><para>值不是数字的情况下需要用单引号将值括起来</para><para>完整示例:(1, 2, 3)、('A', 'B', 'C')</para>)</para>
+            <para>inStart / 1 (前段包含)</para>
+            <para>inEnd / 2 (后段包含)</para>
+            <para>includedIn / 3 (包含于)</para>
+            <para>notIn / 4 (不包含)</para>
+            <para>notInStart / 5 (前段不包含)</para>
+            <para>notInEnd / 6 (后段不包含)</para>
+            <para>notIncludedIn / 7 (不包含于)</para>
+            <para>eq / 8 (相等)</para>
+            <para>notEq / 9 (不相等)</para>
+            <para>le / 10 (小于等于)</para>
+            <para>lt / 11 (小于)</para>
+            <para>ge / 12 (大于等于)</para>
+            <para>gt / 13 (大于)</para>
+            <para>inSet / 14 (在集合中 <para>,号分隔</para><para>示例:1, 2, 3</para>)</para>
+            <para>notInSet / 15 (不在集合中 <para>,号分隔</para><para>示例:1, 2, 3</para>)</para>
+            <para>range / 16 (范围)</para>
+            <para>dateRange / 17 (日期范围)</para>
             </summary>
         </member>
         <member name="F:Library.Models.FilterCompare.in">
             <summary>
-            包含
+            包含（'%Value%'）
             </summary>
         </member>
-        <member name="F:Library.Models.FilterCompare.bin">
+        <member name="F:Library.Models.FilterCompare.inStart">
             <summary>
-            被包含
+            前段包含（'Value%'）
+            </summary>
+        </member>
+        <member name="F:Library.Models.FilterCompare.inEnd">
+            <summary>
+            后段包含（'%Value'）
+            </summary>
+        </member>
+        <member name="F:Library.Models.FilterCompare.includedIn">
+            <summary>
+            包含于
+            </summary>
+        </member>
+        <member name="F:Library.Models.FilterCompare.notIn">
+            <summary>
+            不包含（'%Value%'）
+            </summary>
+        </member>
+        <member name="F:Library.Models.FilterCompare.notInStart">
+            <summary>
+            前段不包含（'Value%'）
+            </summary>
+        </member>
+        <member name="F:Library.Models.FilterCompare.notInEnd">
+            <summary>
+            后段不包含（'%Value'）
+            </summary>
+        </member>
+        <member name="F:Library.Models.FilterCompare.notIncludedIn">
+            <summary>
+            不包含于
             </summary>
         </member>
         <member name="F:Library.Models.FilterCompare.eq">
@@ -1238,7 +1324,7 @@
             相等
             </summary>
         </member>
-        <member name="F:Library.Models.FilterCompare.ne">
+        <member name="F:Library.Models.FilterCompare.notEq">
             <summary>
             不相等
             </summary>
@@ -1263,20 +1349,37 @@
             大于
             </summary>
         </member>
-        <member name="F:Library.Models.FilterCompare.sin">
+        <member name="F:Library.Models.FilterCompare.inSet">
             <summary>
             在集合中
             <para>,号分隔</para>
-            <para>值不是数字的情况下需要用单引号将值括起来</para>
-            <para>完整示例:(1, 2, 3)、('A', 'B', 'C')</para>
+            <para>示例:1, 2, 3</para>
             </summary>
         </member>
-        <member name="F:Library.Models.FilterCompare.nsin">
+        <member name="F:Library.Models.FilterCompare.notInSet">
             <summary>
             不在集合中
             <para>,号分隔</para>
-            <para>值不是数字的情况下需要用单引号将值括起来</para>
-            <para>完整示例:(1, 2, 3)、('A', 'B', 'C')</para>
+            <para>示例:1, 2, 3</para>
+            </summary>
+        </member>
+        <member name="F:Library.Models.FilterCompare.range">
+            <summary>
+            范围
+            <para>Value1, Value2</para>
+            </summary>
+        </member>
+        <member name="F:Library.Models.FilterCompare.dateRange">
+            <summary>
+            日期范围
+            <para>date1, date2</para>
+            <para>这是专门为日期范围查询定制的操作符，它会处理 date2 + 1，比如：</para>
+            <para>当 date2 选择的是 2020-05-30，那查询的时候是 小于 2020-05-31</para>
+            <para>当 date2 选择的是 2020-05，那查询的时候是 小于 2020-06</para>
+            <para>当 date2 选择的是 2020，那查询的时候是 小于 2021</para>
+            <para>当 date2 选择的是 2020-05-30 12，那查询的时候是 小于 2020-05-30 13</para>
+            <para>当 date2 选择的是 2020-05-30 12:30，那查询的时候是 小于 2020-05-30 12:31</para>
+            <para>并且 date2 只支持以上 5 种格式 (date1 没有限制)</para>
             </summary>
         </member>
         <member name="T:Library.Models.FilterGroupFlag">

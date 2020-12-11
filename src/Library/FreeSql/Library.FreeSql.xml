@@ -384,6 +384,16 @@
             <param name="parameters">参数</param>
             <returns></returns>
         </member>
+        <member name="T:Library.FreeSql.Extention.CacheExtention">
+            <summary>
+            缓存
+            </summary>
+        </member>
+        <member name="F:Library.FreeSql.Extention.CacheExtention.TableInfoDic">
+            <summary>
+            模型对应的表字段信息
+            </summary>
+        </member>
         <member name="M:Library.FreeSql.Extention.EntityFactory.GetEntitys(System.String)">
             <summary>
             获取实体集合
@@ -396,8 +406,30 @@
             运行事务
             </summary>
             <param name="orm"></param>
-            <param name="handler">事务体</param>
+            <param name="handler"></param>
             <param name="isolationLevel">事务隔离级别</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.FreeSql.Extention.OrmExtension.GetTableInfo``1(IFreeSql)">
+            <summary>
+            获取实体表信息
+            </summary>
+            <typeparam name="TSource"></typeparam>
+            <param name="orm"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Library.FreeSql.Extention.SelectExtension">
+            <summary>
+            查询扩展功能
+            </summary>
+        </member>
+        <member name="M:Library.FreeSql.Extention.SelectExtension.Select``2(System.Func{``0,``1})">
+            <summary>
+            指定返回数据
+            </summary>
+            <typeparam name="TEntity">实体类型</typeparam>
+            <typeparam name="TReturn">返回类型</typeparam>
+            <param name="func">处理并返回数据</param>
             <returns></returns>
         </member>
         <member name="M:Library.FreeSql.Extention.SelectExtension.Select``1(System.Func{``0,``0})">
@@ -458,6 +490,40 @@
             <typeparam name="TReturn">实体类型</typeparam>
             <param name="source"></param>
             <param name="pagination">分页参数</param>
+            <param name="alias">表别名</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.FreeSql.Extention.SelectExtension.GetPagination``2(FreeSql.ISelectGrouping{``0,``1},Library.Models.Pagination)">
+            <summary>
+            获取分页后的数据
+            </summary>
+            <typeparam name="TKey"></typeparam>
+            <typeparam name="TReturn">实体类型</typeparam>
+            <param name="source"></param>
+            <param name="pagination">分页参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.FreeSql.Extention.SelectExtension.ToList``1(FreeSql.ISelect{``0},IFreeSql,Library.Models.Pagination,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            返回动态类型的数据
+            </summary>
+            <typeparam name="TSource">实体类型</typeparam>
+            <param name="source"></param>
+            <param name="orm"></param>
+            <param name="pagination">分页参数</param>
+            <param name="fields">指定字段</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.FreeSql.Extention.SelectExtension.ToList``2(FreeSql.ISelect{``0},IFreeSql,Library.Models.Pagination,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            返回动态类型的数据
+            </summary>
+            <typeparam name="TSource">实体类型</typeparam>
+            <typeparam name="TDto">业务模型类型</typeparam>
+            <param name="source"></param>
+            <param name="orm"></param>
+            <param name="pagination">分页参数</param>
+            <param name="fields">指定字段</param>
             <returns></returns>
         </member>
         <member name="M:Library.FreeSql.Extention.SelectExtension.ToDynamic``2(FreeSql.ISelect{``0},IFreeSql,Library.Models.Pagination,System.Collections.Generic.IEnumerable{System.String})">
@@ -466,8 +532,9 @@
             </summary>
             <typeparam name="TSource">实体类型</typeparam>
             <typeparam name="TDto">业务模型类型</typeparam>
+            <param name="source"></param>
             <param name="orm"></param>
-            <param name="pagination">分页菜蔬</param>
+            <param name="pagination">分页参数</param>
             <param name="fields">指定字段</param>
             <returns></returns>
         </member>
@@ -476,9 +543,11 @@
             返回动态类型的数据
             </summary>
             <typeparam name="TSource">实体类型</typeparam>
+            <typeparam name="TJoin0"></typeparam>
             <typeparam name="TDto">业务模型类型</typeparam>
+            <param name="source"></param>
             <param name="orm"></param>
-            <param name="pagination">分页菜蔬</param>
+            <param name="pagination">分页参数</param>
             <param name="fields">指定字段</param>
             <returns></returns>
         </member>

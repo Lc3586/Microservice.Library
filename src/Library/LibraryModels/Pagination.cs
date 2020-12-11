@@ -71,6 +71,11 @@ namespace Library.Models
         private List<PaginationFilter> _filter { get; set; }
 
         /// <summary>
+        /// 筛选条件
+        /// </summary>
+        private List<PaginationDynamicFilterInfo> _dynamicFilterInfo { get; set; }
+
+        /// <summary>
         /// 筛选条件转sql语句
         /// </summary>
         /// <param name="sql">sql语句</param>
@@ -109,7 +114,7 @@ namespace Library.Models
                             }
                             predicate += $"{field} LIKE '{value}'";
                             break;
-                        case FilterCompare.bin:
+                        case FilterCompare.includedIn:
                             if (string.IsNullOrEmpty(value))
                             {
                                 skip = true;
@@ -120,7 +125,7 @@ namespace Library.Models
                         case FilterCompare.eq:
                             predicate += $"{field} = '{value}'";
                             break;
-                        case FilterCompare.ne:
+                        case FilterCompare.notEq:
                             predicate += $"{field} != '{value}'";
                             break;
                         case FilterCompare.le:
@@ -135,10 +140,10 @@ namespace Library.Models
                         case FilterCompare.gt:
                             predicate += $"{field} > '{value}'";
                             break;
-                        case FilterCompare.sin:
+                        case FilterCompare.inSet:
                             predicate += $"{field} IN ({value})";
                             break;
-                        case FilterCompare.nsin:
+                        case FilterCompare.notInSet:
                             predicate += $"{field} NOT IN ({value})";
                             break;
                         default:
@@ -269,7 +274,7 @@ namespace Library.Models
                             predicate += $"{field}.Contains(@{j})";
                             args.Add(value);
                             break;
-                        case FilterCompare.bin:
+                        case FilterCompare.includedIn:
                             if (string.IsNullOrEmpty(value.ToString()))
                             {
                                 skip = true;
@@ -282,7 +287,7 @@ namespace Library.Models
                             predicate += $"{field} == @{j}";
                             args.Add(value);
                             break;
-                        case FilterCompare.ne:
+                        case FilterCompare.notEq:
                             predicate += $"!{field}.Equals(@{j})";
                             args.Add(value);
                             break;
@@ -302,8 +307,8 @@ namespace Library.Models
                             predicate += $"{field} > @{j}";
                             args.Add(value);
                             break;
-                        case FilterCompare.sin:
-                        case FilterCompare.nsin:
+                        case FilterCompare.inSet:
+                        case FilterCompare.notInSet:
                         default:
                             skip = true;
                             break;
@@ -459,10 +464,17 @@ namespace Library.Models
         public List<PaginationAdvancedSort> AdvancedSort { get => _advancedSort; set => _advancedSort = value; }
 
         /// <summary>
+        /// 筛选条件（已弃用）
+        /// </summary>
+        [Obsolete("请使用DynamicFilterInfo")]
+        [OpenApiSchema(OpenApiSchemaType.model)]
+        public List<PaginationFilter> Filter { get => _filter; set => _filter = value; }
+
+        /// <summary>
         /// 筛选条件
         /// </summary>
         [OpenApiSchema(OpenApiSchemaType.model)]
-        public List<PaginationFilter> Filter { get => _filter; set => _filter = value; }
+        public List<PaginationDynamicFilterInfo> DynamicFilterInfo { get => _dynamicFilterInfo; set => _dynamicFilterInfo = value; }
 
         /// <summary>
         /// 架构
@@ -750,10 +762,59 @@ namespace Library.Models
         public FilterCompare Compare { get; set; } = FilterCompare.eq;
 
         /// <summary>
-        /// 分组设置
+        /// 分组设置（已弃用）
         /// </summary>
         [OpenApiSchema(OpenApiSchemaType.model)]
         public FilterGroupSetting Group { get; set; }
+
+        /// <summary>
+        /// 分组设置
+        /// </summary>
+        [OpenApiSchema(OpenApiSchemaType.model, OpenApiSchemaFormat.model_once)]
+        public List<PaginationFilter> DynamicFilterInfo { get; set; }
+    }
+
+    /// <summary>
+    /// 分页筛选条件
+    /// </summary>
+    [OpenApiSchemaStrictMode]
+    [OpenApiMainTag("PaginationDynamicFilterInfo")]
+    public class PaginationDynamicFilterInfo
+    {
+        /// <summary>
+        /// 要比较的字段
+        /// <para>注意区分大小写</para>
+        /// </summary>
+        [OpenApiSchema(OpenApiSchemaType.@string)]
+        public string Field { get; set; }
+
+        /// <summary>
+        /// 用于比较的值
+        /// </summary>
+        [OpenApiSchema(OpenApiSchemaType.@string)]
+        public object Value { get; set; }
+
+        /// <summary>
+        /// 比较类型
+        /// <para>默认值 eq</para>
+        /// </summary>
+        [OpenApiSchema(OpenApiSchemaType.@enum, OpenApiSchemaFormat.enum_description, FilterCompare.eq)]
+        [JsonConverter(typeof(StringEnumConverter))]
+        public FilterCompare Compare { get; set; } = FilterCompare.eq;
+
+        /// <summary>
+        /// 组内关系
+        /// <para>默认值 and</para>
+        /// </summary>
+        [OpenApiSchema(OpenApiSchemaType.@enum, OpenApiSchemaFormat.enum_description, FilterGroupRelation.and)]
+        [JsonConverter(typeof(StringEnumConverter))]
+        public FilterGroupRelation Relation { get; set; } = FilterGroupRelation.and;
+
+        /// <summary>
+        /// 分组设置
+        /// </summary>
+        [OpenApiSchema(OpenApiSchemaType.model, OpenApiSchemaFormat.model_once)]
+        public List<PaginationDynamicFilterInfo> DynamicFilterInfo { get; set; }
     }
 
     /// <summary>
@@ -806,28 +867,68 @@ namespace Library.Models
     /// <summary>
     /// 筛选条件比较类型
     /// <para>in / 0 (包含)</para>
-    /// <para>bin / 1 (被包含)</para>
-    /// <para>eq / 2 (相等)</para>
-    /// <para>ne / 3 (不相等)</para>
-    /// <para>le / 4 (小于等于)</para>
-    /// <para>lt / 5 (小于)</para>
-    /// <para>ge / 6 (大于等于)</para>
-    /// <para>gt / 7 (大于)</para>
-    /// <para>sin / 8 (在集合中 <para>,号分隔</para><para>值不是数字的情况下需要用单引号将值括起来</para><para>完整示例:(1, 2, 3)、('A', 'B', 'C')</para>)</para>
-    /// <para>nsin / 9 (不在集合中 <para>,号分隔</para><para>值不是数字的情况下需要用单引号将值括起来</para><para>完整示例:(1, 2, 3)、('A', 'B', 'C')</para>)</para>
+    /// <para>inStart / 1 (前段包含)</para>
+    /// <para>inEnd / 2 (后段包含)</para>
+    /// <para>includedIn / 3 (包含于)</para>
+    /// <para>notIn / 4 (不包含)</para>
+    /// <para>notInStart / 5 (前段不包含)</para>
+    /// <para>notInEnd / 6 (后段不包含)</para>
+    /// <para>notIncludedIn / 7 (不包含于)</para>
+    /// <para>eq / 8 (相等)</para>
+    /// <para>notEq / 9 (不相等)</para>
+    /// <para>le / 10 (小于等于)</para>
+    /// <para>lt / 11 (小于)</para>
+    /// <para>ge / 12 (大于等于)</para>
+    /// <para>gt / 13 (大于)</para>
+    /// <para>inSet / 14 (在集合中 <para>,号分隔</para><para>示例:1, 2, 3</para>)</para>
+    /// <para>notInSet / 15 (不在集合中 <para>,号分隔</para><para>示例:1, 2, 3</para>)</para>
+    /// <para>range / 16 (范围)</para>
+    /// <para>dateRange / 17 (日期范围)</para>
     /// </summary>
     public enum FilterCompare
     {
         /// <summary>
-        /// 包含
+        /// 包含（'%Value%'）
         /// </summary>
         [Description("包含")]
         @in,
         /// <summary>
-        /// 被包含
+        /// 前段包含（'Value%'）
         /// </summary>
-        [Description("被包含")]
-        bin,
+        [Description("前段包含")]
+        inStart,
+        /// <summary>
+        /// 后段包含（'%Value'）
+        /// </summary>
+        [Description("后段包含")]
+        inEnd,
+        /// <summary>
+        /// 包含于
+        /// </summary>
+        [Description("包含于")]
+        [Obsolete("由于Freesql不支持，此功能暂弃用")]
+        includedIn,
+        /// <summary>
+        /// 不包含（'%Value%'）
+        /// </summary>
+        [Description("不包含")]
+        notIn,
+        /// <summary>
+        /// 前段不包含（'Value%'）
+        /// </summary>
+        [Description("前段不包含")]
+        notInStart,
+        /// <summary>
+        /// 后段不包含（'%Value'）
+        /// </summary>
+        [Description("后段不包含")]
+        notInEnd,
+        /// <summary>
+        /// 不包含于
+        /// </summary>
+        [Description("不包含于")]
+        [Obsolete("由于Freesql不支持，此功能暂弃用")]
+        notIncludedIn,
         /// <summary>
         /// 相等
         /// </summary>
@@ -837,7 +938,7 @@ namespace Library.Models
         /// 不相等
         /// </summary>
         [Description("不相等")]
-        ne,
+        notEq,
         /// <summary>
         /// 小于等于
         /// </summary>
@@ -861,19 +962,36 @@ namespace Library.Models
         /// <summary>
         /// 在集合中
         /// <para>,号分隔</para>
-        /// <para>值不是数字的情况下需要用单引号将值括起来</para>
-        /// <para>完整示例:(1, 2, 3)、('A', 'B', 'C')</para>
+        /// <para>示例:1, 2, 3</para>
         /// </summary>
         [Description("在集合中")]
-        sin,
+        inSet,
         /// <summary>
         /// 不在集合中
         /// <para>,号分隔</para>
-        /// <para>值不是数字的情况下需要用单引号将值括起来</para>
-        /// <para>完整示例:(1, 2, 3)、('A', 'B', 'C')</para>
+        /// <para>示例:1, 2, 3</para>
         /// </summary>
         [Description("不在集合中")]
-        nsin
+        notInSet,
+        /// <summary>
+        /// 范围
+        /// <para>Value1, Value2</para>
+        /// </summary>
+        [Description("范围")]
+        range,
+        /// <summary>
+        /// 日期范围
+        /// <para>date1, date2</para>
+        /// <para>这是专门为日期范围查询定制的操作符，它会处理 date2 + 1，比如：</para>
+        /// <para>当 date2 选择的是 2020-05-30，那查询的时候是 小于 2020-05-31</para>
+        /// <para>当 date2 选择的是 2020-05，那查询的时候是 小于 2020-06</para>
+        /// <para>当 date2 选择的是 2020，那查询的时候是 小于 2021</para>
+        /// <para>当 date2 选择的是 2020-05-30 12，那查询的时候是 小于 2020-05-30 13</para>
+        /// <para>当 date2 选择的是 2020-05-30 12:30，那查询的时候是 小于 2020-05-30 12:31</para>
+        /// <para>并且 date2 只支持以上 5 种格式 (date1 没有限制)</para>
+        /// </summary>
+        [Description("日期范围")]
+        dateRange
     }
 
     /// <summary>
