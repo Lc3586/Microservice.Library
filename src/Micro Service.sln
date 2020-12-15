@@ -143,6 +143,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Integrate_Business", "Integ
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Integrate_Api", "Integrate_FreeSql\Integrate_Api\Integrate_Api.csproj", "{B4703F3D-6499-43E6-8463-6FE05C2090D4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NuGetServer", "NuGet\NuGetServer\NuGetServer.csproj", "{E21F3F3A-E290-4487-9169-A74DA82F8F7B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -655,6 +657,14 @@ Global
 		{B4703F3D-6499-43E6-8463-6FE05C2090D4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B4703F3D-6499-43E6-8463-6FE05C2090D4}.Release|x64.ActiveCfg = Release|x64
 		{B4703F3D-6499-43E6-8463-6FE05C2090D4}.Release|x64.Build.0 = Release|x64
+		{E21F3F3A-E290-4487-9169-A74DA82F8F7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E21F3F3A-E290-4487-9169-A74DA82F8F7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E21F3F3A-E290-4487-9169-A74DA82F8F7B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E21F3F3A-E290-4487-9169-A74DA82F8F7B}.Debug|x64.Build.0 = Debug|Any CPU
+		{E21F3F3A-E290-4487-9169-A74DA82F8F7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E21F3F3A-E290-4487-9169-A74DA82F8F7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E21F3F3A-E290-4487-9169-A74DA82F8F7B}.Release|x64.ActiveCfg = Release|Any CPU
+		{E21F3F3A-E290-4487-9169-A74DA82F8F7B}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -720,6 +730,7 @@ Global
 		{135E0862-EA01-4CD1-8559-6C4C4E76C645} = {3515B5D8-9DBA-4DD3-8C34-207E62CA81F7}
 		{637E0BD2-787E-44B6-9A5B-E5B1E64BBBF2} = {3515B5D8-9DBA-4DD3-8C34-207E62CA81F7}
 		{B4703F3D-6499-43E6-8463-6FE05C2090D4} = {3515B5D8-9DBA-4DD3-8C34-207E62CA81F7}
+		{E21F3F3A-E290-4487-9169-A74DA82F8F7B} = {4304907B-23CF-4E50-8A9C-A70FEEE1CC82}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6AE2931D-D34E-47E1-B261-FE37D79E56C0}
