@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -111,6 +112,130 @@ namespace Library.OpenApi.JsonSerialization
             {
                 ContractResolver = new JsonPropertyContractResolver<TOpenApiSchema>(exceptionProperties, ignoreProperties)
             });
+        }
+
+        /// <summary>
+        /// 将Json字符串反序列化成对象
+        /// </summary>
+        /// <param name="json">需要反序列化的Json字符串</param>
+        /// <param name="exceptionProperties">要例外输出的属性</param>
+        /// <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+        /// <returns></returns>
+        public static object ToObject<TOpenApiSchema>(this string json, params string[] exceptionProperties) where TOpenApiSchema : class
+        {
+            return json.ToObject<TOpenApiSchema>(new Dictionary<Type, List<string>>() { { typeof(TOpenApiSchema), exceptionProperties?.ToList() } }, null);
+        }
+
+        /// <summary>
+        /// 将Json字符串反序列化成对象
+        /// </summary>
+        /// <param name="json">需要反序列化的Json字符串</param>
+        /// <param name="exceptionProperties">要例外输出的属性</param>
+        /// <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+        /// <returns></returns>
+        public static TOpenApiSchema ToObjectASType<TOpenApiSchema>(this string json, params string[] exceptionProperties) where TOpenApiSchema : class
+        {
+            return json.ToObjectASType<TOpenApiSchema>(new Dictionary<Type, List<string>>() { { typeof(TOpenApiSchema), exceptionProperties?.ToList() } }, null);
+        }
+
+        /// <summary>
+        /// 将Json字符串反序列化成对象
+        /// </summary>
+        /// <param name="json">需要反序列化的Json字符串</param>
+        /// <param name="ignoreProperties">忽略的属性</param>
+        /// <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+        /// <returns></returns>
+        public static object ToObjectIgnore<TOpenApiSchema>(this string json, string[] ignoreProperties) where TOpenApiSchema : class
+        {
+            return json.ToObject<TOpenApiSchema>(null, new Dictionary<Type, List<string>>() { { typeof(TOpenApiSchema), ignoreProperties?.ToList() } });
+        }
+
+        /// <summary>
+        /// 将Json字符串反序列化成对象
+        /// </summary>
+        /// <param name="json">需要反序列化的Json字符串</param>
+        /// <param name="ignoreProperties">忽略的属性</param>
+        /// <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+        /// <returns></returns>
+        public static TOpenApiSchema ToObjectASTypeIgnore<TOpenApiSchema>(this string json, string[] ignoreProperties) where TOpenApiSchema : class
+        {
+            return json.ToObjectASType<TOpenApiSchema>(null, new Dictionary<Type, List<string>>() { { typeof(TOpenApiSchema), ignoreProperties?.ToList() } });
+        }
+
+        /// <summary>
+        /// 将Json字符串反序列化成对象
+        /// </summary>
+        /// <param name="json">需要反序列化的Json字符串</param>
+        /// <param name="exceptionProperties">要例外输出的属性</param>
+        /// <param name="ignoreProperties">忽略的属性</param>
+        /// <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+        /// <returns></returns>
+        public static TOpenApiSchema ToObjectASType<TOpenApiSchema>(this string json, string[] exceptionProperties, string[] ignoreProperties) where TOpenApiSchema : class
+        {
+            return json.ToObjectASType<TOpenApiSchema>(new Dictionary<Type, List<string>>() { { typeof(TOpenApiSchema), exceptionProperties?.ToList() } },
+                                             new Dictionary<Type, List<string>>() { { typeof(TOpenApiSchema), ignoreProperties?.ToList() } });
+        }
+
+        /// <summary>
+        /// 将Json字符串反序列化成对象
+        /// </summary>
+        /// <param name="json">需要反序列化的Json字符串</param>
+        /// <param name="exceptionProperties">要例外输出的属性</param>
+        /// <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+        /// <returns></returns>
+        public static TOpenApiSchema ToObjectASTypeSpecifyType<TOpenApiSchema>(this string json, params (Type, List<string>)[] exceptionProperties) where TOpenApiSchema : class
+        {
+            return json.ToObjectASType<TOpenApiSchema>(exceptionProperties?.ToDictionary(k => k.Item1, v => v.Item2), null);
+        }
+
+        /// <summary>
+        /// 将Json字符串反序列化成对象
+        /// </summary>
+        /// <param name="json">需要反序列化的Json字符串</param>
+        /// <param name="ignoreProperties">忽略的属性</param>
+        /// <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+        /// <returns></returns>
+        public static TOpenApiSchema ToObjectASTypeIgnoreSpecifyType<TOpenApiSchema>(this string json, (Type, List<string>)[] ignoreProperties) where TOpenApiSchema : class
+        {
+            return json.ToObjectASType<TOpenApiSchema>(null, ignoreProperties?.ToDictionary(k => k.Item1, v => v.Item2));
+        }
+
+        /// <summary>
+        /// 将Json字符串反序列化成对象
+        /// </summary>
+        /// <param name="json">需要反序列化的Json字符串</param>
+        /// <param name="exceptionProperties">要例外输出的属性</param>
+        /// <param name="ignoreProperties">忽略的属性</param>
+        /// <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+        /// <returns></returns>
+        public static object ToObject<TOpenApiSchema>(this string json, Dictionary<Type, List<string>> exceptionProperties, Dictionary<Type, List<string>> ignoreProperties) where TOpenApiSchema : class
+        {
+            throw new NotImplementedException();
+            var jt = JToken.Parse(json);
+            foreach (var kv in jt)
+            {
+
+            }
+            return jt.ToObject<object>();
+        }
+
+        /// <summary>
+        /// 将Json字符串反序列化成对象
+        /// </summary>
+        /// <param name="json">需要反序列化的Json字符串</param>
+        /// <param name="exceptionProperties">要例外输出的属性</param>
+        /// <param name="ignoreProperties">忽略的属性</param>
+        /// <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+        /// <returns></returns>
+        public static TOpenApiSchema ToObjectASType<TOpenApiSchema>(this string json, Dictionary<Type, List<string>> exceptionProperties, Dictionary<Type, List<string>> ignoreProperties) where TOpenApiSchema : class
+        {
+            throw new NotImplementedException();
+            var jt = JToken.Parse(json);
+            foreach (var child in jt)
+            {
+                var path = child.Path;
+            }
+            return jt.ToObject<TOpenApiSchema>();
         }
     }
 }
