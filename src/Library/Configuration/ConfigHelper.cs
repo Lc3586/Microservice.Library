@@ -1,45 +1,80 @@
-﻿using Library.Container;
+﻿using Library.Configuration.Annotations;
+using Library.Configuration.Extention;
 using Microsoft.Extensions.Configuration;
 using System;
+using System.Reflection;
 
 namespace Library.Configuration
 {
     /// <summary>
-    /// 配置文件帮助类
+    /// 配置帮助类
     /// </summary>
     public class ConfigHelper
     {
-        public ConfigHelper(string jsonFile = null)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="configuration">配置</param>
+        public ConfigHelper(IConfiguration configuration)
         {
-            Init(jsonFile);
+            Config = configuration;
         }
 
-        void Init(string jsonFile = null)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="jsonFile">Json配置文件</param>
+        /// <param name="disableCache">禁用缓存</param>
+        public ConfigHelper(string jsonFile = null, bool disableCache = false)
+        {
+            Init(jsonFile, disableCache);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="jsonFile">Json配置文件</param>
+        /// <param name="disableCache">禁用缓存</param>
+        void Init(string jsonFile = null, bool disableCache = false)
         {
             if (jsonFile == null)
             {
                 if (Config != null)
                     return;
-                if (AutofacHelper.Container != null)
-                {
-                    IConfiguration config = AutofacHelper.GetService<IConfiguration>();
-                    if (config != null)
-                        return;
-                }
-                Config = GetConfigFormFile();
+
+                Config = GetConfigFormFile("appsettings.json", disableCache);
             }
             else
-                Config = GetConfigFormFile(jsonFile);
+                Config = GetConfigFormFile(jsonFile, disableCache);
         }
 
-        static IConfiguration GetConfigFormFile(string jsonFile = "appsettings.json")
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="jsonFile">Json配置文件</param>
+        /// <param name="disableCache">禁用缓存</param>
+        /// <returns></returns>
+        static IConfiguration GetConfigFormFile(string jsonFile, bool disableCache = false)
         {
-            return new ConfigurationBuilder()
+            if (!disableCache)
+                if (CacheExtention.ConfigDic.ContainsKey(jsonFile))
+                    return CacheExtention.ConfigDic[jsonFile];
+
+            var config = new ConfigurationBuilder()
                          .SetBasePath(AppContext.BaseDirectory)
                          .AddJsonFile(jsonFile)
                          .Build();
+
+            if (!disableCache)
+                if (!CacheExtention.ConfigDic.ContainsKey(jsonFile))
+                    CacheExtention.ConfigDic.Add(jsonFile, config);
+
+            return config;
         }
 
+        /// <summary>
+        /// 配置
+        /// </summary>
         static IConfiguration Config { get; set; }
 
         /// <summary>
@@ -92,7 +127,27 @@ namespace Library.Configuration
         /// <returns></returns>
         public T GetModel<T>(string section)
         {
-            return Config.GetSection(section).Get<T>();
+            var result = Config.GetSection(section).Get<T>();
+
+            foreach (var property in typeof(T).GetProperties())
+            {
+                var jsonConfig = property.PropertyType.GetCustomAttribute<JsonConfigAttribute>();
+                if (jsonConfig == null)
+                    continue;
+
+                if (string.IsNullOrWhiteSpace(jsonConfig.JsonFile))
+                    throw new ApplicationException($"{nameof(JsonConfigAttribute)}: {property.DeclaringType.FullName} + {property.Name}, Json文件不可为空.");
+
+                var config = GetConfigFormFile(jsonConfig.JsonFile, jsonConfig.DisableCache);
+
+                var value = string.IsNullOrEmpty(jsonConfig.Key)
+                    ? config.Get(property.PropertyType)
+                    : config.GetSection(jsonConfig.Key).Get(property.PropertyType);
+
+                property.SetValue(result, value);
+            }
+
+            return result;
         }
     }
 }

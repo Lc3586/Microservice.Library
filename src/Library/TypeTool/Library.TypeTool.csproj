@@ -8,7 +8,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Library.TypeTool</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.0-alpha</Version>
+    <Version>1.0.1-alpha</Version>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/Lc3586/Microservice/tree/master/src/Library/TypeTool</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
