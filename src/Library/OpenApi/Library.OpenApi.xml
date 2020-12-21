@@ -201,13 +201,49 @@
         </member>
         <member name="F:Library.OpenApi.Extention.CacheExtention.OpenApiObjectDic">
             <summary>
-            类型对应的架构信息
+            类型的Api架构
+            </summary>
+        </member>
+        <member name="F:Library.OpenApi.Extention.CacheExtention.AssemblyOfTypeDic">
+            <summary>
+            类型的命名空间
+            </summary>
+        </member>
+        <member name="F:Library.OpenApi.Extention.CacheExtention.TypesOfTypeDic">
+            <summary>
+            类型的架构类型集合
+            </summary>
+        </member>
+        <member name="F:Library.OpenApi.Extention.CacheExtention.PropertysOfTypeDic">
+            <summary>
+            类型的架构属性集合
             </summary>
         </member>
         <member name="F:Library.OpenApi.Extention.CacheExtention.EnumNameAndDescriptionDic">
             <summary>
-            枚举对应的字段说明信息
+            枚举的字段说明集合
             </summary>
+        </member>
+        <member name="M:Library.OpenApi.Extention.CacheExtention.GetPropertysOfTypeDic(System.Type)">
+            <summary>
+            获取类型的架构属性集合
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.Extention.CacheExtention.GetPropertysOfTypeDic(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.String)">
+            <summary>
+            获取类型的架构属性集合
+            </summary>
+            <param name="dic"></param>
+            <param name="typeFullName"></param>
+        </member>
+        <member name="M:Library.OpenApi.Extention.CacheExtention.SetPropertysOfTypeDic(System.Type,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+            <summary>
+            设置类型的架构属性集合
+            </summary>
+            <param name="type"></param>
+            <param name="innerType"></param>
         </member>
         <member name="M:Library.OpenApi.Extention.OpenApiExtention.GetMainTag(System.Type)">
             <summary>
@@ -351,6 +387,17 @@
             <param name="innerModel">处理内部模型</param>
             <returns></returns>
         </member>
+        <member name="M:Library.OpenApi.Extention.OpenApiExtention.GetOrNullForPropertyDic(System.Type,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+            <summary>
+            获取或创建架构属性信息
+            </summary>
+            <param name="type"></param>
+            <param name="innerModel">处理内部模型</param>
+            <param name="exceptionProperties">特别输出的属性</param>
+            <param name="ignoreProperties">特别忽略的属性</param>
+            <remarks>如果在特别输出参数和特别忽略参数中同时指定了同一个属性，那么最终不会输出该属性</remarks>
+            <returns></returns>
+        </member>
         <member name="M:Library.OpenApi.Extention.OpenApiExtention.CreateFor(System.Reflection.PropertyInfo,System.Boolean)">
             <summary>
             创建接口初始类
@@ -446,6 +493,90 @@
             <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
             <returns></returns>
         </member>
+        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToObject``1(System.String,System.String[])">
+            <summary>
+            将Json字符串反序列化成对象
+            </summary>
+            <param name="json">需要反序列化的Json字符串</param>
+            <param name="exceptionProperties">要例外输出的属性</param>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToObjectASType``1(System.String,System.String[])">
+            <summary>
+            将Json字符串反序列化成对象
+            </summary>
+            <param name="json">需要反序列化的Json字符串</param>
+            <param name="exceptionProperties">要例外输出的属性</param>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToObjectIgnore``1(System.String,System.String[])">
+            <summary>
+            将Json字符串反序列化成对象
+            </summary>
+            <param name="json">需要反序列化的Json字符串</param>
+            <param name="ignoreProperties">忽略的属性</param>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToObjectASTypeIgnore``1(System.String,System.String[])">
+            <summary>
+            将Json字符串反序列化成对象
+            </summary>
+            <param name="json">需要反序列化的Json字符串</param>
+            <param name="ignoreProperties">忽略的属性</param>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToObjectASType``1(System.String,System.String[],System.String[])">
+            <summary>
+            将Json字符串反序列化成对象
+            </summary>
+            <param name="json">需要反序列化的Json字符串</param>
+            <param name="exceptionProperties">要例外输出的属性</param>
+            <param name="ignoreProperties">忽略的属性</param>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToObjectASTypeSpecifyType``1(System.String,System.ValueTuple{System.Type,System.Collections.Generic.List{System.String}}[])">
+            <summary>
+            将Json字符串反序列化成对象
+            </summary>
+            <param name="json">需要反序列化的Json字符串</param>
+            <param name="exceptionProperties">要例外输出的属性</param>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToObjectASTypeIgnoreSpecifyType``1(System.String,System.ValueTuple{System.Type,System.Collections.Generic.List{System.String}}[])">
+            <summary>
+            将Json字符串反序列化成对象
+            </summary>
+            <param name="json">需要反序列化的Json字符串</param>
+            <param name="ignoreProperties">忽略的属性</param>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToObject``1(System.String,System.Collections.Generic.Dictionary{System.Type,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.Type,System.Collections.Generic.List{System.String}})">
+            <summary>
+            将Json字符串反序列化成对象
+            </summary>
+            <param name="json">需要反序列化的Json字符串</param>
+            <param name="exceptionProperties">要例外输出的属性</param>
+            <param name="ignoreProperties">忽略的属性</param>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToObjectASType``1(System.String,System.Collections.Generic.Dictionary{System.Type,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.Type,System.Collections.Generic.List{System.String}})">
+            <summary>
+            将Json字符串反序列化成对象
+            </summary>
+            <param name="json">需要反序列化的Json字符串</param>
+            <param name="exceptionProperties">要例外输出的属性</param>
+            <param name="ignoreProperties">忽略的属性</param>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <returns></returns>
+        </member>
         <member name="T:Library.OpenApi.JsonSerialization.JsonPropertyContractResolver`1">
             <summary>
             自定义分解器
@@ -466,8 +597,8 @@
             <summary>
             
             </summary>
-            <param name="exceptionProperties">额外输出的属性</param>
-            <param name="ignoreProperties">忽略的属性</param>
+            <param name="exceptionProperties">特别输出的属性</param>
+            <param name="ignoreProperties">特别忽略的属性</param>
         </member>
     </members>
 </doc>

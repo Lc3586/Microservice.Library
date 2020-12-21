@@ -29,8 +29,8 @@ namespace Library.OpenApi.JsonSerialization
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="exceptionProperties">额外输出的属性</param>
-        /// <param name="ignoreProperties">忽略的属性</param>
+        /// <param name="exceptionProperties">特别输出的属性</param>
+        /// <param name="ignoreProperties">特别忽略的属性</param>
         public JsonPropertyContractResolver(Dictionary<Type, List<string>> exceptionProperties, Dictionary<Type, List<string>> ignoreProperties)
         {
             LstClude = exceptionProperties;

@@ -231,9 +231,21 @@ namespace Library.OpenApi.JsonSerialization
         {
             throw new NotImplementedException();
             var jt = JToken.Parse(json);
-            foreach (var child in jt)
+            foreach (var c1 in jt)
             {
-                var path = child.Path;
+                var p1 = c1.Path;
+                foreach (var c2 in c1)
+                {
+                    var p2 = c2.Path;
+                    foreach (var c3 in c2)
+                    {
+                        var p3 = c3.Path;
+                        foreach (var c4 in c3)
+                        {
+                            var p4 = c4.Path;
+                        }
+                    }
+                }
             }
             return jt.ToObject<TOpenApiSchema>();
         }

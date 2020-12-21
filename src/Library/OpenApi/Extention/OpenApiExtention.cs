@@ -318,25 +318,90 @@ namespace Library.OpenApi.Extention
         /// <returns></returns>
         public static IOpenApiAny GetOrNullFor(this Type type, bool innerModel = true)
         {
-            if (CacheExtention.OpenApiObjectDic.ContainsKey(type))
-                return CacheExtention.OpenApiObjectDic[type];
+            if (CacheExtention.OpenApiObjectDic.ContainsKey(type.FullName))
+                return CacheExtention.OpenApiObjectDic[type.FullName];
 
             var example = new OpenApiObject();
 
-            type.FilterModel((_type, prop) =>
-             {
-                 IOpenApiAny any = prop.PropertyType.IsArray
-                     || prop.PropertyType.IsGenericType ?
-                         new OpenApiArray { prop.CreateFor(innerModel) } :
-                         prop.CreateFor(innerModel);
+            var propertyDic = type.GetOrNullForPropertyDic(innerModel);
+            foreach (var item in propertyDic)
+            {
+                var _type = Assembly.Load(CacheExtention.AssemblyOfTypeDic[item.Key]).GetType(item.Key);
 
-                 example.Add(prop.Name, any);
-             });
+                item.Value.ForEach(p =>
+                {
+                    var prop = _type.GetProperty(p);
 
-            if (!CacheExtention.OpenApiObjectDic.ContainsKey(type))
-                CacheExtention.OpenApiObjectDic.Add(type, example);
+                    IOpenApiAny any = prop.PropertyType.IsArray
+                        || prop.PropertyType.IsGenericType ?
+                            new OpenApiArray { prop.CreateFor(innerModel) } :
+                            prop.CreateFor(innerModel);
+
+                    example.Add(p, any);
+                });
+            }
+
+            if (!CacheExtention.OpenApiObjectDic.ContainsKey(type.FullName))
+                CacheExtention.OpenApiObjectDic.Add(type.FullName, example);
 
             return example;
+        }
+
+        /// <summary>
+        /// 获取或创建架构属性信息
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="innerModel">处理内部模型</param>
+        /// <param name="exceptionProperties">特别输出的属性</param>
+        /// <param name="ignoreProperties">特别忽略的属性</param>
+        /// <remarks>如果在特别输出参数和特别忽略参数中同时指定了同一个属性，那么最终不会输出该属性</remarks>
+        /// <returns></returns>
+        public static Dictionary<string, List<string>> GetOrNullForPropertyDic(this Type type, bool innerModel = true, Dictionary<string, List<string>> exceptionProperties = null, Dictionary<string, List<string>> ignoreProperties = null)
+        {
+            Dictionary<string, List<string>> propertyDic = type.GetPropertysOfTypeDic();
+
+            if (propertyDic.Any())
+                goto end;
+
+            type.FilterModel((_type, prop) =>
+            {
+                if (!propertyDic.ContainsKey(_type.FullName))
+                    propertyDic.Add(_type.FullName, new List<string>() { prop.Name });
+                else
+                    propertyDic[_type.FullName].Add(prop.Name);
+
+                if (!CacheExtention.AssemblyOfTypeDic.ContainsKey(_type.FullName))
+                    CacheExtention.AssemblyOfTypeDic.Add(_type.FullName, _type.Assembly.FullName);
+            },
+            null,
+            //(_type, prop) =>
+            //{
+            //    return exceptionProperties?[_type]?.Contains(prop.Name) == true || ignoreProperties?[_type]?.Contains(prop.Name) != true;
+            //},
+            innerModel);
+
+            type.SetPropertysOfTypeDic(propertyDic);
+
+            end:
+            if (exceptionProperties != null)
+                foreach (var item in exceptionProperties)
+                {
+                    if (!propertyDic.ContainsKey(item.Key))
+                    {
+                        propertyDic.Add(item.Key, item.Value);
+                    }
+                    else
+                        propertyDic[item.Key] = propertyDic[item.Key].Union(item.Value).ToList();
+                }
+
+            if (ignoreProperties != null)
+                foreach (var item in ignoreProperties)
+                {
+                    if (propertyDic.ContainsKey(item.Key))
+                        propertyDic[item.Key] = propertyDic[item.Key].Except(item.Value).ToList();
+                }
+
+            return propertyDic;
         }
 
         /// <summary>
@@ -478,8 +543,8 @@ namespace Library.OpenApi.Extention
         private static IOpenApiAny GetEnumOpenApiAny(this Type type, object @default = null)
         {
             Dictionary<string, string> NameAndDescriptionDic;
-            if (CacheExtention.EnumNameAndDescriptionDic.ContainsKey(type))
-                NameAndDescriptionDic = CacheExtention.EnumNameAndDescriptionDic[type];
+            if (CacheExtention.EnumNameAndDescriptionDic.ContainsKey(type.FullName))
+                NameAndDescriptionDic = CacheExtention.EnumNameAndDescriptionDic[type.FullName];
             else
             {
                 NameAndDescriptionDic = new Dictionary<string, string>();
@@ -495,7 +560,7 @@ namespace Library.OpenApi.Extention
 
                     NameAndDescriptionDic.Add(item.ToString(), description);
                 }
-                CacheExtention.EnumNameAndDescriptionDic.Add(type, NameAndDescriptionDic);
+                CacheExtention.EnumNameAndDescriptionDic.Add(type.FullName, NameAndDescriptionDic);
             }
 
             string value;
