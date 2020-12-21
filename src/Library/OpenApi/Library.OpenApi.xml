@@ -465,7 +465,7 @@
             <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
             <returns></returns>
         </member>
-        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToJsonSpecifyType``1(System.Object,System.ValueTuple{System.Type,System.Collections.Generic.List{System.String}}[])">
+        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToJsonSpecifyType``1(System.Object,System.ValueTuple{System.String,System.Collections.Generic.List{System.String}}[])">
             <summary>
             将对象序列化成Json字符串
             </summary>
@@ -474,7 +474,7 @@
             <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
             <returns></returns>
         </member>
-        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToJsonIgnoreSpecifyType``1(System.Object,System.ValueTuple{System.Type,System.Collections.Generic.List{System.String}}[])">
+        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToJsonIgnoreSpecifyType``1(System.Object,System.ValueTuple{System.String,System.Collections.Generic.List{System.String}}[])">
             <summary>
             将对象序列化成Json字符串
             </summary>
@@ -483,7 +483,7 @@
             <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
             <returns></returns>
         </member>
-        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToJsonSpecifyType``1(System.Object,System.Collections.Generic.Dictionary{System.Type,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.Type,System.Collections.Generic.List{System.String}})">
+        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToJsonSpecifyType``1(System.Object,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
             <summary>
             将对象序列化成Json字符串
             </summary>
@@ -493,7 +493,7 @@
             <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
             <returns></returns>
         </member>
-        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToObject``1(System.String,System.String[])">
+        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToOpenApiObject``1(System.String,System.String[])">
             <summary>
             将Json字符串反序列化成对象
             </summary>
@@ -502,16 +502,7 @@
             <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
             <returns></returns>
         </member>
-        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToObjectASType``1(System.String,System.String[])">
-            <summary>
-            将Json字符串反序列化成对象
-            </summary>
-            <param name="json">需要反序列化的Json字符串</param>
-            <param name="exceptionProperties">要例外输出的属性</param>
-            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToObjectIgnore``1(System.String,System.String[])">
+        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToOpenApiObjectIgnore``1(System.String,System.String[])">
             <summary>
             将Json字符串反序列化成对象
             </summary>
@@ -520,16 +511,7 @@
             <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
             <returns></returns>
         </member>
-        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToObjectASTypeIgnore``1(System.String,System.String[])">
-            <summary>
-            将Json字符串反序列化成对象
-            </summary>
-            <param name="json">需要反序列化的Json字符串</param>
-            <param name="ignoreProperties">忽略的属性</param>
-            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToObjectASType``1(System.String,System.String[],System.String[])">
+        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToOpenApiObject``1(System.String,System.String[],System.String[])">
             <summary>
             将Json字符串反序列化成对象
             </summary>
@@ -539,7 +521,7 @@
             <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
             <returns></returns>
         </member>
-        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToObjectASTypeSpecifyType``1(System.String,System.ValueTuple{System.Type,System.Collections.Generic.List{System.String}}[])">
+        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToOpenApiObjectSpecifyType``1(System.String,System.ValueTuple{System.String,System.Collections.Generic.List{System.String}}[])">
             <summary>
             将Json字符串反序列化成对象
             </summary>
@@ -548,7 +530,7 @@
             <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
             <returns></returns>
         </member>
-        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToObjectASTypeIgnoreSpecifyType``1(System.String,System.ValueTuple{System.Type,System.Collections.Generic.List{System.String}}[])">
+        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToOpenApiObjectIgnoreSpecifyType``1(System.String,System.ValueTuple{System.String,System.Collections.Generic.List{System.String}}[])">
             <summary>
             将Json字符串反序列化成对象
             </summary>
@@ -557,25 +539,25 @@
             <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
             <returns></returns>
         </member>
-        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToObject``1(System.String,System.Collections.Generic.Dictionary{System.Type,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.Type,System.Collections.Generic.List{System.String}})">
+        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToOpenApiObject``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
             <summary>
             将Json字符串反序列化成对象
             </summary>
             <param name="json">需要反序列化的Json字符串</param>
-            <param name="exceptionProperties">要例外输出的属性</param>
-            <param name="ignoreProperties">忽略的属性</param>
+            <param name="exceptionProperties">特别输出的属性</param>
+            <param name="ignoreProperties">特别忽略的属性</param>
+            <remarks>如果在特别输出参数和特别忽略参数中同时指定了同一个属性，那么最终不会输出该属性</remarks>
             <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
             <returns></returns>
         </member>
-        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToObjectASType``1(System.String,System.Collections.Generic.Dictionary{System.Type,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.Type,System.Collections.Generic.List{System.String}})">
+        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.FilterOpenApiObject``1(System.Type,``0,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
             <summary>
-            将Json字符串反序列化成对象
+            过滤数据
             </summary>
-            <param name="json">需要反序列化的Json字符串</param>
-            <param name="exceptionProperties">要例外输出的属性</param>
-            <param name="ignoreProperties">忽略的属性</param>
-            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
-            <returns></returns>
+            <typeparam name="TOpenApiSchema"></typeparam>
+            <param name="type"></param>
+            <param name="object"></param>
+            <param name="propertyDic"></param>
         </member>
         <member name="T:Library.OpenApi.JsonSerialization.JsonPropertyContractResolver`1">
             <summary>
@@ -593,7 +575,7 @@
             忽略的属性
             </summary>
         </member>
-        <member name="M:Library.OpenApi.JsonSerialization.JsonPropertyContractResolver`1.#ctor(System.Collections.Generic.Dictionary{System.Type,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.Type,System.Collections.Generic.List{System.String}})">
+        <member name="M:Library.OpenApi.JsonSerialization.JsonPropertyContractResolver`1.#ctor(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
             <summary>
             
             </summary>
