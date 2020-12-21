@@ -19,24 +19,24 @@ namespace Library.OpenApi.JsonSerialization
         /// <summary>
         /// 输出的属性
         /// </summary>
-        Dictionary<Type, List<string>> LstClude;
+        Dictionary<string, List<string>> LstClude;
 
         /// <summary>
         /// 忽略的属性
         /// </summary>
-        Dictionary<Type, List<string>> IgnoreProperties;
+        Dictionary<string, List<string>> IgnoreProperties;
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="exceptionProperties">特别输出的属性</param>
         /// <param name="ignoreProperties">特别忽略的属性</param>
-        public JsonPropertyContractResolver(Dictionary<Type, List<string>> exceptionProperties, Dictionary<Type, List<string>> ignoreProperties)
+        public JsonPropertyContractResolver(Dictionary<string, List<string>> exceptionProperties, Dictionary<string, List<string>> ignoreProperties)
         {
             LstClude = exceptionProperties;
 
             if (LstClude == null)
-                LstClude = new Dictionary<Type, List<string>>();
+                LstClude = new Dictionary<string, List<string>>();
 
             IgnoreProperties = ignoreProperties;
 
@@ -48,14 +48,14 @@ namespace Library.OpenApi.JsonSerialization
 
             typeof(TOpenApiSchema).FilterModel((type, prop) =>
             {
-                if (!LstClude.ContainsKey(type))
-                    LstClude.Add(type, new List<string>());
+                if (!LstClude.ContainsKey(type.FullName))
+                    LstClude.Add(type.FullName, new List<string>());
 
-                LstClude[type].Add(prop.Name);
+                LstClude[type.FullName].Add(prop.Name);
             },
             (type, prop) =>
             {
-                return IgnoreProperties?[type]?.Contains(prop.Name) != true;
+                return IgnoreProperties?[type.FullName]?.Contains(prop.Name) != true;
             },
             true);
         }
@@ -63,7 +63,7 @@ namespace Library.OpenApi.JsonSerialization
         protected override IList<JsonProperty> CreateProperties(Type type, MemberSerialization memberSerialization)
         {
             var result = base.CreateProperties(type, memberSerialization).ToList();
-            return LstClude.Any() ? result.FindAll(p => LstClude[type].Contains(p.PropertyName)) : result;
+            return LstClude.Any() ? result.FindAll(p => LstClude[type.FullName].Contains(p.PropertyName)) : result;
         }
     }
 }
