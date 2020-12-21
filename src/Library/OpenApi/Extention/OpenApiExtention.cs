@@ -358,7 +358,7 @@ namespace Library.OpenApi.Extention
         /// <returns></returns>
         public static Dictionary<string, List<string>> GetOrNullForPropertyDic(this Type type, bool innerModel = true, Dictionary<string, List<string>> exceptionProperties = null, Dictionary<string, List<string>> ignoreProperties = null)
         {
-            Dictionary<string, List<string>> propertyDic = type.GetPropertysOfTypeDic();
+            var propertyDic = type.GetPropertysOfTypeDic();
 
             if (propertyDic.Any())
                 goto end;

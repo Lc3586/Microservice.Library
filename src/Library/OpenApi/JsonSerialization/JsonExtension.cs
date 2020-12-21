@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Library.OpenApi.Extention;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -211,12 +212,11 @@ namespace Library.OpenApi.JsonSerialization
         public static object ToObject<TOpenApiSchema>(this string json, Dictionary<Type, List<string>> exceptionProperties, Dictionary<Type, List<string>> ignoreProperties) where TOpenApiSchema : class
         {
             throw new NotImplementedException();
-            var jt = JToken.Parse(json);
-            foreach (var kv in jt)
-            {
+            var result = JsonConvert.DeserializeObject(json);
 
-            }
-            return jt.ToObject<object>();
+            var propertyDic = typeof(TOpenApiSchema).GetPropertysOfTypeDic();
+
+            return result;
         }
 
         /// <summary>
@@ -229,25 +229,7 @@ namespace Library.OpenApi.JsonSerialization
         /// <returns></returns>
         public static TOpenApiSchema ToObjectASType<TOpenApiSchema>(this string json, Dictionary<Type, List<string>> exceptionProperties, Dictionary<Type, List<string>> ignoreProperties) where TOpenApiSchema : class
         {
-            throw new NotImplementedException();
-            var jt = JToken.Parse(json);
-            foreach (var c1 in jt)
-            {
-                var p1 = c1.Path;
-                foreach (var c2 in c1)
-                {
-                    var p2 = c2.Path;
-                    foreach (var c3 in c2)
-                    {
-                        var p3 = c3.Path;
-                        foreach (var c4 in c3)
-                        {
-                            var p4 = c4.Path;
-                        }
-                    }
-                }
-            }
-            return jt.ToObject<TOpenApiSchema>();
+            return (TOpenApiSchema)json.ToObject<TOpenApiSchema>(exceptionProperties, ignoreProperties);
         }
     }
 }
