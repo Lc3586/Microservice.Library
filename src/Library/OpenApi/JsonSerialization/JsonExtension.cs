@@ -22,9 +22,9 @@ namespace Library.OpenApi.JsonSerialization
         /// <param name="exceptionProperties">要例外输出的属性</param>
         /// <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
         /// <returns></returns>
-        public static string ToJson<TOpenApiSchema>(this TOpenApiSchema obj, params string[] exceptionProperties)
+        public static string ToOpenApiJson<TOpenApiSchema>(this TOpenApiSchema obj, params string[] exceptionProperties)
         {
-            return obj.ToJsonSpecifyType<TOpenApiSchema>(new Dictionary<string, List<string>>() { { typeof(TOpenApiSchema).FullName, exceptionProperties?.ToList() } }, null);
+            return obj.ToOpenApiJsonSpecifyType<TOpenApiSchema>(new Dictionary<string, List<string>>() { { typeof(TOpenApiSchema).FullName, exceptionProperties?.ToList() } }, null);
         }
 
         /// <summary>
@@ -34,9 +34,9 @@ namespace Library.OpenApi.JsonSerialization
         /// <param name="exceptionProperties">要例外输出的属性</param>
         /// <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
         /// <returns></returns>
-        public static string ToJson<TOpenApiSchema>(this object obj, params string[] exceptionProperties)
+        public static string ToOpenApiJson<TOpenApiSchema>(this object obj, params string[] exceptionProperties)
         {
-            return obj.ToJsonSpecifyType<TOpenApiSchema>(new Dictionary<string, List<string>>() { { typeof(TOpenApiSchema).FullName, exceptionProperties?.ToList() } }, null);
+            return obj.ToOpenApiJsonSpecifyType<TOpenApiSchema>(new Dictionary<string, List<string>>() { { typeof(TOpenApiSchema).FullName, exceptionProperties?.ToList() } }, null);
         }
 
         /// <summary>
@@ -46,9 +46,9 @@ namespace Library.OpenApi.JsonSerialization
         /// <param name="ignoreProperties">忽略的属性</param>
         /// <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
         /// <returns></returns>
-        public static string ToJsonIgnore<TOpenApiSchema>(this TOpenApiSchema obj, string[] ignoreProperties)
+        public static string ToOpenApiJsonIgnore<TOpenApiSchema>(this TOpenApiSchema obj, string[] ignoreProperties)
         {
-            return obj.ToJsonSpecifyType<TOpenApiSchema>(null, new Dictionary<string, List<string>>() { { typeof(TOpenApiSchema).FullName, ignoreProperties?.ToList() } });
+            return obj.ToOpenApiJsonSpecifyType<TOpenApiSchema>(null, new Dictionary<string, List<string>>() { { typeof(TOpenApiSchema).FullName, ignoreProperties?.ToList() } });
         }
 
         /// <summary>
@@ -58,9 +58,9 @@ namespace Library.OpenApi.JsonSerialization
         /// <param name="ignoreProperties">忽略的属性</param>
         /// <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
         /// <returns></returns>
-        public static string ToJsonIgnore<TOpenApiSchema>(this object obj, string[] ignoreProperties)
+        public static string ToOpenApiJsonIgnore<TOpenApiSchema>(this object obj, string[] ignoreProperties)
         {
-            return obj.ToJsonSpecifyType<TOpenApiSchema>(null, new Dictionary<string, List<string>>() { { typeof(TOpenApiSchema).FullName, ignoreProperties?.ToList() } });
+            return obj.ToOpenApiJsonSpecifyType<TOpenApiSchema>(null, new Dictionary<string, List<string>>() { { typeof(TOpenApiSchema).FullName, ignoreProperties?.ToList() } });
         }
 
         /// <summary>
@@ -71,9 +71,9 @@ namespace Library.OpenApi.JsonSerialization
         /// <param name="ignoreProperties">忽略的属性</param>
         /// <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
         /// <returns></returns>
-        public static string ToJson<TOpenApiSchema>(this object obj, string[] exceptionProperties, string[] ignoreProperties)
+        public static string ToOpenApiJson<TOpenApiSchema>(this object obj, string[] exceptionProperties, string[] ignoreProperties)
         {
-            return obj.ToJsonSpecifyType<TOpenApiSchema>(new Dictionary<string, List<string>>() { { typeof(TOpenApiSchema).FullName, exceptionProperties?.ToList() } },
+            return obj.ToOpenApiJsonSpecifyType<TOpenApiSchema>(new Dictionary<string, List<string>>() { { typeof(TOpenApiSchema).FullName, exceptionProperties?.ToList() } },
                                              new Dictionary<string, List<string>>() { { typeof(TOpenApiSchema).FullName, ignoreProperties?.ToList() } });
         }
 
@@ -84,9 +84,9 @@ namespace Library.OpenApi.JsonSerialization
         /// <param name="exceptionProperties">要例外输出的属性</param>
         /// <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
         /// <returns></returns>
-        public static string ToJsonSpecifyType<TOpenApiSchema>(this object obj, params (string, List<string>)[] exceptionProperties)
+        public static string ToOpenApiJsonSpecifyType<TOpenApiSchema>(this object obj, params (string, List<string>)[] exceptionProperties)
         {
-            return obj.ToJsonSpecifyType<TOpenApiSchema>(exceptionProperties?.ToDictionary(k => k.Item1, v => v.Item2), null);
+            return obj.ToOpenApiJsonSpecifyType<TOpenApiSchema>(exceptionProperties?.ToDictionary(k => k.Item1, v => v.Item2), null);
         }
 
         /// <summary>
@@ -96,9 +96,9 @@ namespace Library.OpenApi.JsonSerialization
         /// <param name="ignoreProperties">忽略的属性</param>
         /// <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
         /// <returns></returns>
-        public static string ToJsonIgnoreSpecifyType<TOpenApiSchema>(this object obj, (string, List<string>)[] ignoreProperties)
+        public static string ToOpenApiJsonIgnoreSpecifyType<TOpenApiSchema>(this object obj, (string, List<string>)[] ignoreProperties)
         {
-            return obj.ToJsonSpecifyType<TOpenApiSchema>(null, ignoreProperties?.ToDictionary(k => k.Item1, v => v.Item2));
+            return obj.ToOpenApiJsonSpecifyType<TOpenApiSchema>(null, ignoreProperties?.ToDictionary(k => k.Item1, v => v.Item2));
         }
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace Library.OpenApi.JsonSerialization
         /// <param name="ignoreProperties">忽略的属性</param>
         /// <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
         /// <returns></returns>
-        public static string ToJsonSpecifyType<TOpenApiSchema>(this object obj, Dictionary<string, List<string>> exceptionProperties, Dictionary<string, List<string>> ignoreProperties)
+        public static string ToOpenApiJsonSpecifyType<TOpenApiSchema>(this object obj, Dictionary<string, List<string>> exceptionProperties, Dictionary<string, List<string>> ignoreProperties)
         {
             return JsonConvert.SerializeObject(obj, new JsonSerializerSettings
             {
@@ -209,6 +209,9 @@ namespace Library.OpenApi.JsonSerialization
         /// <param name="propertyDic"></param>
         private static void FilterOpenApiObject<TOpenApiSchema>(this Type type, TOpenApiSchema @object, Dictionary<string, List<string>> propertyDic)
         {
+            if (@object == null)
+                return;
+
             foreach (var prop in type.GetProperties())
             {
                 if (!propertyDic.ContainsKey(prop.DeclaringType.FullName))

@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks>net5.0;netcoreapp3.1;net461</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BenchmarkDotNet" Version="0.12.1" />
+    <PackageReference Include="Library.ConsoleTool" Version="1.0.28-alpha" />
+    <PackageReference Include="Library.DataMapping" Version="1.0.9-alpha" />
+    <PackageReference Include="Library.Elasticsearch" Version="1.0.18-alpha" />
+    <PackageReference Include="Library.FreeSql" Version="1.5.1-alpha" />
+    <PackageReference Include="Library.IdTool" Version="1.0.2-alpha" />
+    <PackageReference Include="Library.Json" Version="1.0.2-alpha" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DTO\" />
+    <Folder Include="Entity\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Library\OpenApi\Library.OpenApi.csproj" />
+  </ItemGroup>
+
+</Project>

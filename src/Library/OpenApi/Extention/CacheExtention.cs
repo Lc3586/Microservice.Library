@@ -73,6 +73,8 @@ namespace Library.OpenApi.Extention
         {
             if (!TypesOfTypeDic.ContainsKey(type.FullName))
                 TypesOfTypeDic.Add(type.FullName, dic.Keys.Where(k => k != type.FullName).ToList());
+            else
+                TypesOfTypeDic[type.FullName] = TypesOfTypeDic[type.FullName].Union(dic.Keys.Where(k => k != type.FullName)).ToList();
 
             foreach (var item in dic)
             {

@@ -306,7 +306,7 @@ namespace Library.OpenApi.Extention
                 if (innerModel && schemaAttribute?.Type == OpenApiSchemaType.model)
                     prop.PropertyType.FilterModel(after, befor, schemaAttribute?.Format != OpenApiSchemaFormat.model_once);
 
-                after.Invoke(type, prop);
+                after?.Invoke(type, prop);
             }
         }
 
@@ -323,23 +323,27 @@ namespace Library.OpenApi.Extention
 
             var example = new OpenApiObject();
 
-            var propertyDic = type.GetOrNullForPropertyDic(innerModel);
-            foreach (var item in propertyDic)
+            var propertyDic = type.GetPropertysOfTypeDic();
+
+            type.FilterModel((_type, prop) =>
             {
-                var _type = Assembly.Load(CacheExtention.AssemblyOfTypeDic[item.Key]).GetType(item.Key);
+                IOpenApiAny any = prop.PropertyType.IsArray
+                    || prop.PropertyType.IsGenericType ?
+                        new OpenApiArray { prop.CreateFor(innerModel) } :
+                        prop.CreateFor(innerModel);
 
-                item.Value.ForEach(p =>
-                {
-                    var prop = _type.GetProperty(p);
+                example.Add(prop.Name, any);
 
-                    IOpenApiAny any = prop.PropertyType.IsArray
-                        || prop.PropertyType.IsGenericType ?
-                            new OpenApiArray { prop.CreateFor(innerModel) } :
-                            prop.CreateFor(innerModel);
+                if (!propertyDic.ContainsKey(_type.FullName))
+                    propertyDic.Add(_type.FullName, new List<string>() { prop.Name });
+                else
+                    propertyDic[_type.FullName].Add(prop.Name);
 
-                    example.Add(p, any);
-                });
-            }
+                if (!CacheExtention.AssemblyOfTypeDic.ContainsKey(_type.FullName))
+                    CacheExtention.AssemblyOfTypeDic.Add(_type.FullName, _type.Assembly.FullName);
+            });
+
+            type.SetPropertysOfTypeDic(propertyDic);
 
             if (!CacheExtention.OpenApiObjectDic.ContainsKey(type.FullName))
                 CacheExtention.OpenApiObjectDic.Add(type.FullName, example);
@@ -351,6 +355,7 @@ namespace Library.OpenApi.Extention
         /// 获取或创建架构属性信息
         /// </summary>
         /// <param name="type"></param>
+        /// <param name="after">处理成员之后</param>
         /// <param name="innerModel">处理内部模型</param>
         /// <param name="exceptionProperties">特别输出的属性</param>
         /// <param name="ignoreProperties">特别忽略的属性</param>
@@ -374,15 +379,12 @@ namespace Library.OpenApi.Extention
                     CacheExtention.AssemblyOfTypeDic.Add(_type.FullName, _type.Assembly.FullName);
             },
             null,
-            //(_type, prop) =>
-            //{
-            //    return exceptionProperties?[_type]?.Contains(prop.Name) == true || ignoreProperties?[_type]?.Contains(prop.Name) != true;
-            //},
             innerModel);
 
             type.SetPropertysOfTypeDic(propertyDic);
 
             end:
+
             if (exceptionProperties != null)
                 foreach (var item in exceptionProperties)
                 {
