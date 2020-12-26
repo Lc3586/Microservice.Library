@@ -120,7 +120,7 @@ namespace Net5TC.Entity
         /// 最近修改时间
         /// </summary>
         [OpenApiSubTag("List", "Detail")]
-        [OpenApiSchema(OpenApiSchemaType.@string, "", OpenApiSchemaFormat.string_datetime)]
+        [OpenApiSchema(OpenApiSchemaType.@string, OpenApiSchemaFormat.string_datetime)]
         [JsonConverter(typeof(Library.Json.Converters.DateTimeConverter), "yyyy-MM-dd HH:mm:ss")]
         [Description("最近修改时间")]
         public DateTime ModifyTime { get; set; }

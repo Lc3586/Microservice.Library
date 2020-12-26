@@ -14,27 +14,27 @@ namespace Library.OpenApi.Extention
         /// <summary>
         /// 类型的Api架构
         /// </summary>
-        public static Dictionary<string, OpenApiObject> OpenApiObjectDic = new Dictionary<string, OpenApiObject>();
+        public static readonly Dictionary<string, OpenApiObject> OpenApiObjectDic = new Dictionary<string, OpenApiObject>();
 
         /// <summary>
         /// 类型的命名空间
         /// </summary>
-        public static Dictionary<string, string> AssemblyOfTypeDic = new Dictionary<string, string>();
+        public static readonly Dictionary<string, string> AssemblyOfTypeDic = new Dictionary<string, string>();
 
         /// <summary>
         /// 类型的架构类型集合
         /// </summary>
-        private static Dictionary<string, List<string>> TypesOfTypeDic = new Dictionary<string, List<string>>();
+        private static readonly Dictionary<string, List<string>> TypesOfTypeDic = new Dictionary<string, List<string>>();
 
         /// <summary>
         /// 类型的架构属性集合
         /// </summary>
-        private static Dictionary<string, List<string>> PropertysOfTypeDic = new Dictionary<string, List<string>>();
+        private static readonly Dictionary<string, List<string>> PropertysOfTypeDic = new Dictionary<string, List<string>>();
 
         /// <summary>
         /// 枚举的字段说明集合
         /// </summary>
-        public static Dictionary<string, Dictionary<string, string>> EnumNameAndDescriptionDic = new Dictionary<string, Dictionary<string, string>>();
+        public static readonly Dictionary<string, Dictionary<string, string>> EnumNameAndDescriptionDic = new Dictionary<string, Dictionary<string, string>>();
 
         /// <summary>
         /// 获取类型的架构属性集合
@@ -68,7 +68,7 @@ namespace Library.OpenApi.Extention
         /// 设置类型的架构属性集合
         /// </summary>
         /// <param name="type"></param>
-        /// <param name="innerType"></param>
+        /// <param name="dic"></param>
         public static void SetPropertysOfTypeDic(this Type type, Dictionary<string, List<string>> dic)
         {
             if (!TypesOfTypeDic.ContainsKey(type.FullName))
@@ -83,13 +83,16 @@ namespace Library.OpenApi.Extention
             }
         }
 
-        ///// <summary>
-        ///// 销毁
-        ///// </summary>
-        //public static void Dispose()
-        //{
-        //    OpenApiObjectDic = new Dictionary<Type, OpenApiObject>();
-        //    EnumNameAndDescriptionDic = new Dictionary<Type, Dictionary<string, string>>();
-        //}
+        /// <summary>
+        /// 销毁
+        /// </summary>
+        public static void Dispose()
+        {
+            OpenApiObjectDic.Clear();
+            AssemblyOfTypeDic.Clear();
+            TypesOfTypeDic.Clear();
+            PropertysOfTypeDic.Clear();
+            EnumNameAndDescriptionDic.Clear();
+        }
     }
 }

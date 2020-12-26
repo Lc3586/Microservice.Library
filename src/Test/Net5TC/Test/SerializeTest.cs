@@ -4,12 +4,11 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Net5TC.DTO;
 using Coldairarrow.Util;
+using Library.OpenApi.Extention;
 using Library.OpenApi.JsonSerialization;
 using Library.ConsoleTool;
+using System.Diagnostics;
 
 namespace Net5TC.Test
 {
@@ -22,90 +21,70 @@ namespace Net5TC.Test
     [RPlotExporter]
     public class SerializeTest
     {
-        public List<DTO.DB_ADTO.List> ObjectList;
+        public bool UseWatch = false;
+
+        private Stopwatch Watch;
+
+        private List<DTO.DB_ADTO.List> TestDataList;
 
         [GlobalSetup]
         public void Setup()
         {
-            ObjectList = new List<DTO.DB_ADTO.List>();
+            if (UseWatch)
+                Watch = new Stopwatch();
 
-            new IdHelperBootstrapper()
-                .SetWorkderId(100)
-                .Boot();
+            if (UseWatch)
+                Watch.Start();
 
-            //var random = new Random();
-            var total = Convert.ToInt32(Extension.ReadInput("输入要测试的数据量: ", true, "100000"));
+            var total = 100;// Convert.ToInt32(Extension.ReadInput("输入要测试的数据量: ", true, "100000"));
+            TestDataList = TestData.GetList(total);
 
-            for (int i = 0; i < total; i++)
+            if (UseWatch)
             {
-                var data = new DTO.DB_ADTO.List
-                {
-                    Id = IdHelper.GetId(),
-                    Name = "名称",
-                    Content = "内容",
-                    CreateTime = DateTime.Now,
-                    CreatorId = Guid.NewGuid().ToString(),
-                    CreatorName = "管理员",
-                    ModifyTime = DateTime.Now,
-                    ParentId = ObjectList.LastOrDefault()?.Id
-                };
+                Watch.Stop();
+                $"准备{total}条数据耗时 {Watch.ElapsedMilliseconds} ms".ConsoleWrite(ConsoleColor.Cyan, null, true, 1);
+            }
 
-                data.BId = IdHelper.GetId();
-                data.DB_B = new DTO.DB_BDTO.List
-                {
-                    Id = data.BId,
-                    Name = "名称",
-                    CreateTime = DateTime.Now,
-                    CreatorId = Guid.NewGuid().ToString(),
-                    CreatorName = "管理员",
-                    ModifyTime = DateTime.Now
-                };
+            if (UseWatch)
+                Watch.Restart();
 
-                data.DB_Cs = new List<DTO.DB_CDTO.List>();
-                for (int j = 0; j < 10; j++)
-                {
-                    var _data = new DTO.DB_CDTO.List
-                    {
-                        Id = IdHelper.GetId(),
-                        Name = "名称",
-                        CreateTime = DateTime.Now,
-                        CreatorId = Guid.NewGuid().ToString(),
-                        CreatorName = "管理员",
-                        ModifyTime = DateTime.Now
-                    };
-                    data.DB_Cs.Add(_data);
-                }
+            _ = typeof(List<DTO.DB_ADTO.List>).GetOrNullForPropertyDic(true);
 
-                data.DB_Ds = new List<DTO.DB_DDTO.List>();
-                for (int j = 0; j < 10; j++)
-                {
-                    var _data = new DTO.DB_DDTO.List
-                    {
-                        Id = IdHelper.GetId(),
-                        Name = "名称",
-                        CreateTime = DateTime.Now,
-                        CreatorId = Guid.NewGuid().ToString(),
-                        CreatorName = "管理员",
-                        ModifyTime = DateTime.Now,
-                        AId = data.Id
-                    };
-                    data.DB_Ds.Add(_data);
-                }
-
-                ObjectList.Add(data);
+            if (UseWatch)
+            {
+                Watch.Stop();
+                $"预热耗时 {Watch.ElapsedMilliseconds} ms".ConsoleWrite(ConsoleColor.Cyan, null, true, 1);
             }
         }
 
-        [Benchmark(Baseline = true, Description = "不过滤属性的序列化")]
+        [Benchmark(Baseline = true, Description = "序列化")]
         public void ToJsonWithoutFilter()
         {
-            DeserializeTest.Json = JsonConvert.SerializeObject(ObjectList);
+            if (UseWatch)
+                Watch.Restart();
+
+            var json = JsonConvert.SerializeObject(TestDataList);
+
+            if (UseWatch)
+            {
+                Watch.Stop();
+                $"序列化{TestDataList?.Count}条数据耗时 {Watch.ElapsedMilliseconds} ms".ConsoleWrite(ConsoleColor.Cyan, null, true, 1);
+            }
         }
 
         [Benchmark(Description = "过滤属性的序列化")]
         public void ToJsonFilter()
         {
-            ObjectList.ToOpenApiJson();
+            if (UseWatch)
+                Watch.Restart();
+
+            var json = TestDataList.ToOpenApiJson();
+
+            if (UseWatch)
+            {
+                Watch.Stop();
+                $"过滤属性的序列化{TestDataList?.Count}条数据耗时 {Watch.ElapsedMilliseconds} ms".ConsoleWrite(ConsoleColor.Cyan, null, true, 1);
+            }
         }
     }
 }

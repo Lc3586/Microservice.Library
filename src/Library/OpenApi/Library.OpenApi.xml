@@ -194,6 +194,201 @@
             名称
             </summary>
         </member>
+        <member name="T:Library.OpenApi.ExampleModel.AInfo">
+            <summary>
+            A信息
+            </summary>
+        </member>
+        <member name="P:Library.OpenApi.ExampleModel.AInfo.B">
+            <summary>
+            所属B
+            </summary>
+        </member>
+        <member name="P:Library.OpenApi.ExampleModel.AInfo.Cs">
+            <summary>
+            相关C集合
+            </summary>
+        </member>
+        <member name="P:Library.OpenApi.ExampleModel.AInfo.Ds">
+            <summary>
+            相关D集合
+            </summary>
+        </member>
+        <member name="T:Library.OpenApi.ExampleModel.BInfo">
+            <summary>
+            B信息
+            </summary>
+        </member>
+        <member name="T:Library.OpenApi.ExampleModel.CInfo">
+            <summary>
+            C信息
+            </summary>
+        </member>
+        <member name="T:Library.OpenApi.ExampleModel.DInfo">
+            <summary>
+            D信息
+            </summary>
+        </member>
+        <member name="T:Library.OpenApi.ExampleModel.Example_A">
+            <summary>
+            A
+            </summary>
+        </member>
+        <member name="P:Library.OpenApi.ExampleModel.Example_A.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Library.OpenApi.ExampleModel.Example_A.ParentId">
+            <summary>
+            父AId
+            </summary>
+        </member>
+        <member name="P:Library.OpenApi.ExampleModel.Example_A.BId">
+            <summary>
+            所属B
+            </summary>
+        </member>
+        <member name="P:Library.OpenApi.ExampleModel.Example_A.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Library.OpenApi.ExampleModel.Example_A.Content">
+            <summary>
+            内容
+            </summary>
+        </member>
+        <member name="P:Library.OpenApi.ExampleModel.Example_A.CreatorId">
+            <summary>
+            创建者
+            </summary>
+        </member>
+        <member name="P:Library.OpenApi.ExampleModel.Example_A.CreatorName">
+            <summary>
+            创建者名称
+            </summary>
+        </member>
+        <member name="P:Library.OpenApi.ExampleModel.Example_A.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Library.OpenApi.ExampleModel.Example_A.ModifyTime">
+            <summary>
+            最近修改时间
+            </summary>
+        </member>
+        <member name="T:Library.OpenApi.ExampleModel.Example_B">
+            <summary>
+            B
+            </summary>
+        </member>
+        <member name="P:Library.OpenApi.ExampleModel.Example_B.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Library.OpenApi.ExampleModel.Example_B.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Library.OpenApi.ExampleModel.Example_B.CreatorId">
+            <summary>
+            创建者
+            </summary>
+        </member>
+        <member name="P:Library.OpenApi.ExampleModel.Example_B.CreatorName">
+            <summary>
+            创建者名称
+            </summary>
+        </member>
+        <member name="P:Library.OpenApi.ExampleModel.Example_B.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Library.OpenApi.ExampleModel.Example_B.ModifyTime">
+            <summary>
+            最近修改时间
+            </summary>
+        </member>
+        <member name="T:Library.OpenApi.ExampleModel.Example_C">
+            <summary>
+            C
+            </summary>
+        </member>
+        <member name="P:Library.OpenApi.ExampleModel.Example_C.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Library.OpenApi.ExampleModel.Example_C.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Library.OpenApi.ExampleModel.Example_C.CreatorId">
+            <summary>
+            创建者
+            </summary>
+        </member>
+        <member name="P:Library.OpenApi.ExampleModel.Example_C.CreatorName">
+            <summary>
+            创建者名称
+            </summary>
+        </member>
+        <member name="P:Library.OpenApi.ExampleModel.Example_C.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Library.OpenApi.ExampleModel.Example_C.ModifyTime">
+            <summary>
+            最近修改时间
+            </summary>
+        </member>
+        <member name="T:Library.OpenApi.ExampleModel.Example_D">
+            <summary>
+            D
+            </summary>
+        </member>
+        <member name="P:Library.OpenApi.ExampleModel.Example_D.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Library.OpenApi.ExampleModel.Example_D.AId">
+            <summary>
+            所属A
+            </summary>
+        </member>
+        <member name="P:Library.OpenApi.ExampleModel.Example_D.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Library.OpenApi.ExampleModel.Example_D.CreatorId">
+            <summary>
+            创建者
+            </summary>
+        </member>
+        <member name="P:Library.OpenApi.ExampleModel.Example_D.CreatorName">
+            <summary>
+            创建者名称
+            </summary>
+        </member>
+        <member name="P:Library.OpenApi.ExampleModel.Example_D.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Library.OpenApi.ExampleModel.Example_D.ModifyTime">
+            <summary>
+            最近修改时间
+            </summary>
+        </member>
         <member name="T:Library.OpenApi.Extention.CacheExtention">
             <summary>
             缓存
@@ -243,116 +438,17 @@
             设置类型的架构属性集合
             </summary>
             <param name="type"></param>
-            <param name="innerType"></param>
+            <param name="dic"></param>
         </member>
-        <member name="M:Library.OpenApi.Extention.OpenApiExtention.GetMainTag(System.Type)">
+        <member name="M:Library.OpenApi.Extention.CacheExtention.Dispose">
             <summary>
-            获取主标签名称
-            <para>默认为类型名称</para>
+            销毁
             </summary>
-            <param name="type">目标对象</param>
-            <remarks>LCTR 2020-03-10</remarks>
-            <returns></returns>
         </member>
-        <member name="M:Library.OpenApi.Extention.OpenApiExtention.HasTag(System.Reflection.MemberInfo)">
+        <member name="T:Library.OpenApi.Extention.OpenApiExtention">
             <summary>
-            是否包含标签
+            接口文档相关扩展方法
             </summary>
-            <param name="element">目标成员</param>
-            <param name="name">标签名称</param>
-            <returns></returns>
-        </member>
-        <member name="M:Library.OpenApi.Extention.OpenApiExtention.HasTag(System.Reflection.MemberInfo,System.String)">
-            <summary>
-            是否包含标签
-            </summary>
-            <param name="element">目标成员</param>
-            <param name="name">标签名称</param>
-            <returns></returns>
-        </member>
-        <member name="M:Library.OpenApi.Extention.OpenApiExtention.CreateDynamicObjectWithTag``1(``0)">
-            <summary>
-            获取动态类型
-            </summary>
-            <typeparam name="TOpenApiSchema"></typeparam>
-            <param name="obj"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Library.OpenApi.Extention.OpenApiExtention.GetPropertysWithTagAndOther(System.Type,System.Boolean,System.String[])">
-            <summary>
-            获取属性集合
-            </summary>
-            <param name="type"></param>
-            <param name="inherit">仅继承成员</param>
-            <param name="otherTags">需要额外匹配的标签</param>
-            <returns></returns>
-        </member>
-        <member name="M:Library.OpenApi.Extention.OpenApiExtention.GetPropertysWithTag(System.Type,System.String[])">
-            <summary>
-            获取属性集合
-            </summary>
-            <param name="type"></param>
-            <param name="tags">标签集合</param>
-            <returns></returns>
-        </member>
-        <member name="M:Library.OpenApi.Extention.OpenApiExtention.GetPropertysWithTag(System.Type,System.Boolean)">
-            <summary>
-            获取属性集合
-            </summary>
-            <param name="type"></param>
-            <param name="tags">标签集合</param>
-            <returns></returns>
-        </member>
-        <member name="M:Library.OpenApi.Extention.OpenApiExtention.GetPropertysWithTags(System.Type,System.Boolean,System.String[])">
-            <summary>
-            获取属性集合
-            </summary>
-            <param name="type"></param>
-            <param name="inherit">仅继承成员</param>
-            <param name="tags">需要匹配的标签</param>
-            <returns></returns>
-        </member>
-        <member name="M:Library.OpenApi.Extention.OpenApiExtention.GetNamesWithTag(System.Type,System.String[])">
-            <summary>
-            获取字段名称集合
-            </summary>
-            <param name="type"></param>
-            <param name="tags">标签集合</param>
-            <returns></returns>
-        </member>
-        <member name="M:Library.OpenApi.Extention.OpenApiExtention.GetNamesWithTag(System.Type,System.Boolean)">
-            <summary>
-            获取字段名称集合
-            </summary>
-            <param name="type"></param>
-            <param name="inherit">仅继承成员</param>
-            <returns></returns>
-        </member>
-        <member name="M:Library.OpenApi.Extention.OpenApiExtention.GetNamesWithTagAndOther(System.Type,System.Boolean,System.String[])">
-            <summary>
-            获取字段名称集合
-            </summary>
-            <param name="type"></param>
-            <param name="inherit">仅继承成员</param>
-            <param name="otherTags">需要额外匹配的标签</param>
-            <returns></returns>
-        </member>
-        <member name="M:Library.OpenApi.Extention.OpenApiExtention.GetNamesWithTag(System.Type,System.String,System.Boolean)">
-            <summary>
-            获取字段名称集合
-            </summary>
-            <param name="type"></param>
-            <param name="tag">标签</param>
-            <param name="inherit">仅继承成员</param>
-            <returns></returns>
-        </member>
-        <member name="M:Library.OpenApi.Extention.OpenApiExtention.GetNameAndValueWithTag``1(``0,System.Boolean)">
-            <summary>
-            获取字段名称和值集合
-            </summary>
-            <param name=""></param>
-            <param name="inherit">仅继承成员</param>
-            <returns></returns>
         </member>
         <member name="M:Library.OpenApi.Extention.OpenApiExtention.CreateDefaultSchema(System.Reflection.PropertyInfo)">
             <summary>
@@ -361,42 +457,12 @@
             <param name="property"></param>
             <returns></returns>
         </member>
-        <member name="M:Library.OpenApi.Extention.OpenApiExtention.TryCast``1(System.Object,``0@)">
-            <summary>
-            转换类型
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="value"></param>
-            <param name="typedValue"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Library.OpenApi.Extention.OpenApiExtention.FilterModel(System.Type,System.Action{System.Type,System.Reflection.PropertyInfo},System.Func{System.Type,System.Reflection.PropertyInfo,System.Boolean},System.Boolean)">
-            <summary>
-            过滤模型
-            </summary>
-            <param name="type">类型</param>
-            <param name="after">处理成员之后</param>
-            <param name="befor">处理成员之前(返回false,跳过该成员)</param>
-            <param name="innerModel">处理内部模型</param>
-        </member>
         <member name="M:Library.OpenApi.Extention.OpenApiExtention.GetOrNullFor(System.Type,System.Boolean)">
             <summary>
             获取或创建接口初始类
             </summary>
             <param name="type"></param>
             <param name="innerModel">处理内部模型</param>
-            <returns></returns>
-        </member>
-        <member name="M:Library.OpenApi.Extention.OpenApiExtention.GetOrNullForPropertyDic(System.Type,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
-            <summary>
-            获取或创建架构属性信息
-            </summary>
-            <param name="type"></param>
-            <param name="after">处理成员之后</param>
-            <param name="innerModel">处理内部模型</param>
-            <param name="exceptionProperties">特别输出的属性</param>
-            <param name="ignoreProperties">特别忽略的属性</param>
-            <remarks>如果在特别输出参数和特别忽略参数中同时指定了同一个属性，那么最终不会输出该属性</remarks>
             <returns></returns>
         </member>
         <member name="M:Library.OpenApi.Extention.OpenApiExtention.CreateFor(System.Reflection.PropertyInfo,System.Boolean)">
@@ -415,92 +481,293 @@
             <param name="default">默认值</param>
             <returns></returns>
         </member>
+        <member name="T:Library.OpenApi.Extention.SchemaExtention">
+            <summary>
+            架构相关拓展方法
+            </summary>
+        </member>
+        <member name="F:Library.OpenApi.Extention.SchemaExtention.EnumerableMethods">
+            <summary>
+            Enumerable类常用方法
+            </summary>
+        </member>
+        <member name="M:Library.OpenApi.Extention.SchemaExtention.TryCast``1(System.Object,``0@)">
+            <summary>
+            转换类型
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="value"></param>
+            <param name="typedValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.Extention.SchemaExtention.FilterModel(System.Type,System.Action{System.Type,System.Reflection.PropertyInfo},System.Func{System.Type,System.Reflection.PropertyInfo,System.Boolean},System.Boolean)">
+            <summary>
+            过滤模型
+            </summary>
+            <param name="type">类型</param>
+            <param name="after">处理成员之后</param>
+            <param name="befor">处理成员之前(返回false,跳过该成员)</param>
+            <param name="innerModel">处理内部模型</param>
+        </member>
+        <member name="M:Library.OpenApi.Extention.SchemaExtention.ToOpenApiObjectFilterWhenAfter``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+            <summary>
+            反序列化后过滤属性
+            </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <param name="json">需要反序列化的Json字符串</param>
+            <param name="exceptionProperties">特别输出的属性</param>
+            <param name="ignoreProperties">特别忽略的属性</param>
+            <remarks>如果在特别输出参数和特别忽略参数中同时指定了同一个属性，那么最终不会输出该属性</remarks>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.Extention.SchemaExtention.FilterOpenApiObject(System.Object,System.Type,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+            <summary>
+            过滤属性
+            </summary>
+            <param name="object"></param>
+            <param name="type"></param>
+            <param name="propertyDic"></param>
+        </member>
+        <member name="M:Library.OpenApi.Extention.SchemaExtention.Foreach(System.Object,System.Type,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+            <summary>
+            遍历集合
+            </summary>
+            <param name="objectList"></param>
+            <param name="type"></param>
+            <param name="propertyDic"></param>
+        </member>
+        <member name="M:Library.OpenApi.Extention.SchemaExtention.ToOpenApiObjectFilterWhenBefor``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+            <summary>
+            过滤属性后反序列化
+            </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <param name="json">需要反序列化的Json字符串</param>
+            <param name="exceptionProperties">特别输出的属性</param>
+            <param name="ignoreProperties">特别忽略的属性</param>
+            <remarks>如果在特别输出参数和特别忽略参数中同时指定了同一个属性，那么最终不会输出该属性</remarks>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.Extention.SchemaExtention.FilterOpenApiObject(Newtonsoft.Json.Linq.JToken,System.Type,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+            <summary>
+            过滤属性
+            </summary>
+            <param name="jt"></param>
+            <param name="type"></param>
+            <param name="propertyDic"></param>
+        </member>
+        <member name="M:Library.OpenApi.Extention.SchemaExtention.Foreach(Newtonsoft.Json.Linq.JToken,System.Type,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+            <summary>
+            遍历集合
+            </summary>
+            <param name="jt"></param>
+            <param name="type"></param>
+            <param name="propertyDic"></param>
+        </member>
+        <member name="M:Library.OpenApi.Extention.SchemaExtention.GetMainTag(System.Type)">
+            <summary>
+            获取主标签名称
+            <para>默认为类型名称</para>
+            </summary>
+            <param name="type">目标对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.Extention.SchemaExtention.HasTag(System.Reflection.MemberInfo)">
+            <summary>
+            是否包含标签
+            </summary>
+            <param name="element">目标成员</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.Extention.SchemaExtention.HasTag(System.Reflection.MemberInfo,System.String)">
+            <summary>
+            是否包含标签
+            </summary>
+            <param name="element">目标成员</param>
+            <param name="name">标签名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.Extention.SchemaExtention.CreateDynamicObjectWithTag``1(``0)">
+            <summary>
+            获取动态类型
+            </summary>
+            <typeparam name="TOpenApiSchema"></typeparam>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.Extention.SchemaExtention.GetPropertysWithTagAndOther(System.Type,System.Boolean,System.String[])">
+            <summary>
+            获取属性集合
+            </summary>
+            <param name="type"></param>
+            <param name="inherit">仅继承成员</param>
+            <param name="otherTags">需要额外匹配的标签</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.Extention.SchemaExtention.GetPropertysWithTag(System.Type,System.String[])">
+            <summary>
+            获取属性集合
+            </summary>
+            <param name="type"></param>
+            <param name="tags">标签集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.Extention.SchemaExtention.GetPropertysWithTag(System.Type,System.Boolean)">
+            <summary>
+            获取属性集合
+            </summary>
+            <param name="type"></param>
+            <param name="inherit">仅继承成员</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.Extention.SchemaExtention.GetPropertysWithTags(System.Type,System.Boolean,System.String[])">
+            <summary>
+            获取属性集合
+            </summary>
+            <param name="type"></param>
+            <param name="inherit">仅继承成员</param>
+            <param name="tags">需要匹配的标签</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.Extention.SchemaExtention.GetNamesWithTag(System.Type,System.String[])">
+            <summary>
+            获取字段名称集合
+            </summary>
+            <param name="type"></param>
+            <param name="tags">标签集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.Extention.SchemaExtention.GetNamesWithTag(System.Type,System.Boolean)">
+            <summary>
+            获取字段名称集合
+            </summary>
+            <param name="type"></param>
+            <param name="inherit">仅继承成员</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.Extention.SchemaExtention.GetNamesWithTagAndOther(System.Type,System.Boolean,System.String[])">
+            <summary>
+            获取字段名称集合
+            </summary>
+            <param name="type"></param>
+            <param name="inherit">仅继承成员</param>
+            <param name="otherTags">需要额外匹配的标签</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.Extention.SchemaExtention.GetNamesWithTag(System.Type,System.String,System.Boolean)">
+            <summary>
+            获取字段名称集合
+            </summary>
+            <param name="type"></param>
+            <param name="tag">标签</param>
+            <param name="inherit">仅继承成员</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.Extention.SchemaExtention.GetNameAndValueWithTag``1(``0,System.Boolean)">
+            <summary>
+            获取字段名称和值集合
+            </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <param name="obj"></param>
+            <param name="inherit">仅继承成员</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.Extention.SchemaExtention.GetOrNullForPropertyDic(System.Type,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+            <summary>
+            获取或创建架构属性信息
+            </summary>
+            <param name="type"></param>
+            <param name="innerModel">处理内部模型</param>
+            <param name="exceptionProperties">特别输出的属性</param>
+            <param name="ignoreProperties">特别忽略的属性</param>
+            <remarks>如果在特别输出参数和特别忽略参数中同时指定了同一个属性，那么最终不会输出该属性</remarks>
+            <returns></returns>
+        </member>
         <member name="T:Library.OpenApi.JsonSerialization.JsonExtension">
             <summary>
-            Json拓展
+            Json相关拓展方法
             </summary>
         </member>
         <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToOpenApiJson``1(``0,System.String[])">
             <summary>
             将对象序列化成Json字符串
             </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
             <param name="obj">需要序列化的对象</param>
             <param name="exceptionProperties">要例外输出的属性</param>
-            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
             <returns></returns>
         </member>
         <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToOpenApiJson``1(System.Object,System.String[])">
             <summary>
             将对象序列化成Json字符串
             </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
             <param name="obj">需要序列化的对象</param>
             <param name="exceptionProperties">要例外输出的属性</param>
-            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
             <returns></returns>
         </member>
         <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToOpenApiJsonIgnore``1(``0,System.String[])">
             <summary>
             将对象序列化成Json字符串
             </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
             <param name="obj">需要序列化的对象</param>
             <param name="ignoreProperties">忽略的属性</param>
-            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
             <returns></returns>
         </member>
         <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToOpenApiJsonIgnore``1(System.Object,System.String[])">
             <summary>
             将对象序列化成Json字符串
             </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
             <param name="obj">需要序列化的对象</param>
             <param name="ignoreProperties">忽略的属性</param>
-            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
             <returns></returns>
         </member>
         <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToOpenApiJson``1(System.Object,System.String[],System.String[])">
             <summary>
             将对象序列化成Json字符串
             </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
             <param name="obj">需要序列化的对象</param>
             <param name="exceptionProperties">要例外输出的属性</param>
             <param name="ignoreProperties">忽略的属性</param>
-            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
             <returns></returns>
         </member>
         <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToOpenApiJsonSpecifyType``1(System.Object,System.ValueTuple{System.String,System.Collections.Generic.List{System.String}}[])">
             <summary>
             将对象序列化成Json字符串
             </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
             <param name="obj">需要序列化的对象</param>
             <param name="exceptionProperties">要例外输出的属性</param>
-            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
             <returns></returns>
         </member>
         <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToOpenApiJsonIgnoreSpecifyType``1(System.Object,System.ValueTuple{System.String,System.Collections.Generic.List{System.String}}[])">
             <summary>
             将对象序列化成Json字符串
             </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
             <param name="obj">需要序列化的对象</param>
             <param name="ignoreProperties">忽略的属性</param>
-            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
             <returns></returns>
         </member>
         <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToOpenApiJsonSpecifyType``1(System.Object,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
             <summary>
             将对象序列化成Json字符串
             </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
             <param name="obj">需要序列化的对象</param>
             <param name="exceptionProperties">要例外输出的属性</param>
             <param name="ignoreProperties">忽略的属性</param>
-            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
             <returns></returns>
         </member>
         <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToOpenApiObject``1(System.String,System.String[])">
             <summary>
             将Json字符串反序列化成对象
             </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
             <param name="json">需要反序列化的Json字符串</param>
             <param name="exceptionProperties">要例外输出的属性</param>
-            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
             <returns></returns>
         </member>
         <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToOpenApiObjectIgnore``1(System.String,System.String[])">
@@ -516,64 +783,50 @@
             <summary>
             将Json字符串反序列化成对象
             </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
             <param name="json">需要反序列化的Json字符串</param>
             <param name="exceptionProperties">要例外输出的属性</param>
             <param name="ignoreProperties">忽略的属性</param>
-            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
             <returns></returns>
         </member>
         <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToOpenApiObjectSpecifyType``1(System.String,System.ValueTuple{System.String,System.Collections.Generic.List{System.String}}[])">
             <summary>
             将Json字符串反序列化成对象
             </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
             <param name="json">需要反序列化的Json字符串</param>
             <param name="exceptionProperties">要例外输出的属性</param>
-            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
             <returns></returns>
         </member>
         <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToOpenApiObjectIgnoreSpecifyType``1(System.String,System.ValueTuple{System.String,System.Collections.Generic.List{System.String}}[])">
             <summary>
             将Json字符串反序列化成对象
             </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
             <param name="json">需要反序列化的Json字符串</param>
             <param name="ignoreProperties">忽略的属性</param>
-            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
             <returns></returns>
         </member>
         <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToOpenApiObject``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
             <summary>
             将Json字符串反序列化成对象
             </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
             <param name="json">需要反序列化的Json字符串</param>
             <param name="exceptionProperties">特别输出的属性</param>
             <param name="ignoreProperties">特别忽略的属性</param>
             <remarks>如果在特别输出参数和特别忽略参数中同时指定了同一个属性，那么最终不会输出该属性</remarks>
-            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
             <returns></returns>
-        </member>
-        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.FilterOpenApiObject``1(System.Type,``0,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
-            <summary>
-            过滤数据
-            </summary>
-            <typeparam name="TOpenApiSchema"></typeparam>
-            <param name="type"></param>
-            <param name="object"></param>
-            <param name="propertyDic"></param>
         </member>
         <member name="T:Library.OpenApi.JsonSerialization.JsonPropertyContractResolver`1">
             <summary>
             自定义分解器
             </summary>
-            <typeparam name="T">指定接口架构类型</typeparam>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
         </member>
-        <member name="F:Library.OpenApi.JsonSerialization.JsonPropertyContractResolver`1.LstClude">
+        <member name="F:Library.OpenApi.JsonSerialization.JsonPropertyContractResolver`1.PropertyDic">
             <summary>
             输出的属性
-            </summary>
-        </member>
-        <member name="F:Library.OpenApi.JsonSerialization.JsonPropertyContractResolver`1.IgnoreProperties">
-            <summary>
-            忽略的属性
             </summary>
         </member>
         <member name="M:Library.OpenApi.JsonSerialization.JsonPropertyContractResolver`1.#ctor(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
@@ -582,6 +835,14 @@
             </summary>
             <param name="exceptionProperties">特别输出的属性</param>
             <param name="ignoreProperties">特别忽略的属性</param>
+        </member>
+        <member name="M:Library.OpenApi.JsonSerialization.JsonPropertyContractResolver`1.CreateProperties(System.Type,Newtonsoft.Json.MemberSerialization)">
+            <summary>
+            创建属性
+            </summary>
+            <param name="type"></param>
+            <param name="memberSerialization"></param>
+            <returns></returns>
         </member>
     </members>
 </doc>
