@@ -11,6 +11,7 @@ using System.Reflection;
 using Newtonsoft.Json.Linq;
 using System.Diagnostics;
 using Library.ConsoleTool;
+using System.Dynamic;
 
 namespace Net5TC.Test
 {
@@ -27,47 +28,17 @@ namespace Net5TC.Test
 
         private Stopwatch Watch;
 
-        private string TestDataJson = string.Empty;
-
-        private readonly Dictionary<string, MethodInfo> EnumerableMethods = new Dictionary<string, MethodInfo>();
-
         [GlobalSetup]
         public void Setup()
         {
             if (UseWatch)
                 Watch = new Stopwatch();
 
-            foreach (var method in typeof(Enumerable).GetMethods())
-            {
-                switch (method.Name)
-                {
-                    case "Count":
-                        if (method.GetParameters().Length != 1)
-                            break;
-                        EnumerableMethods.Add("Count", method);
-                        break;
-                    case "ElementAt":
-                        EnumerableMethods.Add("ElementAt", method);
-                        break;
-                    default:
-                        break;
-                }
-            }
-
-            if (UseWatch)
-                Watch.Start();
-
-            var total = 100;// Convert.ToInt32(Extension.ReadInput("输入要测试的数据量: ", true, "100000"));
-            TestDataJson = TestData.GetJson(total);
-
-            if (UseWatch)
-            {
-                Watch.Stop();
-                $"准备{total}条数据耗时 {Watch.ElapsedMilliseconds} ms".ConsoleWrite(ConsoleColor.Cyan, null, true, 1);
-            }
-
             if (UseWatch)
                 Watch.Restart();
+
+            var total = 100;// Convert.ToInt32(Extension.ReadInput("输入要测试的数据量: ", true, "100000"));
+            var testDataJson = TestData.GetJson(total);
 
             _ = typeof(List<DTO.DB_ADTO.List>).GetOrNullForPropertyDic(true);
 
@@ -78,13 +49,25 @@ namespace Net5TC.Test
             }
         }
 
-        [Benchmark(Baseline = true, Description = "反序列化")]
+        [Benchmark(Baseline = true, Description = "反序列化······")]
         public void ToObjectWithoutFilter()
         {
             if (UseWatch)
+                Watch.Start();
+
+            var total = 100;// Convert.ToInt32(Extension.ReadInput("输入要测试的数据量: ", true, "100000"));
+            var testDataJson = TestData.GetJson(total);
+
+            if (UseWatch)
+            {
+                Watch.Stop();
+                $"准备{total}条数据耗时 {Watch.ElapsedMilliseconds} ms".ConsoleWrite(ConsoleColor.Cyan, null, true, 1);
+            }
+
+            if (UseWatch)
                 Watch.Restart();
 
-            var objectList = JsonConvert.DeserializeObject<List<DTO.DB_ADTO.List>>(TestDataJson);
+            var objectList = JsonConvert.DeserializeObject<List<DTO.DB_ADTO.List>>(testDataJson);
 
             if (UseWatch)
             {
@@ -93,14 +76,26 @@ namespace Net5TC.Test
             }
         }
 
-        [Benchmark(Description = "反序列化后过滤属性")]
+        [Benchmark(Description = "反序列化后过滤属性·")]
         public void ToObjectFilterWhenAfter()
         {
+            if (UseWatch)
+                Watch.Start();
+
+            var total = 100;// Convert.ToInt32(Extension.ReadInput("输入要测试的数据量: ", true, "100000"));
+            var testDataJson = TestData.GetJson(total);
+
+            if (UseWatch)
+            {
+                Watch.Stop();
+                $"准备{total}条数据耗时 {Watch.ElapsedMilliseconds} ms".ConsoleWrite(ConsoleColor.Cyan, null, true, 1);
+            }
+
             if (UseWatch)
                 Watch.Restart();
 
             //var objectList = TestDataJson.ToOpenApiObjectFilterWhenAfter<List<DTO.DB_ADTO.List>>();
-            var objectList = TestDataJson.ToOpenApiObject<List<DTO.DB_ADTO.List>>();
+            var objectList = testDataJson.ToOpenApiObject<List<DTO.DB_ADTO.List>>();
 
             if (UseWatch)
             {
@@ -109,7 +104,34 @@ namespace Net5TC.Test
             }
         }
 
-        //[Benchmark(Description = "过滤属性后反序列化")]
+        [Benchmark(Description = "反序列化时过滤属性·")]
+        public void ToObjectFilter()
+        {
+            if (UseWatch)
+                Watch.Start();
+
+            var total = 100;// Convert.ToInt32(Extension.ReadInput("输入要测试的数据量: ", true, "100000"));
+            var testDataJson = TestData.GetJson(total);
+
+            if (UseWatch)
+            {
+                Watch.Stop();
+                $"准备{total}条数据耗时 {Watch.ElapsedMilliseconds} ms".ConsoleWrite(ConsoleColor.Cyan, null, true, 1);
+            }
+
+            if (UseWatch)
+                Watch.Restart();
+
+            var objectList = testDataJson.ToOpenApiObjectA<List<DTO.DB_ADTO.List>>(null, null);
+
+            if (UseWatch)
+            {
+                Watch.Stop();
+                $"反序列化时过滤属性{objectList?.Count}条数据耗时 {Watch.ElapsedMilliseconds} ms".ConsoleWrite(ConsoleColor.Cyan, null, true, 1);
+            }
+        }
+
+        //[Benchmark(Description = "过滤属性后反序列化·")]
         //public void ToObjectFilterWhenBefor()
         //{
         //    if (UseWatch)
@@ -123,5 +145,73 @@ namespace Net5TC.Test
         //        $"过滤属性后反序列化{objectList?.Count}条数据耗时 {Watch.ElapsedMilliseconds} ms".ConsoleWrite(ConsoleColor.Cyan, null, true, 1);
         //    }
         //}
+
+        [Benchmark(Description = "转动态类型后反序列化")]
+        public void ToObjectWhileDynamic()
+        {
+            if (UseWatch)
+                Watch.Start();
+
+            var total = 100;// Convert.ToInt32(Extension.ReadInput("输入要测试的数据量: ", true, "100000"));
+            var testDataJson = TestData.GetJson(total);
+
+            if (UseWatch)
+            {
+                Watch.Stop();
+                $"准备{total}条数据耗时 {Watch.ElapsedMilliseconds} ms".ConsoleWrite(ConsoleColor.Cyan, null, true, 1);
+            }
+
+            if (UseWatch)
+                Watch.Restart();
+
+            var propertyDic = typeof(List<DTO.DB_ADTO.List>).GetOrNullForPropertyDic(true);
+            var dynamicType = GetDynamicType(typeof(List<DTO.DB_ADTO.List>), propertyDic);
+            var type = dynamicType.GetType();
+
+            var @object = JsonConvert.DeserializeObject(testDataJson, type);
+            var objectList = @object as List<object>;
+
+            if (UseWatch)
+            {
+                Watch.Stop();
+                $"转动态类型后反序列化{objectList?.Count}条数据耗时 {Watch.ElapsedMilliseconds} ms".ConsoleWrite(ConsoleColor.Cyan, null, true, 1);
+            }
+        }
+
+        private object GetDynamicType(Type type, Dictionary<string, List<string>> propertyDic)
+        {
+            if (type.IsArray)
+            {
+                type = type.Assembly.GetType(type.FullName.Replace("[]", string.Empty));
+                return new object[]
+                {
+                    GetDynamicType(type, propertyDic)
+                };
+            }
+            else if (type.IsGenericType)
+            {
+                type = type.GenericTypeArguments[0];
+                return new List<object>
+                {
+                    GetDynamicType(type, propertyDic)
+                };
+            }
+
+            var expandoObject = new ExpandoObject() as IDictionary<string, object>;
+
+            foreach (var prop in type.GetProperties())
+            {
+                if (!propertyDic[type.FullName].Contains(prop.Name))
+                    continue;
+
+                var schemaAttribute = prop.GetCustomAttribute<OpenApiSchemaAttribute>();
+                if (schemaAttribute?.Type == OpenApiSchemaType.model)
+                    expandoObject.Add(prop.Name, GetDynamicType(prop.PropertyType, propertyDic));
+                else
+                    expandoObject.Add(prop.Name, prop.PropertyType.IsValueType ? Activator.CreateInstance(prop.PropertyType) : null);
+            }
+
+            return expandoObject;
+        }
     }
 }

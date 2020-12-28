@@ -818,31 +818,105 @@
             <remarks>如果在特别输出参数和特别忽略参数中同时指定了同一个属性，那么最终不会输出该属性</remarks>
             <returns></returns>
         </member>
-        <member name="T:Library.OpenApi.JsonSerialization.JsonPropertyContractResolver`1">
+        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToOpenApiObjectA``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
             <summary>
-            自定义分解器
+            将Json字符串反序列化成对象
+            </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <param name="json">需要反序列化的Json字符串</param>
+            <param name="exceptionProperties">特别输出的属性</param>
+            <param name="ignoreProperties">特别忽略的属性</param>
+            <remarks>如果在特别输出参数和特别忽略参数中同时指定了同一个属性，那么最终不会输出该属性</remarks>
+            <returns></returns>
+        </member>
+        <member name="T:Library.OpenApi.JsonSerialization.OpenApiContractResolver`1">
+            <summary>
+            自定义解析器
             </summary>
             <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
         </member>
-        <member name="F:Library.OpenApi.JsonSerialization.JsonPropertyContractResolver`1.PropertyDic">
+        <member name="F:Library.OpenApi.JsonSerialization.OpenApiContractResolver`1.PropertyDic">
             <summary>
             输出的属性
             </summary>
         </member>
-        <member name="M:Library.OpenApi.JsonSerialization.JsonPropertyContractResolver`1.#ctor(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+        <member name="M:Library.OpenApi.JsonSerialization.OpenApiContractResolver`1.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.OpenApi.JsonSerialization.OpenApiContractResolver`1.#ctor(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+            <summary>
+            
+            </summary>
+            <param name="propertyDic">输出的属性</param>
+        </member>
+        <member name="M:Library.OpenApi.JsonSerialization.OpenApiContractResolver`1.#ctor(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
             <summary>
             
             </summary>
             <param name="exceptionProperties">特别输出的属性</param>
             <param name="ignoreProperties">特别忽略的属性</param>
         </member>
-        <member name="M:Library.OpenApi.JsonSerialization.JsonPropertyContractResolver`1.CreateProperties(System.Type,Newtonsoft.Json.MemberSerialization)">
+        <member name="M:Library.OpenApi.JsonSerialization.OpenApiContractResolver`1.CreateProperties(System.Type,Newtonsoft.Json.MemberSerialization)">
             <summary>
             创建属性
             </summary>
             <param name="type"></param>
             <param name="memberSerialization"></param>
             <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.JsonSerialization.OpenApiContractResolver`1.ResolveContract(System.Type)">
+            <summary>
+            判定协议
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.JsonSerialization.OpenApiContractResolver`1.Filter(Newtonsoft.Json.Serialization.JsonObjectContract)">
+            <summary>
+            过滤属性
+            </summary>
+            <param name="contract">协议</param>
+        </member>
+        <member name="T:Library.OpenApi.JsonSerialization.OpenApiConverter`1">
+            <summary>
+            自定义动态类型转换器
+            </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+        </member>
+        <member name="F:Library.OpenApi.JsonSerialization.OpenApiConverter`1.PropertyDic">
+            <summary>
+            输出的属性
+            </summary>
+        </member>
+        <member name="M:Library.OpenApi.JsonSerialization.OpenApiConverter`1.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.OpenApi.JsonSerialization.OpenApiConverter`1.#ctor(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+            <summary>
+            
+            </summary>
+            <param name="propertyDic">输出的属性</param>
+        </member>
+        <member name="M:Library.OpenApi.JsonSerialization.OpenApiConverter`1.#ctor(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+            <summary>
+            
+            </summary>
+            <param name="exceptionProperties">特别输出的属性</param>
+            <param name="ignoreProperties">特别忽略的属性</param>
+        </member>
+        <member name="M:Library.OpenApi.JsonSerialization.OpenApiConverter`1.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            Reads the JSON representation of the object.
+            </summary>
+            <param name="reader">The <see cref="T:Newtonsoft.Json.JsonReader"/> to read from.</param>
+            <param name="objectType">Type of the object.</param>
+            <param name="existingValue">The existing value of object being read.</param>
+            <param name="serializer">The calling serializer.</param>
+            <returns>The object value.</returns>
         </member>
     </members>
 </doc>

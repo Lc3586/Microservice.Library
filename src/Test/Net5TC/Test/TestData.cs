@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,10 +16,29 @@ namespace Net5TC.Test
     {
         static TestData()
         {
+            foreach (var method in typeof(Enumerable).GetMethods())
+            {
+                switch (method.Name)
+                {
+                    case "Count":
+                        if (method.GetParameters().Length != 1)
+                            break;
+                        EnumerableMethods.Add("Count", method);
+                        break;
+                    case "ElementAt":
+                        EnumerableMethods.Add("ElementAt", method);
+                        break;
+                    default:
+                        break;
+                }
+            }
+
             new IdHelperBootstrapper()
                 .SetWorkderId(100)
                 .Boot();
         }
+
+        public static readonly Dictionary<string, MethodInfo> EnumerableMethods = new Dictionary<string, MethodInfo>();
 
         private static readonly Random Random = new Random();
 
@@ -32,8 +52,11 @@ namespace Net5TC.Test
         /// 获取数据集合
         /// </summary>
         /// <returns></returns>
-        public static List<DTO.DB_ADTO.List> GetList(int total)
+        public static List<DTO.DB_ADTO.List> GetList(int total, bool newData = false)
         {
+            if (newData)
+                ObjectList.Clear();
+
             if (ObjectList.Any() && ObjectList.Count >= total)
                 return ObjectList.Take(total).ToList();
 
@@ -105,8 +128,11 @@ namespace Net5TC.Test
         /// 获取Json数据
         /// </summary>
         /// <returns></returns>
-        public static string GetJson(int total)
+        public static string GetJson(int total, bool newData = false)
         {
+            if (newData)
+                ObjectListJson = string.Empty;
+
             if (!string.IsNullOrWhiteSpace(ObjectListJson) && ObjectListJsonCount == total)
                 return ObjectListJson;
 

@@ -113,7 +113,7 @@ namespace Library.OpenApi.JsonSerialization
         {
             return JsonConvert.SerializeObject(obj, new JsonSerializerSettings
             {
-                ContractResolver = new JsonPropertyContractResolver<TOpenApiSchema>(exceptionProperties, ignoreProperties)
+                ContractResolver = new OpenApiContractResolver<TOpenApiSchema>(exceptionProperties, ignoreProperties)
             });
         }
 
@@ -196,6 +196,23 @@ namespace Library.OpenApi.JsonSerialization
             //    return json.ToOpenApiObjectFilterWhenBefor<TOpenApiSchema>(exceptionProperties, ignoreProperties);
             //else
             return json.ToOpenApiObjectFilterWhenAfter<TOpenApiSchema>(exceptionProperties, ignoreProperties);
+        }
+
+        /// <summary>
+        /// 将Json字符串反序列化成对象
+        /// </summary>
+        /// <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+        /// <param name="json">需要反序列化的Json字符串</param>
+        /// <param name="exceptionProperties">特别输出的属性</param>
+        /// <param name="ignoreProperties">特别忽略的属性</param>
+        /// <remarks>如果在特别输出参数和特别忽略参数中同时指定了同一个属性，那么最终不会输出该属性</remarks>
+        /// <returns></returns>
+        public static TOpenApiSchema ToOpenApiObjectA<TOpenApiSchema>(this string json, Dictionary<string, List<string>> exceptionProperties, Dictionary<string, List<string>> ignoreProperties) where TOpenApiSchema : class
+        {
+            return JsonConvert.DeserializeObject<TOpenApiSchema>(json, new JsonSerializerSettings
+            {
+                ContractResolver = new OpenApiContractResolver<TOpenApiSchema>(exceptionProperties, ignoreProperties)
+            });
         }
     }
 }

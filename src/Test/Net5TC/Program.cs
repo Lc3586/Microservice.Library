@@ -35,6 +35,7 @@ namespace Net5TC
                         serializeTest.Setup();
                         serializeTest.ToJsonWithoutFilter();
                         serializeTest.ToJsonFilter();
+                        serializeTest.ToJsonFilterWhenBefor();
 
                         var deserializeTest = new DeserializeTest
                         {
@@ -42,8 +43,10 @@ namespace Net5TC
                         };
                         deserializeTest.Setup();
                         deserializeTest.ToObjectWithoutFilter();
+                        deserializeTest.ToObjectFilter();
                         deserializeTest.ToObjectFilterWhenAfter();
                         //deserializeTest.ToObjectFilterWhenBefor();
+                        deserializeTest.ToObjectWhileDynamic();
                         break;
                     case "2":
                         "测试开始".ConsoleWrite(ConsoleColor.Cyan, null, true, 1);
@@ -70,7 +73,7 @@ namespace Net5TC
 
                         var serializeSummary = BenchmarkRunner.Run<SerializeTest>(config);
 
-                        var deserializeSummary = BenchmarkRunner.Run<DeserializeTest>(config);
+                        //var deserializeSummary = BenchmarkRunner.Run<DeserializeTest>(config);
 
                         break;
                 }
