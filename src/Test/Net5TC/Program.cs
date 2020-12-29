@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Environments;
@@ -7,6 +9,7 @@ using BenchmarkDotNet.Running;
 using Net5TC.Test;
 using Library.ConsoleTool;
 using System.Runtime.InteropServices;
+using BenchmarkDotNet.Reports;
 
 namespace Net5TC
 {
@@ -34,8 +37,8 @@ namespace Net5TC
                         };
                         serializeTest.Setup();
                         serializeTest.ToJsonWithoutFilter();
-                        serializeTest.ToJsonFilter();
-                        serializeTest.ToJsonFilterWhenBefor();
+                        serializeTest.ToJsonFilter();//最优方案
+                        //serializeTest.ToJsonFilterWhenBefor();//性能差
 
                         var deserializeTest = new DeserializeTest
                         {
@@ -43,10 +46,10 @@ namespace Net5TC
                         };
                         deserializeTest.Setup();
                         deserializeTest.ToObjectWithoutFilter();
-                        deserializeTest.ToObjectFilter();
-                        deserializeTest.ToObjectFilterWhenAfter();
-                        //deserializeTest.ToObjectFilterWhenBefor();
-                        deserializeTest.ToObjectWhileDynamic();
+                        deserializeTest.ToObjectFilter();//最优方案
+                        //deserializeTest.ToObjectFilterWhenAfter();//性能差
+                        //deserializeTest.ToObjectFilterWhenBefor();//性能差
+                        //deserializeTest.ToObjectWhileDynamic();//暂未实现
                         break;
                     case "2":
                         "测试开始".ConsoleWrite(ConsoleColor.Cyan, null, true, 1);
@@ -57,24 +60,51 @@ namespace Net5TC
                                     .WithRuntime(ClrRuntime.Net461)
                                     .WithPlatform(Platform.AnyCpu)
                                     .WithJit(Jit.LegacyJit)
-                                    .WithGcServer(true))
+                                    .WithGcServer(false))
                             .AddJob(Job.Default
                                     .WithRuntime(CoreRuntime.Core31)
                                     .WithPlatform(Platform.AnyCpu)
                                     .WithJit(Jit.RyuJit)
-                                    .WithGcServer(true))
+                                    .WithGcServer(false))
                             .AddJob(Job.Default
                                     .WithRuntime(CoreRuntime.Core50)
                                     .WithPlatform(Platform.AnyCpu)
                                     .WithJit(Jit.RyuJit)
-                                    .WithGcServer(true));
+                                    .WithGcServer(false));
 
                         var config = DefaultConfig.Instance.WithOption(ConfigOptions.DisableOptimizationsValidator, true);
+                        var summaryDic = new Dictionary<string, Summary>();
 
-                        var serializeSummary = BenchmarkRunner.Run<SerializeTest>(config);
+                        var testDic = new Dictionary<string, List<string>>
+                        {
+                            {
+                                "Net5TC.Test.SerializeTest",
+                                new List<string>
+                                {
+                                    "ToJsonWithoutFilter",
+                                    "ToJsonFilter",
+                                    //"ToJsonFilterWhenBefor"
+                                }
+                            },
+                            {
+                                "Net5TC.Test.DeserializeTest",
+                                new List<string>
+                                {
+                                    "ToObjectWithoutFilter",
+                                    "ToObjectFilter",
+                                    //"ToObjectFilterWhenAfter",
+                                    //"ToObjectFilterWhenBefor",
+                                    //"ToObjectWhileDynamic"
+                                }
+                            }
+                        };
+                        foreach (var test in testDic)
+                        {
+                            var type = Type.GetType(test.Key);
 
-                        //var deserializeSummary = BenchmarkRunner.Run<DeserializeTest>(config);
-
+                            var serializeSummary = BenchmarkRunner.Run(type, type.GetMethods().Where(m => test.Value.Contains(m.Name)).ToArray(), config);
+                            summaryDic.Add(test.Key, serializeSummary);
+                        }
                         break;
                 }
 

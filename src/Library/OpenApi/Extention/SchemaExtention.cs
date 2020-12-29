@@ -17,32 +17,7 @@ namespace Library.OpenApi.Extention
     /// </summary>
     public static class SchemaExtention
     {
-        static SchemaExtention()
-        {
-            foreach (var method in typeof(Enumerable).GetMethods())
-            {
-                switch (method.Name)
-                {
-                    case "Count":
-                        if (method.GetParameters().Length != 1)
-                            break;
-                        EnumerableMethods.Add("Count", method);
-                        break;
-                    case "ElementAt":
-                        EnumerableMethods.Add("ElementAt", method);
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
-
         #region 内部成员
-
-        /// <summary>
-        /// Enumerable类常用方法
-        /// </summary>
-        internal static readonly Dictionary<string, MethodInfo> EnumerableMethods = new Dictionary<string, MethodInfo>();
 
         /// <summary>
         /// 转换类型
@@ -110,184 +85,6 @@ namespace Library.OpenApi.Extention
                     prop.PropertyType.FilterModel(after, befor, schemaAttribute?.Format != OpenApiSchemaFormat.model_once);
 
                 after?.Invoke(type, prop);
-            }
-        }
-
-        /// <summary>
-        /// 反序列化后过滤属性
-        /// </summary>
-        /// <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
-        /// <param name="json">需要反序列化的Json字符串</param>
-        /// <param name="exceptionProperties">特别输出的属性</param>
-        /// <param name="ignoreProperties">特别忽略的属性</param>
-        /// <remarks>如果在特别输出参数和特别忽略参数中同时指定了同一个属性，那么最终不会输出该属性</remarks>
-        /// <returns></returns>
-        internal static TOpenApiSchema ToOpenApiObjectFilterWhenAfter<TOpenApiSchema>(this string json, Dictionary<string, List<string>> exceptionProperties = null, Dictionary<string, List<string>> ignoreProperties = null)
-        {
-            if (string.IsNullOrWhiteSpace(json))
-                return default;
-
-            var @object = JsonConvert.DeserializeObject<TOpenApiSchema>(json);
-
-            if (@object.Equals(default(TOpenApiSchema)))
-                return default;
-
-            var type = typeof(TOpenApiSchema);
-
-            var propertyDic = type.GetOrNullForPropertyDic(true, exceptionProperties, ignoreProperties);
-
-            FilterOpenApiObject(@object, type, propertyDic);
-
-            return @object;
-        }
-
-        /// <summary>
-        /// 过滤属性
-        /// </summary>
-        /// <param name="object"></param>
-        /// <param name="type"></param>
-        /// <param name="propertyDic"></param>
-        internal static void FilterOpenApiObject(object @object, Type type, Dictionary<string, List<string>> propertyDic)
-        {
-            if (@object == null)
-                return;
-
-            var isEnumerable = false;
-            if (type.IsArray)
-            {
-                type = type.Assembly.GetType(type.FullName.Replace("[]", string.Empty));
-                isEnumerable = true;
-            }
-            else if (type.IsGenericType)
-            {
-                type = type.GenericTypeArguments[0];
-                isEnumerable = true;
-            }
-
-            if (isEnumerable)
-                Foreach(@object, type, propertyDic);
-            else
-            {
-                foreach (var prop in type.GetProperties())
-                {
-                    if (!propertyDic[type.FullName].Contains(prop.Name))
-                    {
-                        prop.SetValue(@object, default);
-                        continue;
-                    }
-
-                    var schemaAttribute = prop.GetCustomAttribute<OpenApiSchemaAttribute>();
-                    if (schemaAttribute?.Type == OpenApiSchemaType.model)
-                        FilterOpenApiObject(prop.GetValue(@object), prop.PropertyType, propertyDic);
-                }
-            }
-        }
-
-        /// <summary>
-        /// 遍历集合
-        /// </summary>
-        /// <param name="objectList"></param>
-        /// <param name="type"></param>
-        /// <param name="propertyDic"></param>
-        internal static void Foreach(object objectList, Type type, Dictionary<string, List<string>> propertyDic)
-        {
-            var count = (int)EnumerableMethods["Count"].MakeGenericMethod(type)
-                                                        .Invoke(objectList, new object[] { objectList });
-
-            for (int i = 0; i < count; i++)
-            {
-                var @object = EnumerableMethods["ElementAt"].MakeGenericMethod(type)
-                                                            .Invoke(null, new object[] { objectList, i });
-
-                FilterOpenApiObject(@object, type, propertyDic);
-            }
-        }
-
-        /// <summary>
-        /// 过滤属性后反序列化
-        /// </summary>
-        /// <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
-        /// <param name="json">需要反序列化的Json字符串</param>
-        /// <param name="exceptionProperties">特别输出的属性</param>
-        /// <param name="ignoreProperties">特别忽略的属性</param>
-        /// <remarks>如果在特别输出参数和特别忽略参数中同时指定了同一个属性，那么最终不会输出该属性</remarks>
-        /// <returns></returns>
-        internal static TOpenApiSchema ToOpenApiObjectFilterWhenBefor<TOpenApiSchema>(this string json, Dictionary<string, List<string>> exceptionProperties = null, Dictionary<string, List<string>> ignoreProperties = null)
-        {
-            if (string.IsNullOrWhiteSpace(json))
-                return default;
-
-            var type = typeof(TOpenApiSchema);
-
-            var propertyDic = type.GetOrNullForPropertyDic(true, exceptionProperties, ignoreProperties);
-
-            var jt = JToken.Parse(json);
-
-            FilterOpenApiObject(jt, type, propertyDic);
-
-            return jt.ToObject<TOpenApiSchema>();
-        }
-
-        /// <summary>
-        /// 过滤属性
-        /// </summary>
-        /// <param name="jt"></param>
-        /// <param name="type"></param>
-        /// <param name="propertyDic"></param>
-        internal static void FilterOpenApiObject(JToken jt, Type type, Dictionary<string, List<string>> propertyDic)
-        {
-            if (jt == null)
-                return;
-
-            var isEnumerable = false;
-            if (type.IsArray)
-            {
-                type = type.Assembly.GetType(type.FullName.Replace("[]", string.Empty));
-                isEnumerable = true;
-            }
-            else if (type.IsGenericType)
-            {
-                type = type.GenericTypeArguments[0];
-                isEnumerable = true;
-            }
-
-            if (isEnumerable)
-            {
-                Foreach(jt, type, propertyDic);
-            }
-            else
-            {
-                var jp = jt.First as JProperty;
-                while (jp != null)
-                {
-                    var jp_next = jp.Next as JProperty;
-
-                    if (!propertyDic[type.FullName].Contains(jp.Name))
-                        jp.Remove();
-                    else
-                    {
-                        var prop = type.GetProperty(jp.Name);
-                        var schemaAttribute = prop.GetCustomAttribute<OpenApiSchemaAttribute>();
-                        if (schemaAttribute?.Type == OpenApiSchemaType.model)
-                            FilterOpenApiObject(jp.Value, prop.PropertyType, propertyDic);
-                    }
-
-                    jp = jp_next;
-                }
-            }
-        }
-
-        /// <summary>
-        /// 遍历集合
-        /// </summary>
-        /// <param name="jt"></param>
-        /// <param name="type"></param>
-        /// <param name="propertyDic"></param>
-        internal static void Foreach(JToken jt, Type type, Dictionary<string, List<string>> propertyDic)
-        {
-            foreach (var item in jt)
-            {
-                FilterOpenApiObject(item, type, propertyDic);
             }
         }
 
@@ -467,7 +264,7 @@ namespace Library.OpenApi.Extention
         /// <returns></returns>
         public static Dictionary<string, List<string>> GetOrNullForPropertyDic(this Type type, bool innerModel = true, Dictionary<string, List<string>> exceptionProperties = null, Dictionary<string, List<string>> ignoreProperties = null)
         {
-            var propertyDic = type.GetPropertysOfTypeDic();
+            var propertyDic = type.GetPropertysOfTypeDic(exceptionProperties?.Any() == true && ignoreProperties?.Any() == true);
 
             if (propertyDic.Any())
                 goto end;

@@ -13,21 +13,12 @@ namespace Library.OpenApi.JsonSerialization
     /// <summary>
     /// 自定义解析器
     /// </summary>
-    /// <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
-    public class OpenApiContractResolver<TOpenApiSchema> : DefaultContractResolver
+    public class OpenApiContractResolver : DefaultContractResolver
     {
         /// <summary>
         /// 输出的属性
         /// </summary>
-        Dictionary<string, List<string>> PropertyDic;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public OpenApiContractResolver()
-        {
-            PropertyDic = typeof(TOpenApiSchema).GetOrNullForPropertyDic(true);
-        }
+        readonly Dictionary<string, List<string>> PropertyDic;
 
         /// <summary>
         /// 
@@ -41,24 +32,34 @@ namespace Library.OpenApi.JsonSerialization
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="exceptionProperties">特别输出的属性</param>
-        /// <param name="ignoreProperties">特别忽略的属性</param>
-        public OpenApiContractResolver(Dictionary<string, List<string>> exceptionProperties, Dictionary<string, List<string>> ignoreProperties)
+        /// <param name="schemaType">架构类型</param>
+        public OpenApiContractResolver(Type schemaType)
         {
-            PropertyDic = typeof(TOpenApiSchema).GetOrNullForPropertyDic(true, exceptionProperties, ignoreProperties);
+            PropertyDic = schemaType.GetOrNullForPropertyDic(true);
         }
 
         /// <summary>
-        /// 创建属性
+        /// 
         /// </summary>
-        /// <param name="type"></param>
-        /// <param name="memberSerialization"></param>
-        /// <returns></returns>
-        protected override IList<JsonProperty> CreateProperties(Type type, MemberSerialization memberSerialization)
+        /// <param name="schemaType">架构类型</param>
+        /// <param name="exceptionProperties">特别输出的属性</param>
+        /// <param name="ignoreProperties">特别忽略的属性</param>
+        public OpenApiContractResolver(Type schemaType, Dictionary<string, List<string>> exceptionProperties, Dictionary<string, List<string>> ignoreProperties)
         {
-            var result = base.CreateProperties(type, memberSerialization).ToList();
-            return PropertyDic.Any() ? result.FindAll(p => PropertyDic[type.FullName].Contains(p.PropertyName)) : result;
+            PropertyDic = schemaType.GetOrNullForPropertyDic(true, exceptionProperties, ignoreProperties);
         }
+
+        ///// <summary>
+        ///// 创建属性
+        ///// </summary>
+        ///// <param name="type"></param>
+        ///// <param name="memberSerialization"></param>
+        ///// <returns></returns>
+        //protected override IList<JsonProperty> CreateProperties(Type type, MemberSerialization memberSerialization)
+        //{
+        //    var result = base.CreateProperties(type, memberSerialization).ToList();
+        //    return PropertyDic.Any() ? result.FindAll(p => PropertyDic[type.FullName].Contains(p.PropertyName)) : result;
+        //}
 
         /// <summary>
         /// 判定协议
@@ -70,35 +71,13 @@ namespace Library.OpenApi.JsonSerialization
             if (type == null)
                 throw new ArgumentNullException(nameof(type));
 
-            //var contract = base.ResolveContract(type);
-
             var contract = base.ResolveContract(type);
-
-            //var _type = type;
-
-            //var isEnumerable = false;
-            //if (_type.IsArray)
-            //{
-            //    _type = _type.Assembly.GetType(_type.FullName.Replace("[]", string.Empty));
-            //    isEnumerable = true;
-            //}
-            //else if (_type.IsGenericType)
-            //{
-            //    _type = _type.GenericTypeArguments[0];
-            //    isEnumerable = true;
-            //}
-
-            //if (isEnumerable)
-            //    contract = base.ResolveContract(type);
-            ////contract = base.CreateArrayContract(type);
-            //else
-            //{
-            //    contract = base.ResolveContract(type);
-            //    //contract = base.CreateObjectContract(type);
-            //}
 
             if (contract.GetType() == typeof(JsonObjectContract))
                 Filter(contract as JsonObjectContract);
+            //关于动态类型反序列化暂无实现思路
+            //else if (contract.GetType() == typeof(JsonDictionaryContract))
+            //    SetConvert(contract as JsonDictionaryContract, type);
 
             return contract;
         }
@@ -109,6 +88,9 @@ namespace Library.OpenApi.JsonSerialization
         /// <param name="contract">协议</param>
         private void Filter(JsonObjectContract contract)
         {
+            if (PropertyDic == null)
+                return;
+
             if (contract == null)
                 return;
 
@@ -119,5 +101,25 @@ namespace Library.OpenApi.JsonSerialization
                     contract.Properties.Remove(property);
             }
         }
+
+        ///// <summary>
+        ///// 过滤属性
+        ///// </summary>
+        ///// <param name="contract">协议</param>
+        //private void SetConvert(JsonDictionaryContract contract, Type type)
+        //{
+        //    if (PropertyDic == null)
+        //        return;
+
+        //    if (contract == null)
+        //        return;
+
+        //    foreach (var item in type.GetProperties())
+        //    {
+        //        Console.WriteLine(item.Name);
+        //    }
+
+        //    contract.Converter = new OpenApiDynamicConverter(type);
+        //}
     }
 }

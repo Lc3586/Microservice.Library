@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <RootNamespace>Library.SuperSocket</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.3-alpha</Version>
+    <Version>1.0.4-alpha</Version>
     <Authors>LCTR</Authors>
     <Product>LCTR</Product>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -43,12 +43,12 @@ JT协议</Description>
     <PackageReference Include="SuperSocket.Client" Version="2.0.0-preview3-06" />
     <PackageReference Include="SuperSocket.SessionContainer" Version="2.0.0-preview3-06" />
     <PackageReference Include="SuperSocket.WebSocket.Server" Version="2.0.0-preview3-06" />
-    <PackageReference Include="System.Text.Encoding.CodePages" Version="4.7.1" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Cache\Library.Cache.csproj" />
-    <ProjectReference Include="..\Configuration\Library.Configuration.csproj" />
+    <ProjectReference Include="..\Container\Library.Container.csproj" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>

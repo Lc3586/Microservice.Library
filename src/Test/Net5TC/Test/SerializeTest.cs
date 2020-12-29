@@ -3,15 +3,13 @@ using BenchmarkDotNet.Jobs;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using Coldairarrow.Util;
 using Library.OpenApi.Extention;
 using Library.OpenApi.JsonSerialization;
 using Library.ConsoleTool;
 using System.Diagnostics;
 using System.Dynamic;
-using System.Reflection;
 using Library.OpenApi.Annotations;
+using System.Reflection;
 
 namespace Net5TC.Test
 {
@@ -49,7 +47,10 @@ namespace Net5TC.Test
             }
         }
 
-        [Benchmark(Baseline = true, Description = "序列化·····")]
+        /// <summary>
+        /// 基础序列化
+        /// </summary>
+        [Benchmark(Baseline = true, Description = "基础序列化···")]
         public void ToJsonWithoutFilter()
         {
             if (UseWatch)
@@ -72,14 +73,14 @@ namespace Net5TC.Test
             if (UseWatch)
             {
                 Watch.Stop();
-                $"序列化{testDataList?.Count}条数据耗时 {Watch.ElapsedMilliseconds} ms".ConsoleWrite(ConsoleColor.Cyan, null, true, 1);
+                $"基础序列化{testDataList?.Count}条数据耗时 {Watch.ElapsedMilliseconds} ms".ConsoleWrite(ConsoleColor.Cyan, null, true, 1);
             }
         }
 
         /// <summary>
         /// 序列化时过滤属性
         /// </summary>
-        /// <remarks>此为最优方案</remarks>
+        /// <remarks>最优方案</remarks>
         [Benchmark(Description = "序列化时过滤属性")]
         public void ToJsonFilter()
         {
@@ -107,6 +108,11 @@ namespace Net5TC.Test
             }
         }
 
+        #region 过滤属性后序列化
+
+        /// <summary>
+        /// 过滤属性后序列化
+        /// </summary>
         [Benchmark(Description = "过滤属性后序列化")]
         public void ToJsonFilterWhenBefor()
         {
@@ -189,5 +195,7 @@ namespace Net5TC.Test
 
             return expandoObjectList;
         }
+
+        #endregion
     }
 }

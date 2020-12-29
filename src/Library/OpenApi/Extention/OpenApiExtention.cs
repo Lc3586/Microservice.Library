@@ -95,7 +95,7 @@ namespace Library.OpenApi.Extention
 
             var example = new OpenApiObject();
 
-            var propertyDic = type.GetPropertysOfTypeDic();
+            var propertyDic = type.GetPropertysOfTypeDic(false);
 
             type.FilterModel((_type, prop) =>
             {

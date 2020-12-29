@@ -6,6 +6,7 @@ using NetTaste;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Dynamic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -17,7 +18,30 @@ namespace Library.FreeSql.Extention
     /// </summary>
     public static class SelectExtension
     {
+        static SelectExtension()
+        {
+            foreach (var method in typeof(Enumerable).GetMethods())
+            {
+                switch (method.Name)
+                {
+                    case "Count":
+                        if (method.GetParameters().Length != 1)
+                            break;
+                        EnumerableMethods.Add("Count", method);
+                        break;
+                    case "ElementAt":
+                        EnumerableMethods.Add("ElementAt", method);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
         #region 私有成员
+
+        public static readonly Dictionary<string, MethodInfo> EnumerableMethods = new Dictionary<string, MethodInfo>();
+
 
         private static DynamicFilterInfo ToDynamicFilterInfo(this List<PaginationDynamicFilterInfo> paginationDynamicFilterInfo)
         {
@@ -118,11 +142,11 @@ namespace Library.FreeSql.Extention
         /// <typeparam name="TReturn">返回类型</typeparam>
         /// <param name="func">处理并返回数据</param>
         /// <returns></returns>
-        public static Func<dynamic, TReturn> Select<TReturn>(Func<TReturn, TReturn> func) where TReturn : new()
+        public static Func<ExpandoObject, TReturn> Select<TReturn>(Func<TReturn, TReturn> func) where TReturn : new()
         {
             return (a) =>
             {
-                var result = DynamicToEntity<TReturn>(a);
+                var result = (TReturn)DynamicToEntity(a, typeof(TReturn));
                 return func.Invoke(result);
             };
         }
@@ -133,11 +157,11 @@ namespace Library.FreeSql.Extention
         /// <typeparam name="TReturn">返回类型</typeparam>
         /// <param name="func">处理并返回数据</param>
         /// <returns></returns>
-        public static Func<dynamic, TReturn> Select<TReturn>(Func<dynamic, TReturn, TReturn> func) where TReturn : new()
+        public static Func<ExpandoObject, TReturn> Select<TReturn>(Func<ExpandoObject, TReturn, TReturn> func) where TReturn : new()
         {
             return (a) =>
             {
-                var result = DynamicToEntity<TReturn>(a);
+                var result = (TReturn)DynamicToEntity(a, typeof(TReturn));
                 return func.Invoke(a, result);
             };
         }
@@ -148,11 +172,11 @@ namespace Library.FreeSql.Extention
         /// <typeparam name="TReturn">返回类型</typeparam>
         /// <param name="action">处理数据</param>
         /// <returns></returns>
-        public static Func<dynamic, TReturn> Select<TReturn>(Action<dynamic, TReturn> action = null) where TReturn : new()
+        public static Func<ExpandoObject, TReturn> Select<TReturn>(Action<ExpandoObject, TReturn> action = null) where TReturn : new()
         {
             return (a) =>
             {
-                var result = DynamicToEntity<TReturn>(a);
+                var result = (TReturn)DynamicToEntity(a, typeof(TReturn));
 
                 if (action != null)
                     action.Invoke(a, result);
@@ -168,11 +192,11 @@ namespace Library.FreeSql.Extention
         /// <typeparam name="T0">联表类型</typeparam>
         /// <param name="action">处理数据</param>
         /// <returns></returns>
-        public static Func<dynamic, T0, TReturn> Select<TReturn, T0>(Action<dynamic, TReturn, T0> action = null) where TReturn : new()
+        public static Func<dynamic, T0, TReturn> Select<TReturn, T0>(Action<object, TReturn, T0> action = null) where TReturn : new()
         {
             return (a, b) =>
             {
-                var result = DynamicToEntity<TReturn>(a);
+                var result = (TReturn)DynamicToEntity(a, typeof(TReturn));
 
                 if (action != null)
                     action.Invoke(a, result, b);
@@ -189,11 +213,11 @@ namespace Library.FreeSql.Extention
         /// <typeparam name="T1">联表类型</typeparam>
         /// <param name="action">处理数据</param>
         /// <returns></returns>
-        public static Func<dynamic, T0, T1, TReturn> Select<TReturn, T0, T1>(Action<dynamic, TReturn, T0, T1> action = null) where TReturn : new()
+        public static Func<dynamic, T0, T1, TReturn> Select<TReturn, T0, T1>(Action<object, TReturn, T0, T1> action = null) where TReturn : new()
         {
             return (a, b, c) =>
             {
-                var result = DynamicToEntity<TReturn>(a);
+                var result = (TReturn)DynamicToEntity(a, typeof(TReturn));
 
                 if (action != null)
                     action.Invoke(a, result, b, c);
@@ -205,15 +229,16 @@ namespace Library.FreeSql.Extention
         /// <summary>
         /// 将动态类型转为指定类型实体
         /// </summary>
-        /// <typeparam name="TReturn"></typeparam>
         /// <param name="data"></param>
+        /// <param name="type"></param>
         /// <returns></returns>
-        private static TReturn DynamicToEntity<TReturn>(dynamic data) where TReturn : new()
+        private static object DynamicToEntity(ExpandoObject data, Type type)
         {
-            var entity = new TReturn();
-            var type = typeof(TReturn);
+            var entity = Activator.CreateInstance(type);
 
-            foreach (var item in data as Dictionary<string, object>)
+            var dic = data as IDictionary<string, object>;
+
+            foreach (var item in dic)
             {
                 if (item.Value == null)
                     continue;
@@ -232,7 +257,24 @@ namespace Library.FreeSql.Extention
 
                 if (type_value != prop.PropertyType)
                 {
-                    if (prop.PropertyType.IsGenericType && prop.PropertyType.GetGenericTypeDefinition().Equals(typeof(Nullable<>)))
+                    if (type_value == typeof(List<object>))
+                    {
+                        var valueList = Activator.CreateInstance(prop.PropertyType);
+                        var dicValueList = value as List<object>;
+
+                        foreach (var valueItem in dicValueList)
+                        {
+                            prop.PropertyType.GetMethod("Add")
+                                                .Invoke(valueList, new object[] {
+                                                    DynamicToEntity(valueItem as ExpandoObject, prop.PropertyType.GenericTypeArguments[0])
+                                                });
+                        }
+
+                        value = valueList;
+                    }
+                    else if (type_value == typeof(ExpandoObject))
+                        value = DynamicToEntity(item.Value as ExpandoObject, prop.PropertyType);
+                    else if (prop.PropertyType.IsGenericType && prop.PropertyType.GetGenericTypeDefinition().Equals(typeof(Nullable<>)))
                     {
                         NullableConverter newNullableConverter = new NullableConverter(prop.PropertyType);
                         try

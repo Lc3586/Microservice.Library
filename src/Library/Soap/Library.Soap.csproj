@@ -10,7 +10,7 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/Lc3586/Microservice/tree/master/src/Library/Soap</PackageProjectUrl>
     <Description>通过依赖注入的方式使用Soap</Description>
-    <Version>1.0.7-alpha</Version>
+    <Version>1.0.8-alpha</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -29,7 +29,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
-    <PackageReference Include="SoapCore" Version="1.0.0" />
+    <PackageReference Include="SoapCore" Version="1.1.0.2" />
     <PackageReference Include="System.Collections.Concurrent" Version="4.3.0" />
   </ItemGroup>
 

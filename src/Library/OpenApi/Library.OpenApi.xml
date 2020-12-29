@@ -419,19 +419,21 @@
             枚举的字段说明集合
             </summary>
         </member>
-        <member name="M:Library.OpenApi.Extention.CacheExtention.GetPropertysOfTypeDic(System.Type)">
+        <member name="M:Library.OpenApi.Extention.CacheExtention.GetPropertysOfTypeDic(System.Type,System.Boolean)">
             <summary>
             获取类型的架构属性集合
             </summary>
             <param name="type"></param>
+            <param name="deepClone">深度复制</param>
             <returns></returns>
         </member>
-        <member name="M:Library.OpenApi.Extention.CacheExtention.GetPropertysOfTypeDic(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.String)">
+        <member name="M:Library.OpenApi.Extention.CacheExtention.GetPropertysOfTypeDic(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.String,System.Boolean)">
             <summary>
             获取类型的架构属性集合
             </summary>
             <param name="dic"></param>
             <param name="typeFullName"></param>
+            <param name="deepClone">深度复制</param>
         </member>
         <member name="M:Library.OpenApi.Extention.CacheExtention.SetPropertysOfTypeDic(System.Type,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
             <summary>
@@ -486,11 +488,6 @@
             架构相关拓展方法
             </summary>
         </member>
-        <member name="F:Library.OpenApi.Extention.SchemaExtention.EnumerableMethods">
-            <summary>
-            Enumerable类常用方法
-            </summary>
-        </member>
         <member name="M:Library.OpenApi.Extention.SchemaExtention.TryCast``1(System.Object,``0@)">
             <summary>
             转换类型
@@ -508,60 +505,6 @@
             <param name="after">处理成员之后</param>
             <param name="befor">处理成员之前(返回false,跳过该成员)</param>
             <param name="innerModel">处理内部模型</param>
-        </member>
-        <member name="M:Library.OpenApi.Extention.SchemaExtention.ToOpenApiObjectFilterWhenAfter``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
-            <summary>
-            反序列化后过滤属性
-            </summary>
-            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
-            <param name="json">需要反序列化的Json字符串</param>
-            <param name="exceptionProperties">特别输出的属性</param>
-            <param name="ignoreProperties">特别忽略的属性</param>
-            <remarks>如果在特别输出参数和特别忽略参数中同时指定了同一个属性，那么最终不会输出该属性</remarks>
-            <returns></returns>
-        </member>
-        <member name="M:Library.OpenApi.Extention.SchemaExtention.FilterOpenApiObject(System.Object,System.Type,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
-            <summary>
-            过滤属性
-            </summary>
-            <param name="object"></param>
-            <param name="type"></param>
-            <param name="propertyDic"></param>
-        </member>
-        <member name="M:Library.OpenApi.Extention.SchemaExtention.Foreach(System.Object,System.Type,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
-            <summary>
-            遍历集合
-            </summary>
-            <param name="objectList"></param>
-            <param name="type"></param>
-            <param name="propertyDic"></param>
-        </member>
-        <member name="M:Library.OpenApi.Extention.SchemaExtention.ToOpenApiObjectFilterWhenBefor``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
-            <summary>
-            过滤属性后反序列化
-            </summary>
-            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
-            <param name="json">需要反序列化的Json字符串</param>
-            <param name="exceptionProperties">特别输出的属性</param>
-            <param name="ignoreProperties">特别忽略的属性</param>
-            <remarks>如果在特别输出参数和特别忽略参数中同时指定了同一个属性，那么最终不会输出该属性</remarks>
-            <returns></returns>
-        </member>
-        <member name="M:Library.OpenApi.Extention.SchemaExtention.FilterOpenApiObject(Newtonsoft.Json.Linq.JToken,System.Type,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
-            <summary>
-            过滤属性
-            </summary>
-            <param name="jt"></param>
-            <param name="type"></param>
-            <param name="propertyDic"></param>
-        </member>
-        <member name="M:Library.OpenApi.Extention.SchemaExtention.Foreach(Newtonsoft.Json.Linq.JToken,System.Type,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
-            <summary>
-            遍历集合
-            </summary>
-            <param name="jt"></param>
-            <param name="type"></param>
-            <param name="propertyDic"></param>
         </member>
         <member name="M:Library.OpenApi.Extention.SchemaExtention.GetMainTag(System.Type)">
             <summary>
@@ -686,6 +629,127 @@
             <summary>
             Json相关拓展方法
             </summary>
+            <remarks>
+            <![CDATA[
+            // * 测试信息 *
+            
+            // * 数据量：100条 *
+            
+            // * 数据结构：
+            {
+                "DB_B":{
+                    "Id":"1343405244365029377",
+                    "Name":"名称",
+                    "CreatorId":"800728e2-5997-42d6-b1d7-dd3ce6a51562",
+                    "CreatorName":"管理员",
+                    "CreateTime":"2020-12-28 11:55:44",
+                    "ModifyTime":"2020-12-28 11:55:44"
+                },
+                "DB_Cs":[   //集合内数据量 10条
+                    {
+                        "Id":"1343405244365029378",
+                        "Name":"名称",
+                        "CreatorId":"f2f0d3e0-f81b-4631-ac33-41729bf36d49",
+                        "CreatorName":"管理员",
+                        "CreateTime":"2020-12-28 11:55:44",
+                        "ModifyTime":"2020-12-28 11:55:44"
+                    }
+                ],
+                "DB_Ds":[   //集合内数据量 10条
+                    {
+                        "Id":"1343405244365029388",
+                        "AId":"1343405244365029376",
+                        "Name":"名称",
+                        "CreatorId":"29b52d6e-15b6-4c83-b849-8169e168718c",
+                        "CreatorName":"管理员",
+                        "CreateTime":"2020-12-28 11:55:44",
+                        "ModifyTime":"2020-12-28 11:55:44"
+                    }
+                ],
+                "Id":"1343405244365029376",
+                "ParentId":null,
+                "BId":"1343405244365029377",
+                "Name":"名称",
+                "Content":"内容",
+                "CreatorId":"3ad97ec8-57ca-4088-a620-b36c50566748",
+                "CreatorName":"管理员",
+                "CreateTime":"2020-12-28 11:55:44",
+                "ModifyTime":"2020-12-28 11:55:44"
+            } *
+            
+            
+            
+            // * 序列化 *
+            // * Summary *
+            BenchmarkDotNet=v0.12.1, OS=Windows 10.0.18362.53 (1903/May2019Update/19H1)
+            Intel Core i5-9400 CPU 2.90GHz (Coffee Lake), 1 CPU, 6 logical and 6 physical cores
+            .NET Core SDK=5.0.101
+            [Host]        : .NET Core 5.0.1 (CoreCLR 5.0.120.57516, CoreFX 5.0.120.57516), X64 RyuJIT
+            .NET 4.6.1    : .NET Framework 4.8 (4.8.4250.0), X64 RyuJIT
+            .NET Core 3.1 : .NET Core 3.1.10 (CoreCLR 4.700.20.51601, CoreFX 4.700.20.51901), X64 RyuJIT
+            .NET Core 5.0 : .NET Core 5.0.1 (CoreCLR 5.0.120.57516, CoreFX 5.0.120.57516), X64 RyuJIT
+            |   Method |           Job |       Runtime |      Mean |     Error |    StdDev | Ratio |
+            |--------- |-------------- |-------------- |----------:|----------:|----------:|------:|
+            | 基础序列化··· |    .NET 4.6.1 |    .NET 4.6.1 |  7.094 ms | 0.0170 ms | 0.0151 ms |  1.00 |
+            | 序列化时过滤属性 |    .NET 4.6.1 |    .NET 4.6.1 | 17.751 ms | 0.0573 ms | 0.0508 ms |  2.50 |
+            | 基础序列化··· | .NET Core 3.1 | .NET Core 3.1 |  6.269 ms | 0.0191 ms | 0.0169 ms |  0.88 |
+            | 序列化时过滤属性 | .NET Core 3.1 | .NET Core 3.1 | 14.430 ms | 0.0603 ms | 0.0535 ms |  2.03 |
+            | 基础序列化··· | .NET Core 5.0 | .NET Core 5.0 |  5.945 ms | 0.0200 ms | 0.0187 ms |  0.84 |
+            | 序列化时过滤属性 | .NET Core 5.0 | .NET Core 5.0 | 13.958 ms | 0.0586 ms | 0.0520 ms |  1.97 |
+            // * Hints *
+            Outliers
+            SerializeTest.基础序列化···: .NET 4.6.1    -> 1 outlier  was  removed (7.15 ms)
+            SerializeTest.序列化时过滤属性: .NET 4.6.1    -> 1 outlier  was  removed (17.89 ms)
+            SerializeTest.基础序列化···: .NET Core 3.1 -> 1 outlier  was  removed (6.38 ms)
+            SerializeTest.序列化时过滤属性: .NET Core 3.1 -> 1 outlier  was  removed (14.55 ms)
+            SerializeTest.序列化时过滤属性: .NET Core 5.0 -> 1 outlier  was  removed (14.11 ms)
+            // * Legends *
+            Mean   : Arithmetic mean of all measurements
+            Error  : Half of 99.9% confidence interval
+            StdDev : Standard deviation of all measurements
+            Ratio  : Mean of the ratio distribution ([Current]/[Baseline])
+            1 ms   : 1 Millisecond (0.001 sec)
+            // ***** BenchmarkRunner: End *****
+            // ** Remained 0 benchmark(s) to run **
+            Run time: 00:02:14 (134.19 sec), executed benchmarks: 6
+            Global total time: 00:02:24 (144.92 sec), executed benchmarks: 6
+            // * Artifacts cleanup *
+            
+            
+            // * 反序列化 *
+            // * Summary *
+            BenchmarkDotNet=v0.12.1, OS=Windows 10.0.18362.53 (1903/May2019Update/19H1)
+            Intel Core i5-9400 CPU 2.90GHz (Coffee Lake), 1 CPU, 6 logical and 6 physical cores
+            .NET Core SDK=5.0.101
+            [Host]        : .NET Core 5.0.1 (CoreCLR 5.0.120.57516, CoreFX 5.0.120.57516), X64 RyuJIT
+            .NET 4.6.1    : .NET Framework 4.8 (4.8.4250.0), X64 RyuJIT
+            .NET Core 3.1 : .NET Core 3.1.10 (CoreCLR 4.700.20.51601, CoreFX 4.700.20.51901), X64 RyuJIT
+            .NET Core 5.0 : .NET Core 5.0.1 (CoreCLR 5.0.120.57516, CoreFX 5.0.120.57516), X64 RyuJIT
+            |     Method |           Job |       Runtime |     Mean |    Error |   StdDev | Ratio | RatioSD |
+            |----------- |-------------- |-------------- |---------:|---------:|---------:|------:|--------:|
+            | 基础反序列化···· |    .NET 4.6.1 |    .NET 4.6.1 | 13.76 ms | 0.069 ms | 0.061 ms |  1.00 |    0.00 |
+            | 反序列化时过滤属性· |    .NET 4.6.1 |    .NET 4.6.1 | 26.78 ms | 0.385 ms | 0.360 ms |  1.95 |    0.02 |
+            | 基础反序列化···· | .NET Core 3.1 | .NET Core 3.1 | 12.71 ms | 0.135 ms | 0.126 ms |  0.92 |    0.01 |
+            | 反序列化时过滤属性· | .NET Core 3.1 | .NET Core 3.1 | 23.81 ms | 0.300 ms | 0.280 ms |  1.73 |    0.02 |
+            | 基础反序列化···· | .NET Core 5.0 | .NET Core 5.0 | 11.44 ms | 0.089 ms | 0.084 ms |  0.83 |    0.01 |
+            | 反序列化时过滤属性· | .NET Core 5.0 | .NET Core 5.0 | 21.44 ms | 0.224 ms | 0.210 ms |  1.56 |    0.02 |
+            // * Hints *
+            Outliers
+            DeserializeTest.基础反序列化····: .NET 4.6.1 -> 1 outlier  was  removed (14.21 ms)
+            // * Legends *
+            Mean    : Arithmetic mean of all measurements
+            Error   : Half of 99.9% confidence interval
+            StdDev  : Standard deviation of all measurements
+            Ratio   : Mean of the ratio distribution ([Current]/[Baseline])
+            RatioSD : Standard deviation of the ratio distribution ([Current]/[Baseline])
+            1 ms    : 1 Millisecond (0.001 sec)
+            // ***** BenchmarkRunner: End *****
+            // ** Remained 0 benchmark(s) to run **
+            Run time: 00:02:12 (132.55 sec), executed benchmarks: 6
+            Global total time: 00:03:32 (212.22 sec), executed benchmarks: 6
+            // * Artifacts cleanup *
+            ]]>
+            </remarks>
         </member>
         <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToOpenApiJson``1(``0,System.String[])">
             <summary>
@@ -818,27 +882,54 @@
             <remarks>如果在特别输出参数和特别忽略参数中同时指定了同一个属性，那么最终不会输出该属性</remarks>
             <returns></returns>
         </member>
-        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToOpenApiObjectA``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+        <member name="T:Library.OpenApi.JsonSerialization.OpenApiContractResolver">
             <summary>
-            将Json字符串反序列化成对象
+            自定义解析器
             </summary>
-            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
-            <param name="json">需要反序列化的Json字符串</param>
+        </member>
+        <member name="F:Library.OpenApi.JsonSerialization.OpenApiContractResolver.PropertyDic">
+            <summary>
+            输出的属性
+            </summary>
+        </member>
+        <member name="M:Library.OpenApi.JsonSerialization.OpenApiContractResolver.#ctor(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+            <summary>
+            
+            </summary>
+            <param name="propertyDic">输出的属性</param>
+        </member>
+        <member name="M:Library.OpenApi.JsonSerialization.OpenApiContractResolver.#ctor(System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="schemaType">架构类型</param>
+        </member>
+        <member name="M:Library.OpenApi.JsonSerialization.OpenApiContractResolver.#ctor(System.Type,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+            <summary>
+            
+            </summary>
+            <param name="schemaType">架构类型</param>
             <param name="exceptionProperties">特别输出的属性</param>
             <param name="ignoreProperties">特别忽略的属性</param>
-            <remarks>如果在特别输出参数和特别忽略参数中同时指定了同一个属性，那么最终不会输出该属性</remarks>
+        </member>
+        <member name="M:Library.OpenApi.JsonSerialization.OpenApiContractResolver.ResolveContract(System.Type)">
+            <summary>
+            判定协议
+            </summary>
+            <param name="type"></param>
             <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.JsonSerialization.OpenApiContractResolver.Filter(Newtonsoft.Json.Serialization.JsonObjectContract)">
+            <summary>
+            过滤属性
+            </summary>
+            <param name="contract">协议</param>
         </member>
         <member name="T:Library.OpenApi.JsonSerialization.OpenApiContractResolver`1">
             <summary>
             自定义解析器
             </summary>
             <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
-        </member>
-        <member name="F:Library.OpenApi.JsonSerialization.OpenApiContractResolver`1.PropertyDic">
-            <summary>
-            输出的属性
-            </summary>
         </member>
         <member name="M:Library.OpenApi.JsonSerialization.OpenApiContractResolver`1.#ctor">
             <summary>
@@ -858,57 +949,24 @@
             <param name="exceptionProperties">特别输出的属性</param>
             <param name="ignoreProperties">特别忽略的属性</param>
         </member>
-        <member name="M:Library.OpenApi.JsonSerialization.OpenApiContractResolver`1.CreateProperties(System.Type,Newtonsoft.Json.MemberSerialization)">
-            <summary>
-            创建属性
-            </summary>
-            <param name="type"></param>
-            <param name="memberSerialization"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Library.OpenApi.JsonSerialization.OpenApiContractResolver`1.ResolveContract(System.Type)">
-            <summary>
-            判定协议
-            </summary>
-            <param name="type"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Library.OpenApi.JsonSerialization.OpenApiContractResolver`1.Filter(Newtonsoft.Json.Serialization.JsonObjectContract)">
-            <summary>
-            过滤属性
-            </summary>
-            <param name="contract">协议</param>
-        </member>
-        <member name="T:Library.OpenApi.JsonSerialization.OpenApiConverter`1">
+        <member name="T:Library.OpenApi.JsonSerialization.OpenApiDynamicConverter">
             <summary>
             自定义动态类型转换器
             </summary>
-            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <remarks>未完工</remarks>
         </member>
-        <member name="F:Library.OpenApi.JsonSerialization.OpenApiConverter`1.PropertyDic">
+        <member name="F:Library.OpenApi.JsonSerialization.OpenApiDynamicConverter.SchemaType">
             <summary>
             输出的属性
             </summary>
         </member>
-        <member name="M:Library.OpenApi.JsonSerialization.OpenApiConverter`1.#ctor">
+        <member name="M:Library.OpenApi.JsonSerialization.OpenApiDynamicConverter.#ctor(System.Type)">
             <summary>
             
             </summary>
+            <param name="schemaType">架构类型</param>
         </member>
-        <member name="M:Library.OpenApi.JsonSerialization.OpenApiConverter`1.#ctor(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
-            <summary>
-            
-            </summary>
-            <param name="propertyDic">输出的属性</param>
-        </member>
-        <member name="M:Library.OpenApi.JsonSerialization.OpenApiConverter`1.#ctor(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
-            <summary>
-            
-            </summary>
-            <param name="exceptionProperties">特别输出的属性</param>
-            <param name="ignoreProperties">特别忽略的属性</param>
-        </member>
-        <member name="M:Library.OpenApi.JsonSerialization.OpenApiConverter`1.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)">
+        <member name="M:Library.OpenApi.JsonSerialization.OpenApiDynamicConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)">
             <summary>
             Reads the JSON representation of the object.
             </summary>
@@ -917,6 +975,42 @@
             <param name="existingValue">The existing value of object being read.</param>
             <param name="serializer">The calling serializer.</param>
             <returns>The object value.</returns>
+        </member>
+        <member name="M:Library.OpenApi.JsonSerialization.OpenApiDynamicConverter.DynamicToEntity(System.Dynamic.ExpandoObject,System.Type)">
+            <summary>
+            将动态类型转为指定类型实体
+            </summary>
+            <param name="data"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.JsonSerialization.OpenApiDynamicConverter.CanConvert(System.Type)">
+            <summary>
+            Determines whether this instance can convert the specified object type.
+            </summary>
+            <param name="objectType">Type of the object.</param>
+            <returns>
+            	<c>true</c> if this instance can convert the specified object type; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="P:Library.OpenApi.JsonSerialization.OpenApiDynamicConverter.CanWrite">
+            <summary>
+            Gets a value indicating whether this <see cref="T:Newtonsoft.Json.JsonConverter"/> can write JSON.
+            </summary>
+            <value>
+            	<c>true</c> if this <see cref="T:Newtonsoft.Json.JsonConverter"/> can write JSON; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Library.OpenApi.JsonSerialization.OpenApiDynamicConverter`1">
+            <summary>
+            自定义动态类型转换器
+            </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+        </member>
+        <member name="M:Library.OpenApi.JsonSerialization.OpenApiDynamicConverter`1.#ctor">
+            <summary>
+            
+            </summary>
         </member>
     </members>
 </doc>

@@ -19,6 +19,7 @@ using ExampleEntity = Integrate_Entity.Example.Example;//µ±ÀàºÍÃüÃû¿Õ¼äÖØÃûÊ±Ê¹Ó
 using Library.FreeSql.Gen;
 using Library.FreeSql.Extention;
 using Library.DataMapping.Gen;
+using System.Dynamic;
 
 namespace Integrate_Business.Example
 {
@@ -68,7 +69,7 @@ namespace Integrate_Business.Example
 
             var m = ExampleData.AsQueryable();
 
-            var q = from a in m select @select.Invoke(a);//ÕâÀïÊ¹ÓÃÊ¾ÀıÊı¾İ½øĞĞÊ¾·¶
+            var q = from a in m select mapper.Map<ExampleDTO.List>(a);//ÕâÀïÊ¹ÓÃÊ¾ÀıÊı¾İ½øĞĞÊ¾·¶
 
             if (!pagination.FilterToLinqDynamic(ref q))//Éú³ÉËÑË÷Óï¾ä
                 throw new MessageException("ËÑË÷Ìõ¼ş²»Ö§³Ö");

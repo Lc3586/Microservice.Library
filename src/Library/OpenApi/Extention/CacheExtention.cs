@@ -40,12 +40,13 @@ namespace Library.OpenApi.Extention
         /// 获取类型的架构属性集合
         /// </summary>
         /// <param name="type"></param>
+        /// <param name="deepClone">深度复制</param>
         /// <returns></returns>
-        public static Dictionary<string, List<string>> GetPropertysOfTypeDic(this Type type)
+        public static Dictionary<string, List<string>> GetPropertysOfTypeDic(this Type type, bool deepClone = true)
         {
             var dic = new Dictionary<string, List<string>>();
 
-            dic.GetPropertysOfTypeDic(type.FullName);
+            dic.GetPropertysOfTypeDic(type.FullName, deepClone);
 
             return dic;
         }
@@ -55,10 +56,11 @@ namespace Library.OpenApi.Extention
         /// </summary>
         /// <param name="dic"></param>
         /// <param name="typeFullName"></param>
-        private static void GetPropertysOfTypeDic(this Dictionary<string, List<string>> dic, string typeFullName)
+        /// <param name="deepClone">深度复制</param>
+        private static void GetPropertysOfTypeDic(this Dictionary<string, List<string>> dic, string typeFullName, bool deepClone = true)
         {
             if (PropertysOfTypeDic.ContainsKey(typeFullName))
-                dic.Add(typeFullName, PropertysOfTypeDic[typeFullName].ToList());
+                dic.Add(typeFullName, deepClone ? PropertysOfTypeDic[typeFullName].ToList() : PropertysOfTypeDic[typeFullName]);
 
             if (TypesOfTypeDic.ContainsKey(typeFullName))
                 TypesOfTypeDic[typeFullName]?.ForEach(o => dic.GetPropertysOfTypeDic(o));

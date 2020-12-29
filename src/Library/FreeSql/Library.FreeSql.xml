@@ -440,7 +440,7 @@
             <param name="func">处理并返回数据</param>
             <returns></returns>
         </member>
-        <member name="M:Library.FreeSql.Extention.SelectExtension.Select``1(System.Func{System.Object,``0,``0})">
+        <member name="M:Library.FreeSql.Extention.SelectExtension.Select``1(System.Func{System.Dynamic.ExpandoObject,``0,``0})">
             <summary>
             指定返回数据
             </summary>
@@ -448,7 +448,7 @@
             <param name="func">处理并返回数据</param>
             <returns></returns>
         </member>
-        <member name="M:Library.FreeSql.Extention.SelectExtension.Select``1(System.Action{System.Object,``0})">
+        <member name="M:Library.FreeSql.Extention.SelectExtension.Select``1(System.Action{System.Dynamic.ExpandoObject,``0})">
             <summary>
             指定返回数据
             </summary>
@@ -475,12 +475,12 @@
             <param name="action">处理数据</param>
             <returns></returns>
         </member>
-        <member name="M:Library.FreeSql.Extention.SelectExtension.DynamicToEntity``1(System.Object)">
+        <member name="M:Library.FreeSql.Extention.SelectExtension.DynamicToEntity(System.Dynamic.ExpandoObject,System.Type)">
             <summary>
             将动态类型转为指定类型实体
             </summary>
-            <typeparam name="TReturn"></typeparam>
             <param name="data"></param>
+            <param name="type"></param>
             <returns></returns>
         </member>
         <member name="M:Library.FreeSql.Extention.SelectExtension.GetPagination``1(FreeSql.ISelect{``0},Library.Models.Pagination,System.String)">
