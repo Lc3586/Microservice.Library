@@ -488,6 +488,21 @@
             架构相关拓展方法
             </summary>
         </member>
+        <member name="M:Library.OpenApi.Extention.SchemaExtention.GetGenericType(System.Type)">
+            <summary>
+            获取数组和泛型元素类型
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.Extention.SchemaExtention.GetGenericType(System.Type,System.Type@)">
+            <summary>
+            获取数组和泛型元素类型
+            </summary>
+            <param name="type"></param>
+            <param name="genericType">泛型元素类型</param>
+            <returns>是否为数组或泛型集合</returns>
+        </member>
         <member name="M:Library.OpenApi.Extention.SchemaExtention.TryCast``1(System.Object,``0@)">
             <summary>
             转换类型
@@ -690,30 +705,15 @@
             .NET Core 5.0 : .NET Core 5.0.1 (CoreCLR 5.0.120.57516, CoreFX 5.0.120.57516), X64 RyuJIT
             |   Method |           Job |       Runtime |      Mean |     Error |    StdDev | Ratio |
             |--------- |-------------- |-------------- |----------:|----------:|----------:|------:|
-            | 基础序列化··· |    .NET 4.6.1 |    .NET 4.6.1 |  7.094 ms | 0.0170 ms | 0.0151 ms |  1.00 |
-            | 序列化时过滤属性 |    .NET 4.6.1 |    .NET 4.6.1 | 17.751 ms | 0.0573 ms | 0.0508 ms |  2.50 |
-            | 基础序列化··· | .NET Core 3.1 | .NET Core 3.1 |  6.269 ms | 0.0191 ms | 0.0169 ms |  0.88 |
-            | 序列化时过滤属性 | .NET Core 3.1 | .NET Core 3.1 | 14.430 ms | 0.0603 ms | 0.0535 ms |  2.03 |
-            | 基础序列化··· | .NET Core 5.0 | .NET Core 5.0 |  5.945 ms | 0.0200 ms | 0.0187 ms |  0.84 |
-            | 序列化时过滤属性 | .NET Core 5.0 | .NET Core 5.0 | 13.958 ms | 0.0586 ms | 0.0520 ms |  1.97 |
+            | 基础序列化··· |    .NET 4.6.1 |    .NET 4.6.1 |  7.072 ms | 0.0200 ms | 0.0187 ms |  1.00 |
+            | 序列化时过滤属性 |    .NET 4.6.1 |    .NET 4.6.1 | 18.209 ms | 0.0720 ms | 0.0638 ms |  2.57 |
+            | 基础序列化··· | .NET Core 3.1 | .NET Core 3.1 |  6.324 ms | 0.0263 ms | 0.0246 ms |  0.89 |                
+            | 序列化时过滤属性 | .NET Core 3.1 | .NET Core 3.1 | 14.582 ms | 0.0422 ms | 0.0394 ms |  2.06 |
+            | 基础序列化··· | .NET Core 5.0 | .NET Core 5.0 |  6.004 ms | 0.0199 ms | 0.0186 ms |  0.85 |
+            | 序列化时过滤属性 | .NET Core 5.0 | .NET Core 5.0 | 14.130 ms | 0.0500 ms | 0.0467 ms |  2.00 |
             // * Hints *
             Outliers
-            SerializeTest.基础序列化···: .NET 4.6.1    -> 1 outlier  was  removed (7.15 ms)
-            SerializeTest.序列化时过滤属性: .NET 4.6.1    -> 1 outlier  was  removed (17.89 ms)
-            SerializeTest.基础序列化···: .NET Core 3.1 -> 1 outlier  was  removed (6.38 ms)
-            SerializeTest.序列化时过滤属性: .NET Core 3.1 -> 1 outlier  was  removed (14.55 ms)
-            SerializeTest.序列化时过滤属性: .NET Core 5.0 -> 1 outlier  was  removed (14.11 ms)
-            // * Legends *
-            Mean   : Arithmetic mean of all measurements
-            Error  : Half of 99.9% confidence interval
-            StdDev : Standard deviation of all measurements
-            Ratio  : Mean of the ratio distribution ([Current]/[Baseline])
-            1 ms   : 1 Millisecond (0.001 sec)
-            // ***** BenchmarkRunner: End *****
-            // ** Remained 0 benchmark(s) to run **
-            Run time: 00:02:14 (134.19 sec), executed benchmarks: 6
-            Global total time: 00:02:24 (144.92 sec), executed benchmarks: 6
-            // * Artifacts cleanup *
+            SerializeTest.序列化时过滤属性: .NET 4.6.1 -> 1 outlier  was  removed (18.40 ms)
             
             
             // * 反序列化 *
@@ -727,15 +727,12 @@
             .NET Core 5.0 : .NET Core 5.0.1 (CoreCLR 5.0.120.57516, CoreFX 5.0.120.57516), X64 RyuJIT
             |     Method |           Job |       Runtime |     Mean |    Error |   StdDev | Ratio | RatioSD |
             |----------- |-------------- |-------------- |---------:|---------:|---------:|------:|--------:|
-            | 基础反序列化···· |    .NET 4.6.1 |    .NET 4.6.1 | 13.76 ms | 0.069 ms | 0.061 ms |  1.00 |    0.00 |
-            | 反序列化时过滤属性· |    .NET 4.6.1 |    .NET 4.6.1 | 26.78 ms | 0.385 ms | 0.360 ms |  1.95 |    0.02 |
-            | 基础反序列化···· | .NET Core 3.1 | .NET Core 3.1 | 12.71 ms | 0.135 ms | 0.126 ms |  0.92 |    0.01 |
-            | 反序列化时过滤属性· | .NET Core 3.1 | .NET Core 3.1 | 23.81 ms | 0.300 ms | 0.280 ms |  1.73 |    0.02 |
-            | 基础反序列化···· | .NET Core 5.0 | .NET Core 5.0 | 11.44 ms | 0.089 ms | 0.084 ms |  0.83 |    0.01 |
-            | 反序列化时过滤属性· | .NET Core 5.0 | .NET Core 5.0 | 21.44 ms | 0.224 ms | 0.210 ms |  1.56 |    0.02 |
-            // * Hints *
-            Outliers
-            DeserializeTest.基础反序列化····: .NET 4.6.1 -> 1 outlier  was  removed (14.21 ms)
+            | 基础反序列化···· |    .NET 4.6.1 |    .NET 4.6.1 | 13.67 ms | 0.096 ms | 0.090 ms |  1.00 |    0.00 |
+            | 反序列化时过滤属性· |    .NET 4.6.1 |    .NET 4.6.1 | 26.54 ms | 0.127 ms | 0.119 ms |  1.94 |    0.02 |
+            | 基础反序列化···· | .NET Core 3.1 | .NET Core 3.1 | 12.82 ms | 0.240 ms | 0.224 ms |  0.94 |    0.02 |
+            | 反序列化时过滤属性· | .NET Core 3.1 | .NET Core 3.1 | 22.97 ms | 0.136 ms | 0.127 ms |  1.68 |    0.01 |
+            | 基础反序列化···· | .NET Core 5.0 | .NET Core 5.0 | 11.53 ms | 0.111 ms | 0.104 ms |  0.84 |    0.01 |
+            | 反序列化时过滤属性· | .NET Core 5.0 | .NET Core 5.0 | 21.35 ms | 0.187 ms | 0.175 ms |  1.56 |    0.02 |
             // * Legends *
             Mean    : Arithmetic mean of all measurements
             Error   : Half of 99.9% confidence interval
@@ -745,9 +742,8 @@
             1 ms    : 1 Millisecond (0.001 sec)
             // ***** BenchmarkRunner: End *****
             // ** Remained 0 benchmark(s) to run **
-            Run time: 00:02:12 (132.55 sec), executed benchmarks: 6
-            Global total time: 00:03:32 (212.22 sec), executed benchmarks: 6
-            // * Artifacts cleanup *
+            Run time: 00:02:35 (155.22 sec), executed benchmarks: 6
+            Global total time: 00:02:44 (164.31 sec), executed benchmarks: 6
             ]]>
             </remarks>
         </member>

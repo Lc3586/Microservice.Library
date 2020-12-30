@@ -198,8 +198,6 @@ namespace Library.Models
 
                 if (AdvancedSort != null && AdvancedSort.Any())
                 {
-                    predicate = " ";
-
                     foreach (var item in AdvancedSort)
                     {
                         if (item == null)
@@ -207,21 +205,24 @@ namespace Library.Models
 
                         string field = item.Field;
                         if (alias != null)
-                            field = $"{alias}.\"{field}\"";
+                            field = $" {alias}.\"{field}\" ";
                         string type = item.Type.ToString();
 
 
                         if (string.IsNullOrEmpty(type))
                             type = "asc";
 
-                        predicate += $"{field} {type}";
+                        if (predicate != string.Empty)
+                            predicate += ',';
+
+                        predicate += $" {field} {type} ";
                     }
                 }
                 else if (!string.IsNullOrEmpty(SortField))
                 {
                     if (alias != null)
-                        SortField = $"{alias}.\"{SortField}\"";
-                    predicate += $" {SortField} {SortType}";
+                        SortField = $" {alias}.\"{SortField}\" ";
+                    predicate += $" {SortField} {SortType} ";
                 }
 
                 if (!string.IsNullOrWhiteSpace(predicate))

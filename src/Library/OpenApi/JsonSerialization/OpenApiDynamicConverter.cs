@@ -62,8 +62,7 @@ namespace Library.OpenApi.JsonSerialization
                 case JsonToken.StartObject:
                     return ReadObject(reader, objectType);
                 case JsonToken.StartArray:
-                    // netcoreapp3.0 uses EmptyPartition for empty enumerable. Treat as an empty array.
-                    var _objectType = objectType.IsArray ? objectType.Assembly.GetType(objectType.FullName.Replace("[]", string.Empty)) : objectType.GenericTypeArguments[0];
+                    var _objectType = objectType.GetGenericType();
                     return ReadList(reader, _objectType);
                 default:
                     if (IsPrimitiveToken(reader.TokenType))

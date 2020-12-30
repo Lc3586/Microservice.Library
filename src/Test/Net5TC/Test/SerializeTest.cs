@@ -38,6 +38,7 @@ namespace Net5TC.Test
             var total = 100;// Convert.ToInt32(Extension.ReadInput("输入要测试的数据量: ", true, "100000"));
             var testDataList = TestData.GetList(total, true);
 
+            _ = typeof(List<DTO.DB_ADTO.List>).GetOrNullFor(true);
             _ = typeof(List<DTO.DB_ADTO.List>).GetOrNullForPropertyDic(true);
 
             if (UseWatch)

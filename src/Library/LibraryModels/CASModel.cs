@@ -34,6 +34,11 @@ namespace Library.Models
             /// 名称
             /// </summary>
             public string Name { get; set; }
+
+            /// <summary>
+            /// 不能使用Cooki时将此值存入请求头中（Key：CasToken）
+            /// </summary>
+            public string CasToken { get; set; }
         }
 
         /// <summary>

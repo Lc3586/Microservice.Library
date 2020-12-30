@@ -20,6 +20,28 @@ namespace Library.OpenApi.Extention
         #region 内部成员
 
         /// <summary>
+        /// 获取数组和泛型元素类型
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        internal static Type GetGenericType(this Type type)
+        {
+            return type.IsArray ? type.Assembly.GetType(type.FullName.Replace("[]", string.Empty)) : (type.IsGenericType ? type.GenericTypeArguments[0] : type);
+        }
+
+        /// <summary>
+        /// 获取数组和泛型元素类型
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="genericType">泛型元素类型</param>
+        /// <returns>是否为数组或泛型集合</returns>
+        internal static bool GetGenericType(this Type type, out Type genericType)
+        {
+            genericType = GetGenericType(type);
+            return type.IsArray || type.IsGenericType;
+        }
+
+        /// <summary>
         /// 转换类型
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -51,10 +73,7 @@ namespace Library.OpenApi.Extention
         /// <param name="innerModel">处理内部模型</param>
         internal static void FilterModel(this Type type, Action<Type, PropertyInfo> after, Func<Type, PropertyInfo, bool> befor = null, bool innerModel = false)
         {
-            if (type.IsArray)
-                type = type.Assembly.GetType(type.FullName.Replace("[]", string.Empty));
-            else if (type.IsGenericType)
-                type = type.GenericTypeArguments[0];
+            type = type.GetGenericType();
 
             var tag = type.GetMainTag();
             var hasTag = !string.IsNullOrEmpty(tag);

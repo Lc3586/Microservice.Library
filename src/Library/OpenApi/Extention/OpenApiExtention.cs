@@ -115,7 +115,7 @@ namespace Library.OpenApi.Extention
                     CacheExtention.AssemblyOfTypeDic.Add(_type.FullName, _type.Assembly.FullName);
             });
 
-            type.SetPropertysOfTypeDic(propertyDic);
+            //type.SetPropertysOfTypeDic(propertyDic);
 
             if (!CacheExtention.OpenApiObjectDic.ContainsKey(type.FullName))
                 CacheExtention.OpenApiObjectDic.Add(type.FullName, example);

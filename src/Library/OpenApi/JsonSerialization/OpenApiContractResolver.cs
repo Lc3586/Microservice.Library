@@ -94,11 +94,19 @@ namespace Library.OpenApi.JsonSerialization
             if (contract == null)
                 return;
 
-            var properties = contract.Properties.Select(o => o.PropertyName).ToList();
-            foreach (var property in properties)
+            //var removeProperties = contract.Properties.Where(o => !PropertyDic[contract.UnderlyingType.FullName].Contains(o.PropertyName)).Select(o => o.PropertyName).ToArray();
+            //foreach (var item in removeProperties)
+            //{
+            //    contract.Properties.Remove(item);
+            //}
+            foreach (var property in contract.Properties)
             {
-                if (!PropertyDic[contract.UnderlyingType.FullName].Contains(property))
-                    contract.Properties.Remove(property);
+                if (!PropertyDic[contract.UnderlyingType.FullName].Contains(property.PropertyName))
+                {
+                    property.Ignored = true;
+                    property.Writable = false;
+                    property.Readable = false;
+                }
             }
         }
 
