@@ -1,0 +1,439 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Model</name>
+    </assembly>
+    <members>
+        <member name="T:Model.Common.FileDTO.ImageUploadParams">
+            <summary>
+            图片上传参数
+            </summary>
+        </member>
+        <member name="P:Model.Common.FileDTO.ImageUploadParams.File">
+            <summary>
+            文件
+            </summary>
+        </member>
+        <member name="P:Model.Common.FileDTO.ImageUploadParams.Name">
+            <summary>
+            文件名
+            注意:不指定文件名时将使用原始名称,使用Base64时使用Guid
+            </summary>
+        </member>
+        <member name="P:Model.Common.FileDTO.ImageUploadParams.UrlOrBase64">
+            <summary>
+            链接或Base64字符串
+            </summary>
+        </member>
+        <member name="P:Model.Common.FileDTO.ImageUploadParams.Save2Db">
+            <summary>
+            保存至数据库
+            </summary>
+        </member>
+        <member name="P:Model.Common.FileDTO.ImageUploadParams.ToBase64Url">
+            <summary>
+            图片转Base64链接
+            </summary>
+        </member>
+        <member name="P:Model.Common.FileDTO.ImageUploadParams.ToBase64">
+            <summary>
+            图片转Base64
+            </summary>
+        </member>
+        <member name="P:Model.Common.FileDTO.ImageUploadParams.IsCompress">
+            <summary>
+            压缩图片
+            默认开启
+            </summary>
+        </member>
+        <member name="P:Model.Common.FileDTO.ImageUploadParams.CompressOption">
+            <summary>
+            图片压缩选项
+            默认配置:按照200像素的宽度等比压缩图片，并且保存原图
+            </summary>
+        </member>
+        <member name="T:Model.Common.FileDTO.ImageCompressOption">
+            <summary>
+            图片压缩选项
+            </summary>
+        </member>
+        <member name="P:Model.Common.FileDTO.ImageCompressOption.SaveOriginal">
+            <summary>
+            保存原图
+            </summary>
+        </member>
+        <member name="P:Model.Common.FileDTO.ImageCompressOption.Width">
+            <summary>
+            压缩后的宽度
+            注意:只设置高度时将进行等比压缩
+            </summary>
+        </member>
+        <member name="P:Model.Common.FileDTO.ImageCompressOption.Height">
+            <summary>
+            压缩后的高度
+            </summary>
+        </member>
+        <member name="T:Model.Common.FileDTO.FileUploadParams">
+            <summary>
+            文件上传参数
+            </summary>
+        </member>
+        <member name="P:Model.Common.FileDTO.FileUploadParams.File">
+            <summary>
+            文件
+            </summary>
+        </member>
+        <member name="P:Model.Common.FileDTO.FileUploadParams.Name">
+            <summary>
+            文件名
+            注意:不指定文件名时将使用原始名称,使用Base64时使用Guid
+            </summary>
+        </member>
+        <member name="P:Model.Common.FileDTO.FileUploadParams.Url">
+            <summary>
+            外链资源链接
+            </summary>
+        </member>
+        <member name="P:Model.Common.FileDTO.FileUploadParams.Save2Db">
+            <summary>
+            保存至数据库
+            </summary>
+        </member>
+        <member name="P:Model.Common.FileDTO.FileUploadParams.IsCompress">
+            <summary>
+            压缩文件
+            默认关闭
+            </summary>
+        </member>
+        <member name="P:Model.Common.FileDTO.FileUploadParams.CompressOption">
+            <summary>
+            文件压缩选项
+            </summary>
+        </member>
+        <member name="T:Model.Common.FileDTO.FileCompressOption">
+            <summary>
+            文件压缩选项
+            </summary>
+        </member>
+        <member name="P:Model.Common.FileDTO.FileCompressOption.Level">
+            <summary>
+            压缩比例
+            </summary>
+        </member>
+        <member name="T:Model.Common.FileDTO.FileInfo">
+            <summary>
+            文件信息
+            </summary>
+        </member>
+        <member name="P:Model.Common.FileDTO.FileInfo.Id_">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="F:Model.Common.FileDTO.FileInfo.FromMemberMapOptions">
+            <summary>
+            来源成员映射选项
+            </summary>
+        </member>
+        <member name="F:Model.Common.FileDTO.FileInfo.ToMemberMapOptions">
+            <summary>
+            当前成员映射选项
+            </summary>
+        </member>
+        <member name="T:Model.Common.FileType">
+            <summary>
+            文件类型
+            </summary>
+        </member>
+        <member name="T:Model.Common.StorageType">
+            <summary>
+            存储类型
+            </summary>
+        </member>
+        <member name="F:Model.Common.StorageType.Url">
+            <summary>
+            外链地址
+            </summary>
+        </member>
+        <member name="F:Model.Common.StorageType.Base64">
+            <summary>
+            Base64编码
+            </summary>
+        </member>
+        <member name="F:Model.Common.StorageType.Base64Url">
+            <summary>
+            Base64编码链接
+            </summary>
+        </member>
+        <member name="F:Model.Common.StorageType.Path">
+            <summary>
+            物理地址
+            </summary>
+        </member>
+        <member name="T:Model.Example.DBDTO.List">
+            <summary>
+            列表
+            </summary>
+        </member>
+        <member name="P:Model.Example.DBDTO.List.Value1_">
+            <summary>
+            值1
+            </summary>
+        </member>
+        <member name="F:Model.Example.DBDTO.List.FromMemberMapOptions">
+            <summary>
+            来源成员映射选项
+            </summary>
+        </member>
+        <member name="T:Model.Example.DBDTO.Detail">
+            <summary>
+            详情
+            </summary>
+        </member>
+        <member name="P:Model.Example.DBDTO.Detail.Value1_">
+            <summary>
+            值1
+            </summary>
+        </member>
+        <member name="F:Model.Example.DBDTO.Detail.FromMemberMapOptions">
+            <summary>
+            来源成员映射选项
+            </summary>
+        </member>
+        <member name="T:Model.Example.DBDTO.Create">
+            <summary>
+            新增
+            </summary>
+        </member>
+        <member name="P:Model.Example.DBDTO.Create.Value1_">
+            <summary>
+            值1
+            </summary>
+        </member>
+        <member name="F:Model.Example.DBDTO.Create.ToMemberMapOptions">
+            <summary>
+            当前成员映射选项
+            </summary>
+        </member>
+        <member name="T:Model.Example.DBDTO.Edit">
+            <summary>
+            编辑
+            </summary>
+        </member>
+        <member name="P:Model.Example.DBDTO.Edit.Value1_">
+            <summary>
+            值1
+            </summary>
+        </member>
+        <member name="F:Model.Example.DBDTO.Edit.FromMemberMapOptions">
+            <summary>
+            来源成员映射选项
+            </summary>
+        </member>
+        <member name="F:Model.Example.DBDTO.Edit.ToMemberMapOptions">
+            <summary>
+            当前成员映射选项
+            </summary>
+        </member>
+        <member name="T:Model.Example.DB_ACDTO.List">
+            <summary>
+            列表
+            </summary>
+        </member>
+        <member name="T:Model.Example.DB_ACDTO.Detail">
+            <summary>
+            详情
+            </summary>
+        </member>
+        <member name="T:Model.Example.DB_ADTO.List">
+            <summary>
+            列表
+            </summary>
+        </member>
+        <member name="P:Model.Example.DB_ADTO.List.DB_B">
+            <summary>
+            所属B
+            </summary>
+        </member>
+        <member name="P:Model.Example.DB_ADTO.List.DB_Cs">
+            <summary>
+            相关C集合
+            </summary>
+        </member>
+        <member name="P:Model.Example.DB_ADTO.List.DB_Ds">
+            <summary>
+            相关D集合
+            </summary>
+        </member>
+        <member name="T:Model.Example.DB_ADTO.Detail">
+            <summary>
+            详情
+            </summary>
+        </member>
+        <member name="P:Model.Example.DB_ADTO.Detail.DB_B">
+            <summary>
+            所属B
+            </summary>
+        </member>
+        <member name="P:Model.Example.DB_ADTO.Detail.DB_Cs">
+            <summary>
+            相关C集合
+            </summary>
+        </member>
+        <member name="P:Model.Example.DB_ADTO.Detail.DB_Ds">
+            <summary>
+            相关D集合
+            </summary>
+        </member>
+        <member name="T:Model.Example.DB_ADTO.Create">
+            <summary>
+            新增
+            </summary>
+        </member>
+        <member name="P:Model.Example.DB_ADTO.Create.DB_CIDs">
+            <summary>
+            相关CId集合
+            </summary>
+        </member>
+        <member name="P:Model.Example.DB_ADTO.Create.DB_Ds">
+            <summary>
+            相关D集合
+            </summary>
+        </member>
+        <member name="T:Model.Example.DB_ADTO.Edit">
+            <summary>
+            编辑
+            </summary>
+        </member>
+        <member name="P:Model.Example.DB_ADTO.Edit.DB_B">
+            <summary>
+            所属B
+            </summary>
+        </member>
+        <member name="P:Model.Example.DB_ADTO.Edit.DB_CIDs">
+            <summary>
+            相关C集合
+            </summary>
+        </member>
+        <member name="P:Model.Example.DB_ADTO.Edit.DB_Ds">
+            <summary>
+            相关D集合
+            </summary>
+        </member>
+        <member name="T:Model.Example.DB_BDTO.List">
+            <summary>
+            列表
+            </summary>
+        </member>
+        <member name="T:Model.Example.DB_BDTO.Detail">
+            <summary>
+            详情
+            </summary>
+        </member>
+        <member name="T:Model.Example.DB_BDTO.Create">
+            <summary>
+            新增
+            </summary>
+        </member>
+        <member name="T:Model.Example.DB_BDTO.Edit">
+            <summary>
+            编辑
+            </summary>
+        </member>
+        <member name="T:Model.Example.DB_CDTO.List">
+            <summary>
+            列表
+            </summary>
+        </member>
+        <member name="T:Model.Example.DB_CDTO.Detail">
+            <summary>
+            详情
+            </summary>
+        </member>
+        <member name="T:Model.Example.DB_CDTO.Create">
+            <summary>
+            新增
+            </summary>
+        </member>
+        <member name="T:Model.Example.DB_CDTO.Edit">
+            <summary>
+            编辑
+            </summary>
+        </member>
+        <member name="T:Model.Example.DB_DDTO.List">
+            <summary>
+            列表
+            </summary>
+        </member>
+        <member name="T:Model.Example.DB_DDTO.Detail">
+            <summary>
+            详情
+            </summary>
+        </member>
+        <member name="T:Model.Example.DB_DDTO.Create">
+            <summary>
+            新增
+            </summary>
+        </member>
+        <member name="T:Model.Example.DB_DDTO.Edit">
+            <summary>
+            编辑
+            </summary>
+        </member>
+        <member name="T:Model.Example.ESDTO.List">
+            <summary>
+            列表
+            </summary>
+        </member>
+        <member name="P:Model.Example.ESDTO.List.Id_">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="F:Model.Example.ESDTO.List.FromMemberMapOptions">
+            <summary>
+            来源成员映射选项
+            </summary>
+        </member>
+        <member name="T:Model.Example.ESDTO.Detail">
+            <summary>
+            详情
+            </summary>
+        </member>
+        <member name="P:Model.Example.ESDTO.Detail.Id_">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="F:Model.Example.ESDTO.Detail.FromMemberMapOptions">
+            <summary>
+            来源成员映射选项
+            </summary>
+        </member>
+        <member name="T:Model.Example.ESDTO.Create">
+            <summary>
+            新增
+            </summary>
+        </member>
+        <member name="T:Model.Example.ESDTO.Edit">
+            <summary>
+            编辑
+            </summary>
+        </member>
+        <member name="P:Model.Example.ESDTO.Edit.Id_">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="F:Model.Example.ESDTO.Edit.FromMemberMapOptions">
+            <summary>
+            来源成员映射选项
+            </summary>
+        </member>
+        <member name="F:Model.Example.ESDTO.Edit.ToMemberMapOptions">
+            <summary>
+            当前成员映射选项
+            </summary>
+        </member>
+    </members>
+</doc>

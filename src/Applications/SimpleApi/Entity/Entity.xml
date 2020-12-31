@@ -1,0 +1,434 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Entity</name>
+    </assembly>
+    <members>
+        <member name="T:Entity.Common.Common_File">
+            <summary>
+            文件信息
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_File.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_File.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_File.FullName">
+            <summary>
+            完整名称
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_File.FileType">
+            <summary>
+            文件类型
+            <para>电子文档</para>
+            <para>电子表格</para>
+            <para>图片</para>
+            <para>音频</para>
+            <para>视频</para>
+            <para>压缩包</para>
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_File.ContentType">
+            <summary>
+            内容类型
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_File.Suffix">
+            <summary>
+            文件后缀
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_File.Server">
+            <summary>
+            所在服务器
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_File.StorageType">
+            <summary>
+            存储类型
+            <para>Url</para>
+            <para>Base64</para>
+            <para>Base64Url</para>
+            <para>Path</para>
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_File.Path">
+            <summary>
+            文件路径
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_File.ThumbnailPath">
+            <summary>
+            预览图路径
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_File.CreatorId">
+            <summary>
+            创建者
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_File.CreatorName">
+            <summary>
+            创建者名称
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_File.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="T:Entity.Example.Example_DB">
+            <summary>
+            示例实体类（数据库）
+            </summary>
+            <remarks>基础</remarks>
+        </member>
+        <member name="P:Entity.Example.Example_DB.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Entity.Example.Example_DB.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Entity.Example.Example_DB.Content">
+            <summary>
+            内容
+            </summary>
+        </member>
+        <member name="P:Entity.Example.Example_DB.Value1">
+            <summary>
+            值1
+            </summary>
+        </member>
+        <member name="P:Entity.Example.Example_DB.CreatorId">
+            <summary>
+            创建者
+            </summary>
+        </member>
+        <member name="P:Entity.Example.Example_DB.CreatorName">
+            <summary>
+            创建者名称
+            </summary>
+        </member>
+        <member name="P:Entity.Example.Example_DB.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Entity.Example.Example_DB.ModifyTime">
+            <summary>
+            最近修改时间
+            </summary>
+        </member>
+        <member name="T:Entity.Example.Example_DB_A">
+            <summary>
+            示例实体类（数据库）
+            </summary>
+            <remarks>附带导航属性，父子，一对一，多对多，一对多</remarks>
+        </member>
+        <member name="P:Entity.Example.Example_DB_A.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Entity.Example.Example_DB_A.ParentId">
+            <summary>
+            父AId
+            </summary>
+        </member>
+        <member name="P:Entity.Example.Example_DB_A.Parent">
+            <summary>
+            父A
+            </summary>
+            <remarks>父</remarks>
+        </member>
+        <member name="P:Entity.Example.Example_DB_A.Childs">
+            <summary>
+            子A
+            </summary>
+            <remarks>子</remarks>
+        </member>
+        <member name="P:Entity.Example.Example_DB_A.BId">
+            <summary>
+            所属B
+            </summary>
+        </member>
+        <member name="P:Entity.Example.Example_DB_A.Example_DB_B">
+            <summary>
+            所属B
+            </summary>
+            <remarks>一对一</remarks>
+        </member>
+        <member name="P:Entity.Example.Example_DB_A.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Entity.Example.Example_DB_A.Content">
+            <summary>
+            内容
+            </summary>
+        </member>
+        <member name="P:Entity.Example.Example_DB_A.CreatorId">
+            <summary>
+            创建者
+            </summary>
+        </member>
+        <member name="P:Entity.Example.Example_DB_A.CreatorName">
+            <summary>
+            创建者名称
+            </summary>
+        </member>
+        <member name="P:Entity.Example.Example_DB_A.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Entity.Example.Example_DB_A.ModifyTime">
+            <summary>
+            最近修改时间
+            </summary>
+        </member>
+        <member name="P:Entity.Example.Example_DB_A.Example_DB_Cs">
+            <summary>
+            相关C
+            </summary>
+            <remarks>多对多</remarks>
+        </member>
+        <member name="P:Entity.Example.Example_DB_A.Example_DB_Ds">
+            <summary>
+            相关D
+            </summary>
+            <remarks>一对多</remarks>
+        </member>
+        <member name="T:Entity.Example.Example_DB_AC">
+            <summary>
+            示例实体类-模块信息（数据库）
+            </summary>
+            <remarks>
+            <para>附带导航属性，联合主键，一对一</para>
+            <para>联合主键</para>
+            </remarks>
+        </member>
+        <member name="P:Entity.Example.Example_DB_AC.AId">
+            <summary>
+            Id
+            </summary>
+            <remarks>联合主键</remarks>
+        </member>
+        <member name="P:Entity.Example.Example_DB_AC.Example_DB_A">
+            <summary>
+            相关A
+            </summary>
+            <remarks>一对一</remarks>
+        </member>
+        <member name="P:Entity.Example.Example_DB_AC.CId">
+            <summary>
+            Id
+            </summary>
+            <remarks>联合主键</remarks>
+        </member>
+        <member name="P:Entity.Example.Example_DB_AC.Example_DB_C">
+            <summary>
+            相关C
+            </summary>
+            <remarks>一对一</remarks>
+        </member>
+        <member name="P:Entity.Example.Example_DB_AC.CreatorId">
+            <summary>
+            创建者
+            </summary>
+        </member>
+        <member name="P:Entity.Example.Example_DB_AC.CreatorName">
+            <summary>
+            创建者名称
+            </summary>
+        </member>
+        <member name="P:Entity.Example.Example_DB_AC.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="T:Entity.Example.Example_DB_B">
+            <summary>
+            示例实体类（数据库）
+            </summary>
+            <remarks>附带导航属性，一对多</remarks>
+        </member>
+        <member name="P:Entity.Example.Example_DB_B.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Entity.Example.Example_DB_B.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Entity.Example.Example_DB_B.CreatorId">
+            <summary>
+            创建者
+            </summary>
+        </member>
+        <member name="P:Entity.Example.Example_DB_B.CreatorName">
+            <summary>
+            创建者名称
+            </summary>
+        </member>
+        <member name="P:Entity.Example.Example_DB_B.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Entity.Example.Example_DB_B.ModifyTime">
+            <summary>
+            最近修改时间
+            </summary>
+        </member>
+        <member name="P:Entity.Example.Example_DB_B.Example_DB_As">
+            <summary>
+            相关A
+            </summary>
+            <remarks>一对多</remarks>
+        </member>
+        <member name="T:Entity.Example.Example_DB_C">
+            <summary>
+            示例实体类（数据库）
+            </summary>
+            <remarks>附带导航属性，多对多</remarks>
+        </member>
+        <member name="P:Entity.Example.Example_DB_C.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Entity.Example.Example_DB_C.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Entity.Example.Example_DB_C.CreatorId">
+            <summary>
+            创建者
+            </summary>
+        </member>
+        <member name="P:Entity.Example.Example_DB_C.CreatorName">
+            <summary>
+            创建者名称
+            </summary>
+        </member>
+        <member name="P:Entity.Example.Example_DB_C.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Entity.Example.Example_DB_C.ModifyTime">
+            <summary>
+            最近修改时间
+            </summary>
+        </member>
+        <member name="P:Entity.Example.Example_DB_C.Example_DB_As">
+            <summary>
+            相关A
+            </summary>
+            <remarks>多对多</remarks>
+        </member>
+        <member name="T:Entity.Example.Example_DB_D">
+            <summary>
+            示例实体类（数据库）
+            </summary>
+            <remarks>附带导航属性，一对一</remarks>
+        </member>
+        <member name="P:Entity.Example.Example_DB_D.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Entity.Example.Example_DB_D.AId">
+            <summary>
+            所属A
+            </summary>
+        </member>
+        <member name="P:Entity.Example.Example_DB_D.Example_DB_A">
+            <summary>
+            所属A
+            </summary>
+            <remarks>一对一</remarks>
+        </member>
+        <member name="P:Entity.Example.Example_DB_D.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Entity.Example.Example_DB_D.CreatorId">
+            <summary>
+            创建者
+            </summary>
+        </member>
+        <member name="P:Entity.Example.Example_DB_D.CreatorName">
+            <summary>
+            创建者名称
+            </summary>
+        </member>
+        <member name="P:Entity.Example.Example_DB_D.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Entity.Example.Example_DB_D.ModifyTime">
+            <summary>
+            最近修改时间
+            </summary>
+        </member>
+        <member name="T:Entity.Example.Example_ES">
+            <summary>
+            示例实体类（ES服务）
+            </summary>
+        </member>
+        <member name="P:Entity.Example.Example_ES.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Entity.Example.Example_ES.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Entity.Example.Example_ES.Content">
+            <summary>
+            内容
+            </summary>
+        </member>
+        <member name="P:Entity.Example.Example_ES.CreatorId">
+            <summary>
+            创建者
+            </summary>
+        </member>
+        <member name="P:Entity.Example.Example_ES.CreatorName">
+            <summary>
+            创建者名称
+            </summary>
+        </member>
+        <member name="P:Entity.Example.Example_ES.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Entity.Example.Example_ES.ModifyTime">
+            <summary>
+            最近编辑时间
+            </summary>
+        </member>
+    </members>
+</doc>

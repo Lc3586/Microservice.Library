@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <DocumentationFile>Entity.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>Entity.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="C:\Users\Administrator\.nuget\packages\library.models\1.2.0.6-alpha\contentFiles\any\netstandard2.0\Library.Models.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="System\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Library.Elasticsearch" Version="1.0.18-alpha" />
+    <PackageReference Include="Library.FreeSql" Version="1.5.1-alpha" />
+    <PackageReference Include="Library.Json" Version="1.0.2-alpha" />
+    <PackageReference Include="Library.Models" Version="1.2.0.6-alpha" />
+    <PackageReference Include="Library.OpenApi" Version="1.0.4.10-alpha" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Entity.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
