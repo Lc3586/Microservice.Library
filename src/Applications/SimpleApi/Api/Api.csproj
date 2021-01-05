@@ -37,6 +37,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Business\Business.csproj" />
     <ProjectReference Include="..\IocServiceDemo\IocServiceDemo.csproj" />
+    <ProjectReference Include="..\SoapServices\SoapServices.csproj" />
   </ItemGroup>
 
   <ItemGroup>

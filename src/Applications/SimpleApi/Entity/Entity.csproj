@@ -18,15 +18,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="System\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Library.Elasticsearch" Version="1.0.18-alpha" />
     <PackageReference Include="Library.FreeSql" Version="1.5.2-alpha" />
     <PackageReference Include="Library.Json" Version="1.0.2-alpha" />
     <PackageReference Include="Library.OpenApi" Version="1.0.8.2-alpha" />
     <PackageReference Include="Library.Soap" Version="1.0.8-alpha" />
+    <PackageReference Include="NewId" Version="3.0.3" />
   </ItemGroup>
 
   <ItemGroup>

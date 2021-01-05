@@ -25,10 +25,16 @@
   <ItemGroup>
     <PackageReference Include="Library.Cache" Version="1.1.0-alpha" />
     <PackageReference Include="Library.Container" Version="1.0.6-alpha" />
+    <PackageReference Include="Library.Html" Version="1.0.0-alpha" />
     <PackageReference Include="Library.Http" Version="1.0.8-alpha" />
     <PackageReference Include="Library.Log" Version="1.0.8-alpha" />
     <PackageReference Include="Library.TypeTool" Version="1.0.1-alpha" />
     <PackageReference Include="Library.WebApp" Version="1.0.4-alpha" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Implementation\Example\" />
+    <Folder Include="Interface\Example\" />
   </ItemGroup>
 
 </Project>
