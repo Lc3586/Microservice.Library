@@ -4,5 +4,10 @@
         <name>Api</name>
     </assembly>
     <members>
+        <member name="P:Api.Startup.Config">
+            <summary>
+            系统配置
+            </summary>
+        </member>
     </members>
 </doc>

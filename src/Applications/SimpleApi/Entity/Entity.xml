@@ -84,134 +84,134 @@
             创建时间
             </summary>
         </member>
-        <member name="T:Entity.Example.Example_DB">
+        <member name="T:Entity.Example.Sample_DB">
             <summary>
             示例实体类（数据库）
             </summary>
             <remarks>基础</remarks>
         </member>
-        <member name="P:Entity.Example.Example_DB.Id">
+        <member name="P:Entity.Example.Sample_DB.Id">
             <summary>
             Id
             </summary>
         </member>
-        <member name="P:Entity.Example.Example_DB.Name">
+        <member name="P:Entity.Example.Sample_DB.Name">
             <summary>
             名称
             </summary>
         </member>
-        <member name="P:Entity.Example.Example_DB.Content">
+        <member name="P:Entity.Example.Sample_DB.Content">
             <summary>
             内容
             </summary>
         </member>
-        <member name="P:Entity.Example.Example_DB.Value1">
+        <member name="P:Entity.Example.Sample_DB.Value1">
             <summary>
             值1
             </summary>
         </member>
-        <member name="P:Entity.Example.Example_DB.CreatorId">
+        <member name="P:Entity.Example.Sample_DB.CreatorId">
             <summary>
             创建者
             </summary>
         </member>
-        <member name="P:Entity.Example.Example_DB.CreatorName">
+        <member name="P:Entity.Example.Sample_DB.CreatorName">
             <summary>
             创建者名称
             </summary>
         </member>
-        <member name="P:Entity.Example.Example_DB.CreateTime">
+        <member name="P:Entity.Example.Sample_DB.CreateTime">
             <summary>
             创建时间
             </summary>
         </member>
-        <member name="P:Entity.Example.Example_DB.ModifyTime">
+        <member name="P:Entity.Example.Sample_DB.ModifyTime">
             <summary>
             最近修改时间
             </summary>
         </member>
-        <member name="T:Entity.Example.Example_DB_A">
+        <member name="T:Entity.Example.Sample_DB_A">
             <summary>
             示例实体类（数据库）
             </summary>
             <remarks>附带导航属性，父子，一对一，多对多，一对多</remarks>
         </member>
-        <member name="P:Entity.Example.Example_DB_A.Id">
+        <member name="P:Entity.Example.Sample_DB_A.Id">
             <summary>
             Id
             </summary>
         </member>
-        <member name="P:Entity.Example.Example_DB_A.ParentId">
+        <member name="P:Entity.Example.Sample_DB_A.ParentId">
             <summary>
             父AId
             </summary>
         </member>
-        <member name="P:Entity.Example.Example_DB_A.Parent">
+        <member name="P:Entity.Example.Sample_DB_A.Parent">
             <summary>
             父A
             </summary>
             <remarks>父</remarks>
         </member>
-        <member name="P:Entity.Example.Example_DB_A.Childs">
+        <member name="P:Entity.Example.Sample_DB_A.Childs">
             <summary>
             子A
             </summary>
             <remarks>子</remarks>
         </member>
-        <member name="P:Entity.Example.Example_DB_A.BId">
+        <member name="P:Entity.Example.Sample_DB_A.BId">
             <summary>
             所属B
             </summary>
         </member>
-        <member name="P:Entity.Example.Example_DB_A.Example_DB_B">
+        <member name="P:Entity.Example.Sample_DB_A.Example_DB_B">
             <summary>
             所属B
             </summary>
             <remarks>一对一</remarks>
         </member>
-        <member name="P:Entity.Example.Example_DB_A.Name">
+        <member name="P:Entity.Example.Sample_DB_A.Name">
             <summary>
             名称
             </summary>
         </member>
-        <member name="P:Entity.Example.Example_DB_A.Content">
+        <member name="P:Entity.Example.Sample_DB_A.Content">
             <summary>
             内容
             </summary>
         </member>
-        <member name="P:Entity.Example.Example_DB_A.CreatorId">
+        <member name="P:Entity.Example.Sample_DB_A.CreatorId">
             <summary>
             创建者
             </summary>
         </member>
-        <member name="P:Entity.Example.Example_DB_A.CreatorName">
+        <member name="P:Entity.Example.Sample_DB_A.CreatorName">
             <summary>
             创建者名称
             </summary>
         </member>
-        <member name="P:Entity.Example.Example_DB_A.CreateTime">
+        <member name="P:Entity.Example.Sample_DB_A.CreateTime">
             <summary>
             创建时间
             </summary>
         </member>
-        <member name="P:Entity.Example.Example_DB_A.ModifyTime">
+        <member name="P:Entity.Example.Sample_DB_A.ModifyTime">
             <summary>
             最近修改时间
             </summary>
         </member>
-        <member name="P:Entity.Example.Example_DB_A.Example_DB_Cs">
+        <member name="P:Entity.Example.Sample_DB_A.Example_DB_Cs">
             <summary>
             相关C
             </summary>
             <remarks>多对多</remarks>
         </member>
-        <member name="P:Entity.Example.Example_DB_A.Example_DB_Ds">
+        <member name="P:Entity.Example.Sample_DB_A.Example_DB_Ds">
             <summary>
             相关D
             </summary>
             <remarks>一对多</remarks>
         </member>
-        <member name="T:Entity.Example.Example_DB_AC">
+        <member name="T:Entity.Example.Sample_DB_AC">
             <summary>
             示例实体类-模块信息（数据库）
             </summary>
@@ -220,212 +220,212 @@
             <para>联合主键</para>
             </remarks>
         </member>
-        <member name="P:Entity.Example.Example_DB_AC.AId">
+        <member name="P:Entity.Example.Sample_DB_AC.AId">
             <summary>
             Id
             </summary>
             <remarks>联合主键</remarks>
         </member>
-        <member name="P:Entity.Example.Example_DB_AC.Example_DB_A">
+        <member name="P:Entity.Example.Sample_DB_AC.Example_DB_A">
             <summary>
             相关A
             </summary>
             <remarks>一对一</remarks>
         </member>
-        <member name="P:Entity.Example.Example_DB_AC.CId">
+        <member name="P:Entity.Example.Sample_DB_AC.CId">
             <summary>
             Id
             </summary>
             <remarks>联合主键</remarks>
         </member>
-        <member name="P:Entity.Example.Example_DB_AC.Example_DB_C">
+        <member name="P:Entity.Example.Sample_DB_AC.Example_DB_C">
             <summary>
             相关C
             </summary>
             <remarks>一对一</remarks>
         </member>
-        <member name="P:Entity.Example.Example_DB_AC.CreatorId">
+        <member name="P:Entity.Example.Sample_DB_AC.CreatorId">
             <summary>
             创建者
             </summary>
         </member>
-        <member name="P:Entity.Example.Example_DB_AC.CreatorName">
+        <member name="P:Entity.Example.Sample_DB_AC.CreatorName">
             <summary>
             创建者名称
             </summary>
         </member>
-        <member name="P:Entity.Example.Example_DB_AC.CreateTime">
+        <member name="P:Entity.Example.Sample_DB_AC.CreateTime">
             <summary>
             创建时间
             </summary>
         </member>
-        <member name="T:Entity.Example.Example_DB_B">
+        <member name="T:Entity.Example.Sample_DB_B">
             <summary>
             示例实体类（数据库）
             </summary>
             <remarks>附带导航属性，一对多</remarks>
         </member>
-        <member name="P:Entity.Example.Example_DB_B.Id">
+        <member name="P:Entity.Example.Sample_DB_B.Id">
             <summary>
             Id
             </summary>
         </member>
-        <member name="P:Entity.Example.Example_DB_B.Name">
+        <member name="P:Entity.Example.Sample_DB_B.Name">
             <summary>
             名称
             </summary>
         </member>
-        <member name="P:Entity.Example.Example_DB_B.CreatorId">
+        <member name="P:Entity.Example.Sample_DB_B.CreatorId">
             <summary>
             创建者
             </summary>
         </member>
-        <member name="P:Entity.Example.Example_DB_B.CreatorName">
+        <member name="P:Entity.Example.Sample_DB_B.CreatorName">
             <summary>
             创建者名称
             </summary>
         </member>
-        <member name="P:Entity.Example.Example_DB_B.CreateTime">
+        <member name="P:Entity.Example.Sample_DB_B.CreateTime">
             <summary>
             创建时间
             </summary>
         </member>
-        <member name="P:Entity.Example.Example_DB_B.ModifyTime">
+        <member name="P:Entity.Example.Sample_DB_B.ModifyTime">
             <summary>
             最近修改时间
             </summary>
         </member>
-        <member name="P:Entity.Example.Example_DB_B.Example_DB_As">
+        <member name="P:Entity.Example.Sample_DB_B.Example_DB_As">
             <summary>
             相关A
             </summary>
             <remarks>一对多</remarks>
         </member>
-        <member name="T:Entity.Example.Example_DB_C">
+        <member name="T:Entity.Example.Sample_DB_C">
             <summary>
             示例实体类（数据库）
             </summary>
             <remarks>附带导航属性，多对多</remarks>
         </member>
-        <member name="P:Entity.Example.Example_DB_C.Id">
+        <member name="P:Entity.Example.Sample_DB_C.Id">
             <summary>
             Id
             </summary>
         </member>
-        <member name="P:Entity.Example.Example_DB_C.Name">
+        <member name="P:Entity.Example.Sample_DB_C.Name">
             <summary>
             名称
             </summary>
         </member>
-        <member name="P:Entity.Example.Example_DB_C.CreatorId">
+        <member name="P:Entity.Example.Sample_DB_C.CreatorId">
             <summary>
             创建者
             </summary>
         </member>
-        <member name="P:Entity.Example.Example_DB_C.CreatorName">
+        <member name="P:Entity.Example.Sample_DB_C.CreatorName">
             <summary>
             创建者名称
             </summary>
         </member>
-        <member name="P:Entity.Example.Example_DB_C.CreateTime">
+        <member name="P:Entity.Example.Sample_DB_C.CreateTime">
             <summary>
             创建时间
             </summary>
         </member>
-        <member name="P:Entity.Example.Example_DB_C.ModifyTime">
+        <member name="P:Entity.Example.Sample_DB_C.ModifyTime">
             <summary>
             最近修改时间
             </summary>
         </member>
-        <member name="P:Entity.Example.Example_DB_C.Example_DB_As">
+        <member name="P:Entity.Example.Sample_DB_C.Example_DB_As">
             <summary>
             相关A
             </summary>
             <remarks>多对多</remarks>
         </member>
-        <member name="T:Entity.Example.Example_DB_D">
+        <member name="T:Entity.Example.Sample_DB_D">
             <summary>
             示例实体类（数据库）
             </summary>
             <remarks>附带导航属性，一对一</remarks>
         </member>
-        <member name="P:Entity.Example.Example_DB_D.Id">
+        <member name="P:Entity.Example.Sample_DB_D.Id">
             <summary>
             Id
             </summary>
         </member>
-        <member name="P:Entity.Example.Example_DB_D.AId">
+        <member name="P:Entity.Example.Sample_DB_D.AId">
             <summary>
             所属A
             </summary>
         </member>
-        <member name="P:Entity.Example.Example_DB_D.Example_DB_A">
+        <member name="P:Entity.Example.Sample_DB_D.Example_DB_A">
             <summary>
             所属A
             </summary>
             <remarks>一对一</remarks>
         </member>
-        <member name="P:Entity.Example.Example_DB_D.Name">
+        <member name="P:Entity.Example.Sample_DB_D.Name">
             <summary>
             名称
             </summary>
         </member>
-        <member name="P:Entity.Example.Example_DB_D.CreatorId">
+        <member name="P:Entity.Example.Sample_DB_D.CreatorId">
             <summary>
             创建者
             </summary>
         </member>
-        <member name="P:Entity.Example.Example_DB_D.CreatorName">
+        <member name="P:Entity.Example.Sample_DB_D.CreatorName">
             <summary>
             创建者名称
             </summary>
         </member>
-        <member name="P:Entity.Example.Example_DB_D.CreateTime">
+        <member name="P:Entity.Example.Sample_DB_D.CreateTime">
             <summary>
             创建时间
             </summary>
         </member>
-        <member name="P:Entity.Example.Example_DB_D.ModifyTime">
+        <member name="P:Entity.Example.Sample_DB_D.ModifyTime">
             <summary>
             最近修改时间
             </summary>
         </member>
-        <member name="T:Entity.Example.Example_ES">
+        <member name="T:Entity.Example.Sample_ES">
             <summary>
             示例实体类（ES服务）
             </summary>
         </member>
-        <member name="P:Entity.Example.Example_ES.Id">
+        <member name="P:Entity.Example.Sample_ES.Id">
             <summary>
             Id
             </summary>
         </member>
-        <member name="P:Entity.Example.Example_ES.Name">
+        <member name="P:Entity.Example.Sample_ES.Name">
             <summary>
             名称
             </summary>
         </member>
-        <member name="P:Entity.Example.Example_ES.Content">
+        <member name="P:Entity.Example.Sample_ES.Content">
             <summary>
             内容
             </summary>
         </member>
-        <member name="P:Entity.Example.Example_ES.CreatorId">
+        <member name="P:Entity.Example.Sample_ES.CreatorId">
             <summary>
             创建者
             </summary>
         </member>
-        <member name="P:Entity.Example.Example_ES.CreatorName">
+        <member name="P:Entity.Example.Sample_ES.CreatorName">
             <summary>
             创建者名称
             </summary>
         </member>
-        <member name="P:Entity.Example.Example_ES.CreateTime">
+        <member name="P:Entity.Example.Sample_ES.CreateTime">
             <summary>
             创建时间
             </summary>
         </member>
-        <member name="P:Entity.Example.Example_ES.ModifyTime">
+        <member name="P:Entity.Example.Sample_ES.ModifyTime">
             <summary>
             最近编辑时间
             </summary>

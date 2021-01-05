@@ -25,22 +25,22 @@ namespace Entity.Common
         /// <summary>
         /// Id
         /// </summary>
-        [Column(IsPrimary = true)]
-        [OpenApiSubTag("_List")]
-        public long Id { get; set; }
+        [OpenApiSubTag("List")]
+        [Column(IsPrimary = true, StringLength = 36)]
+        public string Id { get; set; }
 
         /// <summary>
         /// 名称
         /// </summary>
-        [Column(StringLength = 100)]
         [OpenApiSubTag("List", "Detail", "FileInfo")]
+        [Column(StringLength = 100)]
         public string Name { get; set; }
 
         /// <summary>
         /// 完整名称
         /// </summary>
-        [Column(StringLength = 255)]
         [OpenApiSubTag("List", "Detail", "FileInfo")]
+        [Column(StringLength = 255)]
         public string FullName { get; set; }
 
         /// <summary>
@@ -52,29 +52,29 @@ namespace Entity.Common
         /// <para>视频</para>
         /// <para>压缩包</para>
         /// </summary>
-        [Column(StringLength = 30)]
         [OpenApiSubTag("List", "Detail", "FileInfo")]
+        [Column(StringLength = 30)]
         public string FileType { get; set; }
 
         /// <summary>
         /// 内容类型
         /// </summary>
-        [Column(StringLength = 100)]
         [OpenApiSubTag("List", "Detail", "FileInfo")]
+        [Column(StringLength = 100)]
         public string ContentType { get; set; }
 
         /// <summary>
         /// 文件后缀
         /// </summary>
-        [Column(StringLength = 30)]
         [OpenApiSubTag("List", "Detail", "FileInfo")]
+        [Column(StringLength = 30)]
         public string Suffix { get; set; }
 
         /// <summary>
         /// 所在服务器
         /// </summary>
-        [Column(StringLength = 300)]
         [OpenApiSubTag("List", "Detail", "FileInfo")]
+        [Column(StringLength = 300)]
         public string Server { get; set; }
 
         /// <summary>
@@ -84,44 +84,44 @@ namespace Entity.Common
         /// <para>Base64Url</para>
         /// <para>Path</para>
         /// </summary>
-        [Column(StringLength = 30)]
         [OpenApiSubTag("List", "Detail", "FileInfo")]
+        [Column(StringLength = 30)]
         public string StorageType { get; set; }
 
         /// <summary>
         /// 文件路径
         /// </summary>
-        [Column(StringLength = -1)]
         [OpenApiSubTag("_List")]
+        [Column(StringLength = -1)]
         public string Path { get; set; }
 
         /// <summary>
         /// 预览图路径
         /// </summary>
-        [Column(StringLength = -1)]
         [OpenApiSubTag("_List")]
+        [Column(StringLength = -1)]
         public string ThumbnailPath { get; set; }
 
         /// <summary>
         /// 创建者
         /// </summary>
-        [Column(StringLength = 50)]
         [OpenApiSubTag("_List")]
+        [Column(StringLength = 50)]
         public string CreatorId { get; set; }
 
         /// <summary>
         /// 创建者名称
         /// </summary>
-        [Column(StringLength = 30)]
         [OpenApiSubTag("List", "Detail", "FileInfo")]
+        [Column(StringLength = 30)]
         public string CreatorName { get; set; }
 
         /// <summary>
         /// 创建时间
         /// </summary>
+        [OpenApiSubTag("List", "Detail", "FileInfo")]
         [OpenApiSchema(OpenApiSchemaType.@string, OpenApiSchemaFormat.string_datetime)]
         [JsonConverter(typeof(DateTimeConverter), "yyyy-MM-dd HH:mm:ss")]
-        [OpenApiSubTag("List", "Detail", "FileInfo")]
         public DateTime CreateTime { get; set; }
     }
 }

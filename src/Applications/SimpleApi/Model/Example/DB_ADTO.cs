@@ -3,17 +3,17 @@ using Library.DataMapping.Annotations;
 using Library.OpenApi.Annotations;
 using System.Collections.Generic;
 
-/// <summary>
-/// 示例实体类业务模型（数据库）
-/// </summary>
+/*
+ * 示例实体类业务模型（数据库）
+*/
 namespace Model.Example.DB_ADTO
 {
     /// <summary>
     /// 列表
     /// </summary>
-    [MapFrom(typeof(Example_DB_A))]//映射类型配置
+    [MapFrom(typeof(Sample_DB_A))]//映射类型配置
     [OpenApiMainTag("List")]//接口框架主标签，基类中成员附属标签不包含此标签内容的将会被筛选掉
-    public class List : Example_DB_A
+    public class List : Sample_DB_A
     {
         /// <summary>
         /// 所属B
@@ -37,9 +37,9 @@ namespace Model.Example.DB_ADTO
     /// <summary>
     /// 详情
     /// </summary>
-    [MapFrom(typeof(Example_DB_A))]
+    [MapFrom(typeof(Sample_DB_A))]
     [OpenApiMainTag("Detail")]
-    public class Detail : Example_DB_A
+    public class Detail : Sample_DB_A
     {
         /// <summary>
         /// 所属B
@@ -63,9 +63,9 @@ namespace Model.Example.DB_ADTO
     /// <summary>
     /// 新增
     /// </summary>
-    [MapTo(typeof(Example_DB_A))]
+    [MapTo(typeof(Sample_DB_A))]
     [OpenApiMainTag("Create")]
-    public class Create : Example_DB_A
+    public class Create : Sample_DB_A
     {
         /// <summary>
         /// 相关CId集合
@@ -83,10 +83,10 @@ namespace Model.Example.DB_ADTO
     /// <summary>
     /// 编辑
     /// </summary>
-    [MapFrom(typeof(Example_DB_A))]
-    [MapTo(typeof(Example_DB_A))]
+    [MapFrom(typeof(Sample_DB_A))]
+    [MapTo(typeof(Sample_DB_A))]
     [OpenApiMainTag("Edit")]
-    public class Edit : Example_DB_A
+    public class Edit : Sample_DB_A
     {
         /// <summary>
         /// 所属B

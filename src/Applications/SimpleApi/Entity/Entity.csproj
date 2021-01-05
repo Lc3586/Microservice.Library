@@ -23,10 +23,10 @@
 
   <ItemGroup>
     <PackageReference Include="Library.Elasticsearch" Version="1.0.18-alpha" />
-    <PackageReference Include="Library.FreeSql" Version="1.5.1-alpha" />
+    <PackageReference Include="Library.FreeSql" Version="1.5.2-alpha" />
     <PackageReference Include="Library.Json" Version="1.0.2-alpha" />
-    <PackageReference Include="Library.Models" Version="1.2.0.6-alpha" />
-    <PackageReference Include="Library.OpenApi" Version="1.0.4.10-alpha" />
+    <PackageReference Include="Library.OpenApi" Version="1.0.8.2-alpha" />
+    <PackageReference Include="Library.Soap" Version="1.0.8-alpha" />
   </ItemGroup>
 
   <ItemGroup>

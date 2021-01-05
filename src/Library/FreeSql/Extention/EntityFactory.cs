@@ -18,7 +18,7 @@ namespace Library.FreeSql.Extention
 
         }
 
-        public EntityFactory([NotNull]FreeSqlDbContextOptions freeSqlDbContextOptions)
+        public EntityFactory([NotNull] FreeSqlDbContextOptions freeSqlDbContextOptions)
         {
             _freeSqlDbContextOptions = freeSqlDbContextOptions;
         }
@@ -52,10 +52,10 @@ namespace Library.FreeSql.Extention
         {
             if (_freeSqlDbContextOptions == null)
                 throw new FreeSqlException("FreeSqlDbContextOptions不能为空");
-            var assembly = Assembly.Load(_freeSqlDbContextOptions.EntityAssembly);
+            var assembly = _freeSqlDbContextOptions.EntityAssembly.Select(o => Assembly.Load(o));
             if (assembly == null)
                 throw new FreeSqlException($"命名空间{_freeSqlDbContextOptions.EntityAssembly}不存在");
-            return assembly.GetTypes()
+            return assembly.SelectMany(o => o.GetTypes())
                 .Where(x => x.GetCustomAttribute(typeof(TableAttribute), false) != null);
         }
 

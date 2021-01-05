@@ -8,6 +8,7 @@ namespace IocServiceDemo
     /// <summary>
     /// 配置
     /// </summary>
+    /// <remarks>将高级配置应用于低级配置</remarks>
     internal class ConfigureDemoServiceOptions : IConfigureOptions<DemoServiceOptions>
     {
         private readonly IServiceProvider _serviceProvider;

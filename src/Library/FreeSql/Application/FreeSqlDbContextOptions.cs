@@ -13,12 +13,13 @@ namespace Library.FreeSql.Application
         public FreeSqlDbContextOptions()
         {
             EnableAddOrUpdateNavigateList = null;
+            EntityAssembly = new List<string>();
         }
 
         /// <summary>
         /// 实体类命名空间
         /// </summary>
-        public string EntityAssembly { get; set; }
+        public List<string> EntityAssembly { get; set; }
 
         /// <summary>
         /// 实体标识

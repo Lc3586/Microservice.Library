@@ -139,22 +139,17 @@ namespace Model.Common.FileDTO
     public class FileInfo : Common_File
     {
         /// <summary>
-        /// Id
-        /// </summary>
-        public string Id_ { get; set; }
-
-        /// <summary>
         /// 来源成员映射选项
         /// </summary>
         [OpenApiIgnore]
         public static MemberMapOptions<Common_File, FileInfo> FromMemberMapOptions =
-            new MemberMapOptions<Common_File, FileInfo>().Add(nameof(Id_), o => o.Id.ToString());
+            new MemberMapOptions<Common_File, FileInfo>();
 
         /// <summary>
         /// 当前成员映射选项
         /// </summary>
         [OpenApiIgnore]
         public static MemberMapOptions<FileInfo, Common_File> ToMemberMapOptions =
-            new MemberMapOptions<FileInfo, Common_File>().Add(nameof(Id), o => Convert.ToInt64(o.Id_));
+            new MemberMapOptions<FileInfo, Common_File>();
     }
 }

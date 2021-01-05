@@ -231,11 +231,6 @@
             名称
             </summary>
         </member>
-        <member name="P:Library.Models.CASModel.AuthorizedInfo.CasToken">
-            <summary>
-            不能使用Cooki时将此值存入请求头中（Key：CasToken）
-            </summary>
-        </member>
         <member name="T:Library.Models.CASModel.GetTGT">
             <summary>
             获取tgt
