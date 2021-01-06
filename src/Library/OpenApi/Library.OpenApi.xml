@@ -194,6 +194,31 @@
             名称
             </summary>
         </member>
+        <member name="T:Library.OpenApi.Annotations.PropertyValueChanged">
+            <summary>
+            属性值更改信息
+            </summary>
+        </member>
+        <member name="P:Library.OpenApi.Annotations.PropertyValueChanged.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Library.OpenApi.Annotations.PropertyValueChanged.Description">
+            <summary>
+            说明
+            </summary>
+        </member>
+        <member name="P:Library.OpenApi.Annotations.PropertyValueChanged.FormerValue">
+            <summary>
+            以前的值
+            </summary>
+        </member>
+        <member name="P:Library.OpenApi.Annotations.PropertyValueChanged.CurrentValue">
+            <summary>
+            现在的值
+            </summary>
+        </member>
         <member name="T:Library.OpenApi.ExampleModel.AInfo">
             <summary>
             A信息
@@ -638,6 +663,16 @@
             <param name="exceptionProperties">特别输出的属性</param>
             <param name="ignoreProperties">特别忽略的属性</param>
             <remarks>如果在特别输出参数和特别忽略参数中同时指定了同一个属性，那么最终不会输出该属性</remarks>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.Extention.SchemaExtention.GetPropertyValueChangeds``2(``0,``0)">
+            <summary>
+            获取数据更改信息
+            </summary>
+            <typeparam name="TComparison">比对数据的类型</typeparam>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <param name="former">以前的数据</param>
+            <param name="current">当前的数据</param>
             <returns></returns>
         </member>
         <member name="T:Library.OpenApi.JsonSerialization.JsonExtension">

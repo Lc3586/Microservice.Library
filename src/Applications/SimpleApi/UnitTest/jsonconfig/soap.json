@@ -1,0 +1,954 @@
+﻿{
+  "Datas": {
+    "WGV1_7": {
+      "Server": "http://localhost:5000/EsbBusService.asmx?wsdl",
+      "RequestBody": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n<soap:Body>\r\n<Process xmlns=\"http://tempuri.org/\">\r\n<XmlString>{{XmlString}}</XmlString>\r\n</Process>\r\n</soap:Body>\r\n</soap:Envelope>",
+      "XmlStringTemplate": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<body>\r\n<head>\r\n<userid>{{Userid}}</userid>\r\n<password>{{Password}}</password>\r\n<trans_no>{{TransNo}}</trans_no>\r\n</head>\r\n<resquest>{{Paramters}}</resquest>\r\n</body>",
+      "Request": {
+        "WG2002": [
+          {
+            "Userid": "test",
+            "Password": "123",
+            "TransNo": "wg2002",
+            "Paramters": {
+              "org_code": "79006982",
+              "fybh": null,
+              "ghrq": "2020-08-18",
+              "ghksdm": "07",
+              "ghysbh2": 790069822272,
+              "mzsj": "P",
+              "sjh": 17326731925,
+              "brxm": "赵爱明",
+              "xb": "M",
+              "csrq": "1992-12-30",
+              "sfzhm": "33052219921230531X",
+              "personid": "1000000020151119000016",
+              "ghly": 21,
+              "jtdz": "浙江省宁波市镇海区招宝山街道后大街４８３弄１８号２０４室",
+              "yylsh": "202008182100073",
+              "num": null,
+              "yysjd": null,
+              "gfno": "A93390361",
+              "gfno_type": "",
+              "ptlyfd": "12"
+            },
+            "SuccessResponse": {
+              "ret_code": "0",
+              "ret_info": "锁号成功"
+            }
+          } //,
+          //{
+          //  "Userid": "test",
+          //  "Password": "123",
+          //  "TransNo": "WG2002",
+          //  "Paramters": {
+          //    "org_code": "123456",
+          //    "fybh": null,
+          //    "ghrq": null,
+          //    "ghksdm": null,
+          //    "ghysbh2": null,
+          //    "mzsj": "P",
+          //    "sjh": null,
+          //    "brxm": null,
+          //    "xb": null,
+          //    "csrq": null,
+          //    "sfzhm": null,
+          //    "personid": null,
+          //    "ghly": null,
+          //    "jtdz": null,
+          //    "yylsh": null,
+          //    "num": "666",
+          //    "yysjd": null
+          //  },
+          //  "SuccessResponse": {
+          //    "ret_code": "1",
+          //    "ret_info": "锁号失败",
+          //    "num": "666"
+          //  }
+          //},
+          //{
+          //  "Userid": "test",
+          //  "Password": "123",
+          //  "TransNo": "WG2002",
+          //  "Paramters": {
+          //    "org_code": "123456",
+          //    "fybh": null,
+          //    "ghrq": null,
+          //    "ghksdm": null,
+          //    "ghysbh2": null,
+          //    "mzsj": "F",
+          //    "sjh": null,
+          //    "brxm": null,
+          //    "xb": null,
+          //    "csrq": null,
+          //    "sfzhm": null,
+          //    "personid": null,
+          //    "ghly": null,
+          //    "jtdz": null,
+          //    "yylsh": null,
+          //    "num": "666",
+          //    "yysjd": null
+          //  },
+          //  "SuccessResponse": {
+          //    "ret_code": "0",
+          //    "ret_info": "锁号成功",
+          //    "num": "666"
+          //  }
+          //},
+          //{
+          //  "Userid": "test",
+          //  "Password": "123",
+          //  "TransNo": "WG2002",
+          //  "Paramters": {
+          //    "org_code": "123456",
+          //    "fybh": null,
+          //    "ghrq": null,
+          //    "ghksdm": null,
+          //    "ghysbh2": null,
+          //    "mzsj": "N",
+          //    "sjh": null,
+          //    "brxm": null,
+          //    "xb": null,
+          //    "csrq": null,
+          //    "sfzhm": null,
+          //    "personid": null,
+          //    "ghly": null,
+          //    "jtdz": null,
+          //    "yylsh": null,
+          //    "num": "666",
+          //    "yysjd": null
+          //  },
+          //  "SuccessResponse": {
+          //    "ret_code": "0"
+          //  }
+          //}
+        ],
+        "WG2008": [
+          {
+            "Userid": "test",
+            "Password": "123",
+            "TransNo": "wg2008",
+            "Paramters": {
+              "org_code": "123456",
+              "fybh": null,
+              "ghrq": null,
+              "ghksdm": null,
+              "ghysbh2": null,
+              "mzsj": "A",
+              "num": null,
+              "gfno": null,
+              "zffs": null,
+              "zfyh": null,
+              "zflsh": null,
+              "zfje": 0,
+              "zfsj": null,
+              "ghly": null,
+              "yylsh": null,
+              "personid": null,
+              "sjh": null,
+              "ghyzm": null,
+              "ptlyfd": null
+            },
+            "SuccessResponse": {
+              "ret_code": "1",
+              "ret_info": "该号源未被锁定"
+            }
+          },
+          {
+            "Userid": "test",
+            "Password": "123",
+            "TransNo": "wg2008",
+            "Paramters": {
+              "org_code": "123456",
+              "fybh": null,
+              "ghrq": null,
+              "ghksdm": null,
+              "ghysbh2": null,
+              "mzsj": "P",
+              "num": null,
+              "gfno": null,
+              "zffs": null,
+              "zfyh": null,
+              "zflsh": null,
+              "zfje": 0,
+              "zfsj": null,
+              "ghly": null,
+              "yylsh": null,
+              "personid": null,
+              "sjh": null,
+              "ghyzm": null,
+              "ptlyfd": null
+            },
+            "SuccessResponse": {
+              "ret_code": "1",
+              "ret_info": "挂号失败"
+            }
+          },
+          {
+            "Userid": "test",
+            "Password": "123",
+            "TransNo": "wg2008",
+            "Paramters": {
+              "org_code": "123456",
+              "fybh": null,
+              "ghrq": null,
+              "ghksdm": null,
+              "ghysbh2": null,
+              "mzsj": "F",
+              "num": null,
+              "gfno": null,
+              "zffs": null,
+              "zfyh": null,
+              "zflsh": null,
+              "zfje": 0,
+              "zfsj": null,
+              "ghly": null,
+              "yylsh": null,
+              "personid": null,
+              "sjh": null,
+              "ghyzm": null,
+              "ptlyfd": null
+            },
+            "SuccessResponse": {
+              "ret_code": "0",
+              "ret_info": "挂号成功"
+            }
+          },
+          {
+            "Userid": "test",
+            "Password": "123",
+            "TransNo": "wg2008",
+            "Paramters": {
+              "org_code": "123456",
+              "fybh": null,
+              "ghrq": null,
+              "ghksdm": null,
+              "ghysbh2": null,
+              "mzsj": "N",
+              "num": null,
+              "gfno": null,
+              "zffs": null,
+              "zfyh": null,
+              "zflsh": null,
+              "zfje": 0,
+              "zfsj": null,
+              "ghly": null,
+              "yylsh": null,
+              "personid": null,
+              "sjh": null,
+              "ghyzm": null,
+              "ptlyfd": null
+            },
+            "SuccessResponse": {
+              "ret_code": "0"
+            }
+          }
+        ],
+        "WG2009": [
+          {
+            "Userid": "test",
+            "Password": "123",
+            "TransNo": "wg2009",
+            "Paramters": {
+              "org_code": null,
+              "fybh": null,
+              "ghrq": null,
+              "ghksdm": null,
+              "ghysbh2": null,
+              "mzsj": "A",
+              "num": null,
+              "ghly": null,
+              "yylsh": null,
+              "qxfs": null,
+              "qxyy": null,
+              "personid": null,
+              "sjh": null,
+              "ghyzm": null
+            },
+            "SuccessResponse": {
+              "ret_code": "1",
+              "ret_info": "取消锁号失败,没有找到对应医生排班"
+            }
+          },
+          {
+            "Userid": "test",
+            "Password": "123",
+            "TransNo": "wg2009",
+            "Paramters": {
+              "org_code": null,
+              "fybh": null,
+              "ghrq": null,
+              "ghksdm": null,
+              "ghysbh2": null,
+              "mzsj": "P",
+              "num": null,
+              "ghly": null,
+              "yylsh": null,
+              "qxfs": null,
+              "qxyy": null,
+              "personid": null,
+              "sjh": null,
+              "ghyzm": null
+            },
+            "SuccessResponse": {
+              "ret_code": "1",
+              "ret_info": "取消锁号失败,没有找到对应锁定记录"
+            }
+          },
+          {
+            "Userid": "test",
+            "Password": "123",
+            "TransNo": "wg2009",
+            "Paramters": {
+              "org_code": null,
+              "fybh": null,
+              "ghrq": null,
+              "ghksdm": null,
+              "ghysbh2": null,
+              "mzsj": "F",
+              "num": null,
+              "ghly": null,
+              "yylsh": null,
+              "qxfs": null,
+              "qxyy": null,
+              "personid": null,
+              "sjh": null,
+              "ghyzm": null
+            },
+            "SuccessResponse": {
+              "ret_code": "1",
+              "ret_info": "取消锁号失败"
+            }
+          },
+          {
+            "Userid": "test",
+            "Password": "123",
+            "TransNo": "wg2009",
+            "Paramters": {
+              "org_code": null,
+              "fybh": null,
+              "ghrq": null,
+              "ghksdm": null,
+              "ghysbh2": null,
+              "mzsj": "N",
+              "num": null,
+              "ghly": null,
+              "yylsh": null,
+              "qxfs": null,
+              "qxyy": null,
+              "personid": null,
+              "sjh": null,
+              "ghyzm": null
+            },
+            "SuccessResponse": {
+              "ret_code": "0",
+              "ret_info": "取消锁号成功"
+            }
+          }
+        ],
+        "WG2010": [
+          {
+            "Userid": "test",
+            "Password": "123",
+            "TransNo": "wg2010",
+            "Paramters": {
+              "org_code": null,
+              "fybh": null,
+              "ghrq": null,
+              "personid": null,
+              "ghksdm": null,
+              "ghysbh2": null,
+              "mzsj": "A",
+              "num": null,
+              "ghyzm": null,
+              "sjh": null,
+              "ghly": null,
+              "yylsh": null,
+              "qxfs": null,
+              "qxyy": null,
+              "yyghwym": null
+            },
+            "SuccessResponse": {
+              "ret_code": "1",
+              "ret_info": "退号失败,没有找到对应排班"
+            }
+          },
+          {
+            "Userid": "test",
+            "Password": "123",
+            "TransNo": "wg2010",
+            "Paramters": {
+              "org_code": null,
+              "fybh": null,
+              "ghrq": null,
+              "personid": null,
+              "ghksdm": null,
+              "ghysbh2": null,
+              "mzsj": "P",
+              "num": null,
+              "ghyzm": null,
+              "sjh": null,
+              "ghly": null,
+              "yylsh": null,
+              "qxfs": null,
+              "qxyy": null,
+              "yyghwym": null
+            },
+            "SuccessResponse": {
+              "ret_code": "1",
+              "ret_info": "退号失败,没有找到对应预约记录"
+            }
+          },
+          {
+            "Userid": "test",
+            "Password": "123",
+            "TransNo": "wg2010",
+            "Paramters": {
+              "org_code": null,
+              "fybh": null,
+              "ghrq": null,
+              "personid": null,
+              "ghksdm": null,
+              "ghysbh2": null,
+              "mzsj": "F",
+              "num": null,
+              "ghyzm": null,
+              "sjh": null,
+              "ghly": null,
+              "yylsh": null,
+              "qxfs": null,
+              "qxyy": null,
+              "yyghwym": null
+            },
+            "SuccessResponse": {
+              "ret_code": "1",
+              "ret_info": "退号失败"
+            }
+          },
+          {
+            "Userid": "test",
+            "Password": "123",
+            "TransNo": "wg2010",
+            "Paramters": {
+              "org_code": null,
+              "fybh": null,
+              "ghrq": null,
+              "personid": null,
+              "ghksdm": null,
+              "ghysbh2": null,
+              "mzsj": "N",
+              "num": null,
+              "ghyzm": null,
+              "sjh": null,
+              "ghly": null,
+              "yylsh": null,
+              "qxfs": null,
+              "qxyy": null,
+              "yyghwym": null
+            },
+            "SuccessResponse": {
+              "ret_code": "0",
+              "ret_info": "退号成功"
+            }
+          }
+        ],
+        "WG2020": [
+          {
+            "Userid": "test",
+            "Password": "123",
+            "TransNo": "wg2020",
+            "Paramters": {
+              "org_code": null,
+              "fybh": null,
+              "ghrq": null,
+              "ghksdm": null,
+              "ghysbh2": null,
+              "mzsj": null,
+              "sjh": null,
+              "num": null,
+              "yyghwym": null
+            },
+            "SuccessResponse": {
+              "ret_code": "0",
+              "ret_info": null
+            }
+          }
+        ]
+      }
+    },
+    "WGV3_2": {
+      "Server": "http://localhost:5000/CsbBusService.asmx?wsdl",
+      "RequestBody": "<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><Process xmlns=\"http://tempuri.org/\">\r\n<XmlString>{{XmlString}}</XmlString>\r\n</Process></soap:Body></soap:Envelope>",
+      "XmlStringTemplate": "<?xml version=\"1.0\" encoding=\"utf-8\"?><body><head><userid>{{Userid}}</userid><password>{{Password}}</password><trans_no>{{TransNo}}</trans_no></head><resquest>{{Paramters}}</resquest></body>",
+      "Request": {
+        "WG2002": [
+          {
+            "Userid": "test",
+            "Password": "123",
+            "TransNo": "wg2002",
+            "Paramters": {
+              "schedule_date": null,
+              "department_id": null,
+              "doctor_id": null,
+              "out_time": null,
+              "phone": null,
+              "name": null,
+              "sex": null,
+              "birthday": null,
+              "idcard": null,
+              "res_source": null,
+              "org_code": null,
+              "fybh": null,
+              "ghrq": null,
+              "ghksdm": null,
+              "ghysbh2": null,
+              "mzsj": "A",
+              "sjh": null,
+              "brxm": null,
+              "xb": null,
+              "csrq": null,
+              "sfzhm": null,
+              "personid": null,
+              "ghly": null,
+              "jtdz": null,
+              "yylsh": null,
+              "num": "666",
+              "yysjd": null,
+              "gfno": null,
+              "gfno_type": null,
+              "sscard_id": null,
+              "sscard_manual_number": null,
+              "ptlyfd": null
+            },
+            "SuccessResponse": {
+              "ret_code": "1",
+              "ret_info": "该号源已锁定",
+              "schedule_num": "666"
+            }
+          },
+          {
+            "Userid": "test",
+            "Password": "123",
+            "TransNo": "wg2002",
+            "Paramters": {
+              "schedule_date": null,
+              "department_id": null,
+              "doctor_id": null,
+              "out_time": null,
+              "phone": null,
+              "name": null,
+              "sex": null,
+              "birthday": null,
+              "idcard": null,
+              "res_source": null,
+              "org_code": null,
+              "fybh": null,
+              "ghrq": null,
+              "ghksdm": null,
+              "ghysbh2": null,
+              "mzsj": "P",
+              "sjh": null,
+              "brxm": null,
+              "xb": null,
+              "csrq": null,
+              "sfzhm": null,
+              "personid": null,
+              "ghly": null,
+              "jtdz": null,
+              "yylsh": null,
+              "num": "666",
+              "yysjd": null,
+              "gfno": null,
+              "gfno_type": null,
+              "sscard_id": null,
+              "sscard_manual_number": null,
+              "ptlyfd": null
+            },
+            "SuccessResponse": {
+              "ret_code": "1",
+              "ret_info": "锁号失败",
+              "schedule_num": "666"
+            }
+          },
+          {
+            "Userid": "test",
+            "Password": "123",
+            "TransNo": "wg2002",
+            "Paramters": {
+              "schedule_date": null,
+              "department_id": null,
+              "doctor_id": null,
+              "out_time": null,
+              "phone": null,
+              "name": null,
+              "sex": null,
+              "birthday": null,
+              "idcard": null,
+              "res_source": null,
+              "org_code": null,
+              "fybh": null,
+              "ghrq": null,
+              "ghksdm": null,
+              "ghysbh2": null,
+              "mzsj": "F",
+              "sjh": null,
+              "brxm": null,
+              "xb": null,
+              "csrq": null,
+              "sfzhm": null,
+              "personid": null,
+              "ghly": null,
+              "jtdz": null,
+              "yylsh": null,
+              "num": "666",
+              "yysjd": null,
+              "gfno": null,
+              "gfno_type": null,
+              "sscard_id": null,
+              "sscard_manual_number": null,
+              "ptlyfd": null
+            },
+            "SuccessResponse": {
+              "ret_code": "0",
+              "ret_info": "锁号成功",
+              "schedule_num": "666"
+            }
+          },
+          {
+            "Userid": "test",
+            "Password": "123",
+            "TransNo": "wg2002",
+            "Paramters": {
+              "schedule_date": null,
+              "department_id": null,
+              "doctor_id": null,
+              "out_time": null,
+              "phone": null,
+              "name": null,
+              "sex": null,
+              "birthday": null,
+              "idcard": null,
+              "res_source": null,
+              "org_code": null,
+              "fybh": null,
+              "ghrq": null,
+              "ghksdm": null,
+              "ghysbh2": null,
+              "mzsj": "N",
+              "sjh": null,
+              "brxm": null,
+              "xb": null,
+              "csrq": null,
+              "sfzhm": null,
+              "personid": null,
+              "ghly": null,
+              "jtdz": null,
+              "yylsh": null,
+              "num": "666",
+              "yysjd": null,
+              "gfno": null,
+              "gfno_type": null,
+              "sscard_id": null,
+              "sscard_manual_number": null,
+              "ptlyfd": null
+            },
+            "SuccessResponse": {
+              "ret_code": "0"
+            }
+          }
+        ],
+        "WG2008": [
+          {
+            "Userid": "test",
+            "Password": "123",
+            "TransNo": "wg2008",
+            "Paramters": {
+              "schedule_date": null,
+              "department_id": null,
+              "doctor_id": null,
+              "out_time": null,
+              "schedule_num": null,
+              "cardnumber": null,
+              "payment": null,
+              "paybank": null,
+              "paysernumber": null,
+              "payfee": 0,
+              "paytime": null,
+              "res_source": null,
+              "phone": null,
+              "schedule_vercode": null,
+              "org_code": null,
+              "fybh": null,
+              "ghrq": null,
+              "ghksdm": null,
+              "ghysbh2": null,
+              "mzsj": "A",
+              "num": null,
+              "gfno": null,
+              "zffs": null,
+              "zfyh": null,
+              "zflsh": null,
+              "zfje": 0,
+              "zfsj": null,
+              "ghly": null,
+              "yylsh": null,
+              "personid": null,
+              "sjh": null,
+              "ghyzm": null,
+              "ptlyfd": null
+            },
+            "SuccessResponse": {
+              "ret_code": "1",
+              "ret_info": "该号源未被锁定"
+            }
+          },
+          {
+            "Userid": "test",
+            "Password": "123",
+            "TransNo": "wg2008",
+            "Paramters": {
+              "schedule_date": null,
+              "department_id": null,
+              "doctor_id": null,
+              "out_time": null,
+              "schedule_num": null,
+              "cardnumber": null,
+              "payment": null,
+              "paybank": null,
+              "paysernumber": null,
+              "payfee": 0,
+              "paytime": null,
+              "res_source": null,
+              "phone": null,
+              "schedule_vercode": null,
+              "org_code": null,
+              "fybh": null,
+              "ghrq": null,
+              "ghksdm": null,
+              "ghysbh2": null,
+              "mzsj": "P",
+              "num": null,
+              "gfno": null,
+              "zffs": null,
+              "zfyh": null,
+              "zflsh": null,
+              "zfje": 0,
+              "zfsj": null,
+              "ghly": null,
+              "yylsh": null,
+              "personid": null,
+              "sjh": null,
+              "ghyzm": null,
+              "ptlyfd": null
+            },
+            "SuccessResponse": {
+              "ret_code": "1",
+              "ret_info": "挂号失败"
+            }
+          },
+          {
+            "Userid": "test",
+            "Password": "123",
+            "TransNo": "wg2008",
+            "Paramters": {
+              "schedule_date": null,
+              "department_id": null,
+              "doctor_id": null,
+              "out_time": null,
+              "schedule_num": null,
+              "cardnumber": null,
+              "payment": null,
+              "paybank": null,
+              "paysernumber": null,
+              "payfee": 0,
+              "paytime": null,
+              "res_source": null,
+              "phone": null,
+              "schedule_vercode": null,
+              "org_code": null,
+              "fybh": null,
+              "ghrq": null,
+              "ghksdm": null,
+              "ghysbh2": null,
+              "mzsj": "F",
+              "num": null,
+              "gfno": null,
+              "zffs": null,
+              "zfyh": null,
+              "zflsh": null,
+              "zfje": 0,
+              "zfsj": null,
+              "ghly": null,
+              "yylsh": null,
+              "personid": null,
+              "sjh": null,
+              "ghyzm": null,
+              "ptlyfd": null
+            },
+            "SuccessResponse": {
+              "ret_code": "0",
+              "ret_info": "挂号成功"
+            }
+          },
+          {
+            "Userid": "test",
+            "Password": "123",
+            "TransNo": "wg2008",
+            "Paramters": {
+              "schedule_date": null,
+              "department_id": null,
+              "doctor_id": null,
+              "out_time": null,
+              "schedule_num": null,
+              "cardnumber": null,
+              "payment": null,
+              "paybank": null,
+              "paysernumber": null,
+              "payfee": 0,
+              "paytime": null,
+              "res_source": null,
+              "phone": null,
+              "schedule_vercode": null,
+              "org_code": null,
+              "fybh": null,
+              "ghrq": null,
+              "ghksdm": null,
+              "ghysbh2": null,
+              "mzsj": "N",
+              "num": null,
+              "gfno": null,
+              "zffs": null,
+              "zfyh": null,
+              "zflsh": null,
+              "zfje": 0,
+              "zfsj": null,
+              "ghly": null,
+              "yylsh": null,
+              "personid": null,
+              "sjh": null,
+              "ghyzm": null,
+              "ptlyfd": null
+            },
+            "SuccessResponse": {
+              "ret_code": "0"
+            }
+          }
+        ],
+        "WG2019": [
+          {
+            "Userid": "test",
+            "Password": "123",
+            "TransNo": "wg2019",
+            "Paramters": {
+              "res_num": null,
+              "cancel_way": null,
+              "cancel_reason": null,
+              "org_code": null,
+              "fybh": null,
+              "ghrq": null,
+              "ghksdm": null,
+              "ghysbh2": null,
+              "mzsj": "A",
+              "num": null,
+              "ghly": null,
+              "yylsh": null,
+              "qxfs": null,
+              "qxyy": null,
+              "personid": null,
+              "sjh": null,
+              "ghyzm": null
+            },
+            "SuccessResponse": {
+              "ret_code": "1",
+              "ret_info": "取消锁号失败,没有找到对应医生排班"
+            }
+          },
+          {
+            "Userid": "test",
+            "Password": "123",
+            "TransNo": "wg2019",
+            "Paramters": {
+              "res_num": null,
+              "cancel_way": null,
+              "cancel_reason": null,
+              "org_code": null,
+              "fybh": null,
+              "ghrq": null,
+              "ghksdm": null,
+              "ghysbh2": null,
+              "mzsj": "P",
+              "num": null,
+              "ghly": null,
+              "yylsh": null,
+              "qxfs": null,
+              "qxyy": null,
+              "personid": null,
+              "sjh": null,
+              "ghyzm": null
+            },
+            "SuccessResponse": {
+              "ret_code": "1",
+              "ret_info": "取消锁号失败,没有找到对应锁定记录"
+            }
+          },
+          {
+            "Userid": "test",
+            "Password": "123",
+            "TransNo": "wg2019",
+            "Paramters": {
+              "res_num": null,
+              "cancel_way": null,
+              "cancel_reason": null,
+              "org_code": null,
+              "fybh": null,
+              "ghrq": null,
+              "ghksdm": null,
+              "ghysbh2": null,
+              "mzsj": "F",
+              "num": null,
+              "ghly": null,
+              "yylsh": null,
+              "qxfs": null,
+              "qxyy": null,
+              "personid": null,
+              "sjh": null,
+              "ghyzm": null
+            },
+            "SuccessResponse": {
+              "ret_code": "1",
+              "ret_info": "取消锁号失败"
+            }
+          },
+          {
+            "Userid": "test",
+            "Password": "123",
+            "TransNo": "wg2019",
+            "Paramters": {
+              "res_num": null,
+              "cancel_way": null,
+              "cancel_reason": null,
+              "org_code": null,
+              "fybh": null,
+              "ghrq": null,
+              "ghksdm": null,
+              "ghysbh2": null,
+              "mzsj": "N",
+              "num": null,
+              "ghly": null,
+              "yylsh": null,
+              "qxfs": null,
+              "qxyy": null,
+              "personid": null,
+              "sjh": null,
+              "ghyzm": null
+            },
+            "SuccessResponse": {
+              "ret_code": "0",
+              "ret_info": "取消锁号成功"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

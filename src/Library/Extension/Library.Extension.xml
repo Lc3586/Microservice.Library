@@ -854,6 +854,14 @@
             <param name="asc">true:升序,false:降序</param>
             <returns></returns>
         </member>
+        <member name="M:Library.Extension.Extension.GetDescription(System.Type,System.String)">
+            <summary>
+            获取说明
+            </summary>
+            <param name="type">目标对象</param>
+            <param name="property">指定属性（为空时取当前类型上的Description属性）</param>
+            <returns></returns>
+        </member>
         <member name="M:Library.Extension.Extension.Next``1(System.Random,System.Collections.Generic.IEnumerable{``0})">
             <summary>
             下一个随机值

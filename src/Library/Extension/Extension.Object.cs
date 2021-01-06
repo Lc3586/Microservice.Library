@@ -377,5 +377,16 @@ namespace Library.Extension
             end:
             return result;
         }
+
+        /// <summary>
+        /// 获取说明
+        /// </summary>
+        /// <param name="type">目标对象</param>
+        /// <param name="property">指定属性（为空时取当前类型上的Description属性）</param>
+        /// <returns></returns>
+        public static string GetDescription(this Type type, string property = null)
+        {
+            return type.GetCustomAttribute<DescriptionAttribute>()?.Description;
+        }
     }
 }

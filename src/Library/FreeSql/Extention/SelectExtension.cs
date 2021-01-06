@@ -40,7 +40,9 @@ namespace Library.FreeSql.Extention
 
         #region 私有成员
 
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员的 XML 注释
         public static readonly Dictionary<string, MethodInfo> EnumerableMethods = new Dictionary<string, MethodInfo>();
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员的 XML 注释
 
 
         private static DynamicFilterInfo ToDynamicFilterInfo(this List<PaginationDynamicFilterInfo> paginationDynamicFilterInfo)
@@ -115,6 +117,19 @@ namespace Library.FreeSql.Extention
                 default:
                     throw new FreeSqlException($"不支持的过滤条件: {filterCompare}");
             }
+        }
+
+        private static ISelect<TSource> GetSelectWithFieldFilter<TSource, TDto>(this ISelect<TSource> source, IFreeSql orm, Pagination pagination = null, IEnumerable<string> fields = null) where TSource : class
+        {
+            var table = orm.GetTableInfo<TSource>();
+
+            var columns = table.ColumnsByCs.Select(c => $"{(fields?.Contains(c.Key) != true ? "NULL as " : string.Empty)}\"{c.Key}\"");
+
+            if (pagination != null)
+                source = source.AsAlias((type, old) => type == typeof(TDto) ? "a" : old)
+                                .GetPagination(pagination, "a");
+
+            return source.WithSql($"SELECT {string.Join(",", columns)} FROM \"{table.DbName}\"");
         }
 
         #endregion
@@ -286,10 +301,12 @@ namespace Library.FreeSql.Extention
                             else
                                 value = newNullableConverter.ConvertFrom(item.Value);
                         }
+#pragma warning disable CA1031 // Do not catch general exception types
                         catch
                         {
                             value = newNullableConverter.ConvertFromString(item.Value?.ToString());
                         }
+#pragma warning restore CA1031 // Do not catch general exception types
                     }
                     else
                     {
@@ -376,14 +393,15 @@ namespace Library.FreeSql.Extention
         /// 返回动态类型的数据
         /// </summary>
         /// <typeparam name="TSource">实体类型</typeparam>
+        /// <typeparam name="TDto">业务模型类型</typeparam>
         /// <param name="source"></param>
         /// <param name="orm"></param>
         /// <param name="pagination">分页参数</param>
         /// <param name="fields">指定字段</param>
         /// <returns></returns>
-        public static List<TSource> ToList<TSource>(this ISelect<TSource> source, IFreeSql orm, Pagination pagination = null, IEnumerable<string> fields = null) where TSource : class
+        public static List<TSource> ToList<TSource, TDto>(this ISelect<TSource> source, IFreeSql orm, Pagination pagination = null, IEnumerable<string> fields = null) where TSource : class
         {
-            return source.ToList<TSource, TSource>(orm, pagination, fields);
+            return source.GetSelectWithFieldFilter<TSource, TDto>(orm, pagination, fields).ToList();
         }
 
         /// <summary>
@@ -396,16 +414,9 @@ namespace Library.FreeSql.Extention
         /// <param name="pagination">分页参数</param>
         /// <param name="fields">指定字段</param>
         /// <returns></returns>
-        public static List<TDto> ToList<TSource, TDto>(this ISelect<TSource> source, IFreeSql orm, Pagination pagination = null, IEnumerable<string> fields = null) where TSource : class
+        public static List<TDto> ToDtoList<TSource, TDto>(this ISelect<TSource> source, IFreeSql orm, Pagination pagination = null, IEnumerable<string> fields = null) where TSource : class
         {
-            var table = orm.GetTableInfo<TSource>();
-            var columns = table.ColumnsByCs.Select(c => $"{(fields?.Contains(c.Key) != true ? "NULL as " : string.Empty)}\"{c.Key}\"");
-
-            if (pagination != null)
-                source = source.AsAlias((type, old) => type == typeof(TDto) ? "a" : old)
-                                .GetPagination(pagination, "a");
-
-            return source.WithSql($"SELECT {string.Join(",", columns)} FROM \"{table.DbName}\"").ToList<TDto>();
+            return source.GetSelectWithFieldFilter<TSource, TDto>(orm, pagination, fields).ToList<TDto>();
         }
 
         /// <summary>
@@ -466,6 +477,21 @@ namespace Library.FreeSql.Extention
                                 .GetPagination(pagination, "a");
 
             return orm.Ado.Query<dynamic>(source.ToSql(_fields));
+        }
+
+        /// <summary>
+        /// 获取并检查是否为null
+        /// </summary>
+        /// <typeparam name="TSource">实体类型</typeparam>
+        /// <param name="select"></param>
+        /// <param name="error">异常信息</param>
+        /// <returns></returns>
+        public static TSource GetAndCheckNull<TSource>(this ISelect<TSource> select, string error = "数据不存在或已失效") where TSource : class
+        {
+            var data = select.ToOne();
+            if (data == null)
+                throw new MessageException(error);
+            return data;
         }
 
         #endregion

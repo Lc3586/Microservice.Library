@@ -418,6 +418,22 @@
             <param name="orm"></param>
             <returns></returns>
         </member>
+        <member name="T:Library.FreeSql.Extention.RepositoryExtension">
+            <summary>
+            Repository扩展类
+            </summary>
+        </member>
+        <member name="M:Library.FreeSql.Extention.RepositoryExtension.GetAndCheckNull``2(FreeSql.IBaseRepository{``0,``1},``1,System.String)">
+            <summary>
+            获取数据并验证非空
+            </summary>
+            <typeparam name="TSource"></typeparam>
+            <typeparam name="TKey"></typeparam>
+            <param name="repository"></param>
+            <param name="id"></param>
+            <param name="error"></param>
+            <returns></returns>
+        </member>
         <member name="T:Library.FreeSql.Extention.SelectExtension">
             <summary>
             查询扩展功能
@@ -503,18 +519,19 @@
             <param name="pagination">分页参数</param>
             <returns></returns>
         </member>
-        <member name="M:Library.FreeSql.Extention.SelectExtension.ToList``1(FreeSql.ISelect{``0},IFreeSql,Library.Models.Pagination,System.Collections.Generic.IEnumerable{System.String})">
+        <member name="M:Library.FreeSql.Extention.SelectExtension.ToList``2(FreeSql.ISelect{``0},IFreeSql,Library.Models.Pagination,System.Collections.Generic.IEnumerable{System.String})">
             <summary>
             返回动态类型的数据
             </summary>
             <typeparam name="TSource">实体类型</typeparam>
+            <typeparam name="TDto">业务模型类型</typeparam>
             <param name="source"></param>
             <param name="orm"></param>
             <param name="pagination">分页参数</param>
             <param name="fields">指定字段</param>
             <returns></returns>
         </member>
-        <member name="M:Library.FreeSql.Extention.SelectExtension.ToList``2(FreeSql.ISelect{``0},IFreeSql,Library.Models.Pagination,System.Collections.Generic.IEnumerable{System.String})">
+        <member name="M:Library.FreeSql.Extention.SelectExtension.ToDtoList``2(FreeSql.ISelect{``0},IFreeSql,Library.Models.Pagination,System.Collections.Generic.IEnumerable{System.String})">
             <summary>
             返回动态类型的数据
             </summary>
@@ -549,6 +566,15 @@
             <param name="orm"></param>
             <param name="pagination">分页参数</param>
             <param name="fields">指定字段</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.FreeSql.Extention.SelectExtension.GetAndCheckNull``1(FreeSql.ISelect{``0},System.String)">
+            <summary>
+            获取并检查是否为null
+            </summary>
+            <typeparam name="TSource">实体类型</typeparam>
+            <param name="select"></param>
+            <param name="error">异常信息</param>
             <returns></returns>
         </member>
         <member name="T:Library.FreeSql.Gen.FreeSqlGenerator">

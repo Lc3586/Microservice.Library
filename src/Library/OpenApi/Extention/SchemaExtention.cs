@@ -117,8 +117,8 @@ namespace Library.OpenApi.Extention
         /// <returns></returns>
         public static string GetMainTag(this Type type)
         {
-            var JI = type.GetCustomAttribute(typeof(OpenApiMainTagAttribute));
-            return JI == null ? null : ((OpenApiMainTagAttribute)JI).Name;
+            var attribute = type.GetCustomAttribute<OpenApiMainTagAttribute>();
+            return attribute == null ? type.Name : attribute.Name;
         }
 
         /// <summary>
@@ -126,11 +126,7 @@ namespace Library.OpenApi.Extention
         /// </summary>
         /// <param name="element">目标成员</param>
         /// <returns></returns>
-        public static bool HasTag(this MemberInfo element)
-        {
-            var JI = element.GetCustomAttribute(typeof(OpenApiSubTagAttribute));
-            return JI != null;
-        }
+        public static bool HasTag(this MemberInfo element) => element.GetCustomAttribute<OpenApiSubTagAttribute>() != null;
 
         /// <summary>
         /// 是否包含标签
@@ -138,11 +134,7 @@ namespace Library.OpenApi.Extention
         /// <param name="element">目标成员</param>
         /// <param name="name">标签名称</param>
         /// <returns></returns>
-        public static bool HasTag(this MemberInfo element, string name)
-        {
-            var JI = element.GetCustomAttribute(typeof(OpenApiSubTagAttribute));
-            return JI != null && ((OpenApiSubTagAttribute)JI).Name.Contains(name);
-        }
+        public static bool HasTag(this MemberInfo element, string name) => element.GetCustomAttribute<OpenApiSubTagAttribute>()?.Name.Contains(name) == true;
 
         /// <summary>
         /// 获取动态类型
@@ -324,6 +316,31 @@ namespace Library.OpenApi.Extention
                 }
 
             return propertyDic;
+        }
+
+        /// <summary>
+        /// 获取数据更改信息
+        /// </summary>
+        /// <typeparam name="TComparison">比对数据的类型</typeparam>
+        /// <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+        /// <param name="former">以前的数据</param>
+        /// <param name="current">当前的数据</param>
+        /// <returns></returns>
+        public static List<PropertyValueChanged> GetPropertyValueChangeds<TComparison, TOpenApiSchema>(this TComparison former, TComparison current)
+        {
+            var tag = typeof(TOpenApiSchema).GetMainTag();
+
+            return typeof(TComparison).GetProperties()
+                .Where(p => p.HasTag(tag))
+                .Select(p => new PropertyValueChanged
+                {
+                    Description = p.GetCustomAttribute<DescriptionAttribute>(true)?.Description,
+                    Name = p.Name,
+                    FormerValue = p.GetValue(former),
+                    CurrentValue = p.GetValue(current)
+                })
+                .Where(p => p.FormerValue?.Equals(p.CurrentValue) == false)
+                .ToList();
         }
     }
 }

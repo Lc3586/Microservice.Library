@@ -22,7 +22,7 @@ namespace Library.SelectOption
         /// <summary>
         /// 数据展示类型
         /// </summary>
-        public OptionDisplayType displayType { get; set; }
+        public OptionDisplayType displayType { get; set; } = OptionDisplayType.label;
 
         /// <summary>
         /// 值

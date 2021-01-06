@@ -1,0 +1,26 @@
+{
+  //多数据库配置
+  "Databases": [
+    {
+      "Name": "微软",
+      "Enable": false,
+      "ConnectString": "Server=url;Database=database;User Id=uid;Password=pwd;",
+      "DatabaseType": "SqlServer",
+      "EntityAssembly": "Entity"
+    },
+    {
+      "Name": "达梦",
+      "Enable": false,
+      "ConnectString": "server=url;port=port;user id=uid;password=pwd;database=databse;poolsize=1",
+      "DatabaseType": "Dameng",
+      "EntityAssembly": "Entity"
+    },
+    {
+      "Name": "甲骨文",
+      "Enable": false,
+      "ConnectString": "user id=uid;password=pwd;data source=//ip:port/ORCL;Pooling=true;Min Pool Size=1;",
+      "DatabaseType": "Oracle",
+      "EntityAssembly": "Entity"
+    }
+  ]
+}

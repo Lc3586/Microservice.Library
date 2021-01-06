@@ -1,0 +1,32 @@
+{
+  //Soap配置
+  "Soaps": [
+    {
+      "Name": "SampleService",
+      "Type": "Client",
+      "Enable": true,
+      "ServiceType": "Services_D.Example.ISampleService",
+      "Uri": "http://localhost:5000/SampleService.asmx"
+    },
+    {
+      "Name": "SampleService.svc",
+      "Type": "Server",
+      "Enable": true,
+      "ServiceType": "Services_D.Example.ISampleService",
+      "ImplementationType": "Api.Services.Example.SampleService",
+      "Serializer": "DataContract",
+      "Path": "/SampleService.svc"
+    },
+    {
+      "Name": "SampleService.asmx",
+      "Type": "Server",
+      "Enable": true,
+      "ServiceType": "Services_D.Example.ISampleService",
+      "ImplementationType": "Api.Services.Example.SampleService",
+      "Serializer": "Xml",
+      "Path": "/SampleService.asmx",
+      //自定义返回报文
+      "CustomResponse": "<?xml version=\"1.0\" encoding=\"utf-8\"?><body><response>{{result}}</response></body>"
+    }
+  ]
+}
