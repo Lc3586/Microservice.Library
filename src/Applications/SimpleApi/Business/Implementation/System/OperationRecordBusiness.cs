@@ -52,7 +52,7 @@ namespace Business.Implementation.System
         public List<List> GetList(Pagination pagination)
         {
             var entityList = Orm.Select<System_OperationRecord>()
-                                .ToList<System_OperationRecord, List>(Orm, pagination, typeof(List).GetNamesWithTagAndOther(true, "_List"));
+                                .ToList<System_OperationRecord, List>(pagination, typeof(List).GetNamesWithTagAndOther(true, "_List"));
 
             var result = Mapper.Map<List<List>>(entityList);
 
@@ -83,7 +83,7 @@ namespace Business.Implementation.System
 
                 data.Account = currentUser.Account;
                 data.UserType = currentUser.Type;
-                data.IsAdmin = Operator.IsAdmin();
+                data.IsAdmin = Operator.IsAdmin;
             }
             else
                 data.InitEntityWithoutOP();

@@ -472,6 +472,357 @@
             销毁
             </summary>
         </member>
+        <member name="T:Library.OpenApi.Extention.JsonExtension">
+            <summary>
+            Json相关拓展方法
+            </summary>
+            <remarks>
+            <![CDATA[
+            // * 测试信息 *
+            
+            // * 数据量：100条 *
+            
+            // * 数据结构：
+            {
+                "DB_B":{
+                    "Id":"1343405244365029377",
+                    "Name":"名称",
+                    "CreatorId":"800728e2-5997-42d6-b1d7-dd3ce6a51562",
+                    "CreatorName":"管理员",
+                    "CreateTime":"2020-12-28 11:55:44",
+                    "ModifyTime":"2020-12-28 11:55:44"
+                },
+                "DB_Cs":[   //集合内数据量 10条
+                    {
+                        "Id":"1343405244365029378",
+                        "Name":"名称",
+                        "CreatorId":"f2f0d3e0-f81b-4631-ac33-41729bf36d49",
+                        "CreatorName":"管理员",
+                        "CreateTime":"2020-12-28 11:55:44",
+                        "ModifyTime":"2020-12-28 11:55:44"
+                    }
+                ],
+                "DB_Ds":[   //集合内数据量 10条
+                    {
+                        "Id":"1343405244365029388",
+                        "AId":"1343405244365029376",
+                        "Name":"名称",
+                        "CreatorId":"29b52d6e-15b6-4c83-b849-8169e168718c",
+                        "CreatorName":"管理员",
+                        "CreateTime":"2020-12-28 11:55:44",
+                        "ModifyTime":"2020-12-28 11:55:44"
+                    }
+                ],
+                "Id":"1343405244365029376",
+                "ParentId":null,
+                "BId":"1343405244365029377",
+                "Name":"名称",
+                "Content":"内容",
+                "CreatorId":"3ad97ec8-57ca-4088-a620-b36c50566748",
+                "CreatorName":"管理员",
+                "CreateTime":"2020-12-28 11:55:44",
+                "ModifyTime":"2020-12-28 11:55:44"
+            } *
+            
+            
+            
+            // * 序列化 *
+            // * Summary *
+            BenchmarkDotNet=v0.12.1, OS=Windows 10.0.18362.53 (1903/May2019Update/19H1)
+            Intel Core i5-9400 CPU 2.90GHz (Coffee Lake), 1 CPU, 6 logical and 6 physical cores
+            .NET Core SDK=5.0.101
+            [Host]        : .NET Core 5.0.1 (CoreCLR 5.0.120.57516, CoreFX 5.0.120.57516), X64 RyuJIT
+            .NET 4.6.1    : .NET Framework 4.8 (4.8.4250.0), X64 RyuJIT
+            .NET Core 3.1 : .NET Core 3.1.10 (CoreCLR 4.700.20.51601, CoreFX 4.700.20.51901), X64 RyuJIT
+            .NET Core 5.0 : .NET Core 5.0.1 (CoreCLR 5.0.120.57516, CoreFX 5.0.120.57516), X64 RyuJIT
+            |   Method |           Job |       Runtime |      Mean |     Error |    StdDev | Ratio |
+            |--------- |-------------- |-------------- |----------:|----------:|----------:|------:|
+            | 基础序列化··· |    .NET 4.6.1 |    .NET 4.6.1 |  7.072 ms | 0.0200 ms | 0.0187 ms |  1.00 |
+            | 序列化时过滤属性 |    .NET 4.6.1 |    .NET 4.6.1 | 18.209 ms | 0.0720 ms | 0.0638 ms |  2.57 |
+            | 基础序列化··· | .NET Core 3.1 | .NET Core 3.1 |  6.324 ms | 0.0263 ms | 0.0246 ms |  0.89 |                
+            | 序列化时过滤属性 | .NET Core 3.1 | .NET Core 3.1 | 14.582 ms | 0.0422 ms | 0.0394 ms |  2.06 |
+            | 基础序列化··· | .NET Core 5.0 | .NET Core 5.0 |  6.004 ms | 0.0199 ms | 0.0186 ms |  0.85 |
+            | 序列化时过滤属性 | .NET Core 5.0 | .NET Core 5.0 | 14.130 ms | 0.0500 ms | 0.0467 ms |  2.00 |
+            // * Hints *
+            Outliers
+            SerializeTest.序列化时过滤属性: .NET 4.6.1 -> 1 outlier  was  removed (18.40 ms)
+            
+            
+            // * 反序列化 *
+            // * Summary *
+            BenchmarkDotNet=v0.12.1, OS=Windows 10.0.18362.53 (1903/May2019Update/19H1)
+            Intel Core i5-9400 CPU 2.90GHz (Coffee Lake), 1 CPU, 6 logical and 6 physical cores
+            .NET Core SDK=5.0.101
+            [Host]        : .NET Core 5.0.1 (CoreCLR 5.0.120.57516, CoreFX 5.0.120.57516), X64 RyuJIT
+            .NET 4.6.1    : .NET Framework 4.8 (4.8.4250.0), X64 RyuJIT
+            .NET Core 3.1 : .NET Core 3.1.10 (CoreCLR 4.700.20.51601, CoreFX 4.700.20.51901), X64 RyuJIT
+            .NET Core 5.0 : .NET Core 5.0.1 (CoreCLR 5.0.120.57516, CoreFX 5.0.120.57516), X64 RyuJIT
+            |     Method |           Job |       Runtime |     Mean |    Error |   StdDev | Ratio | RatioSD |
+            |----------- |-------------- |-------------- |---------:|---------:|---------:|------:|--------:|
+            | 基础反序列化···· |    .NET 4.6.1 |    .NET 4.6.1 | 13.67 ms | 0.096 ms | 0.090 ms |  1.00 |    0.00 |
+            | 反序列化时过滤属性· |    .NET 4.6.1 |    .NET 4.6.1 | 26.54 ms | 0.127 ms | 0.119 ms |  1.94 |    0.02 |
+            | 基础反序列化···· | .NET Core 3.1 | .NET Core 3.1 | 12.82 ms | 0.240 ms | 0.224 ms |  0.94 |    0.02 |
+            | 反序列化时过滤属性· | .NET Core 3.1 | .NET Core 3.1 | 22.97 ms | 0.136 ms | 0.127 ms |  1.68 |    0.01 |
+            | 基础反序列化···· | .NET Core 5.0 | .NET Core 5.0 | 11.53 ms | 0.111 ms | 0.104 ms |  0.84 |    0.01 |
+            | 反序列化时过滤属性· | .NET Core 5.0 | .NET Core 5.0 | 21.35 ms | 0.187 ms | 0.175 ms |  1.56 |    0.02 |
+            // * Legends *
+            Mean    : Arithmetic mean of all measurements
+            Error   : Half of 99.9% confidence interval
+            StdDev  : Standard deviation of all measurements
+            Ratio   : Mean of the ratio distribution ([Current]/[Baseline])
+            RatioSD : Standard deviation of the ratio distribution ([Current]/[Baseline])
+            1 ms    : 1 Millisecond (0.001 sec)
+            // ***** BenchmarkRunner: End *****
+            // ** Remained 0 benchmark(s) to run **
+            Run time: 00:02:35 (155.22 sec), executed benchmarks: 6
+            Global total time: 00:02:44 (164.31 sec), executed benchmarks: 6
+            ]]>
+            </remarks>
+        </member>
+        <member name="M:Library.OpenApi.Extention.JsonExtension.ToOpenApiJson(System.Object,System.Type,System.String[])">
+            <summary>
+            将对象序列化成Json字符串
+            </summary>
+            <param name="obj">需要序列化的对象</param>
+            <param name="openApiSchemaType">指定接口架构类型</param>
+            <param name="exceptionProperties">要例外输出的属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.Extention.JsonExtension.ToOpenApiJsonIgnore(System.Object,System.Type,System.String[])">
+            <summary>
+            将对象序列化成Json字符串
+            </summary>
+            <param name="obj">需要序列化的对象</param>
+            <param name="openApiSchemaType">指定接口架构类型</param>
+            <param name="ignoreProperties">忽略的属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.Extention.JsonExtension.ToOpenApiJson(System.Object,System.Type,System.String[],System.String[])">
+            <summary>
+            将对象序列化成Json字符串
+            </summary>
+            <param name="obj">需要序列化的对象</param>
+            <param name="openApiSchemaType">指定接口架构类型</param>
+            <param name="exceptionProperties">要例外输出的属性</param>
+            <param name="ignoreProperties">忽略的属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.Extention.JsonExtension.ToOpenApiJsonSpecifyType(System.Object,System.Type,System.ValueTuple{System.String,System.Collections.Generic.List{System.String}}[])">
+            <summary>
+            将对象序列化成Json字符串
+            </summary>
+            <param name="obj">需要序列化的对象</param>
+            <param name="openApiSchemaType">指定接口架构类型</param>
+            <param name="exceptionProperties">要例外输出的属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.Extention.JsonExtension.ToOpenApiJsonIgnoreSpecifyType(System.Object,System.Type,System.ValueTuple{System.String,System.Collections.Generic.List{System.String}}[])">
+            <summary>
+            将对象序列化成Json字符串
+            </summary>
+            <param name="obj">需要序列化的对象</param>
+            <param name="openApiSchemaType">指定接口架构类型</param>
+            <param name="ignoreProperties">忽略的属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.Extention.JsonExtension.ToOpenApiJsonSpecifyType(System.Object,System.Type,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+            <summary>
+            将对象序列化成Json字符串
+            </summary>
+            <param name="obj">需要序列化的对象</param>
+            <param name="openApiSchemaType">指定接口架构类型</param>
+            <param name="exceptionProperties">要例外输出的属性</param>
+            <param name="ignoreProperties">忽略的属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.Extention.JsonExtension.ToOpenApiJson``1(``0,System.String[])">
+            <summary>
+            将对象序列化成Json字符串
+            </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <param name="obj">需要序列化的对象</param>
+            <param name="exceptionProperties">要例外输出的属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.Extention.JsonExtension.ToOpenApiJson``1(System.Object,System.String[])">
+            <summary>
+            将对象序列化成Json字符串
+            </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <param name="obj">需要序列化的对象</param>
+            <param name="exceptionProperties">要例外输出的属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.Extention.JsonExtension.ToOpenApiJsonIgnore``1(``0,System.String[])">
+            <summary>
+            将对象序列化成Json字符串
+            </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <param name="obj">需要序列化的对象</param>
+            <param name="ignoreProperties">忽略的属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.Extention.JsonExtension.ToOpenApiJsonIgnore``1(System.Object,System.String[])">
+            <summary>
+            将对象序列化成Json字符串
+            </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <param name="obj">需要序列化的对象</param>
+            <param name="ignoreProperties">忽略的属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.Extention.JsonExtension.ToOpenApiJson``1(System.Object,System.String[],System.String[])">
+            <summary>
+            将对象序列化成Json字符串
+            </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <param name="obj">需要序列化的对象</param>
+            <param name="exceptionProperties">要例外输出的属性</param>
+            <param name="ignoreProperties">忽略的属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.Extention.JsonExtension.ToOpenApiJsonSpecifyType``1(System.Object,System.ValueTuple{System.String,System.Collections.Generic.List{System.String}}[])">
+            <summary>
+            将对象序列化成Json字符串
+            </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <param name="obj">需要序列化的对象</param>
+            <param name="exceptionProperties">要例外输出的属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.Extention.JsonExtension.ToOpenApiJsonIgnoreSpecifyType``1(System.Object,System.ValueTuple{System.String,System.Collections.Generic.List{System.String}}[])">
+            <summary>
+            将对象序列化成Json字符串
+            </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <param name="obj">需要序列化的对象</param>
+            <param name="ignoreProperties">忽略的属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.Extention.JsonExtension.ToOpenApiJsonSpecifyType``1(System.Object,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+            <summary>
+            将对象序列化成Json字符串
+            </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <param name="obj">需要序列化的对象</param>
+            <param name="exceptionProperties">要例外输出的属性</param>
+            <param name="ignoreProperties">忽略的属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.Extention.JsonExtension.ToOpenApiObject(System.String,System.Type,System.String[])">
+            <summary>
+            将Json字符串反序列化成对象
+            </summary>
+            <param name="json">需要反序列化的Json字符串</param>
+            <param name="openApiSchemaType">指定接口架构类型</param>
+            <param name="exceptionProperties">要例外输出的属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.Extention.JsonExtension.ToOpenApiObjectIgnore(System.String,System.Type,System.String[])">
+            <summary>
+            将Json字符串反序列化成对象
+            </summary>
+            <param name="json">需要反序列化的Json字符串</param>
+            <param name="openApiSchemaType">指定接口架构类型</param>
+            <param name="ignoreProperties">忽略的属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.Extention.JsonExtension.ToOpenApiObject(System.String,System.Type,System.String[],System.String[])">
+            <summary>
+            将Json字符串反序列化成对象
+            </summary>
+            <param name="json">需要反序列化的Json字符串</param>
+            <param name="openApiSchemaType">指定接口架构类型</param>
+            <param name="exceptionProperties">要例外输出的属性</param>
+            <param name="ignoreProperties">忽略的属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.Extention.JsonExtension.ToOpenApiObjectSpecifyType(System.String,System.Type,System.ValueTuple{System.String,System.Collections.Generic.List{System.String}}[])">
+            <summary>
+            将Json字符串反序列化成对象
+            </summary>
+            <param name="json">需要反序列化的Json字符串</param>
+            <param name="openApiSchemaType">指定接口架构类型</param>
+            <param name="exceptionProperties">要例外输出的属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.Extention.JsonExtension.ToOpenApiObjectIgnoreSpecifyType(System.String,System.Type,System.ValueTuple{System.String,System.Collections.Generic.List{System.String}}[])">
+            <summary>
+            将Json字符串反序列化成对象
+            </summary>
+            <param name="json">需要反序列化的Json字符串</param>
+            <param name="openApiSchemaType">指定接口架构类型</param>
+            <param name="ignoreProperties">忽略的属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.Extention.JsonExtension.ToOpenApiObject(System.String,System.Type,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+            <summary>
+            将Json字符串反序列化成对象
+            </summary>
+            <param name="json">需要反序列化的Json字符串</param>
+            <param name="openApiSchemaType">指定接口架构类型</param>
+            <param name="exceptionProperties">特别输出的属性</param>
+            <param name="ignoreProperties">特别忽略的属性</param>
+            <remarks>如果在特别输出参数和特别忽略参数中同时指定了同一个属性，那么最终不会输出该属性</remarks>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.Extention.JsonExtension.ToOpenApiObject``1(System.String,System.String[])">
+            <summary>
+            将Json字符串反序列化成对象
+            </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <param name="json">需要反序列化的Json字符串</param>
+            <param name="exceptionProperties">要例外输出的属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.Extention.JsonExtension.ToOpenApiObjectIgnore``1(System.String,System.String[])">
+            <summary>
+            将Json字符串反序列化成对象
+            </summary>
+            <param name="json">需要反序列化的Json字符串</param>
+            <param name="ignoreProperties">忽略的属性</param>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.Extention.JsonExtension.ToOpenApiObject``1(System.String,System.String[],System.String[])">
+            <summary>
+            将Json字符串反序列化成对象
+            </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <param name="json">需要反序列化的Json字符串</param>
+            <param name="exceptionProperties">要例外输出的属性</param>
+            <param name="ignoreProperties">忽略的属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.Extention.JsonExtension.ToOpenApiObjectSpecifyType``1(System.String,System.ValueTuple{System.String,System.Collections.Generic.List{System.String}}[])">
+            <summary>
+            将Json字符串反序列化成对象
+            </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <param name="json">需要反序列化的Json字符串</param>
+            <param name="exceptionProperties">要例外输出的属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.Extention.JsonExtension.ToOpenApiObjectIgnoreSpecifyType``1(System.String,System.ValueTuple{System.String,System.Collections.Generic.List{System.String}}[])">
+            <summary>
+            将Json字符串反序列化成对象
+            </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <param name="json">需要反序列化的Json字符串</param>
+            <param name="ignoreProperties">忽略的属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.OpenApi.Extention.JsonExtension.ToOpenApiObject``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+            <summary>
+            将Json字符串反序列化成对象
+            </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <param name="json">需要反序列化的Json字符串</param>
+            <param name="exceptionProperties">特别输出的属性</param>
+            <param name="ignoreProperties">特别忽略的属性</param>
+            <remarks>如果在特别输出参数和特别忽略参数中同时指定了同一个属性，那么最终不会输出该属性</remarks>
+            <returns></returns>
+        </member>
         <member name="T:Library.OpenApi.Extention.OpenApiExtention">
             <summary>
             接口文档相关扩展方法
@@ -673,244 +1024,6 @@
             <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
             <param name="former">以前的数据</param>
             <param name="current">当前的数据</param>
-            <returns></returns>
-        </member>
-        <member name="T:Library.OpenApi.JsonSerialization.JsonExtension">
-            <summary>
-            Json相关拓展方法
-            </summary>
-            <remarks>
-            <![CDATA[
-            // * 测试信息 *
-            
-            // * 数据量：100条 *
-            
-            // * 数据结构：
-            {
-                "DB_B":{
-                    "Id":"1343405244365029377",
-                    "Name":"名称",
-                    "CreatorId":"800728e2-5997-42d6-b1d7-dd3ce6a51562",
-                    "CreatorName":"管理员",
-                    "CreateTime":"2020-12-28 11:55:44",
-                    "ModifyTime":"2020-12-28 11:55:44"
-                },
-                "DB_Cs":[   //集合内数据量 10条
-                    {
-                        "Id":"1343405244365029378",
-                        "Name":"名称",
-                        "CreatorId":"f2f0d3e0-f81b-4631-ac33-41729bf36d49",
-                        "CreatorName":"管理员",
-                        "CreateTime":"2020-12-28 11:55:44",
-                        "ModifyTime":"2020-12-28 11:55:44"
-                    }
-                ],
-                "DB_Ds":[   //集合内数据量 10条
-                    {
-                        "Id":"1343405244365029388",
-                        "AId":"1343405244365029376",
-                        "Name":"名称",
-                        "CreatorId":"29b52d6e-15b6-4c83-b849-8169e168718c",
-                        "CreatorName":"管理员",
-                        "CreateTime":"2020-12-28 11:55:44",
-                        "ModifyTime":"2020-12-28 11:55:44"
-                    }
-                ],
-                "Id":"1343405244365029376",
-                "ParentId":null,
-                "BId":"1343405244365029377",
-                "Name":"名称",
-                "Content":"内容",
-                "CreatorId":"3ad97ec8-57ca-4088-a620-b36c50566748",
-                "CreatorName":"管理员",
-                "CreateTime":"2020-12-28 11:55:44",
-                "ModifyTime":"2020-12-28 11:55:44"
-            } *
-            
-            
-            
-            // * 序列化 *
-            // * Summary *
-            BenchmarkDotNet=v0.12.1, OS=Windows 10.0.18362.53 (1903/May2019Update/19H1)
-            Intel Core i5-9400 CPU 2.90GHz (Coffee Lake), 1 CPU, 6 logical and 6 physical cores
-            .NET Core SDK=5.0.101
-            [Host]        : .NET Core 5.0.1 (CoreCLR 5.0.120.57516, CoreFX 5.0.120.57516), X64 RyuJIT
-            .NET 4.6.1    : .NET Framework 4.8 (4.8.4250.0), X64 RyuJIT
-            .NET Core 3.1 : .NET Core 3.1.10 (CoreCLR 4.700.20.51601, CoreFX 4.700.20.51901), X64 RyuJIT
-            .NET Core 5.0 : .NET Core 5.0.1 (CoreCLR 5.0.120.57516, CoreFX 5.0.120.57516), X64 RyuJIT
-            |   Method |           Job |       Runtime |      Mean |     Error |    StdDev | Ratio |
-            |--------- |-------------- |-------------- |----------:|----------:|----------:|------:|
-            | 基础序列化··· |    .NET 4.6.1 |    .NET 4.6.1 |  7.072 ms | 0.0200 ms | 0.0187 ms |  1.00 |
-            | 序列化时过滤属性 |    .NET 4.6.1 |    .NET 4.6.1 | 18.209 ms | 0.0720 ms | 0.0638 ms |  2.57 |
-            | 基础序列化··· | .NET Core 3.1 | .NET Core 3.1 |  6.324 ms | 0.0263 ms | 0.0246 ms |  0.89 |                
-            | 序列化时过滤属性 | .NET Core 3.1 | .NET Core 3.1 | 14.582 ms | 0.0422 ms | 0.0394 ms |  2.06 |
-            | 基础序列化··· | .NET Core 5.0 | .NET Core 5.0 |  6.004 ms | 0.0199 ms | 0.0186 ms |  0.85 |
-            | 序列化时过滤属性 | .NET Core 5.0 | .NET Core 5.0 | 14.130 ms | 0.0500 ms | 0.0467 ms |  2.00 |
-            // * Hints *
-            Outliers
-            SerializeTest.序列化时过滤属性: .NET 4.6.1 -> 1 outlier  was  removed (18.40 ms)
-            
-            
-            // * 反序列化 *
-            // * Summary *
-            BenchmarkDotNet=v0.12.1, OS=Windows 10.0.18362.53 (1903/May2019Update/19H1)
-            Intel Core i5-9400 CPU 2.90GHz (Coffee Lake), 1 CPU, 6 logical and 6 physical cores
-            .NET Core SDK=5.0.101
-            [Host]        : .NET Core 5.0.1 (CoreCLR 5.0.120.57516, CoreFX 5.0.120.57516), X64 RyuJIT
-            .NET 4.6.1    : .NET Framework 4.8 (4.8.4250.0), X64 RyuJIT
-            .NET Core 3.1 : .NET Core 3.1.10 (CoreCLR 4.700.20.51601, CoreFX 4.700.20.51901), X64 RyuJIT
-            .NET Core 5.0 : .NET Core 5.0.1 (CoreCLR 5.0.120.57516, CoreFX 5.0.120.57516), X64 RyuJIT
-            |     Method |           Job |       Runtime |     Mean |    Error |   StdDev | Ratio | RatioSD |
-            |----------- |-------------- |-------------- |---------:|---------:|---------:|------:|--------:|
-            | 基础反序列化···· |    .NET 4.6.1 |    .NET 4.6.1 | 13.67 ms | 0.096 ms | 0.090 ms |  1.00 |    0.00 |
-            | 反序列化时过滤属性· |    .NET 4.6.1 |    .NET 4.6.1 | 26.54 ms | 0.127 ms | 0.119 ms |  1.94 |    0.02 |
-            | 基础反序列化···· | .NET Core 3.1 | .NET Core 3.1 | 12.82 ms | 0.240 ms | 0.224 ms |  0.94 |    0.02 |
-            | 反序列化时过滤属性· | .NET Core 3.1 | .NET Core 3.1 | 22.97 ms | 0.136 ms | 0.127 ms |  1.68 |    0.01 |
-            | 基础反序列化···· | .NET Core 5.0 | .NET Core 5.0 | 11.53 ms | 0.111 ms | 0.104 ms |  0.84 |    0.01 |
-            | 反序列化时过滤属性· | .NET Core 5.0 | .NET Core 5.0 | 21.35 ms | 0.187 ms | 0.175 ms |  1.56 |    0.02 |
-            // * Legends *
-            Mean    : Arithmetic mean of all measurements
-            Error   : Half of 99.9% confidence interval
-            StdDev  : Standard deviation of all measurements
-            Ratio   : Mean of the ratio distribution ([Current]/[Baseline])
-            RatioSD : Standard deviation of the ratio distribution ([Current]/[Baseline])
-            1 ms    : 1 Millisecond (0.001 sec)
-            // ***** BenchmarkRunner: End *****
-            // ** Remained 0 benchmark(s) to run **
-            Run time: 00:02:35 (155.22 sec), executed benchmarks: 6
-            Global total time: 00:02:44 (164.31 sec), executed benchmarks: 6
-            ]]>
-            </remarks>
-        </member>
-        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToOpenApiJson``1(``0,System.String[])">
-            <summary>
-            将对象序列化成Json字符串
-            </summary>
-            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
-            <param name="obj">需要序列化的对象</param>
-            <param name="exceptionProperties">要例外输出的属性</param>
-            <returns></returns>
-        </member>
-        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToOpenApiJson``1(System.Object,System.String[])">
-            <summary>
-            将对象序列化成Json字符串
-            </summary>
-            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
-            <param name="obj">需要序列化的对象</param>
-            <param name="exceptionProperties">要例外输出的属性</param>
-            <returns></returns>
-        </member>
-        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToOpenApiJsonIgnore``1(``0,System.String[])">
-            <summary>
-            将对象序列化成Json字符串
-            </summary>
-            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
-            <param name="obj">需要序列化的对象</param>
-            <param name="ignoreProperties">忽略的属性</param>
-            <returns></returns>
-        </member>
-        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToOpenApiJsonIgnore``1(System.Object,System.String[])">
-            <summary>
-            将对象序列化成Json字符串
-            </summary>
-            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
-            <param name="obj">需要序列化的对象</param>
-            <param name="ignoreProperties">忽略的属性</param>
-            <returns></returns>
-        </member>
-        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToOpenApiJson``1(System.Object,System.String[],System.String[])">
-            <summary>
-            将对象序列化成Json字符串
-            </summary>
-            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
-            <param name="obj">需要序列化的对象</param>
-            <param name="exceptionProperties">要例外输出的属性</param>
-            <param name="ignoreProperties">忽略的属性</param>
-            <returns></returns>
-        </member>
-        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToOpenApiJsonSpecifyType``1(System.Object,System.ValueTuple{System.String,System.Collections.Generic.List{System.String}}[])">
-            <summary>
-            将对象序列化成Json字符串
-            </summary>
-            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
-            <param name="obj">需要序列化的对象</param>
-            <param name="exceptionProperties">要例外输出的属性</param>
-            <returns></returns>
-        </member>
-        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToOpenApiJsonIgnoreSpecifyType``1(System.Object,System.ValueTuple{System.String,System.Collections.Generic.List{System.String}}[])">
-            <summary>
-            将对象序列化成Json字符串
-            </summary>
-            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
-            <param name="obj">需要序列化的对象</param>
-            <param name="ignoreProperties">忽略的属性</param>
-            <returns></returns>
-        </member>
-        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToOpenApiJsonSpecifyType``1(System.Object,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
-            <summary>
-            将对象序列化成Json字符串
-            </summary>
-            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
-            <param name="obj">需要序列化的对象</param>
-            <param name="exceptionProperties">要例外输出的属性</param>
-            <param name="ignoreProperties">忽略的属性</param>
-            <returns></returns>
-        </member>
-        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToOpenApiObject``1(System.String,System.String[])">
-            <summary>
-            将Json字符串反序列化成对象
-            </summary>
-            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
-            <param name="json">需要反序列化的Json字符串</param>
-            <param name="exceptionProperties">要例外输出的属性</param>
-            <returns></returns>
-        </member>
-        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToOpenApiObjectIgnore``1(System.String,System.String[])">
-            <summary>
-            将Json字符串反序列化成对象
-            </summary>
-            <param name="json">需要反序列化的Json字符串</param>
-            <param name="ignoreProperties">忽略的属性</param>
-            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToOpenApiObject``1(System.String,System.String[],System.String[])">
-            <summary>
-            将Json字符串反序列化成对象
-            </summary>
-            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
-            <param name="json">需要反序列化的Json字符串</param>
-            <param name="exceptionProperties">要例外输出的属性</param>
-            <param name="ignoreProperties">忽略的属性</param>
-            <returns></returns>
-        </member>
-        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToOpenApiObjectSpecifyType``1(System.String,System.ValueTuple{System.String,System.Collections.Generic.List{System.String}}[])">
-            <summary>
-            将Json字符串反序列化成对象
-            </summary>
-            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
-            <param name="json">需要反序列化的Json字符串</param>
-            <param name="exceptionProperties">要例外输出的属性</param>
-            <returns></returns>
-        </member>
-        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToOpenApiObjectIgnoreSpecifyType``1(System.String,System.ValueTuple{System.String,System.Collections.Generic.List{System.String}}[])">
-            <summary>
-            将Json字符串反序列化成对象
-            </summary>
-            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
-            <param name="json">需要反序列化的Json字符串</param>
-            <param name="ignoreProperties">忽略的属性</param>
-            <returns></returns>
-        </member>
-        <member name="M:Library.OpenApi.JsonSerialization.JsonExtension.ToOpenApiObject``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
-            <summary>
-            将Json字符串反序列化成对象
-            </summary>
-            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
-            <param name="json">需要反序列化的Json字符串</param>
-            <param name="exceptionProperties">特别输出的属性</param>
-            <param name="ignoreProperties">特别忽略的属性</param>
-            <remarks>如果在特别输出参数和特别忽略参数中同时指定了同一个属性，那么最终不会输出该属性</remarks>
             <returns></returns>
         </member>
         <member name="T:Library.OpenApi.JsonSerialization.OpenApiContractResolver">

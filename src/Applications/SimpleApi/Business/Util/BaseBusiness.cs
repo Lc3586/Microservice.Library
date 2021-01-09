@@ -46,61 +46,11 @@ namespace Business.Util
 
         }
 
-        /// <summary>
-        /// 构造函数
-        /// </summary>
-        /// <param name="conStr">连接名或连接字符串</param>
-        public BaseBusiness(string conStr)
-        {
-            _conString = conStr;
-        }
-
-        /// <summary>
-        /// 构造函数
-        /// </summary>
-        /// <param name="conStr">连接名或连接字符串</param>
-        /// <param name="entityAssembly">实体类命名空间</param>
-        public BaseBusiness(string conStr, string entityAssembly)
-        {
-            _conString = conStr;
-            _entityAssembly = entityAssembly;
-        }
-
-        /// <summary>
-        /// 构造函数
-        /// </summary>
-        /// <param name="conStr">连接名或连接字符串</param>
-        /// <param name="dbType">数据库类型</param>
-        public BaseBusiness(string conStr, DatabaseType dbType)
-        {
-            _conString = conStr;
-            _dbType = dbType;
-        }
-
-        /// <summary>
-        /// 构造函数
-        /// </summary>
-        /// <param name="conStr">连接名或连接字符串</param>
-        /// <param name="entityAssembly">实体类命名空间</param>
-        /// <param name="dbType">数据库类型</param>
-        public BaseBusiness(string conStr, string entityAssembly, DatabaseType dbType)
-        {
-            _conString = conStr;
-            _entityAssembly = entityAssembly;
-            _dbType = dbType;
-        }
-
         #endregion
 
         #region 私有成员
 
-        private string _conString { get; }
-        private string _entityAssembly { get; }
-        private DatabaseType? _dbType { get; }
 
-        private object _serviceLock = new object();
-        protected virtual string _valueField { get; } = "Id";
-        protected virtual string _textField { get => throw new Exception("请在子类重写"); }
 
         #endregion
 
@@ -263,64 +213,6 @@ namespace Business.Util
             };
 
             return res;
-        }
-
-        /// <summary>
-        /// 构建前端Select远程搜索数据
-        /// </summary>
-        /// <param name="selectedValueJson">已选择的项，JSON数组</param>
-        /// <param name="q">查询关键字</param>
-        /// <returns></returns>
-        public List<SelectOption> GetOptionList(string selectedValueJson, string q)
-        {
-            return GetOptionList(selectedValueJson, q, _textField, _valueField, null);
-        }
-
-        /// <summary>
-        /// 构建前端Select远程搜索数据
-        /// </summary>
-        /// <param name="selectedValueJson">已选择的项，JSON数组</param>
-        /// <param name="q">查询关键字</param>
-        /// <param name="textFiled">文本字段</param>
-        /// <param name="valueField">值字段</param>
-        /// <param name="source">指定数据源</param>
-        /// <returns></returns>
-        public List<SelectOption> GetOptionList(string selectedValueJson, string q, string textFiled, string valueField, IQueryable<T> source = null)
-        {
-            throw new NotImplementedException("需要改造成freesql");
-            Pagination pagination = new Pagination
-            {
-                PageRows = 10
-            };
-
-            List<T> selectedList = new List<T>();
-            string where = " 1=1 ";
-            List<string> ids = selectedValueJson?.ToList<string>() ?? new List<string>();
-            if (ids.Count > 0)
-            {
-                selectedList = GetNewQ().Where($"@0.Contains({valueField})", ids).ToList();
-
-                where += $" && !@0.Contains({valueField})";
-            }
-
-            if (!q.IsNullOrEmpty())
-            {
-                where += $" && it.{textFiled}.Contains(@1)";
-            }
-            List<T> newQList = GetNewQ().Where(where, ids, q).GetPagination(pagination).ToList();
-
-            var resList = selectedList.Concat(newQList).Select(x => new SelectOption
-            {
-                value = x.GetPropertyValue(valueField)?.ToString(),
-                text = x.GetPropertyValue(textFiled)?.ToString()
-            }).ToList();
-
-            return resList;
-
-            IQueryable<T> GetNewQ()
-            {
-                return source;
-            }
         }
 
         #endregion

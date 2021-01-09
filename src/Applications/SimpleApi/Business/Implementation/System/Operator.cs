@@ -21,14 +21,14 @@ namespace Business.Implementation.System
         #region DI
 
         public Operator(
-            IUserBusiness userBusiness,
+            IAuthoritiesBusiness authoritiesBusiness,
             ILogger logger)
         {
-            UserBusiness = userBusiness;
+            AuthoritiesBusiness = authoritiesBusiness;
             Logger = logger;
         }
 
-        readonly IUserBusiness UserBusiness;//= AutofacHelper.GetScopeService<IUserBusiness>();
+        readonly IAuthoritiesBusiness AuthoritiesBusiness;//= AutofacHelper.GetScopeService<IAuthoritiesBusiness>();
 
         readonly ILogger Logger;//= AutofacHelper.GetScopeService<ILogger>();
 
@@ -44,16 +44,13 @@ namespace Business.Implementation.System
         /// <summary>
         /// 用户信息
         /// </summary>
-        public Base Property => UserBusiness.GetUserBase(UserId);
+        public Authorities Property => AuthoritiesBusiness.GetUser(UserId, false, false, false);
 
         /// <summary>
         /// 判断是否为管理员
         /// </summary>
         /// <returns></returns>
-        public bool IsAdmin()
-        {
-            return UserBusiness.IsAdmin(UserId);
-        }
+        public bool IsAdmin => AuthoritiesBusiness.IsAdminUser(UserId);
 
         #endregion
     }

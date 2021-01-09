@@ -1,5 +1,6 @@
 ﻿using Library.OpenApi.Annotations;
 using Library.OpenApi.Extention;
+using Library.OpenApi.JsonSerialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -8,7 +9,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace Library.OpenApi.JsonSerialization
+namespace Library.OpenApi.Extention
 {
     /// <summary>
     /// Json相关拓展方法
@@ -120,6 +121,84 @@ namespace Library.OpenApi.JsonSerialization
         /// <summary>
         /// 将对象序列化成Json字符串
         /// </summary>
+        /// <param name="obj">需要序列化的对象</param>
+        /// <param name="openApiSchemaType">指定接口架构类型</param>
+        /// <param name="exceptionProperties">要例外输出的属性</param>
+        /// <returns></returns>
+        public static string ToOpenApiJson(this object obj, Type openApiSchemaType, params string[] exceptionProperties)
+        {
+            return obj.ToOpenApiJsonSpecifyType(openApiSchemaType, new Dictionary<string, List<string>>() { { openApiSchemaType.FullName, exceptionProperties?.ToList() } }, null);
+        }
+
+        /// <summary>
+        /// 将对象序列化成Json字符串
+        /// </summary>
+        /// <param name="obj">需要序列化的对象</param>
+        /// <param name="openApiSchemaType">指定接口架构类型</param>
+        /// <param name="ignoreProperties">忽略的属性</param>
+        /// <returns></returns>
+        public static string ToOpenApiJsonIgnore(this object obj, Type openApiSchemaType, string[] ignoreProperties)
+        {
+            return obj.ToOpenApiJsonSpecifyType(openApiSchemaType, null, new Dictionary<string, List<string>>() { { openApiSchemaType.FullName, ignoreProperties?.ToList() } });
+        }
+
+        /// <summary>
+        /// 将对象序列化成Json字符串
+        /// </summary>
+        /// <param name="obj">需要序列化的对象</param>
+        /// <param name="openApiSchemaType">指定接口架构类型</param>
+        /// <param name="exceptionProperties">要例外输出的属性</param>
+        /// <param name="ignoreProperties">忽略的属性</param>
+        /// <returns></returns>
+        public static string ToOpenApiJson(this object obj, Type openApiSchemaType, string[] exceptionProperties, string[] ignoreProperties)
+        {
+            return obj.ToOpenApiJsonSpecifyType(openApiSchemaType, new Dictionary<string, List<string>>() { { openApiSchemaType.FullName, exceptionProperties?.ToList() } },
+                                             new Dictionary<string, List<string>>() { { openApiSchemaType.FullName, ignoreProperties?.ToList() } });
+        }
+
+        /// <summary>
+        /// 将对象序列化成Json字符串
+        /// </summary>
+        /// <param name="obj">需要序列化的对象</param>
+        /// <param name="openApiSchemaType">指定接口架构类型</param>
+        /// <param name="exceptionProperties">要例外输出的属性</param>
+        /// <returns></returns>
+        public static string ToOpenApiJsonSpecifyType(this object obj, Type openApiSchemaType, params (string, List<string>)[] exceptionProperties)
+        {
+            return obj.ToOpenApiJsonSpecifyType(openApiSchemaType, exceptionProperties?.ToDictionary(k => k.Item1, v => v.Item2), null);
+        }
+
+        /// <summary>
+        /// 将对象序列化成Json字符串
+        /// </summary>
+        /// <param name="obj">需要序列化的对象</param>
+        /// <param name="openApiSchemaType">指定接口架构类型</param>
+        /// <param name="ignoreProperties">忽略的属性</param>
+        /// <returns></returns>
+        public static string ToOpenApiJsonIgnoreSpecifyType(this object obj, Type openApiSchemaType, (string, List<string>)[] ignoreProperties)
+        {
+            return obj.ToOpenApiJsonSpecifyType(openApiSchemaType, null, ignoreProperties?.ToDictionary(k => k.Item1, v => v.Item2));
+        }
+
+        /// <summary>
+        /// 将对象序列化成Json字符串
+        /// </summary>
+        /// <param name="obj">需要序列化的对象</param>
+        /// <param name="openApiSchemaType">指定接口架构类型</param>
+        /// <param name="exceptionProperties">要例外输出的属性</param>
+        /// <param name="ignoreProperties">忽略的属性</param>
+        /// <returns></returns>
+        public static string ToOpenApiJsonSpecifyType(this object obj, Type openApiSchemaType, Dictionary<string, List<string>> exceptionProperties, Dictionary<string, List<string>> ignoreProperties)
+        {
+            return JsonConvert.SerializeObject(obj, new JsonSerializerSettings
+            {
+                ContractResolver = new OpenApiContractResolver(openApiSchemaType.GetOrNullForPropertyDic(true, exceptionProperties, ignoreProperties))
+            });
+        }
+
+        /// <summary>
+        /// 将对象序列化成Json字符串
+        /// </summary>
         /// <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
         /// <param name="obj">需要序列化的对象</param>
         /// <param name="exceptionProperties">要例外输出的属性</param>
@@ -216,6 +295,85 @@ namespace Library.OpenApi.JsonSerialization
             return JsonConvert.SerializeObject(obj, new JsonSerializerSettings
             {
                 ContractResolver = new OpenApiContractResolver<TOpenApiSchema>(typeof(TOpenApiSchema).GetOrNullForPropertyDic(true, exceptionProperties, ignoreProperties))
+            });
+        }
+
+        /// <summary>
+        /// 将Json字符串反序列化成对象
+        /// </summary>
+        /// <param name="json">需要反序列化的Json字符串</param>
+        /// <param name="openApiSchemaType">指定接口架构类型</param>
+        /// <param name="exceptionProperties">要例外输出的属性</param>
+        /// <returns></returns>
+        public static object ToOpenApiObject(this string json, Type openApiSchemaType, params string[] exceptionProperties)
+        {
+            return json.ToOpenApiObject(openApiSchemaType, new Dictionary<string, List<string>>() { { openApiSchemaType.FullName, exceptionProperties?.ToList() } }, null);
+        }
+
+        /// <summary>
+        /// 将Json字符串反序列化成对象
+        /// </summary>
+        /// <param name="json">需要反序列化的Json字符串</param>
+        /// <param name="openApiSchemaType">指定接口架构类型</param>
+        /// <param name="ignoreProperties">忽略的属性</param>
+        /// <returns></returns>
+        public static object ToOpenApiObjectIgnore(this string json, Type openApiSchemaType, string[] ignoreProperties)
+        {
+            return json.ToOpenApiObject(openApiSchemaType, null, new Dictionary<string, List<string>>() { { openApiSchemaType.FullName, ignoreProperties?.ToList() } });
+        }
+
+        /// <summary>
+        /// 将Json字符串反序列化成对象
+        /// </summary>
+        /// <param name="json">需要反序列化的Json字符串</param>
+        /// <param name="openApiSchemaType">指定接口架构类型</param>
+        /// <param name="exceptionProperties">要例外输出的属性</param>
+        /// <param name="ignoreProperties">忽略的属性</param>
+        /// <returns></returns>
+        public static object ToOpenApiObject(this string json, Type openApiSchemaType, string[] exceptionProperties, string[] ignoreProperties)
+        {
+            return json.ToOpenApiObject(openApiSchemaType, new Dictionary<string, List<string>>() { { openApiSchemaType.FullName, exceptionProperties?.ToList() } },
+                                             new Dictionary<string, List<string>>() { { openApiSchemaType.FullName, ignoreProperties?.ToList() } });
+        }
+
+        /// <summary>
+        /// 将Json字符串反序列化成对象
+        /// </summary>
+        /// <param name="json">需要反序列化的Json字符串</param>
+        /// <param name="openApiSchemaType">指定接口架构类型</param>
+        /// <param name="exceptionProperties">要例外输出的属性</param>
+        /// <returns></returns>
+        public static object ToOpenApiObjectSpecifyType(this string json, Type openApiSchemaType, params (string, List<string>)[] exceptionProperties)
+        {
+            return json.ToOpenApiObject(openApiSchemaType, exceptionProperties?.ToDictionary(k => k.Item1, v => v.Item2), null);
+        }
+
+        /// <summary>
+        /// 将Json字符串反序列化成对象
+        /// </summary>
+        /// <param name="json">需要反序列化的Json字符串</param>
+        /// <param name="openApiSchemaType">指定接口架构类型</param>
+        /// <param name="ignoreProperties">忽略的属性</param>
+        /// <returns></returns>
+        public static object ToOpenApiObjectIgnoreSpecifyType(this string json, Type openApiSchemaType, (string, List<string>)[] ignoreProperties)
+        {
+            return json.ToOpenApiObject(openApiSchemaType, null, ignoreProperties?.ToDictionary(k => k.Item1, v => v.Item2));
+        }
+
+        /// <summary>
+        /// 将Json字符串反序列化成对象
+        /// </summary>
+        /// <param name="json">需要反序列化的Json字符串</param>
+        /// <param name="openApiSchemaType">指定接口架构类型</param>
+        /// <param name="exceptionProperties">特别输出的属性</param>
+        /// <param name="ignoreProperties">特别忽略的属性</param>
+        /// <remarks>如果在特别输出参数和特别忽略参数中同时指定了同一个属性，那么最终不会输出该属性</remarks>
+        /// <returns></returns>
+        public static object ToOpenApiObject(this string json, Type openApiSchemaType, Dictionary<string, List<string>> exceptionProperties, Dictionary<string, List<string>> ignoreProperties)
+        {
+            return JsonConvert.DeserializeObject(json, new JsonSerializerSettings
+            {
+                ContractResolver = new OpenApiContractResolver(openApiSchemaType.GetOrNullForPropertyDic(true, exceptionProperties, ignoreProperties))
             });
         }
 

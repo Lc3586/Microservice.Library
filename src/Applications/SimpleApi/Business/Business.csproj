@@ -13,6 +13,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Library\Cache\Library.Cache.csproj" />
+    <ProjectReference Include="..\..\..\Library\Container\Library.Container.csproj" />
+    <ProjectReference Include="..\..\..\Library\Extension\Library.Extension.csproj" />
+    <ProjectReference Include="..\..\..\Library\Html\Library.Html.csproj" />
+    <ProjectReference Include="..\..\..\Library\Http\Library.Http.csproj" />
+    <ProjectReference Include="..\..\..\Library\Log\Library.Log.csproj" />
+    <ProjectReference Include="..\..\..\Library\SelectOption\Library.SelectOption.csproj" />
+    <ProjectReference Include="..\..\..\Library\TypeTool\Library.TypeTool.csproj" />
+    <ProjectReference Include="..\..\..\Library\WebApp\Library.WebApp.csproj" />
     <ProjectReference Include="..\Model\Model.csproj" />
   </ItemGroup>
 
@@ -23,20 +32,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Library.Cache" Version="1.1.0-alpha" />
-    <PackageReference Include="Library.Container" Version="1.0.6-alpha" />
-    <PackageReference Include="Library.Extension" Version="1.0.20-alpha" />
-    <PackageReference Include="Library.Html" Version="1.0.0-alpha" />
-    <PackageReference Include="Library.Http" Version="1.0.8-alpha" />
-    <PackageReference Include="Library.Log" Version="1.0.8-alpha" />
-    <PackageReference Include="Library.SelectOption" Version="1.0.0-alpha" />
-    <PackageReference Include="Library.TypeTool" Version="1.0.1-alpha" />
-    <PackageReference Include="Library.WebApp" Version="1.0.4-alpha" />
+    <Folder Include="Implementation\Example\" />
+    <Folder Include="Interface\Example\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Implementation\Example\" />
-    <Folder Include="Interface\Example\" />
+    <PackageReference Include="NewId" Version="3.0.3" />
   </ItemGroup>
 
 </Project>

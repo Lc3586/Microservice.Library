@@ -1,5 +1,6 @@
 ﻿using Library.Extension;
 using Library.Http;
+using Library.OpenApi.Extention;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Newtonsoft.Json.Linq;
 using System.Linq;
@@ -11,6 +12,20 @@ namespace Api
     /// </summary>
     public class JsonParamterAttribute : BaseActionFilter, IActionFilter
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="openApiSchemaFilter">接口架构过滤</param>
+        public JsonParamterAttribute(bool openApiSchemaFilter)
+        {
+            OpenApiSchemaFilter = openApiSchemaFilter;
+        }
+
+        /// <summary>
+        /// 接口架构过滤
+        /// </summary>
+        readonly bool OpenApiSchemaFilter = false;
+
         /// <summary>
         /// Action执行之前执行
         /// </summary>
@@ -41,7 +56,10 @@ namespace Api
                     {
                         try
                         {
-                            actionArguments[key] = allParamters.ToJson().ToObject(aParamter.ParameterType);
+                            if (OpenApiSchemaFilter)
+                                actionArguments[key] = allParamters.ToJson().ToOpenApiObject(aParamter.ParameterType);
+                            else
+                                actionArguments[key] = allParamters.ToJson().ToObject(aParamter.ParameterType);
                         }
                         catch
                         {

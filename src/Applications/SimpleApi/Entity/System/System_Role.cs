@@ -29,28 +29,34 @@ namespace Entity.System
         /// <summary>
         /// Id
         /// </summary>
-        [OpenApiSubTag("List", "TreeList", "Edit", "Detail", "Base", "Sort")]
+        [OpenApiSubTag("List", "TreeList", "Edit", "Detail", "Authorities", "Sort")]
         [Column(IsPrimary = true, StringLength = 36)]
         public string Id { get; set; }
 
         /// <summary>
         /// 根角色Id
         /// </summary>
-        [OpenApiSubTag("List", "TreeList", "_Edit")]
+        [OpenApiSubTag("List", "TreeList", "_Edit", "Sort")]
         [Column(StringLength = 36)]
         public string RootId { get; set; }
 
         /// <summary>
         /// 父级角色Id
         /// </summary>
-        [OpenApiSubTag("List", "TreeList", "Edit")]
+        [OpenApiSubTag("List", "TreeList", "Edit", "Sort")]
         [Column(StringLength = 36)]
         public string ParentId { get; set; }
 
         /// <summary>
+        /// 层级
+        /// </summary>
+        [OpenApiSubTag("List", "TreeList", "_Edit", "Sort")]
+        public int Level { get; set; }
+
+        /// <summary>
         /// 名称
         /// </summary>
-        [OpenApiSubTag("List", "TreeList", "Create", "Edit", "Detail")]
+        [OpenApiSubTag("List", "TreeList", "Create", "Edit", "Detail", "Authorities")]
         [Description("名称")]
         [Column(StringLength = 50)]
         public string Name { get; set; }
@@ -58,7 +64,7 @@ namespace Entity.System
         /// <summary>
         /// 类型
         /// </summary>
-        [OpenApiSubTag("List", "TreeList", "Create", "Edit", "Detail", "Base")]
+        [OpenApiSubTag("List", "TreeList", "Create", "Edit", "Detail", "Authorities")]
         [Description("类型")]
         [Column(StringLength = 20)]
         public string Type { get; set; }
@@ -66,7 +72,7 @@ namespace Entity.System
         /// <summary>
         /// 编码
         /// </summary>
-        [OpenApiSubTag("List", "TreeList", "Create", "Edit", "Detail")]
+        [OpenApiSubTag("List", "TreeList", "Create", "Edit", "Detail", "Authorities")]
         [Description("编码")]
         [Column(StringLength = 20)]
         public string Code { get; set; }

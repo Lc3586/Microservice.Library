@@ -101,6 +101,9 @@ namespace Library.Models
                     string field = filter.Field;
                     if (alias != null)
                         field = $"{alias}.\"{field}\"";
+                    else
+                        field = $"\"{field}\"";
+
                     string value = filter.Value.ToString();
 
                     bool skip = false;
@@ -206,6 +209,8 @@ namespace Library.Models
                         string field = item.Field;
                         if (alias != null)
                             field = $" {alias}.\"{field}\" ";
+                        else
+                            field = $" \"{field}\" ";
                         string type = item.Type.ToString();
 
 
@@ -222,6 +227,9 @@ namespace Library.Models
                 {
                     if (alias != null)
                         SortField = $" {alias}.\"{SortField}\" ";
+                    else
+                        SortField = $" \"{SortField}\" ";
+
                     predicate += $" {SortField} {SortType} ";
                 }
 
@@ -465,9 +473,9 @@ namespace Library.Models
         public List<PaginationAdvancedSort> AdvancedSort { get => _advancedSort; set => _advancedSort = value; }
 
         /// <summary>
-        /// 筛选条件（已弃用）
+        /// 筛选条件
         /// </summary>
-        [Obsolete("请使用DynamicFilterInfo")]
+        [Obsolete("建议使用DynamicFilterInfo")]
         [OpenApiSchema(OpenApiSchemaType.model)]
         public List<PaginationFilter> Filter { get => _filter; set => _filter = value; }
 

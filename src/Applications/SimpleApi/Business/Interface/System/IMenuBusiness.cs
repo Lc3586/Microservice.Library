@@ -57,6 +57,28 @@ namespace Business.Interface.System
         AjaxResult Edit(Edit data);
 
         /// <summary>
+        /// 启用/禁用
+        /// </summary>
+        /// <param name="id">数据</param>
+        /// <param name="enable">设置状态</param>
+        /// <returns></returns>
+        AjaxResult Enable(string id, bool enable);
+
+        /// <summary>
+        /// 排序
+        /// </summary>
+        /// <param name="data">数据</param>
+        /// <returns></returns>
+        AjaxResult Sort(Sort data);
+
+        /// <summary>
+        /// 拖动排序
+        /// </summary>
+        /// <param name="data">数据</param>
+        /// <returns></returns>
+        AjaxResult DragSort(DragSort data);
+
+        /// <summary>
         /// 删除
         /// </summary>
         /// <param name="ids">Id集合</param>

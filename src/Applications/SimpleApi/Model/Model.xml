@@ -125,11 +125,6 @@
             文件信息
             </summary>
         </member>
-        <member name="P:Model.Common.FileDTO.FileInfo.Id_">
-            <summary>
-            Id
-            </summary>
-        </member>
         <member name="F:Model.Common.FileDTO.FileInfo.FromMemberMapOptions">
             <summary>
             来源成员映射选项
@@ -455,6 +450,106 @@
             Soap服务测试枚举
             </summary>
         </member>
+        <member name="T:Model.System.AuthorizeDTO.RoleForUser">
+            <summary>
+            授权角色给用户
+            </summary>
+        </member>
+        <member name="P:Model.System.AuthorizeDTO.RoleForUser.UserIds">
+            <summary>
+            用户Id
+            </summary>
+        </member>
+        <member name="P:Model.System.AuthorizeDTO.RoleForUser.RoleIds">
+            <summary>
+            角色Id
+            </summary>
+        </member>
+        <member name="P:Model.System.AuthorizeDTO.RoleForUser.All">
+            <summary>
+            撤销全部角色
+            </summary>
+        </member>
+        <member name="T:Model.System.AuthorizeDTO.MenuForUser">
+            <summary>
+            授权菜单给用户
+            </summary>
+        </member>
+        <member name="P:Model.System.AuthorizeDTO.MenuForUser.UserIds">
+            <summary>
+            用户Id
+            </summary>
+        </member>
+        <member name="P:Model.System.AuthorizeDTO.MenuForUser.MenuIds">
+            <summary>
+            菜单Id
+            </summary>
+        </member>
+        <member name="P:Model.System.AuthorizeDTO.MenuForUser.All">
+            <summary>
+            撤销全部菜单
+            </summary>
+        </member>
+        <member name="T:Model.System.AuthorizeDTO.ResourcesForUser">
+            <summary>
+            授权资源给用户
+            </summary>
+        </member>
+        <member name="P:Model.System.AuthorizeDTO.ResourcesForUser.UserIds">
+            <summary>
+            用户Id
+            </summary>
+        </member>
+        <member name="P:Model.System.AuthorizeDTO.ResourcesForUser.ResourcesIds">
+            <summary>
+            资源Id
+            </summary>
+        </member>
+        <member name="P:Model.System.AuthorizeDTO.ResourcesForUser.All">
+            <summary>
+            撤销全部资源
+            </summary>
+        </member>
+        <member name="T:Model.System.AuthorizeDTO.MenuForRole">
+            <summary>
+            授权菜单给角色
+            </summary>
+        </member>
+        <member name="P:Model.System.AuthorizeDTO.MenuForRole.RoleIds">
+            <summary>
+            角色Id
+            </summary>
+        </member>
+        <member name="P:Model.System.AuthorizeDTO.MenuForRole.MenuIds">
+            <summary>
+            菜单Id
+            </summary>
+        </member>
+        <member name="P:Model.System.AuthorizeDTO.MenuForRole.All">
+            <summary>
+            撤销全部菜单
+            </summary>
+        </member>
+        <member name="T:Model.System.AuthorizeDTO.ResourcesForRole">
+            <summary>
+            授权资源给角色
+            </summary>
+        </member>
+        <member name="P:Model.System.AuthorizeDTO.ResourcesForRole.RoleIds">
+            <summary>
+            角色Id
+            </summary>
+        </member>
+        <member name="P:Model.System.AuthorizeDTO.ResourcesForRole.ResourcesIds">
+            <summary>
+            资源Id
+            </summary>
+        </member>
+        <member name="P:Model.System.AuthorizeDTO.ResourcesForRole.All">
+            <summary>
+            撤销全部资源
+            </summary>
+        </member>
         <member name="T:Model.System.DatabaseSetting">
             <summary>
             数据库配置
@@ -746,6 +841,424 @@
         <member name="P:Model.System.SystemConfig.EnableCasSingleSignOut">
             <summary>
             启用单点注销
+            </summary>
+        </member>
+        <member name="P:Model.System.SystemConfig.CASTGTUrl">
+            <summary>
+            CAS获取TGT票据地址
+            </summary>
+        </member>
+        <member name="P:Model.System.SystemConfig.CASSTUrl">
+            <summary>
+            CAS生成ST票据地址
+            </summary>
+        </member>
+        <member name="P:Model.System.SystemConfig.CASUserInfoUrl">
+            <summary>
+            CAS获取用户信息地址
+            </summary>
+        </member>
+        <member name="P:Model.System.SystemConfig.CASDeleteSTUrl">
+            <summary>
+            CAS删除TGT地址
+            </summary>
+        </member>
+        <member name="T:Model.System.EntryLogDTO.List">
+            <summary>
+            列表
+            </summary>
+        </member>
+        <member name="T:Model.System.EntryLogDTO.Detail">
+            <summary>
+            详情
+            </summary>
+        </member>
+        <member name="P:Model.System.EntryLogDTO.Detail._User">
+            <summary>
+            用户
+            </summary>
+        </member>
+        <member name="P:Model.System.EntryLogDTO.Detail._Role">
+            <summary>
+            角色
+            </summary>
+        </member>
+        <member name="T:Model.System.MenuDTO.List">
+            <summary>
+            列表
+            </summary>
+        </member>
+        <member name="T:Model.System.MenuDTO.TreeListParamter">
+            <summary>
+            树状列表参数
+            </summary>
+        </member>
+        <member name="P:Model.System.MenuDTO.TreeListParamter.ParentId">
+            <summary>
+            父级Id
+            </summary>
+        </member>
+        <member name="P:Model.System.MenuDTO.TreeListParamter.Rank">
+            <summary>
+            层级数
+            <para>为空则表示获取所有层级数据</para>
+            </summary>
+        </member>
+        <member name="P:Model.System.MenuDTO.TreeListParamter.MenuType">
+            <summary>
+            菜单类型
+            </summary>
+        </member>
+        <member name="T:Model.System.MenuDTO.TreeList">
+            <summary>
+            树状列表
+            </summary>
+        </member>
+        <member name="P:Model.System.MenuDTO.TreeList.Childs_">
+            <summary>
+            子级菜单
+            </summary>
+        </member>
+        <member name="T:Model.System.MenuDTO.Detail">
+            <summary>
+            详情
+            </summary>
+        </member>
+        <member name="T:Model.System.MenuDTO.Authorities">
+            <summary>
+            授权信息
+            </summary>
+        </member>
+        <member name="T:Model.System.MenuDTO.Create">
+            <summary>
+            新增
+            </summary>
+        </member>
+        <member name="T:Model.System.MenuDTO.Edit">
+            <summary>
+            编辑
+            </summary>
+        </member>
+        <member name="T:Model.System.MenuDTO.Sort">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="P:Model.System.MenuDTO.Sort.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Model.System.MenuDTO.Sort.Type">
+            <summary>
+            排序类型
+            <para>默认值 up</para>
+            </summary>
+        </member>
+        <member name="P:Model.System.MenuDTO.Sort.Span">
+            <summary>
+            跨度
+            <para>移动几位</para>
+            <para>默认值 1</para>
+            </summary>
+        </member>
+        <member name="T:Model.System.MenuDTO.DragSort">
+            <summary>
+            拖动排序
+            </summary>
+        </member>
+        <member name="P:Model.System.MenuDTO.DragSort.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Model.System.MenuDTO.DragSort.TargetId">
+            <summary>
+            目标Id
+            </summary>
+        </member>
+        <member name="P:Model.System.MenuDTO.DragSort.Append">
+            <summary>
+            是否位于目标后面
+            </summary>
+        </member>
+        <member name="T:Model.System.MenuType">
+            <summary>
+            菜单类型
+            </summary>
+        </member>
+        <member name="T:Model.System.OperationRecordDTO.List">
+            <summary>
+            列表
+            </summary>
+        </member>
+        <member name="T:Model.System.OperationRecordDTO.Detail">
+            <summary>
+            详情
+            </summary>
+        </member>
+        <member name="P:Model.System.OperationRecordDTO.Detail._User">
+            <summary>
+            用户详情
+            </summary>
+        </member>
+        <member name="P:Model.System.OperationRecordDTO.Detail._Role">
+            <summary>
+            角色详情
+            </summary>
+        </member>
+        <member name="T:Model.System.ResourcesDTO.List">
+            <summary>
+            列表
+            </summary>
+        </member>
+        <member name="T:Model.System.ResourcesDTO.Detail">
+            <summary>
+            详情
+            </summary>
+        </member>
+        <member name="T:Model.System.ResourcesDTO.Authorities">
+            <summary>
+            授权信息
+            </summary>
+        </member>
+        <member name="T:Model.System.ResourcesDTO.Create">
+            <summary>
+            新增
+            </summary>
+        </member>
+        <member name="T:Model.System.ResourcesDTO.Edit">
+            <summary>
+            编辑
+            </summary>
+        </member>
+        <member name="T:Model.System.ResourcesType">
+            <summary>
+            资源类型
+            </summary>
+        </member>
+        <member name="T:Model.System.RoleDTO.List">
+            <summary>
+            列表
+            </summary>
+        </member>
+        <member name="T:Model.System.RoleDTO.TreeListParamter">
+            <summary>
+            树状列表参数
+            </summary>
+        </member>
+        <member name="P:Model.System.RoleDTO.TreeListParamter.ParentId">
+            <summary>
+            父级Id
+            </summary>
+        </member>
+        <member name="P:Model.System.RoleDTO.TreeListParamter.Rank">
+            <summary>
+            层级数
+            <para>为空则表示获取所有层级数据</para>
+            </summary>
+        </member>
+        <member name="P:Model.System.RoleDTO.TreeListParamter.RoleType">
+            <summary>
+            角色类型
+            </summary>
+        </member>
+        <member name="T:Model.System.RoleDTO.TreeList">
+            <summary>
+            树状列表
+            </summary>
+        </member>
+        <member name="P:Model.System.RoleDTO.TreeList.Childs_">
+            <summary>
+            子级角色
+            </summary>
+        </member>
+        <member name="T:Model.System.RoleDTO.Detail">
+            <summary>
+            详情
+            </summary>
+        </member>
+        <member name="T:Model.System.RoleDTO.Authorities">
+            <summary>
+            授权信息
+            </summary>
+        </member>
+        <member name="P:Model.System.RoleDTO.Authorities._Menus">
+            <summary>
+            授权给此角色的菜单
+            </summary>
+        </member>
+        <member name="P:Model.System.RoleDTO.Authorities._Resources">
+            <summary>
+            授权给此角色的资源
+            </summary>
+        </member>
+        <member name="T:Model.System.RoleDTO.Create">
+            <summary>
+            新增
+            </summary>
+        </member>
+        <member name="T:Model.System.RoleDTO.Edit">
+            <summary>
+            编辑
+            </summary>
+        </member>
+        <member name="T:Model.System.RoleDTO.Sort">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="P:Model.System.RoleDTO.Sort.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Model.System.RoleDTO.Sort.Type">
+            <summary>
+            排序类型
+            <para>默认值 up</para>
+            </summary>
+        </member>
+        <member name="P:Model.System.RoleDTO.Sort.Span">
+            <summary>
+            跨度
+            <para>移动几位</para>
+            <para>默认值 1</para>
+            </summary>
+        </member>
+        <member name="T:Model.System.RoleDTO.DragSort">
+            <summary>
+            拖动排序
+            </summary>
+        </member>
+        <member name="P:Model.System.RoleDTO.DragSort.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Model.System.RoleDTO.DragSort.TargetId">
+            <summary>
+            目标Id
+            </summary>
+        </member>
+        <member name="P:Model.System.RoleDTO.DragSort.Append">
+            <summary>
+            是否位于目标后面
+            </summary>
+        </member>
+        <member name="T:Model.System.RoleDTO.AuthorizeToUser">
+            <summary>
+            授权角色给用户
+            </summary>
+        </member>
+        <member name="P:Model.System.RoleDTO.AuthorizeToUser.Id">
+            <summary>
+            角色Id
+            </summary>
+        </member>
+        <member name="P:Model.System.RoleDTO.AuthorizeToUser.UserIds">
+            <summary>
+            用户Id集合
+            </summary>
+        </member>
+        <member name="T:Model.System.RoleDTO.AuthorizeFromMenu">
+            <summary>
+            授权菜单给角色
+            </summary>
+        </member>
+        <member name="P:Model.System.RoleDTO.AuthorizeFromMenu.Id">
+            <summary>
+            角色Id
+            </summary>
+        </member>
+        <member name="P:Model.System.RoleDTO.AuthorizeFromMenu.MenusIds">
+            <summary>
+            菜单Id集合
+            </summary>
+        </member>
+        <member name="T:Model.System.RoleDTO.AuthorizeFromResources">
+            <summary>
+            授权资源给角色
+            </summary>
+        </member>
+        <member name="P:Model.System.RoleDTO.AuthorizeFromResources.Id">
+            <summary>
+            角色Id
+            </summary>
+        </member>
+        <member name="P:Model.System.RoleDTO.AuthorizeFromResources.ResourcesIds">
+            <summary>
+            资源Id集合
+            </summary>
+        </member>
+        <member name="T:Model.System.RoleType">
+            <summary>
+            角色类型
+            </summary>
+        </member>
+        <member name="T:Model.System.SortType">
+            <summary>
+            排序方式
+            </summary>
+        </member>
+        <member name="F:Model.System.SortType.top">
+            <summary>
+            置顶
+            </summary>
+        </member>
+        <member name="F:Model.System.SortType.up">
+            <summary>
+            向上
+            </summary>
+        </member>
+        <member name="F:Model.System.SortType.down">
+            <summary>
+            向下
+            </summary>
+        </member>
+        <member name="F:Model.System.SortType.low">
+            <summary>
+            置底
+            </summary>
+        </member>
+        <member name="T:Model.System.UserDTO.List">
+            <summary>
+            列表
+            </summary>
+        </member>
+        <member name="T:Model.System.UserDTO.Detail">
+            <summary>
+            详情
+            </summary>
+        </member>
+        <member name="T:Model.System.UserDTO.Authorities">
+            <summary>
+            授权信息
+            </summary>
+        </member>
+        <member name="P:Model.System.UserDTO.Authorities._Roles">
+            <summary>
+            授权给此用户的角色
+            </summary>
+        </member>
+        <member name="P:Model.System.UserDTO.Authorities._Menus">
+            <summary>
+            授权给此用户的菜单
+            </summary>
+        </member>
+        <member name="P:Model.System.UserDTO.Authorities._Resources">
+            <summary>
+            授权给此用户的资源
+            </summary>
+        </member>
+        <member name="T:Model.System.UserDTO.Create">
+            <summary>
+            新增
+            </summary>
+        </member>
+        <member name="T:Model.System.UserDTO.Edit">
+            <summary>
+            编辑
             </summary>
         </member>
     </members>

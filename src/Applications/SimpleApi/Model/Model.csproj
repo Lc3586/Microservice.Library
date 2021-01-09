@@ -13,12 +13,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Library.Configuration" Version="1.1.0-alpha" />
-    <PackageReference Include="Library.DataMapping" Version="1.0.9-alpha" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Library\Configuration\Library.Configuration.csproj" />
+    <ProjectReference Include="..\..\..\Library\DataMapping\Library.DataMapping.csproj" />
     <ProjectReference Include="..\Entity\Entity.csproj" />
   </ItemGroup>
 

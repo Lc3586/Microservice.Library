@@ -1,4 +1,5 @@
 ﻿using FreeSql;
+using FreeSql.Internal.CommonProvider;
 using FreeSql.Internal.Model;
 using Library.FreeSql.Application;
 using Library.Models;
@@ -8,6 +9,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Dynamic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
 
@@ -41,25 +43,32 @@ namespace Library.FreeSql.Extention
         #region 私有成员
 
 #pragma warning disable CS1591 // 缺少对公共可见类型或成员的 XML 注释
-        public static readonly Dictionary<string, MethodInfo> EnumerableMethods = new Dictionary<string, MethodInfo>();
+        private static readonly Dictionary<string, MethodInfo> EnumerableMethods = new Dictionary<string, MethodInfo>();
 #pragma warning restore CS1591 // 缺少对公共可见类型或成员的 XML 注释
 
+        private static DynamicFilterInfo ToDynamicFilterInfo(this PaginationDynamicFilterInfo paginationDynamicFilterInfo)
+        {
+            return new DynamicFilterInfo
+            {
+                Logic = paginationDynamicFilterInfo.Relation.ToDynamicFilterLogic(),
+                Field = paginationDynamicFilterInfo.Field,
+                Operator = paginationDynamicFilterInfo.Compare.ToDynamicFilterOperator(),
+                Value = paginationDynamicFilterInfo.Value,
+                Filters = paginationDynamicFilterInfo.DynamicFilterInfo?.Select(o => o.ToDynamicFilterInfo()).ToList()
+            };
+        }
 
         private static DynamicFilterInfo ToDynamicFilterInfo(this List<PaginationDynamicFilterInfo> paginationDynamicFilterInfo)
         {
             DynamicFilterInfo dynamicFilterInfo;
-            var dynamicFilterInfos = paginationDynamicFilterInfo.Select(o => new DynamicFilterInfo
-            {
-                Logic = o.Relation.ToDynamicFilterLogic(),
-                Field = o.Field,
-                Operator = o.Compare.ToDynamicFilterOperator(),
-                Value = o.Value
-            });
+            var dynamicFilterInfos = paginationDynamicFilterInfo.Select(o => o.ToDynamicFilterInfo());
+
             if (paginationDynamicFilterInfo.Count == 1)
                 dynamicFilterInfo = dynamicFilterInfos.First();
             else
                 dynamicFilterInfo = new DynamicFilterInfo
                 {
+                    Logic = DynamicFilterLogic.And,
                     Filters = dynamicFilterInfos.ToList()
                 };
 
@@ -119,6 +128,7 @@ namespace Library.FreeSql.Extention
             }
         }
 
+        [Obsolete("使用GetSelect<TSource, TReturn, TDto>方法", true)]
         private static ISelect<TSource> GetSelectWithFieldFilter<TSource, TDto>(this ISelect<TSource> source, IFreeSql orm, Pagination pagination = null, IEnumerable<string> fields = null) where TSource : class
         {
             var table = orm.GetTableInfo<TSource>();
@@ -130,6 +140,29 @@ namespace Library.FreeSql.Extention
                                 .GetPagination(pagination, "a");
 
             return source.WithSql($"SELECT {string.Join(",", columns)} FROM \"{table.DbName}\"");
+        }
+
+        private static Expression<Func<TSource, TReturn>> GetSelect<TSource, TReturn, TDto>(this ISelect<TSource> source, IEnumerable<string> fields) where TSource : class
+        {
+            if (fields == null)
+                return null;
+
+            var s0p = source as Select0Provider;
+            var tb = s0p._tables[0];
+            var parmExp = tb.Parameter ?? Expression.Parameter(tb.Table.Type, tb.Alias);
+            var initExps = tb.Table.Columns.Values
+                .Where(a => a.Attribute.IsIgnore == false && fields.Contains(a.CsName))
+                .Select(a => Expression.Bind(tb.Table.Properties[a.CsName], Expression.MakeMemberAccess(parmExp, tb.Table.Properties[a.CsName])))
+                .ToArray();
+            var lambda = Expression.Lambda<Func<TSource, TReturn>>(
+                Expression.MemberInit(
+                    Expression.New(tb.Table.Type),
+                    initExps
+                ),
+                parmExp
+            );
+
+            return lambda;
         }
 
         #endregion
@@ -157,7 +190,7 @@ namespace Library.FreeSql.Extention
         /// <typeparam name="TReturn">返回类型</typeparam>
         /// <param name="func">处理并返回数据</param>
         /// <returns></returns>
-        public static Func<ExpandoObject, TReturn> Select<TReturn>(Func<TReturn, TReturn> func) where TReturn : new()
+        public static Func<dynamic, TReturn> SelectDynamic<TReturn>(Func<TReturn, TReturn> func) where TReturn : new()
         {
             return (a) =>
             {
@@ -172,11 +205,41 @@ namespace Library.FreeSql.Extention
         /// <typeparam name="TReturn">返回类型</typeparam>
         /// <param name="func">处理并返回数据</param>
         /// <returns></returns>
-        public static Func<ExpandoObject, TReturn> Select<TReturn>(Func<ExpandoObject, TReturn, TReturn> func) where TReturn : new()
+        public static Func<ExpandoObject, TReturn> SelectExpandoObject<TReturn>(Func<TReturn, TReturn> func) where TReturn : new()
         {
             return (a) =>
             {
-                var result = (TReturn)DynamicToEntity(a, typeof(TReturn));
+                var result = (TReturn)ExpandoObjectToEntity(a, typeof(TReturn));
+                return func.Invoke(result);
+            };
+        }
+
+        /// <summary>
+        /// 指定返回数据
+        /// </summary>
+        /// <typeparam name="TReturn">返回类型</typeparam>
+        /// <param name="func">处理并返回数据</param>
+        /// <returns></returns>
+        public static Func<dynamic, TReturn> SelectDynamic<TReturn>(Func<dynamic, TReturn, TReturn> func) where TReturn : new()
+        {
+            return (a) =>
+            {
+                var result = (TReturn)DynamicToEntity(a as IDictionary<string, object>, typeof(TReturn));
+                return func.Invoke(a, result);
+            };
+        }
+
+        /// <summary>
+        /// 指定返回数据
+        /// </summary>
+        /// <typeparam name="TReturn">返回类型</typeparam>
+        /// <param name="func">处理并返回数据</param>
+        /// <returns></returns>
+        public static Func<ExpandoObject, TReturn> SelectExpandoObject<TReturn>(Func<ExpandoObject, TReturn, TReturn> func) where TReturn : new()
+        {
+            return (a) =>
+            {
+                var result = (TReturn)ExpandoObjectToEntity(a, typeof(TReturn));
                 return func.Invoke(a, result);
             };
         }
@@ -187,7 +250,7 @@ namespace Library.FreeSql.Extention
         /// <typeparam name="TReturn">返回类型</typeparam>
         /// <param name="action">处理数据</param>
         /// <returns></returns>
-        public static Func<ExpandoObject, TReturn> Select<TReturn>(Action<ExpandoObject, TReturn> action = null) where TReturn : new()
+        public static Func<dynamic, TReturn> SelectDynamic<TReturn>(Action<dynamic, TReturn> action = null) where TReturn : new()
         {
             return (a) =>
             {
@@ -204,10 +267,29 @@ namespace Library.FreeSql.Extention
         /// 指定返回数据
         /// </summary>
         /// <typeparam name="TReturn">返回类型</typeparam>
+        /// <param name="action">处理数据</param>
+        /// <returns></returns>
+        public static Func<ExpandoObject, TReturn> SelectExpandoObject<TReturn>(Action<ExpandoObject, TReturn> action = null) where TReturn : new()
+        {
+            return (a) =>
+            {
+                var result = (TReturn)ExpandoObjectToEntity(a, typeof(TReturn));
+
+                if (action != null)
+                    action.Invoke(a, result);
+
+                return result;
+            };
+        }
+
+        /// <summary>
+        /// 指定返回数据
+        /// </summary>
+        /// <typeparam name="TReturn">返回类型</typeparam>
         /// <typeparam name="T0">联表类型</typeparam>
         /// <param name="action">处理数据</param>
         /// <returns></returns>
-        public static Func<dynamic, T0, TReturn> Select<TReturn, T0>(Action<object, TReturn, T0> action = null) where TReturn : new()
+        public static Func<dynamic, T0, TReturn> SelectDynamic<TReturn, T0>(Action<dynamic, TReturn, T0> action = null) where TReturn : new()
         {
             return (a, b) =>
             {
@@ -228,7 +310,7 @@ namespace Library.FreeSql.Extention
         /// <typeparam name="T1">联表类型</typeparam>
         /// <param name="action">处理数据</param>
         /// <returns></returns>
-        public static Func<dynamic, T0, T1, TReturn> Select<TReturn, T0, T1>(Action<object, TReturn, T0, T1> action = null) where TReturn : new()
+        public static Func<dynamic, T0, T1, TReturn> SelectDynamic<TReturn, T0, T1>(Action<dynamic, TReturn, T0, T1> action = null) where TReturn : new()
         {
             return (a, b, c) =>
             {
@@ -247,11 +329,31 @@ namespace Library.FreeSql.Extention
         /// <param name="data"></param>
         /// <param name="type"></param>
         /// <returns></returns>
-        private static object DynamicToEntity(ExpandoObject data, Type type)
+        private static object ExpandoObjectToEntity(ExpandoObject data, Type type)
+        {
+            return DynamicToEntity(data, type);
+        }
+
+        /// <summary>
+        /// 将动态类型转为指定类型实体
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        private static object DynamicToEntity(dynamic data, Type type)
+        {
+            return DynamicToEntity(data as IDictionary<string, object>, type);
+        }
+
+        /// <summary>
+        /// 将动态类型转为指定类型实体
+        /// </summary>
+        /// <param name="dic"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        private static object DynamicToEntity(IDictionary<string, object> dic, Type type)
         {
             var entity = Activator.CreateInstance(type);
-
-            var dic = data as IDictionary<string, object>;
 
             foreach (var item in dic)
             {
@@ -390,23 +492,60 @@ namespace Library.FreeSql.Extention
         }
 
         /// <summary>
-        /// 返回动态类型的数据
+        /// 返回数据
         /// </summary>
+        /// <remarks>不可使用WithSql()方法!</remarks>
         /// <typeparam name="TSource">实体类型</typeparam>
         /// <typeparam name="TDto">业务模型类型</typeparam>
         /// <param name="source"></param>
-        /// <param name="orm"></param>
         /// <param name="pagination">分页参数</param>
         /// <param name="fields">指定字段</param>
         /// <returns></returns>
-        public static List<TSource> ToList<TSource, TDto>(this ISelect<TSource> source, IFreeSql orm, Pagination pagination = null, IEnumerable<string> fields = null) where TSource : class
+        public static List<TSource> ToList<TSource, TDto>(this ISelect<TSource> source, Pagination pagination = null, IEnumerable<string> fields = null) where TSource : class
         {
-            return source.GetSelectWithFieldFilter<TSource, TDto>(orm, pagination, fields).ToList();
+            return source.ToList<TSource, TSource, TDto>(pagination, fields);
+            //return source.GetSelectWithFieldFilter<TSource, TDto>(orm, pagination, fields).ToList();
+        }
+
+        /// <summary>
+        /// 返回数据
+        /// </summary>
+        /// <remarks>不可使用WithSql()方法!</remarks>
+        /// <typeparam name="TSource">实体类型</typeparam>
+        /// <typeparam name="TDto">业务模型类型</typeparam>
+        /// <param name="source"></param>
+        /// <param name="pagination">分页参数</param>
+        /// <param name="fields">指定字段</param>
+        /// <returns></returns>
+        public static List<TDto> ToDtoList<TSource, TDto>(this ISelect<TSource> source, Pagination pagination = null, IEnumerable<string> fields = null) where TSource : class
+        {
+            return source.ToList<TSource, TDto, TDto>(pagination, fields);
+            //return source.GetSelectWithFieldFilter<TSource, TDto>(orm, pagination, fields).ToList();
+        }
+
+        /// <summary>
+        /// 返回数据
+        /// </summary>
+        /// <remarks>不可使用WithSql()方法!</remarks>
+        /// <typeparam name="TSource">实体类型</typeparam>
+        /// <typeparam name="TReturn">返回类型</typeparam>
+        /// <typeparam name="TDto">业务模型类型</typeparam>
+        /// <param name="source"></param>
+        /// <param name="pagination">分页参数</param>
+        /// <param name="fields">指定字段</param>
+        /// <returns></returns>
+        public static List<TReturn> ToList<TSource, TReturn, TDto>(this ISelect<TSource> source, Pagination pagination = null, IEnumerable<string> fields = null) where TSource : class
+        {
+            if (pagination != null)
+                return source.GetPagination(pagination).ToList(source.GetSelect<TSource, TReturn, TDto>(fields));
+            else
+                return source.ToList(source.GetSelect<TSource, TReturn, TDto>(fields));
         }
 
         /// <summary>
         /// 返回动态类型的数据
         /// </summary>
+        /// <remarks>不支持参数化!</remarks>
         /// <typeparam name="TSource">实体类型</typeparam>
         /// <typeparam name="TDto">业务模型类型</typeparam>
         /// <param name="source"></param>
@@ -414,22 +553,6 @@ namespace Library.FreeSql.Extention
         /// <param name="pagination">分页参数</param>
         /// <param name="fields">指定字段</param>
         /// <returns></returns>
-        public static List<TDto> ToDtoList<TSource, TDto>(this ISelect<TSource> source, IFreeSql orm, Pagination pagination = null, IEnumerable<string> fields = null) where TSource : class
-        {
-            return source.GetSelectWithFieldFilter<TSource, TDto>(orm, pagination, fields).ToList<TDto>();
-        }
-
-        /// <summary>
-        /// 返回动态类型的数据
-        /// </summary>
-        /// <typeparam name="TSource">实体类型</typeparam>
-        /// <typeparam name="TDto">业务模型类型</typeparam>
-        /// <param name="source"></param>
-        /// <param name="orm"></param>
-        /// <param name="pagination">分页参数</param>
-        /// <param name="fields">指定字段</param>
-        /// <returns></returns>
-        [Obsolete("此方法不支持参数化,请使用ToList<TSource, TDto>")]
         public static List<dynamic> ToDynamic<TSource, TDto>(this ISelect<TSource> source, IFreeSql orm, Pagination pagination = null, IEnumerable<string> fields = null) where TSource : class
         {
             var columns = orm.GetTableInfo<TSource>().ColumnsByCs;
@@ -450,6 +573,7 @@ namespace Library.FreeSql.Extention
         /// <summary>
         /// 返回动态类型的数据
         /// </summary>
+        /// <remarks>不支持参数化!</remarks>
         /// <typeparam name="TSource">实体类型</typeparam>
         /// <typeparam name="TJoin0"></typeparam>
         /// <typeparam name="TDto">业务模型类型</typeparam>
@@ -458,7 +582,7 @@ namespace Library.FreeSql.Extention
         /// <param name="pagination">分页参数</param>
         /// <param name="fields">指定字段</param>
         /// <returns></returns>
-        [Obsolete("此方法不支持参数化,请使用ToList<TSource, TDto>")]
+        [Obsolete]
         public static List<dynamic> ToDynamic<TSource, TJoin0, TDto>(this ISelect<TSource> source, IFreeSql orm, Pagination pagination = null, IEnumerable<string> fields = null) where TSource : class
         {
             var table = orm.GetTableInfo<TSource>();

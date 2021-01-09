@@ -21,7 +21,7 @@ namespace Business.Filter
         /// <param name="invocation"></param>
         public override void OnActionExecuting(IInvocation invocation)
         {
-            if (!Operator.IsAdmin())
+            if (!Operator.IsAdmin)
                 invocation.ReturnValue = AjaxResultFactory.Error("无权限");
         }
 

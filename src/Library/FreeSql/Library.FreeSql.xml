@@ -448,7 +448,7 @@
             <param name="func">处理并返回数据</param>
             <returns></returns>
         </member>
-        <member name="M:Library.FreeSql.Extention.SelectExtension.Select``1(System.Func{``0,``0})">
+        <member name="M:Library.FreeSql.Extention.SelectExtension.SelectDynamic``1(System.Func{``0,``0})">
             <summary>
             指定返回数据
             </summary>
@@ -456,7 +456,7 @@
             <param name="func">处理并返回数据</param>
             <returns></returns>
         </member>
-        <member name="M:Library.FreeSql.Extention.SelectExtension.Select``1(System.Func{System.Dynamic.ExpandoObject,``0,``0})">
+        <member name="M:Library.FreeSql.Extention.SelectExtension.SelectExpandoObject``1(System.Func{``0,``0})">
             <summary>
             指定返回数据
             </summary>
@@ -464,7 +464,23 @@
             <param name="func">处理并返回数据</param>
             <returns></returns>
         </member>
-        <member name="M:Library.FreeSql.Extention.SelectExtension.Select``1(System.Action{System.Dynamic.ExpandoObject,``0})">
+        <member name="M:Library.FreeSql.Extention.SelectExtension.SelectDynamic``1(System.Func{System.Object,``0,``0})">
+            <summary>
+            指定返回数据
+            </summary>
+            <typeparam name="TReturn">返回类型</typeparam>
+            <param name="func">处理并返回数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.FreeSql.Extention.SelectExtension.SelectExpandoObject``1(System.Func{System.Dynamic.ExpandoObject,``0,``0})">
+            <summary>
+            指定返回数据
+            </summary>
+            <typeparam name="TReturn">返回类型</typeparam>
+            <param name="func">处理并返回数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.FreeSql.Extention.SelectExtension.SelectDynamic``1(System.Action{System.Object,``0})">
             <summary>
             指定返回数据
             </summary>
@@ -472,7 +488,15 @@
             <param name="action">处理数据</param>
             <returns></returns>
         </member>
-        <member name="M:Library.FreeSql.Extention.SelectExtension.Select``2(System.Action{System.Object,``0,``1})">
+        <member name="M:Library.FreeSql.Extention.SelectExtension.SelectExpandoObject``1(System.Action{System.Dynamic.ExpandoObject,``0})">
+            <summary>
+            指定返回数据
+            </summary>
+            <typeparam name="TReturn">返回类型</typeparam>
+            <param name="action">处理数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.FreeSql.Extention.SelectExtension.SelectDynamic``2(System.Action{System.Object,``0,``1})">
             <summary>
             指定返回数据
             </summary>
@@ -481,7 +505,7 @@
             <param name="action">处理数据</param>
             <returns></returns>
         </member>
-        <member name="M:Library.FreeSql.Extention.SelectExtension.Select``3(System.Action{System.Object,``0,``1,``2})">
+        <member name="M:Library.FreeSql.Extention.SelectExtension.SelectDynamic``3(System.Action{System.Object,``0,``1,``2})">
             <summary>
             指定返回数据
             </summary>
@@ -491,11 +515,27 @@
             <param name="action">处理数据</param>
             <returns></returns>
         </member>
-        <member name="M:Library.FreeSql.Extention.SelectExtension.DynamicToEntity(System.Dynamic.ExpandoObject,System.Type)">
+        <member name="M:Library.FreeSql.Extention.SelectExtension.ExpandoObjectToEntity(System.Dynamic.ExpandoObject,System.Type)">
             <summary>
             将动态类型转为指定类型实体
             </summary>
             <param name="data"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.FreeSql.Extention.SelectExtension.DynamicToEntity(System.Object,System.Type)">
+            <summary>
+            将动态类型转为指定类型实体
+            </summary>
+            <param name="data"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.FreeSql.Extention.SelectExtension.DynamicToEntity(System.Collections.Generic.IDictionary{System.String,System.Object},System.Type)">
+            <summary>
+            将动态类型转为指定类型实体
+            </summary>
+            <param name="dic"></param>
             <param name="type"></param>
             <returns></returns>
         </member>
@@ -519,26 +559,39 @@
             <param name="pagination">分页参数</param>
             <returns></returns>
         </member>
-        <member name="M:Library.FreeSql.Extention.SelectExtension.ToList``2(FreeSql.ISelect{``0},IFreeSql,Library.Models.Pagination,System.Collections.Generic.IEnumerable{System.String})">
+        <member name="M:Library.FreeSql.Extention.SelectExtension.ToList``2(FreeSql.ISelect{``0},Library.Models.Pagination,System.Collections.Generic.IEnumerable{System.String})">
             <summary>
-            返回动态类型的数据
+            返回数据
             </summary>
+            <remarks>不可使用WithSql()方法!</remarks>
             <typeparam name="TSource">实体类型</typeparam>
             <typeparam name="TDto">业务模型类型</typeparam>
             <param name="source"></param>
-            <param name="orm"></param>
             <param name="pagination">分页参数</param>
             <param name="fields">指定字段</param>
             <returns></returns>
         </member>
-        <member name="M:Library.FreeSql.Extention.SelectExtension.ToDtoList``2(FreeSql.ISelect{``0},IFreeSql,Library.Models.Pagination,System.Collections.Generic.IEnumerable{System.String})">
+        <member name="M:Library.FreeSql.Extention.SelectExtension.ToDtoList``2(FreeSql.ISelect{``0},Library.Models.Pagination,System.Collections.Generic.IEnumerable{System.String})">
             <summary>
-            返回动态类型的数据
+            返回数据
             </summary>
+            <remarks>不可使用WithSql()方法!</remarks>
             <typeparam name="TSource">实体类型</typeparam>
             <typeparam name="TDto">业务模型类型</typeparam>
             <param name="source"></param>
-            <param name="orm"></param>
+            <param name="pagination">分页参数</param>
+            <param name="fields">指定字段</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.FreeSql.Extention.SelectExtension.ToList``3(FreeSql.ISelect{``0},Library.Models.Pagination,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            返回数据
+            </summary>
+            <remarks>不可使用WithSql()方法!</remarks>
+            <typeparam name="TSource">实体类型</typeparam>
+            <typeparam name="TReturn">返回类型</typeparam>
+            <typeparam name="TDto">业务模型类型</typeparam>
+            <param name="source"></param>
             <param name="pagination">分页参数</param>
             <param name="fields">指定字段</param>
             <returns></returns>
@@ -547,6 +600,7 @@
             <summary>
             返回动态类型的数据
             </summary>
+            <remarks>不支持参数化!</remarks>
             <typeparam name="TSource">实体类型</typeparam>
             <typeparam name="TDto">业务模型类型</typeparam>
             <param name="source"></param>
@@ -559,6 +613,7 @@
             <summary>
             返回动态类型的数据
             </summary>
+            <remarks>不支持参数化!</remarks>
             <typeparam name="TSource">实体类型</typeparam>
             <typeparam name="TJoin0"></typeparam>
             <typeparam name="TDto">业务模型类型</typeparam>

@@ -29,34 +29,34 @@ namespace Entity.System
         /// <summary>
         /// Id
         /// </summary>
-        [OpenApiSubTag("List", "TreeList", "Edit", "Detail", "Base", "Sort")]
+        [OpenApiSubTag("List", "TreeList", "Edit", "Detail", "Authorities", "Sort")]
         [Column(IsPrimary = true, StringLength = 36)]
         public string Id { get; set; }
 
         /// <summary>
         /// 根菜单Id
         /// </summary>
-        [OpenApiSubTag("List", "TreeList", "_Edit")]
+        [OpenApiSubTag("List", "TreeList", "_Edit", "Sort")]
         [Column(StringLength = 36)]
         public string RootId { get; set; }
 
         /// <summary>
         /// 父级菜单Id
         /// </summary>
-        [OpenApiSubTag("List", "TreeList", "Edit")]
+        [OpenApiSubTag("List", "TreeList", "Edit", "Sort")]
         [Column(StringLength = 36)]
         public string ParentId { get; set; }
 
         /// <summary>
-        /// 深度
+        /// 层级
         /// </summary>
-        [OpenApiSubTag("List", "TreeList", "_Edit")]
-        public int Depth { get; set; }
+        [OpenApiSubTag("List", "TreeList", "_Edit", "Sort")]
+        public int Level { get; set; }
 
         /// <summary>
         /// 名称
         /// </summary>
-        [OpenApiSubTag("List", "TreeList", "Create", "Edit", "Detail")]
+        [OpenApiSubTag("List", "TreeList", "Create", "Edit", "Detail", "Authorities")]
         [Description("名称")]
         [Column(StringLength = 50)]
         public string Name { get; set; }
@@ -64,7 +64,7 @@ namespace Entity.System
         /// <summary>
         /// 类型
         /// </summary>
-        [OpenApiSubTag("List", "TreeList", "Create", "Edit", "Detail")]
+        [OpenApiSubTag("List", "TreeList", "Create", "Edit", "Detail", "Authorities")]
         [Description("类型")]
         [Column(StringLength = 20)]
         public string Type { get; set; }
@@ -72,7 +72,7 @@ namespace Entity.System
         /// <summary>
         /// 编码
         /// </summary>
-        [OpenApiSubTag("List", "TreeList", "Create", "Edit", "Detail")]
+        [OpenApiSubTag("List", "TreeList", "Create", "Edit", "Detail", "Authorities")]
         [Description("编码")]
         [Column(StringLength = 20)]
         public string Code { get; set; }
@@ -80,10 +80,18 @@ namespace Entity.System
         /// <summary>
         /// 链接地址
         /// </summary>
-        [OpenApiSubTag("List", "TreeList", "Create", "Edit", "Detail", "Base")]
+        [OpenApiSubTag("List", "TreeList", "Create", "Edit", "Detail", "Authorities")]
         [Description("链接地址")]
         [Column(StringLength = 2048)]
         public string Uri { get; set; }
+
+        /// <summary>
+        /// 请求方法
+        /// </summary>
+        [OpenApiSubTag("List", "TreeList", "Create", "Edit", "Detail", "Authorities")]
+        [Description("请求方法")]
+        [Column(StringLength = 2048)]
+        public string Method { get; set; }
 
         /// <summary>
         /// 图标

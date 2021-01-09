@@ -41,9 +41,9 @@ namespace Model.System.MenuDTO
         public int? Rank { get; set; }
 
         /// <summary>
-        /// 角色类型
+        /// 菜单类型
         /// </summary>
-        public List<string> RoleType { get; set; }
+        public List<string> MenuType { get; set; }
     }
 
     /// <summary>
@@ -72,11 +72,11 @@ namespace Model.System.MenuDTO
     }
 
     /// <summary>
-    /// 基础信息
+    /// 授权信息
     /// </summary>
     [MapFrom(typeof(System_Menu))]
-    [OpenApiMainTag("Base")]
-    public class Base : System_Menu
+    [OpenApiMainTag("Authorities")]
+    public class Authorities : System_Menu
     {
 
     }
@@ -105,17 +105,20 @@ namespace Model.System.MenuDTO
     /// <summary>
     /// 排序
     /// </summary>
-    [MapTo(typeof(System_Menu))]
-    [OpenApiMainTag("Sort")]
-    public class Sort : System_Menu
+    public class Sort
     {
+        /// <summary>
+        /// Id
+        /// </summary>
+        public string Id { get; set; }
+
         /// <summary>
         /// 排序类型
         /// <para>默认值 up</para>
         /// </summary>
         [OpenApiSchema(OpenApiSchemaType.@enum, OpenApiSchemaFormat.enum_description, SortType.up)]
         [JsonConverter(typeof(StringEnumConverter))]
-        public SortType SortType { get; set; }
+        public SortType Type { get; set; }
 
         /// <summary>
         /// 跨度
@@ -123,5 +126,26 @@ namespace Model.System.MenuDTO
         /// <para>默认值 1</para>
         /// </summary>
         public int Span { get; set; } = 1;
+    }
+
+    /// <summary>
+    /// 拖动排序
+    /// </summary>
+    public class DragSort
+    {
+        /// <summary>
+        /// Id
+        /// </summary>
+        public string Id { get; set; }
+
+        /// <summary>
+        /// 目标Id
+        /// </summary>
+        public string TargetId { get; set; }
+
+        /// <summary>
+        /// 是否位于目标后面
+        /// </summary>
+        public bool Append { get; set; }
     }
 }

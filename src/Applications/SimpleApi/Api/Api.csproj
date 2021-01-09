@@ -59,6 +59,11 @@
     <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="5.6.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\System\" />
+    <Folder Include="Controllers\Util\" />
+  </ItemGroup>
+
   <ProjectExtensions><VisualStudio><UserProperties jsonconfig_4database_1json__JsonSchema="https://json.schemastore.org/appsettings" /></VisualStudio></ProjectExtensions>
 
 </Project>

@@ -4,5 +4,1043 @@
         <name>Business</name>
     </assembly>
     <members>
+        <member name="T:Business.Filter.AdministratorOnlyAttribute">
+            <summary>
+            仅限管理员
+            </summary>
+        </member>
+        <member name="M:Business.Filter.AdministratorOnlyAttribute.OnActionExecuting(Castle.DynamicProxy.IInvocation)">
+            <summary>
+            执行前
+            </summary>
+            <param name="invocation"></param>
+        </member>
+        <member name="M:Business.Filter.AdministratorOnlyAttribute.OnActionExecuted(Castle.DynamicProxy.IInvocation)">
+            <summary>
+            执行后
+            </summary>
+            <param name="invocation"></param>
+        </member>
+        <member name="T:Business.Implementation.Services.Example.SampleBusiness">
+            <summary>
+            示例Soap服务业务类
+            </summary>
+        </member>
+        <member name="T:Business.Implementation.System.AuthoritiesBusiness">
+            <summary>
+            权限业务类
+            </summary>
+        </member>
+        <member name="T:Business.Implementation.System.MenuBusiness">
+            <summary>
+            菜单业务类
+            </summary>
+        </member>
+        <member name="T:Business.Implementation.System.OperationRecordBusiness">
+            <summary>
+            档案操作记录业务类
+            </summary>
+        </member>
+        <member name="T:Business.Implementation.System.Operator">
+            <summary>
+            操作者
+            </summary>
+        </member>
+        <member name="P:Business.Implementation.System.Operator.UserId">
+            <summary>
+            当前操作者UserId
+            </summary>
+        </member>
+        <member name="P:Business.Implementation.System.Operator.Property">
+            <summary>
+            用户信息
+            </summary>
+        </member>
+        <member name="P:Business.Implementation.System.Operator.IsAdmin">
+            <summary>
+            判断是否为管理员
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Business.Implementation.System.ResourcesBusiness">
+            <summary>
+            资源业务类
+            </summary>
+        </member>
+        <member name="T:Business.Implementation.System.RoleBusiness">
+            <summary>
+            角色业务类
+            </summary>
+        </member>
+        <member name="T:Business.Implementation.System.UserBusiness">
+            <summary>
+            系统用户业务类
+            </summary>
+        </member>
+        <member name="T:Business.Interface.Services.Example.ISampleBusiness">
+            <summary>
+            示例Soap服务接口类
+            </summary>
+        </member>
+        <member name="T:Business.Interface.System.IAuthoritiesBusiness">
+            <summary>
+            权限业务接口类
+            </summary>
+        </member>
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.AuthorizeRoleForUser(Model.System.AuthorizeDTO.RoleForUser)">
+            <summary>
+            授权角色给用户
+            </summary>
+            <param name="data">数据</param>
+        </member>
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.AuthorizeMenuForUser(Model.System.AuthorizeDTO.MenuForUser)">
+            <summary>
+            授权菜单给用户
+            </summary>
+            <param name="data">数据</param>
+        </member>
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.AuthorizeResourcesForUser(Model.System.AuthorizeDTO.ResourcesForUser)">
+            <summary>
+            授权资源给用户
+            </summary>
+            <param name="data">数据</param>
+        </member>
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.AuthorizeMenuForRole(Model.System.AuthorizeDTO.MenuForRole)">
+            <summary>
+            授权菜单给角色
+            </summary>
+            <param name="data">数据</param>
+        </member>
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.AuthorizeResourcesForRole(Model.System.AuthorizeDTO.ResourcesForRole)">
+            <summary>
+            授权资源给角色
+            </summary>
+            <param name="data">数据</param>
+        </member>
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.RevocationRoleForUser(System.Collections.Generic.List{System.String},System.Boolean)">
+            <summary>
+            撤销用户的全部角色授权
+            </summary>
+            <param name="userIds">用户Id</param>
+            <param name="runTransaction">运行事务（默认运行）</param>
+        </member>
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.RevocationMenuForUser(System.Collections.Generic.List{System.String},System.Boolean)">
+            <summary>
+            撤销用户的全部菜单授权
+            </summary>
+            <param name="userIds">用户Id</param>
+            <param name="runTransaction">运行事务（默认运行）</param>
+        </member>
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.RevocationResourcesForUser(System.Collections.Generic.List{System.String},System.Boolean)">
+            <summary>
+            撤销用户的全部资源授权
+            </summary>
+            <param name="userIds">用户Id</param>
+            <param name="runTransaction">运行事务（默认运行）</param>
+        </member>
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.RevocationMenuForRole(System.Collections.Generic.List{System.String},System.Boolean)">
+            <summary>
+            撤销角色的全部菜单授权
+            </summary>
+            <param name="roleIds">角色Id</param>
+            <param name="runTransaction">运行事务（默认运行）</param>
+        </member>
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.RevocationResourcesForRole(System.Collections.Generic.List{System.String},System.Boolean)">
+            <summary>
+            撤销角色的全部资源授权
+            </summary>
+            <param name="roleIds">角色Id</param>
+            <param name="runTransaction">运行事务（默认运行）</param>
+        </member>
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.RevocationRoleForUser(Model.System.AuthorizeDTO.RoleForUser,System.Boolean)">
+            <summary>
+            撤销用户的角色授权
+            </summary>
+            <param name="data">数据</param>
+            <param name="runTransaction">运行事务（默认运行）</param>
+        </member>
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.RevocationMenuForUser(Model.System.AuthorizeDTO.MenuForUser,System.Boolean)">
+            <summary>
+            撤销用户的菜单授权
+            </summary>
+            <param name="data">数据</param>
+            <param name="runTransaction">运行事务（默认运行）</param>
+        </member>
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.RevocationResourcesForUser(Model.System.AuthorizeDTO.ResourcesForUser,System.Boolean)">
+            <summary>
+            撤销用户的资源授权
+            </summary>
+            <param name="data">数据</param>
+            <param name="runTransaction">运行事务（默认运行）</param>
+        </member>
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.RevocationMenuForRole(Model.System.AuthorizeDTO.MenuForRole,System.Boolean)">
+            <summary>
+            撤销角色的菜单授权
+            </summary>
+            <param name="data">数据</param>
+            <param name="runTransaction">运行事务（默认运行）</param>
+        </member>
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.RevocationResourcesForRole(Model.System.AuthorizeDTO.ResourcesForRole,System.Boolean)">
+            <summary>
+            撤销角色的资源授权
+            </summary>
+            <param name="data">数据</param>
+            <param name="runTransaction">运行事务（默认运行）</param>
+        </member>
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.RevocationMenuForAll(System.Collections.Generic.List{System.String},System.Boolean)">
+            <summary>
+            撤销所有用户和角色的菜单授权
+            </summary>
+            <param name="menuIds">菜单Id</param>
+            <param name="runTransaction">运行事务（默认运行）</param>
+        </member>
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.RevocationResourcesForAll(System.Collections.Generic.List{System.String},System.Boolean)">
+            <summary>
+            撤销所有用户和角色的资源授权
+            </summary>
+            <param name="resourcesIds">资源Id</param>
+            <param name="runTransaction">运行事务（默认运行）</param>
+        </member>
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.GetUser(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            获取用户的授权数据
+            </summary>
+            <param name="userId">用户Id</param>
+            <param name="includeRole">包括授权角色</param>
+            <param name="includeMenu">包括授权菜单</param>
+            <param name="includeResources">包括授权资源</param>
+            <param name="mergeRoleMenu">合并角色的授权菜单</param>
+            <param name="mergeRoleResources">合并角色的授权资源</param>
+            <returns>
+            <para>用户授权信息</para>
+            <para>角色授权信息</para>
+            <para>菜单授权信息</para>
+            <para>资源授权信息</para>
+            </returns>
+        </member>
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.GetUserRole(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            获取授权给用户的角色
+            </summary>
+            <param name="userId">用户Id</param>
+            <param name="includeMenu">包括授权菜单</param>
+            <param name="includeResources">包括授权资源</param>
+            <returns>
+            <para>角色授权信息</para>
+            <para>菜单授权信息</para>
+            <para>资源授权信息</para>
+            </returns>
+        </member>
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.GetUserMenu(System.String,System.Boolean)">
+            <summary>
+            获取授权给用户的菜单
+            </summary>
+            <param name="userId">用户Id</param>
+            <param name="mergeRoleMenu">包括角色的授权菜单</param>
+            <returns>
+            <para>菜单授权信息</para>
+            </returns>
+        </member>
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.GetUserResources(System.String,System.Boolean)">
+            <summary>
+            获权授权给用户的资源
+            </summary>
+            <param name="userId">用户Id</param>
+            <param name="mergeRoleResources">包括角色的授权资源</param>
+            <returns>
+            <para>资源授权信息</para>
+            </returns>
+        </member>
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.GetRole(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            获取角色的授权数据
+            </summary>
+            <param name="roleId">角色Id</param>
+            <param name="includeMenu">包括授权菜单</param>
+            <param name="includeResources">包括授权资源</param>
+            <returns>
+            <para>角色授权信息</para>
+            <para>菜单授权信息</para>
+            <para>资源授权信息</para>
+            </returns>
+        </member>
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.GetRoleMenu(System.String)">
+            <summary>
+            获取授权给角色的菜单
+            </summary>
+            <param name="roleId">角色Id</param>
+            <returns>
+            <para>菜单授权信息</para>
+            </returns>
+        </member>
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.GetRoleResources(System.String)">
+            <summary>
+            获取授权给角色的资源
+            </summary>
+            <param name="roleId">角色Id</param>
+            <returns>
+            <para>资源授权信息</para>
+            </returns>
+        </member>
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.IsAdminUser(System.String)">
+            <summary>
+            是否为管理员
+            </summary>
+            <param name="userId">用户Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.IsAdminRole(System.String)">
+            <summary>
+            是否为管理角色
+            </summary>
+            <param name="roleId">角色Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.HasRole(System.String,System.String)">
+            <summary>
+            是否拥有角色授权
+            </summary>
+            <param name="userId">用户Id</param>
+            <param name="roleId">角色Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.HasMenu(System.String,System.String)">
+            <summary>
+            是否拥有菜单授权
+            </summary>
+            <param name="userId">用户Id</param>
+            <param name="menuId">菜单Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.HasResources(System.String,System.String)">
+            <summary>
+            是否拥有资源授权
+            </summary>
+            <param name="userId">用户Id</param>
+            <param name="resourcesId">资源Id</param>
+            <returns></returns>
+        </member>
+        <member name="T:Business.Interface.System.IMenuBusiness">
+            <summary>
+            角色业务接口类
+            </summary>
+        </member>
+        <member name="M:Business.Interface.System.IMenuBusiness.GetList(Library.Models.Pagination)">
+            <summary>
+            获取列表数据
+            </summary>
+            <param name="pagination">分页设置</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.System.IMenuBusiness.GetTreeList(Model.System.MenuDTO.TreeListParamter,System.Boolean)">
+            <summary>
+            获取树状列表数据
+            </summary>
+            <param name="paramter">参数</param>
+            <param name="deep">处于递归中</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.System.IMenuBusiness.GetDetail(System.String)">
+            <summary>
+            获取详情数据
+            </summary>
+            <param name="id">Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.System.IMenuBusiness.Create(Model.System.MenuDTO.Create)">
+            <summary>
+            新增
+            </summary>
+            <param name="data">数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.System.IMenuBusiness.GetEdit(System.String)">
+            <summary>
+            获取编辑数据
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.System.IMenuBusiness.Edit(Model.System.MenuDTO.Edit)">
+            <summary>
+            编辑
+            </summary>
+            <param name="data">数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.System.IMenuBusiness.Enable(System.String,System.Boolean)">
+            <summary>
+            启用/禁用
+            </summary>
+            <param name="id">数据</param>
+            <param name="enable">设置状态</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.System.IMenuBusiness.Sort(Model.System.MenuDTO.Sort)">
+            <summary>
+            排序
+            </summary>
+            <param name="data">数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.System.IMenuBusiness.DragSort(Model.System.MenuDTO.DragSort)">
+            <summary>
+            拖动排序
+            </summary>
+            <param name="data">数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.System.IMenuBusiness.Delete(System.Collections.Generic.List{System.String})">
+            <summary>
+            删除
+            </summary>
+            <param name="ids">Id集合</param>
+            <returns></returns>
+        </member>
+        <member name="T:Business.Interface.System.IOperationRecordBusiness">
+            <summary>
+            档案操作记录业务接口类
+            </summary>
+        </member>
+        <member name="M:Business.Interface.System.IOperationRecordBusiness.GetList(Library.Models.Pagination)">
+            <summary>
+            获取列表数据
+            </summary>
+            <param name="pagination">分页设置</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.System.IOperationRecordBusiness.GetDetail(System.String)">
+            <summary>
+            获取详情数据
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.System.IOperationRecordBusiness.Create(Entity.System.System_OperationRecord,System.Boolean)">
+            <summary>
+            新增
+            </summary>
+            <param name="data">数据</param>
+            <param name="withOP">写入操作人信息</param>
+            <returns>操作记录Id</returns>
+        </member>
+        <member name="M:Business.Interface.System.IOperationRecordBusiness.Create(System.Collections.Generic.List{Entity.System.System_OperationRecord})">
+            <summary>
+            新增
+            </summary>
+            <param name="datas">数据集合</param>
+            <returns></returns>
+        </member>
+        <member name="T:Business.Interface.System.IOperator">
+            <summary>
+            操作者
+            </summary>
+        </member>
+        <member name="P:Business.Interface.System.IOperator.UserId">
+            <summary>
+            当前操作者UserId
+            </summary>
+        </member>
+        <member name="P:Business.Interface.System.IOperator.Property">
+            <summary>
+            用户信息
+            </summary>
+        </member>
+        <member name="P:Business.Interface.System.IOperator.IsAdmin">
+            <summary>
+            判断是否为管理员
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Business.Interface.System.IResourcesBusiness">
+            <summary>
+            资源业务接口类
+            </summary>
+        </member>
+        <member name="M:Business.Interface.System.IResourcesBusiness.GetList(Library.Models.Pagination)">
+            <summary>
+            获取列表数据
+            </summary>
+            <param name="pagination">分页设置</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.System.IResourcesBusiness.DropdownList(System.String,Library.Models.Pagination)">
+            <summary>
+            获取下拉框数据
+            </summary>
+            <param name="condition">关键词(多个用空格分隔)</param>
+            <param name="pagination">分页设置</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.System.IResourcesBusiness.GetDetail(System.String)">
+            <summary>
+            获取详情数据
+            </summary>
+            <param name="id">Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.System.IResourcesBusiness.Create(Model.System.ResourcesDTO.Create)">
+            <summary>
+            新增
+            </summary>
+            <param name="data">数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.System.IResourcesBusiness.GetEdit(System.String)">
+            <summary>
+            获取编辑数据
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.System.IResourcesBusiness.Edit(Model.System.ResourcesDTO.Edit)">
+            <summary>
+            编辑
+            </summary>
+            <param name="data">数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.System.IResourcesBusiness.Delete(System.Collections.Generic.List{System.String})">
+            <summary>
+            删除
+            </summary>
+            <param name="ids">Id集合</param>
+            <returns></returns>
+        </member>
+        <member name="T:Business.Interface.System.IRoleBusiness">
+            <summary>
+            角色业务接口类
+            </summary>
+        </member>
+        <member name="M:Business.Interface.System.IRoleBusiness.GetList(Library.Models.Pagination)">
+            <summary>
+            获取列表数据
+            </summary>
+            <param name="pagination">分页设置</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.System.IRoleBusiness.GetTreeList(Model.System.RoleDTO.TreeListParamter,System.Boolean)">
+            <summary>
+            获取树状列表数据
+            </summary>
+            <param name="paramter">参数</param>
+            <param name="deep">处于递归中</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.System.IRoleBusiness.GetDetail(System.String)">
+            <summary>
+            获取详情数据
+            </summary>
+            <param name="id">Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.System.IRoleBusiness.Create(Model.System.RoleDTO.Create)">
+            <summary>
+            新增
+            </summary>
+            <param name="data">数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.System.IRoleBusiness.GetEdit(System.String)">
+            <summary>
+            获取编辑数据
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.System.IRoleBusiness.Edit(Model.System.RoleDTO.Edit)">
+            <summary>
+            编辑
+            </summary>
+            <param name="data">数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.System.IRoleBusiness.Enable(System.String,System.Boolean)">
+            <summary>
+            启用/禁用
+            </summary>
+            <param name="id">数据</param>
+            <param name="enable">设置状态</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.System.IRoleBusiness.Sort(Model.System.RoleDTO.Sort)">
+            <summary>
+            排序
+            </summary>
+            <param name="data">数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.System.IRoleBusiness.DragSort(Model.System.RoleDTO.DragSort)">
+            <summary>
+            拖动排序
+            </summary>
+            <param name="data">数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.System.IRoleBusiness.Delete(System.Collections.Generic.List{System.String})">
+            <summary>
+            删除
+            </summary>
+            <param name="ids">Id集合</param>
+            <returns></returns>
+        </member>
+        <member name="T:Business.Interface.System.IUserBusiness">
+            <summary>
+            系统用户业务接口类
+            </summary>
+        </member>
+        <member name="M:Business.Interface.System.IUserBusiness.GetList(Library.Models.Pagination)">
+            <summary>
+            获取列表数据
+            </summary>
+            <param name="pagination">分页设置</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.System.IUserBusiness.DropdownList(System.String,Library.Models.Pagination)">
+            <summary>
+            获取下拉框数据
+            </summary>
+            <param name="condition">关键词(多个用空格分隔)</param>
+            <param name="pagination">分页设置</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.System.IUserBusiness.GetDetail(System.String)">
+            <summary>
+            获取详情数据
+            </summary>
+            <param name="id">Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.System.IUserBusiness.Create(Model.System.UserDTO.Create)">
+            <summary>
+            新增
+            </summary>
+            <param name="data">数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.System.IUserBusiness.GetEdit(System.String)">
+            <summary>
+            获取编辑数据
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.System.IUserBusiness.Edit(Model.System.UserDTO.Edit)">
+            <summary>
+            编辑
+            </summary>
+            <param name="data">数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.System.IUserBusiness.Delete(System.Collections.Generic.List{System.String})">
+            <summary>
+            删除
+            </summary>
+            <param name="ids">Id集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Logger.#cctor">
+            <summary>
+            配置Logger
+            </summary>
+        </member>
+        <member name="T:Business.Util.BaseBusiness">
+            <summary>
+            描述：业务处理基类
+            作者：Coldairarrow
+            </summary>
+            <typeparam name="T">泛型约束（数据库实体）</typeparam>
+        </member>
+        <member name="P:Business.Util.BaseBusiness.Logger">
+            <summary>
+            日志组件
+            </summary>
+        </member>
+        <member name="P:Business.Util.BaseBusiness.Operator">
+            <summary>
+            当前登录人
+            </summary>
+        </member>
+        <member name="M:Business.Util.BaseBusiness.#ctor">
+            <summary>
+            无参构造函数
+            </summary>
+        </member>
+        <member name="M:Business.Util.BaseBusiness.GetPagination``1(System.Linq.IQueryable{``0},Library.Models.Pagination)">
+            <summary>
+            获取分页后的数据
+            </summary>
+            <typeparam name="U">实体类型</typeparam>
+            <param name="query">数据源IQueryable</param>
+            <param name="pagination">分页参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Util.BaseBusiness.GetPagination``1(System.Linq.IQueryable{``0},System.Int32,System.Int32,System.String,Library.Models.SortType,System.Int32@,System.Int32@)">
+            <summary>
+            获取分页后的数据
+            </summary>
+            <typeparam name="U">实体参数</typeparam>
+            <param name="query">IQueryable数据源</param>
+            <param name="pageIndex">当前页</param>
+            <param name="pageRows">每页行数</param>
+            <param name="orderColumn">排序列</param>
+            <param name="orderType">排序类型</param>
+            <param name="count">总记录数</param>
+            <param name="pages">总页数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Util.BaseBusiness.Success">
+            <summary>
+            返回成功
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Util.BaseBusiness.Success``1(``0)">
+            <summary>
+            返回成功
+            </summary>
+            <param name="data">返回数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Util.BaseBusiness.Success``1(``0,System.String)">
+            <summary>
+            返回成功
+            </summary>
+            <param name="data">返回数据</param>
+            <param name="msg">返回消息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Util.BaseBusiness.Error">
+            <summary>
+            返回错误
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Util.BaseBusiness.Error(System.String)">
+            <summary>
+            返回错误
+            </summary>
+            <param name="msg">错误提示</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Util.BaseBusiness.Dispose">
+            <summary>
+            执行与释放或重置非托管资源关联的应用程序定义的任务。
+            </summary>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="T:Business.Util.CASHelper">
+            <summary>
+            CAS帮助类
+            </summary>
+        </member>
+        <member name="M:Business.Util.CASHelper.GetTGT(Library.Models.CASModel.GetTGT)">
+            <summary>
+            获取TGT
+            </summary>
+            <param name="getTGT"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Util.CASHelper.DeleteTGT(Library.Models.CASModel.LogOut)">
+            <summary>
+            删除TGT
+            </summary>
+            <param name="logOut"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Util.CASHelper.GetST(Library.Models.CASModel.GetST)">
+            <summary>
+            获取ST
+            </summary>
+            <param name="getST"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Util.CASHelper.GetUserInfo(Library.Models.CASModel.GetUserInfo)">
+            <summary>
+            获取用户信息
+            </summary>
+            <param name="getUserInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Util.CASHelper.GetTGT(System.String,System.String@)">
+            <summary>
+            解析html以获取tgt
+            </summary>
+            <param name="html">html字符串</param>
+            <param name="tgt">tgt</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Util.CASHelper.GetUserInfo(System.String,Library.Models.CASModel.UserInfo@)">
+            <summary>
+            解析xml以获取用户信息
+            </summary>
+            <param name="xml">xml字符串</param>
+            <param name="userInfo">用户信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Util.Extention.InitEntityWithoutOP``1(``0)">
+            <summary>
+            初始化实体，不处理当前登录人
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Util.Extention.InitEntity``1(``0,Model.System.UserDTO.Authorities)">
+            <summary>
+            初始化实体
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="entity"></param>
+            <param name="property"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Util.Extention.ModifyEntityWithoutOP``1(``0)">
+            <summary>
+            修改实体，不处理当前登录人
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Util.Extention.ModifyEntity``1(``0,Model.System.UserDTO.Authorities)">
+            <summary>
+            修改实体
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="entity"></param>
+            <param name="property"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Util.Extention.GetUserName(Business.Interface.System.IOperator,Model.System.UserDTO.Authorities)">
+            <summary>
+            获取当前登录用户的用户名
+            </summary>
+            <param name="op"></param>
+            <param name="property"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Business.Util.ExceptionHelper">
+            <summary>
+            异常帮助类
+            </summary>
+        </member>
+        <member name="M:Business.Util.ExceptionHelper.ExceptionWriteLog(System.Exception,System.String,System.String,System.String)">
+            <summary>
+            处理系统异常
+            </summary>
+            <param name="ex">异常对象</param>
+            <param name="url">请求地址</param>
+            <param name="Target">目标</param>
+            <param name="Method">方法</param>
+        </member>
+        <member name="M:Business.Util.ExceptionHelper.HandleException(System.Exception,System.String,System.String,System.String)">
+            <summary>
+            处理系统异常
+            </summary>
+            <param name="ex">异常对象</param>
+            <param name="url">请求地址</param>
+            <param name="Target">目标</param>
+            <param name="Method">方法</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Util.ExceptionHelper.HandleException(System.Exception,System.Exception)">
+            <summary>
+            处理系统异常
+            </summary>
+            <param name="ex">当前异常</param>
+            <param name="base_ex">原异常</param>
+            <returns></returns>
+        </member>
+        <member name="T:Business.Util.IdHelper">
+            <summary>
+            雪花Id帮助类
+            </summary>
+        </member>
+        <member name="M:Business.Util.IdHelper.NextId">
+            <summary>
+            下一个Id
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Util.IdHelper.NextIdString">
+            <summary>
+            下一个Id
+            <para>转字符类型</para>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Util.IdHelper.NextIdUpper">
+            <summary>
+            下一个Id
+            <para>转大写</para>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Util.IdHelper.NextIdLower">
+            <summary>
+            下一个Id
+            <para>转小写</para>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Business.Util.ReflectionHelper">
+            <summary>
+            通过反射调用方法
+            LCTR 2019-06-19
+            </summary>
+        </member>
+        <member name="M:Business.Util.ReflectionHelper.Invoke``1(``0,System.String,System.Object[])">
+            <summary>
+            调用方法
+            </summary>
+            <typeparam name="Class">目标类型</typeparam>
+            <param name="obj">目标</param>
+            <param name="Method">方法</param>
+            <param name="parameters">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Util.ReflectionHelper.Invoke``1(``0,System.String,System.Object[],System.Collections.Generic.List{Library.Models.ModelErrorsInfo})">
+            <summary>
+            调用方法
+            </summary>
+            <typeparam name="Class">目标类型</typeparam>
+            <param name="obj">目标</param>
+            <param name="Method">方法</param>
+            <param name="parameters">参数</param>
+            <param name="modelStateErrors">模型验证信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Util.ReflectionHelper.Invoke``1(``0,System.String,System.Object[],System.Collections.Generic.List{Library.Models.ModelErrorsInfo},Microsoft.AspNetCore.Http.HttpRequest)">
+            <summary>
+            调用方法
+            </summary>
+            <typeparam name="Class">目标类型</typeparam>
+            <param name="obj">目标</param>
+            <param name="Method">方法</param>
+            <param name="parameters">参数</param>
+            <param name="modelStateErrors">模型验证信息</param>
+            <param name="request">请求信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Util.ReflectionHelper.Invoke``1(``0,System.String,System.Object[],Microsoft.AspNetCore.Http.HttpRequest)">
+            <summary>
+            调用方法
+            </summary>
+            <typeparam name="Class">目标类型</typeparam>
+            <param name="obj">目标</param>
+            <param name="Method">方法</param>
+            <param name="parameters">参数</param>
+            <param name="request">请求信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Util.ReflectionHelper.InvokeAsync``1(``0,System.String,System.Object[])">
+            <summary>
+            调用异步方法
+            </summary>
+            <typeparam name="Class">目标类型</typeparam>
+            <param name="obj">目标</param>
+            <param name="Method">方法</param>
+            <param name="parameters">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Util.ReflectionHelper.InvokeAsync``1(``0,System.String,System.Object[],System.Collections.Generic.List{Library.Models.ModelErrorsInfo})">
+            <summary>
+            调用异步方法
+            </summary>
+            <typeparam name="Class">目标类型</typeparam>
+            <param name="obj">目标</param>
+            <param name="Method">方法</param>
+            <param name="parameters">参数</param>
+            <param name="modelStateErrors">模型验证信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Util.ReflectionHelper.InvokeAsync``1(``0,System.String,System.Object[],System.Collections.Generic.List{Library.Models.ModelErrorsInfo},Microsoft.AspNetCore.Http.HttpRequest)">
+            <summary>
+            调用异步方法
+            </summary>
+            <typeparam name="Class">目标类型</typeparam>
+            <param name="obj">目标</param>
+            <param name="Method">方法</param>
+            <param name="parameters">参数</param>
+            <param name="modelStateErrors">模型验证信息</param>
+            <param name="request">请求信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Util.ReflectionHelper.InvokeAsync``1(``0,System.String,System.Object[],Microsoft.AspNetCore.Http.HttpRequest)">
+            <summary>
+            调用异步方法
+            </summary>
+            <typeparam name="Class">目标类型</typeparam>
+            <param name="obj">目标</param>
+            <param name="Method">方法</param>
+            <param name="parameters">参数</param>
+            <param name="request">请求信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Util.ReflectionHelper.InvokeStatic(System.Type,System.String,System.Object[])">
+            <summary>
+            调用静态方法
+            </summary>
+            <param name="type">目标类型</param>
+            <param name="Method">方法</param>
+            <param name="parameters">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Util.ReflectionHelper.InvokeStatic(System.Type,System.String,System.Object[],System.Collections.Generic.List{Library.Models.ModelErrorsInfo})">
+            <summary>
+            调用静态方法
+            </summary>
+            <param name="type">目标类型</param>
+            <param name="Method">方法</param>
+            <param name="parameters">参数</param>
+            <param name="modelStateErrors">模型验证信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Util.ReflectionHelper.InvokeStatic(System.Type,System.String,System.Object[],System.Collections.Generic.List{Library.Models.ModelErrorsInfo},Microsoft.AspNetCore.Http.HttpRequest)">
+            <summary>
+            调用静态方法
+            </summary>
+            <param name="type">目标类型</param>
+            <param name="Method">方法</param>
+            <param name="parameters">参数</param>
+            <param name="modelStateErrors">模型验证信息</param>
+            <param name="request">请求信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Util.ReflectionHelper.InvokeStatic(System.Type,System.String,System.Object[],Microsoft.AspNetCore.Http.HttpRequest)">
+            <summary>
+            调用静态方法
+            </summary>
+            <param name="type">目标类型</param>
+            <param name="Method">方法</param>
+            <param name="parameters">参数</param>
+            <param name="request">请求信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Util.ReflectionHelper.Invoke_Real``1(``0,System.String,System.Object[],System.Collections.Generic.List{Library.Models.ModelErrorsInfo},Microsoft.AspNetCore.Http.HttpRequest,System.Boolean)">
+            <summary>
+            调用方法
+            </summary>
+            <typeparam name="Class">目标类型</typeparam>
+            <param name="obj">目标</param>
+            <param name="Method">方法</param>
+            <param name="parameters">参数</param>
+            <param name="modelStateErrors">模型验证信息</param>
+            <param name="request">请求信息</param>
+            <param name="async">异步方法</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Util.ReflectionHelper.InvokeStatic_Real(System.Type,System.String,System.Object[],System.Collections.Generic.List{Library.Models.ModelErrorsInfo},Microsoft.AspNetCore.Http.HttpRequest)">
+            <summary>
+            调用静态方法
+            </summary>
+            <param name="type">目标类型</param>
+            <param name="Method">方法</param>
+            <param name="parameters">参数</param>
+            <param name="modelStateErrors">模型验证信息</param>
+            <param name="request">请求信息</param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

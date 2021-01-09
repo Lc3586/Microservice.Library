@@ -4,7 +4,1310 @@
         <name>Library.WeChat</name>
     </assembly>
     <members>
-        <member name="M:Library.WeChat.Helper.RefundQuery(System.String,System.String,System.String,System.Nullable{System.Int32})">
+        <member name="T:Library.WeChat.Application.WeChatGenOptions">
+            <summary>
+            WeChat配置
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Application.WeChatGenOptions.WeChatServiceOptions">
+            <summary>
+            服务配置
+            </summary>
+        </member>
+        <member name="T:Library.WeChat.Application.WeChatServiceException">
+            <summary>
+            微信服务异常
+            </summary>
+        </member>
+        <member name="T:Library.WeChat.Application.WeChatNotifyException">
+            <summary>
+            微信财付通通知异常
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Application.WeChatNotifyException.NotifyType">
+            <summary>
+            财付通通知类型
+            </summary>
+        </member>
+        <member name="T:Library.WeChat.Application.WeChatServiceOptions">
+            <summary>
+            微信服务配置
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Application.WeChatServiceOptions.IsDebug">
+            <summary>
+            Debug状态
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Application.WeChatServiceOptions.AppId">
+            <summary>
+            公众账号ID
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Application.WeChatServiceOptions.Appsecret">
+            <summary>
+            公众账号密钥
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Application.WeChatServiceOptions.MchId">
+            <summary>
+            服务商户号
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Application.WeChatServiceOptions.Key">
+            <summary>
+            服务商户秘钥
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Application.WeChatServiceOptions.PayNotifyUrl">
+            <summary>
+            接收财付通通知的URL
+            </summary>
+            <remarks>使用付款通知中间件<see cref="T:Library.WeChat.Extension.WeChatNotifyV3Middleware"/>时可不配置此属性</remarks>
+        </member>
+        <member name="P:Library.WeChat.Application.WeChatServiceOptions.RefundNotifyUrl">
+            <summary>
+            异步接收微信支付退款结果通知的回调地址，通知URL必须为外网可访问的url，不允许带参数。
+            </summary>
+            <remarks>使用付款通知中间件<see cref="T:Library.WeChat.Extension.WeChatNotifyV3Middleware"/>时可不配置此属性</remarks>
+        </member>
+        <member name="P:Library.WeChat.Application.WeChatServiceOptions.UserHostAddress">
+            <summary>
+            当前服务器的公网IP
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Application.WeChatServiceOptions.DeviceInfo">
+            <summary>
+            自定义参数
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Application.WeChatServiceOptions.CertFilePath">
+            <summary>
+            p12证书地址
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Application.WeChatServiceOptions.CertPassword">
+            <summary>
+            证书密码
+            <para>一般默认为商户号</para>
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Application.WeChatServiceOptions.PemFilePath">
+            <summary>
+            pem公钥文件地址
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Application.WeChatServiceOptions.Encoding">
+            <summary>
+            编码格式
+            <para>默认utf-8</para>
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Application.WeChatServiceOptions.RequestHeaderSign">
+            <summary>
+            请求签名在请求头中的键
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Application.WeChatServiceOptions.RequestHeaderTimestamp">
+            <summary>
+            时间戳在请求头中的键
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Application.WeChatServiceOptions.RequestHeaderNonce">
+            <summary>
+            随机字符串在请求头中的键
+            </summary>
+        </member>
+        <member name="T:Library.WeChat.Extension.IWeChatNotifyHandler">
+            <summary>
+            微信财付通通知处理接口
+            </summary>
+        </member>
+        <member name="M:Library.WeChat.Extension.IWeChatNotifyHandler.PayNotify(Library.WeChat.Model.PayNotifyInfo)">
+            <summary>
+            付款通知
+            </summary>
+            <param name="notifyInfo">通知信息</param>
+            <returns>通知应答信息</returns>
+        </member>
+        <member name="M:Library.WeChat.Extension.IWeChatNotifyHandler.RefundNotify(Library.WeChat.Model.RefundNotifyInfo)">
+            <summary>
+            退款通知
+            </summary>
+            <param name="notifyInfo">通知信息</param>
+            <returns>通知应答信息</returns>
+        </member>
+        <member name="T:Library.WeChat.Extension.SecurityHelper">
+            <summary>
+            安全措施帮助类
+            </summary>
+        </member>
+        <member name="M:Library.WeChat.Extension.SecurityHelper.#ctor(Library.WeChat.Application.WeChatServiceOptions)">
+            <summary>
+            
+            </summary>
+            <param name="options">微信服务配置</param>
+        </member>
+        <member name="P:Library.WeChat.Extension.SecurityHelper.Options">
+            <summary>
+            微信服务配置
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Extension.SecurityHelper.CertSN">
+            <summary>
+            证书系列号
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Extension.SecurityHelper.PrivateCert">
+            <summary>
+            p12证书
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Extension.SecurityHelper.PrivateKey">
+            <summary>
+            私钥
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Extension.SecurityHelper.PublicKey">
+            <summary>
+            公钥
+            </summary>
+        </member>
+        <member name="M:Library.WeChat.Extension.SecurityHelper.GetSignByteWithSHA256_RSA(System.String)">
+            <summary>
+            获取签名
+            <para>SHA256-RSA</para>
+            </summary>
+            <param name="data">验证签名字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.WeChat.Extension.SecurityHelper.GetSignBase64WithSHA256_RSA(System.String)">
+            <summary>
+            获取签名
+            <para>SHA256-RSA</para>
+            </summary>
+            <param name="data">验证签名字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.WeChat.Extension.SecurityHelper.GetMD5(System.String,System.Boolean)">
+            <summary>
+            获取MD5值
+            </summary>
+            <param name="data"></param>
+            <param name="lower">小写</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.WeChat.Extension.SecurityHelper.DecryptWithAES_256_GCM(System.String,System.String,System.String)">
+            <summary>
+            解密
+            <para>AES-256-GCM</para>
+            </summary>
+            <param name="ciphertext">密文</param>
+            <param name="nonce">长度为12个字节的随机字符串</param>'
+            <param name="associatedData">长度小于16个字节的字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.WeChat.Extension.SecurityHelper.DecryptWithAES_256_ECB(System.String)">
+            <summary>
+            解密
+            <para>AES-256-ECB</para>
+            <para>填充方案: PKCS7Padding</para>
+            </summary>
+            <param name="ciphertext">密文</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.WeChat.Extension.SecurityHelper.EncryptWithRSA(System.String)">
+            <summary>
+            加密
+            <para>RSA</para>
+            <para>填充方案: RSAES-OAEP(Optimal Asymmetric Encryption Padding)</para>
+            </summary>
+            <param name="data">明文</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.WeChat.Extension.SecurityHelper.DecryptWithRSA(System.String)">
+            <summary>
+            解密
+            <para>RSA</para>
+            <para>填充方案: RSAES-OAEP(Optimal Asymmetric Encryption Padding)</para>
+            </summary>
+            <param name="data">密文</param>
+            <returns></returns>
+        </member>
+        <member name="T:Library.WeChat.Extension.WeChatNotifyData">
+            <summary>
+            微信财付通通知数据
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="M:Library.WeChat.Extension.WeChatNotifyData.#ctor(Library.WeChat.Application.WeChatServiceOptions,Library.WeChat.Model.WeChatNotifyType,Microsoft.AspNetCore.Http.HttpRequest)">
+            <summary>
+            
+            </summary>
+            <param name="options">微信服务配置</param>
+            <param name="notifyType">通知类型</param>
+            <param name="request">请求信息</param>
+        </member>
+        <member name="F:Library.WeChat.Extension.WeChatNotifyData.NotifyType">
+            <summary>
+            通知类型
+            </summary>
+        </member>
+        <member name="F:Library.WeChat.Extension.WeChatNotifyData.Options">
+            <summary>
+            微信服务配置
+            </summary>
+        </member>
+        <member name="M:Library.WeChat.Extension.WeChatNotifyData.GetRequestSign">
+            <summary>
+            获取请求中的签名
+            </summary>
+            <returns>base64字符串</returns>
+        </member>
+        <member name="M:Library.WeChat.Extension.WeChatNotifyData.CheckSignAndLoadXml">
+            <summary>
+            检查签名并读取报文内容
+            </summary>
+        </member>
+        <member name="M:Library.WeChat.Extension.WeChatNotifyData.GetXmlMap(System.String)">
+            <summary>
+            获取Xml数据哈希表
+            </summary>
+            <param name="xmlString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.WeChat.Extension.WeChatNotifyData.SetValueFromXmlMap``1(``0,System.Collections.Hashtable)">
+            <summary>
+            读取哈希表数据并写入指定对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="xmlMap"></param>
+        </member>
+        <member name="P:Library.WeChat.Extension.WeChatNotifyData.IsEmpty">
+            <summary>
+            报文内容是否为空
+            </summary>
+        </member>
+        <member name="M:Library.WeChat.Extension.WeChatNotifyData.Init">
+            <summary>
+            初始化
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Library.WeChat.Extension.WeChatNotifyData.GetPayNotifyInfo">
+            <summary>
+            获取支付通知信息
+            </summary>
+        </member>
+        <member name="M:Library.WeChat.Extension.WeChatNotifyData.GetRefundNotifyInfo">
+            <summary>
+            获取退款通知信息
+            </summary>
+        </member>
+        <member name="T:Library.WeChat.Extension.WeChatNotifyV3Middleware">
+            <summary>
+            微信服务财付通通知中间件
+            <para>V3版本</para>
+            </summary>
+        </member>
+        <member name="M:Library.WeChat.Extension.WeChatNotifyV3Middleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Library.WeChat.Extension.IWeChatNotifyHandler,Library.WeChat.Application.WeChatServiceOptions)">
+            <summary>
+            
+            </summary>
+            <param name="next"></param>
+            <param name="handler"></param>
+            <param name="options"></param>
+        </member>
+        <member name="M:Library.WeChat.Extension.WeChatNotifyV3Middleware.Invoke(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Library.WeChat.Gen.IWeChatServiceProvider">
+            <summary>
+            微信服务构造器
+            </summary>
+        </member>
+        <member name="M:Library.WeChat.Gen.IWeChatServiceProvider.GetWeChatServicesV3">
+            <summary>
+            获取微信服务
+            <para>V3版本</para>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Library.WeChat.Gen.WeChatServiceGenerator">
+            <summary>
+            微信服务生成器
+            </summary>
+        </member>
+        <member name="M:Library.WeChat.Gen.WeChatServiceGenerator.#ctor(Library.WeChat.Application.WeChatGenOptions)">
+            <summary>
+            
+            </summary>
+            <param name="options"></param>
+        </member>
+        <member name="T:Library.WeChat.Model.AlgorithmType">
+            <summary>
+            微信通知数据加密算法类型
+            </summary>
+        </member>
+        <member name="F:Library.WeChat.Model.AlgorithmType.AEAD_AES_256_GCM">
+            <summary>
+            AEAD_AES_256_GCM
+            </summary>
+        </member>
+        <member name="T:Library.WeChat.Model.AmountInfo">
+            <summary>
+            订单金额信息
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.AmountInfo.total">
+            <summary>
+            总金额
+            <para>单位为分</para>
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.AmountInfo.payer_total">
+            <summary>
+            用户支付金额
+            <para>单位为分</para>
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.AmountInfo.currency">
+            <summary>
+            货币类型
+            </summary>
+            <remarks>
+            境内商户号仅支持人民币。
+            </remarks>
+        </member>
+        <member name="P:Library.WeChat.Model.AmountInfo.payer_currency">
+            <summary>
+            用户支付币种
+            </summary>
+        </member>
+        <member name="T:Library.WeChat.Model.CurrencyType">
+            <summary>
+            微信通知货币类型
+            </summary>
+        </member>
+        <member name="F:Library.WeChat.Model.CurrencyType.CNY">
+            <summary>
+            人民币
+            </summary>
+        </member>
+        <member name="T:Library.WeChat.Model.EventType">
+            <summary>
+            微信通知类型
+            </summary>
+        </member>
+        <member name="F:Library.WeChat.Model.EventType.TRANSACTION_SUCCESS">
+            <summary>
+            支付成功
+            </summary>
+        </member>
+        <member name="T:Library.WeChat.Model.GoodsDetailInfo">
+            <summary>
+            单品列表信息
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.GoodsDetailInfo.goods_id">
+            <summary>
+            商品编码
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.GoodsDetailInfo.quantity">
+            <summary>
+            商品数量
+            </summary>
+            <remarks>用户购买的数量 </remarks>
+        </member>
+        <member name="P:Library.WeChat.Model.GoodsDetailInfo.unit_price">
+            <summary>
+            商品单价
+            <para>单位为分</para>
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.GoodsDetailInfo.discount_amount">
+            <summary>
+            商品优惠金额
+            <para>单位为分</para>
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.GoodsDetailInfo.goods_remark">
+            <summary>
+            商品备注
+            </summary>
+        </member>
+        <member name="T:Library.WeChat.Model.OriginalType">
+            <summary>
+            微信通知原始回调类型
+            </summary>
+        </member>
+        <member name="F:Library.WeChat.Model.OriginalType.transaction">
+            <summary>
+            transaction
+            </summary>
+        </member>
+        <member name="T:Library.WeChat.Model.PayerInfo">
+            <summary>
+            支付者信息
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.PayerInfo.openid">
+            <summary>
+            用户标识
+            </summary>
+        </member>
+        <member name="T:Library.WeChat.Model.PayNotifyInfo">
+            <summary>
+            微信支付通知
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.PayNotifyInfo.id">
+            <summary>
+            通知ID
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.PayNotifyInfo.create_time">
+            <summary>
+            通知创建时间
+            </summary>
+            <remarks>
+            遵循rfc3339标准格式，
+            格式为YYYY-MM-DDTHH:mm:ss+TIMEZONE，
+            YYYY-MM-DD表示年月日，T出现在字符串中，表示time元素的开头，
+            HH:mm:ss.表示时分秒，TIMEZONE表示时区（+08:00表示东八区时间，领先UTC 8小时，即北京时间）。
+            例如：2015-05-20T13:29:35+08:00表示北京时间2015年05月20日13点29分35秒。
+            </remarks>
+        </member>
+        <member name="P:Library.WeChat.Model.PayNotifyInfo.event_type">
+            <summary>
+            通知类型
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.PayNotifyInfo.resource_type">
+            <summary>
+            通知数据类型
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.PayNotifyInfo.resource">
+            <summary>
+            加密数据
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.PayNotifyInfo.ResourceDecrypt">
+            <summary>
+            明文数据
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.PayNotifyInfo.summary">
+            <summary>
+            回调摘要
+            </summary>
+        </member>
+        <member name="T:Library.WeChat.Model.PayNotifyReply">
+            <summary>
+            微信支付通知应答信息
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.PayNotifyReply.code">
+            <summary>
+            返回状态码
+            </summary>
+            <see cref="T:Library.WeChat.Model.ReturnCode"/>
+            <remarks>
+            SUCCESS为清算机构接收成功，
+            其他错误码为失败。
+            </remarks>
+        </member>
+        <member name="P:Library.WeChat.Model.PayNotifyReply.message">
+            <summary>
+            返回信息
+            </summary>
+            <remarks>如非空，为错误原因。 </remarks>
+        </member>
+        <member name="T:Library.WeChat.Model.PayNotifyResourceEncryptInfo">
+            <summary>
+            微信支付通知加密数据
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.PayNotifyResourceEncryptInfo.algorithm">
+            <summary>
+            加密算法类型
+            </summary>
+            <remarks>
+            对开启结果数据进行加密的加密算法，
+            目前只支持AEAD_AES_256_GCM
+            </remarks>
+        </member>
+        <member name="P:Library.WeChat.Model.PayNotifyResourceEncryptInfo.ciphertext">
+            <summary>
+            数据密文
+            </summary>
+            <remarks>
+            Base64编码后的开启/停用结果数据密文
+            </remarks>
+        </member>
+        <member name="P:Library.WeChat.Model.PayNotifyResourceEncryptInfo.Data">
+            <summary>
+            数据明文
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.PayNotifyResourceEncryptInfo.associated_data">
+            <summary>
+            附加数据
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.PayNotifyResourceEncryptInfo.original_type">
+            <summary>
+            原始类型
+            </summary>
+            <remarks>
+            原始回调类型，为transaction 
+            </remarks>
+        </member>
+        <member name="P:Library.WeChat.Model.PayNotifyResourceEncryptInfo.nonce">
+            <summary>
+            随机串
+            </summary>
+        </member>
+        <member name="T:Library.WeChat.Model.PayNotifyResourceInfo">
+            <summary>
+            微信支付通知数据
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.PayNotifyResourceInfo.appid">
+            <summary>
+            应用ID
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.PayNotifyResourceInfo.mchid">
+            <summary>
+            商户号
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.PayNotifyResourceInfo.out_trade_no">
+            <summary>
+            商户订单号
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.PayNotifyResourceInfo.transaction_id">
+            <summary>
+            微信支付订单号
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.PayNotifyResourceInfo.trade_type">
+            <summary>
+            交易类型
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.PayNotifyResourceInfo.trade_state">
+            <summary>
+            交易状态
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.PayNotifyResourceInfo.trade_state_desc">
+            <summary>
+            交易状态描述
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.PayNotifyResourceInfo.bank_type">
+            <summary>
+            付款银行
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.PayNotifyResourceInfo.attach">
+            <summary>
+            附加数据
+            </summary>
+            <remarks>
+            附加数据，
+            在查询API和支付通知中原样返回，
+            可作为自定义参数使用
+            </remarks>
+        </member>
+        <member name="P:Library.WeChat.Model.PayNotifyResourceInfo.success_time">
+            <summary>
+            支付完成时间
+            </summary>
+            <remarks>
+            遵循rfc3339标准格式，
+            格式为YYYY-MM-DDTHH:mm:ss+TIMEZONE，
+            YYYY-MM-DD表示年月日，T出现在字符串中，表示time元素的开头，
+            HH:mm:ss.表示时分秒，TIMEZONE表示时区（+08:00表示东八区时间，领先UTC 8小时，即北京时间）。
+            例如：2015-05-20T13:29:35+08:00表示北京时间2015年05月20日13点29分35秒。
+            </remarks>
+        </member>
+        <member name="P:Library.WeChat.Model.PayNotifyResourceInfo.payer">
+            <summary>
+            支付者
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.PayNotifyResourceInfo.amount">
+            <summary>
+            订单金额
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.PayNotifyResourceInfo.scene_info">
+            <summary>
+            场景信息
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.PayNotifyResourceInfo.promotion_detail">
+            <summary>
+            优惠功能
+            </summary>
+        </member>
+        <member name="T:Library.WeChat.Model.PromotionDetailInfo">
+            <summary>
+            优惠功能
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.PromotionDetailInfo.coupon_id">
+            <summary>
+            券ID
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.PromotionDetailInfo.name">
+            <summary>
+            优惠名称
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.PromotionDetailInfo.scope">
+            <summary>
+            优惠范围
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.PromotionDetailInfo.type">
+            <summary>
+            优惠类型
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.PromotionDetailInfo.amount">
+            <summary>
+            优惠券面额
+            <para>单位为分</para>
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.PromotionDetailInfo.stock_id">
+            <summary>
+            活动ID
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.PromotionDetailInfo.wechatpay_contribute">
+            <summary>
+            微信出资
+            <para>单位为分</para>
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.PromotionDetailInfo.merchant_contribute">
+            <summary>
+            商户出资
+            <para>单位为分</para>
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.PromotionDetailInfo.other_contribute">
+            <summary>
+            其他出资
+            <para>单位为分</para>
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.PromotionDetailInfo.currency">
+            <summary>
+            优惠币种
+            </summary>
+            <remarks>境内商户号仅支持人民币。 </remarks>
+        </member>
+        <member name="P:Library.WeChat.Model.PromotionDetailInfo.goods_detail">
+            <summary>
+            单品列表
+            </summary>
+        </member>
+        <member name="T:Library.WeChat.Model.PromotionScope">
+            <summary>
+            微信通知优惠范围
+            </summary>
+        </member>
+        <member name="F:Library.WeChat.Model.PromotionScope.GLOBAL">
+            <summary>
+            全场代金券 
+            </summary>
+        </member>
+        <member name="F:Library.WeChat.Model.PromotionScope.SINGLE">
+            <summary>
+            单品优惠 
+            </summary>
+        </member>
+        <member name="T:Library.WeChat.Model.PromotionType">
+            <summary>
+            微信通知优惠类型
+            </summary>
+        </member>
+        <member name="F:Library.WeChat.Model.PromotionType.CASH">
+            <summary>
+            充值 
+            </summary>
+        </member>
+        <member name="F:Library.WeChat.Model.PromotionType.NOCASH">
+            <summary>
+            预充值 
+            </summary>
+        </member>
+        <member name="T:Library.WeChat.Model.RefundAccount">
+            <summary>
+            退款资金来源
+            </summary>
+        </member>
+        <member name="F:Library.WeChat.Model.RefundAccount.REFUND_SOURCE_RECHARGE_FUNDS">
+            <summary>
+            可用余额退款/基本账户
+            </summary>
+        </member>
+        <member name="F:Library.WeChat.Model.RefundAccount.REFUND_SOURCE_UNSETTLED_FUNDS">
+            <summary>
+            未结算资金退款 
+            </summary>
+        </member>
+        <member name="T:Library.WeChat.Model.RefundNotifyInfo">
+            <summary>
+            退款通知信息
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.RefundNotifyInfo.return_code">
+            <summary>
+            返回状态码
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.RefundNotifyInfo.return_msg">
+            <summary>
+            返回信息
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.RefundNotifyInfo.appid">
+            <summary>
+            应用ID
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.RefundNotifyInfo.mch_id">
+            <summary>
+            商户号
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.RefundNotifyInfo.sub_appid">
+            <summary>
+            子商户应用ID
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.RefundNotifyInfo.sub_mch_id">
+            <summary>
+            子商户号
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.RefundNotifyInfo.nonce_str">
+            <summary>
+            随机字符串
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.RefundNotifyInfo.req_info">
+            <summary>
+            加密信息
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.RefundNotifyInfo.ReqInfo">
+            <summary>
+            解密信息
+            </summary>
+        </member>
+        <member name="T:Library.WeChat.Model.RefundNotifyReply">
+            <summary>
+            微信退款通知应答信息
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.RefundNotifyReply.return_code">
+            <summary>
+            返回状态码
+            <see cref="T:Library.WeChat.Model.ReturnCode" />
+            </summary>
+            <remarks>
+            SUCCESS为清算机构接收成功，
+            其他错误码为失败。
+            </remarks>
+        </member>
+        <member name="P:Library.WeChat.Model.RefundNotifyReply.return_msg">
+            <summary>
+            返回信息
+            </summary>
+            <remarks>如非空，为错误原因。 </remarks>
+        </member>
+        <member name="T:Library.WeChat.Model.RefundNotifyReqInfo">
+            <summary>
+            退款通知解密信息
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.RefundNotifyReqInfo.transaction_id">
+            <summary>
+            微信支付订单号
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.RefundNotifyReqInfo.out_trade_no">
+            <summary>
+            商户订单号
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.RefundNotifyReqInfo.refund_id">
+            <summary>
+            微信退款单号
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.RefundNotifyReqInfo.total_fee">
+            <summary>
+            总金额
+            <para>单位为分</para>
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.RefundNotifyReqInfo.settlement_total_fee">
+            <summary>
+            应结订单金额
+            <para>单位为分</para>
+            </summary>
+            <remarks>
+            当订单使用了免充值型优惠券后返回该参数，
+            应结订单金额=订单金额-免充值优惠券金额。
+            </remarks>
+        </member>
+        <member name="P:Library.WeChat.Model.RefundNotifyReqInfo.refund_fee">
+            <summary>
+            申请退款金额
+            <para>单位为分</para>
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.RefundNotifyReqInfo.settlement_refund_fee">
+            <summary>
+            退款金额
+            <para>单位为分</para>
+            </summary>
+            <remarks>
+            去掉非充值代金券退款金额后的退款金额，
+            退款金额=申请退款金额-非充值代金券退款金额，
+            退款金额小于等于申请退款金额
+            </remarks>
+        </member>
+        <member name="P:Library.WeChat.Model.RefundNotifyReqInfo.refund_status">
+            <summary>
+            退款状态
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.RefundNotifyReqInfo.refund_recv_accout">
+            <summary>
+            退款入账账户
+            </summary>
+            <remarks>
+            取当前退款单的退款入账方 
+            1）退回银行卡： 
+            {银行名称}{卡类型}{ 卡尾号}
+            2）退回支付用户零钱:
+            支付用户零钱
+            3）退还商户:
+            商户基本账户
+            商户结算银行账户
+            4）退回支付用户零钱通:
+            支付用户零钱通
+            </remarks>
+        </member>
+        <member name="P:Library.WeChat.Model.RefundNotifyReqInfo.refund_success_time">
+            <summary>
+            退款成功时间
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.RefundNotifyReqInfo.refund_account">
+            <summary>
+            退款资金来源
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.RefundNotifyReqInfo.refund_request_source">
+            <summary>
+            退款发起来源
+            </summary>
+        </member>
+        <member name="T:Library.WeChat.Model.RefundRequestSource">
+            <summary>
+            退款发起来源
+            </summary>
+        </member>
+        <member name="F:Library.WeChat.Model.RefundRequestSource.API">
+            <summary>
+            接口
+            </summary>
+        </member>
+        <member name="F:Library.WeChat.Model.RefundRequestSource.VENDOR_PLATFORM">
+            <summary>
+            商户平台
+            </summary>
+        </member>
+        <member name="T:Library.WeChat.Model.RefundStatus">
+            <summary>
+            退款状态
+            </summary>
+        </member>
+        <member name="F:Library.WeChat.Model.RefundStatus.SUCCESS">
+            <summary>
+            退款成功
+            </summary>
+        </member>
+        <member name="F:Library.WeChat.Model.RefundStatus.REFUNDCLOSE">
+            <summary>
+            退款关闭
+            </summary>
+        </member>
+        <member name="F:Library.WeChat.Model.RefundStatus.CHANGE">
+            <summary>
+            退款异常，退款到银行发现用户的卡作废或者冻结了，导致原路退款银行卡失败，可前往商户平台（pay.weixin.qq.com）-交易中心，手动处理此笔退款。 
+            </summary>
+        </member>
+        <member name="T:Library.WeChat.Model.ResourceType">
+            <summary>
+            微信通知数据类型
+            </summary>
+        </member>
+        <member name="F:Library.WeChat.Model.ResourceType.encrypt_resource">
+            <summary>
+            加密数据
+            </summary>
+        </member>
+        <member name="T:Library.WeChat.Model.ReturnCode">
+            <summary>
+            微信返回状态码
+            </summary>
+        </member>
+        <member name="F:Library.WeChat.Model.ReturnCode.SUCCESS">
+            <summary>
+            通信成功
+            </summary>
+        </member>
+        <member name="F:Library.WeChat.Model.ReturnCode.FAIL">
+            <summary>
+            通信失败
+            </summary>
+        </member>
+        <member name="T:Library.WeChat.Model.SceneInfo">
+            <summary>
+            支付场景信息描述
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.SceneInfo.device_id">
+            <summary>
+            商户端设备号
+            </summary>
+            <remarks>终端设备号（门店号或收银设备ID）。</remarks>
+        </member>
+        <member name="T:Library.WeChat.Model.TradeState">
+            <summary>
+            交易状态
+            </summary>
+        </member>
+        <member name="F:Library.WeChat.Model.TradeState.SUCCESS">
+            <summary>
+            支付成功 
+            </summary>
+        </member>
+        <member name="F:Library.WeChat.Model.TradeState.REFUND">
+            <summary>
+            转入退款 
+            </summary>
+        </member>
+        <member name="F:Library.WeChat.Model.TradeState.NOTPAY">
+            <summary>
+            未支付 
+            </summary>
+        </member>
+        <member name="F:Library.WeChat.Model.TradeState.CLOSED">
+            <summary>
+            已关闭 
+            </summary>
+        </member>
+        <member name="F:Library.WeChat.Model.TradeState.REVOKED">
+            <summary>
+            已撤销(付款码支付)
+            </summary>
+        </member>
+        <member name="F:Library.WeChat.Model.TradeState.USERPAYING">
+            <summary>
+            用户支付中(付款码支付)
+            </summary>
+        </member>
+        <member name="F:Library.WeChat.Model.TradeState.PAYERROR">
+            <summary>
+            支付失败(其他原因，如银行返回失败) 
+            </summary>
+        </member>
+        <member name="T:Library.WeChat.Model.TradeType">
+            <summary>
+            交易类型
+            </summary>
+        </member>
+        <member name="F:Library.WeChat.Model.TradeType.JSAPI">
+            <summary>
+            公众号支付 
+            </summary>
+        </member>
+        <member name="F:Library.WeChat.Model.TradeType.NATIVE">
+            <summary>
+            扫码支付 
+            </summary>
+        </member>
+        <member name="F:Library.WeChat.Model.TradeType.APP">
+            <summary>
+            APP支付 
+            </summary>
+        </member>
+        <member name="F:Library.WeChat.Model.TradeType.MICROPAY">
+            <summary>
+            付款码支付 
+            </summary>
+        </member>
+        <member name="F:Library.WeChat.Model.TradeType.MWEB">
+            <summary>
+            H5支付
+            </summary>
+        </member>
+        <member name="F:Library.WeChat.Model.TradeType.FACEPAY">
+            <summary>
+            刷脸支付 
+            </summary>
+        </member>
+        <member name="T:Library.WeChat.Model.UnifiedorderResult">
+            <summary>
+            统一下单返回数据
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.UnifiedorderResult.AppId">
+            <summary>
+            公众账号ID
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.UnifiedorderResult.TimeStamp">
+            <summary>
+            时间戳
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.UnifiedorderResult.NonceStr">
+            <summary>
+            随机字符串
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.UnifiedorderResult.Package">
+            <summary>
+            预支付信息
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.UnifiedorderResult.PaySign">
+            <summary>
+            支付签名
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.UnifiedorderResult.CodeUrl">
+            <summary>
+            二维码
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.UnifiedorderResult.Data0">
+            <summary>
+            附加数据
+            </summary>
+        </member>
+        <member name="T:Library.WeChat.Model.WeChatNotifyType">
+            <summary>
+            微信财付通通知类型
+            </summary>
+        </member>
+        <member name="F:Library.WeChat.Model.WeChatNotifyType.Pay">
+            <summary>
+            付款
+            </summary>
+        </member>
+        <member name="F:Library.WeChat.Model.WeChatNotifyType.Refund">
+            <summary>
+            退款
+            </summary>
+        </member>
+        <member name="T:Library.WeChat.Model.WeChatSignatureInfo">
+            <summary>
+            微信签名信息
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatSignatureInfo.Ticket">
+            <summary>
+            票据
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatSignatureInfo.Timestamp">
+            <summary>
+            时间戳
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatSignatureInfo.NonceStr">
+            <summary>
+            随机字符串
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatSignatureInfo.Signature">
+            <summary>
+            JS-SDK权限验证的签名
+            </summary>
+        </member>
+        <member name="T:Library.WeChat.Model.WeixinUserInfo">
+            <summary>
+            用户信息
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeixinUserInfo.openid">
+            <summary>
+            应用下用户唯一标识
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeixinUserInfo.nickname">
+            <summary>
+            用户昵称
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeixinUserInfo.sex">
+            <summary>
+            用户的性别
+            </summary>
+            <remarks>
+            值为1时是男性，
+            值为2时是女性，
+            值为0时是未知
+            </remarks>
+        </member>
+        <member name="P:Library.WeChat.Model.WeixinUserInfo.province">
+            <summary>
+            用户个人资料填写的省份
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeixinUserInfo.city">
+            <summary>
+            普通用户个人资料填写的城市
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeixinUserInfo.country">
+            <summary>
+            国家，
+            </summary>
+            <remarks>
+            CN为中国
+            </remarks>
+        </member>
+        <member name="P:Library.WeChat.Model.WeixinUserInfo.headimgurl">
+            <summary>
+            用户头像
+            </summary>
+            <remarks>
+            最后一个数值代表正方形头像大小（有0、46、64、96、132数值可选，0代表640*640正方形头像），
+            用户没有头像时该项为空
+            </remarks>
+        </member>
+        <member name="P:Library.WeChat.Model.WeixinUserInfo.privilege">
+            <summary>
+            用户特权信息
+            </summary>
+            <remarks>
+            如微信沃卡用户为（chinaunicom）
+            </remarks>
+        </member>
+        <member name="P:Library.WeChat.Model.WeixinUserInfo.unionid">
+            <summary>
+            开放平台用户唯一标识
+            </summary>
+        </member>
+        <member name="T:Library.WeChat.WeChatServiceV3">
+            <summary>
+            微信服务
+            </summary>
+        </member>
+        <member name="M:Library.WeChat.WeChatServiceV3.#ctor(Library.WeChat.Application.WeChatServiceOptions)">
+            <summary>
+            
+            </summary>
+            <param name="options"></param>
+        </member>
+        <member name="M:Library.WeChat.WeChatServiceV3.GetNotifyUrl(System.String,Library.WeChat.Model.WeChatNotifyType)">
+            <summary>
+            获取通知Url
+            </summary>
+            <param name="configUrl">配置地址</param>
+            <param name="notifyType">通知类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.WeChat.WeChatServiceV3.TryGetAccessToken">
+            <summary>
+            获取
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Library.WeChat.WeChatServiceV3.GetAttach(System.String,System.IO.Stream)">
+            <summary>
+            获取临时素材
+            </summary>
+            <param name="mediaId"></param>
+            <param name="stream"></param>
+        </member>
+        <member name="M:Library.WeChat.WeChatServiceV3.GetSign(System.String)">
+            <summary>
+            获取签名
+            </summary>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.WeChat.WeChatServiceV3.GetUserInfo(System.String)">
+            <summary>
+            获取用户信息
+            </summary>
+            <param name="openId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.WeChat.WeChatServiceV3.GetUserInfoByCode(System.String)">
+            <summary>
+            获取用户信息
+            </summary>
+            <param name="code"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.WeChat.WeChatServiceV3.QRPay(System.String,System.Int32,System.String,System.String)">
+            <summary>
+            扫码支付
+            </summary>
+            <param name="orderNum"></param>
+            <param name="price"></param>
+            <param name="body"></param>
+            <param name="productId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.WeChat.WeChatServiceV3.Pay(System.String,System.String,System.Int32,System.String)">
+            <summary>
+            付款
+            </summary>
+            <param name="openid"></param>
+            <param name="orderNum"></param>
+            <param name="price"></param>
+            <param name="body"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.WeChat.WeChatServiceV3.Refund(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            退款
+            </summary>
+            <param name="outTradeNo"></param>
+            <param name="outRefundNo"></param>
+            <param name="totalFee"></param>
+            <param name="refundFee"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.WeChat.WeChatServiceV3.RefundQuery(System.String,System.String,System.String,System.Nullable{System.Int32})">
             <summary>
             查询退款
             </summary>
@@ -14,7 +1317,7 @@
             <param name="offset"></param>
             <returns></returns>
         </member>
-        <member name="M:Library.WeChat.Helper.SendTemplateMessage(System.String,System.String,System.String,System.Object)">
+        <member name="M:Library.WeChat.WeChatServiceV3.SendTemplateMessage(System.String,System.String,System.String,System.Object)">
             <summary>
             发送模板消息
             </summary>
@@ -23,39 +1326,39 @@
             <param name="url"></param>
             <param name="data"></param>
         </member>
-        <member name="T:Library.WeChat.Model.WeixinConfig">
+        <member name="T:Microsoft.AspNetCore.Builder.WeChatServiceApplicationBuilderExtensions">
             <summary>
-            配置
+            使用中间件<see cref="T:Library.WeChat.Extension.WeChatNotifyV3Middleware"/>的扩展方法
             </summary>
         </member>
-        <member name="P:Library.WeChat.Model.WeixinUserInfo.openid">
-            <summary>用户的唯一标识</summary>
-        </member>
-        <member name="P:Library.WeChat.Model.WeixinUserInfo.nickname">
-            <summary>用户昵称</summary>
-        </member>
-        <member name="P:Library.WeChat.Model.WeixinUserInfo.sex">
-            <summary>用户的性别，值为1时是男性，值为2时是女性，值为0时是未知</summary>
-        </member>
-        <member name="P:Library.WeChat.Model.WeixinUserInfo.province">
-            <summary>用户个人资料填写的省份</summary>
-        </member>
-        <member name="P:Library.WeChat.Model.WeixinUserInfo.city">
-            <summary>普通用户个人资料填写的城市</summary>
-        </member>
-        <member name="P:Library.WeChat.Model.WeixinUserInfo.country">
-            <summary>国家，如中国为CN</summary>
-        </member>
-        <member name="P:Library.WeChat.Model.WeixinUserInfo.headimgurl">
+        <member name="M:Microsoft.AspNetCore.Builder.WeChatServiceApplicationBuilderExtensions.UseWeChatNotifyV3(Microsoft.AspNetCore.Builder.IApplicationBuilder,Library.WeChat.Extension.IWeChatNotifyHandler)">
             <summary>
-            用户头像，最后一个数值代表正方形头像大小（有0、46、64、96、132数值可选，0代表640*640正方形头像），用户没有头像时该项为空
+            使用微信通知中间件
+            <para>V3版本</para>
+            </summary>
+            <param name="app"></param>
+            <param name="handler">处理类</param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.WeChatServiceCollectionExtensions">
+            <summary>
+            依赖注入扩展方法
             </summary>
         </member>
-        <member name="P:Library.WeChat.Model.WeixinUserInfo.privilege">
+        <member name="M:Microsoft.Extensions.DependencyInjection.WeChatServiceCollectionExtensions.AddWeChatService(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Library.WeChat.Application.WeChatGenOptions})">
             <summary>
-            用户特权信息，json 数组，如微信沃卡用户为（chinaunicom）
-            作者注：其实这个格式称不上JSON，只是个单纯数组。
+            添加微信服务
             </summary>
+            <param name="services"></param>
+            <param name="setupAction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.WeChatServiceCollectionExtensions.ConfigureWeChatService(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Library.WeChat.Application.WeChatGenOptions})">
+            <summary>
+            配置微信服务
+            </summary>
+            <param name="services"></param>
+            <param name="setupAction"></param>
         </member>
     </members>
 </doc>

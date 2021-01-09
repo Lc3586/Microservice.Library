@@ -1,8 +1,8 @@
-﻿using Integrate_Business.Config;
-using Library.Container;
+﻿using Library.Container;
 using Library.Extension;
 using Library.Log;
 using Library.Models;
+using Model.System;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -15,6 +15,10 @@ namespace Business.Util
     /// </summary>
     public class ExceptionHelper
     {
+        readonly static ILogger Logger = AutofacHelper.GetScopeService<ILogger>();
+
+        readonly static SystemConfig Config = AutofacHelper.GetScopeService<SystemConfig>();
+
         /// <summary>
         /// 处理系统异常
         /// </summary>
@@ -24,8 +28,7 @@ namespace Business.Util
         /// <param name="Method">方法</param>
         public static void ExceptionWriteLog(Exception ex, string url = null, string Target = null, string Method = null)
         {
-            ILogger logger = AutofacHelper.GetScopeService<ILogger>();
-            logger.Error(ex);
+            Logger.Error(ex);
         }
 
         /// <summary>
@@ -82,7 +85,7 @@ namespace Business.Util
                 if (base_ex != null)
                     return result;
 
-                if (SystemConfig.systemConfig.RunMode != RunMode.Publish)
+                if (Config.RunMode != RunMode.Publish)
                     result = AjaxResultFactory.Error(msg ?? "系统异常", ex.GetExceptionAllMsg(), data, code);
                 else
                     result = AjaxResultFactory.Error(msg ?? "系统繁忙，请稍后重试", data, code);

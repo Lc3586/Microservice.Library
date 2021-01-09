@@ -69,49 +69,7 @@ namespace Business.Interface.System
 
         #region 拓展功能
 
-        /// <summary>
-        /// 是否为管理员
-        /// </summary>
-        /// <param name="id">Id</param>
-        /// <returns></returns>
-        bool IsAdmin(string id);
 
-        /// <summary>
-        /// 获取授权数据
-        /// </summary>
-        /// <param name="id">Id</param>
-        /// <param name="includeRole">包括授权角色</param>
-        /// <param name="includeMenu">包括授权菜单</param>
-        /// <param name="includeResources">包括授权资源</param>
-        /// <param name="mergeRoleMenu">合并角色的授权菜单</param>
-        /// <param name="mergeRoleResources">合并角色的授权资源</param>
-        /// <returns></returns>
-        Base GetBase(string id, bool includeRole, bool includeMenu, bool includeResources, bool mergeRoleMenu, bool mergeRoleResources);
-
-        /// <summary>
-        /// 获取授权的角色
-        /// </summary>
-        /// <param name="id">Id</param>
-        /// <param name="includeMenu">包括菜单</param>
-        /// <param name="includeResources">包括资源</param>
-        /// <returns></returns>
-        List<Model.System.RoleDTO.Base> GetRolesBase(string id, bool includeMenu, bool includeResources);
-
-        /// <summary>
-        /// 获取授权的菜单
-        /// </summary>
-        /// <param name="id">Id</param>
-        /// <param name="includeRoleAuthorities">是否包括角色的授权数据</param>
-        /// <returns></returns>
-        List<Model.System.MenuDTO.Base> GetMenuAuthoritiesBase(string id, bool includeRoleAuthorities);
-
-        /// <summary>
-        /// 获取授权的资源
-        /// </summary>
-        /// <param name="id">Id</param>
-        /// <param name="includeRoleAuthorities">是否包括角色的授权数据</param>
-        /// <returns></returns>
-        List<Model.System.ResourcesDTO.Base> GetResourcesAuthoritiesBase(string id, bool includeRoleAuthorities);
 
         #endregion
     }

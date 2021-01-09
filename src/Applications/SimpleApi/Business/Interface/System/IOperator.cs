@@ -16,16 +16,12 @@ namespace Business.Interface.System
         /// <summary>
         /// 用户信息
         /// </summary>
-        Base Property { get; }
-
-        #region 操作方法
+        Authorities Property { get; }
 
         /// <summary>
-        /// 判断是否为超级管理员
+        /// 判断是否为管理员
         /// </summary>
         /// <returns></returns>
-        bool IsAdmin();
-
-        #endregion
+        bool IsAdmin { get; }
     }
 }

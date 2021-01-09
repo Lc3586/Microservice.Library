@@ -988,7 +988,7 @@
         </member>
         <member name="P:Library.Models.Pagination.Filter">
             <summary>
-            筛选条件（已弃用）
+            筛选条件
             </summary>
         </member>
         <member name="P:Library.Models.Pagination.DynamicFilterInfo">

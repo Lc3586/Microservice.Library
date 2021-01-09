@@ -28,14 +28,14 @@ namespace Entity.System
         /// <summary>
         /// Id
         /// </summary>
-        [OpenApiSubTag("List", "Edit", "Detail", "Base")]
+        [OpenApiSubTag("List", "Edit", "Detail", "Authorities")]
         [Column(IsPrimary = true, StringLength = 36)]
         public string Id { get; set; }
 
         /// <summary>
         /// 名称
         /// </summary>
-        [OpenApiSubTag("List", "Create", "Edit", "Detail")]
+        [OpenApiSubTag("List", "Create", "Edit", "Detail", "Authorities")]
         [Description("名称")]
         [Column(StringLength = 50)]
         public string Name { get; set; }
@@ -43,7 +43,7 @@ namespace Entity.System
         /// <summary>
         /// 类型
         /// </summary>
-        [OpenApiSubTag("List", "Create", "Edit", "Detail")]
+        [OpenApiSubTag("List", "Create", "Edit", "Detail", "Authorities")]
         [Description("类型")]
         [Column(StringLength = 20)]
         public string Type { get; set; }
@@ -51,7 +51,7 @@ namespace Entity.System
         /// <summary>
         /// 编码
         /// </summary>
-        [OpenApiSubTag("List", "Create", "Edit", "Detail")]
+        [OpenApiSubTag("List", "Create", "Edit", "Detail", "Authorities")]
         [Description("编码")]
         [Column(StringLength = 20)]
         public string Code { get; set; }
@@ -59,7 +59,7 @@ namespace Entity.System
         /// <summary>
         /// 链接地址
         /// </summary>
-        [OpenApiSubTag("List", "Create", "Edit", "Detail")]
+        [OpenApiSubTag("List", "Create", "Edit", "Detail", "Authorities")]
         [Description("链接地址")]
         [Column(StringLength = 20)]
         public string Uri { get; set; }

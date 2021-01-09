@@ -18,12 +18,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Library.Elasticsearch" Version="1.0.18-alpha" />
-    <PackageReference Include="Library.FreeSql" Version="1.5.4-alpha" />
-    <PackageReference Include="Library.Json" Version="1.0.2-alpha" />
-    <PackageReference Include="Library.OpenApi" Version="1.0.8.4-alpha" />
-    <PackageReference Include="Library.Soap" Version="1.0.8-alpha" />
-    <PackageReference Include="NewId" Version="3.0.3" />
+    <ProjectReference Include="..\..\..\Library\Elasticsearch\Library.Elasticsearch.csproj" />
+    <ProjectReference Include="..\..\..\Library\FreeSql\Library.FreeSql.csproj" />
+    <ProjectReference Include="..\..\..\Library\Json\Library.Json.csproj" />
+    <ProjectReference Include="..\..\..\Library\OpenApi\Library.OpenApi.csproj" />
+    <ProjectReference Include="..\..\..\Library\Soap\Library.Soap.csproj" />
   </ItemGroup>
 
   <ItemGroup>

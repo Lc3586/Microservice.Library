@@ -146,28 +146,10 @@
             父AId
             </summary>
         </member>
-        <member name="P:Entity.Example.Sample_DB_A.Parent">
-            <summary>
-            父A
-            </summary>
-            <remarks>父</remarks>
-        </member>
-        <member name="P:Entity.Example.Sample_DB_A.Childs">
-            <summary>
-            子A
-            </summary>
-            <remarks>子</remarks>
-        </member>
         <member name="P:Entity.Example.Sample_DB_A.BId">
             <summary>
             所属B
             </summary>
-        </member>
-        <member name="P:Entity.Example.Sample_DB_A.Example_DB_B">
-            <summary>
-            所属B
-            </summary>
-            <remarks>一对一</remarks>
         </member>
         <member name="P:Entity.Example.Sample_DB_A.Name">
             <summary>
@@ -199,6 +181,24 @@
             最近修改时间
             </summary>
         </member>
+        <member name="P:Entity.Example.Sample_DB_A.Parent">
+            <summary>
+            父A
+            </summary>
+            <remarks>父</remarks>
+        </member>
+        <member name="P:Entity.Example.Sample_DB_A.Childs">
+            <summary>
+            子A
+            </summary>
+            <remarks>子</remarks>
+        </member>
+        <member name="P:Entity.Example.Sample_DB_A.Example_DB_B">
+            <summary>
+            所属B
+            </summary>
+            <remarks>一对一</remarks>
+        </member>
         <member name="P:Entity.Example.Sample_DB_A.Example_DB_Cs">
             <summary>
             相关C
@@ -226,23 +226,11 @@
             </summary>
             <remarks>联合主键</remarks>
         </member>
-        <member name="P:Entity.Example.Sample_DB_AC.Example_DB_A">
-            <summary>
-            相关A
-            </summary>
-            <remarks>一对一</remarks>
-        </member>
         <member name="P:Entity.Example.Sample_DB_AC.CId">
             <summary>
             Id
             </summary>
             <remarks>联合主键</remarks>
-        </member>
-        <member name="P:Entity.Example.Sample_DB_AC.Example_DB_C">
-            <summary>
-            相关C
-            </summary>
-            <remarks>一对一</remarks>
         </member>
         <member name="P:Entity.Example.Sample_DB_AC.CreatorId">
             <summary>
@@ -258,6 +246,18 @@
             <summary>
             创建时间
             </summary>
+        </member>
+        <member name="P:Entity.Example.Sample_DB_AC.Example_DB_A">
+            <summary>
+            相关A
+            </summary>
+            <remarks>一对一</remarks>
+        </member>
+        <member name="P:Entity.Example.Sample_DB_AC.Example_DB_C">
+            <summary>
+            相关C
+            </summary>
+            <remarks>一对一</remarks>
         </member>
         <member name="T:Entity.Example.Sample_DB_B">
             <summary>
@@ -359,12 +359,6 @@
             所属A
             </summary>
         </member>
-        <member name="P:Entity.Example.Sample_DB_D.Example_DB_A">
-            <summary>
-            所属A
-            </summary>
-            <remarks>一对一</remarks>
-        </member>
         <member name="P:Entity.Example.Sample_DB_D.Name">
             <summary>
             名称
@@ -389,6 +383,12 @@
             <summary>
             最近修改时间
             </summary>
+        </member>
+        <member name="P:Entity.Example.Sample_DB_D.Example_DB_A">
+            <summary>
+            所属A
+            </summary>
+            <remarks>一对一</remarks>
         </member>
         <member name="T:Entity.Example.Sample_ES">
             <summary>
@@ -428,6 +428,673 @@
         <member name="P:Entity.Example.Sample_ES.ModifyTime">
             <summary>
             最近编辑时间
+            </summary>
+        </member>
+        <member name="T:Entity.System.System_EntryLog">
+            <summary>
+            登录日志
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_EntryLog.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_EntryLog.Account">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_EntryLog.UserType">
+            <summary>
+            用户类型
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_EntryLog.IsAdmin">
+            <summary>
+            管理员
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_EntryLog.Name">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_EntryLog.Face">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_EntryLog.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_EntryLog.OperatorId">
+            <summary>
+            创建者
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_EntryLog.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_EntryLog.User">
+            <summary>
+            用户
+            </summary>
+        </member>
+        <member name="T:Entity.System.System_Log">
+            <summary>
+            系统日志
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Log.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Log.Level">
+            <summary>
+            日志级别
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Log.LogType">
+            <summary>
+            日志类型
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Log.LogContent">
+            <summary>
+            日志内容
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Log.Data">
+            <summary>
+            数据备份（转为JSON字符串）
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Log.OperatorId">
+            <summary>
+            操作者Id
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Log.OperatorName">
+            <summary>
+            操作者名称
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Log.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="T:Entity.System.System_Menu">
+            <summary>
+            菜单
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Menu.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Menu.RootId">
+            <summary>
+            根菜单Id
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Menu.ParentId">
+            <summary>
+            父级菜单Id
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Menu.Level">
+            <summary>
+            层级
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Menu.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Menu.Type">
+            <summary>
+            类型
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Menu.Code">
+            <summary>
+            编码
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Menu.Uri">
+            <summary>
+            链接地址
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Menu.Method">
+            <summary>
+            请求方法
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Menu.Icon">
+            <summary>
+            图标
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Menu.Enable">
+            <summary>
+            启用
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Menu.Sort">
+            <summary>
+            排序值
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Menu.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Menu.CreatorId">
+            <summary>
+            创建者
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Menu.CreatorName">
+            <summary>
+            创建者名称
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Menu.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Menu.ModifyTime">
+            <summary>
+            最近修改时间
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Menu.Root">
+            <summary>
+            根菜单
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Menu.Parent">
+            <summary>
+            父级菜单
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Menu.Childs">
+            <summary>
+            子菜单
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Menu.Users">
+            <summary>
+            被授权此菜单的用户
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Menu.Role">
+            <summary>
+            被授权此菜单的角色
+            </summary>
+        </member>
+        <member name="T:Entity.System.System_OperationRecord">
+            <summary>
+            操作记录
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_OperationRecord.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_OperationRecord.DataId">
+            <summary>
+            数据Id
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_OperationRecord.DataType">
+            <summary>
+            数据类型
+            <para>System_Uset</para>
+            <para>System_Role</para>
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_OperationRecord.Account">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_OperationRecord.UserType">
+            <summary>
+            用户类型
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_OperationRecord.IsAdmin">
+            <summary>
+            管理员
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_OperationRecord.Explain">
+            <summary>
+            说明
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_OperationRecord.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_OperationRecord.CreatorId">
+            <summary>
+            创建者
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_OperationRecord.CreatorName">
+            <summary>
+            创建者名称
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_OperationRecord.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_OperationRecord.User">
+            <summary>
+            用户
+            </summary>
+        </member>
+        <member name="T:Entity.System.System_Resources">
+            <summary>
+            资源
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Resources.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Resources.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Resources.Type">
+            <summary>
+            类型
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Resources.Code">
+            <summary>
+            编码
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Resources.Uri">
+            <summary>
+            链接地址
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Resources.Icon">
+            <summary>
+            图标
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Resources.Enable">
+            <summary>
+            启用
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Resources.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Resources.CreatorId">
+            <summary>
+            创建者
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Resources.CreatorName">
+            <summary>
+            创建者名称
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Resources.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Resources.ModifyTime">
+            <summary>
+            最近修改时间
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Resources.Roles">
+            <summary>
+            被授权此资源的角色
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Resources.Users">
+            <summary>
+            被授权此资源的用户
+            </summary>
+        </member>
+        <member name="T:Entity.System.System_Role">
+            <summary>
+            角色
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Role.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Role.RootId">
+            <summary>
+            根角色Id
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Role.ParentId">
+            <summary>
+            父级角色Id
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Role.Level">
+            <summary>
+            层级
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Role.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Role.Type">
+            <summary>
+            类型
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Role.Code">
+            <summary>
+            编码
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Role.Icon">
+            <summary>
+            图标
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Role.Enable">
+            <summary>
+            启用
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Role.Sort">
+            <summary>
+            排序值
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Role.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Role.CreatorId">
+            <summary>
+            创建者
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Role.CreatorName">
+            <summary>
+            创建者名称
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Role.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Role.ModifyTime">
+            <summary>
+            最近修改时间
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Role.Parent">
+            <summary>
+            父级角色
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Role.Childs">
+            <summary>
+            子角色
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Role.Users">
+            <summary>
+            被授权此角色的用户
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Role.Menus">
+            <summary>
+            授权给此角色的菜单
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Role.Resources">
+            <summary>
+            授权给此角色的资源
+            </summary>
+        </member>
+        <member name="T:Entity.System.System_RoleMenu">
+            <summary>
+            角色授权菜单
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_RoleMenu.RoleId">
+            <summary>
+            角色Id
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_RoleMenu.MenuId">
+            <summary>
+            菜单Id
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_RoleMenu.Role">
+            <summary>
+            角色
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_RoleMenu.Menu">
+            <summary>
+            菜单
+            </summary>
+        </member>
+        <member name="T:Entity.System.System_RoleResources">
+            <summary>
+            角色授权资源
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_RoleResources.RoleId">
+            <summary>
+            角色Id
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_RoleResources.ResourcesId">
+            <summary>
+            资源Id
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_RoleResources.Role">
+            <summary>
+            角色
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_RoleResources.Resources">
+            <summary>
+            资源
+            </summary>
+        </member>
+        <member name="T:Entity.System.System_User">
+            <summary>
+            用户
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_User.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_User.Type">
+            <summary>
+            类型
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_User.Account">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_User.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_User.Name">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_User.Face">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_User.Enable">
+            <summary>
+            启用
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_User.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_User.CreatorId">
+            <summary>
+            创建者
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_User.CreatorName">
+            <summary>
+            创建者名称
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_User.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_User.ModifyTime">
+            <summary>
+            最近修改时间
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_User.Roles">
+            <summary>
+            授权给此用户的角色
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_User.Menus">
+            <summary>
+            直接授权给此用户的菜单
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_User.Resources">
+            <summary>
+            直接授权给此用户的资源
+            </summary>
+        </member>
+        <member name="T:Entity.System.System_UserMenu">
+            <summary>
+            用户授权菜单
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_UserMenu.UserId">
+            <summary>
+            用户Id
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_UserMenu.MenuId">
+            <summary>
+            菜单Id
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_UserMenu.User">
+            <summary>
+            用户
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_UserMenu.Menu">
+            <summary>
+            菜单
+            </summary>
+        </member>
+        <member name="T:Entity.System.System_UserResources">
+            <summary>
+            用户授权资源
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_UserResources.UserId">
+            <summary>
+            用户Id
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_UserResources.ResourcesId">
+            <summary>
+            资源Id
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_UserResources.User">
+            <summary>
+            用户
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_UserResources.Resources">
+            <summary>
+            资源
+            </summary>
+        </member>
+        <member name="T:Entity.System.System_UserRole">
+            <summary>
+            用户授权角色
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_UserRole.UserId">
+            <summary>
+            用户Id
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_UserRole.RoleId">
+            <summary>
+            角色Id
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_UserRole.User">
+            <summary>
+            用户
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_UserRole.Role">
+            <summary>
+            角色
             </summary>
         </member>
     </members>

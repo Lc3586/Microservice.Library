@@ -29,14 +29,14 @@ namespace Entity.System
         /// <summary>
         /// Id
         /// </summary>
-        [OpenApiSubTag("List", "Edit", "Detail", "Base")]
+        [OpenApiSubTag("List", "Edit", "Detail", "Authorities")]
         [Column(IsPrimary = true, StringLength = 36)]
         public string Id { get; set; }
 
         /// <summary>
         /// 类型
         /// </summary>
-        [OpenApiSubTag("List", "Create", "Edit", "Detail")]
+        [OpenApiSubTag("List", "Create", "Edit", "Detail", "Authorities")]
         [Description("类型")]
         [Column(StringLength = 20)]
         public string Type { get; set; }
@@ -44,7 +44,7 @@ namespace Entity.System
         /// <summary>
         /// 账号
         /// </summary>
-        [OpenApiSubTag("List", "Create", "Edit", "Detail")]
+        [OpenApiSubTag("List", "Create", "Edit", "Detail", "Authorities")]
         [Required(ErrorMessage = "账号不可为空")]
         [Description("账号")]
         [Column(StringLength = 50)]
@@ -78,7 +78,7 @@ namespace Entity.System
         /// <summary>
         /// 启用
         /// </summary>
-        [OpenApiSubTag("List", "Create", "Edit", "Detail")]
+        [OpenApiSubTag("List", "Create", "Edit", "Detail", "Authorities")]
         [Description("启用")]
         public bool Enable { get; set; }
 

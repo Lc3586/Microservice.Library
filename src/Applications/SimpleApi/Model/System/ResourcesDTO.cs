@@ -33,11 +33,11 @@ namespace Model.System.ResourcesDTO
     }
 
     /// <summary>
-    /// 基础信息
+    /// 授权信息
     /// </summary>
     [MapFrom(typeof(System_Resources))]
-    [OpenApiMainTag("Base")]
-    public class Base : System_Resources
+    [OpenApiMainTag("Authorities")]
+    public class Authorities : System_Resources
     {
 
     }

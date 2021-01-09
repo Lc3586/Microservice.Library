@@ -34,7 +34,8 @@ namespace Business.Implementation.System
         public RoleBusiness(
             IFreeSqlProvider freeSqlProvider,
             IAutoMapperProvider autoMapperProvider,
-            IOperationRecordBusiness operationRecordBusiness)
+            IOperationRecordBusiness operationRecordBusiness,
+            IAuthoritiesBusiness authoritiesBusiness)
         {
             Orm = freeSqlProvider.GetFreeSql();
             Repository = Orm.GetRepository<System_Role, string>();
@@ -42,6 +43,7 @@ namespace Business.Implementation.System
             Repository_RoleResources = Orm.GetRepository<System_RoleResources, string>();
             Mapper = autoMapperProvider.GetMapper();
             OperationRecordBusiness = operationRecordBusiness;
+            AuthoritiesBusiness = authoritiesBusiness;
         }
 
         #endregion
@@ -60,6 +62,8 @@ namespace Business.Implementation.System
 
         IOperationRecordBusiness OperationRecordBusiness { get; set; }
 
+        IAuthoritiesBusiness AuthoritiesBusiness { get; set; }
+
         #endregion
 
         #region 公共
@@ -69,7 +73,7 @@ namespace Business.Implementation.System
         public List<List> GetList(Pagination pagination)
         {
             var entityList = Repository.Select
-                                    .ToList<System_Role, List>(Orm, pagination, typeof(List).GetNamesWithTagAndOther(true, "_List"));
+                                    .ToList<System_Role, List>(pagination, typeof(List).GetNamesWithTagAndOther(true, "_List"));
 
             var result = Mapper.Map<List<List>>(entityList);
 
@@ -83,7 +87,7 @@ namespace Business.Implementation.System
 
             var entityList = Repository.Select
                                     .Where(o => o.ParentId == paramter.ParentId)
-                                    .ToList<System_Role, TreeList>(Orm, null, typeof(List).GetNamesWithTagAndOther(true, "_List"));
+                                    .ToList<System_Role, TreeList>(null, typeof(List).GetNamesWithTagAndOther(true, "_List"));
 
             var result = Mapper.Map<List<TreeList>>(entityList);
 
@@ -120,13 +124,28 @@ namespace Business.Implementation.System
 
             (bool success, Exception ex) = Orm.RunTransaction(() =>
             {
+                if (newData.ParentId.IsNullOrWhiteSpace())
+                {
+                    newData.ParentId = null;
+                    newData.Level = 0;
+                    newData.RootId = null;
+                }
+                else
+                {
+                    var parent = Repository.GetAndCheckNull(newData.ParentId);
+                    newData.Level = parent.Level + 1;
+                    newData.RootId = parent.RootId == null ? parent.Id : parent.RootId;
+                }
+
+                newData.Sort = Repository.Where(o => o.ParentId == newData.ParentId).Max(o => o.Sort) + 1;
+
                 Repository.Insert(newData);
 
                 var orId = OperationRecordBusiness.Create(new System_OperationRecord
                 {
                     DataType = nameof(System_Role),
                     DataId = newData.Id,
-                    Explain = $"{DateTime.Now:yyyy年MM月dd日 HH时mm分ss秒}: 创建角色[名称 {newData.Name}, 类型 {newData.Type}]."
+                    Explain = $"创建角色[名称 {newData.Name}, 类型 {newData.Type}]."
                 });
             });
 
@@ -159,11 +178,35 @@ namespace Business.Implementation.System
 
             (bool success, Exception ex) = Orm.RunTransaction(() =>
             {
+                if (editData.ParentId != entity.ParentId)
+                {
+                    if (editData.ParentId.IsNullOrWhiteSpace())
+                    {
+                        editData.ParentId = null;
+                        editData.Level = 0;
+                        editData.RootId = null;
+                    }
+                    else
+                    {
+                        var parent = Repository.GetAndCheckNull(editData.ParentId);
+                        editData.Level = parent.Level + 1;
+                        editData.RootId = parent.RootId == null ? parent.Id : parent.RootId;
+                    }
+
+                    editData.Sort = Repository.Where(o => o.ParentId == editData.ParentId).Max(o => o.Sort) + 1;
+
+                    if (Repository.UpdateDiy
+                             .Where(o => o.ParentId == entity.ParentId && o.Id != entity.Id && o.Sort > entity.Sort)
+                             .Set(o => o.Sort - 1)
+                             .ExecuteAffrows() < 0)
+                        throw new ApplicationException("重新排序失败.");
+                }
+
                 var orId = OperationRecordBusiness.Create(new System_OperationRecord
                 {
                     DataType = nameof(System_Role),
                     DataId = entity.Id,
-                    Explain = $"{DateTime.Now:yyyy年MM月dd日 HH时mm分ss秒}: 修改角色[名称 {entity.Name}, 类型 {entity.Type}].",
+                    Explain = $"修改角色[名称 {entity.Name}, 类型 {entity.Type}].",
                     Remark = $"变更详情: \r\n\t{changed_}"
                 });
 
@@ -193,7 +236,7 @@ namespace Business.Implementation.System
                 {
                     DataType = nameof(System_Role),
                     DataId = entity.Id,
-                    Explain = $"{DateTime.Now:yyyy年MM月dd日 HH时mm分ss秒}: {(enable ? "启用" : "禁用")}角色[名称 {entity.Name}, 类型 {entity.Type}]."
+                    Explain = $"{(enable ? "启用" : "禁用")}角色[名称 {entity.Name}, 类型 {entity.Type}]."
                 });
 
                 if (Repository.Update(entity) <= 0)
@@ -216,6 +259,7 @@ namespace Business.Implementation.System
                                     .ToOne(o => new
                                     {
                                         o.Id,
+                                        o.ParentId,
                                         o.Name,
                                         o.Type,
                                         o.Sort
@@ -232,7 +276,7 @@ namespace Business.Implementation.System
                 {
                     case Model.System.SortType.top:
                         if (Repository.UpdateDiy
-                                 .Where(o => o.Id != data.Id)
+                                 .Where(o => o.ParentId == current.ParentId && o.Id != current.Id)
                                  .Set(o => o.Sort + 1)
                                  .ExecuteAffrows() < 0)
                             throw new ApplicationException("角色排序失败.");
@@ -241,7 +285,7 @@ namespace Business.Implementation.System
                         break;
                     case Model.System.SortType.up:
                         if (Repository.UpdateDiy
-                                 .Where(o => o.Id != data.Id && o.Sort < current.Sort && o.Sort >= current.Sort - data.Span)
+                                 .Where(o => o.ParentId == current.ParentId && o.Id != current.Id && o.Sort < current.Sort && o.Sort >= current.Sort - data.Span)
                                  .Set(o => o.Sort + 1)
                                  .ExecuteAffrows() < 0)
                             throw new ApplicationException("角色排序失败.");
@@ -250,7 +294,7 @@ namespace Business.Implementation.System
                         break;
                     case Model.System.SortType.down:
                         if (Repository.UpdateDiy
-                                 .Where(o => o.Id != data.Id && o.Sort > current.Sort && o.Sort <= current.Sort + data.Span)
+                                 .Where(o => o.ParentId == current.ParentId && o.Id != current.Id && o.Sort > current.Sort && o.Sort <= current.Sort + data.Span)
                                  .Set(o => o.Sort - 1)
                                  .ExecuteAffrows() < 0)
                             throw new ApplicationException("角色排序失败.");
@@ -261,7 +305,7 @@ namespace Business.Implementation.System
                         newSort = Repository.Select.Max(o => o.Sort);
 
                         if (Repository.UpdateDiy
-                                 .Where(o => o.Id != data.Id)
+                                 .Where(o => o.ParentId == current.ParentId && o.Id != current.Id)
                                  .Set(o => o.Sort - 1)
                                  .ExecuteAffrows() < 0)
                             throw new ApplicationException("角色排序失败.");
@@ -274,7 +318,7 @@ namespace Business.Implementation.System
                 {
                     DataType = nameof(System_Role),
                     DataId = current.Id,
-                    Explain = $"{DateTime.Now:yyyy年MM月dd日 HH时mm分ss秒}: 角色排序[名称 {current.Name}, 类型 {current.Type}]."
+                    Explain = $"角色排序[名称 {current.Name}, 类型 {current.Type}]."
                 });
 
                 if (Repository.UpdateDiy
@@ -300,6 +344,7 @@ namespace Business.Implementation.System
                                     .ToOne(o => new
                                     {
                                         o.Id,
+                                        o.ParentId,
                                         o.Name,
                                         o.Type,
                                         o.Sort
@@ -312,7 +357,10 @@ namespace Business.Implementation.System
                                     .ToOne(o => new
                                     {
                                         o.Id,
-                                        o.Sort
+                                        o.ParentId,
+                                        o.Sort,
+                                        o.Level,
+                                        o.RootId
                                     });
 
             if (target.Id == null)
@@ -320,26 +368,64 @@ namespace Business.Implementation.System
 
             (bool success, Exception ex) = Orm.RunTransaction(() =>
             {
-                if (Repository.UpdateDiy
-                         .Where(o => o.Id != data.Id && (current.Sort > target.Sort ? (o.Sort < current.Sort && o.Sort >= target.Sort) : (o.Sort > current.Sort && o.Sort <= target.Sort)))
-                         .Set(o => current.Sort > target.Sort ? o.Sort + 1 : o.Sort - 1)
-                         .ExecuteAffrows() < 0)
-                    throw new ApplicationException("角色排序失败.");
+                if (current.ParentId != target.ParentId)
+                {
+                    if (Repository.UpdateDiy
+                             .Where(o => o.ParentId == current.ParentId && o.Id != current.Id && o.Sort > current.Sort)
+                             .Set(o => o.Sort - 1)
+                             .ExecuteAffrows() < 0)
+                        throw new ApplicationException("角色排序失败.");
 
-                var newSort = target.Sort;
+                    if (Repository.UpdateDiy
+                             .Where(o => o.ParentId == target.ParentId && o.Sort >= target.Sort)
+                             .Set(o => o.Sort + 1)
+                             .ExecuteAffrows() < 0)
+                        throw new ApplicationException("角色排序失败.");
 
-                var orId = OperationRecordBusiness.Create(new System_OperationRecord
+                    if (current.ParentId.IsNullOrWhiteSpace())
+                    {
+                        if (Repository.UpdateDiy
+                                .Where(o => o.Id == current.Id)
+                                .Set(o => o.Sort, target.Sort)
+                                .Set(o => o.ParentId, null)
+                                .Set(o => o.Level, 0)
+                                .Set(o => o.RootId, null)
+                                .ExecuteAffrows() <= 0)
+                            throw new ApplicationException("角色排序失败.");
+                    }
+                    else
+                    {
+                        if (Repository.UpdateDiy
+                                .Where(o => o.Id == current.Id)
+                                .Set(o => o.Sort, target.Sort)
+                                .Set(o => o.ParentId, target.ParentId)
+                                .Set(o => o.Level, target.Level)
+                                .Set(o => o.RootId, target.RootId)
+                                .ExecuteAffrows() <= 0)
+                            throw new ApplicationException("角色排序失败.");
+                    }
+                }
+                else
+                {
+                    if (Repository.UpdateDiy
+                             .Where(o => o.ParentId == current.ParentId && o.Id != current.Id && (current.Sort > target.Sort ? (o.Sort < current.Sort && o.Sort >= target.Sort) : (o.Sort > current.Sort && o.Sort <= target.Sort)))
+                             .Set(o => current.Sort > target.Sort ? o.Sort + 1 : o.Sort - 1)
+                             .ExecuteAffrows() < 0)
+                        throw new ApplicationException("角色排序失败.");
+
+                    if (Repository.UpdateDiy
+                            .Where(o => o.Id == current.Id)
+                            .Set(o => o.Sort, target.Sort)
+                            .ExecuteAffrows() <= 0)
+                        throw new ApplicationException("角色排序失败.");
+                }
+
+                _ = OperationRecordBusiness.Create(new System_OperationRecord
                 {
                     DataType = nameof(System_Role),
                     DataId = current.Id,
-                    Explain = $"{DateTime.Now:yyyy年MM月dd日 HH时mm分ss秒}: 角色排序[名称 {current.Name}, 类型 {current.Type}]."
+                    Explain = $"角色排序[名称 {current.Name}, 类型 {current.Type}]."
                 });
-
-                if (Repository.UpdateDiy
-                        .Where(o => o.Id == current.Id)
-                        .Set(o => o.Sort, newSort)
-                        .ExecuteAffrows() <= 0)
-                    throw new ApplicationException("角色排序失败.");
             });
 
             if (!success)
@@ -351,9 +437,7 @@ namespace Business.Implementation.System
         [AdministratorOnly]
         public AjaxResult Delete(List<string> ids)
         {
-            var _ids = ids.Select(o => o);
-
-            var entityList = Repository.Select.Where(c => _ids.Contains(c.Id)).ToList(c => new { c.Id, c.Name, c.Type });
+            var entityList = Repository.Select.Where(c => ids.Contains(c.Id)).ToList(c => new { c.Id, c.Name, c.Type });
 
             var orList = new List<System_OperationRecord>();
 
@@ -363,19 +447,17 @@ namespace Business.Implementation.System
                 {
                     DataType = nameof(System_Role),
                     DataId = entity.Id,
-                    Explain = $"{DateTime.Now:yyyy年MM月dd日 HH时mm分ss秒}: 删除角色[名称 {entity.Name}, 类型 {entity.Type}]."
+                    Explain = $"删除角色[名称 {entity.Name}, 类型 {entity.Type}]."
                 });
             }
 
             (bool success, Exception ex) = Orm.RunTransaction(() =>
             {
-                if (Repository_RoleMenu.Delete(o => _ids.Contains(o.RoleId)) < 0)
-                    throw new ApplicationException("撤销菜单授权失败");
+                AuthoritiesBusiness.RevocationMenuForRole(ids, false);
 
-                if (Repository_RoleResources.Delete(o => _ids.Contains(o.RoleId)) < 0)
-                    throw new ApplicationException("撤销资源授权失败");
+                AuthoritiesBusiness.RevocationResourcesForRole(ids, false);
 
-                if (Repository.Delete(o => _ids.Contains(o.Id)) <= 0)
+                if (Repository.Delete(o => ids.Contains(o.Id)) <= 0)
                     throw new ApplicationException("未删除任何数据");
 
                 var orIds = OperationRecordBusiness.Create(orList);
@@ -391,61 +473,7 @@ namespace Business.Implementation.System
 
         #region 拓展功能
 
-        public bool IsAdmin(string id)
-        {
-            return Repository.Where(o => o.Id == id && (o.Type == RoleType.超级管理员 || o.Type == RoleType.管理员)).Any();
-        }
 
-        public Base GetBase(string id, bool includeMenu, bool includeResources)
-        {
-            var entity = Repository.GetAndCheckNull(id);
-
-            var result = Mapper.Map<Base>(entity);
-
-            if (includeMenu)
-                result._Menus = GetMenuAuthoritiesBase(id);
-
-            if (includeResources)
-                result._Resources = GetResourcesAuthoritiesBase(id);
-
-            return result;
-        }
-
-        public List<Model.System.MenuDTO.Base> GetMenuAuthoritiesBase(string id)
-        {
-            var menuList = Repository.Select
-                                        .Where(o => o.Id == id)
-                                        .ToOne(o => o.Menus
-                                                    .AsSelect()
-                                                    .ToList<System_Menu, Model.System.MenuDTO.Base>
-                                                    (
-                                                        Orm,
-                                                        null,
-                                                        typeof(Model.System.MenuDTO.Base).GetNamesWithTag(true)
-                                                    ));
-
-            var result = Mapper.Map<List<Model.System.MenuDTO.Base>>(menuList);
-
-            return result;
-        }
-
-        public List<Model.System.ResourcesDTO.Base> GetResourcesAuthoritiesBase(string id)
-        {
-            var menuList = Repository.Select
-                                        .Where(o => o.Id == id)
-                                        .ToOne(o => o.Resources
-                                                    .AsSelect()
-                                                    .ToList<System_Resources, Model.System.ResourcesDTO.Base>
-                                                    (
-                                                        Orm,
-                                                        null,
-                                                        typeof(Model.System.ResourcesDTO.Base).GetNamesWithTag(true)
-                                                    ));
-
-            var result = Mapper.Map<List<Model.System.ResourcesDTO.Base>>(menuList);
-
-            return result;
-        }
 
         #endregion
 

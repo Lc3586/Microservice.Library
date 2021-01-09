@@ -88,13 +88,13 @@ namespace Library.Elasticsearch
             bool isThrow = false)
         {
             var aliasExists = ElasticClient.Indices.AliasExists(alias, s => s.Index(IndiceName));
-            //if (!aliasExists.IsValid)
-            //{
-            //    if (isThrow)
-            //        throw new ElasticsearchError(aliasExists);
-            //    else
-            //        return false;
-            //}
+            if (!aliasExists.IsValid)
+            {
+                if (isThrow)
+                    throw new ElasticsearchException(aliasExists);
+                else
+                    return false;
+            }
             if (aliasExists.Exists)
                 return true;
 

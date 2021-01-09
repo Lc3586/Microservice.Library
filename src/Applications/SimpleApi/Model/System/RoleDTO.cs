@@ -73,25 +73,25 @@ namespace Model.System.RoleDTO
     }
 
     /// <summary>
-    /// 基础信息
+    /// 授权信息
     /// </summary>
     [MapFrom(typeof(System_Role))]
-    [OpenApiMainTag("Base")]
-    public class Base : System_Role
+    [OpenApiMainTag("Authorities")]
+    public class Authorities : System_Role
     {
         /// <summary>
         /// 授权给此角色的菜单
         /// </summary>
         [OpenApiSchema(OpenApiSchemaType.model)]
         [Description("授权给此角色的菜单")]
-        public List<MenuDTO.Base> _Menus { get; set; }
+        public List<MenuDTO.Authorities> _Menus { get; set; }
 
         /// <summary>
         /// 授权给此角色的资源
         /// </summary>
         [OpenApiSchema(OpenApiSchemaType.model)]
         [Description("授权给此角色的资源")]
-        public List<ResourcesDTO.Base> _Resources { get; set; }
+        public List<ResourcesDTO.Authorities> _Resources { get; set; }
     }
 
     /// <summary>

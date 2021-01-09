@@ -1,0 +1,286 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Library.SelectOption</name>
+    </assembly>
+    <members>
+        <member name="T:Library.SelectOption.OptionDisplayType">
+            <summary>
+            选项展示类型
+            </summary>
+        </member>
+        <member name="F:Library.SelectOption.OptionDisplayType.label">
+            <summary>
+            文本(无需换行)
+            </summary>
+        </member>
+        <member name="F:Library.SelectOption.OptionDisplayType.text">
+            <summary>
+            文本(换行)
+            </summary>
+        </member>
+        <member name="F:Library.SelectOption.OptionDisplayType.html">
+            <summary>
+            网页内容
+            </summary>
+        </member>
+        <member name="F:Library.SelectOption.OptionDisplayType.link">
+            <summary>
+            链接
+            </summary>
+        </member>
+        <member name="F:Library.SelectOption.OptionDisplayType.image">
+            <summary>
+            图片
+            </summary>
+        </member>
+        <member name="F:Library.SelectOption.OptionDisplayType.carousel">
+            <summary>
+            轮播图片
+            </summary>
+        </member>
+        <member name="F:Library.SelectOption.OptionDisplayType.hidden">
+            <summary>
+            隐藏域
+            </summary>
+        </member>
+        <member name="F:Library.SelectOption.OptionDisplayType.file">
+            <summary>
+            文件
+            </summary>
+        </member>
+        <member name="T:Library.SelectOption.OptionInfo">
+            <summary>
+            选项信息
+            </summary>
+        </member>
+        <member name="P:Library.SelectOption.OptionInfo.field">
+            <summary>
+            字段名称
+            </summary>
+        </member>
+        <member name="P:Library.SelectOption.OptionInfo.display">
+            <summary>
+            显示名称
+            </summary>
+        </member>
+        <member name="P:Library.SelectOption.OptionInfo.displayType">
+            <summary>
+            数据展示类型
+            </summary>
+        </member>
+        <member name="P:Library.SelectOption.OptionInfo.value">
+            <summary>
+            值
+            </summary>
+        </member>
+        <member name="P:Library.SelectOption.OptionInfo.text">
+            <summary>
+            文本信息（特殊）
+            </summary>
+        </member>
+        <member name="P:Library.SelectOption.OptionInfo.order">
+            <summary>
+            排序值
+            </summary>
+        </member>
+        <member name="P:Library.SelectOption.OptionInfo.group">
+            <summary>
+            排序值
+            </summary>
+        </member>
+        <member name="P:Library.SelectOption.OptionInfo.groupOrder">
+            <summary>
+            分组排序值
+            </summary>
+        </member>
+        <member name="T:Library.SelectOption.SelectOption">
+            <summary>
+            选项集合
+            </summary>
+        </member>
+        <member name="P:Library.SelectOption.SelectOption.value">
+            <summary>
+            值
+            </summary>
+        </member>
+        <member name="P:Library.SelectOption.SelectOption.text">
+            <summary>
+            文本
+            </summary>
+        </member>
+        <member name="P:Library.SelectOption.SelectOption.search">
+            <summary>
+            附加搜索值
+            </summary>
+        </member>
+        <member name="P:Library.SelectOption.SelectOption.type">
+            <summary>
+            附加类型值
+            </summary>
+        </member>
+        <member name="P:Library.SelectOption.SelectOption.options">
+            <summary>
+            选项集合
+            </summary>
+        </member>
+        <member name="T:Library.SelectOption.SelectOptionAttribute">
+            <summary>
+            选项属性
+            </summary>
+        </member>
+        <member name="M:Library.SelectOption.SelectOptionAttribute.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="P:Library.SelectOption.SelectOptionAttribute.NoDropDownFiel">
+            <summary>
+            标记为非下拉框详细信息展示字段,默认[false]
+            </summary>
+        </member>
+        <member name="P:Library.SelectOption.SelectOptionAttribute.DisplayType">
+            <summary>
+            下拉框数据展示类型,默认[label]
+            </summary>
+        </member>
+        <member name="P:Library.SelectOption.SelectOptionAttribute.Split">
+            <summary>
+            数据拼接分隔符(默认[,])
+            </summary>
+        </member>
+        <member name="P:Library.SelectOption.SelectOptionAttribute.Order">
+            <summary>
+            排序值(升序)
+            </summary>
+        </member>
+        <member name="P:Library.SelectOption.SelectOptionAttribute.Group">
+            <summary>
+            分组名称
+            </summary>
+        </member>
+        <member name="P:Library.SelectOption.SelectOptionAttribute.GroupOrder">
+            <summary>
+            分组排序值(升序)
+            </summary>
+        </member>
+        <member name="P:Library.SelectOption.SelectOptionAttribute.TextField">
+            <summary>
+            文本值来源字段
+            </summary>
+        </member>
+        <member name="T:Library.SelectOption.SelectOptionEx">
+            <summary>
+            选项扩展方法
+            </summary>
+        </member>
+        <member name="M:Library.SelectOption.SelectOptionEx.IsNoDropDownFiel(System.Reflection.MemberInfo)">
+            <summary>
+            是否非下拉框详细信息展示字段
+            </summary>
+            <param name="element">目标成员</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.SelectOption.SelectOptionEx.GetDropDownDataInfoType(System.Reflection.MemberInfo)">
+            <summary>
+            获取成员的下拉框数据展示类型
+            </summary>
+            <param name="element">目标成员</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.SelectOption.SelectOptionEx.GetDropDownDataSplit(System.Reflection.MemberInfo)">
+            <summary>
+            获取成员的下拉框数据拼接分隔符
+            </summary>
+            <param name="element">目标成员</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.SelectOption.SelectOptionEx.GetDropDownDataOrder(System.Reflection.MemberInfo)">
+            <summary>
+            获取成员的下拉框数据排序值
+            </summary>
+            <param name="element">目标成员</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.SelectOption.SelectOptionEx.GetDropDownDataGroup(System.Reflection.MemberInfo)">
+            <summary>
+            获取成员的下拉框数据分组名称
+            </summary>
+            <param name="element">目标成员</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.SelectOption.SelectOptionEx.GetDropDownDataGroupOrder(System.Reflection.MemberInfo)">
+            <summary>
+            获取成员的下拉框数据分组排序值
+            </summary>
+            <param name="element">目标成员</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.SelectOption.SelectOptionEx.GetDropDownDataTextField(System.Reflection.MemberInfo)">
+            <summary>
+            获取成员的下拉框数据文本值来源字段
+            </summary>
+            <param name="element">目标成员</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.SelectOption.SelectOptionEx.ToDropDownList``1(System.Collections.Generic.List{``0},System.Func{``0,Library.SelectOption.SelectOption},System.Boolean,System.Collections.Generic.Dictionary{System.String,Library.SelectOption.OptionDisplayType})">
+            <summary>
+            将数据集合转为下拉框数据集合
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="list">数据集合</param>
+            <param name="func"></param>
+            <param name="fillOptions">填充选项</param>
+            <param name="appointTypes">指定数据类型[默认text](key:数据名称,value:数据类型)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.SelectOption.SelectOptionEx.ToDropDownList``2(System.Collections.Generic.List{``0},System.Func{``0,Library.SelectOption.SelectOption},System.Collections.Generic.List{``1},System.Collections.Generic.Dictionary{System.String,Library.SelectOption.OptionDisplayType})">
+            <summary>
+            将数据集合转为下拉框数据集合
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TOption"></typeparam>
+            <param name="list">数据集合</param>
+            <param name="func"></param>
+            <param name="optionList">选项数据集合</param>
+            <param name="appointTypes">指定数据类型[默认text](key:数据名称,value:数据类型)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.SelectOption.SelectOptionEx.ToDropDownList(System.String[],System.Func{System.String,System.Int32,Library.SelectOption.SelectOption})">
+            <summary>
+            将数据集合转为下拉框数据集合
+            </summary>
+            <param name="list">数据集合</param>
+            <param name="func"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.SelectOption.SelectOptionEx.ToDropDownList``1(System.String[],System.Func{System.String,System.Int32,Library.SelectOption.SelectOption},System.Collections.Generic.List{``0},System.Collections.Generic.Dictionary{System.String,Library.SelectOption.OptionDisplayType})">
+            <summary>
+            将数据集合转为下拉框数据集合
+            </summary>
+            <typeparam name="TOption"></typeparam>
+            <param name="list">数据集合</param>
+            <param name="func"></param>
+            <param name="optionList">选项数据集合</param>
+            <param name="appointTypes">指定数据类型[默认text](key:数据名称,value:数据类型)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.SelectOption.SelectOptionEx.ToDropDownDataInfoList``1(``0,System.Collections.Generic.Dictionary{System.String,Library.SelectOption.OptionDisplayType})">
+            <summary>
+            将数据模型转换为下拉框数据详细信息集合
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="model">数据模型对象</param>
+            <param name="appointTypes">指定数据类型[默认text](key:数据名称,value:数据类型)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.SelectOption.SelectOptionEx.ToOptionList(System.Type)">
+            <summary>
+            将枚举类型转为选项列表
+            注：value为值,text为显示内容
+            </summary>
+            <param name="enumType">枚举类型</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

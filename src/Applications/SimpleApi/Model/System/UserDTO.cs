@@ -33,25 +33,25 @@ namespace Model.System.UserDTO
     }
 
     /// <summary>
-    /// 基础信息
+    /// 授权信息
     /// </summary>
     [MapFrom(typeof(System_User))]
-    [OpenApiMainTag("Base")]
-    public class Base : System_User
+    [OpenApiMainTag("Authorities")]
+    public class Authorities : System_User
     {
         /// <summary>
         /// 授权给此用户的角色
         /// </summary>
         [OpenApiSchema(OpenApiSchemaType.model)]
         [Description("授权给此用户的角色")]
-        public List<RoleDTO.Base> _Roles { get; set; }
+        public List<RoleDTO.Authorities> _Roles { get; set; }
 
         /// <summary>
         /// 授权给此用户的菜单
         /// </summary>
         [OpenApiSchema(OpenApiSchemaType.model)]
         [Description("直接授权给此用户的菜单")]
-        public List<MenuDTO.Base> _Menus { get; set; }
+        public List<MenuDTO.Authorities> _Menus { get; set; }
 
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace Model.System.UserDTO
         /// </summary>
         [OpenApiSchema(OpenApiSchemaType.model)]
         [Description("直接授权给此用户的资源")]
-        public List<ResourcesDTO.Base> _Resources { get; set; }
+        public List<ResourcesDTO.Authorities> _Resources { get; set; }
     }
 
     /// <summary>

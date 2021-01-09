@@ -31,7 +31,7 @@ namespace Business.Util
         /// <param name="entity"></param>
         /// <param name="property"></param>
         /// <returns></returns>
-        public static T InitEntity<T>(this T entity,Base property = null)
+        public static T InitEntity<T>(this T entity,Authorities property = null)
         {
             var op = AutofacHelper.GetScopeService<IOperator>();
 
@@ -70,7 +70,7 @@ namespace Business.Util
         /// <param name="entity"></param>
         /// <param name="property"></param>
         /// <returns></returns>
-        public static T ModifyEntity<T>(this T entity, Base property = null)
+        public static T ModifyEntity<T>(this T entity, Authorities property = null)
         {
             var op = AutofacHelper.GetScopeService<IOperator>();
 
@@ -92,7 +92,7 @@ namespace Business.Util
         /// <param name="op"></param>
         /// <param name="property"></param>
         /// <returns></returns>
-        public static string GetUserName(IOperator op = null, Base property = null)
+        public static string GetUserName(IOperator op = null, Authorities property = null)
         {
             op = op ?? AutofacHelper.GetScopeService<IOperator>();
 

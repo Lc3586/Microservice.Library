@@ -31,7 +31,7 @@ namespace Business.Implementation.System
             IFreeSqlProvider freeSqlProvider,
             IAutoMapperProvider autoMapperProvider,
             IOperationRecordBusiness operationRecordBusiness,
-            IRoleBusiness roleBusiness)
+            IAuthoritiesBusiness authoritiesBusiness)
         {
             Orm = freeSqlProvider.GetFreeSql();
             Repository = Orm.GetRepository<System_User, string>();
@@ -40,7 +40,7 @@ namespace Business.Implementation.System
             Repository_UserResources = Orm.GetRepository<System_UserResources, string>();
             Mapper = autoMapperProvider.GetMapper();
             OperationRecordBusiness = operationRecordBusiness;
-            RoleBusiness = roleBusiness;
+            AuthoritiesBusiness = authoritiesBusiness;
         }
 
         #endregion
@@ -61,7 +61,7 @@ namespace Business.Implementation.System
 
         IOperationRecordBusiness OperationRecordBusiness { get; set; }
 
-        IRoleBusiness RoleBusiness { get; set; }
+        IAuthoritiesBusiness AuthoritiesBusiness { get; set; }
 
         #endregion
 
@@ -72,7 +72,7 @@ namespace Business.Implementation.System
         public List<List> GetList(Pagination pagination)
         {
             var entityList = Repository.Select
-                                    .ToList<System_User, List>(Orm, pagination, typeof(List).GetNamesWithTagAndOther(true, "_List"));
+                                    .ToList<System_User, List>(pagination, typeof(List).GetNamesWithTagAndOther(true, "_List"));
 
             var result = Mapper.Map<List<List>>(entityList);
 
@@ -141,7 +141,7 @@ namespace Business.Implementation.System
 
             var list = from a in Orm.Select<System_User>()
                             .Where(where_sql)
-                            .ToList<System_User, List>(Orm, pagination, typeof(List).GetNamesWithTagAndOther(true, "_List"))
+                            .ToList<System_User, List>(pagination, typeof(List).GetNamesWithTagAndOther(true, "_List"))
                        select @select.Invoke(a);
 
             return list.ToList();
@@ -169,7 +169,7 @@ namespace Business.Implementation.System
                 {
                     DataType = nameof(System_User),
                     DataId = newData.Id,
-                    Explain = $"{DateTime.Now:yyyy年MM月dd日 HH时mm分ss秒}: 创建用户[账号 {newData.Account}, 类型 {entity.Type}, 姓名 {newData.Name}]."
+                    Explain = $"创建用户[账号 {newData.Account}, 类型 {newData.Type}, 姓名 {newData.Name}]."
                 });
             });
 
@@ -206,7 +206,7 @@ namespace Business.Implementation.System
                 {
                     DataType = nameof(System_User),
                     DataId = entity.Id,
-                    Explain = $"{DateTime.Now:yyyy年MM月dd日 HH时mm分ss秒}: 修改用户[账号 {entity.Account}, 类型 {entity.Type}, 姓名 {entity.Name}].",
+                    Explain = $"修改用户[账号 {entity.Account}, 类型 {entity.Type}, 姓名 {entity.Name}].",
                     Remark = $"变更详情: \r\n\t{changed_}"
                 });
 
@@ -226,9 +226,7 @@ namespace Business.Implementation.System
         [AdministratorOnly]
         public AjaxResult Delete(List<string> ids)
         {
-            var _ids = ids.Select(o => o);
-
-            var entityList = Repository.Select.Where(c => _ids.Contains(c.Id)).ToList(c => new { c.Id, c.Account, c.Name, c.Type });
+            var entityList = Repository.Select.Where(c => ids.Contains(c.Id)).ToList(c => new { c.Id, c.Account, c.Name, c.Type });
 
             var orList = new List<System_OperationRecord>();
 
@@ -238,25 +236,22 @@ namespace Business.Implementation.System
                 {
                     DataType = nameof(System_User),
                     DataId = entity.Id,
-                    Explain = $"{DateTime.Now:yyyy年MM月dd日 HH时mm分ss秒}: 删除用户[账号 {entity.Account}, 类型 {entity.Type}, 姓名 {entity.Name}]."
+                    Explain = $"删除用户[账号 {entity.Account}, 类型 {entity.Type}, 姓名 {entity.Name}]."
                 });
             }
 
             (bool success, Exception ex) = Orm.RunTransaction(() =>
             {
-                if (Repository_UserRole.Delete(o => _ids.Contains(o.UserId)) < 0)
-                    throw new ApplicationException("撤销角色授权失败");
+                AuthoritiesBusiness.RevocationRoleForUser(ids, false);
 
-                if (Repository_UserMenu.Delete(o => _ids.Contains(o.UserId)) < 0)
-                    throw new ApplicationException("撤销菜单授权失败");
+                AuthoritiesBusiness.RevocationMenuForUser(ids, false);
 
-                if (Repository_UserResources.Delete(o => _ids.Contains(o.UserId)) < 0)
-                    throw new ApplicationException("撤销资源授权失败");
-
-                if (Repository.Delete(o => _ids.Contains(o.Id)) <= 0)
-                    throw new ApplicationException("未删除任何数据");
+                AuthoritiesBusiness.RevocationResourcesForUser(ids, false);
 
                 var orIds = OperationRecordBusiness.Create(orList);
+
+                if (Repository.Delete(o => ids.Contains(o.Id)) <= 0)
+                    throw new ApplicationException("未删除任何数据");
             });
 
             if (!success)
@@ -269,120 +264,7 @@ namespace Business.Implementation.System
 
         #region 拓展功能
 
-        public bool IsAdmin(string id)
-        {
-            return Repository.Where(o => o.Id == id && o.Roles.AsSelect().Any(o => o.Type == RoleType.超级管理员 || o.Type == RoleType.管理员)).Any();
-        }
 
-        public Base GetBase(string id, bool includeRole, bool includeMenu, bool includeResources, bool mergeRoleMenu, bool mergeRoleResources)
-        {
-            var entity = Repository.GetAndCheckNull(id);
-
-            var result = Mapper.Map<Base>(entity);
-
-            if (includeRole)
-                result._Roles = GetRolesBase(id, includeMenu && !mergeRoleMenu, includeResources && !mergeRoleResources);
-
-            if (includeMenu)
-                result._Menus = GetMenuAuthoritiesBase(id, mergeRoleMenu);
-
-            if (includeResources)
-                result._Resources = GetResourcesAuthoritiesBase(id, mergeRoleResources);
-
-            return result;
-        }
-
-        public List<Model.System.RoleDTO.Base> GetRolesBase(string id, bool includeMenu, bool includeResources)
-        {
-            var roleIdList = Repository.Select
-                                     .Where(o => o.Id == id)
-                                     .IncludeMany(o => o.Roles)
-                                     .ToOne(o => o.Roles
-                                                 .AsSelect()
-                                                 .ToList(o => o.Id));
-
-            var result = new List<Model.System.RoleDTO.Base>();
-
-            roleIdList.ForEach(o => result.Add(RoleBusiness.GetBase(o, includeMenu, includeResources)));
-
-            return result;
-        }
-
-        public List<Model.System.MenuDTO.Base> GetMenuAuthoritiesBase(string id, bool includeRoleAuthorities)
-        {
-            var menuList = Repository.Select
-                                        .Where(o => o.Id == id)
-                                        .ToOne(o => o.Menus
-                                                    .AsSelect()
-                                                    .ToList<System_Menu, Model.System.MenuDTO.Base>
-                                                    (
-                                                        Orm,
-                                                        null,
-                                                        typeof(Model.System.MenuDTO.Base).GetNamesWithTag(true)
-                                                    ));
-
-            if (includeRoleAuthorities)
-            {
-                var roleMenuList = Repository.Select
-                                        .Where(o => o.Id == id)
-                                        .IncludeMany(o => o.Roles)
-                                        .ToOne(o => o.Roles
-                                                        .AsSelect()
-                                                        .ToList(p => p.Menus
-                                                                        .AsSelect()
-                                                                        .ToList<System_Menu, Model.System.MenuDTO.Base>
-                                                                        (
-                                                                            Orm,
-                                                                            null,
-                                                                            typeof(Model.System.MenuDTO.Base).GetNamesWithTag(true)
-                                                                        ))
-                                                        .SelectMany(p => p));
-
-                menuList.AddRange(roleMenuList);
-            }
-
-            var result = Mapper.Map<List<Model.System.MenuDTO.Base>>(menuList);
-
-            return result;
-        }
-
-        public List<Model.System.ResourcesDTO.Base> GetResourcesAuthoritiesBase(string id, bool includeRoleAuthorities)
-        {
-            var menuList = Repository.Select
-                                        .Where(o => o.Id == id)
-                                        .ToOne(o => o.Resources
-                                                    .AsSelect()
-                                                    .ToList<System_Resources, Model.System.ResourcesDTO.Base>
-                                                    (
-                                                        Orm,
-                                                        null,
-                                                        typeof(Model.System.ResourcesDTO.Base).GetNamesWithTag(true)
-                                                    ));
-
-            if (includeRoleAuthorities)
-            {
-                var roleMenuList = Repository.Select
-                                        .Where(o => o.Id == id)
-                                        .IncludeMany(o => o.Roles)
-                                        .ToOne(o => o.Roles
-                                                        .AsSelect()
-                                                        .ToList(p => p.Resources
-                                                                        .AsSelect()
-                                                                        .ToList<System_Resources, Model.System.ResourcesDTO.Base>
-                                                                        (
-                                                                            Orm,
-                                                                            null,
-                                                                            typeof(Model.System.ResourcesDTO.Base).GetNamesWithTag(true)
-                                                                        ))
-                                                        .SelectMany(p => p));
-
-                menuList.AddRange(roleMenuList);
-            }
-
-            var result = Mapper.Map<List<Model.System.ResourcesDTO.Base>>(menuList);
-
-            return result;
-        }
 
         #endregion
 
