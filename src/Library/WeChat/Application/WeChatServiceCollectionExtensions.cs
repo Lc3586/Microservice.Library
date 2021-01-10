@@ -16,6 +16,7 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         /// <summary>
         /// 添加微信服务
+        /// <para>单例模式</para>
         /// </summary>
         /// <param name="services"></param>
         /// <param name="setupAction"></param>

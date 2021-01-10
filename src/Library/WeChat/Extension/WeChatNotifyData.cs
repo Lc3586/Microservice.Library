@@ -16,6 +16,7 @@ namespace Library.WeChat.Extension
     /// <summary>
     /// 微信财付通通知数据
     /// </summary>
+    /// <exception cref="WeChatServiceException"></exception>
     /// <remarks></remarks>
     public class WeChatNotifyData
     {

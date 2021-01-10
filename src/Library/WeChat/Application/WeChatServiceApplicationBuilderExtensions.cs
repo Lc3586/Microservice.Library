@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Library.WeChat.Application;
 using Library.WeChat.Extension;
 
 namespace Microsoft.AspNetCore.Builder
@@ -16,6 +17,7 @@ namespace Microsoft.AspNetCore.Builder
         /// </summary>
         /// <param name="app"></param>
         /// <param name="handler">处理类</param>
+        /// <exception cref="WeChatNotifyException"></exception>
         /// <returns></returns>
         public static IApplicationBuilder UseWeChatNotifyV3(this IApplicationBuilder app, IWeChatNotifyHandler handler)
         {

@@ -1,4 +1,6 @@
 ﻿using Library.WeChat.Application;
+using Library.WeChat.Model;
+using Library.WeChat.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -17,15 +19,44 @@ namespace Library.WeChat.Gen
         public WeChatServiceGenerator(WeChatGenOptions options)
         {
             Options = options ?? new WeChatGenOptions();
+            Services = new Dictionary<WeChatServiceVersion, IWeChatService>();
         }
+
+        #region 私有成员
 
         readonly WeChatGenOptions Options;
 
+
+        readonly Dictionary<WeChatServiceVersion, IWeChatService> Services;
+
+        IWeChatService GetWeChatServices(WeChatServiceVersion serviceVersion)
+        {
+            if (Services.ContainsKey(serviceVersion))
+                return Services[serviceVersion];
+
+            switch (serviceVersion)
+            {
+                case WeChatServiceVersion.V3:
+                    Services[serviceVersion] = new WeChatServiceV3(Options.WeChatServiceOptions);
+                    break;
+                default:
+                    throw new WeChatServiceException($"不支持的微信服务版本: {serviceVersion}");
+            }
+
+            return Services[serviceVersion];
+        }
+
+        #endregion
+
+        #region 公共方法
+
 #pragma warning disable CS1591 // 缺少对公共可见类型或成员的 XML 注释
-        public WeChatServiceV3 GetWeChatServicesV3()
+        public IWeChatService GetWeChatServicesV3()
 #pragma warning restore CS1591 // 缺少对公共可见类型或成员的 XML 注释
         {
-            return new WeChatServiceV3(Options.WeChatServiceOptions);
+            return GetWeChatServices(WeChatServiceVersion.V3);
         }
+
+        #endregion
     }
 }

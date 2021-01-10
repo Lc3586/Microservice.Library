@@ -6,9 +6,9 @@ using System.Text;
 namespace Library.WeChat.Model
 {
     /// <summary>
-    /// 微信通知货币类型
+    /// 货币类型
     /// </summary>
-    public static class CurrencyType
+    public static class FreeType
     {
         /// <summary>
         /// 人民币

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Library.WeChat.Application;
+using Library.WeChat.Services;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -14,6 +16,6 @@ namespace Library.WeChat.Gen
         /// <para>V3版本</para>
         /// </summary>
         /// <returns></returns>
-        WeChatServiceV3 GetWeChatServicesV3();
+        IWeChatService GetWeChatServicesV3();
     }
 }

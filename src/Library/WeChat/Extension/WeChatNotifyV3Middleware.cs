@@ -17,6 +17,7 @@ namespace Library.WeChat.Extension
     /// 微信服务财付通通知中间件
     /// <para>V3版本</para>
     /// </summary>
+    /// <exception cref="WeChatServiceException"></exception>
     public class WeChatNotifyV3Middleware
     {
         /// <summary>

@@ -1,30 +1,74 @@
-﻿using Library.WeChat.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Library.WeChat.Application
 {
     /// <summary>
-    /// 微信财付通通知异常
+    /// 微信服务异常
     /// </summary>
-    internal class WeChatNotifyException : ApplicationException
+    public class WeChatServiceException : ApplicationException
     {
-        public WeChatNotifyException(WeChatNotifyType notifyType, string message, Exception ex = null)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="ex"></param>
+        public WeChatServiceException(string message, Exception ex = null)
             : base(message, ex)
         {
-            NotifyType = notifyType;
-        }
 
-        public WeChatNotifyException(WeChatNotifyType notifyType, string title, string message, Exception ex = null)
-            : base($"{title} : {message}", ex)
-        {
-            NotifyType = notifyType;
         }
 
         /// <summary>
-        /// 财付通通知类型
+        /// 
         /// </summary>
-        public WeChatNotifyType NotifyType { get; }
+        /// <param name="title"></param>
+        /// <param name="message"></param>
+        /// <param name="ex"></param>
+        public WeChatServiceException(string title, string message, Exception ex = null)
+            : base($"{title} : {message}", ex)
+        {
+
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="data"></param>
+        /// <param name="dataType"></param>
+        /// <param name="ex"></param>
+        public WeChatServiceException(string message, object data, Type dataType, Exception ex = null)
+            : base(message, ex)
+        {
+            ResultData = data;
+            DataType = dataType;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="message"></param>
+        /// <param name="data"></param>
+        /// '<param name="dataType"></param>
+        /// <param name="ex"></param>
+        public WeChatServiceException(string title, string message, object data, Type dataType, Exception ex = null)
+            : base($"{title} : {message}", ex)
+        {
+            ResultData = data;
+            DataType = dataType;
+        }
+
+        /// <summary>
+        /// 数据
+        /// </summary>
+
+        public object ResultData { get; set; }
+
+        /// <summary>
+        /// 数据类型
+        /// </summary>
+        public Type DataType { get; set; }
     }
 }

@@ -54,11 +54,6 @@ namespace Library.WeChat.Application
         public string UserHostAddress { get; set; }
 
         /// <summary>
-        /// 自定义参数
-        /// </summary>
-        public string DeviceInfo { get; set; }
-
-        /// <summary>
         /// p12证书地址
         /// </summary>
         public string CertFilePath { get; set; }

@@ -14,19 +14,80 @@
             服务配置
             </summary>
         </member>
-        <member name="T:Library.WeChat.Application.WeChatServiceException">
-            <summary>
-            微信服务异常
-            </summary>
-        </member>
         <member name="T:Library.WeChat.Application.WeChatNotifyException">
             <summary>
             微信财付通通知异常
             </summary>
         </member>
+        <member name="M:Library.WeChat.Application.WeChatNotifyException.#ctor(Library.WeChat.Model.WeChatNotifyType,System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="notifyType"></param>
+            <param name="message"></param>
+            <param name="ex"></param>
+        </member>
+        <member name="M:Library.WeChat.Application.WeChatNotifyException.#ctor(Library.WeChat.Model.WeChatNotifyType,System.String,System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="notifyType"></param>
+            <param name="title"></param>
+            <param name="message"></param>
+            <param name="ex"></param>
+        </member>
         <member name="P:Library.WeChat.Application.WeChatNotifyException.NotifyType">
             <summary>
             财付通通知类型
+            </summary>
+        </member>
+        <member name="T:Library.WeChat.Application.WeChatServiceException">
+            <summary>
+            微信服务异常
+            </summary>
+        </member>
+        <member name="M:Library.WeChat.Application.WeChatServiceException.#ctor(System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="ex"></param>
+        </member>
+        <member name="M:Library.WeChat.Application.WeChatServiceException.#ctor(System.String,System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="title"></param>
+            <param name="message"></param>
+            <param name="ex"></param>
+        </member>
+        <member name="M:Library.WeChat.Application.WeChatServiceException.#ctor(System.String,System.Object,System.Type,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="data"></param>
+            <param name="dataType"></param>
+            <param name="ex"></param>
+        </member>
+        <member name="M:Library.WeChat.Application.WeChatServiceException.#ctor(System.String,System.String,System.Object,System.Type,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="title"></param>
+            <param name="message"></param>
+            <param name="data"></param>
+            '<param name="dataType"></param>
+            <param name="ex"></param>
+        </member>
+        <member name="P:Library.WeChat.Application.WeChatServiceException.ResultData">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Application.WeChatServiceException.DataType">
+            <summary>
+            数据类型
             </summary>
         </member>
         <member name="T:Library.WeChat.Application.WeChatServiceOptions">
@@ -74,11 +135,6 @@
         <member name="P:Library.WeChat.Application.WeChatServiceOptions.UserHostAddress">
             <summary>
             当前服务器的公网IP
-            </summary>
-        </member>
-        <member name="P:Library.WeChat.Application.WeChatServiceOptions.DeviceInfo">
-            <summary>
-            自定义参数
             </summary>
         </member>
         <member name="P:Library.WeChat.Application.WeChatServiceOptions.CertFilePath">
@@ -238,6 +294,7 @@
             <summary>
             微信财付通通知数据
             </summary>
+            <exception cref="T:Library.WeChat.Application.WeChatServiceException"></exception>
             <remarks></remarks>
         </member>
         <member name="M:Library.WeChat.Extension.WeChatNotifyData.#ctor(Library.WeChat.Application.WeChatServiceOptions,Library.WeChat.Model.WeChatNotifyType,Microsoft.AspNetCore.Http.HttpRequest)">
@@ -310,6 +367,7 @@
             微信服务财付通通知中间件
             <para>V3版本</para>
             </summary>
+            <exception cref="T:Library.WeChat.Application.WeChatServiceException"></exception>
         </member>
         <member name="M:Library.WeChat.Extension.WeChatNotifyV3Middleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Library.WeChat.Extension.IWeChatNotifyHandler,Library.WeChat.Application.WeChatServiceOptions)">
             <summary>
@@ -389,16 +447,6 @@
             用户支付币种
             </summary>
         </member>
-        <member name="T:Library.WeChat.Model.CurrencyType">
-            <summary>
-            微信通知货币类型
-            </summary>
-        </member>
-        <member name="F:Library.WeChat.Model.CurrencyType.CNY">
-            <summary>
-            人民币
-            </summary>
-        </member>
         <member name="T:Library.WeChat.Model.EventType">
             <summary>
             微信通知类型
@@ -407,6 +455,16 @@
         <member name="F:Library.WeChat.Model.EventType.TRANSACTION_SUCCESS">
             <summary>
             支付成功
+            </summary>
+        </member>
+        <member name="T:Library.WeChat.Model.FreeType">
+            <summary>
+            货币类型
+            </summary>
+        </member>
+        <member name="F:Library.WeChat.Model.FreeType.CNY">
+            <summary>
+            人民币
             </summary>
         </member>
         <member name="T:Library.WeChat.Model.GoodsDetailInfo">
@@ -757,17 +815,17 @@
             预充值 
             </summary>
         </member>
-        <member name="T:Library.WeChat.Model.RefundAccount">
+        <member name="T:Library.WeChat.Model.RefundAccountType">
             <summary>
             退款资金来源
             </summary>
         </member>
-        <member name="F:Library.WeChat.Model.RefundAccount.REFUND_SOURCE_RECHARGE_FUNDS">
+        <member name="F:Library.WeChat.Model.RefundAccountType.REFUND_SOURCE_RECHARGE_FUNDS">
             <summary>
             可用余额退款/基本账户
             </summary>
         </member>
-        <member name="F:Library.WeChat.Model.RefundAccount.REFUND_SOURCE_UNSETTLED_FUNDS">
+        <member name="F:Library.WeChat.Model.RefundAccountType.REFUND_SOURCE_UNSETTLED_FUNDS">
             <summary>
             未结算资金退款 
             </summary>
@@ -1079,46 +1137,6 @@
             刷脸支付 
             </summary>
         </member>
-        <member name="T:Library.WeChat.Model.UnifiedorderResult">
-            <summary>
-            统一下单返回数据
-            </summary>
-        </member>
-        <member name="P:Library.WeChat.Model.UnifiedorderResult.AppId">
-            <summary>
-            公众账号ID
-            </summary>
-        </member>
-        <member name="P:Library.WeChat.Model.UnifiedorderResult.TimeStamp">
-            <summary>
-            时间戳
-            </summary>
-        </member>
-        <member name="P:Library.WeChat.Model.UnifiedorderResult.NonceStr">
-            <summary>
-            随机字符串
-            </summary>
-        </member>
-        <member name="P:Library.WeChat.Model.UnifiedorderResult.Package">
-            <summary>
-            预支付信息
-            </summary>
-        </member>
-        <member name="P:Library.WeChat.Model.UnifiedorderResult.PaySign">
-            <summary>
-            支付签名
-            </summary>
-        </member>
-        <member name="P:Library.WeChat.Model.UnifiedorderResult.CodeUrl">
-            <summary>
-            二维码
-            </summary>
-        </member>
-        <member name="P:Library.WeChat.Model.UnifiedorderResult.Data0">
-            <summary>
-            附加数据
-            </summary>
-        </member>
         <member name="T:Library.WeChat.Model.WeChatNotifyType">
             <summary>
             微信财付通通知类型
@@ -1132,6 +1150,294 @@
         <member name="F:Library.WeChat.Model.WeChatNotifyType.Refund">
             <summary>
             退款
+            </summary>
+        </member>
+        <member name="T:Library.WeChat.Model.WeChatPayApiVersion">
+            <summary>
+            微信支付接口版本
+            </summary>
+        </member>
+        <member name="F:Library.WeChat.Model.WeChatPayApiVersion.V3">
+            <summary>
+            https://pay.weixin.qq.com/wiki/doc/apiv3/index.shtml
+            </summary>
+        </member>
+        <member name="T:Library.WeChat.Model.WeChatPayV3Result">
+            <summary>
+            微信支付V3版本返回数据
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatPayV3Result.return_code">
+            <summary>
+            返回状态码
+            <see cref="T:Library.WeChat.Model.ReturnCode"/>
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatPayV3Result.return_msg">
+            <summary>
+            返回信息
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatPayV3Result.ResultXml">
+            <summary>
+            XML内容
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatPayV3Result.appid">
+            <summary>
+            微信分配的公众账号ID（付款到银行卡接口，此字段不提供）
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatPayV3Result.mch_id">
+             <summary>
+            微信支付分配的商户号
+             </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatPayV3Result.sub_appid">
+            <summary>
+            子商户公众账号ID
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatPayV3Result.sub_mch_id">
+            <summary>
+            子商户号
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatPayV3Result.nonce_str">
+            <summary>
+            随机字符串，不长于32 位
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatPayV3Result.sign">
+            <summary>
+            签名
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatPayV3Result.result_code">
+            <summary>
+            SUCCESS/FAIL
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatPayV3Result.err_code">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatPayV3Result.err_code_des">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Library.WeChat.Model.WeChatRefundParamter">
+            <summary>
+            微信退款参数
+            </summary>
+        </member>
+        <member name="M:Library.WeChat.Model.WeChatRefundParamter.GetSimpleParamter(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            获取参数
+            </summary>
+            <param name="outTradeNo">商家订单号</param>
+            <param name="outRefundNo">商户侧传给微信的退款单号</param>
+            <param name="totalFee">
+            订单金额
+            订单总金额，单位为分，只能为整数，详见支付金额
+            </param>
+            <param name="refundFee">
+            退款金额
+            退款总金额，订单总金额，单位为分，只能为整数，详见支付金额
+            </param>
+            <returns></returns>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatRefundParamter.OutTradeNo">
+            <summary>
+            商户系统内部的订单号（和TransactionId二选一）
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatRefundParamter.OutRefundNo">
+            <summary>
+            商户侧传给微信的退款单号
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatRefundParamter.TotalFee">
+            <summary>
+            订单金额。
+            订单总金额，单位为分，只能为整数，详见支付金额
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatRefundParamter.RefundFee">
+            <summary>
+            退款金额。
+            退款总金额，订单总金额，单位为分，只能为整数，详见支付金额
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatRefundParamter.RefundAccount">
+            <summary>
+            退款资金来源。
+            <see cref="T:Library.WeChat.Model.RefundAccountType"/>
+            仅针对老资金流商户使用 REFUND_SOURCE_UNSETTLED_FUNDS---未结算资金退款（默认使用未结算资金退款） REFUND_SOURCE_RECHARGE_FUNDS---可用余额退款(限非当日交易订单的退款）
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatRefundParamter.RefundDescription">
+            <summary>
+            若商户传入，会在下发给用户的退款消息中体现退款原因
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatRefundParamter.RefundFeeType">
+            <summary>
+            货币类型，
+            <see cref="T:Library.WeChat.Model.FreeType"/>
+            符合ISO 4217标准的三位字母代码，默认人民币：CNY，其他值列表详见货币类型
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatRefundParamter.TransactionId">
+            <summary>
+            微信订单号（和OutTradeNo二选一）
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatRefundParamter.NonceStr">
+            <summary>
+            随机字符串
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatRefundParamter.DeviceInfo">
+            <summary>
+            商户自定义的终端设备号，
+            如门店编号、设备的ID
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatRefundParamter.TimeOut">
+            <summary>
+            超时时间（毫秒）
+            </summary>
+        </member>
+        <member name="T:Library.WeChat.Model.WeChatRefundQueryParamter">
+            <summary>
+            微信查询退款参数
+            </summary>
+        </member>
+        <member name="M:Library.WeChat.Model.WeChatRefundQueryParamter.GetSimpleParamter(System.String,System.String,System.String,System.Nullable{System.Int32})">
+            <summary>
+            获取参数
+            </summary>
+            <param name="outTradeNo">商家订单号</param>
+            <param name="outRefundNo">商户侧传给微信的退款单号</param>
+            <param name="refundId">
+            微信生成的退款单号，
+            在申请退款接口有返回
+            </param>
+            <param name="offset">
+            偏移量，
+            当部分退款次数超过10次时可使用，
+            表示返回的查询结果从这个偏移量开始取记录，如：15
+            </param>
+            <returns></returns>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatRefundQueryParamter.OutTradeNo">
+            <summary>
+            商户系统内部的订单号
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatRefundQueryParamter.OutRefundNo">
+            <summary>
+            商户侧传给微信的退款单号
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatRefundQueryParamter.RefundId">
+            <summary>
+            微信生成的退款单号，
+            在申请退款接口有返回
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatRefundQueryParamter.TransactionId">
+            <summary>
+            微信订单号
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatRefundQueryParamter.NonceStr">
+            <summary>
+            随机字符串
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatRefundQueryParamter.DeviceInfo">
+            <summary>
+            商户自定义的终端设备号，
+            如门店编号、设备的ID
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatRefundQueryParamter.Offset">
+            <summary>
+            偏移量，
+            当部分退款次数超过10次时可使用，
+            表示返回的查询结果从这个偏移量开始取记录，如：15
+            </summary>
+        </member>
+        <member name="T:Library.WeChat.Model.WeChatSendTemplateMessageParamter">
+            <summary>
+            微信发送模板消息参数
+            </summary>
+        </member>
+        <member name="M:Library.WeChat.Model.WeChatSendTemplateMessageParamter.GetSimpleParamter(System.String,System.String,System.Object,System.String)">
+            <summary>
+            获取参数
+            </summary>
+            <param name="openId">接收消息的用户openid</param>
+            <param name="templateId">订阅消息模板ID</param>
+            <param name="data">
+            消息正文，
+            value为消息内容文本（200字以内），
+            没有固定格式，可用\n换行，
+            color为整段消息内容的字体颜色（目前仅支持整段消息为一种颜色）
+            </param>
+            <param name="url">
+            点击消息跳转的链接，
+            需要有ICP备案
+            </param>
+            <returns></returns>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatSendTemplateMessageParamter.OpenId">
+            <summary>
+            接收消息的用户openid
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatSendTemplateMessageParamter.TemplateId">
+            <summary>
+            订阅消息模板ID
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatSendTemplateMessageParamter.Data">
+            <summary>
+            消息正文，
+            value为消息内容文本（200字以内），
+            没有固定格式，可用\n换行，
+            color为整段消息内容的字体颜色（目前仅支持整段消息为一种颜色）
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatSendTemplateMessageParamter.Url">
+            <summary>
+            点击消息跳转的链接，
+            需要有ICP备案
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatSendTemplateMessageParamter.MiniProgram">
+            <summary>
+            跳小程序所需数据，
+            不需跳小程序可不用传该数据
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatSendTemplateMessageParamter.TimeOut">
+            <summary>
+            代理请求超时时间（毫秒）
+            </summary>
+        </member>
+        <member name="T:Library.WeChat.Model.WeChatServiceVersion">
+            <summary>
+            微信服务版本
+            </summary>
+        </member>
+        <member name="F:Library.WeChat.Model.WeChatServiceVersion.V3">
+            <summary>
+            微信支付部分的接口版本为<see cref="F:Library.WeChat.Model.WeChatPayApiVersion.V3"/>
             </summary>
         </member>
         <member name="T:Library.WeChat.Model.WeChatSignatureInfo">
@@ -1159,172 +1465,428 @@
             JS-SDK权限验证的签名
             </summary>
         </member>
-        <member name="T:Library.WeChat.Model.WeixinUserInfo">
+        <member name="T:Library.WeChat.Model.WeChatUnifiedorderDetail">
             <summary>
-            用户信息
+            商品详细列表
             </summary>
         </member>
-        <member name="P:Library.WeChat.Model.WeixinUserInfo.openid">
+        <member name="P:Library.WeChat.Model.WeChatUnifiedorderDetail.goods_detail">
             <summary>
-            应用下用户唯一标识
+            商品明细
             </summary>
         </member>
-        <member name="P:Library.WeChat.Model.WeixinUserInfo.nickname">
+        <member name="P:Library.WeChat.Model.WeChatUnifiedorderDetail.cost_price">
             <summary>
-            用户昵称
+            商户侧一张小票订单可能被分多次支付，
+            订单原价用于记录整张小票的支付金额。
+            当订单原价与支付金额不相等则被判定为拆单，无法享/受/优/惠。
+            Int(32)
+            <para>单位为分</para>
             </summary>
         </member>
-        <member name="P:Library.WeChat.Model.WeixinUserInfo.sex">
+        <member name="P:Library.WeChat.Model.WeChatUnifiedorderDetail.receipt_id">
             <summary>
-            用户的性别
+            商家小票ID 
+            String(32)
+            </summary>
+        </member>
+        <member name="T:Library.WeChat.Model.WeChatUnifiedorderGoodDetail">
+            <summary>
+            商品明细
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatUnifiedorderGoodDetail.goods_id">
+            <summary>
+            商品编码
+            String(32)
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatUnifiedorderGoodDetail.quantity">
+            <summary>
+            商品数量
+            Int(32)
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatUnifiedorderGoodDetail.price">
+            <summary>
+            商品单价
+            Int(32)
+            <para>单位为分</para>
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatUnifiedorderGoodDetail.wxpay_goods_id">
+            <summary>
+            微信支付定义的统一商品编号
+            String(32)
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatUnifiedorderGoodDetail.goods_name">
+            <summary>
+            商品名称
+            String(256)
+            </summary>
+        </member>
+        <member name="T:Library.WeChat.Model.WeChatUnifiedorderParamter">
+            <summary>
+            统一下单参数
+            </summary>
+        </member>
+        <member name="M:Library.WeChat.Model.WeChatUnifiedorderParamter.GetSimpleParamter(System.String,System.Int32,System.String,System.String,Senparc.Weixin.TenPay.TenPayV3Type)">
+            <summary>
+            获取参数
+            </summary>
+            <param name="outTradeNo">商家订单号</param>
+            <param name="totalFee">商品金额, 以分为单位</param>
+            <param name="body">商品信息</param>
+            <param name="productId">二维码中包含的商品ID，商户自行定义。 </param>
+            <param name="tradeType">交易类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.WeChat.Model.WeChatUnifiedorderParamter.GetSimpleParamter(System.String,System.String,System.Int32,System.String,System.String,Senparc.Weixin.TenPay.TenPayV3Type)">
+            <summary>
+            获取参数
+            </summary>
+            <param name="openId">用户的openId</param>
+            <param name="outTradeNo">商家订单号</param>
+            <param name="totalFee">商品金额, 以分为单位</param>
+            <param name="body">商品信息</param>
+            <param name="productId">二维码中包含的商品ID，商户自行定义。 </param>
+            <param name="tradeType">交易类型</param>
+            <returns></returns>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatUnifiedorderParamter.OutTradeNo">
+            <summary>
+            商家订单号
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatUnifiedorderParamter.TotalFee">
+            <summary>
+            商品金额,
+            以分为单位
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatUnifiedorderParamter.Body">
+            <summary>
+            商品信息
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatUnifiedorderParamter.TradeType">
+            <summary>
+            交易类型
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatUnifiedorderParamter.ProductId">
+            <summary>
+            trade_type=NATIVE时（即扫码支付），此参数必传。
+            此参数为二维码中包含的商品ID，商户自行定义。 
+            String(32)，如：12235413214070356458058
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatUnifiedorderParamter.OpenId">
+            <summary>
+            用户的openId
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatUnifiedorderParamter.GoodsTag">
+            <summary>
+            商品标记，使用代金券或立减优惠功能时需要的参数，说明详见代金券或立减优惠。String(32)，如：WXG
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatUnifiedorderParamter.TimeStart">
+            <summary>
+            订单生成时间，
+            最终生成格式为yyyyMMddHHmmss，如2009年12月25日9点10分10秒表示为20091225091010。其他详见时间规则。
+            如果为空，则默认为当前服务器时间
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatUnifiedorderParamter.TimeExpire">
+            <summary>
+            订单失效时间，
+            格式为yyyyMMddHHmmss，如2009年12月27日9点10分10秒表示为20091227091010。其他详见时间规则 注意：最短失效时间间隔必须大于5分钟。
+            留空则不设置失效时间
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatUnifiedorderParamter.SceneInfo">
+            <summary>
+            场景信息，
+            目前支持上报实际门店信息。
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatUnifiedorderParamter.LimitPay">
+            <summary>
+            上传此参数no_credit--可限制用户不能使用信用卡支付
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatUnifiedorderParamter.FeeType">
+            <summary>
+            <see cref="T:Library.WeChat.Model.FreeType"/>
+            符合ISO 4217标准的三位字母代码，默认人民币：CNY，详细列表请参见货币类型。String(16)，如：CNY
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatUnifiedorderParamter.Attach">
+            <summary>
+            附加数据，在查询API和支付通知中原样返回，可作为自定义参数使用。String(127)，如：深圳分店
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatUnifiedorderParamter.Detail">
+            <summary>
+            商品详细列表
+            String(6000)
             </summary>
             <remarks>
-            值为1时是男性，
-            值为2时是女性，
-            值为0时是未知
+            <![CDATA[{}]]>
+            使用Json格式，传输签名前请务必使用CDATA标签将JSON文本串保护起来。 
+            cost_price Int 可选 32 订单原价，商户侧一张小票订单可能被分多次支付，订单原价用于记录整张小票的支付金额。当订单原价与支付金额不相等则被判定为拆单，无法享/受/优/惠。
+            receipt_id String 可选 32 商家小票ID 
+            goods_detail 服务商必填
+            []： 
+            └ goods_id String 必填 32 商品的编号 
+            └ wxpay_goods_id String 可选 32 微信支付定义的统一商品编号 
+            └ goods_name String 可选 256 商品名称 
+            └ quantity Int 必填 32 商品数量 
+            └ price Int 必填 32 商品单价，如果商户有优惠，需传输商户优惠后的单价 注意：单品总金额应小于或等于订单总金额total_fee，否则会无法享受优惠。
             </remarks>
         </member>
-        <member name="P:Library.WeChat.Model.WeixinUserInfo.province">
+        <member name="P:Library.WeChat.Model.WeChatUnifiedorderParamter.NonceStr">
             <summary>
-            用户个人资料填写的省份
+            随机字符串
             </summary>
         </member>
-        <member name="P:Library.WeChat.Model.WeixinUserInfo.city">
+        <member name="P:Library.WeChat.Model.WeChatUnifiedorderParamter.DeviceInfo">
             <summary>
-            普通用户个人资料填写的城市
+            自定义参数，
+            可以为终端设备号(门店号或收银设备ID)，
+            PC网页或公众号内支付可以传"WEB"，
+            String(32)如：013467007045764
             </summary>
         </member>
-        <member name="P:Library.WeChat.Model.WeixinUserInfo.country">
-            <summary>
-            国家，
-            </summary>
-            <remarks>
-            CN为中国
-            </remarks>
-        </member>
-        <member name="P:Library.WeChat.Model.WeixinUserInfo.headimgurl">
-            <summary>
-            用户头像
-            </summary>
-            <remarks>
-            最后一个数值代表正方形头像大小（有0、46、64、96、132数值可选，0代表640*640正方形头像），
-            用户没有头像时该项为空
-            </remarks>
-        </member>
-        <member name="P:Library.WeChat.Model.WeixinUserInfo.privilege">
-            <summary>
-            用户特权信息
-            </summary>
-            <remarks>
-            如微信沃卡用户为（chinaunicom）
-            </remarks>
-        </member>
-        <member name="P:Library.WeChat.Model.WeixinUserInfo.unionid">
-            <summary>
-            开放平台用户唯一标识
-            </summary>
-        </member>
-        <member name="T:Library.WeChat.WeChatServiceV3">
-            <summary>
-            微信服务
-            </summary>
-        </member>
-        <member name="M:Library.WeChat.WeChatServiceV3.#ctor(Library.WeChat.Application.WeChatServiceOptions)">
+        <member name="P:Library.WeChat.Model.WeChatUnifiedorderParamter.ProfitSharing">
             <summary>
             
             </summary>
-            <param name="options"></param>
         </member>
-        <member name="M:Library.WeChat.WeChatServiceV3.GetNotifyUrl(System.String,Library.WeChat.Model.WeChatNotifyType)">
+        <member name="T:Library.WeChat.Model.WeChatUnifiedorderResult">
             <summary>
-            获取通知Url
+            统一下单返回数据
             </summary>
-            <param name="configUrl">配置地址</param>
-            <param name="notifyType">通知类型</param>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatUnifiedorderResult.TimeStamp">
+            <summary>
+            时间戳
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatUnifiedorderResult.NonceStr">
+            <summary>
+            随机字符串
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatUnifiedorderResult.Package">
+            <summary>
+            预支付信息
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatUnifiedorderResult.CodeUrl">
+            <summary>
+            TradeType为NATIVE,<see cref="F:Library.WeChat.Model.TradeType.NATIVE"/>时有返回，
+            此参数可直接生成二维码展示出来进行扫码支付
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatUnifiedorderResult.JsPaySign">
+            <summary>
+            Js支付签名
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatUnifiedorderResult.ResultXml">
+            <summary>
+            XML内容
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatUnifiedorderResult.DeviceInfo">
+            <summary>
+            微信支付分配的终端设备号
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatUnifiedorderResult.TradeType">
+            <summary>
+            交易类型
+            <see cref="T:Library.WeChat.Model.TradeType"/>
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatUnifiedorderResult.PrepayId">
+            <summary>
+            微信生成的预支付ID，用于后续接口调用中使用
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatUnifiedorderResult.MWebUrl">
+            <summary>
+            在H5支付时返回
+            </summary>
+        </member>
+        <member name="T:Library.WeChat.Model.WeChatUnifiedorderSceneInnfo">
+            <summary>
+            场景信息
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatUnifiedorderSceneInnfo.IsH5Pay">
+            <summary>
+            是否为H5支付
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatUnifiedorderSceneInnfo.H5_Info">
+            <summary>
+            当IsH5Pay为true时填写，
+            可以使用<see cref="M:Senparc.Weixin.TenPay.V3.TenPayV3UnifiedorderRequestData_SceneInfo.GetH5InfoInstance``1(System.String)"/>方法获得
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatUnifiedorderSceneInnfo.id">
+            <summary>
+            （非必填）门店id，门店唯一标识，
+            String(32)
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatUnifiedorderSceneInnfo.name">
+            <summary>
+            （非必填）门店名称，
+            String(64)
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatUnifiedorderSceneInnfo.area_code">
+            <summary>
+            （非必填）门店行政区划码，新县及县以上行政区划代码》：
+            https://pay.weixin.qq.com/wiki/doc/api/download/store_adress.csv
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.WeChatUnifiedorderSceneInnfo.address">
+            <summary>
+            （非必填）门店详细地址，
+            String(128)
+            </summary>
+        </member>
+        <member name="T:Library.WeChat.Services.IWeChatService">
+            <summary>
+            微信服务
+            </summary>
+            <exception cref="T:Library.WeChat.Application.WeChatServiceException"></exception>
+        </member>
+        <member name="P:Library.WeChat.Services.IWeChatService.ServiceVersion">
+            <summary>
+            服务版本
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Services.IWeChatService.PayApiVersion">
+            <summary>
+            支付接口版本
+            </summary>
+        </member>
+        <member name="M:Library.WeChat.Services.IWeChatService.TryGetAccessToken">
+            <summary>
+            获取Token
+            </summary>
             <returns></returns>
         </member>
-        <member name="M:Library.WeChat.WeChatServiceV3.TryGetAccessToken">
-            <summary>
-            获取
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Library.WeChat.WeChatServiceV3.GetAttach(System.String,System.IO.Stream)">
+        <member name="M:Library.WeChat.Services.IWeChatService.GetAttach(System.String,System.IO.Stream)">
             <summary>
             获取临时素材
             </summary>
             <param name="mediaId"></param>
             <param name="stream"></param>
         </member>
-        <member name="M:Library.WeChat.WeChatServiceV3.GetSign(System.String)">
+        <member name="M:Library.WeChat.Services.IWeChatService.GetSign(System.String)">
             <summary>
             获取签名
             </summary>
             <param name="url"></param>
             <returns></returns>
         </member>
-        <member name="M:Library.WeChat.WeChatServiceV3.GetUserInfo(System.String)">
+        <member name="M:Library.WeChat.Services.IWeChatService.GetUserInfo(System.String)">
             <summary>
             获取用户信息
             </summary>
-            <param name="openId"></param>
+            <param name="openId">用户唯一标识</param>
             <returns></returns>
         </member>
-        <member name="M:Library.WeChat.WeChatServiceV3.GetUserInfoByCode(System.String)">
+        <member name="M:Library.WeChat.Services.IWeChatService.GetUserInfoByCode(System.String)">
             <summary>
             获取用户信息
             </summary>
-            <param name="code"></param>
+            <param name="code">code作为换取access_token的票据，每次用户授权带上的code将不一样，code只能使用一次，5分钟未被使用自动过期。</param>
             <returns></returns>
         </member>
-        <member name="M:Library.WeChat.WeChatServiceV3.QRPay(System.String,System.Int32,System.String,System.String)">
-            <summary>
-            扫码支付
-            </summary>
-            <param name="orderNum"></param>
-            <param name="price"></param>
-            <param name="body"></param>
-            <param name="productId"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Library.WeChat.WeChatServiceV3.Pay(System.String,System.String,System.Int32,System.String)">
+        <member name="M:Library.WeChat.Services.IWeChatService.Pay(Library.WeChat.Model.WeChatUnifiedorderParamter)">
             <summary>
             付款
             </summary>
-            <param name="openid"></param>
-            <param name="orderNum"></param>
-            <param name="price"></param>
-            <param name="body"></param>
+            <param name="paramter">
+            参数, 
+            建议使用<see cref="M:Library.WeChat.Model.WeChatUnifiedorderParamter.GetSimpleParamter(System.String,System.Int32,System.String,System.String,Senparc.Weixin.TenPay.TenPayV3Type)"/>方法获取
+            </param>
             <returns></returns>
         </member>
-        <member name="M:Library.WeChat.WeChatServiceV3.Refund(System.String,System.String,System.Int32,System.Int32)">
+        <member name="M:Library.WeChat.Services.IWeChatService.QRPay(Library.WeChat.Model.WeChatUnifiedorderParamter)">
+            <summary>
+            扫码支付
+            </summary>
+            <param name="paramter">
+            参数, 
+            建议使用<see cref="M:Library.WeChat.Model.WeChatUnifiedorderParamter.GetSimpleParamter(System.String,System.String,System.Int32,System.String,System.String,Senparc.Weixin.TenPay.TenPayV3Type)"/>方法获取
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.WeChat.Services.IWeChatService.Refund(Library.WeChat.Model.WeChatRefundParamter)">
             <summary>
             退款
             </summary>
-            <param name="outTradeNo"></param>
-            <param name="outRefundNo"></param>
-            <param name="totalFee"></param>
-            <param name="refundFee"></param>
+            <param name="paramter">
+            参数, 
+            建议使用<see cref="M:Library.WeChat.Model.WeChatRefundParamter.GetSimpleParamter(System.String,System.String,System.Int32,System.Int32)"/>方法获取
+            </param>
             <returns></returns>
         </member>
-        <member name="M:Library.WeChat.WeChatServiceV3.RefundQuery(System.String,System.String,System.String,System.Nullable{System.Int32})">
+        <member name="M:Library.WeChat.Services.IWeChatService.RefundQuery(Library.WeChat.Model.WeChatRefundQueryParamter)">
             <summary>
             查询退款
             </summary>
-            <param name="outTradeNo"></param>
-            <param name="outRefundNo"></param>
-            <param name="refundId"></param>
-            <param name="offset"></param>
+            <param name="paramter">
+            参数, 
+            建议使用<see cref="M:Library.WeChat.Model.WeChatRefundQueryParamter.GetSimpleParamter(System.String,System.String,System.String,System.Nullable{System.Int32})"/>方法获取
+            </param>
             <returns></returns>
         </member>
-        <member name="M:Library.WeChat.WeChatServiceV3.SendTemplateMessage(System.String,System.String,System.String,System.Object)">
+        <member name="M:Library.WeChat.Services.IWeChatService.SendTemplateMessage(Library.WeChat.Model.WeChatSendTemplateMessageParamter)">
             <summary>
             发送模板消息
             </summary>
-            <param name="openid"></param>
-            <param name="templateId"></param>
-            <param name="url"></param>
-            <param name="data"></param>
+            <param name="paramter">
+            参数, 
+            建议使用<see cref="M:Library.WeChat.Model.WeChatSendTemplateMessageParamter.GetSimpleParamter(System.String,System.String,System.Object,System.String)"/>方法获取
+            </param>
+            <returns></returns>
+        </member>
+        <member name="T:Library.WeChat.Services.WeChatServiceV3">
+            <summary>
+            微信服务
+            V3版本
+            </summary>
+            <exception cref="T:Library.WeChat.Application.WeChatServiceException"></exception>
+        </member>
+        <member name="M:Library.WeChat.Services.WeChatServiceV3.#ctor(Library.WeChat.Application.WeChatServiceOptions)">
+            <summary>
+            
+            </summary>
+            <param name="options"></param>
+        </member>
+        <member name="F:Library.WeChat.Services.WeChatServiceV3.Options">
+            <summary>
+            服务配置
+            </summary>
+        </member>
+        <member name="M:Library.WeChat.Services.WeChatServiceV3.GetNotifyUrl(System.String,Library.WeChat.Model.WeChatNotifyType)">
+            <summary>
+            获取通知Url
+            </summary>
+            <param name="configUrl">配置地址</param>
+            <param name="notifyType">通知类型</param>
+            <returns></returns>
         </member>
         <member name="T:Microsoft.AspNetCore.Builder.WeChatServiceApplicationBuilderExtensions">
             <summary>
@@ -1338,6 +1900,7 @@
             </summary>
             <param name="app"></param>
             <param name="handler">处理类</param>
+            <exception cref="T:Library.WeChat.Application.WeChatNotifyException"></exception>
             <returns></returns>
         </member>
         <member name="T:Microsoft.Extensions.DependencyInjection.WeChatServiceCollectionExtensions">
@@ -1348,6 +1911,7 @@
         <member name="M:Microsoft.Extensions.DependencyInjection.WeChatServiceCollectionExtensions.AddWeChatService(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Library.WeChat.Application.WeChatGenOptions})">
             <summary>
             添加微信服务
+            <para>单例模式</para>
             </summary>
             <param name="services"></param>
             <param name="setupAction"></param>

@@ -8,7 +8,7 @@ namespace Library.WeChat.Model
     /// <summary>
     /// 退款资金来源
     /// </summary>
-    public static class RefundAccount
+    public static class RefundAccountType
     {
         /// <summary>
         /// 可用余额退款/基本账户
