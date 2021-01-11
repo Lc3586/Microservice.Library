@@ -31,6 +31,7 @@ namespace Library.WeChat.Application
         {
 
         }
+
         /// <summary>
         /// 
         /// </summary>
