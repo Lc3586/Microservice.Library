@@ -3,7 +3,7 @@
 namespace Library.Configuration.Annotations
 {
     /// <summary>
-    /// Json配置文件属性
+    /// Json配置属性
     /// </summary>
     public class JsonConfigAttribute : Attribute
     {

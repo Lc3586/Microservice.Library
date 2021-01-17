@@ -6,7 +6,7 @@
     <members>
         <member name="T:Library.Configuration.Annotations.JsonConfigAttribute">
             <summary>
-            Json配置文件属性
+            Json配置属性
             </summary>
         </member>
         <member name="M:Library.Configuration.Annotations.JsonConfigAttribute.#ctor(System.String,System.String)">
@@ -30,6 +30,12 @@
             <summary>
             禁用缓存
             </summary>
+        </member>
+        <member name="T:Library.Configuration.Annotations.PropertyConfigAttribute">
+            <summary>
+            属性配置
+            </summary>
+            <remarks>检查类型下所有设置了<see cref="T:Library.Configuration.Annotations.JsonConfigAttribute"/>特性的属性</remarks>
         </member>
         <member name="T:Library.Configuration.ConfigHelper">
             <summary>

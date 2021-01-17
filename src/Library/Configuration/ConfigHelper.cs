@@ -47,6 +47,8 @@ namespace Library.Configuration
             else
                 Config = GetConfigFormFile(jsonFile, disableCache);
         }
+        static BindingFlags _bindingFlags { get; }
+            = BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public | BindingFlags.Static;
 
         /// <summary>
         /// 
@@ -127,27 +129,56 @@ namespace Library.Configuration
         /// <returns></returns>
         public T GetModel<T>(string section)
         {
+            //防止无限递归
+            Type firstType = null;
+
             var result = Config.GetSection(section).Get<T>();
 
-            foreach (var property in typeof(T).GetProperties())
-            {
-                var jsonConfig = property.PropertyType.GetCustomAttribute<JsonConfigAttribute>();
-                if (jsonConfig == null)
-                    continue;
-
-                if (string.IsNullOrWhiteSpace(jsonConfig.JsonFile))
-                    throw new ApplicationException($"{nameof(JsonConfigAttribute)}: {property.DeclaringType.FullName} + {property.Name}, Json文件不可为空.");
-
-                var config = GetConfigFormFile(jsonConfig.JsonFile, jsonConfig.DisableCache);
-
-                var value = string.IsNullOrEmpty(jsonConfig.Key)
-                    ? config.Get(property.PropertyType)
-                    : config.GetSection(jsonConfig.Key).Get(property.PropertyType);
-
-                property.SetValue(result, value);
-            }
+            getValue(result, typeof(T));
 
             return result;
+
+            void getValue(object obj, Type type)
+            {
+                foreach (var property in type.GetProperties(_bindingFlags))
+                {
+                    object value = null;
+
+                    var jsonConfig = property.GetCustomAttribute<JsonConfigAttribute>();
+                    if (jsonConfig == null)
+                        goto check;
+
+                    if (string.IsNullOrWhiteSpace(jsonConfig.JsonFile))
+                        throw new ApplicationException($"{nameof(JsonConfigAttribute)}: {property.DeclaringType.FullName} + {property.Name}, Json文件不可为空.");
+
+                    var config = GetConfigFormFile(jsonConfig.JsonFile, jsonConfig.DisableCache);
+
+                    value = string.IsNullOrEmpty(jsonConfig.Key)
+                        ? config.Get(property.PropertyType)
+                        : config.GetSection(jsonConfig.Key).Get(property.PropertyType);
+
+                    property.SetValue(obj, value);
+
+                    check:
+
+                    var check = property.GetCustomAttribute<PropertyConfigAttribute>();
+                    if (check != null)
+                    {
+                        if (value == null)
+                        {
+                            value = Activator.CreateInstance(property.PropertyType);
+                            property.SetValue(obj, value);
+                        }
+
+                        if (firstType == null)
+                            firstType = property.PropertyType;
+                        else if (firstType == property.PropertyType)
+                            throw new ApplicationException($"递归无法结束, 请检查类型 {type.FullName}中的属性 {property.Name}.");
+
+                        getValue(value, property.PropertyType);
+                    }
+                }
+            }
         }
     }
 }
