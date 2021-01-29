@@ -1,19 +1,18 @@
-﻿using Aspose.Cells;
+﻿using System;
 using System.Data;
-using System.IO;
-using System.Text;
 
 namespace Library.OfficeDocuments
 {
     /// <summary>
     /// 使用Aspose组件的Office文件操作帮助类
     /// </summary>
+    [Obsolete("由于官方已禁止用户协议，所以在以后的版本中将不再包括此帮助类.", true)]
     public class AsposeOfficeHelper
     {
-        static AsposeOfficeHelper()
-        {
-            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-        }
+        //static AsposeOfficeHelper()
+        //{
+        //    Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+        //}
 
         /// <summary>
         /// 将DataTable输出为字节数组
@@ -22,33 +21,35 @@ namespace Library.OfficeDocuments
         /// <returns>Byte数组</returns>
         public static byte[] DataTableToExcelBytes(DataTable dt)
         {
-            Workbook book = new Workbook();
-            Worksheet sheet = book.Worksheets[0];
-            Cells cells = sheet.Cells;
-            int Colnum = dt.Columns.Count;//表格列数 
-            int Rownum = dt.Rows.Count;//表格行数
-            //生成行 列名行 
-            for (int i = 0; i < Colnum; i++)
-            {
-                cells[0, i].PutValue(dt.Columns[i].ColumnName);
-            }
-            //生成数据行 
-            for (int i = 0; i < Rownum; i++)
-            {
-                for (int k = 0; k < Colnum; k++)
-                {
-                    cells[1 + i, k].PutValue(dt.Rows[i][k].ToString());
-                }
-            }
+            throw new NotImplementedException();
 
-            //自动行高，列宽
-            sheet.AutoFitColumns();
-            sheet.AutoFitRows();
+            //Workbook book = new Workbook();
+            //Worksheet sheet = book.Worksheets[0];
+            //Cells cells = sheet.Cells;
+            //int Colnum = dt.Columns.Count;//表格列数 
+            //int Rownum = dt.Rows.Count;//表格行数
+            ////生成行 列名行 
+            //for (int i = 0; i < Colnum; i++)
+            //{
+            //    cells[0, i].PutValue(dt.Columns[i].ColumnName);
+            //}
+            ////生成数据行 
+            //for (int i = 0; i < Rownum; i++)
+            //{
+            //    for (int k = 0; k < Colnum; k++)
+            //    {
+            //        cells[1 + i, k].PutValue(dt.Rows[i][k].ToString());
+            //    }
+            //}
 
-            //将DataTable写入内存流
-            var ms = new MemoryStream();
-            book.Save(ms, SaveFormat.Excel97To2003);
-            return ms.ToArray();
+            ////自动行高，列宽
+            //sheet.AutoFitColumns();
+            //sheet.AutoFitRows();
+
+            ////将DataTable写入内存流
+            //var ms = new MemoryStream();
+            //book.Save(ms, SaveFormat.Excel97To2003);
+            //return ms.ToArray();
         }
 
         /// <summary>
@@ -59,11 +60,13 @@ namespace Library.OfficeDocuments
         /// <returns></returns>
         public static DataTable ReadExcel(string fileNmae)
         {
-            Workbook book = new Workbook(fileNmae);
-            Worksheet sheet = book.Worksheets[0];
-            Cells cells = sheet.Cells;
+            throw new NotImplementedException();
 
-            return cells.ExportDataTableAsString(0, 0, cells.MaxDataRow + 1, cells.MaxDataColumn + 1, true);
+            //Workbook book = new Workbook(fileNmae);
+            //Worksheet sheet = book.Worksheets[0];
+            //Cells cells = sheet.Cells;
+
+            //return cells.ExportDataTableAsString(0, 0, cells.MaxDataRow + 1, cells.MaxDataColumn + 1, true);
         }
 
         /// <summary>
@@ -72,13 +75,15 @@ namespace Library.OfficeDocuments
         /// <param name="fileNmae">文件名</param>
         /// <param name="exportColumnName">是否将第一行当作标题行</param>
         /// <returns></returns>
-        public static DataTable ReadExcel(string fileNmae,bool exportColumnName)
+        public static DataTable ReadExcel(string fileNmae, bool exportColumnName)
         {
-            Workbook book = new Workbook(fileNmae);
-            Worksheet sheet = book.Worksheets[0];
-            Cells cells = sheet.Cells;
+            throw new NotImplementedException();
 
-            return cells.ExportDataTableAsString(0, 0, cells.MaxDataRow + 1, cells.MaxDataColumn + 1, exportColumnName);
+            //Workbook book = new Workbook(fileNmae);
+            //Worksheet sheet = book.Worksheets[0];
+            //Cells cells = sheet.Cells;
+
+            //return cells.ExportDataTableAsString(0, 0, cells.MaxDataRow + 1, cells.MaxDataColumn + 1, exportColumnName);
         }
 
         /// <summary>
@@ -89,7 +94,9 @@ namespace Library.OfficeDocuments
         /// <returns></returns>
         public static DataTable ReadExcel(byte[] fileBytes)
         {
-            return ReadExcel(fileBytes, true);
+            throw new NotImplementedException();
+
+            //return ReadExcel(fileBytes, true);
         }
 
         /// <summary>
@@ -98,16 +105,18 @@ namespace Library.OfficeDocuments
         /// <param name="fileBytes">文件字节源</param>
         /// <param name="exportColumnName">是否将第一行当作标题行</param>
         /// <returns></returns>
-        public static DataTable ReadExcel(byte[] fileBytes,bool exportColumnName)
+        public static DataTable ReadExcel(byte[] fileBytes, bool exportColumnName)
         {
-            using (MemoryStream ms = new MemoryStream(fileBytes))
-            {
-                Workbook book = new Workbook(ms);
-                Worksheet sheet = book.Worksheets[0];
-                Cells cells = sheet.Cells;
+            throw new NotImplementedException();
 
-                return cells.ExportDataTableAsString(0, 0, cells.MaxDataRow + 1, cells.MaxDataColumn + 1, exportColumnName);
-            }
+            //using (MemoryStream ms = new MemoryStream(fileBytes))
+            //{
+            //    Workbook book = new Workbook(ms);
+            //    Worksheet sheet = book.Worksheets[0];
+            //    Cells cells = sheet.Cells;
+
+            //    return cells.ExportDataTableAsString(0, 0, cells.MaxDataRow + 1, cells.MaxDataColumn + 1, exportColumnName);
+            //}
         }
     }
 }
