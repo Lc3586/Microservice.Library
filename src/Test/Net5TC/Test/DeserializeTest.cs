@@ -393,7 +393,7 @@ namespace Net5TC.Test
             //var @dynamic = JsonConvert.DeserializeObject(testDataJson, type);
             var dynamicList = @dynamic as List<ExpandoObject>;
 
-            var objectList = dynamicList.Select(o => SelectExtension.Select<DTO.DB_ADTO.List>().Invoke(o)).ToList();
+            var objectList = dynamicList.Select(o => SelectExtension.SelectExpandoObject<DTO.DB_ADTO.List>().Invoke(o)).ToList();
 
 
             if (UseWatch)
