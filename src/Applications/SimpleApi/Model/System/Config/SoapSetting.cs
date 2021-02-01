@@ -1,5 +1,5 @@
 ﻿
-namespace Model.System
+namespace Model.System.Config
 {
     /// <summary>
     /// Soap配置

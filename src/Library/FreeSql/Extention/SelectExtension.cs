@@ -494,7 +494,6 @@ namespace Library.FreeSql.Extention
         /// <summary>
         /// 返回数据
         /// </summary>
-        /// <remarks>不可使用WithSql()方法!</remarks>
         /// <typeparam name="TSource">实体类型</typeparam>
         /// <typeparam name="TDto">业务模型类型</typeparam>
         /// <param name="source"></param>
@@ -510,7 +509,6 @@ namespace Library.FreeSql.Extention
         /// <summary>
         /// 返回数据
         /// </summary>
-        /// <remarks>不可使用WithSql()方法!</remarks>
         /// <typeparam name="TSource">实体类型</typeparam>
         /// <typeparam name="TDto">业务模型类型</typeparam>
         /// <param name="source"></param>
@@ -526,7 +524,6 @@ namespace Library.FreeSql.Extention
         /// <summary>
         /// 返回数据
         /// </summary>
-        /// <remarks>不可使用WithSql()方法!</remarks>
         /// <typeparam name="TSource">实体类型</typeparam>
         /// <typeparam name="TReturn">返回类型</typeparam>
         /// <typeparam name="TDto">业务模型类型</typeparam>

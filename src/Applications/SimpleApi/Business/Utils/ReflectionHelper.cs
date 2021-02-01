@@ -5,7 +5,7 @@ using Library.Extension;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 
-namespace Business.Util
+namespace Business.Utils
 {
     /// <summary>
     /// 通过反射调用方法

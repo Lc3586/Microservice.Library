@@ -25,7 +25,7 @@ namespace Business.Interface.System
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        AjaxResult<Detail> GetDetail(string id);
+        Detail GetDetail(string id);
 
         /// <summary>
         /// 新增

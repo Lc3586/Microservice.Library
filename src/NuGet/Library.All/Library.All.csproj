@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>LCTR</Authors>
     <Company>LCTR</Company>
@@ -60,21 +60,23 @@
     <ProjectReference Include="..\..\Library\HardwareInfo\Library.HardwareInfo.csproj" />
     <ProjectReference Include="..\..\Library\Html\Library.Html.csproj" />
     <ProjectReference Include="..\..\Library\Http\Library.Http.csproj" />
-    <ProjectReference Include="..\..\Library\IdTool\Library.IdTool.csproj" />
     <ProjectReference Include="..\..\Library\Json\Library.Json.csproj" />
     <ProjectReference Include="..\..\Library\LibraryModels\Library.Models.csproj" />
     <ProjectReference Include="..\..\Library\LinqTool\Library.LinqTool.csproj" />
-    <ProjectReference Include="..\..\Library\Log\Library.Log.csproj" />
+    <ProjectReference Include="..\..\Library\NLogger\Library.NLogger.csproj" />
     <ProjectReference Include="..\..\Library\OfficeDocuments\Library.OfficeDocuments.csproj" />
     <ProjectReference Include="..\..\Library\OpenApi\Library.OpenApi.csproj" />
     <ProjectReference Include="..\..\Library\SelectOption\Library.SelectOption.csproj" />
     <ProjectReference Include="..\..\Library\SnowflakeId\Library.Snowflake.csproj" />
+    <ProjectReference Include="..\..\Library\Soap\Library.Soap.csproj" />
+    <ProjectReference Include="..\..\Library\SuperSocket\Library.SuperSocket.csproj" />
     <ProjectReference Include="..\..\Library\TaskQeury\Library.TaskQeury.csproj" />
     <ProjectReference Include="..\..\Library\TimeTick\Library.TimeTick.csproj" />
     <ProjectReference Include="..\..\Library\Tree\Library.Tree.csproj" />
     <ProjectReference Include="..\..\Library\TypeTool\Library.TypeTool.csproj" />
     <ProjectReference Include="..\..\Library\UsingLock\Library.UsingLock.csproj" />
     <ProjectReference Include="..\..\Library\WebApp\Library.WebApp.csproj" />
+    <ProjectReference Include="..\..\Library\WeChat\Library.WeChat.csproj" />
     <ProjectReference Include="..\..\Library\Xml\Library.Xml.csproj" />
   </ItemGroup>
 

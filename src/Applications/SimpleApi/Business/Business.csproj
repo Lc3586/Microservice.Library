@@ -16,9 +16,10 @@
     <ProjectReference Include="..\..\..\Library\Cache\Library.Cache.csproj" />
     <ProjectReference Include="..\..\..\Library\Container\Library.Container.csproj" />
     <ProjectReference Include="..\..\..\Library\Extension\Library.Extension.csproj" />
+    <ProjectReference Include="..\..\..\Library\File\Library.File.csproj" />
     <ProjectReference Include="..\..\..\Library\Html\Library.Html.csproj" />
     <ProjectReference Include="..\..\..\Library\Http\Library.Http.csproj" />
-    <ProjectReference Include="..\..\..\Library\Log\Library.Log.csproj" />
+    <ProjectReference Include="..\..\..\Library\NLogger\Library.NLogger.csproj" />
     <ProjectReference Include="..\..\..\Library\SelectOption\Library.SelectOption.csproj" />
     <ProjectReference Include="..\..\..\Library\TypeTool\Library.TypeTool.csproj" />
     <ProjectReference Include="..\..\..\Library\WebApp\Library.WebApp.csproj" />

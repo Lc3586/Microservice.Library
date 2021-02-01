@@ -3,19 +3,19 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace Library.Log
+namespace Library.NLogger.Extention
 {
     /// <summary>
     /// 日志帮助类
     /// </summary>
-    public static class Log
+    public static class LoggerExtention
     {
         /// <summary>
         /// 写入日志到本地TXT文件
         /// 注：日志文件名为"A_log.txt",目录为根目录
         /// </summary>
         /// <param name="log">日志内容</param>
-        public static void WriteLog_LocalTxt(string log)
+        public static void WriteLog_LocalTxt(this string log)
         {
             Task.Run(() =>
             {

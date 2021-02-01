@@ -1,23 +1,14 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Library.Extension;
-using SoapCore.Extensibility;
-using System.Reflection;
-using SoapSerializer = SoapCore.SoapSerializer;
-using Library.Soap.Application;
-using Api.Filter.Soap;
-using System.ServiceModel.Channels;
-using System.Text.Unicode;
-using System.Text;
-using System.Xml;
-using System.ServiceModel;
+﻿using Api.Filter.Soap;
 using Library.Container;
+using Library.Extension;
+using Library.Soap.Application;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
-using Model.System;
+using Microsoft.Extensions.DependencyInjection;
+using Model.System.Config;
+using SoapCore.Extensibility;
+using System.Linq;
+using SoapSerializer = SoapCore.SoapSerializer;
 
 namespace Api.Configures
 {

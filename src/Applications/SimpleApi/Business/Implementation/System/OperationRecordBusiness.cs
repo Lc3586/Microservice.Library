@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Business.Interface.System;
+using Business.Utils;
 using Entity.System;
 using FreeSql;
 using Library.DataMapping.Gen;
@@ -7,15 +8,10 @@ using Library.Extension;
 using Library.FreeSql.Extention;
 using Library.FreeSql.Gen;
 using Library.Models;
-using Library.OpenApi.Annotations;
 using Library.OpenApi.Extention;
-using System;
+using Model.System.OperationRecordDTO;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using Model.System.OperationRecordDTO;
-using Business.Util;
 
 namespace Business.Implementation.System
 {
@@ -59,7 +55,7 @@ namespace Business.Implementation.System
             return result;
         }
 
-        public AjaxResult<Detail> GetDetail(string id)
+        public Detail GetDetail(string id)
         {
             var entity = Repository.Select
                                 .Include(o => o.User)
@@ -71,7 +67,7 @@ namespace Business.Implementation.System
             if (entity.User != null)
                 result._User = Mapper.Map<Model.System.UserDTO.Detail>(entity.User);
 
-            return Success(result);
+            return result;
         }
 
         public string Create(System_OperationRecord data, bool withOP = true)

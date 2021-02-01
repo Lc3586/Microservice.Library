@@ -1,8 +1,5 @@
 ﻿using Business.Interface.Services.Example;
-using Business.Util;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Business.Utils;
 
 namespace Business.Implementation.Services.Example
 {

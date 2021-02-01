@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
+using Business.Filter;
 using Business.Interface.System;
-using Business.Util;
+using Business.Utils;
 using Entity.System;
 using FreeSql;
-using Library.Container;
 using Library.DataMapping.Gen;
+using Library.Extension;
 using Library.FreeSql.Extention;
 using Library.FreeSql.Gen;
 using Library.Models;
@@ -13,11 +14,7 @@ using Library.SelectOption;
 using Model.System.UserDTO;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
-using Library.Extension;
-using Model.System;
-using Business.Filter;
 
 namespace Business.Implementation.System
 {
@@ -157,7 +154,7 @@ namespace Business.Implementation.System
         }
 
         [AdministratorOnly]
-        public AjaxResult Create(Create data)
+        public void Create(Create data)
         {
             var newData = Mapper.Map<System_User>(data).InitEntity();
 
@@ -175,22 +172,20 @@ namespace Business.Implementation.System
 
             if (!success)
                 throw new ApplicationException("创建用户失败", ex);
-
-            return Success();
         }
 
         [AdministratorOnly]
-        public AjaxResult<Edit> GetEdit(string id)
+        public Edit GetEdit(string id)
         {
             var entity = Repository.GetAndCheckNull(id);
 
             var result = Mapper.Map<Edit>(entity);
 
-            return Success(result);
+            return result;
         }
 
         [AdministratorOnly]
-        public AjaxResult Edit(Edit data)
+        public void Edit(Edit data)
         {
             var editData = Mapper.Map<System_User>(data).ModifyEntity();
 
@@ -219,12 +214,10 @@ namespace Business.Implementation.System
 
             if (!success)
                 throw ex;
-
-            return Success();
         }
 
         [AdministratorOnly]
-        public AjaxResult Delete(List<string> ids)
+        public void Delete(List<string> ids)
         {
             var entityList = Repository.Select.Where(c => ids.Contains(c.Id)).ToList(c => new { c.Id, c.Account, c.Name, c.Type });
 
@@ -256,8 +249,6 @@ namespace Business.Implementation.System
 
             if (!success)
                 throw new ApplicationException("删除用户失败", ex);
-
-            return Success();
         }
 
         #endregion

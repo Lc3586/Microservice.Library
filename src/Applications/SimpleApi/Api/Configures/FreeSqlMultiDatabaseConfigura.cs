@@ -1,12 +1,9 @@
 ﻿using Library.Extension;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using Model.System;
+using Model.System.Config;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Api.Configures
 {

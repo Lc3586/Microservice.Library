@@ -1,18 +1,13 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
+using Model.System.Config;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.IO;
-using Microsoft.OpenApi.Models;
-using Microsoft.AspNetCore.Builder;
-using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Globalization;
-using Microsoft.AspNetCore.Localization;
-using Microsoft.Extensions.Options;
-using Microsoft.AspNetCore.Mvc.ApiExplorer;
-using Microsoft.AspNetCore.Http;
-using Model.System;
+using System.IO;
+using System.Linq;
 
 namespace Api.Configures
 {
@@ -32,19 +27,18 @@ namespace Api.Configures
             {
                 #region 配置文档
 
-                s.SwaggerDoc("v1.0", new OpenApiInfo
+                s.SwaggerDoc(config.SwaggerApiVersion.Name, new OpenApiInfo
                 {
-                    Title = config.ProjectName,
-                    Version = "v1.0",
-                    Description = "接口文档"
+                    Title = config.SwaggerApiVersion.Title,
+                    Version = config.SwaggerApiVersion.Version,
+                    Description = config.SwaggerApiVersion.Description
                 });
 
                 #endregion
 
                 #region 自定义架构Id选择器
 
-                Func<Type, string> SchemaIdSelector = null;
-                SchemaIdSelector = (Type modelType) =>
+                static string SchemaIdSelector(Type modelType)
                 {
                     if (!modelType.IsConstructedGenericType) return modelType.FullName.Replace("[]", "Array");
 
@@ -53,7 +47,8 @@ namespace Api.Configures
                         .Aggregate((previous, current) => previous + current);
 
                     return prefix + modelType.FullName.Split('`').First();
-                };
+                }
+
                 s.CustomSchemaIds(SchemaIdSelector);
 
                 #endregion
@@ -63,7 +58,7 @@ namespace Api.Configures
                 #region 为JSON文件和UI设置xml文档路径
 
                 var basePath = Path.GetDirectoryName(typeof(Program).Assembly.Location);//获取应用程序所在目录（绝对，不受工作目录影响，建议采用此方法获取路径）
-                foreach (var item in new[] { "Integrate_Entity.xml", "Integrate_Model.xml", "Integrate_Business.xml", "Integrate_Api.xml", "Library.Models.xml" })
+                foreach (var item in config.SwaggerXmlComments)
                 {
                     var xmlPath = Path.Combine(basePath, item);
 
@@ -85,6 +80,7 @@ namespace Api.Configures
         /// 配置应用
         /// </summary>
         /// <param name="app"></param>
+        /// <param name="config"></param>
         public static void RegisterApplication(IApplicationBuilder app, SystemConfig config)
         {
             #region 用户语言（展示用，普通项目无需添加此内容）

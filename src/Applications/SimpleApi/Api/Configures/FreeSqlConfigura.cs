@@ -1,15 +1,7 @@
 ﻿using FreeSql;
-using Library.FreeSql.Gen;
-using Library.Log;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using Model.System;
-using System;
-using System.Collections.Generic;
-using System.Data.Common;
-using System.Linq;
-using System.Threading.Tasks;
-using Library.TypeTool;
+using Model.System.Config;
 
 namespace Api.Configures
 {

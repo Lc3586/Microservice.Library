@@ -1,6 +1,6 @@
 ﻿
 
-namespace Model.System
+namespace Model.System.Config
 {
     /// <summary>
     /// 序列化类型

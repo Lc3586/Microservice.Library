@@ -1,9 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Model.System;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Library.TypeTool;
+﻿using Library.TypeTool;
+using Microsoft.Extensions.DependencyInjection;
+using Model.System.Config;
 
 namespace Api.Configures
 {

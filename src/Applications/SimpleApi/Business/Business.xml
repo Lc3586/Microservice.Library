@@ -21,6 +21,74 @@
             </summary>
             <param name="invocation"></param>
         </member>
+        <member name="T:Business.Implementation.Common.FileBusiness">
+            <summary>
+            文件处理业务类
+            </summary>
+        </member>
+        <member name="P:Business.Implementation.Common.FileBusiness.PreviewDir">
+            <summary>
+            文件类型预览图存储路径根目录相对路径
+            </summary>
+        </member>
+        <member name="P:Business.Implementation.Common.FileBusiness.BaseDir">
+            <summary>
+            存储路径根目录相对路径
+            </summary>
+        </member>
+        <member name="P:Business.Implementation.Common.FileBusiness.BaseDirPath">
+            <summary>
+            存储路径根目录绝对路径
+            </summary>
+        </member>
+        <member name="M:Business.Implementation.Common.FileBusiness.Save(System.Drawing.Image,System.String)">
+            <summary>
+            保存
+            </summary>
+            <param name="image">图像</param>
+            <param name="path">绝对路径</param>
+        </member>
+        <member name="M:Business.Implementation.Common.FileBusiness.Save(System.Byte[],System.String)">
+            <summary>
+            保存
+            </summary>
+            <param name="bytes">文件</param>
+            <param name="path">绝对路径</param>
+        </member>
+        <member name="M:Business.Implementation.Common.FileBusiness.GetPreviewImage(System.String)">
+            <summary>
+            获取预览图
+            </summary>
+            <param name="suffix">文件后缀</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Implementation.Common.FileBusiness.GetFileType(System.String)">
+            <summary>
+            获取文件类型
+            </summary>
+            <param name="suffix">文件后缀(.jpg)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Implementation.Common.FileBusiness.ResponseImage(Microsoft.AspNetCore.Http.HttpResponse,System.Drawing.Image)">
+            <summary>
+            输出图片
+            </summary>
+            <param name="response"></param>
+            <param name="img"></param>
+        </member>
+        <member name="M:Business.Implementation.Common.FileBusiness.ResponseFile(Microsoft.AspNetCore.Http.HttpResponse,System.String)">
+            <summary>
+            输出文件
+            </summary>
+            <param name="response"></param>
+            <param name="path"></param>
+        </member>
+        <member name="M:Business.Implementation.Common.FileBusiness.DeleteFile(System.String)">
+            <summary>
+            删除文件
+            </summary>
+            <param name="path"></param>
+        </member>
         <member name="T:Business.Implementation.Services.Example.SampleBusiness">
             <summary>
             示例Soap服务业务类
@@ -76,6 +144,83 @@
             <summary>
             系统用户业务类
             </summary>
+        </member>
+        <member name="T:Business.Interface.Common.IFileBusiness">
+            <summary>
+            文件处理业务接口类
+            </summary>
+        </member>
+        <member name="M:Business.Interface.Common.IFileBusiness.SingleImage(Model.Common.FileDTO.ImageUploadParams)">
+            <summary>
+            单图上传
+            </summary>
+            <remarks>单个上传</remarks>
+            <param name="option">分页设置</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.Common.IFileBusiness.SingleFile(Model.Common.FileDTO.FileUploadParams)">
+            <summary>
+            文件上传
+            </summary>
+            <remarks>单个上传</remarks>
+            <param name="option">分页设置</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.Common.IFileBusiness.Preview(System.String)">
+            <summary>
+            预览
+            </summary>
+            <param name="id">文件Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.Common.IFileBusiness.Browse(System.String)">
+            <summary>
+            浏览
+            </summary>
+            <param name="id">文件Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.Common.IFileBusiness.Download(System.String)">
+            <summary>
+            下载
+            </summary>
+            <param name="id">文件Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.Common.IFileBusiness.GetList(Library.Models.Pagination)">
+            <summary>
+            获取列表数据
+            </summary>
+            <param name="pagination">分页设置</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.Common.IFileBusiness.GetDetail(System.String)">
+            <summary>
+            获取详情数据
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.Common.IFileBusiness.GetDetails(System.String)">
+            <summary>
+            获取详情数据集合
+            </summary>
+            <param name="ids">id逗号拼接</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.Common.IFileBusiness.GetDetails(System.Collections.Generic.List{System.String})">
+            <summary>
+            获取详情数据集合
+            </summary>
+            <param name="ids">id集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.Common.IFileBusiness.Delete(System.Collections.Generic.List{System.String})">
+            <summary>
+            删除
+            </summary>
+            <param name="ids">Id集合</param>
+            <returns></returns>
         </member>
         <member name="T:Business.Interface.Services.Example.ISampleBusiness">
             <summary>
@@ -639,34 +784,34 @@
             <param name="ids">Id集合</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Logger.#cctor">
-            <summary>
-            配置Logger
-            </summary>
-        </member>
-        <member name="T:Business.Util.BaseBusiness">
+        <member name="T:Business.Utils.BaseBusiness">
             <summary>
             描述：业务处理基类
             作者：Coldairarrow
             </summary>
             <typeparam name="T">泛型约束（数据库实体）</typeparam>
         </member>
-        <member name="P:Business.Util.BaseBusiness.Logger">
+        <member name="P:Business.Utils.BaseBusiness.Logger">
             <summary>
             日志组件
             </summary>
         </member>
-        <member name="P:Business.Util.BaseBusiness.Operator">
+        <member name="P:Business.Utils.BaseBusiness.Operator">
             <summary>
             当前登录人
             </summary>
         </member>
-        <member name="M:Business.Util.BaseBusiness.#ctor">
+        <member name="P:Business.Utils.BaseBusiness.Config">
+            <summary>
+            系统日志
+            </summary>
+        </member>
+        <member name="M:Business.Utils.BaseBusiness.#ctor">
             <summary>
             无参构造函数
             </summary>
         </member>
-        <member name="M:Business.Util.BaseBusiness.GetPagination``1(System.Linq.IQueryable{``0},Library.Models.Pagination)">
+        <member name="M:Business.Utils.BaseBusiness.GetPagination``1(System.Linq.IQueryable{``0},Library.Models.Pagination)">
             <summary>
             获取分页后的数据
             </summary>
@@ -675,7 +820,7 @@
             <param name="pagination">分页参数</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Util.BaseBusiness.GetPagination``1(System.Linq.IQueryable{``0},System.Int32,System.Int32,System.String,Library.Models.SortType,System.Int32@,System.Int32@)">
+        <member name="M:Business.Utils.BaseBusiness.GetPagination``1(System.Linq.IQueryable{``0},System.Int32,System.Int32,System.String,Library.Models.SortType,System.Int32@,System.Int32@)">
             <summary>
             获取分页后的数据
             </summary>
@@ -689,20 +834,20 @@
             <param name="pages">总页数</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Util.BaseBusiness.Success">
+        <member name="M:Business.Utils.BaseBusiness.Success">
             <summary>
             返回成功
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Business.Util.BaseBusiness.Success``1(``0)">
+        <member name="M:Business.Utils.BaseBusiness.Success``1(``0)">
             <summary>
             返回成功
             </summary>
             <param name="data">返回数据</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Util.BaseBusiness.Success``1(``0,System.String)">
+        <member name="M:Business.Utils.BaseBusiness.Success``1(``0,System.String)">
             <summary>
             返回成功
             </summary>
@@ -710,59 +855,59 @@
             <param name="msg">返回消息</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Util.BaseBusiness.Error">
+        <member name="M:Business.Utils.BaseBusiness.Error">
             <summary>
             返回错误
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Business.Util.BaseBusiness.Error(System.String)">
+        <member name="M:Business.Utils.BaseBusiness.Error(System.String)">
             <summary>
             返回错误
             </summary>
             <param name="msg">错误提示</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Util.BaseBusiness.Dispose">
+        <member name="M:Business.Utils.BaseBusiness.Dispose">
             <summary>
             执行与释放或重置非托管资源关联的应用程序定义的任务。
             </summary>
             <exception cref="T:System.NotImplementedException"></exception>
         </member>
-        <member name="T:Business.Util.CASHelper">
+        <member name="T:Business.Utils.CASHelper">
             <summary>
             CAS帮助类
             </summary>
         </member>
-        <member name="M:Business.Util.CASHelper.GetTGT(Library.Models.CASModel.GetTGT)">
+        <member name="M:Business.Utils.CASHelper.GetTGT(Library.Models.CASModel.GetTGT)">
             <summary>
             获取TGT
             </summary>
             <param name="getTGT"></param>
             <returns></returns>
         </member>
-        <member name="M:Business.Util.CASHelper.DeleteTGT(Library.Models.CASModel.LogOut)">
+        <member name="M:Business.Utils.CASHelper.DeleteTGT(Library.Models.CASModel.LogOut)">
             <summary>
             删除TGT
             </summary>
             <param name="logOut"></param>
             <returns></returns>
         </member>
-        <member name="M:Business.Util.CASHelper.GetST(Library.Models.CASModel.GetST)">
+        <member name="M:Business.Utils.CASHelper.GetST(Library.Models.CASModel.GetST)">
             <summary>
             获取ST
             </summary>
             <param name="getST"></param>
             <returns></returns>
         </member>
-        <member name="M:Business.Util.CASHelper.GetUserInfo(Library.Models.CASModel.GetUserInfo)">
+        <member name="M:Business.Utils.CASHelper.GetUserInfo(Library.Models.CASModel.GetUserInfo)">
             <summary>
             获取用户信息
             </summary>
             <param name="getUserInfo"></param>
             <returns></returns>
         </member>
-        <member name="M:Business.Util.CASHelper.GetTGT(System.String,System.String@)">
+        <member name="M:Business.Utils.CASHelper.GetTGT(System.String,System.String@)">
             <summary>
             解析html以获取tgt
             </summary>
@@ -770,7 +915,7 @@
             <param name="tgt">tgt</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Util.CASHelper.GetUserInfo(System.String,Library.Models.CASModel.UserInfo@)">
+        <member name="M:Business.Utils.CASHelper.GetUserInfo(System.String,Library.Models.CASModel.UserInfo@)">
             <summary>
             解析xml以获取用户信息
             </summary>
@@ -778,7 +923,12 @@
             <param name="userInfo">用户信息</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Util.Extention.InitEntityWithoutOP``1(``0)">
+        <member name="T:Business.Utils.EntityExtention">
+            <summary>
+            实体类拓展方法
+            </summary>
+        </member>
+        <member name="M:Business.Utils.EntityExtention.InitEntityWithoutOP``1(``0)">
             <summary>
             初始化实体，不处理当前登录人
             </summary>
@@ -786,7 +936,7 @@
             <param name="entity"></param>
             <returns></returns>
         </member>
-        <member name="M:Business.Util.Extention.InitEntity``1(``0,Model.System.UserDTO.Authorities)">
+        <member name="M:Business.Utils.EntityExtention.InitEntity``1(``0,Model.System.UserDTO.Authorities)">
             <summary>
             初始化实体
             </summary>
@@ -795,7 +945,7 @@
             <param name="property"></param>
             <returns></returns>
         </member>
-        <member name="M:Business.Util.Extention.ModifyEntityWithoutOP``1(``0)">
+        <member name="M:Business.Utils.EntityExtention.ModifyEntityWithoutOP``1(``0)">
             <summary>
             修改实体，不处理当前登录人
             </summary>
@@ -803,7 +953,7 @@
             <param name="entity"></param>
             <returns></returns>
         </member>
-        <member name="M:Business.Util.Extention.ModifyEntity``1(``0,Model.System.UserDTO.Authorities)">
+        <member name="M:Business.Utils.EntityExtention.ModifyEntity``1(``0,Model.System.UserDTO.Authorities)">
             <summary>
             修改实体
             </summary>
@@ -812,7 +962,7 @@
             <param name="property"></param>
             <returns></returns>
         </member>
-        <member name="M:Business.Util.Extention.GetUserName(Business.Interface.System.IOperator,Model.System.UserDTO.Authorities)">
+        <member name="M:Business.Utils.EntityExtention.GetUserName(Business.Interface.System.IOperator,Model.System.UserDTO.Authorities)">
             <summary>
             获取当前登录用户的用户名
             </summary>
@@ -820,77 +970,77 @@
             <param name="property"></param>
             <returns></returns>
         </member>
-        <member name="T:Business.Util.ExceptionHelper">
+        <member name="T:Business.Utils.ExceptionHelper">
             <summary>
             异常帮助类
             </summary>
         </member>
-        <member name="M:Business.Util.ExceptionHelper.ExceptionWriteLog(System.Exception,System.String,System.String,System.String)">
+        <member name="M:Business.Utils.ExceptionHelper.ExceptionWriteLog(System.Exception,System.String,System.String,System.String)">
             <summary>
             处理系统异常
             </summary>
-            <param name="ex">异常对象</param>
+            <param name="exception">异常</param>
             <param name="url">请求地址</param>
-            <param name="Target">目标</param>
-            <param name="Method">方法</param>
+            <param name="target">目标</param>
+            <param name="method">方法</param>
         </member>
-        <member name="M:Business.Util.ExceptionHelper.HandleException(System.Exception,System.String,System.String,System.String)">
+        <member name="M:Business.Utils.ExceptionHelper.HandleException(System.Exception,System.String,System.String,System.String)">
             <summary>
             处理系统异常
             </summary>
-            <param name="ex">异常对象</param>
+            <param name="exception">异常</param>
             <param name="url">请求地址</param>
-            <param name="Target">目标</param>
-            <param name="Method">方法</param>
+            <param name="target">目标</param>
+            <param name="method">方法</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Util.ExceptionHelper.HandleException(System.Exception,System.Exception)">
+        <member name="M:Business.Utils.ExceptionHelper.HandleException(System.Exception,System.Exception)">
             <summary>
             处理系统异常
             </summary>
-            <param name="ex">当前异常</param>
-            <param name="base_ex">原异常</param>
+            <param name="exception">当前异常</param>
+            <param name="base_exception">原异常</param>
             <returns></returns>
         </member>
-        <member name="T:Business.Util.IdHelper">
+        <member name="T:Business.Utils.IdHelper">
             <summary>
             雪花Id帮助类
             </summary>
         </member>
-        <member name="M:Business.Util.IdHelper.NextId">
+        <member name="M:Business.Utils.IdHelper.NextId">
             <summary>
             下一个Id
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Business.Util.IdHelper.NextIdString">
+        <member name="M:Business.Utils.IdHelper.NextIdString">
             <summary>
             下一个Id
             <para>转字符类型</para>
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Business.Util.IdHelper.NextIdUpper">
+        <member name="M:Business.Utils.IdHelper.NextIdUpper">
             <summary>
             下一个Id
             <para>转大写</para>
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Business.Util.IdHelper.NextIdLower">
+        <member name="M:Business.Utils.IdHelper.NextIdLower">
             <summary>
             下一个Id
             <para>转小写</para>
             </summary>
             <returns></returns>
         </member>
-        <member name="T:Business.Util.ReflectionHelper">
+        <member name="T:Business.Utils.ReflectionHelper">
             <summary>
             通过反射调用方法
             LCTR 2019-06-19
             </summary>
         </member>
-        <member name="M:Business.Util.ReflectionHelper.Invoke``1(``0,System.String,System.Object[])">
+        <member name="M:Business.Utils.ReflectionHelper.Invoke``1(``0,System.String,System.Object[])">
             <summary>
             调用方法
             </summary>
@@ -900,7 +1050,7 @@
             <param name="parameters">参数</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Util.ReflectionHelper.Invoke``1(``0,System.String,System.Object[],System.Collections.Generic.List{Library.Models.ModelErrorsInfo})">
+        <member name="M:Business.Utils.ReflectionHelper.Invoke``1(``0,System.String,System.Object[],System.Collections.Generic.List{Library.Models.ModelErrorsInfo})">
             <summary>
             调用方法
             </summary>
@@ -911,7 +1061,7 @@
             <param name="modelStateErrors">模型验证信息</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Util.ReflectionHelper.Invoke``1(``0,System.String,System.Object[],System.Collections.Generic.List{Library.Models.ModelErrorsInfo},Microsoft.AspNetCore.Http.HttpRequest)">
+        <member name="M:Business.Utils.ReflectionHelper.Invoke``1(``0,System.String,System.Object[],System.Collections.Generic.List{Library.Models.ModelErrorsInfo},Microsoft.AspNetCore.Http.HttpRequest)">
             <summary>
             调用方法
             </summary>
@@ -923,7 +1073,7 @@
             <param name="request">请求信息</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Util.ReflectionHelper.Invoke``1(``0,System.String,System.Object[],Microsoft.AspNetCore.Http.HttpRequest)">
+        <member name="M:Business.Utils.ReflectionHelper.Invoke``1(``0,System.String,System.Object[],Microsoft.AspNetCore.Http.HttpRequest)">
             <summary>
             调用方法
             </summary>
@@ -934,7 +1084,7 @@
             <param name="request">请求信息</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Util.ReflectionHelper.InvokeAsync``1(``0,System.String,System.Object[])">
+        <member name="M:Business.Utils.ReflectionHelper.InvokeAsync``1(``0,System.String,System.Object[])">
             <summary>
             调用异步方法
             </summary>
@@ -944,7 +1094,7 @@
             <param name="parameters">参数</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Util.ReflectionHelper.InvokeAsync``1(``0,System.String,System.Object[],System.Collections.Generic.List{Library.Models.ModelErrorsInfo})">
+        <member name="M:Business.Utils.ReflectionHelper.InvokeAsync``1(``0,System.String,System.Object[],System.Collections.Generic.List{Library.Models.ModelErrorsInfo})">
             <summary>
             调用异步方法
             </summary>
@@ -955,7 +1105,7 @@
             <param name="modelStateErrors">模型验证信息</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Util.ReflectionHelper.InvokeAsync``1(``0,System.String,System.Object[],System.Collections.Generic.List{Library.Models.ModelErrorsInfo},Microsoft.AspNetCore.Http.HttpRequest)">
+        <member name="M:Business.Utils.ReflectionHelper.InvokeAsync``1(``0,System.String,System.Object[],System.Collections.Generic.List{Library.Models.ModelErrorsInfo},Microsoft.AspNetCore.Http.HttpRequest)">
             <summary>
             调用异步方法
             </summary>
@@ -967,7 +1117,7 @@
             <param name="request">请求信息</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Util.ReflectionHelper.InvokeAsync``1(``0,System.String,System.Object[],Microsoft.AspNetCore.Http.HttpRequest)">
+        <member name="M:Business.Utils.ReflectionHelper.InvokeAsync``1(``0,System.String,System.Object[],Microsoft.AspNetCore.Http.HttpRequest)">
             <summary>
             调用异步方法
             </summary>
@@ -978,7 +1128,7 @@
             <param name="request">请求信息</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Util.ReflectionHelper.InvokeStatic(System.Type,System.String,System.Object[])">
+        <member name="M:Business.Utils.ReflectionHelper.InvokeStatic(System.Type,System.String,System.Object[])">
             <summary>
             调用静态方法
             </summary>
@@ -987,7 +1137,7 @@
             <param name="parameters">参数</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Util.ReflectionHelper.InvokeStatic(System.Type,System.String,System.Object[],System.Collections.Generic.List{Library.Models.ModelErrorsInfo})">
+        <member name="M:Business.Utils.ReflectionHelper.InvokeStatic(System.Type,System.String,System.Object[],System.Collections.Generic.List{Library.Models.ModelErrorsInfo})">
             <summary>
             调用静态方法
             </summary>
@@ -997,7 +1147,7 @@
             <param name="modelStateErrors">模型验证信息</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Util.ReflectionHelper.InvokeStatic(System.Type,System.String,System.Object[],System.Collections.Generic.List{Library.Models.ModelErrorsInfo},Microsoft.AspNetCore.Http.HttpRequest)">
+        <member name="M:Business.Utils.ReflectionHelper.InvokeStatic(System.Type,System.String,System.Object[],System.Collections.Generic.List{Library.Models.ModelErrorsInfo},Microsoft.AspNetCore.Http.HttpRequest)">
             <summary>
             调用静态方法
             </summary>
@@ -1008,7 +1158,7 @@
             <param name="request">请求信息</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Util.ReflectionHelper.InvokeStatic(System.Type,System.String,System.Object[],Microsoft.AspNetCore.Http.HttpRequest)">
+        <member name="M:Business.Utils.ReflectionHelper.InvokeStatic(System.Type,System.String,System.Object[],Microsoft.AspNetCore.Http.HttpRequest)">
             <summary>
             调用静态方法
             </summary>
@@ -1018,7 +1168,7 @@
             <param name="request">请求信息</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Util.ReflectionHelper.Invoke_Real``1(``0,System.String,System.Object[],System.Collections.Generic.List{Library.Models.ModelErrorsInfo},Microsoft.AspNetCore.Http.HttpRequest,System.Boolean)">
+        <member name="M:Business.Utils.ReflectionHelper.Invoke_Real``1(``0,System.String,System.Object[],System.Collections.Generic.List{Library.Models.ModelErrorsInfo},Microsoft.AspNetCore.Http.HttpRequest,System.Boolean)">
             <summary>
             调用方法
             </summary>
@@ -1031,7 +1181,7 @@
             <param name="async">异步方法</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Util.ReflectionHelper.InvokeStatic_Real(System.Type,System.String,System.Object[],System.Collections.Generic.List{Library.Models.ModelErrorsInfo},Microsoft.AspNetCore.Http.HttpRequest)">
+        <member name="M:Business.Utils.ReflectionHelper.InvokeStatic_Real(System.Type,System.String,System.Object[],System.Collections.Generic.List{Library.Models.ModelErrorsInfo},Microsoft.AspNetCore.Http.HttpRequest)">
             <summary>
             调用静态方法
             </summary>

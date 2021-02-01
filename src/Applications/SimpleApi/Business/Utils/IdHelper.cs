@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Business.Util
+namespace Business.Utils
 {
     /// <summary>
     /// 雪花Id帮助类

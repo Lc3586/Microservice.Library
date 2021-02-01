@@ -1,27 +1,19 @@
 ﻿using AutoMapper;
+using Business.Filter;
 using Business.Interface.System;
-using Business.Util;
+using Business.Utils;
 using Entity.System;
 using FreeSql;
-using Library.Container;
 using Library.DataMapping.Gen;
+using Library.Extension;
 using Library.FreeSql.Extention;
 using Library.FreeSql.Gen;
 using Library.Models;
 using Library.OpenApi.Extention;
-using Library.SelectOption;
-using Microsoft.AspNetCore.Http;
 using Model.System.RoleDTO;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
-using Library.Extension;
-using Library.FreeSql.Annotations;
-using System.ComponentModel;
-using System.Reflection;
-using Model.System;
-using Business.Filter;
 
 namespace Business.Implementation.System
 {
@@ -118,7 +110,7 @@ namespace Business.Implementation.System
         }
 
         [AdministratorOnly]
-        public AjaxResult Create(Create data)
+        public void Create(Create data)
         {
             var newData = Mapper.Map<System_Role>(data).InitEntity();
 
@@ -151,22 +143,20 @@ namespace Business.Implementation.System
 
             if (!success)
                 throw new ApplicationException("创建角色失败", ex);
-
-            return Success();
         }
 
         [AdministratorOnly]
-        public AjaxResult<Edit> GetEdit(string id)
+        public Edit GetEdit(string id)
         {
             var entity = Repository.GetAndCheckNull(id);
 
             var result = Mapper.Map<Edit>(entity);
 
-            return Success(result);
+            return result;
         }
 
         [AdministratorOnly]
-        public AjaxResult Edit(Edit data)
+        public void Edit(Edit data)
         {
             var editData = Mapper.Map<System_Role>(data).ModifyEntity();
 
@@ -219,12 +209,10 @@ namespace Business.Implementation.System
 
             if (!success)
                 throw ex;
-
-            return Success();
         }
 
         [AdministratorOnly]
-        public AjaxResult Enable(string id, bool enable)
+        public void Enable(string id, bool enable)
         {
             var entity = Repository.GetAndCheckNull(id);
 
@@ -245,15 +233,13 @@ namespace Business.Implementation.System
 
             if (!success)
                 throw ex;
-
-            return Success();
         }
 
         [AdministratorOnly]
-        public AjaxResult Sort(Sort data)
+        public void Sort(Sort data)
         {
             if (data.Span == 0 && (data.Type != Model.System.SortType.top || data.Type != Model.System.SortType.low))
-                return Success();
+                return;
 
             var current = Repository.Where(o => o.Id == data.Id)
                                     .ToOne(o => new
@@ -266,7 +252,7 @@ namespace Business.Implementation.System
                                     });
 
             if (current.Id == null)
-                return Error("数据不存在或已被移除.");
+                throw new ApplicationException("数据不存在或已被移除.");
 
             (bool success, Exception ex) = Orm.RunTransaction(() =>
             {
@@ -330,15 +316,13 @@ namespace Business.Implementation.System
 
             if (!success)
                 throw ex;
-
-            return Success();
         }
 
         [AdministratorOnly]
-        public AjaxResult DragSort(DragSort data)
+        public void DragSort(DragSort data)
         {
             if (data.Id == data.TargetId)
-                return Success();
+                return;
 
             var current = Repository.Where(o => o.Id == data.Id)
                                     .ToOne(o => new
@@ -351,7 +335,7 @@ namespace Business.Implementation.System
                                     });
 
             if (current.Id == null)
-                return Error("数据不存在或已被移除.");
+                throw new ApplicationException("数据不存在或已被移除.");
 
             var target = Repository.Where(o => o.Id == data.TargetId)
                                     .ToOne(o => new
@@ -364,7 +348,7 @@ namespace Business.Implementation.System
                                     });
 
             if (target.Id == null)
-                return Error("目标数据不存在.");
+                throw new ApplicationException("目标数据不存在.");
 
             (bool success, Exception ex) = Orm.RunTransaction(() =>
             {
@@ -430,12 +414,10 @@ namespace Business.Implementation.System
 
             if (!success)
                 throw ex;
-
-            return Success();
         }
 
         [AdministratorOnly]
-        public AjaxResult Delete(List<string> ids)
+        public void Delete(List<string> ids)
         {
             var entityList = Repository.Select.Where(c => ids.Contains(c.Id)).ToList(c => new { c.Id, c.Name, c.Type });
 
@@ -465,8 +447,6 @@ namespace Business.Implementation.System
 
             if (!success)
                 throw new ApplicationException("删除角色失败", ex);
-
-            return Success();
         }
 
         #endregion

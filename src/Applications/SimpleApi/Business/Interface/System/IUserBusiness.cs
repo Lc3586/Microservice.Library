@@ -42,28 +42,28 @@ namespace Business.Interface.System
         /// </summary>
         /// <param name="data">数据</param>
         /// <returns></returns>
-        AjaxResult Create(Create data);
+        void Create(Create data);
 
         /// <summary>
         /// 获取编辑数据
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        AjaxResult<Edit> GetEdit(string id);
+        Edit GetEdit(string id);
 
         /// <summary>
         /// 编辑
         /// </summary>
         /// <param name="data">数据</param>
         /// <returns></returns>
-        AjaxResult Edit(Edit data);
+        void Edit(Edit data);
 
         /// <summary>
         /// 删除
         /// </summary>
         /// <param name="ids">Id集合</param>
         /// <returns></returns>
-        AjaxResult Delete(List<string> ids);
+        void Delete(List<string> ids);
 
         #endregion
 

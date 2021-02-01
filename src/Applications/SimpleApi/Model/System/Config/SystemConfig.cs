@@ -4,7 +4,7 @@ using Library.Models;
 using System;
 using System.Collections.Generic;
 
-namespace Model.System
+namespace Model.System.Config
 {
     /// <summary>
     /// 系统配置
@@ -81,15 +81,54 @@ namespace Model.System
         /// </summary>
         public long WorkerId { get; set; }
 
-        /// <summary>
-        /// 默认日志类型
-        /// </summary>
-        public LoggerType DefaultLoggerType { get; set; }
+        #endregion
+
+        #region 日志
 
         /// <summary>
-        /// 日志最小记录等级
+        /// 默认日志组件名称
         /// </summary>
-        public string LogMinLevel { get; set; }
+        public string DefaultLoggerName { get; set; } = "SystemLog";
+
+        /// <summary>
+        /// 默认日志组件类型
+        /// </summary>
+        public LoggerType DefaultLoggerType { get; set; } = LoggerType.Console;
+
+        /// <summary>
+        /// 默认日志组件布局
+        /// </summary>
+        public string DefaultLoggerLayout { get; set; }
+
+        /// <summary>
+        /// 需要记录的日志的最低等级
+        /// </summary>
+        public int MinLogLevel { get; set; }
+
+        #endregion
+
+        #region MyRegion
+
+        /// <summary>
+        /// 启用Swagger
+        /// </summary>
+
+        public bool EnableSwagger { get; set; }
+
+        /// <summary>
+        /// swagger说明文档
+        /// </summary>
+        public List<string> SwaggerXmlComments { get; set; }
+
+        /// <summary>
+        /// swagger接口版本说明
+        /// </summary>
+        public SwaggerApiVersionDescription SwaggerApiVersion { get; set; }
+
+        /// <summary>
+        /// swagger接口多版本说明
+        /// </summary>
+        public List<SwaggerApiMultiVersionDescription> SwaggerApiMultiVersion { get; set; }
 
         #endregion
 
@@ -147,7 +186,7 @@ namespace Model.System
         /// <summary>
         /// 多数据库配置
         /// </summary>
-        [JsonConfig("/jsonconfig/database.json")]//独立的配置文件
+        [JsonConfig("jsonconfig/database.json")]//独立的配置文件
         public List<DatabaseSetting> Databases { get; set; }
 
         #endregion
@@ -206,7 +245,7 @@ namespace Model.System
         /// <summary>
         /// Soap配置
         /// </summary>
-        [JsonConfig("/jsonconfig/soap.json")]
+        [JsonConfig("jsonconfig/soap.json")]
         public List<SoapSetting> Soaps { get; set; }
 
         #endregion
@@ -226,7 +265,7 @@ namespace Model.System
         /// <summary>
         /// CAS跨域地址
         /// </summary>
-        public string[] CASCorsUrl { get; set; }
+        public List<string> CASCorsUrl { get; set; }
 
         /// <summary>
         /// CAS地址

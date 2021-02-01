@@ -1,19 +1,14 @@
-﻿using Library.Container;
+﻿using Business.Interface.System;
+using Library.Container;
 using Library.Extension;
 using Library.Models;
-using Library.Log;
-using Library.SelectOption;
-using System;
+using Model.System;
+using Model.System.Config;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Common;
 using System.Linq;
 using System.Linq.Dynamic.Core;
-using System.Linq.Expressions;
-using AutoMapper;
-using Business.Interface.System;
 
-namespace Business.Util
+namespace Business.Utils
 {
     /// <summary>
     /// 描述：业务处理基类
@@ -27,12 +22,17 @@ namespace Business.Util
         /// <summary>
         /// 日志组件
         /// </summary>
-        public ILogger Logger { get => AutofacHelper.GetScopeService<ILogger>(); }
+        public NLog.ILogger Logger { get => AutofacHelper.GetScopeService<NLog.ILogger>(); }
 
         /// <summary>
         /// 当前登录人
         /// </summary>
         public IOperator Operator { get => AutofacHelper.GetScopeService<IOperator>(); }
+
+        /// <summary>
+        /// 系统日志
+        /// </summary>
+        public SystemConfig Config { get => AutofacHelper.GetScopeService<SystemConfig>(); }
 
         #endregion
 
@@ -109,7 +109,7 @@ namespace Business.Util
         /// <param name="count">总记录数</param>
         /// <param name="pages">总页数</param>
         /// <returns></returns>
-        public List<U> GetPagination<U>(IQueryable<U> query, int pageIndex, int pageRows, string orderColumn, SortType orderType, ref int count, ref int pages)
+        public List<U> GetPagination<U>(IQueryable<U> query, int pageIndex, int pageRows, string orderColumn, Library.Models.SortType orderType, ref int count, ref int pages)
         {
             Pagination pagination = new Pagination
             {

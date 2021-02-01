@@ -1,9 +1,9 @@
-﻿using GSS.Authentication.CAS;
+﻿using Api.Middleware;
+using GSS.Authentication.CAS;
 using GSS.Authentication.CAS.AspNetCore;
 using GSS.Authentication.CAS.Validation;
-using Api.Middleware;
 using Library.Container;
-using Library.Log;
+using Library.NLogger.Gen;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
-using Model.System;
+using Model.System.Config;
 using System;
 using System.Linq;
 using System.Security.Claims;
@@ -135,14 +135,14 @@ namespace Api.Configures
                             break;
                     }
                 }
-                options.Events = new GSS.Authentication.CAS.AspNetCore.CasEvents
+                options.Events = new CasEvents
                 {
                     OnCreatingTicket = context =>
                     {
                         var assertion = context.Assertion;
                         if (assertion == null)
                             return Task.CompletedTask;
-                        if (!(context.Principal.Identity is ClaimsIdentity identity))
+                        if (context.Principal.Identity is not ClaimsIdentity identity)
                             return Task.CompletedTask;
                         // Map claims from assertion
                         identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, assertion.PrincipalName));
@@ -159,10 +159,15 @@ namespace Api.Configures
                     OnRemoteFailure = context =>
                     {
                         var failure = context.Failure;
-                        var logger = AutofacHelper.GetScopeService<ILogger>();
-                        logger.Error(new ApplicationException(failure.Message, failure));
+
+                        var logger = AutofacHelper.GetScopeService<INLoggerProvider>()
+                                                .GetNLogger(config.DefaultLoggerName);
+
+                        logger.Error(failure, failure.Message);
+
                         context.Response.Redirect("/casExternalLoginFailure");
                         context.HandleResponse();
+
                         return Task.CompletedTask;
                     }
                 };

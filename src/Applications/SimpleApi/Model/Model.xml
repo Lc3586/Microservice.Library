@@ -550,315 +550,430 @@
             撤销全部资源
             </summary>
         </member>
-        <member name="T:Model.System.DatabaseSetting">
+        <member name="T:Model.System.Config.DatabaseSetting">
             <summary>
             数据库配置
             </summary>
         </member>
-        <member name="P:Model.System.DatabaseSetting.Name">
+        <member name="P:Model.System.Config.DatabaseSetting.Name">
             <summary>
             名称
             </summary>
         </member>
-        <member name="P:Model.System.DatabaseSetting.Enable">
+        <member name="P:Model.System.Config.DatabaseSetting.Enable">
             <summary>
             启用
             </summary>
         </member>
-        <member name="P:Model.System.DatabaseSetting.DatabaseType">
+        <member name="P:Model.System.Config.DatabaseSetting.DatabaseType">
             <summary>
             数据库类型
             </summary>
         </member>
-        <member name="P:Model.System.DatabaseSetting.ConnectString">
+        <member name="P:Model.System.Config.DatabaseSetting.ConnectString">
             <summary>
             默认数据库连接字符串
             </summary>
         </member>
-        <member name="P:Model.System.DatabaseSetting.EntityAssembly">
+        <member name="P:Model.System.Config.DatabaseSetting.EntityAssembly">
             <summary>
             实体类命名空间
             </summary>
         </member>
-        <member name="T:Model.System.SoapSerializer">
+        <member name="T:Model.System.Config.LoggerType">
+            <summary>
+            日志组件类型
+            </summary>
+        </member>
+        <member name="F:Model.System.Config.LoggerType.Console">
+            <summary>
+            输出到控制台
+            </summary>
+        </member>
+        <member name="F:Model.System.Config.LoggerType.File">
+            <summary>
+            使用txt文件记录日志,默认存放目录为/A_Logs/yyy-MM/yyyy-MM-dd.txt
+            </summary>
+        </member>
+        <member name="F:Model.System.Config.LoggerType.RDBMS">
+            <summary>
+            使用关系型数据库记录日志,例如SQlServer、MySQL、Oracle等
+            </summary>
+        </member>
+        <member name="F:Model.System.Config.LoggerType.ElasticSearch">
+            <summary>
+            使用ElasticSearch记录日志
+            </summary>
+        </member>
+        <member name="T:Model.System.Config.NLoggerConfig">
+            <summary>
+            日志组件配置
+            </summary>
+        </member>
+        <member name="T:Model.System.Config.SoapSerializer">
             <summary>
             序列化类型
             </summary>
         </member>
-        <member name="F:Model.System.SoapSerializer.Xml">
+        <member name="F:Model.System.Config.SoapSerializer.Xml">
             <summary>
             .asmx
             </summary>
         </member>
-        <member name="F:Model.System.SoapSerializer.DataContract">
+        <member name="F:Model.System.Config.SoapSerializer.DataContract">
             <summary>
             .svc
             </summary>
         </member>
-        <member name="T:Model.System.SoapSetting">
+        <member name="T:Model.System.Config.SoapSetting">
             <summary>
             Soap配置
             </summary>
         </member>
-        <member name="P:Model.System.SoapSetting.Name">
+        <member name="P:Model.System.Config.SoapSetting.Name">
             <summary>
             名称
             </summary>
         </member>
-        <member name="P:Model.System.SoapSetting.Type">
+        <member name="P:Model.System.Config.SoapSetting.Type">
             <summary>
             Soap类型
             </summary>
         </member>
-        <member name="P:Model.System.SoapSetting.Enable">
+        <member name="P:Model.System.Config.SoapSetting.Enable">
             <summary>
             启用
             </summary>
         </member>
-        <member name="P:Model.System.SoapSetting.Uri">
+        <member name="P:Model.System.Config.SoapSetting.Uri">
             <summary>
             资源位置
             </summary>
         </member>
-        <member name="P:Model.System.SoapSetting.ServiceType">
+        <member name="P:Model.System.Config.SoapSetting.ServiceType">
             <summary>
             服务接口类
             </summary>
         </member>
-        <member name="P:Model.System.SoapSetting.ImplementationType">
+        <member name="P:Model.System.Config.SoapSetting.ImplementationType">
             <summary>
             服务实现类
             </summary>
         </member>
-        <member name="P:Model.System.SoapSetting.Serializer">
+        <member name="P:Model.System.Config.SoapSetting.Serializer">
             <summary>
             序列化类型
             </summary>
         </member>
-        <member name="P:Model.System.SoapSetting.Path">
+        <member name="P:Model.System.Config.SoapSetting.Path">
             <summary>
             路径
             </summary>
         </member>
-        <member name="P:Model.System.SoapSetting.CustomResponse">
+        <member name="P:Model.System.Config.SoapSetting.CustomResponse">
             <summary>
             自定义响应
             </summary>
         </member>
-        <member name="T:Model.System.SoapType">
+        <member name="T:Model.System.Config.SoapType">
             <summary>
             Soap类型
             </summary>
         </member>
-        <member name="F:Model.System.SoapType.Client">
+        <member name="F:Model.System.Config.SoapType.Client">
             <summary>
             客户端
             </summary>
         </member>
-        <member name="F:Model.System.SoapType.Server">
+        <member name="F:Model.System.Config.SoapType.Server">
             <summary>
             服务
             </summary>
         </member>
-        <member name="T:Model.System.SystemConfig">
+        <member name="T:Model.System.Config.SwaggerApiMultiVersionDescription">
+            <summary>
+            swagger接口文档多版本说明配置
+            </summary>
+        </member>
+        <member name="P:Model.System.Config.SwaggerApiMultiVersionDescription.GroupName">
+            <summary>
+            分组名称
+            </summary>
+        </member>
+        <member name="P:Model.System.Config.SwaggerApiMultiVersionDescription.Title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:Model.System.Config.SwaggerApiMultiVersionDescription.Version">
+            <summary>
+            版本
+            </summary>
+        </member>
+        <member name="P:Model.System.Config.SwaggerApiMultiVersionDescription.Description">
+            <summary>
+            说明
+            </summary>
+        </member>
+        <member name="T:Model.System.Config.SwaggerApiMultiVersionDescriptionOptions">
+            <summary>
+            swagger多版本说明配置
+            </summary>
+        </member>
+        <member name="T:Model.System.Config.SwaggerApiVersionDescription">
+            <summary>
+            swagger接口文档说明配置
+            </summary>
+        </member>
+        <member name="P:Model.System.Config.SwaggerApiVersionDescription.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Model.System.Config.SwaggerApiVersionDescription.Title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:Model.System.Config.SwaggerApiVersionDescription.Version">
+            <summary>
+            版本
+            </summary>
+        </member>
+        <member name="P:Model.System.Config.SwaggerApiVersionDescription.Description">
+            <summary>
+            说明
+            </summary>
+        </member>
+        <member name="T:Model.System.Config.SystemConfig">
             <summary>
             系统配置
             </summary>
         </member>
-        <member name="P:Model.System.SystemConfig.AdminId">
+        <member name="P:Model.System.Config.SystemConfig.AdminId">
             <summary>
             超级管理员Id
             </summary>
         </member>
-        <member name="P:Model.System.SystemConfig.ProjectName">
+        <member name="P:Model.System.Config.SystemConfig.ProjectName">
             <summary>
             项目名称
             </summary>
         </member>
-        <member name="P:Model.System.SystemConfig.WebRootUrl">
+        <member name="P:Model.System.Config.SystemConfig.WebRootUrl">
             <summary>
             网站根地址
             </summary>
         </member>
-        <member name="P:Model.System.SystemConfig.PublishRootUrl">
+        <member name="P:Model.System.Config.SystemConfig.PublishRootUrl">
             <summary>
             发布后网站根地址
             </summary>
         </member>
-        <member name="P:Model.System.SystemConfig.LocalRootUrl">
+        <member name="P:Model.System.Config.SystemConfig.LocalRootUrl">
             <summary>
             本地调试根地址
             </summary>
         </member>
-        <member name="P:Model.System.SystemConfig.RunMode">
+        <member name="P:Model.System.Config.SystemConfig.RunMode">
             <summary>
             运行模式
             </summary>
         </member>
-        <member name="P:Model.System.SystemConfig.FxAssembly">
+        <member name="P:Model.System.Config.SystemConfig.FxAssembly">
             <summary>
             标记了IDependency的类的命名空间集合
             <para>支持通配符</para>
             </summary>
         </member>
-        <member name="P:Model.System.SystemConfig.DeleteMode">
+        <member name="P:Model.System.Config.SystemConfig.DeleteMode">
             <summary>
             数据删除模式,默认逻辑删除
             </summary>
         </member>
-        <member name="P:Model.System.SystemConfig.JWTSecret">
+        <member name="P:Model.System.Config.SystemConfig.JWTSecret">
             <summary>
             JWT秘钥
             </summary>
         </member>
-        <member name="P:Model.System.SystemConfig.WorkerId">
+        <member name="P:Model.System.Config.SystemConfig.WorkerId">
             <summary>
             工作ID
             </summary>
         </member>
-        <member name="P:Model.System.SystemConfig.DefaultLoggerType">
+        <member name="P:Model.System.Config.SystemConfig.DefaultLoggerName">
             <summary>
-            默认日志类型
+            默认日志组件名称
             </summary>
         </member>
-        <member name="P:Model.System.SystemConfig.LogMinLevel">
+        <member name="P:Model.System.Config.SystemConfig.DefaultLoggerType">
             <summary>
-            日志最小记录等级
+            默认日志组件类型
             </summary>
         </member>
-        <member name="P:Model.System.SystemConfig.DefaultCacheType">
+        <member name="P:Model.System.Config.SystemConfig.DefaultLoggerLayout">
+            <summary>
+            默认日志组件布局
+            </summary>
+        </member>
+        <member name="P:Model.System.Config.SystemConfig.MinLogLevel">
+            <summary>
+            需要记录的日志的最低等级
+            </summary>
+        </member>
+        <member name="P:Model.System.Config.SystemConfig.EnableSwagger">
+            <summary>
+            启用Swagger
+            </summary>
+        </member>
+        <member name="P:Model.System.Config.SystemConfig.SwaggerXmlComments">
+            <summary>
+            swagger说明文档
+            </summary>
+        </member>
+        <member name="P:Model.System.Config.SystemConfig.SwaggerApiVersion">
+            <summary>
+            swagger接口版本说明
+            </summary>
+        </member>
+        <member name="P:Model.System.Config.SystemConfig.SwaggerApiMultiVersion">
+            <summary>
+            swagger接口多版本说明
+            </summary>
+        </member>
+        <member name="P:Model.System.Config.SystemConfig.DefaultCacheType">
             <summary>
             默认缓存类型
             </summary>
         </member>
-        <member name="P:Model.System.SystemConfig.RedisConfig">
+        <member name="P:Model.System.Config.SystemConfig.RedisConfig">
             <summary>
             Redis配置
             </summary>
         </member>
-        <member name="P:Model.System.SystemConfig.EnableAutoMapper">
+        <member name="P:Model.System.Config.SystemConfig.EnableAutoMapper">
             <summary>
             启用AutoMapper
             </summary>
         </member>
-        <member name="P:Model.System.SystemConfig.AutoMapperAssemblys">
+        <member name="P:Model.System.Config.SystemConfig.AutoMapperAssemblys">
             <summary>
             AutoMapper命名空间集合
             <para>支持通配符</para>
             </summary>
         </member>
-        <member name="P:Model.System.SystemConfig.DefaultDatabaseType">
+        <member name="P:Model.System.Config.SystemConfig.DefaultDatabaseType">
             <summary>
             默认数据库类型
             </summary>
         </member>
-        <member name="P:Model.System.SystemConfig.DefaultDatabaseConnectString">
+        <member name="P:Model.System.Config.SystemConfig.DefaultDatabaseConnectString">
             <summary>
             默认数据库连接字符串
             </summary>
         </member>
-        <member name="P:Model.System.SystemConfig.EntityAssembly">
+        <member name="P:Model.System.Config.SystemConfig.EntityAssembly">
             <summary>
             实体类命名空间
             </summary>
         </member>
-        <member name="P:Model.System.SystemConfig.MultiDatabases">
+        <member name="P:Model.System.Config.SystemConfig.MultiDatabases">
             <summary>
             是否多数据库
             </summary>
         </member>
-        <member name="P:Model.System.SystemConfig.Databases">
+        <member name="P:Model.System.Config.SystemConfig.Databases">
             <summary>
             多数据库配置
             </summary>
         </member>
-        <member name="P:Model.System.SystemConfig.EnableFreeSql">
+        <member name="P:Model.System.Config.SystemConfig.EnableFreeSql">
             <summary>
             启用FreeSql
             </summary>
         </member>
-        <member name="P:Model.System.SystemConfig.DbCacheFilter">
+        <member name="P:Model.System.Config.SystemConfig.DbCacheFilter">
             <summary>
             数据库缓存过滤（不将相同的变更提交数据库）
             </summary>
         </member>
-        <member name="P:Model.System.SystemConfig.FreeSqlAutoSyncStructure">
+        <member name="P:Model.System.Config.SystemConfig.FreeSqlAutoSyncStructure">
             <summary>
             自动同步实体结构到数据库，程序运行中检查实体表是否存在，然后创建或修改
             </summary>
         </member>
-        <member name="P:Model.System.SystemConfig.FreeSqlSyncStructureNameConvert">
+        <member name="P:Model.System.Config.SystemConfig.FreeSqlSyncStructureNameConvert">
             <summary>
             实体类名 -> 数据库表名，命名转换（类名、属性名都生效）
             优先级小于 [Table(Name = "xxx")]、[Column(Name = "xxx")]
             </summary>
         </member>
-        <member name="P:Model.System.SystemConfig.FreeSqlSyncStructureOnStartup">
+        <member name="P:Model.System.Config.SystemConfig.FreeSqlSyncStructureOnStartup">
             <summary>
             启动时同步实体类型集合到数据库
             </summary>
         </member>
-        <member name="P:Model.System.SystemConfig.EnableElasticsearch">
+        <member name="P:Model.System.Config.SystemConfig.EnableElasticsearch">
             <summary>
             启用ElasticSearch
             </summary>
         </member>
-        <member name="P:Model.System.SystemConfig.ElasticsearchNodes">
+        <member name="P:Model.System.Config.SystemConfig.ElasticsearchNodes">
             <summary>
             ElasticSearch集群
             </summary>
         </member>
-        <member name="P:Model.System.SystemConfig.EnableSoap">
+        <member name="P:Model.System.Config.SystemConfig.EnableSoap">
             <summary>
             启用Soap
             </summary>
         </member>
-        <member name="P:Model.System.SystemConfig.Soaps">
+        <member name="P:Model.System.Config.SystemConfig.Soaps">
             <summary>
             Soap配置
             </summary>
         </member>
-        <member name="P:Model.System.SystemConfig.CASEnable">
+        <member name="P:Model.System.Config.SystemConfig.CASEnable">
             <summary>
             启用CAS
             </summary>
         </member>
-        <member name="P:Model.System.SystemConfig.CASProtocolVersion">
+        <member name="P:Model.System.Config.SystemConfig.CASProtocolVersion">
             <summary>
             协议版本号
             </summary>
         </member>
-        <member name="P:Model.System.SystemConfig.CASCorsUrl">
+        <member name="P:Model.System.Config.SystemConfig.CASCorsUrl">
             <summary>
             CAS跨域地址
             </summary>
         </member>
-        <member name="P:Model.System.SystemConfig.CASBaseUrl">
+        <member name="P:Model.System.Config.SystemConfig.CASBaseUrl">
             <summary>
             CAS地址
             </summary>
         </member>
-        <member name="P:Model.System.SystemConfig.EnableCasSingleSignOut">
+        <member name="P:Model.System.Config.SystemConfig.EnableCasSingleSignOut">
             <summary>
             启用单点注销
             </summary>
         </member>
-        <member name="P:Model.System.SystemConfig.CASTGTUrl">
+        <member name="P:Model.System.Config.SystemConfig.CASTGTUrl">
             <summary>
             CAS获取TGT票据地址
             </summary>
         </member>
-        <member name="P:Model.System.SystemConfig.CASSTUrl">
+        <member name="P:Model.System.Config.SystemConfig.CASSTUrl">
             <summary>
             CAS生成ST票据地址
             </summary>
         </member>
-        <member name="P:Model.System.SystemConfig.CASUserInfoUrl">
+        <member name="P:Model.System.Config.SystemConfig.CASUserInfoUrl">
             <summary>
             CAS获取用户信息地址
             </summary>
         </member>
-        <member name="P:Model.System.SystemConfig.CASDeleteSTUrl">
+        <member name="P:Model.System.Config.SystemConfig.CASDeleteSTUrl">
             <summary>
             CAS删除TGT地址
             </summary>
@@ -882,6 +997,40 @@
             <summary>
             角色
             </summary>
+        </member>
+        <member name="T:Model.System.LogDTO.List">
+            <summary>
+            列表
+            </summary>
+        </member>
+        <member name="T:Model.System.LogDTO.Detail">
+            <summary>
+            详情
+            </summary>
+        </member>
+        <member name="T:Model.System.LogDTO.Create">
+            <summary>
+            新增
+            </summary>
+        </member>
+        <member name="T:Model.System.LogType">
+            <summary>
+            日志类型
+            </summary>
+        </member>
+        <member name="M:Model.System.LogType.GetName(System.Byte)">
+            <summary>
+            获取名称
+            </summary>
+            <param name="value">值</param>
+            <returns>名称</returns>
+        </member>
+        <member name="M:Model.System.LogType.GetValue(System.String)">
+            <summary>
+            获取值
+            </summary>
+            <param name="name">名称</param>
+            <returns>值</returns>
         </member>
         <member name="T:Model.System.MenuDTO.List">
             <summary>

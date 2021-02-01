@@ -1,15 +1,9 @@
 ﻿
-using Library.Container;
-using Library.Http;
-using Library.Models;
-using Library.Log;
-using System.Linq;
-using Library.Extension;
-using Business.Interface;
 using Business.Interface.System;
+using Library.Container;
 using Library.WebApp;
 using Model.System.UserDTO;
-using Model.System;
+using System.Linq;
 
 namespace Business.Implementation.System
 {
@@ -21,16 +15,12 @@ namespace Business.Implementation.System
         #region DI
 
         public Operator(
-            IAuthoritiesBusiness authoritiesBusiness,
-            ILogger logger)
+            IAuthoritiesBusiness authoritiesBusiness)
         {
             AuthoritiesBusiness = authoritiesBusiness;
-            Logger = logger;
         }
 
         readonly IAuthoritiesBusiness AuthoritiesBusiness;//= AutofacHelper.GetScopeService<IAuthoritiesBusiness>();
-
-        readonly ILogger Logger;//= AutofacHelper.GetScopeService<ILogger>();
 
         #endregion
 

@@ -1,7 +1,7 @@
 ﻿using FreeSql;
-using Library.Models;
+using System.Collections.Generic;
 
-namespace Model.System
+namespace Model.System.Config
 {
     /// <summary>
     /// 数据库配置
@@ -31,6 +31,6 @@ namespace Model.System
         /// <summary>
         /// 实体类命名空间
         /// </summary>
-        public string EntityAssembly { get; set; }
+        public List<string> EntityAssembly { get; set; }
     }
 }

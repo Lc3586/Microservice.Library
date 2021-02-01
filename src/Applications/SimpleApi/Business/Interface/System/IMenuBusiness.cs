@@ -40,21 +40,21 @@ namespace Business.Interface.System
         /// </summary>
         /// <param name="data">数据</param>
         /// <returns></returns>
-        AjaxResult Create(Create data);
+        void Create(Create data);
 
         /// <summary>
         /// 获取编辑数据
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        AjaxResult<Edit> GetEdit(string id);
+        Edit GetEdit(string id);
 
         /// <summary>
         /// 编辑
         /// </summary>
         /// <param name="data">数据</param>
         /// <returns></returns>
-        AjaxResult Edit(Edit data);
+        void Edit(Edit data);
 
         /// <summary>
         /// 启用/禁用
@@ -62,28 +62,28 @@ namespace Business.Interface.System
         /// <param name="id">数据</param>
         /// <param name="enable">设置状态</param>
         /// <returns></returns>
-        AjaxResult Enable(string id, bool enable);
+        void Enable(string id, bool enable);
 
         /// <summary>
         /// 排序
         /// </summary>
         /// <param name="data">数据</param>
         /// <returns></returns>
-        AjaxResult Sort(Sort data);
+        void Sort(Sort data);
 
         /// <summary>
         /// 拖动排序
         /// </summary>
         /// <param name="data">数据</param>
         /// <returns></returns>
-        AjaxResult DragSort(DragSort data);
+        void DragSort(DragSort data);
 
         /// <summary>
         /// 删除
         /// </summary>
         /// <param name="ids">Id集合</param>
         /// <returns></returns>
-        AjaxResult Delete(List<string> ids);
+        void Delete(List<string> ids);
 
         #endregion
 

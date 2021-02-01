@@ -4,9 +4,12 @@ using Library.Container;
 using Library.Extension;
 using Model.System.UserDTO;
 
-namespace Business.Util
+namespace Business.Utils
 {
-    public static partial class Extention
+    /// <summary>
+    /// 实体类拓展方法
+    /// </summary>
+    public static partial class EntityExtention
     {
         /// <summary>
         /// 初始化实体，不处理当前登录人
@@ -31,7 +34,7 @@ namespace Business.Util
         /// <param name="entity"></param>
         /// <param name="property"></param>
         /// <returns></returns>
-        public static T InitEntity<T>(this T entity,Authorities property = null)
+        public static T InitEntity<T>(this T entity, Authorities property = null)
         {
             var op = AutofacHelper.GetScopeService<IOperator>();
 
@@ -78,10 +81,10 @@ namespace Business.Util
             {
                 if (entity.ContainsProperty("ModifyTime"))
                     entity.SetPropertyValue("ModifyTime", DateTime.Now);
-                if (entity.ContainsProperty("ModifyId"))
-                    entity.SetPropertyValue("ModifyId", property == null ? op?.UserId : property.Id);
-                if (entity.ContainsProperty("ModifyName"))
-                    entity.SetPropertyValue("ModifyName", GetUserName(op, property));
+                if (entity.ContainsProperty("ModifiedById"))
+                    entity.SetPropertyValue("ModifiedById", property == null ? op?.UserId : property.Id);
+                if (entity.ContainsProperty("ModifiedByName"))
+                    entity.SetPropertyValue("ModifiedByName", GetUserName(op, property));
             }
             return entity;
         }

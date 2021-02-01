@@ -10,8 +10,9 @@ using System.Xml;
 using HtmlAgilityPack;
 using Model.System;
 using Library.Container;
+using Model.System.Config;
 
-namespace Business.Util
+namespace Business.Utils
 {
     /// <summary>
     /// CAS帮助类

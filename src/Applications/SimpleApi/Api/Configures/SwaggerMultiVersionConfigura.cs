@@ -2,15 +2,15 @@
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
-using Model.System;
+using Model.System.Config;
+using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Api.Configures
 {
@@ -28,8 +28,8 @@ namespace Api.Configures
         {
             #region 多版本文档
 
-            //services.AddApiVersioning();
-            //services.AddVersionedApiExplorer();
+            services.AddApiVersioning();
+            services.AddVersionedApiExplorer();
 
             #endregion
 
@@ -37,24 +37,20 @@ namespace Api.Configures
             {
                 #region 配置文档
 
-                //单文档配置方式
-                s.SwaggerDoc("v1.0", new OpenApiInfo
-                {
-                    Title = config.ProjectName,
-                    Version = "v1.0",
-                    Description = "接口文档"
-                });
-
                 //多版本文档配置
                 //注册自定义配置程序，将系统配置（SystemConfig）应用于Swagger配置（AutoMapperGeneratorOptions）。
-                services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
+                services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerGenOptions>();
+                services.AddTransient(s => s.GetRequiredService<IOptions<SwaggerApiMultiVersionDescriptionOptions>>().Value);
+                services.Configure<SwaggerApiMultiVersionDescriptionOptions>(options =>
+                {
+                    options.ApiMultiVersionDescription = config.SwaggerApiMultiVersion;
+                });
 
                 #endregion
 
                 #region 自定义架构Id选择器
 
-                Func<Type, string> SchemaIdSelector = null;
-                SchemaIdSelector = (Type modelType) =>
+                static string SchemaIdSelector(Type modelType)
                 {
                     if (!modelType.IsConstructedGenericType) return modelType.FullName.Replace("[]", "Array");
 
@@ -63,7 +59,8 @@ namespace Api.Configures
                         .Aggregate((previous, current) => previous + current);
 
                     return prefix + modelType.FullName.Split('`').First();
-                };
+                }
+
                 s.CustomSchemaIds(SchemaIdSelector);
 
                 #endregion
@@ -73,7 +70,7 @@ namespace Api.Configures
                 #region 为JSON文件和UI设置xml文档路径
 
                 var basePath = Path.GetDirectoryName(typeof(Program).Assembly.Location);//获取应用程序所在目录（绝对，不受工作目录影响，建议采用此方法获取路径）
-                foreach (var item in new[] { "Integrate_Entity.xml", "Integrate_Model.xml", "Integrate_Business.xml", "Integrate_Api.xml", "Library.Models.xml" })
+                foreach (var item in config.SwaggerXmlComments)
                 {
                     var xmlPath = Path.Combine(basePath, item);
 
@@ -89,20 +86,15 @@ namespace Api.Configures
             .AddMvc()
             //禁用框架结构属性小驼峰命名规则
             .AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
-
-
-            services.Configure<SwaggerGenOptions>(options =>
-            {
-
-
-            });
         }
 
         /// <summary>
         /// 配置应用
         /// </summary>
         /// <param name="app"></param>
-        public static void RegisterApplication(IApplicationBuilder app, IApiVersionDescriptionProvider provider, SystemConfig config)
+        /// <param name="apiVersionDescription"></param>
+        /// <param name="config"></param>
+        public static void RegisterApplication(IApplicationBuilder app, IApiVersionDescriptionProvider apiVersionDescription, SystemConfig config)
         {
             #region 方言配置（展示用，普通项目无需添加此内容）
 
@@ -140,7 +132,7 @@ namespace Api.Configures
                             Description = "当前地址"
                         },
                         new OpenApiServer {
-                            Url = SystemConfig.systemConfig.PublishRootUrl,
+                            Url = config.PublishRootUrl,
                             Description = "服务器地址"
                         }
                     };
@@ -149,26 +141,24 @@ namespace Api.Configures
             app.UseSwaggerUI(s =>
             {
                 //多版本文档
-                //foreach (var description in provider.ApiVersionDescriptions)
-                //{
-                //    s.SwaggerEndpoint($"{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
-                //}
+                foreach (var description in apiVersionDescription.ApiVersionDescriptions)
+                {
+                    s.SwaggerEndpoint($"{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
+                }
                 s.SwaggerEndpoint("/swagger/v1.0/swagger.json", "v1.0 文档");
 
                 #region 页面自定义选项
 
-                s.DocumentTitle = $"{SystemConfig.systemConfig.ProjectName}接口文档";//页面标题
+                s.DocumentTitle = $"{config.ProjectName}接口文档";//页面标题
                 s.DisplayOperationId();//显示操作Id
                 s.DisplayRequestDuration();//显示请求持续时间
                 s.EnableFilter();//启用顶部筛选框
-                //s.InjectStylesheet("/swagger/custom-stylesheet.css");//自定义样式表，需要启用静态文件
-                //s.InjectJavascript("/swagger/custom-javascript.js");//自定义脚本，需要启用静态文件
                 s.InjectJavascript("/swagger/jquery-1.8.3.min.js");
                 s.InjectStylesheet("/swagger/waiting.css");
                 s.InjectJavascript("/swagger/waiting.min.js");
-                s.InjectStylesheet("/swagger/custom-stylesheet.css");
-                s.InjectJavascript("/swagger/custom-javascript.js");
-                if (SystemConfig.systemConfig.CASEnable)
+                s.InjectStylesheet("/swagger/custom-stylesheet.css");//自定义样式表，需要启用静态文件
+                s.InjectJavascript("/swagger/custom-javascript.js");//自定义脚本，需要启用静态文件
+                if (config.CASEnable)
                     s.InjectJavascript("/swagger/casLogin.js");//cas登录脚本脚本
 
                 #endregion
