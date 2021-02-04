@@ -11,6 +11,25 @@ using Microsoft.AspNetCore.Http;
 namespace Model.Common.FileDTO
 {
     /// <summary>
+    /// MD5校验输出信息
+    /// </summary>
+    public class CheckMD5Response
+    {
+        /// <summary>
+        /// 是否已上传过了
+        /// </summary>
+        /// <remarks>
+        /// <para>如已上传则返回文件信息<see cref="FileInfo"/></para>
+        /// </remarks>
+        public bool Uploaded { get; set; }
+
+        /// <summary>
+        /// 文件信息
+        /// </summary>
+        public FileInfo FileInfo { get; set; }
+    }
+
+    /// <summary>
     /// 图片上传参数
     /// </summary>
     public class ImageUploadParams

@@ -20,14 +20,14 @@ namespace Library.WeChat.Extension
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="options">微信服务配置</param>
-        public SecurityHelper(WeChatServiceOptions options)
+        /// <param name="options">微信配置</param>
+        public SecurityHelper(WeChatGenOptions options)
         {
             Options = options;
 
-            if (!string.IsNullOrWhiteSpace(Options.CertFilePath))
+            if (!string.IsNullOrWhiteSpace(Options.WeChatBaseOptions.CertFilePath))
             {
-                PrivateCert = new X509Certificate2(Options.CertFilePath, Options.CertPassword, X509KeyStorageFlags.Exportable);
+                PrivateCert = new X509Certificate2(Options.WeChatBaseOptions.CertFilePath, Options.WeChatBaseOptions.CertPassword, X509KeyStorageFlags.Exportable);
 
                 PrivateKey = (RSACryptoServiceProvider)PrivateCert.PrivateKey;
 
@@ -37,9 +37,9 @@ namespace Library.WeChat.Extension
                 PrivateKey.ImportParameters(parameters);
             }
 
-            if (!string.IsNullOrWhiteSpace(Options.PemFilePath))
+            if (!string.IsNullOrWhiteSpace(Options.WeChatBaseOptions.PemFilePath))
             {
-                var publicKey = File.ReadAllBytes(Options.PemFilePath);
+                var publicKey = File.ReadAllBytes(Options.WeChatBaseOptions.PemFilePath);
                 PublicKey = (RSACryptoServiceProvider)(new X509Certificate2(publicKey).PublicKey.Key);
             }
         }
@@ -47,9 +47,9 @@ namespace Library.WeChat.Extension
         #region 私有成员
 
         /// <summary>
-        /// 微信服务配置
+        /// 微信配置
         /// </summary>
-        WeChatServiceOptions Options { get; }
+        WeChatGenOptions Options { get; }
 
         #region RAS
 
@@ -88,6 +88,32 @@ namespace Library.WeChat.Extension
         #endregion
 
         /// <summary>
+        /// 计算SHA1摘要
+        /// </summary>
+        /// <param name="data">字符串</param>
+        /// <returns></returns>
+        public byte[] ToSHA1Bytes(string data)
+        {
+            SHA1 sha1 = new SHA1CryptoServiceProvider();
+            byte[] inputBytes = Options.WeChatDevOptions.Encoding.GetBytes(data);
+            byte[] outputBytes = sha1.ComputeHash(inputBytes);
+            return outputBytes;
+        }
+
+        /// <summary>
+        /// 转为SHA1哈希
+        /// </summary>
+        /// <param name="data">字符串</param>
+        /// <param name="toLower">转为小写</param>
+        /// <returns></returns>
+        public string ToSHA1String(string data, bool toLower = true)
+        {
+            byte[] sha1Bytes = ToSHA1Bytes(data);
+            string resStr = BitConverter.ToString(sha1Bytes).Replace("-", "");
+            return toLower ? resStr.ToLower() : resStr;
+        }
+
+        /// <summary>
         /// 获取签名
         /// <para>SHA256-RSA</para>
         /// </summary>
@@ -95,7 +121,7 @@ namespace Library.WeChat.Extension
         /// <returns></returns>
         public byte[] GetSignByteWithSHA256_RSA(string data)
         {
-            byte[] bytes = Options.Encoding.GetBytes(data);
+            byte[] bytes = Options.WeChatDevOptions.Encoding.GetBytes(data);
 
             byte[] signature = PrivateKey.SignData(bytes, "SHA256");
 
@@ -121,7 +147,7 @@ namespace Library.WeChat.Extension
         /// <returns></returns>
         public string GetMD5(string data, bool lower)
         {
-            return lower ? EncryptHelper.GetLowerMD5(data, Options.Encoding)
+            return lower ? EncryptHelper.GetLowerMD5(data, Options.WeChatDevOptions.Encoding)
                  : EncryptHelper.GetMD5(data);
         }
 
@@ -137,10 +163,10 @@ namespace Library.WeChat.Extension
         {
             GcmBlockCipher gcmBlockCipher = new GcmBlockCipher(new AesEngine());
             AeadParameters aeadParameters = new AeadParameters(
-                new KeyParameter(Options.Encoding.GetBytes(Options.Key)),
+                new KeyParameter(Options.WeChatDevOptions.Encoding.GetBytes(Options.WeChatBaseOptions.Key)),
                 128,
-                Options.Encoding.GetBytes(nonce),
-                Options.Encoding.GetBytes(associatedData));
+                Options.WeChatDevOptions.Encoding.GetBytes(nonce),
+                Options.WeChatDevOptions.Encoding.GetBytes(associatedData));
 
             gcmBlockCipher.Init(false, aeadParameters);
 
@@ -148,7 +174,7 @@ namespace Library.WeChat.Extension
             byte[] plaintext = new byte[gcmBlockCipher.GetOutputSize(associatedData.Length)];
             int length = gcmBlockCipher.ProcessBytes(bytes, 0, associatedData.Length, plaintext, 0);
             gcmBlockCipher.DoFinal(plaintext, length);
-            return Options.Encoding.GetString(plaintext);
+            return Options.WeChatDevOptions.Encoding.GetString(plaintext);
         }
 
         /// <summary>
@@ -162,16 +188,16 @@ namespace Library.WeChat.Extension
         {
             var ciphertextA = ciphertext;
             var ciphertextB = Convert.FromBase64String(ciphertextA);
-            var key_MD5_Lower = GetMD5(Options.Key, true);
+            var key_MD5_Lower = GetMD5(Options.WeChatBaseOptions.Key, true);
 
             var decryptor = new RijndaelManaged();
             decryptor.BlockSize = 128;
             decryptor.Padding = PaddingMode.PKCS7;
             decryptor.Mode = CipherMode.ECB;
-            decryptor.Key = Options.Encoding.GetBytes(key_MD5_Lower);
+            decryptor.Key = Options.WeChatDevOptions.Encoding.GetBytes(key_MD5_Lower);
             ICryptoTransform cTransform = decryptor.CreateDecryptor();
             byte[] resultArray = cTransform.TransformFinalBlock(ciphertextB, 0, ciphertextB.Length);
-            return Options.Encoding.GetString(resultArray);
+            return Options.WeChatDevOptions.Encoding.GetString(resultArray);
         }
 
         /// <summary>

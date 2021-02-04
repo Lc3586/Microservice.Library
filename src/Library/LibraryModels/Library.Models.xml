@@ -810,6 +810,11 @@
             大于
             </summary>
         </member>
+        <member name="T:Library.Models.LogType">
+            <summary>
+            系统日志类型
+            </summary>
+        </member>
         <member name="T:Library.Models.ModelErrorsInfo">
             <summary>
             模型验证错误信息
@@ -1141,6 +1146,11 @@
         <member name="P:Library.Models.PaginationFilter.Value">
             <summary>
             用于比较的值
+            </summary>
+        </member>
+        <member name="P:Library.Models.PaginationFilter.ValueIsField">
+            <summary>
+            Value值是用来比较的字段
             </summary>
         </member>
         <member name="P:Library.Models.PaginationFilter.Compare">

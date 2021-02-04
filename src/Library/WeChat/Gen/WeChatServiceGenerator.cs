@@ -37,7 +37,7 @@ namespace Library.WeChat.Gen
             switch (serviceVersion)
             {
                 case WeChatServiceVersion.V3:
-                    Services[serviceVersion] = new WeChatServiceV3(Options.WeChatServiceOptions);
+                    Services[serviceVersion] = new WeChatServiceV3(Options.WeChatBaseOptions);
                     break;
                 default:
                     throw new WeChatServiceException($"不支持的微信服务版本: {serviceVersion}");

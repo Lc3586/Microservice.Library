@@ -25,8 +25,10 @@ namespace Microsoft.Extensions.DependencyInjection
             this IServiceCollection services,
             Action<WeChatGenOptions> setupAction = null)
         {
-            //注册自定义配置程序，将高级配置（<WeChatGenOptions）应用于低级配置（WeChatServiceOptions）。
-            services.AddTransient<IConfigureOptions<WeChatServiceOptions>, ConfigureWeChatServiceOptions>();
+            //注册自定义配置程序，将高级配置（<WeChatGenOptions）应用于低级配置（WeChatBaseOptions, WeChatDevOptions, WeChatOAuthOptions）。
+            services.AddTransient<IConfigureOptions<WeChatBaseOptions>, ConfigureWeChatServiceOptions>();
+            services.AddTransient<IConfigureOptions<WeChatDevOptions>, ConfigureWeChatDevOptions>();
+            services.AddTransient<IConfigureOptions<WeChatOAuthOptions>, ConfigureWeChatOAuthOptions>();
 
             //注册生成器和依赖
             services.AddTransient(s => s.GetRequiredService<IOptions<WeChatGenOptions>>().Value);

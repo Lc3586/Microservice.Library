@@ -18,11 +18,8 @@ namespace Entity.System
     #region 设置索引
     [Index(nameof(System_OperationRecord) + "_idx_" + nameof(DataId), nameof(DataId) + " ASC")]
     [Index(nameof(System_OperationRecord) + "_idx_" + nameof(DataType), nameof(DataType) + " ASC")]
-    [Index(nameof(System_OperationRecord) + "_idx_" + nameof(UserType), nameof(UserType) + " ASC")]
-    [Index(nameof(System_OperationRecord) + "_idx_" + nameof(IsAdmin), nameof(IsAdmin) + " ASC")]
-    [Index(nameof(System_OperationRecord) + "_idx_" + nameof(Explain), nameof(Explain) + " ASC")]
+    [Index(nameof(System_OperationRecord) + "_idx_" + nameof(Account), nameof(Account) + " ASC")]
     [Index(nameof(System_OperationRecord) + "_idx_" + nameof(CreatorId), nameof(CreatorId) + " ASC")]
-    [Index(nameof(System_OperationRecord) + "_idx_" + nameof(CreatorName), nameof(CreatorName) + " ASC")]
     [Index(nameof(System_OperationRecord) + "_idx_" + nameof(CreateTime), nameof(CreateTime) + " DESC")]
     #endregion
     public class System_OperationRecord
@@ -44,9 +41,8 @@ namespace Entity.System
 
         /// <summary>
         /// 数据类型
-        /// <para>System_Uset</para>
-        /// <para>System_Role</para>
         /// </summary>
+        /// <remarks>值为各数据模型的实体类名</remarks>
         [OpenApiSubTag("List", "Detail")]
         [Description("数据类型")]
         [Column(StringLength = 30)]
@@ -93,28 +89,26 @@ namespace Entity.System
         public string Remark { get; set; }
 
         /// <summary>
-        /// 创建者
+        /// 操作者
         /// </summary>
-        [OpenApiSubTag("_List")]
-        [Description("创建者")]
         [Column(StringLength = 36)]
         public string CreatorId { get; set; }
 
         /// <summary>
-        /// 创建者名称
+        /// 操作者名称
         /// </summary>
         [OpenApiSubTag("List", "Detail")]
-        [Description("创建者")]
+        [Description("操作者")]
         [Column(StringLength = 50)]
         public string CreatorName { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// 操作时间
         /// </summary>
         [OpenApiSubTag("List", "Detail")]
         [OpenApiSchema(OpenApiSchemaType.@string, OpenApiSchemaFormat.string_datetime)]
         [JsonConverter(typeof(Library.Json.Converters.DateTimeConverter), "yyyy-MM-dd HH:mm:ss")]
-        [Description("创建时间")]
+        [Description("操作时间")]
         public DateTime CreateTime { get; set; }
 
         #region 关联

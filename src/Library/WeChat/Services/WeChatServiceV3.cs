@@ -11,12 +11,9 @@ using Senparc.Weixin.MP.AdvancedAPIs.OAuth;
 using Senparc.Weixin.MP.AdvancedAPIs.TemplateMessage;
 using Senparc.Weixin.MP.Containers;
 using Senparc.Weixin.MP.Helpers;
-using Senparc.Weixin.TenPay;
 using Senparc.Weixin.TenPay.V3;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace Library.WeChat.Services
 {
@@ -31,7 +28,7 @@ namespace Library.WeChat.Services
         /// 
         /// </summary>
         /// <param name="options"></param>
-        public WeChatServiceV3(WeChatServiceOptions options)
+        public WeChatServiceV3(WeChatGenOptions options)
         {
             Options = options;
             Init();
@@ -40,7 +37,7 @@ namespace Library.WeChat.Services
         /// <summary>
         /// 服务配置
         /// </summary>
-        public readonly WeChatServiceOptions Options;
+        public readonly WeChatGenOptions Options;
 
 #pragma warning disable CS1591 // 缺少对公共可见类型或成员的 XML 注释
         public WeChatServiceVersion ServiceVersion => WeChatServiceVersion.V3;
@@ -58,12 +55,12 @@ namespace Library.WeChat.Services
 
         void Init()
         {
-            SenparcSetting senparcSetting = new SenparcSetting(Options.IsDebug);
+            SenparcSetting senparcSetting = new SenparcSetting(Options.WeChatDevOptions.IsDebug);
             IRegisterService register = RegisterService.Start(senparcSetting).UseSenparcGlobal(); //CO2NET全局注册，必须！
 
-            SenparcWeixinSetting senparcWeixinSetting = new SenparcWeixinSetting(Options.IsDebug);
+            SenparcWeixinSetting senparcWeixinSetting = new SenparcWeixinSetting(Options.WeChatDevOptions.IsDebug);
             register.UseSenparcWeixin(senparcWeixinSetting, senparcSetting); ////微信全局注册，必须！
-            AccessTokenContainer.RegisterAsync(Options.AppId, Options.Appsecret).GetAwaiter().GetResult();
+            AccessTokenContainer.RegisterAsync(Options.WeChatBaseOptions.AppId, Options.WeChatBaseOptions.Appsecret).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -77,7 +74,7 @@ namespace Library.WeChat.Services
             if (!string.IsNullOrWhiteSpace(configUrl))
                 return configUrl;
 
-            var middleware = (WeChatNotifyV3Middleware)Options.ServiceProvider.GetService(typeof(WeChatNotifyV3Middleware));
+            var middleware = (WeChatNotifyV3Middleware)Options.WeChatDevOptions.ServiceProvider.GetService(typeof(WeChatNotifyV3Middleware));
             if (middleware != null && middleware.UrlDic.ContainsKey(notifyType))
                 return middleware.UrlDic[WeChatNotifyType.Pay];
             else
@@ -122,7 +119,7 @@ namespace Library.WeChat.Services
             {
                 TryGetAccessTokenTime = DateTime.Now;
                 ACCESS_TOKEN =
-                    AccessTokenContainer.TryGetAccessToken(Options.AppId, Options.Appsecret, true);
+                    AccessTokenContainer.TryGetAccessToken(Options.WeChatBaseOptions.AppId, Options.WeChatBaseOptions.Appsecret, true);
             }
 
             return ACCESS_TOKEN;
@@ -139,7 +136,7 @@ namespace Library.WeChat.Services
         public WeChatSignatureInfo GetSign(string url)
 #pragma warning restore CS1591 // 缺少对公共可见类型或成员的 XML 注释
         {
-            string ticket = JsApiTicketContainer.TryGetJsApiTicket(Options.AppId, Options.Appsecret);
+            string ticket = JsApiTicketContainer.TryGetJsApiTicket(Options.WeChatBaseOptions.AppId, Options.WeChatBaseOptions.Appsecret);
             string timestamp = JSSDKHelper.GetTimestamp();
             string nonceStr = JSSDKHelper.GetNoncestr();
             string signature = JSSDKHelper.GetSignature(ticket, nonceStr, timestamp, url);
@@ -164,7 +161,7 @@ namespace Library.WeChat.Services
         public OAuthUserInfo GetUserInfoByCode(string code)
 #pragma warning restore CS1591 // 缺少对公共可见类型或成员的 XML 注释
         {
-            OAuthAccessTokenResult token = OAuthApi.GetAccessToken(Options.AppId, Options.Appsecret, code);
+            OAuthAccessTokenResult token = OAuthApi.GetAccessToken(Options.WeChatBaseOptions.AppId, Options.WeChatBaseOptions.Appsecret, code);
 
             return OAuthApi.GetUserInfo(token.access_token, token.openid);
         }
@@ -177,8 +174,8 @@ namespace Library.WeChat.Services
             string timeStamp = TenPayV3Util.GetTimestamp();
 
             TenPayV3UnifiedorderRequestData tenPayV3UnifiedorderRequestData = new TenPayV3UnifiedorderRequestData(
-                Options.AppId, Options.MchId, paramter.Body, paramter.OutTradeNo, paramter.TotalFee, Options.UserHostAddress,
-                GetNotifyUrl(Options.PayNotifyUrl, WeChatNotifyType.Pay), paramter.TradeType, paramter.OpenId, Options.Key,
+                Options.WeChatBaseOptions.AppId, Options.WeChatBaseOptions.MchId, paramter.Body, paramter.OutTradeNo, paramter.TotalFee, Options.WeChatBaseOptions.UserHostAddress,
+                GetNotifyUrl(Options.WeChatBaseOptions.PayNotifyUrl, WeChatNotifyType.Pay), paramter.TradeType, paramter.OpenId, Options.WeChatBaseOptions.Key,
                 nonceStr, paramter.DeviceInfo, paramter.TimeStart, paramter.TimeExpire, GetDetail(paramter), paramter.Attach,
                 paramter.FeeType, paramter.GoodsTag, paramter.ProductId, paramter.LimitPay, GetSceneInfo(paramter), paramter.ProfitSharing);
 
@@ -202,7 +199,7 @@ namespace Library.WeChat.Services
                 NonceStr = nonceStr,
                 Package = package,
                 CodeUrl = unfortifiedResult.code_url,
-                JsPaySign = TenPayV3.GetJsPaySign(Options.AppId, timeStamp, nonceStr, package, Options.Key)
+                JsPaySign = TenPayV3.GetJsPaySign(Options.WeChatBaseOptions.AppId, timeStamp, nonceStr, package, Options.WeChatBaseOptions.Key)
             };
         }
 
@@ -218,13 +215,13 @@ namespace Library.WeChat.Services
 #pragma warning restore CS1591 // 缺少对公共可见类型或成员的 XML 注释
         {
             string nonceStr = TenPayV3Util.GetNoncestr();
-            TenPayV3RefundRequestData tenPayV3RefundRequestData = new TenPayV3RefundRequestData(Options.AppId,
-                Options.MchId, Options.Key, paramter.DeviceInfo, nonceStr, paramter.TransactionId,
+            TenPayV3RefundRequestData tenPayV3RefundRequestData = new TenPayV3RefundRequestData(Options.WeChatBaseOptions.AppId,
+                Options.WeChatBaseOptions.MchId, Options.WeChatBaseOptions.Key, paramter.DeviceInfo, nonceStr, paramter.TransactionId,
                 paramter.OutTradeNo, paramter.OutRefundNo, paramter.TotalFee, paramter.RefundFee,
-                Options.MchId, paramter.RefundAccount, paramter.RefundDescription,
-                GetNotifyUrl(Options.RefundNotifyUrl, WeChatNotifyType.Refund), paramter.RefundFeeType);
+                Options.WeChatBaseOptions.MchId, paramter.RefundAccount, paramter.RefundDescription,
+                GetNotifyUrl(Options.WeChatBaseOptions.RefundNotifyUrl, WeChatNotifyType.Refund), paramter.RefundFeeType);
 
-            RefundResult refundResult = TenPayV3.Refund(Options.ServiceProvider, tenPayV3RefundRequestData, paramter.TimeOut);
+            RefundResult refundResult = TenPayV3.Refund(Options.WeChatDevOptions.ServiceProvider, tenPayV3RefundRequestData, paramter.TimeOut);
             //,
             //$"{AppDomain.CurrentDomain.BaseDirectory}/apiclient_cert.p12", Options.CertPassword);
 
@@ -236,8 +233,8 @@ namespace Library.WeChat.Services
 #pragma warning restore CS1591 // 缺少对公共可见类型或成员的 XML 注释
         {
             string nonceStr = TenPayV3Util.GetNoncestr();
-            TenPayV3RefundQueryRequestData tenPayV3RefundRequestData = new TenPayV3RefundQueryRequestData(Options.AppId,
-                Options.MchId, Options.Key, nonceStr, paramter.DeviceInfo, paramter.TransactionId,
+            TenPayV3RefundQueryRequestData tenPayV3RefundRequestData = new TenPayV3RefundQueryRequestData(Options.WeChatBaseOptions.AppId,
+                Options.WeChatBaseOptions.MchId, Options.WeChatBaseOptions.Key, nonceStr, paramter.DeviceInfo, paramter.TransactionId,
                 paramter.OutTradeNo, paramter.OutRefundNo, paramter.RefundId, null, null, paramter.Offset);
 
             RefundQueryResult refundQueryResult = TenPayV3.RefundQuery(tenPayV3RefundRequestData);

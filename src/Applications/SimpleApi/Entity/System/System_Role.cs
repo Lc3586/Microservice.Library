@@ -16,13 +16,15 @@ namespace Entity.System
     [Table]
     [OraclePrimaryKeyName("pk_" + nameof(System_Role))]
     #region 设置索引
+    [Index(nameof(System_Role) + "_idx_" + nameof(RootId), nameof(RootId) + " ASC")]
     [Index(nameof(System_Role) + "_idx_" + nameof(ParentId), nameof(ParentId) + " ASC")]
     [Index(nameof(System_Role) + "_idx_" + nameof(Name), nameof(Name) + " ASC")]
     [Index(nameof(System_Role) + "_idx_" + nameof(Type), nameof(Type) + " ASC")]
+    [Index(nameof(System_Role) + "_idx_" + nameof(Code), nameof(Code) + " ASC")]
     [Index(nameof(System_Role) + "_idx_" + nameof(Enable), nameof(Enable) + " DESC")]
     [Index(nameof(System_Role) + "_idx_" + nameof(CreatorId), nameof(CreatorId) + " ASC")]
-    [Index(nameof(System_Role) + "_idx_" + nameof(CreatorName), nameof(CreatorName) + " ASC")]
     [Index(nameof(System_Role) + "_idx_" + nameof(CreateTime), nameof(CreateTime) + " DESC")]
+    [Index(nameof(System_Role) + "_idx_" + nameof(ModifyTime), nameof(ModifyTime) + " DESC")]
     #endregion
     public class System_Role
     {
@@ -132,13 +134,29 @@ namespace Entity.System
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 最近修改时间
+        /// 最近编辑者
         /// </summary>
-        [OpenApiSubTag("List", "TreeList", "Detail")]
-        [OpenApiSchema(OpenApiSchemaType.@string, "", OpenApiSchemaFormat.string_datetime)]
+        [OpenApiSubTag("_Edit")]
+        [Column(StringLength = 36)]
+        public string ModifiedById { get; set; }
+
+        /// <summary>
+        /// 最近编辑者名称
+        /// </summary>
+        [OpenApiSubTag("List", "Detail", "_Edit")]
+        [Description("最近编辑者")]
+        [Column(StringLength = 50)]
+        public string ModifiedByName { get; set; }
+
+        /// <summary>
+        /// 最近编辑时间
+        /// </summary>
+        [OpenApiSubTag("List", "Detail", "_Edit")]
+        [OpenApiSchema(OpenApiSchemaType.@string, OpenApiSchemaFormat.string_datetime)]
         [JsonConverter(typeof(Library.Json.Converters.DateTimeConverter), "yyyy-MM-dd HH:mm:ss")]
-        [Description("最近修改时间")]
-        public DateTime ModifyTime { get; set; }
+        [Description("最近编辑时间")]
+        [Column(IsNullable = true)]
+        public DateTime? ModifyTime { get; set; }
 
         #region 关联
 

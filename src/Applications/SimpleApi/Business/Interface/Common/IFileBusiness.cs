@@ -13,6 +13,13 @@ namespace Business.Interface.Common
     public interface IFileBusiness
     {
         /// <summary>
+        /// MD5校验
+        /// </summary>
+        /// <param name="md5"></param>
+        /// <returns></returns>
+        CheckMD5Response CheckMD5(string md5);
+
+        /// <summary>
         /// 单图上传
         /// </summary>
         /// <remarks>单个上传</remarks>
@@ -27,6 +34,8 @@ namespace Business.Interface.Common
         /// <param name="option">分页设置</param>
         /// <returns></returns>
         Task<FileInfo> SingleFile(FileUploadParams option);
+
+
 
         /// <summary>
         /// 预览

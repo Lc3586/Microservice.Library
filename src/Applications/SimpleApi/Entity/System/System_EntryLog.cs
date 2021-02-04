@@ -18,8 +18,9 @@ namespace Entity.System
     #region 设置索引
     [Index(nameof(System_EntryLog) + "_idx_" + nameof(Account), nameof(Account) + " ASC")]
     [Index(nameof(System_EntryLog) + "_idx_" + nameof(UserType), nameof(UserType) + " ASC")]
-    [Index(nameof(System_EntryLog) + "_idx_" + nameof(IsAdmin), nameof(IsAdmin) + " ASC")]
-    [Index(nameof(System_EntryLog) + "_idx_" + nameof(Name), nameof(Name) + " DESC")]
+    [Index(nameof(System_EntryLog) + "_idx_" + nameof(IsAdmin), nameof(IsAdmin) + " DESC")]
+    [Index(nameof(System_EntryLog) + "_idx_" + nameof(Name), nameof(Name) + " ASC")]
+    [Index(nameof(System_EntryLog) + "_idx_" + nameof(CreatorId), nameof(CreatorId) + " ASC")]
     [Index(nameof(System_EntryLog) + "_idx_" + nameof(CreateTime), nameof(CreateTime) + " DESC")]
     #endregion
     public class System_EntryLog
@@ -80,20 +81,18 @@ namespace Entity.System
         public string Remark { get; set; }
 
         /// <summary>
-        /// 创建者
+        /// 登录人
         /// </summary>
-        [OpenApiSubTag("_List")]
-        [Description("创建者")]
         [Column(StringLength = 36)]
-        public string OperatorId { get; set; }
+        public string CreatorId { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// 登录时间
         /// </summary>
         [OpenApiSubTag("List", "Detail")]
         [OpenApiSchema(OpenApiSchemaType.@string, OpenApiSchemaFormat.string_datetime)]
         [JsonConverter(typeof(Library.Json.Converters.DateTimeConverter), "yyyy-MM-dd HH:mm:ss")]
-        [Description("创建时间")]
+        [Description("登录时间")]
         public DateTime CreateTime { get; set; }
 
         #region 关联
@@ -101,7 +100,7 @@ namespace Entity.System
         /// <summary>
         /// 用户
         /// </summary>
-        [Navigate(nameof(OperatorId))]
+        [Navigate(nameof(CreatorId))]
         [OpenApiIgnore]
         [JsonIgnore]
         [XmlIgnore]

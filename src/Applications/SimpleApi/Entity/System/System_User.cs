@@ -21,8 +21,8 @@ namespace Entity.System
     [Index(nameof(System_User) + "_idx_" + nameof(Type), nameof(Type) + " ASC")]
     [Index(nameof(System_User) + "_idx_" + nameof(Enable), nameof(Enable) + " DESC")]
     [Index(nameof(System_User) + "_idx_" + nameof(CreatorId), nameof(CreatorId) + " ASC")]
-    [Index(nameof(System_User) + "_idx_" + nameof(CreatorName), nameof(CreatorName) + " ASC")]
     [Index(nameof(System_User) + "_idx_" + nameof(CreateTime), nameof(CreateTime) + " DESC")]
+    [Index(nameof(System_User) + "_idx_" + nameof(ModifyTime), nameof(ModifyTime) + " DESC")]
     #endregion
     public class System_User
     {
@@ -32,14 +32,6 @@ namespace Entity.System
         [OpenApiSubTag("List", "Edit", "Detail", "Authorities")]
         [Column(IsPrimary = true, StringLength = 36)]
         public string Id { get; set; }
-
-        /// <summary>
-        /// 类型
-        /// </summary>
-        [OpenApiSubTag("List", "Create", "Edit", "Detail", "Authorities")]
-        [Description("类型")]
-        [Column(StringLength = 20)]
-        public string Type { get; set; }
 
         /// <summary>
         /// 账号
@@ -64,7 +56,7 @@ namespace Entity.System
         /// </summary>
         [OpenApiSubTag("List", "Create", "Edit", "Detail")]
         [Description("姓名")]
-        [Column(StringLength = 50)]
+        [Column(StringLength = 20)]
         public string Name { get; set; }
 
         /// <summary>
@@ -74,6 +66,18 @@ namespace Entity.System
         [Description("头像")]
         [Column(StringLength = 36)]
         public string Face { get; set; }
+
+        /// <summary>
+        /// 类型
+        /// </summary>
+        /// <remarks>
+        /// <para>无角色时为空值</para>
+        /// <para>有角色时取最高等级的角色类型</para>
+        /// </remarks>
+        [OpenApiSubTag("List", "Create", "Edit", "Detail", "Authorities")]
+        [Description("类型")]
+        [Column(StringLength = 20)]
+        public string Type { get; set; }
 
         /// <summary>
         /// 启用
@@ -115,13 +119,29 @@ namespace Entity.System
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 最近修改时间
+        /// 最近编辑者
         /// </summary>
-        [OpenApiSubTag("List", "Detail")]
-        [OpenApiSchema(OpenApiSchemaType.@string, "", OpenApiSchemaFormat.string_datetime)]
+        [OpenApiSubTag("_Edit")]
+        [Column(StringLength = 36)]
+        public string ModifiedById { get; set; }
+
+        /// <summary>
+        /// 最近编辑者名称
+        /// </summary>
+        [OpenApiSubTag("List", "Detail", "_Edit")]
+        [Description("最近编辑者")]
+        [Column(StringLength = 50)]
+        public string ModifiedByName { get; set; }
+
+        /// <summary>
+        /// 最近编辑时间
+        /// </summary>
+        [OpenApiSubTag("List", "Detail", "_Edit")]
+        [OpenApiSchema(OpenApiSchemaType.@string, OpenApiSchemaFormat.string_datetime)]
         [JsonConverter(typeof(Library.Json.Converters.DateTimeConverter), "yyyy-MM-dd HH:mm:ss")]
-        [Description("最近修改时间")]
-        public DateTime ModifyTime { get; set; }
+        [Description("最近编辑时间")]
+        [Column(IsNullable = true)]
+        public DateTime? ModifyTime { get; set; }
 
         #region 关联
 

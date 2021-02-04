@@ -10,7 +10,7 @@ namespace Model.Common
         /// <summary>
         /// 外链地址
         /// </summary>
-        public const string Url = "Url";
+        public const string Uri = "Uri";
 
         /// <summary>
         /// Base64编码

@@ -12,13 +12,12 @@ namespace Entity.Common
     [Table]
     [OraclePrimaryKeyName("pk_SPAA_" + nameof(Common_File) + "_01")]
     [Index(nameof(Common_File) + "_idx_" + nameof(Name), nameof(Name) + " ASC")]
-    [Index(nameof(Common_File) + "_idx_" + nameof(FullName), nameof(FullName) + " ASC")]
     [Index(nameof(Common_File) + "_idx_" + nameof(FileType), nameof(FileType) + " ASC")]
-    [Index(nameof(Common_File) + "_idx_" + nameof(ContentType), nameof(ContentType) + " ASC")]
+    [Index(nameof(Common_File) + "_idx_" + nameof(MimeType), nameof(MimeType) + " ASC")]
     [Index(nameof(Common_File) + "_idx_" + nameof(Suffix), nameof(Suffix) + " ASC")]
-    [Index(nameof(Common_File) + "_idx_" + nameof(StorageType), nameof(StorageType) + " ASC")]
+    [Index(nameof(Common_File) + "_idx_" + nameof(ServerKey), nameof(ServerKey) + " ASC")]
+    [Index(nameof(Common_File) + "_idx_" + nameof(MD5), nameof(MD5) + " ASC")]
     [Index(nameof(Common_File) + "_idx_" + nameof(CreatorId), nameof(CreatorId) + " ASC")]
-    [Index(nameof(Common_File) + "_idx_" + nameof(CreatorName), nameof(CreatorName) + " ASC")]
     [Index(nameof(Common_File) + "_idx_" + nameof(CreateTime), nameof(CreateTime) + " DESC")]
     public class Common_File
     {
@@ -33,14 +32,14 @@ namespace Entity.Common
         /// 名称
         /// </summary>
         [OpenApiSubTag("List", "Detail", "FileInfo")]
-        [Column(StringLength = 100)]
+        [Column(StringLength = 256)]
         public string Name { get; set; }
 
         /// <summary>
         /// 完整名称
         /// </summary>
         [OpenApiSubTag("List", "Detail", "FileInfo")]
-        [Column(StringLength = 255)]
+        [Column(StringLength = 300)]
         public string FullName { get; set; }
 
         /// <summary>
@@ -53,7 +52,7 @@ namespace Entity.Common
         /// <para>压缩包</para>
         /// </summary>
         [OpenApiSubTag("List", "Detail", "FileInfo")]
-        [Column(StringLength = 30)]
+        [Column(StringLength = 10)]
         public string FileType { get; set; }
 
         /// <summary>
@@ -61,7 +60,7 @@ namespace Entity.Common
         /// </summary>
         [OpenApiSubTag("List", "Detail", "FileInfo")]
         [Column(StringLength = 100)]
-        public string ContentType { get; set; }
+        public string MimeType { get; set; }
 
         /// <summary>
         /// 文件后缀
@@ -71,21 +70,35 @@ namespace Entity.Common
         public string Suffix { get; set; }
 
         /// <summary>
-        /// 所在服务器
+        /// MD5校验值
         /// </summary>
         [OpenApiSubTag("List", "Detail", "FileInfo")]
-        [Column(StringLength = 300)]
-        public string Server { get; set; }
+        [Column(StringLength = 36)]
+        public string MD5 { get; set; }
+
+        /// <summary>
+        /// 状态
+        /// </summary>
+        [OpenApiSubTag("List", "Detail", "FileInfo")]
+        [Column(StringLength = 10)]
+        public string State { get; set; }
+
+        /// <summary>
+        /// 服务器标识
+        /// </summary>
+        [OpenApiSubTag("List", "Detail", "FileInfo")]
+        [Column(StringLength = 36)]
+        public string ServerKey { get; set; }
 
         /// <summary>
         /// 存储类型
-        /// <para>Url</para>
+        /// <para>Path</para>
+        /// <para>Uri</para>
         /// <para>Base64</para>
         /// <para>Base64Url</para>
-        /// <para>Path</para>
         /// </summary>
         [OpenApiSubTag("List", "Detail", "FileInfo")]
-        [Column(StringLength = 30)]
+        [Column(StringLength = 10)]
         public string StorageType { get; set; }
 
         /// <summary>

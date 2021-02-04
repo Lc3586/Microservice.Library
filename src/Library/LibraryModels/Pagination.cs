@@ -104,7 +104,15 @@ namespace Library.Models
                     else
                         field = $"\"{field}\"";
 
-                    string value = filter.Value.ToString();
+                    string value = filter.Value?.ToString();
+                    if (filter.ValueIsField)
+                    {
+
+                        if (alias != null)
+                            value = $"{alias}.\"{value}\"";
+                        else
+                            value = $"\"{value}\"";
+                    }
 
                     bool skip = false;
                     switch (filter.Compare)
@@ -115,7 +123,10 @@ namespace Library.Models
                                 skip = true;
                                 break;
                             }
-                            predicate += $"{field} LIKE '{value}'";
+                            if (filter.ValueIsField)
+                                predicate += $"{field} LIKE {value}";
+                            else
+                                predicate += $"{field} LIKE '{value}'";
                             break;
                         case FilterCompare.includedIn:
                             if (string.IsNullOrEmpty(value))
@@ -123,25 +134,56 @@ namespace Library.Models
                                 skip = true;
                                 break;
                             }
-                            predicate += $"'{value}' LIKE CONCAT('%',{field},'%')";
+                            if (filter.ValueIsField)
+                                predicate += $"{value} LIKE CONCAT('%',{field},'%')";
+                            else
+                                predicate += $"'{value}' LIKE CONCAT('%',{field},'%')";
                             break;
                         case FilterCompare.eq:
-                            predicate += $"{field} = '{value}'";
+                            if (value == null)
+                                predicate += $"{field} is null";
+                            else
+                            {
+                                if (filter.ValueIsField)
+                                    predicate += $"{field} = {value}";
+                                else
+                                    predicate += $"{field} = '{value}'";
+                            }
                             break;
                         case FilterCompare.notEq:
-                            predicate += $"{field} != '{value}'";
+                            if (value == null)
+                                predicate += $"{field} is not null";
+                            else
+                            {
+                                if (filter.ValueIsField)
+                                    predicate += $"{field} != {value}";
+                                else
+                                    predicate += $"{field} != '{value}'";
+                            }
                             break;
                         case FilterCompare.le:
-                            predicate += $"{field} <= '{value}'";
+                            if (filter.ValueIsField)
+                                predicate += $"{field} <= {value}";
+                            else
+                                predicate += $"{field} <= '{value}'";
                             break;
                         case FilterCompare.lt:
-                            predicate += $"{field} < '{value}'";
+                            if (filter.ValueIsField)
+                                predicate += $"{field} < {value}";
+                            else
+                                predicate += $"{field} < '{value}'";
                             break;
                         case FilterCompare.ge:
-                            predicate += $"{field} >= '{value}'";
+                            if (filter.ValueIsField)
+                                predicate += $"{field} >= {value}";
+                            else
+                                predicate += $"{field} >= '{value}'";
                             break;
                         case FilterCompare.gt:
-                            predicate += $"{field} > '{value}'";
+                            if (filter.ValueIsField)
+                                predicate += $"{field} > {value}";
+                            else
+                                predicate += $"{field} > '{value}'";
                             break;
                         case FilterCompare.inSet:
                             predicate += $"{field} IN ({value})";
@@ -280,7 +322,7 @@ namespace Library.Models
                                 skip = true;
                                 break;
                             }
-                            predicate += $"{field}.Contains(@{j})";
+                            predicate += $"{field}.Contains({(filter.ValueIsField ? "" : "@")}{j})";
                             args.Add(value);
                             break;
                         case FilterCompare.includedIn:
@@ -289,31 +331,31 @@ namespace Library.Models
                                 skip = true;
                                 break;
                             }
-                            predicate += $"@{j}.Contains({field})";
+                            predicate += $"{(filter.ValueIsField ? "" : "@")}{j}.Contains({field})";
                             args.Add(value);
                             break;
                         case FilterCompare.eq:
-                            predicate += $"{field} == @{j}";
+                            predicate += $"{field} == {(filter.ValueIsField ? "" : "@")}{j}";
                             args.Add(value);
                             break;
                         case FilterCompare.notEq:
-                            predicate += $"!{field}.Equals(@{j})";
+                            predicate += $"!{field}.Equals({(filter.ValueIsField ? "" : "@")}{j})";
                             args.Add(value);
                             break;
                         case FilterCompare.le:
-                            predicate += $"{field} <= @{j}";
+                            predicate += $"{field} <= {(filter.ValueIsField ? "" : "@")}{j}";
                             args.Add(value);
                             break;
                         case FilterCompare.lt:
-                            predicate += $"{field} < @{j}";
+                            predicate += $"{field} < {(filter.ValueIsField ? "" : "@")}{j}";
                             args.Add(value);
                             break;
                         case FilterCompare.ge:
-                            predicate += $"{field} >= @{j}";
+                            predicate += $"{field} >= {(filter.ValueIsField ? "" : "@")}{j}";
                             args.Add(value);
                             break;
                         case FilterCompare.gt:
-                            predicate += $"{field} > @{j}";
+                            predicate += $"{field} > {(filter.ValueIsField ? "" : "@")}{j}";
                             args.Add(value);
                             break;
                         case FilterCompare.inSet:
@@ -761,6 +803,12 @@ namespace Library.Models
         /// </summary>
         [OpenApiSchema(OpenApiSchemaType.@string)]
         public object Value { get; set; }
+
+        /// <summary>
+        /// Value值是用来比较的字段
+        /// </summary>
+        [OpenApiSchema(OpenApiSchemaType.@string)]
+        public bool ValueIsField { get; set; }
 
         /// <summary>
         /// 比较类型

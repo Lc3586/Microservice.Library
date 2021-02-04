@@ -52,6 +52,11 @@ namespace Model.System.Config
         /// </summary>
         public RunMode RunMode { get; set; }
 
+        /// <summary>
+        /// 服务器标识
+        /// </summary>
+        public string ServerKey { get; set; }
+
         #endregion
 
         #region 高级
@@ -296,6 +301,16 @@ namespace Model.System.Config
         /// CAS删除TGT地址
         /// </summary>
         public string CASDeleteSTUrl { get; set; }
+
+        #endregion
+
+        #region 微信服务
+
+        /// <summary>
+        /// 微信服务配置
+        /// </summary>
+        [JsonConfig("jsonconfig/wechatservice.json")]
+        public WeChatServiceSetting WeChatService { get; set; }
 
         #endregion
     }

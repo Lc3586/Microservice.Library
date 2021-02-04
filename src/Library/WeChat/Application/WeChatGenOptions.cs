@@ -10,8 +10,18 @@ namespace Library.WeChat.Application
     public class WeChatGenOptions
     {
         /// <summary>
-        /// 服务配置
+        /// 基础配置
         /// </summary>
-        public WeChatServiceOptions WeChatServiceOptions { get; set; } = new WeChatServiceOptions();
+        public WeChatBaseOptions WeChatBaseOptions { get; set; } = new WeChatBaseOptions();
+
+        /// <summary>
+        /// 开发配置
+        /// </summary>
+        public WeChatDevOptions WeChatDevOptions { get; set; } = new WeChatDevOptions();
+
+        /// <summary>
+        /// 授权配置
+        /// </summary>
+        public WeChatOAuthOptions WeChatOAuthOptions { get; set; } = new WeChatOAuthOptions();
     }
 }

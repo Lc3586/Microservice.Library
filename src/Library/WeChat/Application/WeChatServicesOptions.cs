@@ -5,17 +5,10 @@ using System.Text;
 namespace Library.WeChat.Application
 {
     /// <summary>
-    /// 微信服务配置
+    /// 微信基础配置
     /// </summary>
-    public class WeChatServiceOptions
+    public class WeChatBaseOptions
     {
-        internal IServiceProvider ServiceProvider { get; set; }
-
-        /// <summary>
-        /// Debug状态
-        /// </summary>
-        public bool IsDebug { get; set; }
-
         /// <summary>
         /// 公众账号ID
         /// </summary>
@@ -68,26 +61,5 @@ namespace Library.WeChat.Application
         /// pem公钥文件地址
         /// </summary>
         public string PemFilePath { get; set; }
-
-        /// <summary>
-        /// 编码格式
-        /// <para>默认utf-8</para>
-        /// </summary>
-        public Encoding Encoding { get; set; } = Encoding.UTF8;
-
-        /// <summary>
-        /// 请求签名在请求头中的键
-        /// </summary>
-        public string RequestHeaderSign { get; set; } = "Wechatpay-Serial";
-
-        /// <summary>
-        /// 时间戳在请求头中的键
-        /// </summary>
-        public string RequestHeaderTimestamp { get; set; } = "Wechatpay-Timestamp";
-
-        /// <summary>
-        /// 随机字符串在请求头中的键
-        /// </summary>
-        public string RequestHeaderNonce { get; set; } = "Wechatpay-Nonce";
     }
 }

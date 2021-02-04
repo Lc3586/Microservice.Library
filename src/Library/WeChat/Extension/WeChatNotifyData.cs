@@ -26,7 +26,7 @@ namespace Library.WeChat.Extension
         /// <param name="options">微信服务配置</param>
         /// <param name="notifyType">通知类型</param>
         /// <param name="request">请求信息</param>
-        public WeChatNotifyData(WeChatServiceOptions options, WeChatNotifyType notifyType, HttpRequest request)
+        public WeChatNotifyData(WeChatGenOptions options, WeChatNotifyType notifyType, HttpRequest request)
         {
             NotifyType = notifyType;
             Options = options;
@@ -43,7 +43,7 @@ namespace Library.WeChat.Extension
         /// <summary>
         /// 微信服务配置
         /// </summary>
-        readonly WeChatServiceOptions Options;
+        readonly WeChatGenOptions Options;
 
         readonly HttpRequest Request;
 
@@ -57,10 +57,10 @@ namespace Library.WeChat.Extension
         /// <returns>base64字符串</returns>
         string GetRequestSign()
         {
-            if (!Request.Headers.ContainsKey(Options.RequestHeaderSign))
-                throw new WeChatNotifyException(NotifyType, $"获取签名失败，请求头中未包含: {Options.RequestHeaderSign}.");
+            if (!Request.Headers.ContainsKey(Options.WeChatDevOptions.RequestHeaderSign))
+                throw new WeChatNotifyException(NotifyType, $"获取签名失败，请求头中未包含: {Options.WeChatDevOptions.RequestHeaderSign}.");
 
-            return Request.Headers[Options.RequestHeaderSign];
+            return Request.Headers[Options.WeChatDevOptions.RequestHeaderSign];
         }
 
         /// <summary>
@@ -68,15 +68,15 @@ namespace Library.WeChat.Extension
         /// </summary>
         async Task CheckSignAndLoadXml()
         {
-            if (!Request.Headers.ContainsKey(Options.RequestHeaderTimestamp))
-                throw new WeChatNotifyException(NotifyType, $"验证签名失败，请求头中未包含: {Options.RequestHeaderTimestamp}.");
+            if (!Request.Headers.ContainsKey(Options.WeChatDevOptions.RequestHeaderTimestamp))
+                throw new WeChatNotifyException(NotifyType, $"验证签名失败，请求头中未包含: {Options.WeChatDevOptions.RequestHeaderTimestamp}.");
 
-            var timestamp = Request.Headers[Options.RequestHeaderTimestamp];
+            var timestamp = Request.Headers[Options.WeChatDevOptions.RequestHeaderTimestamp];
 
-            if (!Request.Headers.ContainsKey(Options.RequestHeaderNonce))
-                throw new WeChatNotifyException(NotifyType, $"验证签名失败，请求头中未包含: {Options.RequestHeaderNonce}.");
+            if (!Request.Headers.ContainsKey(Options.WeChatDevOptions.RequestHeaderNonce))
+                throw new WeChatNotifyException(NotifyType, $"验证签名失败，请求头中未包含: {Options.WeChatDevOptions.RequestHeaderNonce}.");
 
-            var nonce = Request.Headers[Options.RequestHeaderNonce];
+            var nonce = Request.Headers[Options.WeChatDevOptions.RequestHeaderNonce];
 
             using (var reader = new StreamReader(Request.Body))
                 Body = await reader.ReadToEndAsync();
@@ -154,7 +154,6 @@ namespace Library.WeChat.Extension
         {
             Security = new SecurityHelper(Options);
             await CheckSignAndLoadXml();
-
         }
 
         /// <summary>

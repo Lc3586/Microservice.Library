@@ -239,7 +239,7 @@ namespace Business.Implementation.Common
                 {
                     result.FullName = $"{result.Name}.jpg";
                     result.Suffix = ".jpg";
-                    result.ContentType = "image/jpg";
+                    result.MimeType = "image/jpg";
 
                     image = ImgHelper.GetImgFromBase64Url(o);
                 }
@@ -247,7 +247,7 @@ namespace Business.Implementation.Common
                 {
                     result.FullName = $"{result.Name}";
 
-                    result.StorageType = StorageType.Url;
+                    result.StorageType = StorageType.Uri;
                     result.Path = o;
                     result.ThumbnailPath = result.Path;
                 }
@@ -261,7 +261,7 @@ namespace Business.Implementation.Common
                 };
 
                 result.Suffix = option.File.FileName.Replace(result.Name, "").ToLower();
-                result.ContentType = option.File.ContentType;
+                result.MimeType = option.File.ContentType;
                 result.FileType = GetFileType(result.Suffix);
 
                 using MemoryStream ms = new MemoryStream();
@@ -346,7 +346,7 @@ namespace Business.Implementation.Common
 
             Save(image, Path.Combine(BaseDirPath, result.FullName));
 
-            result.Server = Config.WebRootUrl;
+            result.ServerKey = Config.ServerKey;
             result.Path = result.Path?.Replace('\\', '/');
             result.ThumbnailPath = result.ThumbnailPath?.Replace('\\', '/');
             result.StorageType = StorageType.Path;
@@ -377,7 +377,7 @@ namespace Business.Implementation.Common
 
                 result.FullName = $"{result.Name}";
 
-                result.StorageType = StorageType.Url;
+                result.StorageType = StorageType.Uri;
                 result.Path = option.Url;
                 result.ThumbnailPath = GetPreviewImage();
             }
@@ -390,7 +390,7 @@ namespace Business.Implementation.Common
                 };
 
                 result.Suffix = option.File.FileName.Replace(result.Name, "").ToLower();
-                result.ContentType = option.File.ContentType;
+                result.MimeType = option.File.ContentType;
 
                 using MemoryStream ms = new MemoryStream();
                 {
@@ -423,7 +423,7 @@ namespace Business.Implementation.Common
 
             await Save(bytes, Path.Combine(BaseDirPath, result.FullName));
 
-            result.Server = Config.WebRootUrl;
+            result.ServerKey = Config.ServerKey;
             result.Path = result.Path?.Replace('\\', '/');
             result.FileType = GetFileType(result.Suffix);
             result.ThumbnailPath = GetPreviewImage(result.Suffix);
@@ -463,7 +463,7 @@ namespace Business.Implementation.Common
             var response = HttpContextAccessor.HttpContext.Response;
             response.StatusCode = StatusCodes.Status200OK;
 
-            response.ContentType = file.ContentType;
+            response.ContentType = file.MimeType;
             response.Headers.Add("Content-Disposition", $"attachment; filename=\"{file.FullName}\"");
 
             switch (file.StorageType)
@@ -474,7 +474,7 @@ namespace Business.Implementation.Common
                 case StorageType.Base64:
                     ResponseImage(response, ImgHelper.GetImgFromBase64(file.Path));
                     break;
-                case StorageType.Url:
+                case StorageType.Uri:
                     response.Redirect(file.Path);
                     break;
                 case StorageType.Path:
@@ -503,7 +503,7 @@ namespace Business.Implementation.Common
                 case StorageType.Base64:
                     ResponseImage(response, ImgHelper.GetImgFromBase64(file.Path));
                     break;
-                case StorageType.Url:
+                case StorageType.Uri:
                     response.Redirect(file.Path);
                     break;
                 case StorageType.Path:

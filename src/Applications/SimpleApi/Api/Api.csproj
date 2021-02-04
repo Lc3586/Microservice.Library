@@ -20,10 +20,14 @@
     <None Remove="appsettings.json" />
     <None Remove="jsonconfig\database.json" />
     <None Remove="jsonconfig\soap.json" />
+    <None Remove="jsonconfig\wechatservice.json" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="jsonconfig\wechatservice.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="jsonconfig\database.json">
@@ -35,6 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Library\WeChat\Library.WeChat.csproj" />
     <ProjectReference Include="..\Business\Business.csproj" />
     <ProjectReference Include="..\IocServiceDemo\IocServiceDemo.csproj" />
     <ProjectReference Include="..\SoapServices\SoapServices.csproj" />

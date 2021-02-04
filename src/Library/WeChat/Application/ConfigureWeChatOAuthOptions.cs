@@ -6,12 +6,12 @@ using System.Text;
 
 namespace Library.WeChat.Application
 {
-    internal class ConfigureWeChatServiceOptions : IConfigureOptions<WeChatBaseOptions>
+    internal class ConfigureWeChatOAuthOptions : IConfigureOptions<WeChatOAuthOptions>
     {
         private readonly IServiceProvider ServiceProvider;
         private readonly WeChatGenOptions WeChatGenOptions;
 
-        public ConfigureWeChatServiceOptions(
+        public ConfigureWeChatOAuthOptions(
             IServiceProvider serviceProvider,
             IOptions<WeChatGenOptions> weChatGenOptionsAccessor)
         {
@@ -19,14 +19,14 @@ namespace Library.WeChat.Application
             WeChatGenOptions = weChatGenOptionsAccessor.Value;
         }
 
-        public void Configure(WeChatBaseOptions options)
+        public void Configure(WeChatOAuthOptions options)
         {
-            DeepCopy(WeChatGenOptions.WeChatBaseOptions, options);
+            DeepCopy(WeChatGenOptions.WeChatOAuthOptions, options);
         }
 
-        private void DeepCopy(WeChatBaseOptions source, WeChatBaseOptions target)
+        private void DeepCopy(WeChatOAuthOptions source, WeChatOAuthOptions target)
         {
-            target = JsonConvert.DeserializeObject<WeChatBaseOptions>(JsonConvert.SerializeObject(source));
+            target = JsonConvert.DeserializeObject<WeChatOAuthOptions>(JsonConvert.SerializeObject(source));
         }
     }
 }
