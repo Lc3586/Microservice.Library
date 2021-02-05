@@ -24,11 +24,13 @@ namespace Library.WeChat.Extension
         /// 
         /// </summary>
         /// <param name="options">微信服务配置</param>
-        /// <param name="notifyType">通知类型</param>
+        /// <param name="version">微信支付接口版本</param>
+        /// <param name="notifyType">微信财付通通知类型</param>
         /// <param name="request">请求信息</param>
-        public WeChatNotifyData(WeChatGenOptions options, WeChatNotifyType notifyType, HttpRequest request)
+        public WeChatNotifyData(WeChatGenOptions options, WeChatPayApiVersion version, WeChatNotifyType notifyType, HttpRequest request)
         {
             NotifyType = notifyType;
+            Version = version;
             Options = options;
             Request = request;
         }
@@ -36,7 +38,12 @@ namespace Library.WeChat.Extension
         #region 私有成员
 
         /// <summary>
-        /// 通知类型
+        /// 微信支付接口版本
+        /// </summary>
+        public WeChatPayApiVersion Version;
+
+        /// <summary>
+        /// 微信财付通通知类型
         /// </summary>
         readonly WeChatNotifyType NotifyType;
 
@@ -58,7 +65,7 @@ namespace Library.WeChat.Extension
         string GetRequestSign()
         {
             if (!Request.Headers.ContainsKey(Options.WeChatDevOptions.RequestHeaderSign))
-                throw new WeChatNotifyException(NotifyType, $"获取签名失败，请求头中未包含: {Options.WeChatDevOptions.RequestHeaderSign}.");
+                throw new WeChatNotifyException(Version, $"获取签名失败，请求头中未包含: {Options.WeChatDevOptions.RequestHeaderSign}.");
 
             return Request.Headers[Options.WeChatDevOptions.RequestHeaderSign];
         }
@@ -69,12 +76,12 @@ namespace Library.WeChat.Extension
         async Task CheckSignAndLoadXml()
         {
             if (!Request.Headers.ContainsKey(Options.WeChatDevOptions.RequestHeaderTimestamp))
-                throw new WeChatNotifyException(NotifyType, $"验证签名失败，请求头中未包含: {Options.WeChatDevOptions.RequestHeaderTimestamp}.");
+                throw new WeChatNotifyException(Version, $"验证签名失败，请求头中未包含: {Options.WeChatDevOptions.RequestHeaderTimestamp}.");
 
             var timestamp = Request.Headers[Options.WeChatDevOptions.RequestHeaderTimestamp];
 
             if (!Request.Headers.ContainsKey(Options.WeChatDevOptions.RequestHeaderNonce))
-                throw new WeChatNotifyException(NotifyType, $"验证签名失败，请求头中未包含: {Options.WeChatDevOptions.RequestHeaderNonce}.");
+                throw new WeChatNotifyException(Version, $"验证签名失败，请求头中未包含: {Options.WeChatDevOptions.RequestHeaderNonce}.");
 
             var nonce = Request.Headers[Options.WeChatDevOptions.RequestHeaderNonce];
 
@@ -94,7 +101,7 @@ namespace Library.WeChat.Extension
             var sign = Security.GetSignBase64WithSHA256_RSA(data);
 
             if (!requestSign.Equals(sign))
-                throw new WeChatNotifyException(NotifyType, $"验证签名失败: 请求签名 = > [{requestSign}] <> 实际签名 => [{sign}].");
+                throw new WeChatNotifyException(Version, $"验证签名失败: 请求签名 = > [{requestSign}] <> 实际签名 => [{sign}].");
         }
 
         /// <summary>
@@ -178,7 +185,7 @@ namespace Library.WeChat.Extension
                             );
                         break;
                     default:
-                        throw new WeChatNotifyException(NotifyType, $"不支持的加密类型: {data.resource.algorithm}");
+                        throw new WeChatNotifyException(Version, $"不支持的加密类型: {data.resource.algorithm}");
                 }
 
                 data.resource.Data = JsonConvert.DeserializeObject<PayNotifyResourceInfo>(resourceData);

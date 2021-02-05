@@ -106,7 +106,7 @@ namespace Library.WeChat.Extension
                 {
                     if (UrlDic.ContainsValue(context.Request.Path))
                     {
-                        var data = new WeChatNotifyData(Options, WeChatNotifyType.Pay, context.Request);
+                        var data = new WeChatNotifyData(Options, WeChatPayApiVersion.V3, WeChatNotifyType.Pay, context.Request);
 
                         await data.Init().ConfigureAwait(false);
 
