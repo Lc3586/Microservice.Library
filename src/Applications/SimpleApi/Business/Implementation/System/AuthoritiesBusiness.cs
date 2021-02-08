@@ -1044,9 +1044,24 @@ namespace Business.Implementation.System
                                 .Any();
         }
 
+        public bool UserHasResourcesUri(string userId, string resourcesUri)
+        {
+            return Repository_Resources.Where(o => o.Uri == resourcesUri
+                                            && (o.Users.AsSelect().Where(p => p.Id == userId).Any()
+                                                || o.Roles.AsSelect().Where(p => p.Users.AsSelect().Where(q => q.Id == userId).Any()).Any()))
+                                .Any();
+        }
+
         public bool MemberHasResources(string userId, string resourcesId)
         {
             return Repository_Resources.Where(o => o.Id == resourcesId
+                                            && o.Roles.AsSelect().Where(p => p.Users.AsSelect().Where(q => q.Id == userId).Any()).Any())
+                                .Any();
+        }
+
+        public bool MemberHasResourcesUri(string userId, string resourcesUri)
+        {
+            return Repository_Resources.Where(o => o.Uri == resourcesUri
                                             && o.Roles.AsSelect().Where(p => p.Users.AsSelect().Where(q => q.Id == userId).Any()).Any())
                                 .Any();
         }

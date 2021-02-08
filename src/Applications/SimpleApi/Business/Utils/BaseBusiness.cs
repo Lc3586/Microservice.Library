@@ -1,6 +1,7 @@
 ﻿using Business.Interface.System;
 using Library.Container;
 using Library.Extension;
+using Library.NLogger.Gen;
 using Model.System;
 using Model.System.Config;
 using Model.System.Pagination;
@@ -19,32 +20,21 @@ namespace Business.Utils
     {
         #region DI
 
-        /// <summary>
-        /// 日志组件
-        /// </summary>
-        public NLog.ILogger Logger { get => AutofacHelper.GetScopeService<NLog.ILogger>(); }
-
-        /// <summary>
-        /// 当前登录人
-        /// </summary>
-        public IOperator Operator { get => AutofacHelper.GetScopeService<IOperator>(); }
+        public BaseBusiness()
+        {
+            Config = AutofacHelper.GetScopeService<SystemConfig>();
+            Operator = AutofacHelper.GetScopeService<IOperator>();
+        }
 
         /// <summary>
         /// 系统日志
         /// </summary>
-        public SystemConfig Config { get => AutofacHelper.GetScopeService<SystemConfig>(); }
-
-        #endregion
-
-        #region 构造函数
+        protected readonly SystemConfig Config;
 
         /// <summary>
-        /// 无参构造函数
+        /// 当前登录人
         /// </summary>
-        public BaseBusiness()
-        {
-
-        }
+        protected readonly IOperator Operator;
 
         #endregion
 

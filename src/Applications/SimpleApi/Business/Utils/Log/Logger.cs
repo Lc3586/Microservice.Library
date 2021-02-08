@@ -31,7 +31,7 @@ namespace Business.Utils.Log
             log.Properties[NLoggerConfig.LogType] = LogType.GetName(logType);
             log.Properties[NLoggerConfig.Data] = data;
             log.Properties[NLoggerConfig.CreatorName] = @operator?.Detail?.Name;
-            log.Properties[NLoggerConfig.CreatorId] = @operator?.UserId;
+            log.Properties[NLoggerConfig.CreatorId] = @operator?.Id;
 
             nLogger.Log(log);
         }

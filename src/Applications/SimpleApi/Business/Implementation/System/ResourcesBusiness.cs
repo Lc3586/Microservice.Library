@@ -155,6 +155,8 @@ namespace Business.Implementation.System
         {
             var newData = Mapper.Map<System_Resources>(data).InitEntity();
 
+            newData.Uri = newData.Uri?.ToLower();
+
             (bool success, Exception ex) = Orm.RunTransaction(() =>
             {
                 Repository.Insert(newData);
@@ -185,6 +187,8 @@ namespace Business.Implementation.System
         public void Edit(Edit data)
         {
             var editData = Mapper.Map<System_Resources>(data).ModifyEntity();
+
+            editData.Uri = editData.Uri?.ToLower();
 
             var entity = Repository.GetAndCheckNull(editData.Id);
 

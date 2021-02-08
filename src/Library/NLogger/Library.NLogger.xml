@@ -75,6 +75,7 @@
             <summary>
             MS日志组件构造器
             </summary>
+            <remarks>必须先注册<see cref="T:Library.NLogger.Gen.INLoggerProvider"/>, 使用<see cref="T:Microsoft.Extensions.DependencyInjection.NLoggerServiceCollectionExtensions"/>方法</remarks>
         </member>
         <member name="T:Library.NLogger.Gen.NLoggerGenerator">
             <summary>
@@ -97,6 +98,14 @@
             </summary>
             <param name="services"></param>
             <param name="setupAction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.NLoggerServiceCollectionExtensions.AddMSLogger(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            注册日志组件
+            </summary>
+            <param name="services"></param>
+            <remarks>需要先<see cref="M:Microsoft.Extensions.DependencyInjection.NLoggerServiceCollectionExtensions.AddNLogger(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Library.NLogger.Application.NLoggerGenOptions})"/></remarks>
             <returns></returns>
         </member>
         <member name="M:Microsoft.Extensions.DependencyInjection.NLoggerServiceCollectionExtensions.ConfigureNLogger(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Library.NLogger.Application.NLoggerGenOptions})">

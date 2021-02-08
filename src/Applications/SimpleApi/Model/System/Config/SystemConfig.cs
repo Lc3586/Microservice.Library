@@ -261,7 +261,7 @@ namespace Model.System.Config
         /// <summary>
         /// 启用CAS
         /// </summary>
-        public bool CASEnable { get; set; }
+        public bool EnableCAS { get; set; }
 
         /// <summary>
         /// 协议版本号
@@ -306,6 +306,11 @@ namespace Model.System.Config
         #endregion
 
         #region 微信服务
+
+        /// <summary>
+        /// 启用微信服务
+        /// </summary>
+        public bool EnableWeChatService { get; set; }
 
         /// <summary>
         /// 微信服务配置

@@ -337,12 +337,28 @@ namespace Business.Interface.System
         bool UserHasResources(string userId, string resourcesId);
 
         /// <summary>
+        /// 用户是否拥有资源授权
+        /// </summary>
+        /// <param name="userId">用户Id</param>
+        /// <param name="resourcesUri">资源链接</param>
+        /// <returns></returns>
+        bool UserHasResourcesUri(string userId, string resourcesUri);
+
+        /// <summary>
         /// 会员是否拥有资源授权
         /// </summary>
         /// <param name="memberId">会员Id</param>
         /// <param name="resourcesId">资源Id</param>
         /// <returns></returns>
         bool MemberHasResources(string memberId, string resourcesId);
+
+        /// <summary>
+        /// 会员是否拥有资源授权
+        /// </summary>
+        /// <param name="memberId">会员Id</param>
+        /// <param name="resourcesUri">资源链接</param>
+        /// <returns></returns>
+        bool MemberHasResourcesUri(string memberId, string resourcesUri);
 
         #endregion
     }

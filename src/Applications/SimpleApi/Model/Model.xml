@@ -1448,7 +1448,7 @@
             Soap配置
             </summary>
         </member>
-        <member name="P:Model.System.Config.SystemConfig.CASEnable">
+        <member name="P:Model.System.Config.SystemConfig.EnableCAS">
             <summary>
             启用CAS
             </summary>
@@ -1491,6 +1491,11 @@
         <member name="P:Model.System.Config.SystemConfig.CASDeleteSTUrl">
             <summary>
             CAS删除TGT地址
+            </summary>
+        </member>
+        <member name="P:Model.System.Config.SystemConfig.EnableWeChatService">
+            <summary>
+            启用微信服务
             </summary>
         </member>
         <member name="P:Model.System.Config.SystemConfig.WeChatService">

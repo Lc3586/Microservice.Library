@@ -44,7 +44,7 @@ namespace Business.Utils
             if (entity.ContainsProperty("CreateTime"))
                 entity.SetPropertyValue("CreateTime", DateTime.Now);
             if (entity.ContainsProperty("CreatorId"))
-                entity.SetPropertyValue("CreatorId", operatorDetail == null ? op?.UserId : operatorDetail.Id);
+                entity.SetPropertyValue("CreatorId", operatorDetail == null ? op?.Id : operatorDetail.Id);
             if (entity.ContainsProperty("CreatorName"))
                 entity.SetPropertyValue("CreatorName", GetUserName(op, operatorDetail));
 
@@ -83,7 +83,7 @@ namespace Business.Utils
                 if (entity.ContainsProperty("ModifyTime"))
                     entity.SetPropertyValue("ModifyTime", DateTime.Now);
                 if (entity.ContainsProperty("ModifiedById"))
-                    entity.SetPropertyValue("ModifiedById", operatorDetail == null ? op?.UserId : operatorDetail.Id);
+                    entity.SetPropertyValue("ModifiedById", operatorDetail == null ? op?.Id : operatorDetail.Id);
                 if (entity.ContainsProperty("ModifiedByName"))
                     entity.SetPropertyValue("ModifiedByName", GetUserName(op, operatorDetail));
             }

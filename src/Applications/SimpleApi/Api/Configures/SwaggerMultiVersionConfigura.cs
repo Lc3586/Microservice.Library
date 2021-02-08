@@ -158,7 +158,7 @@ namespace Api.Configures
                 s.InjectJavascript("/swagger/waiting.min.js");
                 s.InjectStylesheet("/swagger/custom-stylesheet.css");//自定义样式表，需要启用静态文件
                 s.InjectJavascript("/swagger/custom-javascript.js");//自定义脚本，需要启用静态文件
-                if (config.CASEnable)
+                if (config.EnableCAS)
                     s.InjectJavascript("/swagger/casLogin.js");//cas登录脚本脚本
 
                 #endregion

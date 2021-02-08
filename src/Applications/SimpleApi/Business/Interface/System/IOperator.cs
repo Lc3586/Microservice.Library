@@ -9,9 +9,9 @@ namespace Business.Interface.System
     public interface IOperator
     {
         /// <summary>
-        /// 当前操作者UserId
+        /// 当前操作者Id
         /// </summary>
-        string UserId { get; }
+        string Id { get; }
 
         /// <summary>
         /// 用户类型

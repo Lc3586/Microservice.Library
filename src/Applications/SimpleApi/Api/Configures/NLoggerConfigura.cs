@@ -48,7 +48,8 @@ namespace Api.Configures
                         },
                     }
                 });
-            });
+            })
+            .AddMSLogger();
         }
 
         /// <summary>

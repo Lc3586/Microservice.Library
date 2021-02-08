@@ -23,7 +23,7 @@ namespace Business.Implementation.System
             UserBusiness = userBusiness;
             MemberBusiness = memberBusiness;
 
-            UserId = HttpContextCore.Current.User.Claims?.FirstOrDefault(o => o.Type == nameof(UserId))?.Value;
+            Id = HttpContextCore.Current.User.Claims?.FirstOrDefault(o => o.Type == nameof(Id))?.Value;
             UserType = HttpContextCore.Current.User.Claims?.FirstOrDefault(o => o.Type == nameof(UserType))?.Value;
         }
 
@@ -38,7 +38,7 @@ namespace Business.Implementation.System
         /// <summary>
         /// 当前操作者UserId
         /// </summary>
-        public string UserId { get; }
+        public string Id { get; }
 
         /// <summary>
         /// 用户类型
@@ -55,9 +55,9 @@ namespace Business.Implementation.System
                 switch (UserType)
                 {
                     case Model.System.UserType.系统用户:
-                        return UserBusiness.GetOperatorDetail(UserId);
+                        return UserBusiness.GetOperatorDetail(Id);
                     case Model.System.UserType.会员:
-                        return MemberBusiness.GetOperatorDetail(UserId);
+                        return MemberBusiness.GetOperatorDetail(Id);
                     default:
                         throw new ApplicationException("登录信息异常: 用户类型错误.");
                 }
@@ -68,7 +68,7 @@ namespace Business.Implementation.System
         /// 判断是否为管理员
         /// </summary>
         /// <returns></returns>
-        public bool IsAdmin => UserType == Model.System.UserType.系统用户 && AuthoritiesBusiness.IsAdminUser(UserId);
+        public bool IsAdmin => UserType == Model.System.UserType.系统用户 && AuthoritiesBusiness.IsAdminUser(Id);
 
         #endregion
     }

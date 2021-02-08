@@ -1,16 +1,16 @@
-﻿using Library.Http;
-using Library.Models;
+﻿using Business.Utils;
 using Library.Extension;
+using Library.Http;
+using Library.OpenApi.Annotations;
+using Library.OpenApi.Extention;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Model.System;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Threading.Tasks;
-using Library.OpenApi.Annotations;
 using System.Reflection;
-using Library.OpenApi.Extention;
 
 namespace Api
 {
@@ -61,22 +61,23 @@ namespace Api
                 context.ModelState
                     .Where(o =>
                     {
-                        var key = o.Key.Substring(o.Key.LastIndexOf('.') + 1);
+                        var key = o.Key[(o.Key.LastIndexOf('.') + 1)..];
                         return (!hasTag || propNames.Contains(key)) &&
                          (!Ignore.Any_Ex() || !Ignore.Contains(key)) &&
-                         o.Value.Errors.Count() > 0;
+                         o.Value.Errors.Count > 0;
                     })
                     .Select(o =>
                         {
                             var error = new ModelErrorsInfo()
                             {
                                 FullKey = o.Key,
-                                Key = o.Key.Substring(o.Key.LastIndexOf('.') + 1),
+                                Key = o.Key[(o.Key.LastIndexOf('.') + 1)..],
                                 Value = o.Value.RawValue,
                                 Errors = o.Value.Errors.Select(p => p.ErrorMessage).ToList()
                             };
                             return error;
-                        }).ToList() : null;
+                        })
+                    .ToList() : null;
 
             if (ModelErrors.Any_Ex())
                 context.Result = new ContentResult { Content = AjaxResultFactory.Error("数据验证失败", ModelErrors).ToJson(), ContentType = "application/json;charset=utf-8" };

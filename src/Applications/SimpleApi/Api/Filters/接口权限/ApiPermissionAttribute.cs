@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc.Filters;
-using Library.Extension;
-using System;
-using Library.Http;
+﻿using Business.Interface.System;
 using Library.Container;
-using Library.Models;
+using Library.Http;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Model.System;
 using Model.System.Config;
 
@@ -15,6 +13,8 @@ namespace Api
     public class ApiPermissionAttribute : BaseActionFilter, IActionFilter
     {
         readonly SystemConfig Config = AutofacHelper.GetScopeService<SystemConfig>();
+
+        readonly IAuthoritiesBusiness AuthoritiesBusiness = AutofacHelper.GetScopeService<IAuthoritiesBusiness>();
 
         /// <summary>
         /// Action执行之前执行
@@ -30,9 +30,20 @@ namespace Api
                 return;
 
             //验证权限
-            //if (Operator.Property?.ServiceAuthorities.Any_Ex(o =>
-            //       context.HttpContext.Request.Path.Value?.ToLower().IndexOf(o.Url) == 0) != true)
-            //    context.Result = Error("没有权限!", ErrorCode.forbidden);
+            switch (Operator.UserType)
+            {
+                case UserType.系统用户:
+                    if (!AuthoritiesBusiness.UserHasResourcesUri(Operator.Id, context.HttpContext.Request.Path.Value?.ToLower()))
+                        context.Result = Error("没有权限!", ErrorCode.forbidden);
+                    break;
+                case UserType.会员:
+                    if (!AuthoritiesBusiness.MemberHasResourcesUri(Operator.Id, context.HttpContext.Request.Path.Value?.ToLower()))
+                        context.Result = Error("没有权限!", ErrorCode.forbidden);
+                    break;
+                default:
+                    context.Result = Error("用户类型错误!", ErrorCode.forbidden);
+                    break;
+            }
         }
 
         /// <summary>

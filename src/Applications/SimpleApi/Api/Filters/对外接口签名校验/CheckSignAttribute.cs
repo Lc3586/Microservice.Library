@@ -1,14 +1,14 @@
-﻿using Integrate_Business.Config;
+﻿using Business.Utils.Log;
 using Library.Cache;
 using Library.Container;
 using Library.Extension;
 using Library.Http;
-using Library.Models;
-using Library.Log;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using System;
 using Model.System;
+using Model.System.Config;
+using Model.System.Log;
+using System;
 
 namespace Api
 {
@@ -62,7 +62,6 @@ HttpHelper.SafeSignRequest
         public void OnActionExecuting(ActionExecutingContext filterContext)
         {
             //IBase_AppSecretBusiness appSecretBus = AutofacHelper.GetScopeService<IBase_AppSecretBusiness>();
-            ILogger logger = AutofacHelper.GetScopeService<ILogger>();
 
             //若为本地测试，则不需要校验
             if (Config.RunMode == RunMode.LocalTest)
@@ -134,7 +133,8 @@ headers:{request.Headers.ToJson()}
 body:{body}
 正确sign:{newSign}
 ";
-                logger.Error(LogType.系统异常, log);
+
+                Logger.Error(LogType.系统异常, log);
                 ReturnError("header:sign签名错误");
                 return;
             }

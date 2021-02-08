@@ -44,7 +44,7 @@ namespace Business.Implementation.Common
             Repository = Orm.GetRepository<Common_File, string>();
             HttpContextAccessor = httpContextAccessor;
             PreviewDir = Path.GetDirectoryName("\\filetypes\\");
-            BaseDir = Path.GetDirectoryName($"\\Upload\\{Operator.UserId}\\{DateTime.Now.ToUnixTimestamp()}\\");
+            BaseDir = Path.GetDirectoryName($"\\Upload\\{Operator.Id}\\{DateTime.Now.ToUnixTimestamp()}\\");
             BaseDirPath = PathHelper.GetAbsolutePath($"~{BaseDir}\\");
         }
 
@@ -518,7 +518,7 @@ namespace Business.Implementation.Common
         public List<FileInfo> GetList(PaginationDTO pagination)
         {
             var list = Orm.Select<Common_File>()
-                        .Where(o => Operator.IsAdmin || o.CreatorId == Operator.UserId)
+                        .Where(o => Operator.IsAdmin || o.CreatorId == Operator.Id)
                         .GetPagination(pagination)
                         .ToDtoList<Common_File, FileInfo>(typeof(FileInfo).GetNamesWithTagAndOther(true, "_List"));
 

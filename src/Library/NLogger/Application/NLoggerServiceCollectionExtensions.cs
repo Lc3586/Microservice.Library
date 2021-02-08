@@ -1,11 +1,8 @@
 ﻿using Library.NLogger.Application;
 using Library.NLogger.Gen;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -31,6 +28,21 @@ namespace Microsoft.Extensions.DependencyInjection
 
             //注册生成器和依赖
             services.AddSingleton<INLoggerProvider, NLoggerGenerator>();
+
+            return services;
+        }
+
+        /// <summary>
+        /// 注册日志组件
+        /// </summary>
+        /// <param name="services"></param>
+        /// <remarks>需要先<see cref="AddNLogger(IServiceCollection, Action{NLoggerGenOptions})"/></remarks>
+        /// <returns></returns>
+        public static IServiceCollection AddMSLogger(
+            this IServiceCollection services)
+        {
+            //注册生成器和依赖
+            services.AddSingleton<ILoggerProvider, MSLoggerProvider>();
 
             return services;
         }

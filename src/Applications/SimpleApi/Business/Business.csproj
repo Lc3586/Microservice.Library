@@ -34,7 +34,6 @@
 
   <ItemGroup>
     <Folder Include="Implementation\Example\" />
-    <Folder Include="Interface\Example\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -168,7 +168,7 @@
             操作者
             </summary>
         </member>
-        <member name="P:Business.Implementation.System.Operator.UserId">
+        <member name="P:Business.Implementation.System.Operator.Id">
             <summary>
             当前操作者UserId
             </summary>
@@ -373,6 +373,61 @@
             获取State参数
             </summary>
             <param name="data">数据</param>
+            <returns></returns>
+        </member>
+        <member name="T:Business.Interface.Example.ISampleBusiness">
+            <summary>
+            示例业务接口类
+            </summary>
+        </member>
+        <member name="M:Business.Interface.Example.ISampleBusiness.GetList(Model.System.Pagination.PaginationDTO)">
+            <summary>
+            获取列表数据
+            </summary>
+            <param name="pagination">分页设置</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.Example.ISampleBusiness.GetDetail(System.String)">
+            <summary>
+            获取详情数据
+            </summary>
+            <param name="id">Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.Example.ISampleBusiness.Create(Model.Example.DBDTO.Create)">
+            <summary>
+            新增
+            </summary>
+            <param name="data">数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.Example.ISampleBusiness.GetEdit(System.String)">
+            <summary>
+            获取编辑数据
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.Example.ISampleBusiness.Edit(Model.Example.DBDTO.Edit)">
+            <summary>
+            编辑
+            </summary>
+            <param name="data">数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.Example.ISampleBusiness.Enable(System.String,System.Boolean)">
+            <summary>
+            启用/禁用
+            </summary>
+            <param name="id">数据</param>
+            <param name="enable">设置状态</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.Example.ISampleBusiness.Delete(System.Collections.Generic.List{System.String})">
+            <summary>
+            删除
+            </summary>
+            <param name="ids">Id集合</param>
             <returns></returns>
         </member>
         <member name="T:Business.Interface.System.IMemberBusiness">
@@ -765,12 +820,28 @@
             <param name="resourcesId">资源Id</param>
             <returns></returns>
         </member>
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.UserHasResourcesUri(System.String,System.String)">
+            <summary>
+            用户是否拥有资源授权
+            </summary>
+            <param name="userId">用户Id</param>
+            <param name="resourcesUri">资源链接</param>
+            <returns></returns>
+        </member>
         <member name="M:Business.Interface.System.IAuthoritiesBusiness.MemberHasResources(System.String,System.String)">
             <summary>
             会员是否拥有资源授权
             </summary>
             <param name="memberId">会员Id</param>
             <param name="resourcesId">资源Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.MemberHasResourcesUri(System.String,System.String)">
+            <summary>
+            会员是否拥有资源授权
+            </summary>
+            <param name="memberId">会员Id</param>
+            <param name="resourcesUri">资源链接</param>
             <returns></returns>
         </member>
         <member name="T:Business.Interface.System.IMenuBusiness">
@@ -855,9 +926,9 @@
             操作者
             </summary>
         </member>
-        <member name="P:Business.Interface.System.IOperator.UserId">
+        <member name="P:Business.Interface.System.IOperator.Id">
             <summary>
-            当前操作者UserId
+            当前操作者Id
             </summary>
         </member>
         <member name="P:Business.Interface.System.IOperator.UserType">
@@ -1103,24 +1174,14 @@
             </summary>
             <typeparam name="T">泛型约束（数据库实体）</typeparam>
         </member>
-        <member name="P:Business.Utils.BaseBusiness.Logger">
-            <summary>
-            日志组件
-            </summary>
-        </member>
-        <member name="P:Business.Utils.BaseBusiness.Operator">
-            <summary>
-            当前登录人
-            </summary>
-        </member>
-        <member name="P:Business.Utils.BaseBusiness.Config">
+        <member name="F:Business.Utils.BaseBusiness.Config">
             <summary>
             系统日志
             </summary>
         </member>
-        <member name="M:Business.Utils.BaseBusiness.#ctor">
+        <member name="F:Business.Utils.BaseBusiness.Operator">
             <summary>
-            无参构造函数
+            当前登录人
             </summary>
         </member>
         <member name="M:Business.Utils.BaseBusiness.GetPagination``1(System.Linq.IQueryable{``0},Model.System.Pagination.PaginationDTO)">

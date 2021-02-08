@@ -1,8 +1,4 @@
 ﻿using Library.NLogger.Application;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
 
 namespace Library.NLogger.Gen
 {

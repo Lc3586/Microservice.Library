@@ -136,7 +136,7 @@ namespace Api.Configures
                 s.InjectJavascript("/swagger/waiting.min.js");
                 s.InjectStylesheet("/swagger/custom-stylesheet.css");
                 s.InjectJavascript("/swagger/custom-javascript.js");
-                if (config.CASEnable)
+                if (config.EnableCAS)
                     s.InjectJavascript("/swagger/casLogin.js");//cas登录脚本脚本
 
                 #endregion

@@ -2,8 +2,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Library.NLogger
 {
@@ -12,13 +10,13 @@ namespace Library.NLogger
     /// </summary>
     public class MSLogger : ILogger
     {
-        public MSLogger(IServiceProvider serviceProvider, string categoryName)
+        public MSLogger(INLoggerProvider nLoggerProvider, string categoryName)
         {
-            ServiceProvider = serviceProvider;
+            NLoggerProvider = nLoggerProvider;
             CategoryName = categoryName;
         }
 
-        readonly IServiceProvider ServiceProvider;
+        readonly INLoggerProvider NLoggerProvider;
 
         readonly string CategoryName;
 
@@ -27,8 +25,7 @@ namespace Library.NLogger
         NLog.ILogger GetNLogger()
         {
             if (NLogger == null)
-                NLogger = ServiceProvider.GetService<INLoggerProvider>()
-                                        .GetNLogger(CategoryName);
+                NLogger = NLoggerProvider.GetNLogger(CategoryName);
 
             return NLogger;
         }

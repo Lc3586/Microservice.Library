@@ -1,9 +1,8 @@
-﻿using Library.Container;
-using Library.Log;
+﻿using Business.Utils.Log;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
+using Model.System.Log;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -21,14 +20,12 @@ namespace Api.Middleware
         private const string RequestContentType = "application/x-www-form-urlencoded";
         private static readonly XmlNamespaceManager _xmlNamespaceManager = InitializeXmlNamespaceManager();
         private readonly ITicketStore _store;
-        private readonly ILogger _logger;
         private readonly RequestDelegate _next;
 
         public CasSingleSignOutMiddleware(RequestDelegate next, ITicketStore store)
         {
             _next = next;
             _store = store;
-            _logger = AutofacHelper.GetService<ILogger>();
         }
 
         public async Task Invoke(HttpContext context)
@@ -42,11 +39,11 @@ namespace Api.Middleware
                     var logOutRequest = formData.First(x => x.Key == "logoutRequest").Value[0];
                     if (!string.IsNullOrEmpty(logOutRequest))
                     {
-                        _logger.Debug(Library.Models.LogType.系统跟踪, $"logoutRequest: {logOutRequest}");
+                        Logger.Debug(LogType.系统跟踪, $"logoutRequest: {logOutRequest}");
                         var serviceTicket = ExtractSingleSignOutTicketFromSamlResponse(logOutRequest);
                         if (!string.IsNullOrEmpty(serviceTicket))
                         {
-                            _logger.Info(Library.Models.LogType.系统跟踪, $"remove serviceTicket: {serviceTicket} ...");
+                            Logger.Info(LogType.系统跟踪, $"remove serviceTicket: {serviceTicket} ...");
                             await _store.RemoveAsync(serviceTicket).ConfigureAwait(false);
                         }
                     }

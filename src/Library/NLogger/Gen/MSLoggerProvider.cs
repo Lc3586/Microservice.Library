@@ -7,18 +7,19 @@ namespace Library.NLogger.Gen
     /// <summary>
     /// MS日志组件构造器
     /// </summary>
+    /// <remarks>必须先注册<see cref="Library.NLogger.Gen.INLoggerProvider"/>, 使用<see cref="Microsoft.Extensions.DependencyInjection.NLoggerServiceCollectionExtensions"/>方法</remarks>
     public class MSLoggerProvider : ILoggerProvider
     {
-        public MSLoggerProvider(IServiceProvider serviceProvider)
+        public MSLoggerProvider(INLoggerProvider nLoggerProvider)
         {
-            ServiceProvider = serviceProvider;
+            NLoggerProvider = nLoggerProvider;
         }
 
-        readonly IServiceProvider ServiceProvider;
+        readonly INLoggerProvider NLoggerProvider;
 
         public ILogger CreateLogger(string categoryName)
         {
-            return new MSLogger(ServiceProvider, categoryName);
+            return new MSLogger(NLoggerProvider, categoryName);
         }
 
         bool isDisposed;

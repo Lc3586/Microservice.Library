@@ -1,13 +1,15 @@
-﻿using Library.Models;
+﻿using Api.Controllers.Utils;
+using Business.Interface.Example;
 using Library.Extension;
 using Microsoft.AspNetCore.Mvc;
-using System;
+using Model.Example.DBDTO;
+using Model.System;
+using Model.System.Pagination;
+using Swashbuckle.AspNetCore.Annotations;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Swashbuckle.AspNetCore.Annotations;
 using System.Net;
-using Model.Example.DBDTO;
+using System.Threading.Tasks;
 
 namespace Api.Controllers
 {
@@ -24,15 +26,15 @@ namespace Api.Controllers
         /// <summary>
         /// 业务类
         /// </summary>
-        IExampleBusiness exampleBusiness;
+        ISampleBusiness sampleBusiness;
 
         /// <summary>
         /// 在构造函数中注入DI系统中注册的依赖
         /// </summary>
         /// <param name="_exampleBusiness"></param>
-        public ExampleController(IExampleBusiness _exampleBusiness)
+        public SampleController(ISampleBusiness _exampleBusiness)
         {
-            exampleBusiness = _exampleBusiness;
+            sampleBusiness = _exampleBusiness;
         }
 
         #endregion
@@ -130,9 +132,9 @@ namespace Api.Controllers
         /// <returns></returns>
         [HttpPost("list")]//请求方法以及模板名称
         [SwaggerResponse((int)HttpStatusCode.OK, "数据信息", typeof(List))]//指定输出架构
-        public async Task<object> GetList([FromBody]/*指定参数来自请求正文*/Pagination pagination)
+        public async Task<object> GetList([FromBody]/*指定参数来自请求正文*/PaginationDTO pagination)
         {
-            return JsonContent(await Task.FromResult(exampleBusiness.GetList(pagination)), pagination);
+            return JsonContent(await Task.FromResult(sampleBusiness.GetList(pagination)), pagination);
         }
 
         /// <summary>
@@ -144,7 +146,7 @@ namespace Api.Controllers
         [SwaggerResponse((int)HttpStatusCode.OK, "详情信息", typeof(Detail))]
         public async Task<object> GetDetail(string id)
         {
-            return JsonContent(await Task.FromResult(exampleBusiness.GetDetail(id)));
+            return JsonContent(await Task.FromResult(sampleBusiness.GetDetail(id)));
         }
 
         /// <summary>
@@ -155,7 +157,8 @@ namespace Api.Controllers
         [HttpPost("create")]
         public async Task<AjaxResult> Create([FromBody]/*指定参数来自请求正文*/Create data)
         {
-            return await Task.FromResult(exampleBusiness.Create(data));
+            sampleBusiness.Create(data);
+            return await Task.FromResult(AjaxResultFactory.Success());
         }
 
         /// <summary>
@@ -167,7 +170,7 @@ namespace Api.Controllers
         [SwaggerResponse((int)HttpStatusCode.OK, "编辑信息", typeof(Edit))]
         public async Task<object> GetEdit(string id)
         {
-            return JsonContent(await Task.FromResult(exampleBusiness.GetEdit(id)));
+            return JsonContent(await Task.FromResult(sampleBusiness.GetEdit(id)));
         }
 
         /// <summary>
@@ -179,7 +182,8 @@ namespace Api.Controllers
         [CheckModel]//表单模型校验
         public async Task<AjaxResult> Edit([FromBody] Edit data)
         {
-            return await Task.FromResult(exampleBusiness.Edit(data));
+            sampleBusiness.Edit(data);
+            return await Task.FromResult(AjaxResultFactory.Success());
         }
 
         /// <summary>
@@ -190,7 +194,8 @@ namespace Api.Controllers
         [HttpPost("delete")]
         public async Task<AjaxResult> Delete(IEnumerable<string> ids)
         {
-            return await Task.FromResult(exampleBusiness.Delete(ids?.ToList()));
+            sampleBusiness.Delete(ids?.ToList());
+            return await Task.FromResult(AjaxResultFactory.Success());
         }
     }
 }

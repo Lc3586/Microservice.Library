@@ -4,10 +4,885 @@
         <name>Api</name>
     </assembly>
     <members>
+        <member name="T:Api.Configures.AutoMapperConfigura">
+            <summary>
+            AutoMapper配置类
+            </summary>
+        </member>
+        <member name="M:Api.Configures.AutoMapperConfigura.RegisterServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.System.Config.SystemConfig)">
+            <summary>
+            注册服务
+            </summary>
+            <param name="services"></param>
+            <param name="config"></param>
+        </member>
+        <member name="T:Api.Configures.CASConfigura">
+            <summary>
+            CAS配置类
+            </summary>
+        </member>
+        <member name="M:Api.Configures.CASConfigura.RegisterServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.System.Config.SystemConfig)">
+            <summary>
+            注册服务
+            </summary>
+            <param name="services"></param>
+            <param name="config"></param>
+        </member>
+        <member name="M:Api.Configures.CASConfigura.RegisterApplication(Microsoft.AspNetCore.Builder.IApplicationBuilder,Model.System.Config.SystemConfig)">
+            <summary>
+            配置应用
+            注：方法在UseMvc之前
+            </summary>
+            <param name="app"></param>
+            <param name="config"></param>
+        </member>
+        <member name="T:Api.Configures.ConfigureSwaggerGenOptions">
+            <summary>
+            配置Swagger选项
+            </summary>
+            <remarks>当Api有多个版本时使用此类,将系统配置应用于Swagger配置</remarks>
+        </member>
+        <member name="M:Api.Configures.ConfigureSwaggerGenOptions.#ctor(System.IServiceProvider,Microsoft.Extensions.Options.IOptions{Model.System.Config.SwaggerApiMultiVersionDescriptionOptions})">
+            <summary>
+            
+            </summary>
+            <param name="serviceProvider"></param>
+            <param name="options"></param>
+        </member>
+        <member name="M:Api.Configures.ConfigureSwaggerGenOptions.Configure(Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions)">
+            <summary>
+            配置
+            </summary>
+            <param name="options"></param>
+        </member>
+        <member name="T:Api.Configures.ElasticsearchConfigura">
+            <summary>
+            ES搜索服务配置类
+            </summary>
+        </member>
+        <member name="M:Api.Configures.ElasticsearchConfigura.RegisterServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.System.Config.SystemConfig)">
+            <summary>
+            注册服务
+            </summary>
+            <param name="services"></param>
+            <param name="config"></param>
+        </member>
+        <member name="T:Api.Configures.FreeSqlConfigura">
+            <summary>
+            FreeSql配置类
+            </summary>
+        </member>
+        <member name="M:Api.Configures.FreeSqlConfigura.RegisterServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.System.Config.SystemConfig)">
+            <summary>
+            注册服务
+            </summary>
+            <param name="services"></param>
+            <param name="config"></param>
+        </member>
+        <member name="M:Api.Configures.FreeSqlConfigura.RegisterApplication(Microsoft.AspNetCore.Builder.IApplicationBuilder,Model.System.Config.SystemConfig)">
+            <summary>
+            配置应用
+            </summary>
+            <param name="app"></param>
+            <param name="config"></param>
+        </member>
+        <member name="T:Api.Configures.FreeSqlMultiDatabaseConfigura">
+            <summary>
+            FreeSql多数据库配置类
+            </summary>
+        </member>
+        <member name="M:Api.Configures.FreeSqlMultiDatabaseConfigura.RegisterServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.System.Config.SystemConfig)">
+            <summary>
+            注册服务
+            </summary>
+            <param name="services"></param>
+            <param name="config"></param>
+        </member>
+        <member name="M:Api.Configures.FreeSqlMultiDatabaseConfigura.RegisterApplication(Microsoft.AspNetCore.Builder.IApplicationBuilder,Model.System.Config.SystemConfig)">
+            <summary>
+            配置应用
+            </summary>
+            <param name="app"></param>
+            <param name="config"></param>
+        </member>
+        <member name="T:Api.Configures.NLoggerConfigura">
+            <summary>
+            NLog配置类
+            </summary>
+        </member>
+        <member name="M:Api.Configures.NLoggerConfigura.RegisterServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.System.Config.SystemConfig)">
+            <summary>
+            注册服务
+            </summary>
+            <param name="services"></param>
+            <param name="config"></param>
+        </member>
+        <member name="M:Api.Configures.NLoggerConfigura.RegisterApplication(Microsoft.AspNetCore.Builder.IApplicationBuilder,Model.System.Config.SystemConfig)">
+            <summary>
+            配置应用
+            </summary>
+            <param name="app"></param>
+            <param name="config"></param>
+        </member>
+        <member name="T:Api.Configures.SoapConfigure">
+            <summary>
+            Soap配置类
+            </summary>
+        </member>
+        <member name="M:Api.Configures.SoapConfigure.RegisterServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.System.Config.SystemConfig)">
+            <summary>
+            注册服务
+            </summary>
+            <param name="services"></param>
+            <param name="config"></param>
+        </member>
+        <member name="M:Api.Configures.SoapConfigure.RegisterEndpoint(Microsoft.AspNetCore.Builder.IApplicationBuilder,Model.System.Config.SystemConfig)">
+            <summary>
+            配置应用
+            </summary>
+            <param name="app"></param>
+            <param name="config"></param>
+        </member>
+        <member name="T:Api.Configures.SwaggerConfigura">
+            <summary>
+            Swagger单文档配置类
+            </summary>
+        </member>
+        <member name="M:Api.Configures.SwaggerConfigura.RegisterServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.System.Config.SystemConfig)">
+            <summary>
+            注册服务
+            </summary>
+            <param name="services"></param>
+            <param name="config"></param>
+        </member>
+        <member name="M:Api.Configures.SwaggerConfigura.RegisterApplication(Microsoft.AspNetCore.Builder.IApplicationBuilder,Model.System.Config.SystemConfig)">
+            <summary>
+            配置应用
+            </summary>
+            <param name="app"></param>
+            <param name="config"></param>
+        </member>
+        <member name="T:Api.Configures.SwaggerMultiVersionConfigura">
+            <summary>
+            Swagger多版本文档配置类
+            </summary>
+        </member>
+        <member name="M:Api.Configures.SwaggerMultiVersionConfigura.RegisterServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.System.Config.SystemConfig)">
+            <summary>
+            注册服务
+            </summary>
+            <param name="services"></param>
+            <param name="config"></param>
+        </member>
+        <member name="M:Api.Configures.SwaggerMultiVersionConfigura.RegisterApplication(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Mvc.ApiExplorer.IApiVersionDescriptionProvider,Model.System.Config.SystemConfig)">
+            <summary>
+            配置应用
+            </summary>
+            <param name="app"></param>
+            <param name="apiVersionDescription"></param>
+            <param name="config"></param>
+        </member>
+        <member name="T:Api.Configures.WeChatServiceConfigura">
+            <summary>
+            微信配置类
+            </summary>
+        </member>
+        <member name="M:Api.Configures.WeChatServiceConfigura.RegisterServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.System.Config.SystemConfig)">
+            <summary>
+            注册服务
+            </summary>
+            <param name="services"></param>
+            <param name="config"></param>
+        </member>
+        <member name="M:Api.Configures.WeChatServiceConfigura.RegisterApplication(Microsoft.AspNetCore.Builder.IApplicationBuilder,Model.System.Config.SystemConfig)">
+            <summary>
+            配置应用
+            </summary>
+            <param name="app"></param>
+            <param name="config"></param>
+        </member>
+        <member name="T:Api.Controllers.SampleController">
+            <summary>
+            示例接口
+            </summary>
+        </member>
+        <member name="F:Api.Controllers.SampleController.sampleBusiness">
+            <summary>
+            业务类
+            </summary>
+        </member>
+        <member name="M:Api.Controllers.SampleController.#ctor(Business.Interface.Example.ISampleBusiness)">
+            <summary>
+            在构造函数中注入DI系统中注册的依赖
+            </summary>
+            <param name="_exampleBusiness"></param>
+        </member>
+        <member name="M:Api.Controllers.SampleController.GetList(Model.System.Pagination.PaginationDTO)">
+             <summary>
+             获取列表数据
+             </summary>
+             <remarks>
+             ## 示例 1     一般查询
+             
+             #查询第一页，每页10条数据，按修改时间倒序排序。
+             
+                 POST /config/list
+                 {
+                     "PageIndex": 1,
+                     "PageRows": 10,
+                     "SortField": "ModifyTime",
+                     "SortType": "desc"
+                 }
+             
+             ## 示例 2     高级排序
+             
+             #查询第一页，每页10条数据，按修改时间倒序排序之后再按创建时间正序排列。
+            
+                 POST /config/list
+                 {
+                     "PageIndex": 1,
+                     "PageRows": 10,
+                     "AdvancedSort": [
+                         {
+                             "field": "ModifyTime",
+                             "type": "desc"
+                         },
+                         {
+                             "field": "CreateTime",
+                             "type": "asc"
+                         }
+                     ]
+                 }
+             
+             ## 示例 3     高级搜索 1
+             
+             #查询第一页，每页10条数据，筛选应用名称中包含“应用”，以及创建者为“管理员A”的数据。
+             
+                 POST /config/list
+                 {
+                     "PageIndex": 1,
+                     "PageRows": 10,
+                     "Filter": [
+                         {
+                             "field": "AppName",
+                             "value": "应用",
+                             "compare": "in"
+                         },
+                         {
+                             "field": "CreatorName",
+                             "value": "管理员A",
+                             "compare": "eq"
+                         }
+                     ]
+                 }
+             
+             ## 示例 4     高级搜索 2
+             
+             #查询第一页，每页10条数据，筛选应用名称中包含“应用”，并且创建者为“管理员A”，又或者创建时间大于“2020-03-10”的数据。
+             
+                 POST /config/list
+                 {
+                     "PageIndex": 1,
+                     "PageRows": 10,
+                     "Filter": [
+                         {
+                             "group": "start",
+                             "field": "AppName",
+                             "value": "应用",
+                             "compare": "in"
+                         },
+                         {
+                             "group": "end",
+                             "relation": "and"
+                             "field": "CreatorName",
+                             "value": "管理员A",
+                             "compare": "eq"
+                         },
+                         {
+                             "relation": "or"
+                             "field": "CreateTime",
+                             "value": "2020-03-10",
+                             "compare": "gt"
+                         }
+                     ]
+                 }
+             </remarks>
+             <param name="pagination">分页设置</param>
+             <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.SampleController.GetDetail(System.String)">
+            <summary>
+            详情数据
+            </summary>
+            <param name="id">Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.SampleController.Create(Model.Example.DBDTO.Create)">
+            <summary>
+            新增
+            </summary>
+            <param name="data">表单数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.SampleController.GetEdit(System.String)">
+            <summary>
+            获取编辑数据
+            </summary>
+            <param name="id">Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.SampleController.Edit(Model.Example.DBDTO.Edit)">
+            <summary>
+            编辑数据
+            </summary>
+            <param name="data">表单数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.SampleController.Delete(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            删除数据
+            </summary>
+            <param name="ids">Id集合</param>
+            <returns></returns>
+        </member>
+        <member name="T:Api.Controllers.Utils.BaseApiController">
+            <summary>
+            Mvc对外接口基控制器
+            </summary>
+        </member>
+        <member name="F:Api.Controllers.Utils.BaseApiController.Config">
+            <summary>
+            系统日志
+            </summary>
+        </member>
+        <member name="F:Api.Controllers.Utils.BaseApiController.Operator">
+            <summary>
+            当前登录人
+            </summary>
+        </member>
+        <member name="T:Api.Controllers.Utils.BaseController">
+            <summary>
+            基控制器
+            </summary>
+        </member>
+        <member name="M:Api.Controllers.Utils.BaseController.JsonContent``1(Model.System.AjaxResult{System.Collections.Generic.List{``0}})">
+            <summary>
+            返回JSON
+            </summary>
+            <typeparam name="TOpenApiSchema">接口架构类型</typeparam>
+            <param name="result"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.Utils.BaseController.JsonContent``1(Model.System.AjaxResult{``0})">
+            <summary>
+            返回JSON
+            </summary>
+            <typeparam name="TOpenApiSchema">接口架构类型</typeparam>
+            <param name="result"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.Utils.BaseController.JsonContent``1(``0)">
+            <summary>
+            返回JSON
+            </summary>
+            <typeparam name="TOpenApiSchema">接口架构类型</typeparam>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.Utils.BaseController.JsonContent``1(System.Collections.Generic.List{``0},Model.System.Pagination.PaginationDTO,System.Boolean,System.String)">
+            <summary>
+            返回JSON
+            </summary>
+            <typeparam name="TOpenApiSchema">接口架构类型</typeparam>
+            <param name="obj"></param>
+            <param name="pagination"></param>
+            <param name="success"></param>
+            <param name="error"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.Utils.BaseController.JsonContent(System.Object,Model.System.Pagination.PaginationDTO,System.Boolean,System.String)">
+            <summary>
+            返回JSON
+            </summary>
+            <param name="obj"></param>
+            <param name="pagination"></param>
+            <param name="success"></param>
+            <param name="error"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.Utils.BaseController.JsonContent(System.String)">
+            <summary>
+            返回JSON
+            </summary>
+            <param name="jsonStr">json字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.Utils.BaseController.HtmlContent(System.String)">
+            <summary>
+            返回html
+            </summary>
+            <param name="body">html内容</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.Utils.BaseController.Success">
+            <summary>
+            返回成功
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.Utils.BaseController.Success(System.String)">
+            <summary>
+            返回成功
+            </summary>
+            <param name="msg">消息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.Utils.BaseController.Success``1(``0)">
+            <summary>
+            返回成功
+            </summary>
+            <param name="data">返回的数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.Utils.BaseController.Success``1(``0,System.String)">
+            <summary>
+            返回成功
+            </summary>
+            <param name="data">返回的数据</param>
+            <param name="msg">返回的消息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.Utils.BaseController.SuccessOpenApiSchema``1(``0,System.String)">
+            <summary>
+            返回成功
+            </summary>
+            <typeparam name="TOpenApiSchema">接口架构类型</typeparam>
+            <param name="data"></param>
+            <param name="msg"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.Utils.BaseController.Error">
+            <summary>
+            返回错误
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.Utils.BaseController.Error(System.String)">
+            <summary>
+            返回错误
+            </summary>
+            <param name="msg">错误提示</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.Utils.BaseController.ErrorOpenApiSchema``1(``0,System.String)">
+            <summary>
+            返回错误
+            </summary>
+            <typeparam name="TOpenApiSchema">接口架构类型</typeparam>
+            <param name="data"></param>
+            <param name="msg"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.Utils.BaseController.DataTable``1(System.Collections.Generic.List{``0})">
+            <summary>
+            返回表格数据
+            </summary>
+            <typeparam name="T">类型</typeparam>
+            <param name="list">数据列表</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.Utils.BaseController.DataTable``1(System.Collections.Generic.List{``0},Model.System.Pagination.PaginationDTO)">
+            <summary>
+            返回表格数据
+            </summary>
+            <typeparam name="T">类型</typeparam>
+            <param name="list">数据列表</param>
+            <param name="pagination">分页参数</param>
+            <returns></returns>
+        </member>
+        <member name="T:Api.Controllers.Utils.CASController">
+            <summary>
+            CAS认证接口
+            </summary>
+        </member>
+        <member name="M:Api.Controllers.Utils.CASController.Authorize(System.String)">
+            <summary>
+            登录验证
+            </summary>
+            <remarks>
+            <para>验证后重定向至指定地址</para>
+            <para>未登录时将会先重定向至登录</para>
+            <para>身份信息将会附加在重定向地址之后（?casInfo=【身份信息JSON序列化字符串】）</para>
+            <para>未指定地址时将直接输出身份信息</para>
+            </remarks>
+            <param name="returnUrl">重定向地址</param>
+            <returns>身份信息</returns>
+        </member>
+        <member name="M:Api.Controllers.Utils.CASController.Authorized">
+            <summary>
+            登录验证
+            </summary>
+            <remarks>
+            <para>使用此接口判断登录状态</para>
+            <para>已登录返回身份信息</para>
+            <para>未登录返回状态码401</para>
+            </remarks>
+            <returns>身份信息</returns>
+        </member>
+        <member name="M:Api.Controllers.Utils.CASController.AccessDenied">
+            <summary>
+            拒绝访问
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.Utils.CASController.ExternalLoginFailure">
+            <summary>
+            登录异常
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.Utils.CASController.Login(System.String)">
+            <summary>
+            登录
+            </summary>
+            <param name="returnUrl">登录后重定向地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.Utils.CASController.LogOut(System.String,System.Boolean,System.String)">
+            <summary>
+            注销
+            </summary>
+            <param name="returnUrl">注销后重定向地址</param>
+            <param name="logoutCAS">单点注销（当前登录的所有应用都会注销）</param>
+            <param name="tgt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.Utils.CASController.LogOut(System.String)">
+            <summary>
+            注销
+            </summary>
+            <param name="tgt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.Utils.CASController.GetToken">
+            <summary>
+            获取验证后的身份信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.Utils.TestController.PressTest">
+            <summary>
+            压力测试
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Api.BaseActionFilter">
+            <summary>
+            拦截类基类
+            </summary>
+        </member>
+        <member name="P:Api.BaseActionFilter.Operator">
+            <summary>
+            当前登录人
+            </summary>
+        </member>
+        <member name="M:Api.BaseActionFilter.JsonContent(System.String)">
+            <summary>
+            返回JSON
+            </summary>
+            <param name="json">json字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.BaseActionFilter.Success">
+            <summary>
+            返回成功
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Api.BaseActionFilter.Success(System.String)">
+            <summary>
+            返回成功
+            </summary>
+            <param name="msg">消息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.BaseActionFilter.Success``1(``0)">
+            <summary>
+            返回成功
+            </summary>
+            <param name="data">返回的数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.BaseActionFilter.Error">
+            <summary>
+            返回错误
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Api.BaseActionFilter.Error(System.String)">
+            <summary>
+            返回错误
+            </summary>
+            <param name="msg">错误提示</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.BaseActionFilter.Error(System.String,Model.System.ErrorCode)">
+            <summary>
+            返回错误
+            </summary>
+            <param name="msg">错误提示</param>
+            <param name="errorCode">错误代码</param>
+            <returns></returns>
+        </member>
+        <member name="T:Api.JsonParamterAttribute">
+            <summary>
+            Json参数支持
+            </summary>
+        </member>
+        <member name="M:Api.JsonParamterAttribute.#ctor(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="openApiSchemaFilter">接口架构过滤</param>
+        </member>
+        <member name="F:Api.JsonParamterAttribute.OpenApiSchemaFilter">
+            <summary>
+            接口架构过滤
+            </summary>
+        </member>
+        <member name="M:Api.JsonParamterAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            Action执行之前执行
+            </summary>
+            <param name="context">过滤器上下文</param>
+        </member>
+        <member name="M:Api.JsonParamterAttribute.OnActionExecuted(Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext)">
+            <summary>
+            Action执行完毕之后执行
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:Api.NoJsonParamterAttribute">
+            <summary>
+            忽略Json参数支持
+            </summary>
+        </member>
+        <member name="M:Api.NoJsonParamterAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            Action执行之前执行
+            </summary>
+            <param name="context">过滤器上下文</param>
+        </member>
+        <member name="M:Api.NoJsonParamterAttribute.OnActionExecuted(Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext)">
+            <summary>
+            Action执行完毕之后执行
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:Api.CheckJWTAttribute">
+            <summary>
+            JWT校验
+            </summary>
+        </member>
+        <member name="M:Api.CheckJWTAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            Action执行之前执行
+            </summary>
+            <param name="context">过滤器上下文</param>
+        </member>
+        <member name="M:Api.CheckJWTAttribute.OnActionExecuted(Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext)">
+            <summary>
+            Action执行完毕之后执行
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:Api.NoCheckJWTAttribute">
+            <summary>
+            忽略JWT校验
+            </summary>
+        </member>
+        <member name="M:Api.NoCheckJWTAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            Action执行之前执行
+            </summary>
+            <param name="context">过滤器上下文</param>
+        </member>
+        <member name="M:Api.NoCheckJWTAttribute.OnActionExecuted(Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext)">
+            <summary>
+            Action执行完毕之后执行
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:Api.OpenApiSchemaFilter">
+            <summary>
+            接口架构过滤器
+            </summary>
+            <remarks>LCTR 2020-03-10</remarks>
+        </member>
+        <member name="T:Api.SwaggerFileUploadFilter">
+            <summary>
+            Swagger实现文件上传功能
+            </summary>
+        </member>
+        <member name="T:Api.GlobalExceptionFilter">
+            <summary>
+            全局错误拦截
+            </summary>
+        </member>
+        <member name="T:Api.CheckParamNotEmptyAttribute">
+            <summary>
+            参数非空校验
+            </summary>
+        </member>
+        <member name="M:Api.CheckParamNotEmptyAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            Action执行之前执行
+            </summary>
+            <param name="filterContext">过滤器上下文</param>
+        </member>
+        <member name="M:Api.CheckParamNotEmptyAttribute.OnActionExecuted(Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext)">
+            <summary>
+            Action执行完毕之后执行
+            </summary>
+            <param name="filterContext"></param>
+        </member>
+        <member name="T:Api.CheckSignAttribute">
+            <summary>
+            校验签名、十分严格
+            防抵赖、防伪造、防重复调用
+            </summary>
+        </member>
+        <member name="M:Api.CheckSignAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            Action执行之前执行
+            </summary>
+            <param name="filterContext"></param>
+        </member>
+        <member name="M:Api.CheckSignAttribute.OnActionExecuted(Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext)">
+            <summary>
+            Action执行完毕之后执行
+            </summary>
+            <param name="filterContext"></param>
+        </member>
+        <member name="T:Api.IgnoreSignAttribute">
+            <summary>
+            忽略接口签名校验
+            </summary>
+        </member>
+        <member name="T:Api.ApiPermissionAttribute">
+            <summary>
+            接口权限校验
+            </summary>
+        </member>
+        <member name="M:Api.ApiPermissionAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            Action执行之前执行
+            </summary>
+            <param name="context">过滤器上下文</param>
+        </member>
+        <member name="M:Api.ApiPermissionAttribute.OnActionExecuted(Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext)">
+            <summary>
+            Action执行完毕之后执行
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:Api.NoApiPermissionAttribute">
+            <summary>
+            忽略接口权限校验
+            </summary>
+        </member>
+        <member name="M:Api.NoApiPermissionAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            Action执行之前执行
+            </summary>
+            <param name="context">过滤器上下文</param>
+        </member>
+        <member name="M:Api.NoApiPermissionAttribute.OnActionExecuted(Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext)">
+            <summary>
+            Action执行完毕之后执行
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:Api.CheckModelAttribute">
+            <summary>
+            接口模型校验
+            LCTR 2019-12-12
+            </summary>
+        </member>
+        <member name="P:Api.CheckModelAttribute.Ignore">
+            <summary>
+            忽略字段
+            </summary>
+        </member>
+        <member name="M:Api.CheckModelAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            Action执行之前执行
+            </summary>
+            <param name="context">过滤器上下文</param>
+        </member>
+        <member name="M:Api.CheckModelAttribute.OnActionExecuted(Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext)">
+            <summary>
+            Action执行完毕之后执行
+            </summary>
+            <param name="filterContext"></param>
+        </member>
+        <member name="T:Api.NoCheckModelAttribute">
+            <summary>
+            忽略接口模型校验
+            LCTR 2019-12-12
+            </summary>
+        </member>
+        <member name="M:Api.NoCheckModelAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            Action执行之前执行
+            </summary>
+            <param name="context">过滤器上下文</param>
+        </member>
+        <member name="M:Api.NoCheckModelAttribute.OnActionExecuted(Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext)">
+            <summary>
+            Action执行完毕之后执行
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:Api.Middleware.CasCustomServiceTicketValidator">
+            <summary>
+            自定义CAS票据验证器
+            </summary>
+            <remarks>如果不是标准的cas协议，就需要在此类中自定义解析逻辑</remarks>
+        </member>
+        <member name="T:Api.Middleware.CasSingleSignOutMiddleware">
+            <summary>
+            CAS单点注销中间件
+            </summary>
+        </member>
+        <member name="T:Api.Middleware.CorsMiddleware">
+            <summary>
+            跨域中间件
+            </summary>
+        </member>
+        <member name="M:Api.Middleware.CorsMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate)">
+            <summary>
+            管道执行到该中间件时候下一个中间件的RequestDelegate请求委托，如果有其它参数，也同样通过注入的方式获得
+            </summary>
+            <param name="next"></param>
+        </member>
+        <member name="M:Api.Middleware.CorsMiddleware.Invoke(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            自定义中间件要执行的逻辑
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
         <member name="P:Api.Startup.Config">
             <summary>
             系统配置
             </summary>
+        </member>
+        <member name="M:Api.Startup.ConfigureContainer(Autofac.ContainerBuilder)">
+            <summary>
+            配置Autofac容器
+            </summary>
+            <param name="builder"></param>
         </member>
     </members>
 </doc>
