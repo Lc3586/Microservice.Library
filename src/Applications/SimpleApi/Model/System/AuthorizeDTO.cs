@@ -1,10 +1,11 @@
 ﻿using Library.OpenApi.Annotations;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
+/* 
+ * 授权相关业务模型
+ */
 namespace Model.System.AuthorizeDTO
 {
     /// <summary>
@@ -17,6 +18,31 @@ namespace Model.System.AuthorizeDTO
         /// </summary>
         [MinLength(1, ErrorMessage = "最少指定一个用户")]
         public List<string> UserIds { get; set; }
+
+        /// <summary>
+        /// 角色Id
+        /// </summary>
+        [MinLength(1, ErrorMessage = "最少指定一个角色")]
+        public List<string> RoleIds { get; set; }
+
+        /// <summary>
+        /// 撤销全部角色
+        /// </summary>
+        [OpenApiIgnore]
+        [JsonIgnore]
+        public bool All { get; set; } = false;
+    }
+
+    /// <summary>
+    /// 授权角色给会员
+    /// </summary>
+    public class RoleForMember
+    {
+        /// <summary>
+        /// 会员Id
+        /// </summary>
+        [MinLength(1, ErrorMessage = "最少指定一个会员")]
+        public List<string> MemberIds { get; set; }
 
         /// <summary>
         /// 角色Id

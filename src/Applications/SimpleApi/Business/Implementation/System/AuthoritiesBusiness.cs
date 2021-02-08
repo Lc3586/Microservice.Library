@@ -1,6 +1,9 @@
 ﻿using AutoMapper;
+using Business.Interface.Common;
 using Business.Interface.System;
 using Business.Utils;
+using Entity.Common;
+using Entity.Public;
 using Entity.System;
 using FreeSql;
 using Library.DataMapping.Gen;
@@ -20,6 +23,7 @@ namespace Business.Implementation.System
     public class AuthoritiesBusiness : BaseBusiness, IAuthoritiesBusiness
     {
         #region DI
+
         public AuthoritiesBusiness(
             IFreeSqlProvider freeSqlProvider,
             IAutoMapperProvider autoMapperProvider,
@@ -32,6 +36,8 @@ namespace Business.Implementation.System
             Repository_UserRole = Orm.GetRepository<System_UserRole, string>();
             Repository_UserMenu = Orm.GetRepository<System_UserMenu, string>();
             Repository_UserResources = Orm.GetRepository<System_UserResources, string>();
+            Repository_Member = Orm.GetRepository<Public_Member, string>();
+            Repository_MemberRole = Orm.GetRepository<Public_MemberRole, string>();
             Repository_Role = Orm.GetRepository<System_Role, string>();
             Repository_RoleMenu = Orm.GetRepository<System_RoleMenu, string>();
             Repository_RoleResources = Orm.GetRepository<System_RoleResources, string>();
@@ -56,6 +62,10 @@ namespace Business.Implementation.System
 
         IBaseRepository<System_UserResources, string> Repository_UserResources { get; set; }
 
+        IBaseRepository<Public_Member, string> Repository_Member { get; set; }
+
+        IBaseRepository<Public_MemberRole, string> Repository_MemberRole { get; set; }
+
         IBaseRepository<System_Role, string> Repository_Role { get; set; }
 
         IBaseRepository<System_RoleMenu, string> Repository_RoleMenu { get; set; }
@@ -79,7 +89,6 @@ namespace Business.Implementation.System
                 o.Id,
                 o.Enable,
                 o.Account,
-                o.Type,
                 o.Name
             });
 
@@ -88,6 +97,25 @@ namespace Business.Implementation.System
 
             if (!user.Enable)
                 throw new ApplicationException("用户账号已禁用.");
+
+            return user;
+        }
+
+        private dynamic GetMemberWithCheck(string memberId)
+        {
+            var user = Repository_Member.Where(o => o.Id == memberId).ToOne(o => new
+            {
+                o.Id,
+                o.Enable,
+                o.Account,
+                o.Name
+            });
+
+            if (user == null)
+                throw new ApplicationException("会员不存在或已被移除.");
+
+            if (!user.Enable)
+                throw new ApplicationException("会员账号已禁用.");
 
             return user;
         }
@@ -129,16 +157,16 @@ namespace Business.Implementation.System
             });
 
             if (!roles.Any())
-                throw new ApplicationException("没有可供授权的角色");
+                throw new ApplicationException("没有可供授权的角色.");
 
             (bool success, Exception ex) = Orm.RunTransaction(() =>
             {
-                var orId = OperationRecordBusiness.Create(new System_OperationRecord
+                var orId = OperationRecordBusiness.Create(new Common_OperationRecord
                 {
                     DataType = nameof(System_UserRole),
                     DataId = null,
                     Explain = $"授权角色给用户.",
-                    Remark = $"被授权的用户: \r\n\t{string.Join(",", users.Select(o => $"[账号 {o.Account}, 类型 {o.Type}, 姓名 {o.Name}]"))}\r\n" +
+                    Remark = $"被授权的用户: \r\n\t{string.Join(",", users.Select(o => $"[账号 {o.Account}, 姓名 {o.Name}]"))}\r\n" +
                             $"授权的角色: \r\n\t{string.Join(",", roles.Select(o => $"[名称 {o.Name}, 类型 {o.Type}]"))}"
                 });
 
@@ -150,7 +178,46 @@ namespace Business.Implementation.System
             });
 
             if (!success)
-                throw new ApplicationException("授权失败", ex);
+                throw new ApplicationException("授权失败.", ex);
+        }
+
+        public void AuthorizeRoleForMember(RoleForMember data)
+        {
+            var members = data.MemberIds.Select(o => GetMemberWithCheck(o));
+
+            var roles = Repository_Role.Where(o => data.RoleIds.Contains(o.Id) && o.Enable).ToList(o => new
+            {
+                o.Id,
+                o.Type,
+                o.Name
+            });
+
+            if (!roles.Any())
+                throw new ApplicationException("没有可供授权的角色.");
+
+            if (roles.Any(o => o.Type != RoleType.会员))
+                throw new ApplicationException($"只能将角色类型为{RoleType.会员}的角色授权给会员.");
+
+            (bool success, Exception ex) = Orm.RunTransaction(() =>
+            {
+                var orId = OperationRecordBusiness.Create(new Common_OperationRecord
+                {
+                    DataType = nameof(Public_MemberRole),
+                    DataId = null,
+                    Explain = $"授权角色给会员.",
+                    Remark = $"被授权的会员: \r\n\t{string.Join(",", members.Select(o => $"[账号 {o.Account}, 姓名 {o.Name}]"))}\r\n" +
+                            $"授权的角色: \r\n\t{string.Join(",", roles.Select(o => $"[名称 {o.Name}, 类型 {o.Type}]"))}"
+                });
+
+                Repository_MemberRole.Insert(roles.SelectMany(o => members.Select(p => new Public_MemberRole
+                {
+                    MemberId = p.Id,
+                    RoleId = o.Id
+                })));
+            });
+
+            if (!success)
+                throw new ApplicationException("授权失败.", ex);
         }
 
         public void AuthorizeMenuForUser(MenuForUser data)
@@ -165,16 +232,16 @@ namespace Business.Implementation.System
             });
 
             if (!menus.Any())
-                throw new ApplicationException("没有可供授权的菜单");
+                throw new ApplicationException("没有可供授权的菜单.");
 
             (bool success, Exception ex) = Orm.RunTransaction(() =>
             {
-                var orId = OperationRecordBusiness.Create(new System_OperationRecord
+                var orId = OperationRecordBusiness.Create(new Common_OperationRecord
                 {
                     DataType = nameof(System_UserMenu),
                     DataId = null,
                     Explain = $"授权菜单给用户.",
-                    Remark = $"被授权的用户: \r\n\t{string.Join(",", users.Select(o => $"[账号 {o.Account}, 类型 {o.Type}, 姓名 {o.Name}]"))}\r\n" +
+                    Remark = $"被授权的用户: \r\n\t{string.Join(",", users.Select(o => $"[账号 {o.Account}, 姓名 {o.Name}]"))}\r\n" +
                             $"授权的菜单: \r\n\t{string.Join(",", menus.Select(o => $"[名称 {o.Name}, 类型 {o.Type}]"))}"
                 });
 
@@ -186,7 +253,7 @@ namespace Business.Implementation.System
             });
 
             if (!success)
-                throw new ApplicationException("授权失败", ex);
+                throw new ApplicationException("授权失败.", ex);
         }
 
         public void AuthorizeResourcesForUser(ResourcesForUser data)
@@ -201,16 +268,16 @@ namespace Business.Implementation.System
             });
 
             if (!resources.Any())
-                throw new ApplicationException("没有可供授权的资源");
+                throw new ApplicationException("没有可供授权的资源.");
 
             (bool success, Exception ex) = Orm.RunTransaction(() =>
             {
-                var orId = OperationRecordBusiness.Create(new System_OperationRecord
+                var orId = OperationRecordBusiness.Create(new Common_OperationRecord
                 {
                     DataType = nameof(System_UserResources),
                     DataId = null,
                     Explain = $"授权资源给用户.",
-                    Remark = $"被授权的用户: \r\n\t{string.Join(",", users.Select(o => $"[账号 {o.Account}, 类型 {o.Type}, 姓名 {o.Name}]"))}\r\n" +
+                    Remark = $"被授权的用户: \r\n\t{string.Join(",", users.Select(o => $"[账号 {o.Account}, 姓名 {o.Name}]"))}\r\n" +
                             $"授权的资源: \r\n\t{string.Join(",", resources.Select(o => $"[名称 {o.Name}, 类型 {o.Type}]"))}"
                 });
 
@@ -222,7 +289,7 @@ namespace Business.Implementation.System
             });
 
             if (!success)
-                throw new ApplicationException("授权失败", ex);
+                throw new ApplicationException("授权失败.", ex);
         }
 
         public void AuthorizeMenuForRole(MenuForRole data)
@@ -237,11 +304,11 @@ namespace Business.Implementation.System
             });
 
             if (!menus.Any())
-                throw new ApplicationException("没有可供授权的菜单");
+                throw new ApplicationException("没有可供授权的菜单.");
 
             (bool success, Exception ex) = Orm.RunTransaction(() =>
             {
-                var orId = OperationRecordBusiness.Create(new System_OperationRecord
+                var orId = OperationRecordBusiness.Create(new Common_OperationRecord
                 {
                     DataType = nameof(System_RoleMenu),
                     DataId = null,
@@ -258,7 +325,7 @@ namespace Business.Implementation.System
             });
 
             if (!success)
-                throw new ApplicationException("授权失败", ex);
+                throw new ApplicationException("授权失败.", ex);
         }
 
         public void AuthorizeResourcesForRole(ResourcesForRole data)
@@ -273,11 +340,11 @@ namespace Business.Implementation.System
             });
 
             if (!resources.Any())
-                throw new ApplicationException("没有可供授权的资源");
+                throw new ApplicationException("没有可供授权的资源.");
 
             (bool success, Exception ex) = Orm.RunTransaction(() =>
             {
-                var orId = OperationRecordBusiness.Create(new System_OperationRecord
+                var orId = OperationRecordBusiness.Create(new Common_OperationRecord
                 {
                     DataType = nameof(System_RoleResources),
                     DataId = null,
@@ -294,7 +361,7 @@ namespace Business.Implementation.System
             });
 
             if (!success)
-                throw new ApplicationException("授权失败", ex);
+                throw new ApplicationException("授权失败.", ex);
         }
 
         #endregion
@@ -306,6 +373,15 @@ namespace Business.Implementation.System
             RevocationRoleForUser(new RoleForUser
             {
                 UserIds = userIds,
+                All = true
+            }, runTransaction);
+        }
+
+        public void RevocationRoleForMember(List<string> memberIds, bool runTransaction = true)
+        {
+            RevocationRoleForMember(new RoleForMember
+            {
+                MemberIds = memberIds,
                 All = true
             }, runTransaction);
         }
@@ -362,19 +438,19 @@ namespace Business.Implementation.System
 
             Action handler = () =>
             {
-                var orId = OperationRecordBusiness.Create(new System_OperationRecord
+                var orId = OperationRecordBusiness.Create(new Common_OperationRecord
                 {
                     DataType = nameof(System_UserRole),
                     DataId = null,
                     Explain = $"撤销用户的角色授权.",
-                    Remark = $"被撤销授权的用户: \r\n\t{string.Join(",", users.Select(o => $"[账号 {o.Account}, 类型 {o.Type}, 姓名 {o.Name}]"))}\r\n" +
+                    Remark = $"被撤销授权的用户: \r\n\t{string.Join(",", users.Select(o => $"[账号 {o.Account}, 姓名 {o.Name}]"))}\r\n" +
                             $"撤销授权的角色: \r\n\t{string.Join(",", roles.Select(o => $"[名称 {o.Name}, 类型 {o.Type}]"))}"
                 });
 
                 var roleIds = roles.Select(o => o.RoleId);
 
                 if (Repository_UserRole.Delete(o => data.UserIds.Contains(o.UserId) && (roleIds.Contains(o.RoleId))) < 0)
-                    throw new ApplicationException("撤销授权失败");
+                    throw new ApplicationException("撤销授权失败.");
             };
 
             if (runTransaction)
@@ -382,7 +458,49 @@ namespace Business.Implementation.System
                 (bool success, Exception ex) = Orm.RunTransaction(handler);
 
                 if (!success)
-                    throw new ApplicationException("撤销授权失败", ex);
+                    throw new ApplicationException("撤销授权失败.", ex);
+            }
+            else
+                handler.Invoke();
+        }
+
+        public void RevocationRoleForMember(RoleForMember data, bool runTransaction = true)
+        {
+            var members = data.MemberIds.Select(o => GetMemberWithCheck(o));
+
+            var roles = Repository_MemberRole.Where(o => data.MemberIds.Contains(o.MemberId) && (data.All || data.RoleIds.Contains(o.RoleId))).ToList(o => new
+            {
+                o.RoleId,
+                o.Role.Type,
+                o.Role.Name
+            });
+
+            if (!roles.Any())
+                return;
+
+            Action handler = () =>
+            {
+                var orId = OperationRecordBusiness.Create(new Common_OperationRecord
+                {
+                    DataType = nameof(Public_MemberRole),
+                    DataId = null,
+                    Explain = $"撤销会员的角色授权.",
+                    Remark = $"被撤销授权的会员: \r\n\t{string.Join(",", members.Select(o => $"[账号 {o.Account}, 姓名 {o.Name}]"))}\r\n" +
+                            $"撤销授权的角色: \r\n\t{string.Join(",", roles.Select(o => $"[名称 {o.Name}, 类型 {o.Type}]"))}"
+                });
+
+                var roleIds = roles.Select(o => o.RoleId);
+
+                if (Repository_MemberRole.Delete(o => data.MemberIds.Contains(o.MemberId) && (roleIds.Contains(o.RoleId))) < 0)
+                    throw new ApplicationException("撤销授权失败.");
+            };
+
+            if (runTransaction)
+            {
+                (bool success, Exception ex) = Orm.RunTransaction(handler);
+
+                if (!success)
+                    throw new ApplicationException("撤销授权失败.", ex);
             }
             else
                 handler.Invoke();
@@ -404,19 +522,19 @@ namespace Business.Implementation.System
 
             Action handler = () =>
             {
-                var orId = OperationRecordBusiness.Create(new System_OperationRecord
+                var orId = OperationRecordBusiness.Create(new Common_OperationRecord
                 {
                     DataType = nameof(System_UserMenu),
                     DataId = null,
                     Explain = $"撤销用户的菜单授权.",
-                    Remark = $"被撤销授权的用户: \r\n\t{string.Join(",", users.Select(o => $"[账号 {o.Account}, 类型 {o.Type}, 姓名 {o.Name}]"))}\r\n" +
+                    Remark = $"被撤销授权的用户: \r\n\t{string.Join(",", users.Select(o => $"[账号 {o.Account}, 姓名 {o.Name}]"))}\r\n" +
                             $"撤销授权的菜单: \r\n\t{string.Join(",", menus.Select(o => $"[名称 {o.Name}, 类型 {o.Type}]"))}"
                 });
 
                 var menuIds = menus.Select(o => o.MenuId);
 
                 if (Repository_UserMenu.Delete(o => data.UserIds.Contains(o.UserId) && (menuIds.Contains(o.MenuId))) < 0)
-                    throw new ApplicationException("撤销授权失败");
+                    throw new ApplicationException("撤销授权失败.");
             };
 
             if (runTransaction)
@@ -424,7 +542,7 @@ namespace Business.Implementation.System
                 (bool success, Exception ex) = Orm.RunTransaction(handler);
 
                 if (!success)
-                    throw new ApplicationException("撤销授权失败", ex);
+                    throw new ApplicationException("撤销授权失败.", ex);
             }
             else
                 handler.Invoke();
@@ -446,19 +564,19 @@ namespace Business.Implementation.System
 
             Action handler = () =>
             {
-                var orId = OperationRecordBusiness.Create(new System_OperationRecord
+                var orId = OperationRecordBusiness.Create(new Common_OperationRecord
                 {
                     DataType = nameof(System_UserResources),
                     DataId = null,
                     Explain = $"撤销用户的资源授权.",
-                    Remark = $"被撤销授权的用户: \r\n\t{string.Join(",", users.Select(o => $"[账号 {o.Account}, 类型 {o.Type}, 姓名 {o.Name}]"))}\r\n" +
+                    Remark = $"被撤销授权的用户: \r\n\t{string.Join(",", users.Select(o => $"[账号 {o.Account}, 姓名 {o.Name}]"))}\r\n" +
                             $"撤销授权的资源: \r\n\t{string.Join(",", resourcess.Select(o => $"[名称 {o.Name}, 类型 {o.Type}]"))}"
                 });
 
                 var resourcesIds = resourcess.Select(o => o.ResourcesId);
 
                 if (Repository_UserResources.Delete(o => data.UserIds.Contains(o.UserId) && (resourcesIds.Contains(o.ResourcesId))) < 0)
-                    throw new ApplicationException("撤销授权失败");
+                    throw new ApplicationException("撤销授权失败.");
             };
 
             if (runTransaction)
@@ -466,7 +584,7 @@ namespace Business.Implementation.System
                 (bool success, Exception ex) = Orm.RunTransaction(handler);
 
                 if (!success)
-                    throw new ApplicationException("撤销授权失败", ex);
+                    throw new ApplicationException("撤销授权失败.", ex);
             }
             else
                 handler.Invoke();
@@ -488,7 +606,7 @@ namespace Business.Implementation.System
 
             Action handler = () =>
             {
-                var orId = OperationRecordBusiness.Create(new System_OperationRecord
+                var orId = OperationRecordBusiness.Create(new Common_OperationRecord
                 {
                     DataType = nameof(System_RoleMenu),
                     DataId = null,
@@ -500,7 +618,7 @@ namespace Business.Implementation.System
                 var menuIds = menus.Select(o => o.MenuId);
 
                 if (Repository_RoleMenu.Delete(o => data.RoleIds.Contains(o.RoleId) && (menuIds.Contains(o.MenuId))) < 0)
-                    throw new ApplicationException("撤销授权失败");
+                    throw new ApplicationException("撤销授权失败.");
             };
 
             if (runTransaction)
@@ -508,7 +626,7 @@ namespace Business.Implementation.System
                 (bool success, Exception ex) = Orm.RunTransaction(handler);
 
                 if (!success)
-                    throw new ApplicationException("撤销授权失败", ex);
+                    throw new ApplicationException("撤销授权失败.", ex);
             }
             else
                 handler.Invoke();
@@ -530,7 +648,7 @@ namespace Business.Implementation.System
 
             Action handler = () =>
             {
-                var orId = OperationRecordBusiness.Create(new System_OperationRecord
+                var orId = OperationRecordBusiness.Create(new Common_OperationRecord
                 {
                     DataType = nameof(System_RoleResources),
                     DataId = null,
@@ -542,7 +660,7 @@ namespace Business.Implementation.System
                 var resourcesIds = resourcess.Select(o => o.ResourcesId);
 
                 if (Repository_RoleResources.Delete(o => data.RoleIds.Contains(o.RoleId) && (resourcesIds.Contains(o.ResourcesId))) < 0)
-                    throw new ApplicationException("撤销授权失败");
+                    throw new ApplicationException("撤销授权失败.");
             };
 
             if (runTransaction)
@@ -550,7 +668,7 @@ namespace Business.Implementation.System
                 (bool success, Exception ex) = Orm.RunTransaction(handler);
 
                 if (!success)
-                    throw new ApplicationException("撤销授权失败", ex);
+                    throw new ApplicationException("撤销授权失败.", ex);
             }
             else
                 handler.Invoke();
@@ -570,7 +688,7 @@ namespace Business.Implementation.System
 
             Action handler = () =>
             {
-                var orId = OperationRecordBusiness.Create(new System_OperationRecord
+                var orId = OperationRecordBusiness.Create(new Common_OperationRecord
                 {
                     DataType = nameof(System_UserMenu) + "+" + nameof(System_RoleMenu),
                     Explain = $"撤销所有用户和角色的菜单授权.",
@@ -578,10 +696,10 @@ namespace Business.Implementation.System
                 });
 
                 if (Repository_UserMenu.Delete(o => (menuIds.Contains(o.MenuId))) < 0)
-                    throw new ApplicationException("撤销用户的菜单授权失败");
+                    throw new ApplicationException("撤销用户的菜单授权失败.");
 
                 if (Repository_RoleMenu.Delete(o => (menuIds.Contains(o.MenuId))) < 0)
-                    throw new ApplicationException("撤销角色的菜单授权失败");
+                    throw new ApplicationException("撤销角色的菜单授权失败.");
             };
 
             if (runTransaction)
@@ -589,7 +707,7 @@ namespace Business.Implementation.System
                 (bool success, Exception ex) = Orm.RunTransaction(handler);
 
                 if (!success)
-                    throw new ApplicationException("撤销授权失败", ex);
+                    throw new ApplicationException("撤销授权失败.", ex);
             }
             else
                 handler.Invoke();
@@ -609,7 +727,7 @@ namespace Business.Implementation.System
 
             Action handler = () =>
             {
-                var orId = OperationRecordBusiness.Create(new System_OperationRecord
+                var orId = OperationRecordBusiness.Create(new Common_OperationRecord
                 {
                     DataType = nameof(System_UserResources) + "+" + nameof(System_RoleResources),
                     Explain = $"撤销所有用户和角色的资源授权.",
@@ -617,10 +735,10 @@ namespace Business.Implementation.System
                 });
 
                 if (Repository_UserResources.Delete(o => (resourcesIds.Contains(o.ResourcesId))) < 0)
-                    throw new ApplicationException("撤销用户的资源授权失败");
+                    throw new ApplicationException("撤销用户的资源授权失败.");
 
                 if (Repository_RoleResources.Delete(o => (resourcesIds.Contains(o.ResourcesId))) < 0)
-                    throw new ApplicationException("撤销角色的资源授权失败");
+                    throw new ApplicationException("撤销角色的资源授权失败.");
             };
 
             if (runTransaction)
@@ -628,7 +746,7 @@ namespace Business.Implementation.System
                 (bool success, Exception ex) = Orm.RunTransaction(handler);
 
                 if (!success)
-                    throw new ApplicationException("撤销授权失败", ex);
+                    throw new ApplicationException("撤销授权失败.", ex);
             }
             else
                 handler.Invoke();
@@ -644,7 +762,6 @@ namespace Business.Implementation.System
                                     .ToOne(o => new Model.System.UserDTO.Authorities
                                     {
                                         Id = o.Id,
-                                        Type = o.Type,
                                         Account = o.Account,
                                         Enable = o.Enable
                                     });
@@ -667,15 +784,61 @@ namespace Business.Implementation.System
             return user;
         }
 
+        public Model.Public.MemberDTO.Authorities GetMember(string memberId, bool includeRole, bool includeMenu, bool includeResources)
+        {
+            var member = Repository_Member.Where(o => o.Id == memberId)
+                                    .ToOne(o => new Model.Public.MemberDTO.Authorities
+                                    {
+                                        Id = o.Id,
+                                        Account = o.Account,
+                                        Enable = o.Enable
+                                    });
+
+            if (member == null)
+                throw new ApplicationException("会员用户不存在或已被移除.");
+
+            if (!member.Enable)
+                throw new ApplicationException("会员账号已禁用.");
+
+            if (includeRole)
+                member._Roles = GetMemberRole(memberId, includeMenu, includeResources);
+
+            return member;
+        }
+
         public List<Model.System.RoleDTO.Authorities> GetUserRole(string userId, bool includeMenu, bool includeResources)
         {
-            var roles = Repository_UserRole.Where(o => o.UserId == userId && o.Role.Enable)
+            var roles = Repository_Role.Where(o => o.Users.AsSelect().Where(p => p.Id == userId).Any() && o.Enable)
                                          .ToList(o => new Model.System.RoleDTO.Authorities
                                          {
-                                             Id = o.RoleId,
-                                             Name = o.Role.Name,
-                                             Type = o.Role.Type,
-                                             Code = o.Role.Code
+                                             Id = o.Id,
+                                             Name = o.Name,
+                                             Type = o.Type,
+                                             Code = o.Code
+                                         });
+
+            if (includeMenu || includeResources)
+                roles.ForEach(o =>
+                {
+                    if (includeMenu)
+                        o._Menus = GetRoleMenu(o.Id);
+
+                    if (includeResources)
+                        o._Resources = GetRoleResources(o.Id);
+                });
+
+            return roles;
+        }
+
+        public List<Model.System.RoleDTO.Authorities> GetMemberRole(string memberId, bool includeMenu, bool includeResources)
+        {
+            var roles = Repository_Role.Where(o => o.Members.AsSelect().Where(p => p.Id == memberId).Any() && o.Enable)
+                                         .ToList(o => new Model.System.RoleDTO.Authorities
+                                         {
+                                             Id = o.Id,
+                                             Name = o.Name,
+                                             Type = o.Type,
+                                             Code = o.Code
                                          });
 
             if (includeMenu || includeResources)
@@ -693,41 +856,86 @@ namespace Business.Implementation.System
 
         public List<Model.System.MenuDTO.Authorities> GetUserMenu(string userId, bool mergeRoleMenu)
         {
-            var menus = Repository_UserMenu.Where(o => o.UserId == userId && o.Menu.Enable)
-                                         .ToList(o => new Model.System.MenuDTO.Authorities
-                                         {
-                                             Id = o.MenuId,
-                                             Name = o.Menu.Name,
-                                             Type = o.Menu.Type,
-                                             Code = o.Menu.Code,
-                                             Uri = o.Menu.Uri,
-                                             Method = o.Menu.Method
-                                         });
+            var menus = Repository_Menu.Where(o => (o.Users.AsSelect()
+                                                            .Where(p => p.Id == userId)
+                                                            .Any()
+                                                    || (mergeRoleMenu
+                                                        && o.Roles.AsSelect()
+                                                                .Where(p => p.Users.AsSelect()
+                                                                                .Where(q => q.Id == userId)
+                                                                                .Any() && p.Enable)
+                                                                .Any())) && o.Enable)
+                                    .ToList(o => new Model.System.MenuDTO.Authorities
+                                    {
+                                        Id = o.Id,
+                                        Name = o.Name,
+                                        Type = o.Type,
+                                        Code = o.Code,
+                                        Uri = o.Uri,
+                                        Method = o.Method
+                                    });
 
-            if (mergeRoleMenu)
-                Repository_User.Where(o => o.Id == userId)
-                            .ToOne(o => o.Roles.AsSelect().Where(p => p.Enable).ToList(p => p.Id))
-                            .ForEach(o => menus.AddRange(GetRoleMenu(o)));
+            return menus;
+        }
+
+        public List<Model.System.MenuDTO.Authorities> GetMemberMenu(string memberId)
+        {
+            var menus = Repository_Menu.Where(o => o.Roles.AsSelect()
+                                                        .Where(p => p.Members.AsSelect()
+                                                                            .Where(q => q.Id == memberId)
+                                                                            .Any() && p.Enable)
+                                                        .Any() && o.Enable)
+                                    .ToList(o => new Model.System.MenuDTO.Authorities
+                                    {
+                                        Id = o.Id,
+                                        Name = o.Name,
+                                        Type = o.Type,
+                                        Code = o.Code,
+                                        Uri = o.Uri,
+                                        Method = o.Method
+                                    });
 
             return menus;
         }
 
         public List<Model.System.ResourcesDTO.Authorities> GetUserResources(string userId, bool mergeRoleResources)
         {
-            var resources = Repository_UserResources.Where(o => o.UserId == userId && o.Resources.Enable)
-                                         .ToList(o => new Model.System.ResourcesDTO.Authorities
-                                         {
-                                             Id = o.ResourcesId,
-                                             Name = o.Resources.Name,
-                                             Type = o.Resources.Type,
-                                             Code = o.Resources.Code,
-                                             Uri = o.Resources.Uri
-                                         });
+            var resources = Repository_Resources.Where(o => (o.Users.AsSelect()
+                                                            .Where(p => p.Id == userId)
+                                                            .Any()
+                                                    || (mergeRoleResources
+                                                        && o.Roles.AsSelect()
+                                                                .Where(p => p.Users.AsSelect()
+                                                                                .Where(q => q.Id == userId)
+                                                                                .Any() && p.Enable)
+                                                                .Any())) && o.Enable)
+                                    .ToList(o => new Model.System.ResourcesDTO.Authorities
+                                    {
+                                        Id = o.Id,
+                                        Name = o.Name,
+                                        Type = o.Type,
+                                        Code = o.Code,
+                                        Uri = o.Uri
+                                    });
 
-            if (mergeRoleResources)
-                Repository_User.Where(o => o.Id == userId)
-                            .ToOne(o => o.Roles.AsSelect().Where(p => p.Enable).ToList(p => p.Id))
-                            .ForEach(o => resources.AddRange(GetRoleResources(o)));
+            return resources;
+        }
+
+        public List<Model.System.ResourcesDTO.Authorities> GetMemberResources(string memberId)
+        {
+            var resources = Repository_Resources.Where(o => o.Roles.AsSelect()
+                                                        .Where(p => p.Members.AsSelect()
+                                                                            .Where(q => q.Id == memberId)
+                                                                            .Any() && p.Enable)
+                                                        .Any() && o.Enable)
+                                    .ToList(o => new Model.System.ResourcesDTO.Authorities
+                                    {
+                                        Id = o.Id,
+                                        Name = o.Name,
+                                        Type = o.Type,
+                                        Code = o.Code,
+                                        Uri = o.Uri
+                                    });
 
             return resources;
         }
@@ -760,29 +968,33 @@ namespace Business.Implementation.System
 
         public List<Model.System.MenuDTO.Authorities> GetRoleMenu(string roleId)
         {
-            return Repository_RoleMenu.Where(o => o.RoleId == roleId && o.Menu.Enable)
-                                         .ToList(o => new Model.System.MenuDTO.Authorities
-                                         {
-                                             Id = o.MenuId,
-                                             Name = o.Menu.Name,
-                                             Type = o.Menu.Type,
-                                             Code = o.Menu.Code,
-                                             Uri = o.Menu.Uri,
-                                             Method = o.Menu.Method
-                                         });
+            return Repository_Menu.Where(o => o.Roles.AsSelect()
+                                            .Where(p => p.Id == roleId)
+                                            .Any() && o.Enable)
+                                .ToList(o => new Model.System.MenuDTO.Authorities
+                                {
+                                    Id = o.Id,
+                                    Name = o.Name,
+                                    Type = o.Type,
+                                    Code = o.Code,
+                                    Uri = o.Uri,
+                                    Method = o.Method
+                                });
         }
 
         public List<Model.System.ResourcesDTO.Authorities> GetRoleResources(string roleId)
         {
-            return Repository_RoleResources.Where(o => o.RoleId == roleId && o.Resources.Enable)
-                                         .ToList(o => new Model.System.ResourcesDTO.Authorities
-                                         {
-                                             Id = o.ResourcesId,
-                                             Name = o.Resources.Name,
-                                             Type = o.Resources.Type,
-                                             Code = o.Resources.Code,
-                                             Uri = o.Resources.Uri
-                                         });
+            return Repository_Resources.Where(o => o.Roles.AsSelect()
+                                            .Where(p => p.Id == roleId)
+                                            .Any() && o.Enable)
+                                .ToList(o => new Model.System.ResourcesDTO.Authorities
+                                {
+                                    Id = o.Id,
+                                    Name = o.Name,
+                                    Type = o.Type,
+                                    Code = o.Code,
+                                    Uri = o.Uri
+                                });
         }
 
         #endregion
@@ -799,29 +1011,44 @@ namespace Business.Implementation.System
             return Repository_Role.Where(o => o.Id == roleId && (o.Type == RoleType.超级管理员 || o.Type == RoleType.管理员)).Any();
         }
 
-        public bool HasRole(string userId, string roleId)
+        public bool UserHasRole(string userId, string roleId)
         {
             return Repository_UserRole.Where(o => o.UserId == userId && o.RoleId == roleId).Any();
         }
 
-        public bool HasMenu(string userId, string menuId)
+        public bool MemberHasRole(string memberId, string roleId)
         {
-            var result = Repository_UserMenu.Where(o => o.UserId == userId && o.MenuId == menuId).Any();
-
-            if (!result)
-                Repository_RoleMenu.Where(o => o.MenuId == menuId && Repository_UserRole.Where(p => p.UserId == userId && p.RoleId == o.RoleId && o.Role.Enable).Any());
-
-            return result;
+            return Repository_MemberRole.Where(o => o.MemberId == memberId && o.RoleId == roleId).Any();
         }
 
-        public bool HasResources(string userId, string resourcesId)
+        public bool UserHasMenu(string userId, string menuId)
         {
-            var result = Repository_UserResources.Where(o => o.UserId == userId && o.ResourcesId == resourcesId).Any();
+            return Repository_Menu.Where(o => o.Id == menuId
+                                            && (o.Users.AsSelect().Where(p => p.Id == userId).Any()
+                                                || o.Roles.AsSelect().Where(p => p.Users.AsSelect().Where(q => q.Id == userId).Any()).Any()))
+                                .Any();
+        }
 
-            if (!result)
-                Repository_RoleResources.Where(o => o.ResourcesId == resourcesId && Repository_UserRole.Where(p => p.UserId == userId && p.RoleId == o.RoleId && o.Role.Enable).Any());
+        public bool MemberHasMenu(string userId, string menuId)
+        {
+            return Repository_Menu.Where(o => o.Id == menuId
+                                            && o.Roles.AsSelect().Where(p => p.Users.AsSelect().Where(q => q.Id == userId).Any()).Any())
+                                .Any();
+        }
 
-            return result;
+        public bool UserHasResources(string userId, string resourcesId)
+        {
+            return Repository_Resources.Where(o => o.Id == resourcesId
+                                            && (o.Users.AsSelect().Where(p => p.Id == userId).Any()
+                                                || o.Roles.AsSelect().Where(p => p.Users.AsSelect().Where(q => q.Id == userId).Any()).Any()))
+                                .Any();
+        }
+
+        public bool MemberHasResources(string userId, string resourcesId)
+        {
+            return Repository_Resources.Where(o => o.Id == resourcesId
+                                            && o.Roles.AsSelect().Where(p => p.Users.AsSelect().Where(q => q.Id == userId).Any()).Any())
+                                .Any();
         }
 
         #endregion

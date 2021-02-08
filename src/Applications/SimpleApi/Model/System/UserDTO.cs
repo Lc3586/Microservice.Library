@@ -1,11 +1,9 @@
-﻿using Entity.Example;
-using Entity.System;
+﻿using Entity.System;
 using Library.DataMapping.Annotations;
-using Library.DataMapping.Application;
 using Library.OpenApi.Annotations;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 /* 
  * 用户业务模型
@@ -81,5 +79,39 @@ namespace Model.System.UserDTO
     public class Edit : System_User
     {
 
+    }
+
+    /// <summary>
+    /// 登录
+    /// </summary>
+    [MapFrom(typeof(System_User))]
+    [MapTo(typeof(System_User))]
+    [OpenApiMainTag("Login")]
+    public class Login : System_User
+    {
+
+    }
+
+    /// <summary>
+    /// 更新密码
+    /// </summary>
+    [MapFrom(typeof(System_User))]
+    [MapTo(typeof(System_User))]
+    [OpenApiMainTag("UpdatePassword")]
+    public class UpdatePassword : System_User
+    {
+        /// <summary>
+        /// 原密码
+        /// </summary>
+        [Required(ErrorMessage = "原密码不可为空")]
+        [Description("原密码")]
+        public string OldPassword { get; set; }
+
+        /// <summary>
+        /// 新密码
+        /// </summary>
+        [Required(ErrorMessage = "新密码不可为空")]
+        [Description("新密码")]
+        public string NewPassword { get; set; }
     }
 }

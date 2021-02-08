@@ -1,11 +1,6 @@
-﻿using Entity.Example;
-using Entity.System;
+﻿using Entity.System;
 using Library.DataMapping.Annotations;
-using Library.DataMapping.Application;
 using Library.OpenApi.Annotations;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 
 /* 
  * 资源业务模型

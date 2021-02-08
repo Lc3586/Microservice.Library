@@ -1,6 +1,7 @@
-﻿using FreeSql.Internal;
+﻿using FreeSql;
+using FreeSql.Internal;
+using Library.Cache;
 using Library.Configuration.Annotations;
-using Library.Models;
 using System;
 using System.Collections.Generic;
 
@@ -171,7 +172,7 @@ namespace Model.System.Config
         /// <summary>
         /// 默认数据库类型
         /// </summary>
-        public DatabaseType DefaultDatabaseType { get; set; }
+        public DataType DefaultDatabaseType { get; set; }
 
         /// <summary>
         /// 默认数据库连接字符串

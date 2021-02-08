@@ -1,13 +1,10 @@
-﻿using Nest;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Library.Extension;
-using Library.Models;
-using Elasticsearch.Net;
-using Library.Elasticsearch.Gen;
+﻿using Elasticsearch.Net;
 using Library.Elasticsearch.Annotations;
 using Library.Elasticsearch.Application;
+using Library.Extension;
+using Nest;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -638,20 +635,26 @@ namespace Library.Elasticsearch
         /// <summary>
         /// 查询(分页)
         /// </summary>
+        /// <param name="recordCount">总数据量(不分页)</param>
         /// <param name="Indices">指定索引(null:默认，[]:全部,["i_0","i_1","i_2"]:指定)</param>
         /// <param name="query"></param>
-        /// <param name="pagination">分页设置(仅支持在数据量小于等于10000时进行分页)</param>
+        /// <param name="sort">排序</param>
+        /// <param name="pageIndex">指定页码(仅支持在数据量小于等于10000时进行分页)</param>
+        /// <param name="pageRows">每页数据量</param>
         /// <param name="time">快照保存时间(秒,默认60)</param>
         /// <param name="isThrow">抛出异常</param>
         /// <returns></returns>
         public List<T> SearchPaging<T>(
+            out long recordCount,
             string[] Indices = null,
             Func<QueryContainerDescriptor<T>, QueryContainer> query = null,
-            Pagination pagination = null,
+            Func<SortDescriptor<T>, IPromise<IList<ISort>>> sort = null,
+            int? pageIndex = null,
+            int? pageRows = null,
             int time = 60,
             bool isThrow = false) where T : class
         {
-            if (pagination != null && pagination.PageIndex * pagination.PageRows > 10000)
+            if (pageIndex != null && pageIndex * pageRows > 10000)
                 throw new Exception("数据量过大");
 
             var _time = TimeSpan.FromSeconds(time);
@@ -670,21 +673,24 @@ namespace Library.Elasticsearch
                     s = s.Query(query);
                 else
                     s = s.MatchAll();
-                if (pagination != null)
+
+                if (pageIndex != null)
                 {
-                    s = s.Size(pagination.PageRows)
-                         .From((pagination.PageIndex - 1) * pagination.PageRows)
-                         .Sort(so => so.Field(typeof(T).GetProperty(pagination.SortField), pagination.SortType == SortType.asc ? SortOrder.Ascending : SortOrder.Descending));
+                    s = s.Size(pageRows)
+                         .From((pageIndex - 1) * pageRows);
                 }
                 else
                     Transfinite = Total<T>() > 10000;
+
+                if (sort != null)
+                    s = s.Sort(sort);
+
                 if (Transfinite)
                     s = s.Scroll(_time);
                 return s;
             });
 
-            if (pagination != null)
-                pagination.RecordCount = response.Total;
+            recordCount = response.Total;
 
             if (Transfinite)
             {
@@ -723,20 +729,24 @@ namespace Library.Elasticsearch
         /// <summary>
         /// 查询(分页)(sql)
         /// </summary>
+        /// <param name="recordCount">总数据量(不分页)</param>
         /// <param name="Indices">指定索引(null:默认，[]:全部,["i_0","i_1","i_2"]:指定)</param>
         /// <param name="query">sql查询语句</param>
-        /// <param name="pagination">分页设置(仅支持在数据量小于等于10000时进行分页)</param>
+        /// <param name="pageIndex">指定页码(仅支持在数据量小于等于10000时进行分页)</param>
+        /// <param name="pageRows">每页数据量</param>
         /// <param name="time">快照保存时间(秒,默认60)</param>
         /// <param name="isThrow">抛出异常</param>
         /// <returns></returns>
         public List<T> SearchPagingWithSql<T>(
+            out long recordCount,
             string[] Indices = null,
             string query = null,
-            Pagination pagination = null,
+            int? pageIndex = null,
+            int? pageRows = null,
             int time = 60,
             bool isThrow = false) where T : class
         {
-            if (pagination != null && pagination.PageIndex * pagination.PageRows > 10000)
+            if (pageIndex != null && pageIndex * pageRows > 10000)
                 throw new Exception("数据量过大");
 
             var _time = TimeSpan.FromSeconds(time);
@@ -751,8 +761,7 @@ namespace Library.Elasticsearch
             var requestParameters = Transfinite ? new SearchRequestParameters() { Scroll = _time } : null;
             ISearchResponse<T> respone_search = ElasticClient.LowLevel.Search<SearchResponse<T>>(Indices == null ? RelationName : Indices.Length == 0 ? "_all" : string.Join(",", Indices), query_Dsl, requestParameters);
 
-            if (pagination != null)
-                pagination.RecordCount = respone_search.Total;
+            recordCount = respone_search.Total;
 
             if (Transfinite)
             {

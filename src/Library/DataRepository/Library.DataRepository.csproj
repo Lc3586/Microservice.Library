@@ -20,7 +20,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Extension\Library.Extension.csproj" />
-    <ProjectReference Include="..\LibraryModels\Library.Models.csproj" />
   </ItemGroup>
 
 </Project>

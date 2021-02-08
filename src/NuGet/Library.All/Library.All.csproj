@@ -61,7 +61,6 @@
     <ProjectReference Include="..\..\Library\Html\Library.Html.csproj" />
     <ProjectReference Include="..\..\Library\Http\Library.Http.csproj" />
     <ProjectReference Include="..\..\Library\Json\Library.Json.csproj" />
-    <ProjectReference Include="..\..\Library\LibraryModels\Library.Models.csproj" />
     <ProjectReference Include="..\..\Library\LinqTool\Library.LinqTool.csproj" />
     <ProjectReference Include="..\..\Library\NLogger\Library.NLogger.csproj" />
     <ProjectReference Include="..\..\Library\OfficeDocuments\Library.OfficeDocuments.csproj" />
@@ -72,7 +71,6 @@
     <ProjectReference Include="..\..\Library\SuperSocket\Library.SuperSocket.csproj" />
     <ProjectReference Include="..\..\Library\TaskQeury\Library.TaskQeury.csproj" />
     <ProjectReference Include="..\..\Library\TimeTick\Library.TimeTick.csproj" />
-    <ProjectReference Include="..\..\Library\Tree\Library.Tree.csproj" />
     <ProjectReference Include="..\..\Library\TypeTool\Library.TypeTool.csproj" />
     <ProjectReference Include="..\..\Library\UsingLock\Library.UsingLock.csproj" />
     <ProjectReference Include="..\..\Library\WebApp\Library.WebApp.csproj" />

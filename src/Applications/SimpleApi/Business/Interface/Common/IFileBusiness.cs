@@ -1,8 +1,6 @@
-﻿using Library.Models;
-using System;
+﻿using Model.Common.FileDTO;
+using Model.System.Pagination;
 using System.Collections.Generic;
-using System.Text;
-using Model.Common.FileDTO;
 using System.Threading.Tasks;
 
 namespace Business.Interface.Common
@@ -35,8 +33,6 @@ namespace Business.Interface.Common
         /// <returns></returns>
         Task<FileInfo> SingleFile(FileUploadParams option);
 
-
-
         /// <summary>
         /// 预览
         /// </summary>
@@ -63,7 +59,7 @@ namespace Business.Interface.Common
         /// </summary>
         /// <param name="pagination">分页设置</param>
         /// <returns></returns>
-        List<FileInfo> GetList(Pagination pagination);
+        List<FileInfo> GetList(PaginationDTO pagination);
 
         /// <summary>
         /// 获取详情数据

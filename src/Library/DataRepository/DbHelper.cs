@@ -1,13 +1,10 @@
-﻿using System;
+﻿using Library.Extension;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using System.Text;
-using System.Threading;
 using System.Linq;
-using Library.Extension;
-using Library.Models;
-using DbColumn = Library.Models.DbColumn;
+using System.Threading;
 
 namespace Library.DataRepository
 {
@@ -506,7 +503,7 @@ namespace Library.DataRepository
         /// <param name="tran">是否开启事务</param>
         /// <param name="transId">事务标识(为null时使用当前线程id)</param>
         /// <returns></returns>
-        public virtual List<T> GetEntityList<T>(string where, Pagination pagination, bool tran = false, int? transId = null) where T : class, new()
+        public virtual List<T> GetEntityList<T>(string where, IDataRepositoryPagination pagination, bool tran = false, int? transId = null) where T : class, new()
         {
             return GetEntityList<T>(where, null, null, pagination, tran, transId);
         }
@@ -521,7 +518,7 @@ namespace Library.DataRepository
         /// <param name="tran">是否开启事务</param>
         /// <param name="transId">事务标识(为null时使用当前线程id)</param>
         /// <returns></returns>
-        public virtual List<T> GetEntityList<T>(string where, string alias, Pagination pagination, bool tran = false, int? transId = null) where T : class, new()
+        public virtual List<T> GetEntityList<T>(string where, string alias, IDataRepositoryPagination pagination, bool tran = false, int? transId = null) where T : class, new()
         {
             return GetEntityList<T>(where, alias, null, pagination, tran, transId);
         }
@@ -537,7 +534,7 @@ namespace Library.DataRepository
         /// <param name="tran">是否开启事务</param>
         /// <param name="transId">事务标识(为null时使用当前线程id)</param>
         /// <returns></returns>
-        public virtual List<T> GetEntityList<T>(string where, string alias, List<DbParameter> parameters, Pagination pagination, bool tran = false, int? transId = null) where T : class, new()
+        public virtual List<T> GetEntityList<T>(string where, string alias, List<DbParameter> parameters, IDataRepositoryPagination pagination, bool tran = false, int? transId = null) where T : class, new()
         {
             string sql = string.Format("SELECT * FROM {0} {1} WHERE 1=1 AND {2}", GetTableName<T>(), alias, where);
             return GetList<T>(sql, parameters, CommandType.Text, tran, transId);

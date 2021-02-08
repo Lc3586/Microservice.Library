@@ -1,8 +1,6 @@
-﻿using Library.Models;
-using Model.System.MenuDTO;
-using System;
+﻿using Model.System.MenuDTO;
+using Model.System.Pagination;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Business.Interface.System
 {
@@ -18,7 +16,7 @@ namespace Business.Interface.System
         /// </summary>
         /// <param name="pagination">分页设置</param>
         /// <returns></returns>
-        List<List> GetList(Pagination pagination);
+        List<List> GetList(PaginationDTO pagination);
 
         /// <summary>
         /// 获取树状列表数据

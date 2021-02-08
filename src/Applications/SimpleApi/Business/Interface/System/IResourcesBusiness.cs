@@ -1,10 +1,7 @@
-﻿using Library.Container;
-using Library.Models;
-using Library.SelectOption;
+﻿using Library.SelectOption;
+using Model.System.Pagination;
 using Model.System.ResourcesDTO;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Business.Interface.System
 {
@@ -20,7 +17,7 @@ namespace Business.Interface.System
         /// </summary>
         /// <param name="pagination">分页设置</param>
         /// <returns></returns>
-        List<List> GetList(Pagination pagination);
+        List<List> GetList(PaginationDTO pagination);
 
         /// <summary>
         /// 获取下拉框数据
@@ -28,7 +25,7 @@ namespace Business.Interface.System
         /// <param name="condition">关键词(多个用空格分隔)</param>
         /// <param name="pagination">分页设置</param>
         /// <returns></returns>
-        List<SelectOption> DropdownList(string condition, Pagination pagination);
+        List<SelectOption> DropdownList(string condition, PaginationDTO pagination);
 
         /// <summary>
         /// 获取详情数据

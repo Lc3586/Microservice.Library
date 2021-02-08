@@ -1,4 +1,5 @@
-﻿using FreeSql.DataAnnotations;
+﻿using Entity.Public;
+using FreeSql.DataAnnotations;
 using Library.OpenApi.Annotations;
 using Newtonsoft.Json;
 using System;
@@ -204,6 +205,15 @@ namespace Entity.System
         [JsonIgnore]
         [XmlIgnore]
         public virtual ICollection<System_Resources> Resources { get; set; }
+
+        /// <summary>
+        /// 被授权此角色的会员
+        /// </summary>
+        [Navigate(ManyToMany = typeof(Public_MemberRole))]
+        [OpenApiIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
+        public virtual ICollection<Public_Member> Members { get; set; }
 
         #endregion
     }

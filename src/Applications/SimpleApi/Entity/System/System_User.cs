@@ -1,4 +1,5 @@
-﻿using FreeSql.DataAnnotations;
+﻿using Entity.Common;
+using FreeSql.DataAnnotations;
 using Library.OpenApi.Annotations;
 using Newtonsoft.Json;
 using System;
@@ -11,14 +12,14 @@ using System.Xml.Serialization;
 namespace Entity.System
 {
     /// <summary>
-    /// 用户
+    /// 系统用户
     /// </summary>
     [Table]
     [OraclePrimaryKeyName("pk_" + nameof(System_User))]
     #region 设置索引
     [Index(nameof(System_User) + "_idx_" + nameof(Account), nameof(Account) + " ASC")]
     [Index(nameof(System_User) + "_idx_" + nameof(Name), nameof(Name) + " ASC")]
-    [Index(nameof(System_User) + "_idx_" + nameof(Type), nameof(Type) + " ASC")]
+    [Index(nameof(System_User) + "_idx_" + nameof(Tel), nameof(Tel) + " ASC")]
     [Index(nameof(System_User) + "_idx_" + nameof(Enable), nameof(Enable) + " DESC")]
     [Index(nameof(System_User) + "_idx_" + nameof(CreatorId), nameof(CreatorId) + " ASC")]
     [Index(nameof(System_User) + "_idx_" + nameof(CreateTime), nameof(CreateTime) + " DESC")]
@@ -29,14 +30,14 @@ namespace Entity.System
         /// <summary>
         /// Id
         /// </summary>
-        [OpenApiSubTag("List", "Edit", "Detail", "Authorities")]
+        [OpenApiSubTag("List", "Edit", "Detail", "Authorities", "UpdatePassword")]
         [Column(IsPrimary = true, StringLength = 36)]
         public string Id { get; set; }
 
         /// <summary>
         /// 账号
         /// </summary>
-        [OpenApiSubTag("List", "Create", "Edit", "Detail", "Authorities")]
+        [OpenApiSubTag("List", "Create", "Edit", "Detail", "Authorities", "Login")]
         [Required(ErrorMessage = "账号不可为空")]
         [Description("账号")]
         [Column(StringLength = 50)]
@@ -45,11 +46,19 @@ namespace Entity.System
         /// <summary>
         /// 密码
         /// </summary>
-        [OpenApiSubTag("List", "Create", "Edit", "Detail")]
+        [OpenApiSubTag("List", "Create", "Edit", "Detail", "Login")]
         [Required(ErrorMessage = "密码不可为空")]
         [Description("密码")]
         [Column(StringLength = 50)]
         public string Password { get; set; }
+
+        /// <summary>
+        /// 昵称
+        /// </summary>
+        [OpenApiSubTag("List", "Create", "Edit", "Detail")]
+        [Description("昵称")]
+        [Column(StringLength = 20)]
+        public string Nickname { get; set; }
 
         /// <summary>
         /// 姓名
@@ -60,24 +69,20 @@ namespace Entity.System
         public string Name { get; set; }
 
         /// <summary>
+        /// 手机号码
+        /// </summary>
+        [OpenApiSubTag("List", "Create", "Edit", "Detail")]
+        [Description("手机号码")]
+        [Column(StringLength = 20)]
+        public string Tel { get; set; }
+
+        /// <summary>
         /// 头像
         /// </summary>
         [OpenApiSubTag("List", "Create", "Edit", "Detail")]
         [Description("头像")]
         [Column(StringLength = 36)]
-        public string Face { get; set; }
-
-        /// <summary>
-        /// 类型
-        /// </summary>
-        /// <remarks>
-        /// <para>无角色时为空值</para>
-        /// <para>有角色时取最高等级的角色类型</para>
-        /// </remarks>
-        [OpenApiSubTag("List", "Create", "Edit", "Detail", "Authorities")]
-        [Description("类型")]
-        [Column(StringLength = 20)]
-        public string Type { get; set; }
+        public string HeadimgUrl { get; set; }
 
         /// <summary>
         /// 启用
@@ -171,6 +176,15 @@ namespace Entity.System
         [JsonIgnore]
         [XmlIgnore]
         public virtual ICollection<System_Resources> Resources { get; set; }
+
+        /// <summary>
+        /// 此用户绑定的微信
+        /// </summary>
+        [Navigate(ManyToMany = typeof(System_UserWeChatUserInfo))]
+        [OpenApiIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
+        public virtual ICollection<Common_WeChatUserInfo> WeChatUserInfos { get; set; }
 
         #endregion
     }

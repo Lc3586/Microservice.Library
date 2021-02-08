@@ -4,6 +4,130 @@
         <name>Entity</name>
     </assembly>
     <members>
+        <member name="T:Entity.Common.Common_ChunkMergeTask">
+            <summary>
+            分片合并任务
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_ChunkMergeTask.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_ChunkMergeTask.ServerKey">
+            <summary>
+            服务器标识
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_ChunkMergeTask.MD5">
+            <summary>
+            MD5校验值
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_ChunkMergeTask.TotalChunk">
+            <summary>
+            分片总数
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_ChunkMergeTask.CurrentChunkIndex">
+            <summary>
+            当前处理分片的索引
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_ChunkMergeTask.Compress">
+            <summary>
+            是否压缩
+            </summary>
+            <remarks>
+            <para>文件为图片时，压缩生成缩略图，原始图片将会保留</para>
+            <para></para>
+            </remarks>
+        </member>
+        <member name="P:Entity.Common.Common_ChunkMergeTask.SaveOriginalFile">
+            <summary>
+            保存原始文件
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_ChunkMergeTask.State">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_ChunkMergeTask.CreatorId">
+            <summary>
+            创建者
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_ChunkMergeTask.CreatorName">
+            <summary>
+            创建者名称
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_ChunkMergeTask.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="T:Entity.Common.Common_EntryLog">
+            <summary>
+            登录日志
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_EntryLog.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_EntryLog.Account">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_EntryLog.UserType">
+            <summary>
+            用户类型
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_EntryLog.IsAdmin">
+            <summary>
+            管理员
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_EntryLog.Name">
+            <summary>
+            姓名/昵称
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_EntryLog.HeadimgUrl">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_EntryLog.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_EntryLog.CreatorId">
+            <summary>
+            登录人
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_EntryLog.CreateTime">
+            <summary>
+            登录时间
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_EntryLog.User">
+            <summary>
+            用户
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_EntryLog.Member">
+            <summary>
+            会员
+            </summary>
+        </member>
         <member name="T:Entity.Common.Common_File">
             <summary>
             文件信息
@@ -35,7 +159,7 @@
             <para>压缩包</para>
             </summary>
         </member>
-        <member name="P:Entity.Common.Common_File.ContentType">
+        <member name="P:Entity.Common.Common_File.MimeType">
             <summary>
             内容类型
             </summary>
@@ -45,18 +169,28 @@
             文件后缀
             </summary>
         </member>
-        <member name="P:Entity.Common.Common_File.Server">
+        <member name="P:Entity.Common.Common_File.MD5">
             <summary>
-            所在服务器
+            MD5校验值
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_File.State">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_File.ServerKey">
+            <summary>
+            服务器标识
             </summary>
         </member>
         <member name="P:Entity.Common.Common_File.StorageType">
             <summary>
             存储类型
-            <para>Url</para>
+            <para>Path</para>
+            <para>Uri</para>
             <para>Base64</para>
             <para>Base64Url</para>
-            <para>Path</para>
             </summary>
         </member>
         <member name="P:Entity.Common.Common_File.Path">
@@ -82,6 +216,225 @@
         <member name="P:Entity.Common.Common_File.CreateTime">
             <summary>
             创建时间
+            </summary>
+        </member>
+        <member name="T:Entity.Common.Common_FileChunk">
+            <summary>
+            文件分片信息
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_FileChunk.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_FileChunk.ServerKey">
+            <summary>
+            服务器标识
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_FileChunk.MD5">
+            <summary>
+            MD5校验值
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_FileChunk.Index">
+            <summary>
+            分片索引
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_FileChunk.Path">
+            <summary>
+            文件路径
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_FileChunk.CreatorId">
+            <summary>
+            创建者
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_FileChunk.CreatorName">
+            <summary>
+            创建者名称
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_FileChunk.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="T:Entity.Common.Common_OperationRecord">
+            <summary>
+            操作记录
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_OperationRecord.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_OperationRecord.DataId">
+            <summary>
+            数据Id
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_OperationRecord.DataType">
+            <summary>
+            数据类型
+            </summary>
+            <remarks>值为各数据模型的实体类名</remarks>
+        </member>
+        <member name="P:Entity.Common.Common_OperationRecord.Account">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_OperationRecord.UserType">
+            <summary>
+            用户类型
+            </summary>
+            <remarks><see cref="!:Model.System.UserType"/></remarks>
+        </member>
+        <member name="P:Entity.Common.Common_OperationRecord.IsAdmin">
+            <summary>
+            管理员
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_OperationRecord.Explain">
+            <summary>
+            说明
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_OperationRecord.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_OperationRecord.CreatorId">
+            <summary>
+            操作者
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_OperationRecord.CreatorName">
+            <summary>
+            操作者名称
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_OperationRecord.CreateTime">
+            <summary>
+            操作时间
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_OperationRecord.User">
+            <summary>
+            用户
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_OperationRecord.Member">
+            <summary>
+            会员
+            </summary>
+        </member>
+        <member name="T:Entity.Common.Common_WeChatUserInfo">
+            <summary>
+            微信用户信息
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_WeChatUserInfo.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_WeChatUserInfo.AppId">
+            <summary>
+            微信公众号标识
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_WeChatUserInfo.OpenId">
+            <summary>
+            用户公众号唯一标识
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_WeChatUserInfo.UnionId">
+            <summary>
+            用户公众平台唯一标识
+            </summary>
+            <remarks>只有在用户将公众号绑定到微信开放平台帐号后，才会出现该字段。</remarks>
+        </member>
+        <member name="P:Entity.Common.Common_WeChatUserInfo.GroupId">
+            <summary>
+            分组标识
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_WeChatUserInfo.Nickname">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_WeChatUserInfo.HeadimgUrl">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_WeChatUserInfo.Sex">
+            <summary>
+            性别
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_WeChatUserInfo.City">
+            <summary>
+            城市
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_WeChatUserInfo.Province">
+            <summary>
+            省份
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_WeChatUserInfo.Country">
+            <summary>
+            国家
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_WeChatUserInfo.Language">
+            <summary>
+            语言
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_WeChatUserInfo.Scope">
+            <summary>
+            用户授权的作用域
+            </summary>
+            <remarks>逗号[,]分隔</remarks>
+        </member>
+        <member name="P:Entity.Common.Common_WeChatUserInfo.Enable">
+            <summary>
+            启用
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_WeChatUserInfo.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_WeChatUserInfo.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_WeChatUserInfo.ModifyTime">
+            <summary>
+            最近更新时间
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_WeChatUserInfo.Users">
+            <summary>
+            绑定此微信的用户
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_WeChatUserInfo.Members">
+            <summary>
+            绑定此微信的会员
             </summary>
         </member>
         <member name="T:Entity.Example.Sample_DB">
@@ -430,59 +783,154 @@
             最近编辑时间
             </summary>
         </member>
-        <member name="T:Entity.System.System_EntryLog">
+        <member name="T:Entity.Public.Public_Member">
             <summary>
-            登录日志
+            会员
             </summary>
         </member>
-        <member name="P:Entity.System.System_EntryLog.Id">
+        <member name="P:Entity.Public.Public_Member.Id">
             <summary>
             Id
             </summary>
         </member>
-        <member name="P:Entity.System.System_EntryLog.Account">
+        <member name="P:Entity.Public.Public_Member.Account">
             <summary>
             账号
             </summary>
         </member>
-        <member name="P:Entity.System.System_EntryLog.UserType">
+        <member name="P:Entity.Public.Public_Member.Nickname">
             <summary>
-            用户类型
+            昵称
             </summary>
         </member>
-        <member name="P:Entity.System.System_EntryLog.IsAdmin">
-            <summary>
-            管理员
-            </summary>
-        </member>
-        <member name="P:Entity.System.System_EntryLog.Name">
-            <summary>
-            姓名
-            </summary>
-        </member>
-        <member name="P:Entity.System.System_EntryLog.Face">
+        <member name="P:Entity.Public.Public_Member.HeadimgUrl">
             <summary>
             头像
             </summary>
         </member>
-        <member name="P:Entity.System.System_EntryLog.Remark">
+        <member name="P:Entity.Public.Public_Member.Name">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:Entity.Public.Public_Member.Sex">
+            <summary>
+            性别
+            </summary>
+        </member>
+        <member name="P:Entity.Public.Public_Member.Tel">
+            <summary>
+            手机号码
+            </summary>
+        </member>
+        <member name="P:Entity.Public.Public_Member.Company">
+            <summary>
+            单位
+            </summary>
+        </member>
+        <member name="P:Entity.Public.Public_Member.Post">
+            <summary>
+            职务
+            </summary>
+        </member>
+        <member name="P:Entity.Public.Public_Member.Enable">
+            <summary>
+            启用
+            </summary>
+        </member>
+        <member name="P:Entity.Public.Public_Member.Remark">
             <summary>
             备注
             </summary>
         </member>
-        <member name="P:Entity.System.System_EntryLog.OperatorId">
+        <member name="P:Entity.Public.Public_Member.CreatorId">
             <summary>
             创建者
             </summary>
         </member>
-        <member name="P:Entity.System.System_EntryLog.CreateTime">
+        <member name="P:Entity.Public.Public_Member.CreatorName">
+            <summary>
+            创建者名称
+            </summary>
+        </member>
+        <member name="P:Entity.Public.Public_Member.CreateTime">
             <summary>
             创建时间
             </summary>
         </member>
-        <member name="P:Entity.System.System_EntryLog.User">
+        <member name="P:Entity.Public.Public_Member.ModifiedById">
             <summary>
-            用户
+            最近编辑者
+            </summary>
+        </member>
+        <member name="P:Entity.Public.Public_Member.ModifiedByName">
+            <summary>
+            最近编辑者名称
+            </summary>
+        </member>
+        <member name="P:Entity.Public.Public_Member.ModifyTime">
+            <summary>
+            最近编辑时间
+            </summary>
+        </member>
+        <member name="P:Entity.Public.Public_Member.Roles">
+            <summary>
+            授权给此会员的角色
+            </summary>
+        </member>
+        <member name="P:Entity.Public.Public_Member.WeChatUserInfos">
+            <summary>
+            此会员绑定的微信
+            </summary>
+        </member>
+        <member name="T:Entity.Public.Public_MemberRole">
+            <summary>
+            会员授权角色
+            </summary>
+        </member>
+        <member name="P:Entity.Public.Public_MemberRole.MemberId">
+            <summary>
+            会员Id
+            </summary>
+        </member>
+        <member name="P:Entity.Public.Public_MemberRole.RoleId">
+            <summary>
+            角色Id
+            </summary>
+        </member>
+        <member name="P:Entity.Public.Public_MemberRole.Member">
+            <summary>
+            会员
+            </summary>
+        </member>
+        <member name="P:Entity.Public.Public_MemberRole.Role">
+            <summary>
+            角色
+            </summary>
+        </member>
+        <member name="T:Entity.Public.Public_MemberWeChatUserInfo">
+            <summary>
+            会员绑定的微信
+            </summary>
+        </member>
+        <member name="P:Entity.Public.Public_MemberWeChatUserInfo.MemberId">
+            <summary>
+            会员Id
+            </summary>
+        </member>
+        <member name="P:Entity.Public.Public_MemberWeChatUserInfo.WeChatUserInfoId">
+            <summary>
+            微信用户信息Id
+            </summary>
+        </member>
+        <member name="P:Entity.Public.Public_MemberWeChatUserInfo.Member">
+            <summary>
+            会员
+            </summary>
+        </member>
+        <member name="P:Entity.Public.Public_MemberWeChatUserInfo.WeChatUserInfo">
+            <summary>
+            微信用户信息
             </summary>
         </member>
         <member name="T:Entity.System.System_Log">
@@ -497,17 +945,17 @@
         </member>
         <member name="P:Entity.System.System_Log.Level">
             <summary>
-            日志级别
+            级别
             </summary>
         </member>
         <member name="P:Entity.System.System_Log.LogType">
             <summary>
-            日志类型
+            类型
             </summary>
         </member>
         <member name="P:Entity.System.System_Log.LogContent">
             <summary>
-            日志内容
+            内容
             </summary>
         </member>
         <member name="P:Entity.System.System_Log.Data">
@@ -515,19 +963,24 @@
             数据备份（转为JSON字符串）
             </summary>
         </member>
-        <member name="P:Entity.System.System_Log.OperatorId">
+        <member name="P:Entity.System.System_Log.CreatorId">
             <summary>
-            操作者Id
+            操作者
             </summary>
         </member>
-        <member name="P:Entity.System.System_Log.OperatorName">
+        <member name="P:Entity.System.System_Log.CreatorName">
             <summary>
             操作者名称
             </summary>
         </member>
         <member name="P:Entity.System.System_Log.CreateTime">
             <summary>
-            创建时间
+            操作时间
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Log.User">
+            <summary>
+            用户
             </summary>
         </member>
         <member name="T:Entity.System.System_Menu">
@@ -615,9 +1068,19 @@
             创建时间
             </summary>
         </member>
+        <member name="P:Entity.System.System_Menu.ModifiedById">
+            <summary>
+            最近编辑者
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Menu.ModifiedByName">
+            <summary>
+            最近编辑者名称
+            </summary>
+        </member>
         <member name="P:Entity.System.System_Menu.ModifyTime">
             <summary>
-            最近修改时间
+            最近编辑时间
             </summary>
         </member>
         <member name="P:Entity.System.System_Menu.Root">
@@ -640,76 +1103,9 @@
             被授权此菜单的用户
             </summary>
         </member>
-        <member name="P:Entity.System.System_Menu.Role">
+        <member name="P:Entity.System.System_Menu.Roles">
             <summary>
             被授权此菜单的角色
-            </summary>
-        </member>
-        <member name="T:Entity.System.System_OperationRecord">
-            <summary>
-            操作记录
-            </summary>
-        </member>
-        <member name="P:Entity.System.System_OperationRecord.Id">
-            <summary>
-            Id
-            </summary>
-        </member>
-        <member name="P:Entity.System.System_OperationRecord.DataId">
-            <summary>
-            数据Id
-            </summary>
-        </member>
-        <member name="P:Entity.System.System_OperationRecord.DataType">
-            <summary>
-            数据类型
-            <para>System_Uset</para>
-            <para>System_Role</para>
-            </summary>
-        </member>
-        <member name="P:Entity.System.System_OperationRecord.Account">
-            <summary>
-            账号
-            </summary>
-        </member>
-        <member name="P:Entity.System.System_OperationRecord.UserType">
-            <summary>
-            用户类型
-            </summary>
-        </member>
-        <member name="P:Entity.System.System_OperationRecord.IsAdmin">
-            <summary>
-            管理员
-            </summary>
-        </member>
-        <member name="P:Entity.System.System_OperationRecord.Explain">
-            <summary>
-            说明
-            </summary>
-        </member>
-        <member name="P:Entity.System.System_OperationRecord.Remark">
-            <summary>
-            备注
-            </summary>
-        </member>
-        <member name="P:Entity.System.System_OperationRecord.CreatorId">
-            <summary>
-            创建者
-            </summary>
-        </member>
-        <member name="P:Entity.System.System_OperationRecord.CreatorName">
-            <summary>
-            创建者名称
-            </summary>
-        </member>
-        <member name="P:Entity.System.System_OperationRecord.CreateTime">
-            <summary>
-            创建时间
-            </summary>
-        </member>
-        <member name="P:Entity.System.System_OperationRecord.User">
-            <summary>
-            用户
             </summary>
         </member>
         <member name="T:Entity.System.System_Resources">
@@ -772,9 +1168,19 @@
             创建时间
             </summary>
         </member>
+        <member name="P:Entity.System.System_Resources.ModifiedById">
+            <summary>
+            最近编辑者
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Resources.ModifiedByName">
+            <summary>
+            最近编辑者名称
+            </summary>
+        </member>
         <member name="P:Entity.System.System_Resources.ModifyTime">
             <summary>
-            最近修改时间
+            最近编辑时间
             </summary>
         </member>
         <member name="P:Entity.System.System_Resources.Roles">
@@ -862,9 +1268,19 @@
             创建时间
             </summary>
         </member>
+        <member name="P:Entity.System.System_Role.ModifiedById">
+            <summary>
+            最近编辑者
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Role.ModifiedByName">
+            <summary>
+            最近编辑者名称
+            </summary>
+        </member>
         <member name="P:Entity.System.System_Role.ModifyTime">
             <summary>
-            最近修改时间
+            最近编辑时间
             </summary>
         </member>
         <member name="P:Entity.System.System_Role.Parent">
@@ -890,6 +1306,11 @@
         <member name="P:Entity.System.System_Role.Resources">
             <summary>
             授权给此角色的资源
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_Role.Members">
+            <summary>
+            被授权此角色的会员
             </summary>
         </member>
         <member name="T:Entity.System.System_RoleMenu">
@@ -944,17 +1365,12 @@
         </member>
         <member name="T:Entity.System.System_User">
             <summary>
-            用户
+            系统用户
             </summary>
         </member>
         <member name="P:Entity.System.System_User.Id">
             <summary>
             Id
-            </summary>
-        </member>
-        <member name="P:Entity.System.System_User.Type">
-            <summary>
-            类型
             </summary>
         </member>
         <member name="P:Entity.System.System_User.Account">
@@ -967,12 +1383,22 @@
             密码
             </summary>
         </member>
+        <member name="P:Entity.System.System_User.Nickname">
+            <summary>
+            昵称
+            </summary>
+        </member>
         <member name="P:Entity.System.System_User.Name">
             <summary>
             姓名
             </summary>
         </member>
-        <member name="P:Entity.System.System_User.Face">
+        <member name="P:Entity.System.System_User.Tel">
+            <summary>
+            手机号码
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_User.HeadimgUrl">
             <summary>
             头像
             </summary>
@@ -1002,9 +1428,19 @@
             创建时间
             </summary>
         </member>
+        <member name="P:Entity.System.System_User.ModifiedById">
+            <summary>
+            最近编辑者
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_User.ModifiedByName">
+            <summary>
+            最近编辑者名称
+            </summary>
+        </member>
         <member name="P:Entity.System.System_User.ModifyTime">
             <summary>
-            最近修改时间
+            最近编辑时间
             </summary>
         </member>
         <member name="P:Entity.System.System_User.Roles">
@@ -1020,6 +1456,11 @@
         <member name="P:Entity.System.System_User.Resources">
             <summary>
             直接授权给此用户的资源
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_User.WeChatUserInfos">
+            <summary>
+            此用户绑定的微信
             </summary>
         </member>
         <member name="T:Entity.System.System_UserMenu">
@@ -1095,6 +1536,31 @@
         <member name="P:Entity.System.System_UserRole.Role">
             <summary>
             角色
+            </summary>
+        </member>
+        <member name="T:Entity.System.System_UserWeChatUserInfo">
+            <summary>
+            用户绑定的微信
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_UserWeChatUserInfo.UserId">
+            <summary>
+            用户Id
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_UserWeChatUserInfo.WeChatUserInfoId">
+            <summary>
+            微信用户信息Id
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_UserWeChatUserInfo.User">
+            <summary>
+            用户
+            </summary>
+        </member>
+        <member name="P:Entity.System.System_UserWeChatUserInfo.WeChatUserInfo">
+            <summary>
+            微信用户信息
             </summary>
         </member>
     </members>

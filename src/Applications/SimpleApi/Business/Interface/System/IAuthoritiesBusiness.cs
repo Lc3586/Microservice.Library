@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Business.Interface.System
 {
@@ -16,6 +14,12 @@ namespace Business.Interface.System
         /// </summary>
         /// <param name="data">数据</param>
         void AuthorizeRoleForUser(Model.System.AuthorizeDTO.RoleForUser data);
+
+        /// <summary>
+        /// 授权角色给会员
+        /// </summary>
+        /// <param name="data">数据</param>
+        void AuthorizeRoleForMember(Model.System.AuthorizeDTO.RoleForMember data);
 
         /// <summary>
         /// 授权菜单给用户
@@ -53,6 +57,13 @@ namespace Business.Interface.System
         void RevocationRoleForUser(List<string> userIds, bool runTransaction = true);
 
         /// <summary>
+        /// 撤销会员的全部角色授权
+        /// </summary>
+        /// <param name="memberIds">会员Id</param>
+        /// <param name="runTransaction">运行事务（默认运行）</param>
+        void RevocationRoleForMember(List<string> memberIds, bool runTransaction = true);
+
+        /// <summary>
         /// 撤销用户的全部菜单授权
         /// </summary>
         /// <param name="userIds">用户Id</param>
@@ -86,6 +97,13 @@ namespace Business.Interface.System
         /// <param name="data">数据</param>
         /// <param name="runTransaction">运行事务（默认运行）</param>
         void RevocationRoleForUser(Model.System.AuthorizeDTO.RoleForUser data, bool runTransaction = true);
+
+        /// <summary>
+        /// 撤销会员的角色授权
+        /// </summary>
+        /// <param name="data">数据</param>
+        /// <param name="runTransaction">运行事务（默认运行）</param>
+        void RevocationRoleForMember(Model.System.AuthorizeDTO.RoleForMember data, bool runTransaction = true);
 
         /// <summary>
         /// 撤销用户的菜单授权
@@ -151,6 +169,21 @@ namespace Business.Interface.System
         Model.System.UserDTO.Authorities GetUser(string userId, bool includeRole, bool includeMenu, bool includeResources, bool mergeRoleMenu = true, bool mergeRoleResources = true);
 
         /// <summary>
+        /// 获取会员的授权数据
+        /// </summary>
+        /// <param name="memberId">会员Id</param>
+        /// <param name="includeRole">包括授权角色</param>
+        /// <param name="includeMenu">包括授权菜单</param>
+        /// <param name="includeResources">包括授权资源</param>
+        /// <returns>
+        /// <para>用户授权信息</para>
+        /// <para>角色授权信息</para>
+        /// <para>菜单授权信息</para>
+        /// <para>资源授权信息</para>
+        /// </returns>
+        Model.Public.MemberDTO.Authorities GetMember(string memberId, bool includeRole, bool includeMenu, bool includeResources);
+
+        /// <summary>
         /// 获取授权给用户的角色
         /// </summary>
         /// <param name="userId">用户Id</param>
@@ -164,6 +197,19 @@ namespace Business.Interface.System
         List<Model.System.RoleDTO.Authorities> GetUserRole(string userId, bool includeMenu, bool includeResources);
 
         /// <summary>
+        /// 获取授权给会员的角色
+        /// </summary>
+        /// <param name="memberId">会员Id</param>
+        /// <param name="includeMenu">包括授权菜单</param>
+        /// <param name="includeResources">包括授权资源</param>
+        /// <returns>
+        /// <para>角色授权信息</para>
+        /// <para>菜单授权信息</para>
+        /// <para>资源授权信息</para>
+        /// </returns>
+        List<Model.System.RoleDTO.Authorities> GetMemberRole(string memberId, bool includeMenu, bool includeResources);
+
+        /// <summary>
         /// 获取授权给用户的菜单
         /// </summary>
         /// <param name="userId">用户Id</param>
@@ -174,6 +220,15 @@ namespace Business.Interface.System
         List<Model.System.MenuDTO.Authorities> GetUserMenu(string userId, bool mergeRoleMenu);
 
         /// <summary>
+        /// 获取授权给会员的菜单
+        /// </summary>
+        /// <param name="memberId">会员Id</param>
+        /// <returns>
+        /// <para>菜单授权信息</para>
+        /// </returns>
+        List<Model.System.MenuDTO.Authorities> GetMemberMenu(string memberId);
+
+        /// <summary>
         /// 获权授权给用户的资源
         /// </summary>
         /// <param name="userId">用户Id</param>
@@ -182,6 +237,15 @@ namespace Business.Interface.System
         /// <para>资源授权信息</para>
         /// </returns>
         List<Model.System.ResourcesDTO.Authorities> GetUserResources(string userId, bool mergeRoleResources);
+
+        /// <summary>
+        /// 获权授权给会员的资源
+        /// </summary>
+        /// <param name="memberId">会员Id</param>
+        /// <returns>
+        /// <para>资源授权信息</para>
+        /// </returns>
+        List<Model.System.ResourcesDTO.Authorities> GetMemberResources(string memberId);
 
         /// <summary>
         /// 获取角色的授权数据
@@ -233,28 +297,52 @@ namespace Business.Interface.System
         bool IsAdminRole(string roleId);
 
         /// <summary>
-        /// 是否拥有角色授权
+        /// 用户是否拥有角色授权
         /// </summary>
         /// <param name="userId">用户Id</param>
         /// <param name="roleId">角色Id</param>
         /// <returns></returns>
-        bool HasRole(string userId, string roleId);
+        bool UserHasRole(string userId, string roleId);
 
         /// <summary>
-        /// 是否拥有菜单授权
+        /// 会员是否拥有角色授权
+        /// </summary>
+        /// <param name="memberId">会员Id</param>
+        /// <param name="roleId">角色Id</param>
+        /// <returns></returns>
+        bool MemberHasRole(string memberId, string roleId);
+
+        /// <summary>
+        /// 用户是否拥有菜单授权
         /// </summary>
         /// <param name="userId">用户Id</param>
         /// <param name="menuId">菜单Id</param>
         /// <returns></returns>
-        bool HasMenu(string userId, string menuId);
+        bool UserHasMenu(string userId, string menuId);
 
         /// <summary>
-        /// 是否拥有资源授权
+        /// 会员是否拥有菜单授权
+        /// </summary>
+        /// <param name="memberId">会员Id</param>
+        /// <param name="menuId">菜单Id</param>
+        /// <returns></returns>
+        bool MemberHasMenu(string memberId, string menuId);
+
+        /// <summary>
+        /// 用户是否拥有资源授权
         /// </summary>
         /// <param name="userId">用户Id</param>
         /// <param name="resourcesId">资源Id</param>
         /// <returns></returns>
-        bool HasResources(string userId, string resourcesId);
+        bool UserHasResources(string userId, string resourcesId);
+
+        /// <summary>
+        /// 会员是否拥有资源授权
+        /// </summary>
+        /// <param name="memberId">会员Id</param>
+        /// <param name="resourcesId">资源Id</param>
+        /// <returns></returns>
+        bool MemberHasResources(string memberId, string resourcesId);
 
         #endregion
     }

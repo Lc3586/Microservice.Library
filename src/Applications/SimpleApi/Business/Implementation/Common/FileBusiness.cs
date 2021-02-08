@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Business.Interface.Common;
 using Business.Utils;
+using Business.Utils.Pagination;
 using Entity.Common;
 using FreeSql;
 using Library.Container;
@@ -10,11 +11,11 @@ using Library.File;
 using Library.FreeSql.Extention;
 using Library.FreeSql.Gen;
 using Library.Http;
-using Library.Models;
 using Library.OpenApi.Extention;
 using Microsoft.AspNetCore.Http;
 using Model.Common;
 using Model.Common.FileDTO;
+using Model.System.Pagination;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -514,11 +515,12 @@ namespace Business.Implementation.Common
             }
         }
 
-        public List<FileInfo> GetList(Pagination pagination)
+        public List<FileInfo> GetList(PaginationDTO pagination)
         {
             var list = Orm.Select<Common_File>()
                         .Where(o => Operator.IsAdmin || o.CreatorId == Operator.UserId)
-                        .ToDtoList<Common_File, FileInfo>(pagination, typeof(FileInfo).GetNamesWithTagAndOther(true, "_List"));
+                        .GetPagination(pagination)
+                        .ToDtoList<Common_File, FileInfo>(typeof(FileInfo).GetNamesWithTagAndOther(true, "_List"));
 
             return list;
         }
@@ -531,13 +533,13 @@ namespace Business.Implementation.Common
 
         public List<FileInfo> GetDetails(string ids)
         {
-            var list = GetList(new Pagination { PageIndex = -1, DynamicFilterInfo = new List<PaginationDynamicFilterInfo> { new PaginationDynamicFilterInfo { Field = "Id", Compare = FilterCompare.inSet, Value = ids } } });
+            var list = GetList(new PaginationDTO { PageIndex = -1, DynamicFilterInfo = new List<PaginationDynamicFilterInfo> { new PaginationDynamicFilterInfo { Field = "Id", Compare = FilterCompare.inSet, Value = ids } } });
             return list;
         }
 
         public List<FileInfo> GetDetails(List<string> ids)
         {
-            var list = GetList(new Pagination { PageIndex = -1, DynamicFilterInfo = new List<PaginationDynamicFilterInfo> { new PaginationDynamicFilterInfo { Field = "Id", Compare = FilterCompare.inSet, Value = ids } } });
+            var list = GetList(new PaginationDTO { PageIndex = -1, DynamicFilterInfo = new List<PaginationDynamicFilterInfo> { new PaginationDynamicFilterInfo { Field = "Id", Compare = FilterCompare.inSet, Value = ids } } });
             return list;
         }
 
@@ -555,6 +557,11 @@ namespace Business.Implementation.Common
 
             if (Repository.Delete(o => ids.Contains(o.Id)) <= 0)
                 throw new ApplicationException("未删除任何数据");
+        }
+
+        public CheckMD5Response CheckMD5(string md5)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

@@ -1,16 +1,15 @@
-﻿using Library.Extension;
-using Library.Models;
+﻿using HtmlAgilityPack;
+using Library.Container;
+using Library.Extension;
 using Library.Http;
+using Model.CAS.CASDTO;
+using Model.System;
+using Model.System.Config;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 using System.Net;
+using System.Threading.Tasks;
 using System.Xml;
-using HtmlAgilityPack;
-using Model.System;
-using Library.Container;
-using Model.System.Config;
 
 namespace Business.Utils
 {
@@ -26,7 +25,7 @@ namespace Business.Utils
         /// </summary>
         /// <param name="getTGT"></param>
         /// <returns></returns>
-        public static async Task<string> GetTGT(CASModel.GetTGT getTGT)
+        public static async Task<string> GetTGT(GetTGT getTGT)
         {
             (HttpStatusCode, string) response = HttpHelper.PostDataWithState(Config.CASTGTUrl, new Dictionary<string, object>() { { "username", getTGT.Username }, { "password", getTGT.Password } });
             if (response.Item1 != HttpStatusCode.Created)
@@ -41,7 +40,7 @@ namespace Business.Utils
         /// </summary>
         /// <param name="logOut"></param>
         /// <returns></returns>
-        public static async Task<string> DeleteTGT(CASModel.LogOut logOut)
+        public static async Task<string> DeleteTGT(LogOut logOut)
         {
             (HttpStatusCode, string) response = HttpHelper.RequestData(HttpMethod.Delete, string.Format(Config.CASDeleteSTUrl, logOut.TGT));
             if (response.Item1 != HttpStatusCode.OK)
@@ -54,7 +53,7 @@ namespace Business.Utils
         /// </summary>
         /// <param name="getST"></param>
         /// <returns></returns>
-        public static async Task<string> GetST(CASModel.GetST getST)
+        public static async Task<string> GetST(GetST getST)
         {
             (HttpStatusCode, string) response = HttpHelper.PostDataWithState(string.Format(Config.CASSTUrl + "?service={1}", getST.TGT, getST.Service ?? Config.WebRootUrl));
             if (response.Item1 != HttpStatusCode.OK)
@@ -67,12 +66,12 @@ namespace Business.Utils
         /// </summary>
         /// <param name="getUserInfo"></param>
         /// <returns></returns>
-        public static async Task<CASModel.UserInfo> GetUserInfo(CASModel.GetUserInfo getUserInfo)
+        public static async Task<UserInfo> GetUserInfo(GetUserInfo getUserInfo)
         {
             (HttpStatusCode, string) response = HttpHelper.GetDataWithState(Config.CASUserInfoUrl, new Dictionary<string, object>() { { "service", getUserInfo.Service ?? Config.WebRootUrl }, { "ticket", getUserInfo.ST } });
             if (response.Item1 != HttpStatusCode.OK)
                 throw new MessageException("验证失败", ErrorCode.validation);
-            if (!GetUserInfo(response.Item2, out CASModel.UserInfo userInfo))
+            if (!GetUserInfo(response.Item2, out UserInfo userInfo))
                 throw new MessageException("系统繁忙");
             return await Task.FromResult(userInfo);
         }
@@ -106,9 +105,9 @@ namespace Business.Utils
         /// <param name="xml">xml字符串</param>
         /// <param name="userInfo">用户信息</param>
         /// <returns></returns>
-        private static bool GetUserInfo(string xml, out CASModel.UserInfo userInfo)
+        private static bool GetUserInfo(string xml, out UserInfo userInfo)
         {
-            userInfo = new CASModel.UserInfo();
+            userInfo = new UserInfo();
             if (xml.IsNullOrWhiteSpace())
                 return false;
             try

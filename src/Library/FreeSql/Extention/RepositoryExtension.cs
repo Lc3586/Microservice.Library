@@ -1,8 +1,5 @@
 ﻿using FreeSql;
-using Library.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Library.FreeSql.Application;
 
 namespace Library.FreeSql.Extention
 {
@@ -24,7 +21,7 @@ namespace Library.FreeSql.Extention
         {
             var data = repository.Get(id);
             if (data == null)
-                throw new MessageException(error);
+                throw new FreeSqlException(error);
             return data;
         }
     }

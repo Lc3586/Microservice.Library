@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Library\Cache\Library.Cache.csproj" />
     <ProjectReference Include="..\..\..\Library\Configuration\Library.Configuration.csproj" />
     <ProjectReference Include="..\..\..\Library\DataMapping\Library.DataMapping.csproj" />
     <ProjectReference Include="..\Entity\Entity.csproj" />

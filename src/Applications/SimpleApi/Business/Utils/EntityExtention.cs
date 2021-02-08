@@ -1,8 +1,9 @@
-﻿using System;
-using Business.Interface.System;
+﻿using Business.Interface.System;
 using Library.Container;
 using Library.Extension;
+using Model.Common;
 using Model.System.UserDTO;
+using System;
 
 namespace Business.Utils
 {
@@ -32,9 +33,9 @@ namespace Business.Utils
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="entity"></param>
-        /// <param name="property"></param>
+        /// <param name="operatorDetail"></param>
         /// <returns></returns>
-        public static T InitEntity<T>(this T entity, Authorities property = null)
+        public static T InitEntity<T>(this T entity, OperatorDetail operatorDetail = null)
         {
             var op = AutofacHelper.GetScopeService<IOperator>();
 
@@ -43,9 +44,9 @@ namespace Business.Utils
             if (entity.ContainsProperty("CreateTime"))
                 entity.SetPropertyValue("CreateTime", DateTime.Now);
             if (entity.ContainsProperty("CreatorId"))
-                entity.SetPropertyValue("CreatorId", property == null ? op?.UserId : property.Id);
+                entity.SetPropertyValue("CreatorId", operatorDetail == null ? op?.UserId : operatorDetail.Id);
             if (entity.ContainsProperty("CreatorName"))
-                entity.SetPropertyValue("CreatorName", GetUserName(op, property));
+                entity.SetPropertyValue("CreatorName", GetUserName(op, operatorDetail));
 
             return entity;
         }
@@ -71,9 +72,9 @@ namespace Business.Utils
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="entity"></param>
-        /// <param name="property"></param>
+        /// <param name="operatorDetail"></param>
         /// <returns></returns>
-        public static T ModifyEntity<T>(this T entity, Authorities property = null)
+        public static T ModifyEntity<T>(this T entity, OperatorDetail operatorDetail = null)
         {
             var op = AutofacHelper.GetScopeService<IOperator>();
 
@@ -82,9 +83,9 @@ namespace Business.Utils
                 if (entity.ContainsProperty("ModifyTime"))
                     entity.SetPropertyValue("ModifyTime", DateTime.Now);
                 if (entity.ContainsProperty("ModifiedById"))
-                    entity.SetPropertyValue("ModifiedById", property == null ? op?.UserId : property.Id);
+                    entity.SetPropertyValue("ModifiedById", operatorDetail == null ? op?.UserId : operatorDetail.Id);
                 if (entity.ContainsProperty("ModifiedByName"))
-                    entity.SetPropertyValue("ModifiedByName", GetUserName(op, property));
+                    entity.SetPropertyValue("ModifiedByName", GetUserName(op, operatorDetail));
             }
             return entity;
         }
@@ -93,24 +94,24 @@ namespace Business.Utils
         /// 获取当前登录用户的用户名
         /// </summary>
         /// <param name="op"></param>
-        /// <param name="property"></param>
+        /// <param name="operatorDetail"></param>
         /// <returns></returns>
-        public static string GetUserName(IOperator op = null, Authorities property = null)
+        public static string GetUserName(IOperator op = null, OperatorDetail operatorDetail = null)
         {
             op = op ?? AutofacHelper.GetScopeService<IOperator>();
 
             string Name;
-            if (property == null)
+            if (operatorDetail == null)
             {
-                Name = op?.Property?.Name;
+                Name = op?.Detail?.Name;
                 if (string.IsNullOrEmpty(Name))
-                    Name = op?.Property?.Account;
+                    Name = op?.Detail?.Account;
             }
             else
             {
-                Name = property.Name;
+                Name = operatorDetail.Name;
                 if (string.IsNullOrEmpty(Name))
-                    Name = property.Account;
+                    Name = operatorDetail.Account;
             }
             return Name;
         }

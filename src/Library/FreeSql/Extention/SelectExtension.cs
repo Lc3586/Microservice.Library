@@ -1,9 +1,6 @@
 ﻿using FreeSql;
 using FreeSql.Internal.CommonProvider;
-using FreeSql.Internal.Model;
 using Library.FreeSql.Application;
-using Library.Models;
-using NetTaste;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,7 +8,6 @@ using System.Dynamic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Text;
 
 namespace Library.FreeSql.Extention
 {
@@ -22,133 +18,50 @@ namespace Library.FreeSql.Extention
     {
         static SelectExtension()
         {
-            foreach (var method in typeof(Enumerable).GetMethods())
-            {
-                switch (method.Name)
-                {
-                    case "Count":
-                        if (method.GetParameters().Length != 1)
-                            break;
-                        EnumerableMethods.Add("Count", method);
-                        break;
-                    case "ElementAt":
-                        EnumerableMethods.Add("ElementAt", method);
-                        break;
-                    default:
-                        break;
-                }
-            }
+            //foreach (var method in typeof(Enumerable).GetMethods())
+            //{
+            //    switch (method.Name)
+            //    {
+            //        case "Count":
+            //            if (method.GetParameters().Length != 1)
+            //                break;
+            //            EnumerableMethods.Add("Count", method);
+            //            break;
+            //        case "ElementAt":
+            //            EnumerableMethods.Add("ElementAt", method);
+            //            break;
+            //        default:
+            //            break;
+            //    }
+            //}
         }
 
         #region 私有成员
 
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员的 XML 注释
-        private static readonly Dictionary<string, MethodInfo> EnumerableMethods = new Dictionary<string, MethodInfo>();
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员的 XML 注释
+        //private static readonly Dictionary<string, MethodInfo> EnumerableMethods = new Dictionary<string, MethodInfo>();
 
-        private static DynamicFilterInfo ToDynamicFilterInfo(this PaginationDynamicFilterInfo paginationDynamicFilterInfo)
-        {
-            return new DynamicFilterInfo
-            {
-                Logic = paginationDynamicFilterInfo.Relation.ToDynamicFilterLogic(),
-                Field = paginationDynamicFilterInfo.Field,
-                Operator = paginationDynamicFilterInfo.Compare.ToDynamicFilterOperator(),
-                Value = paginationDynamicFilterInfo.Value,
-                Filters = paginationDynamicFilterInfo.DynamicFilterInfo?.Select(o => o.ToDynamicFilterInfo()).ToList()
-            };
-        }
+        //[Obsolete("使用GetSelect<TSource, TReturn, TDto>方法", true)]
+        //private static ISelect<TSource> GetSelectWithFieldFilter<TSource, TDto>(this ISelect<TSource> source, IFreeSql orm, IPagination pagination = null, IEnumerable<string> fields = null) where TSource : class
+        //{
+        //    var table = orm.GetTableInfo<TSource>();
 
-        private static DynamicFilterInfo ToDynamicFilterInfo(this List<PaginationDynamicFilterInfo> paginationDynamicFilterInfo)
-        {
-            DynamicFilterInfo dynamicFilterInfo;
-            var dynamicFilterInfos = paginationDynamicFilterInfo.Select(o => o.ToDynamicFilterInfo());
+        //    var columns = table.ColumnsByCs.Select(c => $"{(fields?.Contains(c.Key) != true ? "NULL as " : string.Empty)}\"{c.Key}\"");
 
-            if (paginationDynamicFilterInfo.Count == 1)
-                dynamicFilterInfo = dynamicFilterInfos.First();
-            else
-                dynamicFilterInfo = new DynamicFilterInfo
-                {
-                    Logic = DynamicFilterLogic.And,
-                    Filters = dynamicFilterInfos.ToList()
-                };
+        //    if (pagination != null)
+        //        source = source.AsAlias((type, old) => type == typeof(TDto) ? "a" : old)
+        //                        .GetPagination(pagination, "a");
 
-            return dynamicFilterInfo;
-        }
+        //    return source.WithSql($"SELECT {string.Join(",", columns)} FROM \"{table.DbName}\"");
+        //}
 
-        private static DynamicFilterLogic ToDynamicFilterLogic(this FilterGroupRelation filterGroupRelation)
-        {
-            switch (filterGroupRelation)
-            {
-                case FilterGroupRelation.or:
-                    return DynamicFilterLogic.Or;
-                case FilterGroupRelation.and:
-                default:
-                    return DynamicFilterLogic.And;
-            }
-        }
-
-        private static DynamicFilterOperator ToDynamicFilterOperator(this FilterCompare filterCompare)
-        {
-            switch (filterCompare)
-            {
-                case FilterCompare.@in:
-                    return DynamicFilterOperator.Contains;
-                case FilterCompare.inStart:
-                    return DynamicFilterOperator.StartsWith;
-                case FilterCompare.inEnd:
-                    return DynamicFilterOperator.EndsWith;
-                case FilterCompare.notIn:
-                    return DynamicFilterOperator.NotContains;
-                case FilterCompare.notInStart:
-                    return DynamicFilterOperator.NotStartsWith;
-                case FilterCompare.notInEnd:
-                    return DynamicFilterOperator.NotEndsWith;
-                case FilterCompare.eq:
-                    return DynamicFilterOperator.Eq;
-                case FilterCompare.notEq:
-                    return DynamicFilterOperator.NotEqual;
-                case FilterCompare.le:
-                    return DynamicFilterOperator.LessThanOrEqual;
-                case FilterCompare.lt:
-                    return DynamicFilterOperator.LessThan;
-                case FilterCompare.ge:
-                    return DynamicFilterOperator.GreaterThanOrEqual;
-                case FilterCompare.gt:
-                    return DynamicFilterOperator.GreaterThan;
-                case FilterCompare.inSet:
-                    return DynamicFilterOperator.Any;
-                case FilterCompare.notInSet:
-                    return DynamicFilterOperator.NotAny;
-                case FilterCompare.range:
-                    return DynamicFilterOperator.Range;
-                case FilterCompare.dateRange:
-                    return DynamicFilterOperator.DateRange;
-                default:
-                    throw new FreeSqlException($"不支持的过滤条件: {filterCompare}");
-            }
-        }
-
-        [Obsolete("使用GetSelect<TSource, TReturn, TDto>方法", true)]
-        private static ISelect<TSource> GetSelectWithFieldFilter<TSource, TDto>(this ISelect<TSource> source, IFreeSql orm, Pagination pagination = null, IEnumerable<string> fields = null) where TSource : class
-        {
-            var table = orm.GetTableInfo<TSource>();
-
-            var columns = table.ColumnsByCs.Select(c => $"{(fields?.Contains(c.Key) != true ? "NULL as " : string.Empty)}\"{c.Key}\"");
-
-            if (pagination != null)
-                source = source.AsAlias((type, old) => type == typeof(TDto) ? "a" : old)
-                                .GetPagination(pagination, "a");
-
-            return source.WithSql($"SELECT {string.Join(",", columns)} FROM \"{table.DbName}\"");
-        }
-
-        private static Expression<Func<TSource, TReturn>> GetSelect<TSource, TReturn, TDto>(this ISelect<TSource> source, IEnumerable<string> fields) where TSource : class
+        private static Expression<Func<TSource, TReturn>> GetSelect<TSource, TReturn, TDto>(this ISelect<TSource> source, IEnumerable<string> fields, string alias = "a") where TSource : class
         {
             if (fields == null)
                 return null;
 
             var s0p = source as Select0Provider;
             var tb = s0p._tables[0];
+            tb.Alias = alias;
             var parmExp = tb.Parameter ?? Expression.Parameter(tb.Table.Type, tb.Alias);
             var initExps = tb.Table.Columns.Values
                 .Where(a => a.Attribute.IsIgnore == false && fields.Contains(a.CsName))
@@ -421,148 +334,84 @@ namespace Library.FreeSql.Extention
         }
 
         /// <summary>
-        /// 获取分页后的数据
-        /// </summary>
-        /// <typeparam name="TReturn">实体类型</typeparam>
-        /// <param name="source"></param>
-        /// <param name="pagination">分页参数</param>
-        /// <param name="alias">表别名</param>
-        /// <returns></returns>
-        public static ISelect<TReturn> GetPagination<TReturn>(this ISelect<TReturn> source, Pagination pagination, string alias = null) where TReturn : class
-        {
-            if (pagination.DynamicFilterInfo != null && pagination.DynamicFilterInfo.Any())
-                source.WhereDynamicFilter(pagination.DynamicFilterInfo.ToDynamicFilterInfo());
-
-            string where = string.Empty;
-            if (pagination.FilterToSql(ref where, alias))
-            {
-                if (!string.IsNullOrWhiteSpace(where))
-                    source.Where(where);
-            }
-            else
-                throw new MessageException("搜索条件不支持");
-            pagination.RecordCount = source.Count();
-            string orderby = string.Empty;
-            if (pagination.OrderByToSql(ref orderby, alias))
-            {
-                if (!string.IsNullOrWhiteSpace(orderby))
-                    source.OrderBy(orderby);
-            }
-            else
-                throw new MessageException("排序条件不支持");
-
-            if (pagination.PageIndex == -1)
-                return source;
-            else
-                return source.Page(pagination.PageIndex, pagination.PageRows);
-        }
-
-        /// <summary>
-        /// 获取分页后的数据
-        /// </summary>
-        /// <typeparam name="TKey"></typeparam>
-        /// <typeparam name="TReturn">实体类型</typeparam>
-        /// <param name="source"></param>
-        /// <param name="pagination">分页参数</param>
-        /// <returns></returns>
-        public static ISelectGrouping<TKey, TReturn> GetPagination<TKey, TReturn>(this ISelectGrouping<TKey, TReturn> source, Pagination pagination) where TReturn : class
-        {
-            //string where = string.Empty;
-            //if (pagination.FilterToSql(ref where, alias))
-            //{
-            //    if (!string.IsNullOrWhiteSpace(where))
-            //        source.Having.Where(where);
-            //}
-            //else
-            //    throw new MessageException("搜索条件不支持");
-            pagination.RecordCount = source.Count();
-            //string orderby = string.Empty;
-            //if (pagination.OrderByToSql(ref orderby, alias))
-            //{
-            //    if (!string.IsNullOrWhiteSpace(orderby))
-            //        source.OrderBy(orderby);
-            //}
-            //else
-            //    throw new MessageException("排序条件不支持");
-
-            if (pagination.PageIndex == -1)
-                return source;
-            else
-                return source.Page(pagination.PageIndex, pagination.PageRows);
-        }
-
-        /// <summary>
         /// 返回数据
         /// </summary>
+        /// <remarks>
+        /// <para>TSource别名 a</para>
+        /// </remarks>
         /// <typeparam name="TSource">实体类型</typeparam>
         /// <typeparam name="TDto">业务模型类型</typeparam>
         /// <param name="source"></param>
-        /// <param name="pagination">分页参数</param>
         /// <param name="fields">指定字段</param>
+        /// <param name="alias">指定别名</param>
         /// <returns></returns>
-        public static List<TSource> ToList<TSource, TDto>(this ISelect<TSource> source, Pagination pagination = null, IEnumerable<string> fields = null) where TSource : class
+        public static List<TSource> ToList<TSource, TDto>(this ISelect<TSource> source, IEnumerable<string> fields = null, string alias = "a") where TSource : class
         {
-            return source.ToList<TSource, TSource, TDto>(pagination, fields);
+            return source.ToList<TSource, TSource, TDto>(fields, alias);
             //return source.GetSelectWithFieldFilter<TSource, TDto>(orm, pagination, fields).ToList();
         }
 
         /// <summary>
         /// 返回数据
         /// </summary>
+        /// <remarks>
+        /// <para>TSource别名 a</para>
+        /// </remarks>
         /// <typeparam name="TSource">实体类型</typeparam>
         /// <typeparam name="TDto">业务模型类型</typeparam>
         /// <param name="source"></param>
-        /// <param name="pagination">分页参数</param>
         /// <param name="fields">指定字段</param>
+        /// <param name="alias">指定别名</param>
         /// <returns></returns>
-        public static List<TDto> ToDtoList<TSource, TDto>(this ISelect<TSource> source, Pagination pagination = null, IEnumerable<string> fields = null) where TSource : class
+        public static List<TDto> ToDtoList<TSource, TDto>(this ISelect<TSource> source, IEnumerable<string> fields = null, string alias = "a") where TSource : class
         {
-            return source.ToList<TSource, TDto, TDto>(pagination, fields);
+            return source.ToList<TSource, TDto, TDto>(fields, alias);
             //return source.GetSelectWithFieldFilter<TSource, TDto>(orm, pagination, fields).ToList();
         }
 
         /// <summary>
         /// 返回数据
         /// </summary>
+        /// <remarks>
+        /// <para>TSource别名 a</para>
+        /// </remarks>
         /// <typeparam name="TSource">实体类型</typeparam>
         /// <typeparam name="TReturn">返回类型</typeparam>
         /// <typeparam name="TDto">业务模型类型</typeparam>
         /// <param name="source"></param>
-        /// <param name="pagination">分页参数</param>
         /// <param name="fields">指定字段</param>
+        /// <param name="alias">指定别名</param>
         /// <returns></returns>
-        public static List<TReturn> ToList<TSource, TReturn, TDto>(this ISelect<TSource> source, Pagination pagination = null, IEnumerable<string> fields = null) where TSource : class
+        public static List<TReturn> ToList<TSource, TReturn, TDto>(this ISelect<TSource> source, IEnumerable<string> fields = null, string alias = "a") where TSource : class
         {
-            if (pagination != null)
-                return source.GetPagination(pagination).ToList(source.GetSelect<TSource, TReturn, TDto>(fields));
-            else
-                return source.ToList(source.GetSelect<TSource, TReturn, TDto>(fields));
+            return source.ToList(source.GetSelect<TSource, TReturn, TDto>(fields, alias));
         }
 
         /// <summary>
         /// 返回动态类型的数据
         /// </summary>
-        /// <remarks>不支持参数化!</remarks>
+        /// <remarks>
+        /// <para>不支持参数化!</para>
+        /// <para>TSource别名 a</para>
+        /// </remarks>
         /// <typeparam name="TSource">实体类型</typeparam>
         /// <typeparam name="TDto">业务模型类型</typeparam>
         /// <param name="source"></param>
         /// <param name="orm"></param>
-        /// <param name="pagination">分页参数</param>
         /// <param name="fields">指定字段</param>
+        /// <param name="alias">指定别名</param>
         /// <returns></returns>
-        public static List<dynamic> ToDynamic<TSource, TDto>(this ISelect<TSource> source, IFreeSql orm, Pagination pagination = null, IEnumerable<string> fields = null) where TSource : class
+        public static List<dynamic> ToDynamic<TSource, TDto>(this ISelect<TSource> source, IFreeSql orm, IEnumerable<string> fields = null, string alias = "a") where TSource : class
         {
             var columns = orm.GetTableInfo<TSource>().ColumnsByCs;
 
             var _fields = string.Join(
                  ",",
                  fields == null ?
-                     columns.Select(o => $"a.\"{o.Value.Attribute.Name}\"") :
-                     fields.Select(o => $"a.\"{(columns.ContainsKey(o) ? columns[o].Attribute.Name : o)}\""));
+                     columns.Select(o => $"{alias}.\"{o.Value.Attribute.Name}\"") :
+                     fields.Select(o => $"{alias}.\"{(columns.ContainsKey(o) ? columns[o].Attribute.Name : o)}\""));
 
-            if (pagination != null)
-                source = source.AsAlias((type, old) => type == typeof(TDto) ? "a" : old)
-                                .GetPagination(pagination, "a");
+            source = source.AsAlias((type, old) => type == typeof(TDto) ? alias : old);
 
             return orm.Ado.Query<dynamic>(source.ToSql(_fields));
         }
@@ -570,17 +419,18 @@ namespace Library.FreeSql.Extention
         /// <summary>
         /// 返回动态类型的数据
         /// </summary>
-        /// <remarks>不支持参数化!</remarks>
+        /// <remarks>
+        /// <para>不支持参数化!</para>
+        /// </remarks>
         /// <typeparam name="TSource">实体类型</typeparam>
         /// <typeparam name="TJoin0"></typeparam>
         /// <typeparam name="TDto">业务模型类型</typeparam>
         /// <param name="source"></param>
         /// <param name="orm"></param>
-        /// <param name="pagination">分页参数</param>
         /// <param name="fields">指定字段</param>
+        /// <param name="alias">指定别名</param>
         /// <returns></returns>
-        [Obsolete]
-        public static List<dynamic> ToDynamic<TSource, TJoin0, TDto>(this ISelect<TSource> source, IFreeSql orm, Pagination pagination = null, IEnumerable<string> fields = null) where TSource : class
+        public static List<dynamic> ToDynamic<TSource, TJoin0, TDto>(this ISelect<TSource> source, IFreeSql orm, IEnumerable<string> fields = null, string alias = "a") where TSource : class
         {
             var table = orm.GetTableInfo<TSource>();
             var table_join0 = orm.GetTableInfo<TJoin0>();
@@ -588,14 +438,12 @@ namespace Library.FreeSql.Extention
             var _fields = string.Join(
                  ",",
                  fields == null ?
-                     table.Columns.Concat(table_join0.Columns).Select(o => $"a.\"{o.Value.Attribute.Name}\"") :
+                     table.Columns.Concat(table_join0.Columns).Select(o => $"{alias}.\"{o.Value.Attribute.Name}\"") :
                      fields.Select(o => table.Columns.ContainsKey(o) || table_join0.Columns.ContainsKey(o) ? (table.Columns.ContainsKey(o) ?
-                         $"a.\"{table.Columns[o].Attribute.Name}\"" :
-                         $"a__{table_join0.DbName}.\"{table_join0.Columns[o].Attribute.Name}\"") : $"a.\"{o}\""));
+                         $"{alias}.\"{table.Columns[o].Attribute.Name}\"" :
+                         $"a__{table_join0.DbName}.\"{table_join0.Columns[o].Attribute.Name}\"") : $"{alias}.\"{o}\""));
 
-            if (pagination != null)
-                source = source.AsAlias((type, old) => type == typeof(TDto) ? "a" : old)
-                                .GetPagination(pagination, "a");
+            source = source.AsAlias((type, old) => type == typeof(TDto) ? alias : old);
 
             return orm.Ado.Query<dynamic>(source.ToSql(_fields));
         }
@@ -611,7 +459,7 @@ namespace Library.FreeSql.Extention
         {
             var data = select.ToOne();
             if (data == null)
-                throw new MessageException(error);
+                throw new FreeSqlException(error);
             return data;
         }
 

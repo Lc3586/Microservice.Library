@@ -1,15 +1,18 @@
 ﻿using AutoMapper;
 using Business.Filter;
+using Business.Interface.Common;
 using Business.Interface.System;
 using Business.Utils;
+using Business.Utils.Pagination;
 using Entity.System;
+using Entity.Common;
 using FreeSql;
 using Library.DataMapping.Gen;
 using Library.Extension;
 using Library.FreeSql.Extention;
 using Library.FreeSql.Gen;
-using Library.Models;
 using Library.OpenApi.Extention;
+using Model.System.Pagination;
 using Model.System.RoleDTO;
 using System;
 using System.Collections.Generic;
@@ -23,6 +26,7 @@ namespace Business.Implementation.System
     public class RoleBusiness : BaseBusiness, IRoleBusiness
     {
         #region DI
+
         public RoleBusiness(
             IFreeSqlProvider freeSqlProvider,
             IAutoMapperProvider autoMapperProvider,
@@ -62,10 +66,11 @@ namespace Business.Implementation.System
 
         #region 基础功能
 
-        public List<List> GetList(Pagination pagination)
+        public List<List> GetList(PaginationDTO pagination)
         {
             var entityList = Repository.Select
-                                    .ToList<System_Role, List>(pagination, typeof(List).GetNamesWithTagAndOther(true, "_List"));
+                                    .GetPagination(pagination)
+                                    .ToList<System_Role, List>(typeof(List).GetNamesWithTagAndOther(true, "_List"));
 
             var result = Mapper.Map<List<List>>(entityList);
 
@@ -79,7 +84,7 @@ namespace Business.Implementation.System
 
             var entityList = Repository.Select
                                     .Where(o => o.ParentId == paramter.ParentId)
-                                    .ToList<System_Role, TreeList>(null, typeof(List).GetNamesWithTagAndOther(true, "_List"));
+                                    .ToList<System_Role, TreeList>(typeof(List).GetNamesWithTagAndOther(true, "_List"));
 
             var result = Mapper.Map<List<TreeList>>(entityList);
 
@@ -133,7 +138,7 @@ namespace Business.Implementation.System
 
                 Repository.Insert(newData);
 
-                var orId = OperationRecordBusiness.Create(new System_OperationRecord
+                var orId = OperationRecordBusiness.Create(new Common_OperationRecord
                 {
                     DataType = nameof(System_Role),
                     DataId = newData.Id,
@@ -192,7 +197,7 @@ namespace Business.Implementation.System
                         throw new ApplicationException("重新排序失败.");
                 }
 
-                var orId = OperationRecordBusiness.Create(new System_OperationRecord
+                var orId = OperationRecordBusiness.Create(new Common_OperationRecord
                 {
                     DataType = nameof(System_Role),
                     DataId = entity.Id,
@@ -220,7 +225,7 @@ namespace Business.Implementation.System
 
             (bool success, Exception ex) = Orm.RunTransaction(() =>
             {
-                var orId = OperationRecordBusiness.Create(new System_OperationRecord
+                var orId = OperationRecordBusiness.Create(new Common_OperationRecord
                 {
                     DataType = nameof(System_Role),
                     DataId = entity.Id,
@@ -300,7 +305,7 @@ namespace Business.Implementation.System
                         throw new ApplicationException($"不支持的排序类型 {data.Type}.");
                 }
 
-                var orId = OperationRecordBusiness.Create(new System_OperationRecord
+                var orId = OperationRecordBusiness.Create(new Common_OperationRecord
                 {
                     DataType = nameof(System_Role),
                     DataId = current.Id,
@@ -404,7 +409,7 @@ namespace Business.Implementation.System
                         throw new ApplicationException("角色排序失败.");
                 }
 
-                _ = OperationRecordBusiness.Create(new System_OperationRecord
+                _ = OperationRecordBusiness.Create(new Common_OperationRecord
                 {
                     DataType = nameof(System_Role),
                     DataId = current.Id,
@@ -421,11 +426,11 @@ namespace Business.Implementation.System
         {
             var entityList = Repository.Select.Where(c => ids.Contains(c.Id)).ToList(c => new { c.Id, c.Name, c.Type });
 
-            var orList = new List<System_OperationRecord>();
+            var orList = new List<Common_OperationRecord>();
 
             foreach (var entity in entityList)
             {
-                orList.Add(new System_OperationRecord
+                orList.Add(new Common_OperationRecord
                 {
                     DataType = nameof(System_Role),
                     DataId = entity.Id,

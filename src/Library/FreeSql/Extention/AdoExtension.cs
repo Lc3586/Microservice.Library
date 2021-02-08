@@ -1,15 +1,6 @@
 ﻿using FreeSql;
 using Library.FreeSql.Annotations;
-using Library.OpenApi.JsonSerialization;
-using Newtonsoft.Json;
-using Oracle.ManagedDataAccess.Types;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data.Common;
-using System.Linq;
-using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Library.FreeSql.Extention

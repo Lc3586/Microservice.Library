@@ -1,9 +1,7 @@
-﻿using Library.Models;
+﻿using Library.Extension.Model;
 using System;
-using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Text;
 
 namespace Library.Extension
 {
@@ -40,7 +38,7 @@ namespace Library.Extension
 
 
 
-        end:
+            end:
             return Expression.Lambda<Func<T, bool>>(binaryExpression, param);
         }
 

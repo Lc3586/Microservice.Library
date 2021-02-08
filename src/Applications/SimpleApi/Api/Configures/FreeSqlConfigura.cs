@@ -20,7 +20,7 @@ namespace Api.Configures
             services.AddFreeSql(s =>
             {
                 s.FreeSqlGeneratorOptions.ConnectionString = config.DefaultDatabaseConnectString;
-                s.FreeSqlGeneratorOptions.DatabaseType = (DataType)config.DefaultDatabaseType;
+                s.FreeSqlGeneratorOptions.DatabaseType = config.DefaultDatabaseType;
                 s.FreeSqlGeneratorOptions.LazyLoading = true;
                 s.FreeSqlGeneratorOptions.MonitorCommandExecuting = (cmd) =>
                 {

@@ -1,8 +1,6 @@
 ﻿using FreeSql.Internal.Model;
-using Microsoft.OpenApi.Any;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Library.FreeSql.Extention
 {

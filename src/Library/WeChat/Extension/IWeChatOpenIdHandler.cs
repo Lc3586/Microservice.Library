@@ -20,7 +20,8 @@ namespace Library.WeChat.Extension
         /// <param name="appId">公众号标识</param>
         /// <param name="openId">用户公众号唯一标识</param>
         /// <param name="scope">用户授权的作用域, 使用逗号（,）分隔</param>
-        Task Handler(HttpContext context, string appId, string openId, string scope);
+        /// <param name="state">url中附带的state参数</param>
+        Task Handler(HttpContext context, string appId, string openId, string scope, string state = null);
 
         /// <summary>
         /// 处理用户基础信息
@@ -28,6 +29,7 @@ namespace Library.WeChat.Extension
         /// <param name="context">当前请求上下文</param>
         /// <param name="appId">公众号标识</param>
         /// <param name="userinfo">用户基础信息</param>
-        Task Handler(HttpContext context, string appId, OAuthUserInfo userinfo);
+        /// <param name="state">url中附带的state参数</param>
+        Task Handler(HttpContext context, string appId, OAuthUserInfo userinfo, string state = null);
     }
 }

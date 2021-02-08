@@ -1,9 +1,6 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
-using System.Text;
 
 namespace Library.Extension
 {
@@ -18,7 +15,7 @@ namespace Library.Extension
         {
             var JI = element.GetCustomAttribute(typeof(JsonIgnoreAttribute));
             return JI != null;
-        }       
+        }
 
         /// <summary>
         /// 获取成员的UI显示名称

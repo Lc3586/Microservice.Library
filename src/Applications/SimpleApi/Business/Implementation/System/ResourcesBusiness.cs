@@ -1,16 +1,19 @@
 ﻿using AutoMapper;
 using Business.Filter;
+using Business.Interface.Common;
 using Business.Interface.System;
 using Business.Utils;
+using Business.Utils.Pagination;
 using Entity.System;
+using Entity.Common;
 using FreeSql;
 using Library.DataMapping.Gen;
 using Library.Extension;
 using Library.FreeSql.Extention;
 using Library.FreeSql.Gen;
-using Library.Models;
 using Library.OpenApi.Extention;
 using Library.SelectOption;
+using Model.System.Pagination;
 using Model.System.ResourcesDTO;
 using System;
 using System.Collections.Generic;
@@ -24,6 +27,7 @@ namespace Business.Implementation.System
     public class ResourcesBusiness : BaseBusiness, IResourcesBusiness
     {
         #region DI
+
         public ResourcesBusiness(
             IFreeSqlProvider freeSqlProvider,
             IAutoMapperProvider autoMapperProvider,
@@ -57,17 +61,18 @@ namespace Business.Implementation.System
 
         #region 基础功能
 
-        public List<List> GetList(Pagination pagination)
+        public List<List> GetList(PaginationDTO pagination)
         {
             var entityList = Repository.Select
-                                    .ToList<System_Resources, List>(pagination, typeof(List).GetNamesWithTagAndOther(true, "_List"));
+                                    .GetPagination(pagination)
+                                    .ToList<System_Resources, List>(typeof(List).GetNamesWithTagAndOther(true, "_List"));
 
             var result = Mapper.Map<List<List>>(entityList);
 
             return result;
         }
 
-        public List<SelectOption> DropdownList(string condition, Pagination pagination)
+        public List<SelectOption> DropdownList(string condition, PaginationDTO pagination)
         {
             var fields = new[] {
                 nameof(System_Resources.Name),
@@ -129,7 +134,8 @@ namespace Business.Implementation.System
 
             var list = from a in Orm.Select<System_Resources>()
                             .Where(where_sql)
-                            .ToList<System_Resources, List>(pagination, typeof(List).GetNamesWithTagAndOther(true, "_List"))
+                            .GetPagination(pagination)
+                            .ToList<System_Resources, List>(typeof(List).GetNamesWithTagAndOther(true, "_List"))
                        select @select.Invoke(a);
 
             return list.ToList();
@@ -153,7 +159,7 @@ namespace Business.Implementation.System
             {
                 Repository.Insert(newData);
 
-                var orId = OperationRecordBusiness.Create(new System_OperationRecord
+                var orId = OperationRecordBusiness.Create(new Common_OperationRecord
                 {
                     DataType = nameof(System_Resources),
                     DataId = newData.Id,
@@ -188,7 +194,7 @@ namespace Business.Implementation.System
 
             (bool success, Exception ex) = Orm.RunTransaction(() =>
             {
-                var orId = OperationRecordBusiness.Create(new System_OperationRecord
+                var orId = OperationRecordBusiness.Create(new Common_OperationRecord
                 {
                     DataType = nameof(System_Resources),
                     DataId = entity.Id,
@@ -212,11 +218,11 @@ namespace Business.Implementation.System
         {
             var entityList = Repository.Select.Where(c => ids.Contains(c.Id)).ToList(c => new { c.Id, c.Name, c.Code, c.Type });
 
-            var orList = new List<System_OperationRecord>();
+            var orList = new List<Common_OperationRecord>();
 
             foreach (var entity in entityList)
             {
-                orList.Add(new System_OperationRecord
+                orList.Add(new Common_OperationRecord
                 {
                     DataType = nameof(System_Resources),
                     DataId = entity.Id,

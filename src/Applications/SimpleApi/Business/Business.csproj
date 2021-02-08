@@ -13,7 +13,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Library\Cache\Library.Cache.csproj" />
     <ProjectReference Include="..\..\..\Library\Container\Library.Container.csproj" />
     <ProjectReference Include="..\..\..\Library\Extension\Library.Extension.csproj" />
     <ProjectReference Include="..\..\..\Library\File\Library.File.csproj" />
@@ -40,6 +39,7 @@
 
   <ItemGroup>
     <PackageReference Include="NewId" Version="3.0.3" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.7" />
   </ItemGroup>
 
 </Project>

@@ -1,10 +1,7 @@
 ﻿using Business.Interface.System;
 using Castle.DynamicProxy;
 using Library.Container;
-using Library.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Model.System;
 
 namespace Business.Filter
 {

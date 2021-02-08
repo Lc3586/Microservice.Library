@@ -1,10 +1,8 @@
-﻿using Library.Container;
-using Library.Models;
-using Library.SelectOption;
+﻿using Library.SelectOption;
+using Model.Common;
+using Model.System.Pagination;
 using Model.System.UserDTO;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Business.Interface.System
 {
@@ -20,7 +18,7 @@ namespace Business.Interface.System
         /// </summary>
         /// <param name="pagination">分页设置</param>
         /// <returns></returns>
-        List<List> GetList(Pagination pagination);
+        List<List> GetList(PaginationDTO pagination);
 
         /// <summary>
         /// 获取下拉框数据
@@ -28,7 +26,7 @@ namespace Business.Interface.System
         /// <param name="condition">关键词(多个用空格分隔)</param>
         /// <param name="pagination">分页设置</param>
         /// <returns></returns>
-        List<SelectOption> DropdownList(string condition, Pagination pagination);
+        List<SelectOption> DropdownList(string condition, PaginationDTO pagination);
 
         /// <summary>
         /// 获取详情数据
@@ -41,8 +39,9 @@ namespace Business.Interface.System
         /// 新增
         /// </summary>
         /// <param name="data">数据</param>
+        /// <param name="withOP">写入操作人信息</param>
         /// <returns></returns>
-        void Create(Create data);
+        void Create(Create data, bool withOP = true);
 
         /// <summary>
         /// 获取编辑数据
@@ -55,8 +54,9 @@ namespace Business.Interface.System
         /// 编辑
         /// </summary>
         /// <param name="data">数据</param>
+        /// <param name="withOP">写入操作人信息</param>
         /// <returns></returns>
-        void Edit(Edit data);
+        void Edit(Edit data, bool withOP = true);
 
         /// <summary>
         /// 删除
@@ -69,7 +69,30 @@ namespace Business.Interface.System
 
         #region 拓展功能
 
+        /// <summary>
+        /// 登录
+        /// </summary>
+        /// <param name="data">数据</param>
+        void Login(Login data);
 
+        /// <summary>
+        /// 登录
+        /// </summary>
+        /// <param name="openId"></param>
+        void Login(string openId);
+
+        /// <summary>
+        /// 更新密码
+        /// </summary>
+        /// <param name="data">数据</param>
+        void UpdatePassword(UpdatePassword data);
+
+        /// <summary>
+        /// 获取操作者详情
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        OperatorDetail GetOperatorDetail(string id);
 
         #endregion
     }

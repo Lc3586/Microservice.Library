@@ -1,4 +1,5 @@
-﻿using Entity.System;
+﻿using Entity.Public;
+using Entity.System;
 using FreeSql.DataAnnotations;
 using Library.Json.Converters;
 using Library.OpenApi.Annotations;
@@ -177,6 +178,15 @@ namespace Entity.Common
         [JsonIgnore]
         [XmlIgnore]
         public virtual ICollection<System_User> Users { get; set; }
+
+        /// <summary>
+        /// 绑定此微信的会员
+        /// </summary>
+        [Navigate(ManyToMany = typeof(Public_MemberWeChatUserInfo))]
+        [OpenApiIgnore]
+        [JsonIgnore]
+        [XmlIgnore]
+        public virtual ICollection<Public_Member> Members { get; set; }
 
         #endregion
     }

@@ -1,6 +1,5 @@
-﻿using Library.Extension;
-using Library.DataRepository;
-using Library.Models;
+﻿using Library.DataRepository;
+using Library.Extension;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -141,12 +140,12 @@ namespace Library.DataAccess
 
             return this;
         }
-        public List<T> GetPagination(Pagination pagination)
+        public List<T> GetPagination(IDataRepositoryPagination pagination)
         {
-            pagination.records = Count();
-            _source = _source.OrderBy($"{pagination.sidx} {pagination.sord}");
+            pagination.RecordCount = Count();
+            _source = _source.OrderBy($"{pagination.SortField} {pagination.SortType}");
 
-            return Skip((pagination.page - 1) * pagination.rows).Take(pagination.rows).ToList();
+            return Skip((pagination.PageIndex - 1) * pagination.PageRows).Take(pagination.PageRows).ToList();
         }
         private List<dynamic> GetStatisData(Func<IQueryable, dynamic> access, IQueryable<T> newSource = null)
         {

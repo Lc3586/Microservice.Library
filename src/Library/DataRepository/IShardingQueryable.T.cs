@@ -1,5 +1,4 @@
-﻿using Library.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
@@ -17,7 +16,7 @@ namespace Library.DataRepository
         IShardingQueryable<T> OrderByDescending<TKey>(Expression<Func<T, TKey>> keySelector);
         IShardingQueryable<T> OrderBy(string ordering, params object[] values);
         T FirstOrDefault();
-        List<T> GetPagination(Pagination pagination);
+        List<T> GetPagination(IDataRepositoryPagination pagination);
         bool Any(Expression<Func<T, bool>> predicate);
         TResult Max<TResult>(Expression<Func<T, TResult>> selector);
         TResult Min<TResult>(Expression<Func<T, TResult>> selector);

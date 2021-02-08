@@ -1,4 +1,4 @@
-﻿using Library.Models;
+﻿using Library.Extension.Model;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -107,12 +107,21 @@ namespace Library.Extension
         /// </summary>
         /// <typeparam name="T">泛型</typeparam>
         /// <param name="iEnumberable">数据源</param>
-        /// <param name="pagination">分页参数</param>
+        /// <param name="recordCount">总数据量(不分页)</param>
+        /// <param name="pageIndex">指定页码</param>
+        /// <param name="pageRows">每页数据量</param>
+        /// <param name="sortField">排序字段</param>
+        /// <param name="sortType">排序类型(desc,asc)</param>
         /// <returns></returns>
-        public static IEnumerable<T> GetPagination<T>(this IEnumerable<T> iEnumberable, Pagination pagination)
+        public static IEnumerable<T> GetPagination<T>(this IEnumerable<T> iEnumberable, out int recordCount, int? pageIndex = null, int? pageRows = null, string sortField = null, string sortType = "asc")
         {
-            pagination.RecordCount = iEnumberable.Count();
-            return iEnumberable.AsQueryable().OrderBy($@"{pagination.SortField} {pagination.SortType}").Skip((pagination.page - 1) * pagination.rows).Take(pagination.rows).ToList();
+            recordCount = iEnumberable.Count();
+            var query = iEnumberable.AsQueryable();
+            if (sortField != null)
+                query = query.OrderBy($@"{sortField} {sortType ?? "asc"}");
+            if (pageIndex != null)
+                query = query.Skip((pageIndex.Value - 1) * pageRows.Value).Take(pageRows.Value);
+            return query.ToList();
         }
 
         /// <summary>
@@ -143,6 +152,34 @@ namespace Library.Extension
             });
 
             return resData;
+        }
+        /// <summary>
+        /// 获取所有子节点
+        /// 注：包括自己
+        /// </summary>
+        /// <typeparam name="T">节点类型</typeparam>
+        /// <param name="allNodes">所有节点</param>
+        /// <param name="parentNode">父节点</param>
+        /// <param name="includeSelf">是否包括自己</param>
+        /// <returns></returns>
+        public static List<T> GetChildren<T>(this List<T> allNodes, T parentNode, bool includeSelf) where T : TreeModel
+        {
+            List<T> resList = new List<T>();
+            if (includeSelf)
+                resList.Add(parentNode);
+            _getChildren(allNodes, parentNode, resList);
+
+            return resList;
+
+            void _getChildren(List<T> _allNodes, T _parentNode, List<T> _resNodes)
+            {
+                var children = _allNodes.Where(x => x.ParentId == _parentNode.Id).ToList();
+                _resNodes.AddRange(children);
+                children.ForEach(aChild =>
+                {
+                    _getChildren(_allNodes, aChild, _resNodes);
+                });
+            }
         }
 
         /// <summary>

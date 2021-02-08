@@ -3,13 +3,9 @@ using Library.Http;
 using Library.WeChat.Application;
 using Library.WeChat.Model;
 using Microsoft.AspNetCore.Http;
-using Senparc.NeuChar.App.AppStore;
 using Senparc.Weixin.MP.AdvancedAPIs.OAuth;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Library.WeChat.Extension
@@ -50,7 +46,8 @@ namespace Library.WeChat.Extension
                 $"&redirect_uri={Options.WeChatOAuthOptions.WebRootUrl}{redirect_uri}" +
                 $"&response_type=code" +
                 $"&scope={scope}" +
-                $"&state={(context.Request.Query.ContainsKey("state") ? context.Request.Query["state"].ToString() : Guid.NewGuid().ToString().Replace("-", ""))}#wechat_redirect");
+                $"&state={(context.Request.Query.ContainsKey("state") ? context.Request.Query["state"].ToString() : Guid.NewGuid().ToString().Replace("-", ""))}" +
+                $"#wechat_redirect");
         }
 
         OAuthAccessTokenReply GetAccessToken(string code, string grant_type)
@@ -121,7 +118,13 @@ namespace Library.WeChat.Extension
                         var code = context.Request.Query["code"].ToString();
                         var result = GetAccessToken(code, "authorization_code");
 
-                        await Handler.Handler(context, Options.WeChatBaseOptions.AppId, result.openid, result.scope).ConfigureAwait(false);
+                        await Handler.Handler(
+                                context,
+                                Options.WeChatBaseOptions.AppId,
+                                result.openid,
+                                result.scope,
+                                context.Request.Query.ContainsKey("state") ? context.Request.Query["state"].ToString() : null
+                            ).ConfigureAwait(false);
                     }
                     else if (context.Request.Path.Equals(OAuthUserInfoRedirectUri))
                     {
@@ -130,7 +133,12 @@ namespace Library.WeChat.Extension
 
                         var userinfo = GetUserInfo(result.access_token, result.openid);
 
-                        await Handler.Handler(context, Options.WeChatBaseOptions.AppId, userinfo).ConfigureAwait(false);
+                        await Handler.Handler(
+                                context,
+                                Options.WeChatBaseOptions.AppId,
+                                userinfo,
+                                context.Request.Query.ContainsKey("state") ? context.Request.Query["state"].ToString() : null
+                            ).ConfigureAwait(false);
                     }
                 }
 

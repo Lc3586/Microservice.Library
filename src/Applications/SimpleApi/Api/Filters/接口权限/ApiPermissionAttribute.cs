@@ -5,6 +5,7 @@ using Library.Http;
 using Library.Container;
 using Library.Models;
 using Model.System;
+using Model.System.Config;
 
 namespace Api
 {
@@ -25,7 +26,7 @@ namespace Api
                 return;
             if (Config.RunMode == RunMode.LocalTest)
                 return;
-            if (Operator.IsAdmin())
+            if (Operator.IsAdmin)
                 return;
 
             //验证权限

@@ -1,5 +1,4 @@
 ﻿using Library.Extension;
-using Library.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,44 +17,17 @@ namespace Library.DataRepository
         /// <summary>
         /// 获取分页后的数据
         /// </summary>
-        /// <typeparam name="T">实体参数</typeparam>
-        /// <param name="source">IQueryable数据源</param>
-        /// <param name="pageIndex">当前页</param>
-        /// <param name="pageRows">每页行数</param>
-        /// <param name="orderColumn">排序列</param>
-        /// <param name="orderType">排序类型</param>
-        /// <param name="count">总记录数</param>
-        /// <param name="pages">总页数</param>
-        /// <returns></returns>
-        public static IQueryable<T> GetPagination<T>(this IQueryable<T> source, int pageIndex, int pageRows, string orderColumn, SortType orderType, ref int count, ref int pages)
-        {
-            Pagination pagination = new Pagination
-            {
-                page = pageIndex,
-                rows = pageRows,
-                sord = orderType,
-                sidx = orderColumn
-            };
-
-            return source.GetPagination(pagination);
-        }
-
-        /// <summary>
-        /// 获取分页后的数据
-        /// </summary>
         /// <typeparam name="T">实体类型</typeparam>
         /// <param name="source">数据源IQueryable</param>
         /// <param name="pagination">分页参数</param>
         /// <returns></returns>
-        public static IQueryable<T> GetPagination<T>(this IQueryable<T> source, Pagination pagination)
+        public static IQueryable<T> GetPagination<T>(this IQueryable<T> source, IDataRepositoryPagination pagination)
         {
-            if (!pagination.FilterToLinqDynamic(ref source))
-                throw new MessageException("搜索条件不支持");
-            pagination.RecordCount = source.Count();
-            if (!pagination.OrderByToLinqDynamic(ref source))
-                throw new MessageException("排序条件不支持");
+            pagination.DataRepositoryFilter(source);
+            pagination.DataRepositoryRecordCount = source.Count();
+            pagination.DataRepositoryOrderBy(source);
             //source = source.OrderBy(pagination.SortField, pagination.SortType);
-            return source.Skip((pagination.PageIndex - 1) * pagination.PageRows).Take(pagination.PageRows);
+            return source.Skip((pagination.DataRepositoryPageIndex - 1) * pagination.DataRepositoryPageRows).Take(pagination.DataRepositoryPageRows);
         }
 
         /// <summary>

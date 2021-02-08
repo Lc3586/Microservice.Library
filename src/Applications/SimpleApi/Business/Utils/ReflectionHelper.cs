@@ -1,9 +1,9 @@
-﻿using Library.Models;
+﻿using Library.Extension;
+using Microsoft.AspNetCore.Http;
+using Model.System;
 using System;
 using System.Collections.Generic;
-using Library.Extension;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 
 namespace Business.Utils
 {

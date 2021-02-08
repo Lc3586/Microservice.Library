@@ -1,9 +1,9 @@
 ﻿using Business.Interface.System;
 using Library.Container;
 using Library.Extension;
-using Library.Models;
 using Model.System;
 using Model.System.Config;
+using Model.System.Pagination;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic.Core;
@@ -92,9 +92,11 @@ namespace Business.Utils
         /// <param name="query">数据源IQueryable</param>
         /// <param name="pagination">分页参数</param>
         /// <returns></returns>
-        public List<U> GetPagination<U>(IQueryable<U> query, Pagination pagination)
+        public List<U> GetPagination<U>(IQueryable<U> query, PaginationDTO pagination)
         {
-            return query.GetPagination(pagination).ToList();
+            var result = query.GetPagination(out int recordCount, pagination.PageIndex, pagination.PageRows, pagination.SortField, pagination.SortType.ToString()).ToList();
+            pagination.RecordCount = recordCount;
+            return result;
         }
 
         /// <summary>
@@ -109,9 +111,9 @@ namespace Business.Utils
         /// <param name="count">总记录数</param>
         /// <param name="pages">总页数</param>
         /// <returns></returns>
-        public List<U> GetPagination<U>(IQueryable<U> query, int pageIndex, int pageRows, string orderColumn, Library.Models.SortType orderType, ref int count, ref int pages)
+        public List<U> GetPagination<U>(IQueryable<U> query, int pageIndex, int pageRows, string orderColumn, Model.System.Pagination.SortType orderType, ref int count, ref int pages)
         {
-            Pagination pagination = new Pagination
+            PaginationDTO pagination = new PaginationDTO
             {
                 PageIndex = pageIndex,
                 PageRows = pageRows,
@@ -121,7 +123,7 @@ namespace Business.Utils
             pagination.RecordCount = count = query.Count();
             pages = (int)pagination.PageCount;
 
-            return query.GetPagination(pagination).ToList();
+            return GetPagination(query, pagination).ToList();
         }
 
         #endregion

@@ -14,5 +14,7 @@ namespace Model.System
         public const string 管理员 = "管理员";
 
         public const string 业务员 = "业务员";
+
+        public const string 会员 = "会员";
     }
 }

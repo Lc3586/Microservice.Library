@@ -1,5 +1,5 @@
-﻿using Library.Container;
-using Model.System.UserDTO;
+﻿using Model.Common;
+using System.Collections.Generic;
 
 namespace Business.Interface.System
 {
@@ -14,9 +14,15 @@ namespace Business.Interface.System
         string UserId { get; }
 
         /// <summary>
-        /// 用户信息
+        /// 用户类型
         /// </summary>
-        Authorities Property { get; }
+        /// <remarks><see cref="Model.System.UserType"/></remarks>
+        string UserType { get; }
+
+        /// <summary>
+        /// 详细信息
+        /// </summary>
+        OperatorDetail Detail { get; }
 
         /// <summary>
         /// 判断是否为管理员

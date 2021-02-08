@@ -437,24 +437,29 @@
             <param name="isThrow">抛出异常</param>
             <returns></returns>
         </member>
-        <member name="M:Library.Elasticsearch.ElasticsearchClient.SearchPaging``1(System.String[],System.Func{Nest.QueryContainerDescriptor{``0},Nest.QueryContainer},Library.Models.Pagination,System.Int32,System.Boolean)">
+        <member name="M:Library.Elasticsearch.ElasticsearchClient.SearchPaging``1(System.Int64@,System.String[],System.Func{Nest.QueryContainerDescriptor{``0},Nest.QueryContainer},System.Func{Nest.SortDescriptor{``0},Nest.IPromise{System.Collections.Generic.IList{Nest.ISort}}},System.Nullable{System.Int32},System.Nullable{System.Int32},System.Int32,System.Boolean)">
             <summary>
             查询(分页)
             </summary>
+            <param name="recordCount">总数据量(不分页)</param>
             <param name="Indices">指定索引(null:默认，[]:全部,["i_0","i_1","i_2"]:指定)</param>
             <param name="query"></param>
-            <param name="pagination">分页设置(仅支持在数据量小于等于10000时进行分页)</param>
+            <param name="sort">排序</param>
+            <param name="pageIndex">指定页码(仅支持在数据量小于等于10000时进行分页)</param>
+            <param name="pageRows">每页数据量</param>
             <param name="time">快照保存时间(秒,默认60)</param>
             <param name="isThrow">抛出异常</param>
             <returns></returns>
         </member>
-        <member name="M:Library.Elasticsearch.ElasticsearchClient.SearchPagingWithSql``1(System.String[],System.String,Library.Models.Pagination,System.Int32,System.Boolean)">
+        <member name="M:Library.Elasticsearch.ElasticsearchClient.SearchPagingWithSql``1(System.Int64@,System.String[],System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Int32,System.Boolean)">
             <summary>
             查询(分页)(sql)
             </summary>
+            <param name="recordCount">总数据量(不分页)</param>
             <param name="Indices">指定索引(null:默认，[]:全部,["i_0","i_1","i_2"]:指定)</param>
             <param name="query">sql查询语句</param>
-            <param name="pagination">分页设置(仅支持在数据量小于等于10000时进行分页)</param>
+            <param name="pageIndex">指定页码(仅支持在数据量小于等于10000时进行分页)</param>
+            <param name="pageRows">每页数据量</param>
             <param name="time">快照保存时间(秒,默认60)</param>
             <param name="isThrow">抛出异常</param>
             <returns></returns>

@@ -1,12 +1,6 @@
 ﻿using Entity.System;
 using Library.DataMapping.Annotations;
-using Library.DataMapping.Application;
 using Library.OpenApi.Annotations;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 
 /* 
  * 系统日志模型

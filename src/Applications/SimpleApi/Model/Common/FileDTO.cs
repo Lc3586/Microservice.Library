@@ -1,13 +1,12 @@
 ﻿using Entity.Common;
-using Library.OpenApi.Annotations;
 using Library.DataMapping.Annotations;
 using Library.DataMapping.Application;
-using System;
+using Library.OpenApi.Annotations;
 using Microsoft.AspNetCore.Http;
 
-/// <summary>
-/// 文件信息业务模型
-/// </summary>
+/* 
+ * 文件信息业务模型
+ */
 namespace Model.Common.FileDTO
 {
     /// <summary>

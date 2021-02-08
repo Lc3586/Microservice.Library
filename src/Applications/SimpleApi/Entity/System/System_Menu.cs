@@ -221,7 +221,7 @@ namespace Entity.System
         [OpenApiIgnore]
         [JsonIgnore]
         [XmlIgnore]
-        public virtual ICollection<System_Role> Role { get; set; }
+        public virtual ICollection<System_Role> Roles { get; set; }
 
         #endregion
     }
