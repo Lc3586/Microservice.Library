@@ -351,3 +351,4 @@ MigrationBackup/
 EmptyConsole
 /src/Integrate_EF/Integrate_Api/appsettings.json
 /src/Integrate_FreeSql/Integrate_Api/appsettings.json
+/src/Applications/SimpleApi/Api/appsettings.json
