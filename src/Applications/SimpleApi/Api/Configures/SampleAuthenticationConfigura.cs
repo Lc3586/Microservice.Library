@@ -1,17 +1,12 @@
 ﻿using Library.Container;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc.Authorization;
-using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Model.System.Config;
 using System;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Api.Configures
 {
@@ -39,69 +34,32 @@ namespace Api.Configures
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddCookie(options =>
             {
-                //options.Cookie.Name = ".Cas";
-                options.LoginPath = new PathString("/casLogin");
-                options.AccessDeniedPath = new PathString("/casAccess-Denied");
-                options.LogoutPath = new PathString("/casLogout");
+                //options.Cookie.Name = ".SampleAuthentication";
                 options.Cookie.SameSite = SameSiteMode.Strict;
+                options.LogoutPath = new PathString();
 
                 options.SessionStore = AutofacHelper.GetScopeService<ITicketStore>();
                 options.Events = new CookieAuthenticationEvents
                 {
                     OnRedirectToLogin = context =>
                     {
-                        if (context.Request.Path.Value.Equals("/casLogin", StringComparison.OrdinalIgnoreCase)
-                            || (context.Request.Path.Value.Equals("/casAuthorize", StringComparison.OrdinalIgnoreCase)
-                                && context.Request.Method.Equals(System.Net.Http.HttpMethod.Get.Method, StringComparison.OrdinalIgnoreCase)))
-                        {
-                            context.Response.Redirect($"{options.LoginPath}?returnUrl={context.Request.Path.Value}{context.Request.QueryString}");
-                            return Task.CompletedTask;
-                        }
-                        else
-                        {
-                            Console.WriteLine("输出未登录提示");
-                            context.Response.StatusCode = StatusCodes.Status401Unauthorized;
-                            context.Response.WriteAsync("未登录");
-                            return context.Response.CompleteAsync();
-                        }
+                        Console.WriteLine("输出未登录提示.");
+                        context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                        context.Response.WriteAsync("未登录.");
+                        return context.Response.CompleteAsync();
                     },
-                    //OnSignedIn = context =>
-                    //{
-                    //    var id = context.Principal.Claims?.FirstOrDefault(t => t.Type == "id").Value;
-                    //    UserBusiness.RemoveCache(id);
-                    //    context.Response.Cookies.Append(".Cas", context.Request.Cookies[".AspNetCore.Cookies"]);
-                    //    return Task.CompletedTask;
-                    //},
-                    OnSigningOut = context =>
+                    OnRedirectToAccessDenied = context =>
                     {
-                        if (context.HttpContext.User.Identity.IsAuthenticated)
-                        {
-                            var id = context.HttpContext.User.Claims?.FirstOrDefault(t => t.Type == "id").Value;
-
-                        }
-
-                        // Single Sign-Out
-                        var casUrl = new Uri(config.CASBaseUrl);
-                        var links = context.HttpContext.RequestServices.GetRequiredService<LinkGenerator>();
-                        //var serviceUrl = links.GetUriByPage(context.HttpContext, "");
-                        var redirectUri = UriHelper.BuildAbsolute(
-                            casUrl.Scheme,
-                            new HostString(casUrl.Host, casUrl.Port),
-                            casUrl.LocalPath, "/logout",
-                            QueryString.Create("service", config.WebRootUrl));
-
-                        var logoutRedirectContext = new RedirectContext<CookieAuthenticationOptions>(
-                            context.HttpContext,
-                            context.Scheme,
-                            context.Options,
-                            context.Properties,
-                            redirectUri
-                        );
-                        context.Response.StatusCode = 204; //Prevent RedirectToReturnUrl
-                        context.Options.Events.RedirectToLogout(logoutRedirectContext);
-                        return Task.CompletedTask;
+                        Console.WriteLine("输出禁止访问提示.");
+                        context.Response.StatusCode = StatusCodes.Status403Forbidden;
+                        context.Response.WriteAsync("禁止访问.");
+                        return context.Response.CompleteAsync();
                     }
                 };
+            })
+            .AddSampleAuthentication(options =>
+            {
+
             });
 
             return services;

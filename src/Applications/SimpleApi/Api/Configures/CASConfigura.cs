@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc.Authorization;
-using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Model.System.Config;
 using System;
@@ -92,8 +91,6 @@ namespace Api.Configures
 
                         // Single Sign-Out
                         var casUrl = new Uri(config.CASBaseUrl);
-                        var links = context.HttpContext.RequestServices.GetRequiredService<LinkGenerator>();
-                        //var serviceUrl = links.GetUriByPage(context.HttpContext, "");
                         var redirectUri = UriHelper.BuildAbsolute(
                             casUrl.Scheme,
                             new HostString(casUrl.Host, casUrl.Port),

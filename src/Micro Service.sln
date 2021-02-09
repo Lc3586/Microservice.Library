@@ -144,6 +144,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.NLogger", "Library\NLogger\Library.NLogger.csproj", "{CEF43F1B-6E34-4A86-B0A6-9EDD323F38DA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleAuthentication", "Library\SampleAuthentication\SampleAuthentication.csproj", "{87DDFCC0-8929-447D-A67B-E3AA9200B302}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -648,6 +650,14 @@ Global
 		{CEF43F1B-6E34-4A86-B0A6-9EDD323F38DA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CEF43F1B-6E34-4A86-B0A6-9EDD323F38DA}.Release|x64.ActiveCfg = Release|x64
 		{CEF43F1B-6E34-4A86-B0A6-9EDD323F38DA}.Release|x64.Build.0 = Release|x64
+		{87DDFCC0-8929-447D-A67B-E3AA9200B302}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87DDFCC0-8929-447D-A67B-E3AA9200B302}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87DDFCC0-8929-447D-A67B-E3AA9200B302}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{87DDFCC0-8929-447D-A67B-E3AA9200B302}.Debug|x64.Build.0 = Debug|Any CPU
+		{87DDFCC0-8929-447D-A67B-E3AA9200B302}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87DDFCC0-8929-447D-A67B-E3AA9200B302}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87DDFCC0-8929-447D-A67B-E3AA9200B302}.Release|x64.ActiveCfg = Release|Any CPU
+		{87DDFCC0-8929-447D-A67B-E3AA9200B302}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -713,6 +723,7 @@ Global
 		{9050304D-B631-42B6-9421-E7C66B44239B} = {C4617FDC-AF14-4157-8A2E-9F34736DB6E8}
 		{B9A8AE41-E43F-4230-9227-428D3B05B5B8} = {C4617FDC-AF14-4157-8A2E-9F34736DB6E8}
 		{CEF43F1B-6E34-4A86-B0A6-9EDD323F38DA} = {A3BD36CB-6A3A-44B3-A6B7-7B4595BC0C71}
+		{87DDFCC0-8929-447D-A67B-E3AA9200B302} = {A3BD36CB-6A3A-44B3-A6B7-7B4595BC0C71}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6AE2931D-D34E-47E1-B261-FE37D79E56C0}
