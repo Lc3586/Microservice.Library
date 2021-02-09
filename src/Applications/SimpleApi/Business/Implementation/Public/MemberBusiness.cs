@@ -179,11 +179,11 @@ namespace Business.Implementation.Public
             return result;
         }
 
-        public void Create(Create data, bool withOP = true)
+        public void Create(Create data, bool runTransaction = true, bool withOP = true)
         {
             var newData = Mapper.Map<Public_Member>(data).InitEntity();
 
-            (bool success, Exception ex) = Orm.RunTransaction(() =>
+            Action handler = () =>
             {
                 Repository.Insert(newData);
 
@@ -193,10 +193,17 @@ namespace Business.Implementation.Public
                     DataId = newData.Id,
                     Explain = $"创建会员[账号 {newData.Account}, 昵称 {newData.Nickname}, 姓名 {newData.Name}]."
                 }, withOP);
-            });
+            };
 
-            if (!success)
-                throw new ApplicationException("创建会员失败.", ex);
+            if (runTransaction)
+            {
+                (bool success, Exception ex) = Orm.RunTransaction(handler);
+
+                if (!success)
+                    throw new ApplicationException("创建会员失败.", ex);
+            }
+            else
+                handler.Invoke();
         }
 
         public Edit GetEdit(string id)
@@ -208,7 +215,7 @@ namespace Business.Implementation.Public
             return result;
         }
 
-        public void Edit(Edit data, bool withOP = true)
+        public void Edit(Edit data, bool runTransaction = true, bool withOP = true)
         {
             var editData = Mapper.Map<Public_Member>(data).ModifyEntity();
 
@@ -218,7 +225,7 @@ namespace Business.Implementation.Public
                                        entity.GetPropertyValueChangeds<Public_Member, Edit>(editData)
                                             .Select(p => $"\r\n\t {p.Description}：{p.FormerValue} 更改为 {p.CurrentValue}"));
 
-            (bool success, Exception ex) = Orm.RunTransaction(() =>
+            Action handler = () =>
             {
                 var orId = OperationRecordBusiness.Create(new Common_OperationRecord
                 {
@@ -233,10 +240,17 @@ namespace Business.Implementation.Public
                       .UpdateColumns(typeof(Edit).GetNamesWithTagAndOther(false, "_Edit").ToArray())
                       .ExecuteAffrows() <= 0)
                     throw new ApplicationException("修改会员失败.");
-            });
+            };
 
-            if (!success)
-                throw ex;
+            if (runTransaction)
+            {
+                (bool success, Exception ex) = Orm.RunTransaction(handler);
+
+                if (!success)
+                    throw new ApplicationException("修改会员失败.", ex);
+            }
+            else
+                handler.Invoke();
         }
 
         public void Delete(List<string> ids)

@@ -168,6 +168,11 @@
             链接或Base64字符串
             </summary>
         </member>
+        <member name="P:Model.Common.FileDTO.ImageUploadParams.Download">
+            <summary>
+            下载外链资源链接
+            </summary>
+        </member>
         <member name="P:Model.Common.FileDTO.ImageUploadParams.Save2Db">
             <summary>
             保存至数据库
@@ -235,6 +240,11 @@
         <member name="P:Model.Common.FileDTO.FileUploadParams.Url">
             <summary>
             外链资源链接
+            </summary>
+        </member>
+        <member name="P:Model.Common.FileDTO.FileUploadParams.Download">
+            <summary>
+            下载外链资源链接
             </summary>
         </member>
         <member name="P:Model.Common.FileDTO.FileUploadParams.Save2Db">
@@ -396,6 +406,11 @@
         <member name="P:Model.Common.WeChatUserInfoDTO.StateInfo.Type">
             <summary>
             类型
+            </summary>
+        </member>
+        <member name="P:Model.Common.WeChatUserInfoDTO.StateInfo.Data">
+            <summary>
+            数据
             </summary>
         </member>
         <member name="P:Model.Common.WeChatUserInfoDTO.StateInfo.RedirectUrl">
@@ -1265,6 +1280,16 @@
             超级管理员Id
             </summary>
         </member>
+        <member name="P:Model.System.Config.SystemConfig.AdminAccount">
+            <summary>
+            超级管理员账号
+            </summary>
+        </member>
+        <member name="P:Model.System.Config.SystemConfig.AdminInitPassword">
+            <summary>
+            超级管理员账号初始化密码
+            </summary>
+        </member>
         <member name="P:Model.System.Config.SystemConfig.ProjectName">
             <summary>
             项目名称
@@ -1314,6 +1339,11 @@
         <member name="P:Model.System.Config.SystemConfig.WorkerId">
             <summary>
             工作ID
+            </summary>
+        </member>
+        <member name="P:Model.System.Config.SystemConfig.EnableSampleAuthentication">
+            <summary>
+            简易身份验证
             </summary>
         </member>
         <member name="P:Model.System.Config.SystemConfig.DefaultLoggerName">

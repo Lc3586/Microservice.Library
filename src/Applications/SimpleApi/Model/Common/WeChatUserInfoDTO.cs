@@ -51,6 +51,11 @@ namespace Model.Common.WeChatUserInfoDTO
         public WeChatStateType Type { get; set; }
 
         /// <summary>
+        /// 数据
+        /// </summary>
+        public Dictionary<string, object> Data { get; set; }
+
+        /// <summary>
         /// 重定向地址
         /// </summary>
         public string RedirectUrl { get; set; }

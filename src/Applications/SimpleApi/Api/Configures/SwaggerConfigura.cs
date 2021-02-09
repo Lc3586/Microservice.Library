@@ -14,14 +14,14 @@ namespace Api.Configures
     /// <summary>
     /// Swagger单文档配置类
     /// </summary>
-    public class SwaggerConfigura
+    public static class SwaggerConfigura
     {
         /// <summary>
-        /// 注册服务
+        /// 注册Swagger服务
         /// </summary>
         /// <param name="services"></param>
         /// <param name="config"></param>
-        public static void RegisterServices(IServiceCollection services, SystemConfig config)
+        public static IServiceCollection RegisterSwagger(this IServiceCollection services, SystemConfig config)
         {
             services.AddSwaggerGen(s =>
             {
@@ -74,14 +74,16 @@ namespace Api.Configures
             .AddMvc()
             //禁用框架结构属性小驼峰命名规则
             .AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
+
+            return services;
         }
 
         /// <summary>
-        /// 配置应用
+        /// 配置Swagger
         /// </summary>
         /// <param name="app"></param>
         /// <param name="config"></param>
-        public static void RegisterApplication(IApplicationBuilder app, SystemConfig config)
+        public static IApplicationBuilder ConfiguraSwagger(this IApplicationBuilder app, SystemConfig config)
         {
             #region 用户语言（展示用，普通项目无需添加此内容）
 
@@ -143,6 +145,8 @@ namespace Api.Configures
 
                 s.RoutePrefix = string.Empty;
             });
+
+            return app;
         }
     }
 }

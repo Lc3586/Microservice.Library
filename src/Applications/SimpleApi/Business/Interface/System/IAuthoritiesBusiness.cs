@@ -321,12 +321,28 @@ namespace Business.Interface.System
         bool UserHasMenu(string userId, string menuId);
 
         /// <summary>
+        /// 用户是否拥有菜单授权
+        /// </summary>
+        /// <param name="userId">用户Id</param>
+        /// <param name="menuUri">菜单链接</param>
+        /// <returns></returns>
+        bool UserHasMenuUri(string userId, string menuUri);
+
+        /// <summary>
         /// 会员是否拥有菜单授权
         /// </summary>
         /// <param name="memberId">会员Id</param>
         /// <param name="menuId">菜单Id</param>
         /// <returns></returns>
         bool MemberHasMenu(string memberId, string menuId);
+
+        /// <summary>
+        /// 会员是否拥有菜单授权
+        /// </summary>
+        /// <param name="memberId">会员Id</param>
+        /// <param name="menuUri">菜单链接</param>
+        /// <returns></returns>
+        bool MemberHasMenuUri(string memberId, string menuUri);
 
         /// <summary>
         /// 用户是否拥有资源授权

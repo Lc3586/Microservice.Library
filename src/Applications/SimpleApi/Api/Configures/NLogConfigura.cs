@@ -12,14 +12,14 @@ namespace Api.Configures
     /// <summary>
     /// NLog配置类
     /// </summary>
-    public class NLoggerConfigura
+    public static class NLogConfigura
     {
         /// <summary>
-        /// 注册服务
+        /// 注册NLog服务
         /// </summary>
         /// <param name="services"></param>
         /// <param name="config"></param>
-        public static void RegisterServices(IServiceCollection services, SystemConfig config)
+        public static IServiceCollection RegisterNLog(this IServiceCollection services, SystemConfig config)
         {
             services.AddNLogger(s =>
             {
@@ -50,16 +50,18 @@ namespace Api.Configures
                 });
             })
             .AddMSLogger();
+
+            return services;
         }
 
         /// <summary>
-        /// 配置应用
+        /// 配置NLog
         /// </summary>
         /// <param name="app"></param>
         /// <param name="config"></param>
-        public static void RegisterApplication(IApplicationBuilder app, SystemConfig config)
+        public static IApplicationBuilder ConfiguraNLog(this IApplicationBuilder app, SystemConfig config)
         {
-
+            return app;
         }
     }
 }

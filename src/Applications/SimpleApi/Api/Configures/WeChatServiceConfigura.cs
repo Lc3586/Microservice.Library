@@ -2,25 +2,20 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Model.System.Config;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Api.Configures
 {
     /// <summary>
     /// 微信配置类
     /// </summary>
-    public class WeChatServiceConfigura
+    public static class WeChatServiceConfigura
     {
         /// <summary>
-        /// 注册服务
+        /// 注册WeChat服务
         /// </summary>
         /// <param name="services"></param>
         /// <param name="config"></param>
-        public static void RegisterServices(IServiceCollection services, SystemConfig config)
+        public static IServiceCollection RegisterWeChat(this IServiceCollection services, SystemConfig config)
         {
             services.AddWeChatService(option =>
             {
@@ -45,17 +40,21 @@ namespace Api.Configures
                 option.WeChatBaseOptions.CertPassword = config.WeChatService.CertPassword;
                 option.WeChatBaseOptions.PemFilePath = config.WeChatService.PemFilePath;
             });
+
+            return services;
         }
 
         /// <summary>
-        /// 配置应用
+        /// 配置WeChat
         /// </summary>
         /// <param name="app"></param>
         /// <param name="config"></param>
-        public static void RegisterApplication(IApplicationBuilder app, SystemConfig config)
+        public static IApplicationBuilder ConfiguraWeChat(this IApplicationBuilder app, SystemConfig config)
         {
             app.UseWeChatTokenVerification();
             app.UseWeChatOAuthV2();
+
+            return app;
         }
     }
 }

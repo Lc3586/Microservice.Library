@@ -9,9 +9,9 @@
             AutoMapper配置类
             </summary>
         </member>
-        <member name="M:Api.Configures.AutoMapperConfigura.RegisterServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.System.Config.SystemConfig)">
+        <member name="M:Api.Configures.AutoMapperConfigura.RegisterAutoMapper(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.System.Config.SystemConfig)">
             <summary>
-            注册服务
+            注册AutoMapper服务
             </summary>
             <param name="services"></param>
             <param name="config"></param>
@@ -21,16 +21,16 @@
             CAS配置类
             </summary>
         </member>
-        <member name="M:Api.Configures.CASConfigura.RegisterServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.System.Config.SystemConfig)">
+        <member name="M:Api.Configures.CASConfigura.RegisterCAS(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.System.Config.SystemConfig)">
             <summary>
-            注册服务
+            注册CAS服务
             </summary>
             <param name="services"></param>
             <param name="config"></param>
         </member>
-        <member name="M:Api.Configures.CASConfigura.RegisterApplication(Microsoft.AspNetCore.Builder.IApplicationBuilder,Model.System.Config.SystemConfig)">
+        <member name="M:Api.Configures.CASConfigura.ConfiguraCAS(Microsoft.AspNetCore.Builder.IApplicationBuilder,Model.System.Config.SystemConfig)">
             <summary>
-            配置应用
+            配置CAS
             注：方法在UseMvc之前
             </summary>
             <param name="app"></param>
@@ -60,9 +60,9 @@
             ES搜索服务配置类
             </summary>
         </member>
-        <member name="M:Api.Configures.ElasticsearchConfigura.RegisterServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.System.Config.SystemConfig)">
+        <member name="M:Api.Configures.ElasticsearchConfigura.RegisterElasticsearch(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.System.Config.SystemConfig)">
             <summary>
-            注册服务
+            注册ES搜索服务
             </summary>
             <param name="services"></param>
             <param name="config"></param>
@@ -72,16 +72,16 @@
             FreeSql配置类
             </summary>
         </member>
-        <member name="M:Api.Configures.FreeSqlConfigura.RegisterServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.System.Config.SystemConfig)">
+        <member name="M:Api.Configures.FreeSqlConfigura.RegisterFreeSql(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.System.Config.SystemConfig)">
             <summary>
-            注册服务
+            注册FreeSql服务
             </summary>
             <param name="services"></param>
             <param name="config"></param>
         </member>
-        <member name="M:Api.Configures.FreeSqlConfigura.RegisterApplication(Microsoft.AspNetCore.Builder.IApplicationBuilder,Model.System.Config.SystemConfig)">
+        <member name="M:Api.Configures.FreeSqlConfigura.ConfiguraFreeSql(Microsoft.AspNetCore.Builder.IApplicationBuilder,Model.System.Config.SystemConfig)">
             <summary>
-            配置应用
+            配置FreeSql
             </summary>
             <param name="app"></param>
             <param name="config"></param>
@@ -91,35 +91,55 @@
             FreeSql多数据库配置类
             </summary>
         </member>
-        <member name="M:Api.Configures.FreeSqlMultiDatabaseConfigura.RegisterServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.System.Config.SystemConfig)">
+        <member name="M:Api.Configures.FreeSqlMultiDatabaseConfigura.RegisterFreeSqlMultiDatabase(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.System.Config.SystemConfig)">
             <summary>
-            注册服务
+            注册FreeSql多数据库服务
             </summary>
             <param name="services"></param>
             <param name="config"></param>
         </member>
-        <member name="M:Api.Configures.FreeSqlMultiDatabaseConfigura.RegisterApplication(Microsoft.AspNetCore.Builder.IApplicationBuilder,Model.System.Config.SystemConfig)">
+        <member name="M:Api.Configures.FreeSqlMultiDatabaseConfigura.ConfiguraFreeSqlMultiDatabase(Microsoft.AspNetCore.Builder.IApplicationBuilder,Model.System.Config.SystemConfig)">
             <summary>
-            配置应用
+            配置FreeSql多数据库服务
             </summary>
             <param name="app"></param>
             <param name="config"></param>
         </member>
-        <member name="T:Api.Configures.NLoggerConfigura">
+        <member name="T:Api.Configures.NLogConfigura">
             <summary>
             NLog配置类
             </summary>
         </member>
-        <member name="M:Api.Configures.NLoggerConfigura.RegisterServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.System.Config.SystemConfig)">
+        <member name="M:Api.Configures.NLogConfigura.RegisterNLog(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.System.Config.SystemConfig)">
             <summary>
-            注册服务
+            注册NLog服务
             </summary>
             <param name="services"></param>
             <param name="config"></param>
         </member>
-        <member name="M:Api.Configures.NLoggerConfigura.RegisterApplication(Microsoft.AspNetCore.Builder.IApplicationBuilder,Model.System.Config.SystemConfig)">
+        <member name="M:Api.Configures.NLogConfigura.ConfiguraNLog(Microsoft.AspNetCore.Builder.IApplicationBuilder,Model.System.Config.SystemConfig)">
             <summary>
-            配置应用
+            配置NLog
+            </summary>
+            <param name="app"></param>
+            <param name="config"></param>
+        </member>
+        <member name="T:Api.Configures.SampleAuthenticationConfigura">
+            <summary>
+            简易身份验证配置类
+            </summary>
+        </member>
+        <member name="M:Api.Configures.SampleAuthenticationConfigura.RegisterSampleAuthentication(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.System.Config.SystemConfig)">
+            <summary>
+            注册简易身份验证服务
+            </summary>
+            <param name="services"></param>
+            <param name="config"></param>
+        </member>
+        <member name="M:Api.Configures.SampleAuthenticationConfigura.ConfiguraSampleAuthentication(Microsoft.AspNetCore.Builder.IApplicationBuilder,Model.System.Config.SystemConfig)">
+            <summary>
+            配置简易身份验证
+            注：方法在UseMvc之前
             </summary>
             <param name="app"></param>
             <param name="config"></param>
@@ -129,16 +149,16 @@
             Soap配置类
             </summary>
         </member>
-        <member name="M:Api.Configures.SoapConfigure.RegisterServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.System.Config.SystemConfig)">
+        <member name="M:Api.Configures.SoapConfigure.RegisterSoap(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.System.Config.SystemConfig)">
             <summary>
-            注册服务
+            注册Soap服务
             </summary>
             <param name="services"></param>
             <param name="config"></param>
         </member>
-        <member name="M:Api.Configures.SoapConfigure.RegisterEndpoint(Microsoft.AspNetCore.Builder.IApplicationBuilder,Model.System.Config.SystemConfig)">
+        <member name="M:Api.Configures.SoapConfigure.ConfiguraSoap(Microsoft.AspNetCore.Builder.IApplicationBuilder,Model.System.Config.SystemConfig)">
             <summary>
-            配置应用
+            配置Soap
             </summary>
             <param name="app"></param>
             <param name="config"></param>
@@ -148,16 +168,16 @@
             Swagger单文档配置类
             </summary>
         </member>
-        <member name="M:Api.Configures.SwaggerConfigura.RegisterServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.System.Config.SystemConfig)">
+        <member name="M:Api.Configures.SwaggerConfigura.RegisterSwagger(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.System.Config.SystemConfig)">
             <summary>
-            注册服务
+            注册Swagger服务
             </summary>
             <param name="services"></param>
             <param name="config"></param>
         </member>
-        <member name="M:Api.Configures.SwaggerConfigura.RegisterApplication(Microsoft.AspNetCore.Builder.IApplicationBuilder,Model.System.Config.SystemConfig)">
+        <member name="M:Api.Configures.SwaggerConfigura.ConfiguraSwagger(Microsoft.AspNetCore.Builder.IApplicationBuilder,Model.System.Config.SystemConfig)">
             <summary>
-            配置应用
+            配置Swagger
             </summary>
             <param name="app"></param>
             <param name="config"></param>
@@ -167,16 +187,16 @@
             Swagger多版本文档配置类
             </summary>
         </member>
-        <member name="M:Api.Configures.SwaggerMultiVersionConfigura.RegisterServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.System.Config.SystemConfig)">
+        <member name="M:Api.Configures.SwaggerMultiVersionConfigura.RegisterSwaggerMultiVersion(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.System.Config.SystemConfig)">
             <summary>
-            注册服务
+            注册Swagger多版本文档服务
             </summary>
             <param name="services"></param>
             <param name="config"></param>
         </member>
-        <member name="M:Api.Configures.SwaggerMultiVersionConfigura.RegisterApplication(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Mvc.ApiExplorer.IApiVersionDescriptionProvider,Model.System.Config.SystemConfig)">
+        <member name="M:Api.Configures.SwaggerMultiVersionConfigura.ConfiguraSwaggerMultiVersion(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Mvc.ApiExplorer.IApiVersionDescriptionProvider,Model.System.Config.SystemConfig)">
             <summary>
-            配置应用
+            配置Swagger多版本文档
             </summary>
             <param name="app"></param>
             <param name="apiVersionDescription"></param>
@@ -187,16 +207,16 @@
             微信配置类
             </summary>
         </member>
-        <member name="M:Api.Configures.WeChatServiceConfigura.RegisterServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.System.Config.SystemConfig)">
+        <member name="M:Api.Configures.WeChatServiceConfigura.RegisterWeChat(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.System.Config.SystemConfig)">
             <summary>
-            注册服务
+            注册WeChat服务
             </summary>
             <param name="services"></param>
             <param name="config"></param>
         </member>
-        <member name="M:Api.Configures.WeChatServiceConfigura.RegisterApplication(Microsoft.AspNetCore.Builder.IApplicationBuilder,Model.System.Config.SystemConfig)">
+        <member name="M:Api.Configures.WeChatServiceConfigura.ConfiguraWeChat(Microsoft.AspNetCore.Builder.IApplicationBuilder,Model.System.Config.SystemConfig)">
             <summary>
-            配置应用
+            配置WeChat
             </summary>
             <param name="app"></param>
             <param name="config"></param>

@@ -20,6 +20,16 @@ namespace Model.System.Config
         public string AdminId { get; set; }
 
         /// <summary>
+        /// 超级管理员账号
+        /// </summary>
+        public string AdminAccount { get; set; }
+
+        /// <summary>
+        /// 超级管理员账号初始化密码
+        /// </summary>
+        public string AdminInitPassword { get; set; }
+
+        /// <summary>
         /// 项目名称
         /// </summary>
         public string ProjectName { get; set; }
@@ -86,6 +96,11 @@ namespace Model.System.Config
         /// 工作ID
         /// </summary>
         public long WorkerId { get; set; }
+
+        /// <summary>
+        /// 简易身份验证
+        /// </summary>
+        public bool EnableSampleAuthentication { get; set; }
 
         #endregion
 

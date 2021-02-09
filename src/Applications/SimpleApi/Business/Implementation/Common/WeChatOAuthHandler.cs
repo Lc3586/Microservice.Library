@@ -37,16 +37,20 @@ namespace Business.Implementation.Common
             IAutoMapperProvider autoMapperProvider,
             IOperationRecordBusiness operationRecordBusiness,
             IMemberBusiness memberBusiness,
-            IUserBusiness userBusiness)
+            IUserBusiness userBusiness,
+            IFileBusiness fileBusiness)
         {
             Orm = freeSqlProvider.GetFreeSql();
             Repository = Orm.GetRepository<Common_WeChatUserInfo, string>();
             Repository_User = Orm.GetRepository<System_User, string>();
+            Repository_UserWeChatUserInfo = Orm.GetRepository<System_UserWeChatUserInfo, string>();
             Repository_Member = Orm.GetRepository<Public_Member, string>();
+            Repository_MemberWeChatUserInfo = Orm.GetRepository<Public_MemberWeChatUserInfo, string>();
             Mapper = autoMapperProvider.GetMapper();
             OperationRecordBusiness = operationRecordBusiness;
             MemberBusiness = memberBusiness;
             UserBusiness = userBusiness;
+            FileBusiness = fileBusiness;
         }
 
         #endregion
@@ -59,7 +63,11 @@ namespace Business.Implementation.Common
 
         IBaseRepository<System_User, string> Repository_User { get; set; }
 
+        IBaseRepository<System_UserWeChatUserInfo, string> Repository_UserWeChatUserInfo { get; set; }
+
         IBaseRepository<Public_Member, string> Repository_Member { get; set; }
+
+        IBaseRepository<Public_MemberWeChatUserInfo, string> Repository_MemberWeChatUserInfo { get; set; }
 
         IMapper Mapper { get; set; }
 
@@ -68,6 +76,8 @@ namespace Business.Implementation.Common
         IMemberBusiness MemberBusiness { get; set; }
 
         IUserBusiness UserBusiness { get; set; }
+
+        IFileBusiness FileBusiness { get; set; }
 
         /// <summary>
         /// 创建微信用户信息
@@ -123,63 +133,189 @@ namespace Business.Implementation.Common
         }
 
         /// <summary>
-        /// 自动创建用户
+        /// 获取微信信息
         /// </summary>
-        /// <param name="userinfo"></param>
-        void CreateUser(OAuthUserInfo userinfo)
+        /// <param name="appId"></param>
+        /// <param name="openId"></param>
+        /// <returns></returns>
+        dynamic GetWeChatUserInfo(string appId, string openId)
         {
-            UserBusiness.Create(new Model.System.UserDTO.Create
+            var info = Repository.Where(o => o.AppId == appId && o.OpenId == openId).ToOne(o => new
             {
-                Account = $"user_{Repository_User.Select.Count():000000}",
-                Nickname = userinfo.nickname,
-                Enable = true,
-                HeadimgUrl = userinfo.headimgurl,
-                Remark = "通过微信自动创建用户账号."
-            }, false);
+                o.Nickname,
+                o.Sex,
+                o.HeadimgUrl
+            });
+
+            if (info == null)
+                throw new ApplicationException("微信信息不存在或已被移除.");
+
+            return info;
         }
 
         /// <summary>
-        /// 更新用户
+        /// 获取会员信息
         /// </summary>
-        /// <param name="userinfo"></param>
-        void UpdateUser(OAuthUserInfo userinfo)
+        /// <param name="memberId">会员Id</param>
+        /// <returns></returns>
+        dynamic GetMember(string memberId)
         {
-            UserBusiness.Edit(new Model.System.UserDTO.Edit
+            var info = Repository_Member.Where(o => o.Id == memberId).ToOne(o => new
             {
-                Nickname = userinfo.nickname,
-                HeadimgUrl = userinfo.headimgurl
-            }, false);
+                o.Id,
+                o.Account,
+                o.Nickname,
+                o.Name
+            });
+
+            return info;
         }
 
         /// <summary>
-        /// 自动创建会员
+        /// 保存外链文件
         /// </summary>
-        /// <param name="userinfo"></param>
-        void CreateMember(OAuthUserInfo userinfo)
+        /// <param name="uri">资源连接</param>
+        /// <param name="fileId">文件Id</param>
+        void SaveFile(string uri, out string fileId)
         {
+            var file = FileBusiness.SingleImage(new Model.Common.FileDTO.ImageUploadParams
+            {
+                UrlOrBase64 = $"{uri.Substring(0, uri.LastIndexOf('/'))}/0",
+                Download = true,
+                IsCompress = true
+            });
+
+            fileId = file.Id;
+        }
+
+        /// <summary>
+        /// 系统用户绑定微信
+        /// </summary>
+        /// <param name="userId">用户ID</param>
+        /// <param name="appId"></param>
+        /// <param name="openId"></param>
+        void BindUser(string userId, string appId, string openId)
+        {
+            var user = Repository_User.Where(o => o.Id == userId).ToOne(o => new
+            {
+                o.Id,
+                o.Account,
+                o.Name
+            });
+
+            if (user == null)
+                throw new ApplicationException("绑定微信失败, 用户不存在或已被移除.");
+
+            (bool success, Exception ex) = Orm.RunTransaction(() =>
+            {
+                var entity = new System_UserWeChatUserInfo
+                {
+                    UserId = user.Id,
+                    WeChatUserInfoId = Repository.Where(o => o.AppId == appId && o.OpenId == openId).ToOne(o => o.Id)
+                };
+
+                Repository_UserWeChatUserInfo.Insert(entity);
+
+                var orId = OperationRecordBusiness.Create(new Common_OperationRecord
+                {
+                    DataType = nameof(System_UserWeChatUserInfo),
+                    DataId = $"{entity.UserId}+{entity.WeChatUserInfoId}",
+                    Explain = $"用户绑定微信[账号 {user.Account}, 姓名 {user.Name}], AppId {appId}, OpenId {openId}]."
+                }, false);
+            });
+
+            if (!success)
+                throw new ApplicationException("绑定微信失败.", ex);
+        }
+
+        /// <summary>
+        /// 会员绑定微信
+        /// </summary>
+        /// <param name="memberId">会员ID</param>
+        /// <param name="appId"></param>
+        /// <param name="openId"></param>
+        /// <param name="autoCreate">会员不存在时自动创建会员</param>
+        void BindMember(string memberId, string appId, string openId, bool autoCreate)
+        {
+            if (string.IsNullOrWhiteSpace(memberId))
+            {
+                if (!autoCreate)
+                    throw new ApplicationException("绑定微信失败, 会员不存在或已被移除.");
+
+                CreateMember(appId, openId);
+            }
+
+            var member = GetMember(memberId);
+
+            if (member == null)
+            {
+                if (!autoCreate)
+                    throw new ApplicationException("绑定微信失败, 会员不存在或已被移除.");
+
+                CreateMember(appId, openId);
+                member = GetMember(memberId);
+            }
+
+            (bool success, Exception ex) = Orm.RunTransaction(() =>
+            {
+                var entity = new Public_MemberWeChatUserInfo
+                {
+                    MemberId = member.Id,
+                    WeChatUserInfoId = Repository.Where(o => o.AppId == appId && o.OpenId == openId).ToOne(o => o.Id)
+                };
+
+                Repository_MemberWeChatUserInfo.Insert(entity);
+
+                var orId = OperationRecordBusiness.Create(new Common_OperationRecord
+                {
+                    DataType = nameof(Public_MemberWeChatUserInfo),
+                    DataId = $"{entity.MemberId}+{entity.WeChatUserInfoId}",
+                    Explain = $"会员绑定微信[账号 {member.Account}, 昵称 {member.Nickname}, 姓名 {member.Name}], AppId {appId}, OpenId {openId}]."
+                }, false);
+            });
+
+            if (!success)
+                throw new ApplicationException("绑定微信失败.", ex);
+        }
+
+        /// <summary>
+        /// 创建会员
+        /// </summary>
+        /// <param name="appId"></param>
+        /// <param name="openId"></param>
+        /// <returns>返回会员信息</returns>
+        void CreateMember(string appId, string openId)
+        {
+            var info = GetWeChatUserInfo(appId, openId);
+            SaveFile(info.HeadimgUrl, out string imgId);
             MemberBusiness.Create(new Model.Public.MemberDTO.Create
             {
                 Account = $"member_{Repository_User.Select.Count():000000000}",
-                Nickname = userinfo.nickname,
-                HeadimgUrl = userinfo.headimgurl,
-                Sex = userinfo.sex == 1 ? "男" : userinfo.sex == 2 ? "女" : null,
+                Nickname = info.Nickname,
+                HeadimgUrl = imgId,
+                Sex = info.Sex == 1 ? "男" : info.Sex == 2 ? "女" : null,
                 Enable = true,
                 Remark = "通过微信自动创建会员账号."
-            }, false);
+            }, false, false);
         }
 
         /// <summary>
-        /// 更新会员
+        /// 更新会员信息
         /// </summary>
-        /// <param name="userinfo"></param>
-        void UpdateMember(OAuthUserInfo userinfo)
+        /// <param name="memberId">会员ID</param>
+        /// <param name="appId"></param>
+        /// <param name="openId"></param>
+        void UpdateMember(string memberId, string appId, string openId)
         {
+            var info = GetWeChatUserInfo(appId, openId);
+            SaveFile(info.HeadimgUrl, out string imgId);
             MemberBusiness.Edit(new Model.Public.MemberDTO.Edit
             {
-                Nickname = userinfo.nickname,
-                HeadimgUrl = userinfo.headimgurl,
-                Sex = userinfo.sex == 1 ? "男" : userinfo.sex == 2 ? "女" : null
-            }, false);
+                Id = memberId,
+                Nickname = info.Nickname,
+                HeadimgUrl = imgId,
+                Sex = info.Sex == 1 ? "男" : info.Sex == 2 ? "女" : null
+            }, true, false);
         }
 
         #endregion
@@ -235,30 +371,45 @@ namespace Business.Implementation.Common
             }
             else if (!Repository.Where(o => o.AppId == appId && o.OpenId == openId && o.Scope == scope).Any())
             {
+                //作用域变更，去更新微信用户信息
+
                 //    if (Repository.UpdateDiy
                 //         .Set(o => o.Scope, scope)
                 //         .Where(o => o.AppId == appId && o.OpenId == openId)
                 //         .ExecuteAffrows() <= 0)
                 //        throw new ApplicationException($"更新微信用户作用域失败, \r\n\topenId: {openId}, \r\n\tscope: {scope}.");
             }
-            else if (Repository.Where(o => o.AppId == appId && o.OpenId == openId
-                 && (
-                     (stateInfo.Type == WeChatStateType.系统用户登录 && o.Users.AsSelect().Any())
-                     || (stateInfo.Type == WeChatStateType.会员登录 && o.Members.AsSelect().Any())))
-                 .Any())
+            else
             {
-                if (stateInfo.Type == WeChatStateType.系统用户登录)
-                    UserBusiness.Login(openId);
-                else if (stateInfo.Type == WeChatStateType.会员登录)
-                    MemberBusiness.Login(openId);
-                else
-                    throw new ApplicationException("用户类型错误.");
+                //检查是否存在绑定关系
+                var checkUserOrMember = stateInfo.Type == WeChatStateType.系统用户登录 || stateInfo.Type == WeChatStateType.系统用户绑定微信;
 
-                context.Response.Redirect(stateInfo.RedirectUrl);
+                if (Repository.Where(o => o.AppId == appId && o.OpenId == openId
+                                        && ((checkUserOrMember && o.Users.AsSelect().Any()) || (!checkUserOrMember && o.Members.AsSelect().Any())))
+                            .Any())
+                {
+                    switch (stateInfo.Type)
+                    {
+                        case WeChatStateType.系统用户登录:
+                            UserBusiness.Login(openId);
+                            break;
+                        case WeChatStateType.会员登录:
+                            MemberBusiness.Login(openId);
+                            break;
+                        case WeChatStateType.系统用户绑定微信:
+                        case WeChatStateType.微信信息同步至会员信息:
+                            goto next;
+                        default:
+                            break;
+                    }
 
-                return;
+                    context.Response.Redirect(stateInfo.RedirectUrl);
+
+                    return;
+                }
             }
 
+            next:
             context.Response.Redirect($"{Config.WeChatService.OAuthUserInfoUrl}?state={state}");
             await Task.FromResult(true);
         }
@@ -281,18 +432,17 @@ namespace Business.Implementation.Common
             switch (stateInfo.Type)
             {
                 case WeChatStateType.系统用户登录:
-                    CreateUser(userinfo);
-                    UserBusiness.Login(userinfo.openid);
+                case WeChatStateType.系统用户绑定微信:
+                    BindUser(stateInfo.Data[nameof(System_User.Id)].ToString(), appId, userinfo.openid);
+                    if (stateInfo.Type == WeChatStateType.系统用户登录)
+                        UserBusiness.Login(userinfo.openid);
                     break;
                 case WeChatStateType.会员登录:
-                    CreateMember(userinfo);
+                    BindMember(stateInfo.Data[nameof(Public_Member.Id)].ToString(), appId, userinfo.openid, false);
                     MemberBusiness.Login(userinfo.openid);
                     break;
-                case WeChatStateType.更新系统用户微信信息:
-                    UpdateUser(userinfo);
-                    break;
-                case WeChatStateType.更新会员微信信息:
-                    UpdateMember(userinfo);
+                case WeChatStateType.微信信息同步至会员信息:
+                    UpdateMember(stateInfo.Data[nameof(Public_Member.Id)].ToString(), appId, userinfo.openid);
                     break;
                 default:
                     break;

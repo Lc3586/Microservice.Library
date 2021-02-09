@@ -8,14 +8,14 @@ namespace Api.Configures
     /// <summary>
     /// FreeSql配置类
     /// </summary>
-    public class FreeSqlConfigura
+    public static class FreeSqlConfigura
     {
         /// <summary>
-        /// 注册服务
+        /// 注册FreeSql服务
         /// </summary>
         /// <param name="services"></param>
         /// <param name="config"></param>
-        public static void RegisterServices(IServiceCollection services, SystemConfig config)
+        public static IServiceCollection RegisterFreeSql(this IServiceCollection services, SystemConfig config)
         {
             services.AddFreeSql(s =>
             {
@@ -55,19 +55,23 @@ namespace Api.Configures
                 s.FreeSqlDbContextOptions.EnableAddOrUpdateNavigateList = true;
                 s.FreeSqlDbContextOptions.EntityAssembly = config.EntityAssembly;
             });
+
+            return services;
         }
 
         /// <summary>
-        /// 配置应用
+        /// 配置FreeSql
         /// </summary>
         /// <param name="app"></param>
         /// <param name="config"></param>
-        public static void RegisterApplication(IApplicationBuilder app, SystemConfig config)
+        public static IApplicationBuilder ConfiguraFreeSql(this IApplicationBuilder app, SystemConfig config)
         {
             //单库预热
             //app.ApplicationServices
             //   .GetService<IFreeSqlProvider>()
             //   .GetFreeSql();
+
+            return app;
         }
     }
 }

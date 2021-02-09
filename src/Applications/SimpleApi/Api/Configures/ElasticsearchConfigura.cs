@@ -9,14 +9,14 @@ namespace Api.Configures
     /// <summary>
     /// ES搜索服务配置类
     /// </summary>
-    public class ElasticsearchConfigura
+    public static class ElasticsearchConfigura
     {
         /// <summary>
-        /// 注册服务
+        /// 注册ES搜索服务
         /// </summary>
         /// <param name="services"></param>
         /// <param name="config"></param>
-        public static void RegisterServices(IServiceCollection services, SystemConfig config)
+        public static IServiceCollection RegisterElasticsearch(this IServiceCollection services, SystemConfig config)
         {
             services.AddElasticsearch(s =>
             {
@@ -26,6 +26,8 @@ namespace Api.Configures
                     else
                         s.ElasticsearchGeneratorOptions.ConnectionSettings = new ConnectionSettings(new StaticConnectionPool(config.ElasticsearchNodes));
             });
+
+            return services;
         }
     }
 }

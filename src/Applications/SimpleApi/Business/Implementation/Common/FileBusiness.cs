@@ -21,6 +21,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Net;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using FileInfo = Model.Common.FileDTO.FileInfo;
@@ -228,6 +229,30 @@ namespace Business.Implementation.Common
 
             if (!option.UrlOrBase64.IsNullOrEmpty())
             {
+                if (option.Download)
+                {
+                    using (var client = new WebClient())
+                    {
+                        result = new FileInfo
+                        {
+                            Name = option.Name ?? Guid.NewGuid().ToString(),
+                            FileType = FileType.图片
+                        };
+
+                        result.FullName = $"{result.Name}.jpg";
+                        result.Suffix = ".jpg";
+                        result.MimeType = "image/jpg";
+
+                        using MemoryStream ms = new MemoryStream();
+                        {
+                            var buffer = client.DownloadData(option.UrlOrBase64);
+                            ms.Write(buffer, 0, buffer.Length);
+                            image = new Bitmap(Image.FromStream(ms));
+                        }
+                        goto next;
+                    }
+                }
+
                 var o = option.UrlOrBase64;
 
                 result = new FileInfo
@@ -255,10 +280,14 @@ namespace Business.Implementation.Common
             }
             else
             {
+                var fullName = option.File.FileName;
+                if (!string.IsNullOrWhiteSpace(option.Name))
+                    fullName = $"{option.Name}.{option.File.FileName[option.File.FileName.LastIndexOf('.')..]}";
+
                 result = new FileInfo
                 {
-                    FullName = option.File.FileName,
-                    Name = option.File.FileName.Substring(0, option.File.FileName.LastIndexOf('.'))
+                    FullName = fullName,
+                    Name = fullName.Substring(0, fullName.LastIndexOf('.'))
                 };
 
                 result.Suffix = option.File.FileName.Replace(result.Name, "").ToLower();
@@ -270,20 +299,21 @@ namespace Business.Implementation.Common
                     option.File.CopyTo(ms);
                     image = new Bitmap(Image.FromStream(ms));
                 }
+            }
 
-                if (option.ToBase64 || option.ToBase64Url)
+            next:
+            if (option.ToBase64 || option.ToBase64Url)
+            {
+                if (option.ToBase64)
                 {
-                    if (option.ToBase64)
-                    {
-                        result.StorageType = StorageType.Base64;
-                        result.Path = ImgHelper.ToBase64String(image);
-                    }
+                    result.StorageType = StorageType.Base64;
+                    result.Path = ImgHelper.ToBase64String(image);
+                }
 
-                    if (option.ToBase64Url)
-                    {
-                        result.StorageType = StorageType.Base64Url;
-                        result.Path = ImgHelper.ToBase64StringUrl(image);
-                    }
+                if (option.ToBase64Url)
+                {
+                    result.StorageType = StorageType.Base64Url;
+                    result.Path = ImgHelper.ToBase64StringUrl(image);
                 }
             }
 
@@ -370,6 +400,11 @@ namespace Business.Implementation.Common
 
             if (!option.Url.IsNullOrEmpty())
             {
+                if (option.Download)
+                {
+                    throw new ApplicationException("暂不支持下载外链文件.");
+                }
+
                 result = new FileInfo
                 {
                     Name = option.Name ?? Guid.NewGuid().ToString(),

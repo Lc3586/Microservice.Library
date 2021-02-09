@@ -119,29 +119,60 @@
             <param name="appId"></param>
             <param name="userinfo"></param>
         </member>
-        <member name="M:Business.Implementation.Common.WeChatOAuthHandler.CreateUser(Senparc.Weixin.MP.AdvancedAPIs.OAuth.OAuthUserInfo)">
+        <member name="M:Business.Implementation.Common.WeChatOAuthHandler.GetWeChatUserInfo(System.String,System.String)">
             <summary>
-            自动创建用户
+            获取微信信息
             </summary>
-            <param name="userinfo"></param>
+            <param name="appId"></param>
+            <param name="openId"></param>
+            <returns></returns>
         </member>
-        <member name="M:Business.Implementation.Common.WeChatOAuthHandler.UpdateUser(Senparc.Weixin.MP.AdvancedAPIs.OAuth.OAuthUserInfo)">
+        <member name="M:Business.Implementation.Common.WeChatOAuthHandler.GetMember(System.String)">
             <summary>
-            更新用户
+            获取会员信息
             </summary>
-            <param name="userinfo"></param>
+            <param name="memberId">会员Id</param>
+            <returns></returns>
         </member>
-        <member name="M:Business.Implementation.Common.WeChatOAuthHandler.CreateMember(Senparc.Weixin.MP.AdvancedAPIs.OAuth.OAuthUserInfo)">
+        <member name="M:Business.Implementation.Common.WeChatOAuthHandler.SaveFile(System.String,System.String@)">
             <summary>
-            自动创建会员
+            保存外链文件
             </summary>
-            <param name="userinfo"></param>
+            <param name="uri">资源连接</param>
+            <param name="fileId">文件Id</param>
         </member>
-        <member name="M:Business.Implementation.Common.WeChatOAuthHandler.UpdateMember(Senparc.Weixin.MP.AdvancedAPIs.OAuth.OAuthUserInfo)">
+        <member name="M:Business.Implementation.Common.WeChatOAuthHandler.BindUser(System.String,System.String,System.String)">
             <summary>
-            更新会员
+            系统用户绑定微信
             </summary>
-            <param name="userinfo"></param>
+            <param name="userId">用户ID</param>
+            <param name="appId"></param>
+            <param name="openId"></param>
+        </member>
+        <member name="M:Business.Implementation.Common.WeChatOAuthHandler.BindMember(System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            会员绑定微信
+            </summary>
+            <param name="memberId">会员ID</param>
+            <param name="appId"></param>
+            <param name="openId"></param>
+            <param name="autoCreate">会员不存在时自动创建会员</param>
+        </member>
+        <member name="M:Business.Implementation.Common.WeChatOAuthHandler.CreateMember(System.String,System.String)">
+            <summary>
+            创建会员
+            </summary>
+            <param name="appId"></param>
+            <param name="openId"></param>
+            <returns>返回会员信息</returns>
+        </member>
+        <member name="M:Business.Implementation.Common.WeChatOAuthHandler.UpdateMember(System.String,System.String,System.String)">
+            <summary>
+            更新会员信息
+            </summary>
+            <param name="memberId">会员ID</param>
+            <param name="appId"></param>
+            <param name="openId"></param>
         </member>
         <member name="T:Business.Implementation.Public.MemberBusiness">
             <summary>
@@ -202,6 +233,11 @@
         <member name="T:Business.Implementation.System.UserBusiness">
             <summary>
             系统用户业务类
+            </summary>
+        </member>
+        <member name="M:Business.Implementation.System.UserBusiness.InitAdmin">
+            <summary>
+            初始化超级管理员账号
             </summary>
         </member>
         <member name="T:Business.Interface.Common.IEntryLogBusiness">
@@ -457,11 +493,12 @@
             <param name="id">Id</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Interface.System.IMemberBusiness.Create(Model.Public.MemberDTO.Create,System.Boolean)">
+        <member name="M:Business.Interface.System.IMemberBusiness.Create(Model.Public.MemberDTO.Create,System.Boolean,System.Boolean)">
             <summary>
             新增
             </summary>
             <param name="data">数据</param>
+            <param name="runTransaction">运行事务（默认运行）</param>
             <param name="withOP">写入操作人信息</param>
             <returns></returns>
         </member>
@@ -472,11 +509,12 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:Business.Interface.System.IMemberBusiness.Edit(Model.Public.MemberDTO.Edit,System.Boolean)">
+        <member name="M:Business.Interface.System.IMemberBusiness.Edit(Model.Public.MemberDTO.Edit,System.Boolean,System.Boolean)">
             <summary>
             编辑
             </summary>
             <param name="data">数据</param>
+            <param name="runTransaction">运行事务（默认运行）</param>
             <param name="withOP">写入操作人信息</param>
             <returns></returns>
         </member>
@@ -804,12 +842,28 @@
             <param name="menuId">菜单Id</param>
             <returns></returns>
         </member>
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.UserHasMenuUri(System.String,System.String)">
+            <summary>
+            用户是否拥有菜单授权
+            </summary>
+            <param name="userId">用户Id</param>
+            <param name="menuUri">菜单链接</param>
+            <returns></returns>
+        </member>
         <member name="M:Business.Interface.System.IAuthoritiesBusiness.MemberHasMenu(System.String,System.String)">
             <summary>
             会员是否拥有菜单授权
             </summary>
             <param name="memberId">会员Id</param>
             <param name="menuId">菜单Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.MemberHasMenuUri(System.String,System.String)">
+            <summary>
+            会员是否拥有菜单授权
+            </summary>
+            <param name="memberId">会员Id</param>
+            <param name="menuUri">菜单链接</param>
             <returns></returns>
         </member>
         <member name="M:Business.Interface.System.IAuthoritiesBusiness.UserHasResources(System.String,System.String)">
@@ -1030,11 +1084,12 @@
             <param name="id">Id</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Interface.System.IRoleBusiness.Create(Model.System.RoleDTO.Create)">
+        <member name="M:Business.Interface.System.IRoleBusiness.Create(Model.System.RoleDTO.Create,System.Boolean)">
             <summary>
             新增
             </summary>
             <param name="data">数据</param>
+            <param name="withOP">写入操作人信息</param>
             <returns></returns>
         </member>
         <member name="M:Business.Interface.System.IRoleBusiness.GetEdit(System.String)">

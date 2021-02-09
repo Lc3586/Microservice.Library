@@ -10,14 +10,14 @@ namespace Api.Configures
     /// <summary>
     /// FreeSql多数据库配置类
     /// </summary>
-    public class FreeSqlMultiDatabaseConfigura
+    public static class FreeSqlMultiDatabaseConfigura
     {
         /// <summary>
-        /// 注册服务
+        /// 注册FreeSql多数据库服务
         /// </summary>
         /// <param name="services"></param>
         /// <param name="config"></param>
-        public static void RegisterServices(IServiceCollection services, SystemConfig config)
+        public static IServiceCollection RegisterFreeSqlMultiDatabase(this IServiceCollection services, SystemConfig config)
         {
             #region 多库
 
@@ -95,19 +95,23 @@ namespace Api.Configures
             });
 
             #endregion
+
+            return services;
         }
 
         /// <summary>
-        /// 配置应用
+        /// 配置FreeSql多数据库服务
         /// </summary>
         /// <param name="app"></param>
         /// <param name="config"></param>
-        public static void RegisterApplication(IApplicationBuilder app, SystemConfig config)
+        public static IApplicationBuilder ConfiguraFreeSqlMultiDatabase(this IApplicationBuilder app, SystemConfig config)
         {
             //多库预热
             //app.ApplicationServices
             //    .GetService<IFreeSqlMultipleProvider<string>>()
             //    .GetAllFreeSql();
+
+            return app;
         }
     }
 }

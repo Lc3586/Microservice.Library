@@ -17,14 +17,14 @@ namespace Api.Configures
     /// <summary>
     /// Swagger多版本文档配置类
     /// </summary>
-    public class SwaggerMultiVersionConfigura
+    public static class SwaggerMultiVersionConfigura
     {
         /// <summary>
-        /// 注册服务
+        /// 注册Swagger多版本文档服务
         /// </summary>
         /// <param name="services"></param>
         /// <param name="config"></param>
-        public static void RegisterServices(IServiceCollection services, SystemConfig config)
+        public static IServiceCollection RegisterSwaggerMultiVersion(this IServiceCollection services, SystemConfig config)
         {
             #region 多版本文档
 
@@ -86,15 +86,17 @@ namespace Api.Configures
             .AddMvc()
             //禁用框架结构属性小驼峰命名规则
             .AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
+
+            return services;
         }
 
         /// <summary>
-        /// 配置应用
+        /// 配置Swagger多版本文档
         /// </summary>
         /// <param name="app"></param>
         /// <param name="apiVersionDescription"></param>
         /// <param name="config"></param>
-        public static void RegisterApplication(IApplicationBuilder app, IApiVersionDescriptionProvider apiVersionDescription, SystemConfig config)
+        public static IApplicationBuilder ConfiguraSwaggerMultiVersion(this IApplicationBuilder app, IApiVersionDescriptionProvider apiVersionDescription, SystemConfig config)
         {
             #region 方言配置（展示用，普通项目无需添加此内容）
 
@@ -165,6 +167,8 @@ namespace Api.Configures
 
                 s.RoutePrefix = string.Empty;
             });
+
+            return app;
         }
     }
 }

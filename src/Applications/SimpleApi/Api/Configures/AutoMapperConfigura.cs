@@ -7,19 +7,21 @@ namespace Api.Configures
     /// <summary>
     /// AutoMapper配置类
     /// </summary>
-    public class AutoMapperConfigura
+    public static class AutoMapperConfigura
     {
         /// <summary>
-        /// 注册服务
+        /// 注册AutoMapper服务
         /// </summary>
         /// <param name="services"></param>
         /// <param name="config"></param>
-        public static void RegisterServices(IServiceCollection services, SystemConfig config)
+        public static IServiceCollection RegisterAutoMapper(this IServiceCollection services, SystemConfig config)
         {
             services.AddAutoMapper(s =>
             {
                 s.AutoMapperGeneratorOptions.Types = TypeHelper.GetTypes(config.AutoMapperAssemblys.ToArray());
             });
+
+            return services;
         }
     }
 }

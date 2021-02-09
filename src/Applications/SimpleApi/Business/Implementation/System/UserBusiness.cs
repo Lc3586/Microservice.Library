@@ -35,10 +35,12 @@ namespace Business.Implementation.System
             IAutoMapperProvider autoMapperProvider,
             IOperationRecordBusiness operationRecordBusiness,
             IAuthoritiesBusiness authoritiesBusiness,
-            IEntryLogBusiness entryLogBusiness)
+            IEntryLogBusiness entryLogBusiness,
+            IRoleBusiness roleBusiness)
         {
             Orm = freeSqlProvider.GetFreeSql();
             Repository = Orm.GetRepository<System_User, string>();
+            Repository_Role = Orm.GetRepository<System_Role, string>();
             Repository_UserRole = Orm.GetRepository<System_UserRole, string>();
             Repository_UserMenu = Orm.GetRepository<System_UserMenu, string>();
             Repository_UserResources = Orm.GetRepository<System_UserResources, string>();
@@ -46,6 +48,7 @@ namespace Business.Implementation.System
             OperationRecordBusiness = operationRecordBusiness;
             AuthoritiesBusiness = authoritiesBusiness;
             EntryLogBusiness = entryLogBusiness;
+            RoleBusiness = roleBusiness;
         }
 
         #endregion
@@ -55,6 +58,8 @@ namespace Business.Implementation.System
         IFreeSql Orm { get; set; }
 
         IBaseRepository<System_User, string> Repository { get; set; }
+
+        IBaseRepository<System_Role, string> Repository_Role { get; set; }
 
         IBaseRepository<System_UserRole, string> Repository_UserRole { get; set; }
 
@@ -69,6 +74,48 @@ namespace Business.Implementation.System
         IAuthoritiesBusiness AuthoritiesBusiness { get; set; }
 
         IEntryLogBusiness EntryLogBusiness { get; set; }
+
+        IRoleBusiness RoleBusiness { get; set; }
+
+        /// <summary>
+        /// 初始化超级管理员账号
+        /// </summary>
+        void InitAdmin()
+        {
+            try
+            {
+                //创建账号
+                Create(new Create
+                {
+                    Account = Config.AdminAccount,
+                    Password = Config.AdminInitPassword,
+                    Enable = true,
+                    Nickname = "超级管理员",
+                    Remark = "系统自动创建超级管理员账号."
+                }, false);
+
+                //创建角色
+                RoleBusiness.Create(new Model.System.RoleDTO.Create
+                {
+                    Name = "超级管理员",
+                    Type = RoleType.超级管理员,
+                    Enable = true,
+                    Remark = "系统自动创建超级管理员角色.",
+                    Code = "000000"
+                });
+
+                //角色授权
+                AuthoritiesBusiness.AuthorizeRoleForUser(new Model.System.AuthorizeDTO.RoleForUser
+                {
+                    UserIds = new List<string> { Repository.Where(o => o.Account == Config.AdminAccount).ToOne(o => o.Id) },
+                    RoleIds = Repository_Role.Where(o => o.Type == $"{RoleType.超级管理员}").ToList(o => o.Id)
+                });
+            }
+            catch (ApplicationException ex)
+            {
+                throw new ApplicationException("初始化超级管理员账号失败.", ex);
+            }
+        }
 
         #endregion
 
@@ -286,7 +333,16 @@ namespace Business.Implementation.System
                 .ToOne(o => new { o.Id, o.Account, o.Name, o.HeadimgUrl, o.Enable, o.Password });
 
             if (user == null)
+            {
+                if (data.Account == Config.AdminAccount && Repository.Select.Count() == 0)
+                {
+                    InitAdmin();
+
+                    throw new ApplicationException("账号已初始化, 请重新登录.");
+                }
+
                 throw new ApplicationException("账号不存在或已被移除.");
+            }
 
             if (!user.Enable)
                 throw new ApplicationException("账号已被禁用.");

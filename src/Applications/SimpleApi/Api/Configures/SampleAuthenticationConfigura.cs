@@ -1,9 +1,4 @@
-﻿using Api.Middleware;
-using GSS.Authentication.CAS;
-using GSS.Authentication.CAS.AspNetCore;
-using GSS.Authentication.CAS.Validation;
-using Library.Container;
-using Library.NLogger.Gen;
+﻿using Library.Container;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -16,22 +11,21 @@ using Microsoft.Extensions.DependencyInjection;
 using Model.System.Config;
 using System;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Api.Configures
 {
     /// <summary>
-    /// CAS配置类
+    /// 简易身份验证配置类
     /// </summary>
-    public static class CASConfigura
+    public static class SampleAuthenticationConfigura
     {
         /// <summary>
-        /// 注册CAS服务
+        /// 注册简易身份验证服务
         /// </summary>
         /// <param name="services"></param>
         /// <param name="config"></param>
-        public static IServiceCollection RegisterCAS(this IServiceCollection services, SystemConfig config)
+        public static IServiceCollection RegisterSampleAuthentication(this IServiceCollection services, SystemConfig config)
         {
             services.AddControllers(options =>
             {
@@ -42,10 +36,6 @@ namespace Api.Configures
                 options.Filters.Add(new AuthorizeFilter(policy));
             });
 
-            services.AddDistributedMemoryCache();
-
-            services.AddSingleton<IServiceTicketStore, DistributedCacheServiceTicketStore>();
-            services.AddSingleton<ITicketStore, TicketStoreWrapper>();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddCookie(options =>
             {
@@ -53,7 +43,7 @@ namespace Api.Configures
                 options.LoginPath = new PathString("/casLogin");
                 options.AccessDeniedPath = new PathString("/casAccess-Denied");
                 options.LogoutPath = new PathString("/casLogout");
-                options.Cookie.SameSite = SameSiteMode.None;
+                options.Cookie.SameSite = SameSiteMode.Strict;
 
                 options.SessionStore = AutofacHelper.GetScopeService<ITicketStore>();
                 options.Events = new CookieAuthenticationEvents
@@ -112,84 +102,19 @@ namespace Api.Configures
                         return Task.CompletedTask;
                     }
                 };
-            })
-            .AddCAS(options =>
-            {
-                options.CasServerUrlBase = config.CASBaseUrl;
-                options.AccessDeniedPath = new PathString("/casAccess-Denied");
-                // required for CasSingleSignOutMiddleware
-                options.SaveTokens = true;
-                var protocolVersion = config.CASProtocolVersion;
-                if (protocolVersion != "3")
-                {
-                    switch (protocolVersion)
-                    {
-                        case "1":
-                            options.ServiceTicketValidator = new Cas10ServiceTicketValidator(options);
-                            break;
-                        case "2":
-                            options.ServiceTicketValidator = new Cas20ServiceTicketValidator(options);
-                            break;
-                        case "custom":
-                            options.ServiceTicketValidator = new CasCustomServiceTicketValidator(options);
-                            break;
-                    }
-                }
-                options.Events = new CasEvents
-                {
-                    OnCreatingTicket = context =>
-                    {
-                        var assertion = context.Assertion;
-                        if (assertion == null)
-                            return Task.CompletedTask;
-                        if (context.Principal.Identity is not ClaimsIdentity identity)
-                            return Task.CompletedTask;
-                        // Map claims from assertion
-                        identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, assertion.PrincipalName));
-
-                        if (assertion.Attributes != null)
-                        {
-                            foreach (var attributes in assertion.Attributes)
-                            {
-                                identity.AddClaim(new Claim(attributes.Key, attributes.Value));
-                            }
-                        }
-                        return Task.CompletedTask;
-                    },
-                    OnRemoteFailure = context =>
-                    {
-                        var failure = context.Failure;
-
-                        var logger = AutofacHelper.GetScopeService<INLoggerProvider>()
-                                                .GetNLogger(config.DefaultLoggerName);
-
-                        logger.Error(failure, failure.Message);
-
-                        context.Response.Redirect("/casExternalLoginFailure");
-                        context.HandleResponse();
-
-                        return Task.CompletedTask;
-                    }
-                };
             });
-
-            //services.AddMvc();
 
             return services;
         }
 
         /// <summary>
-        /// 配置CAS
+        /// 配置简易身份验证
         /// 注：方法在UseMvc之前
         /// </summary>
         /// <param name="app"></param>
         /// <param name="config"></param>
-        public static IApplicationBuilder ConfiguraCAS(this IApplicationBuilder app, SystemConfig config)
+        public static IApplicationBuilder ConfiguraSampleAuthentication(this IApplicationBuilder app, SystemConfig config)
         {
-            //启用单点注销
-            if (config.EnableCasSingleSignOut)
-                app.UseMiddleware<Middleware.CasSingleSignOutMiddleware>();
-
             app.UseAuthentication();
             app.UseAuthorization();
 

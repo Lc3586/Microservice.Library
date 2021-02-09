@@ -1029,9 +1029,24 @@ namespace Business.Implementation.System
                                 .Any();
         }
 
+        public bool UserHasMenuUri(string userId, string menuUri)
+        {
+            return Repository_Menu.Where(o => o.Uri == menuUri
+                                            && (o.Users.AsSelect().Where(p => p.Id == userId).Any()
+                                                || o.Roles.AsSelect().Where(p => p.Users.AsSelect().Where(q => q.Id == userId).Any()).Any()))
+                                .Any();
+        }
+
         public bool MemberHasMenu(string userId, string menuId)
         {
             return Repository_Menu.Where(o => o.Id == menuId
+                                            && o.Roles.AsSelect().Where(p => p.Users.AsSelect().Where(q => q.Id == userId).Any()).Any())
+                                .Any();
+        }
+
+        public bool MemberHasMenuUri(string userId, string menuUri)
+        {
+            return Repository_Menu.Where(o => o.Uri == menuUri
                                             && o.Roles.AsSelect().Where(p => p.Users.AsSelect().Where(q => q.Id == userId).Any()).Any())
                                 .Any();
         }

@@ -33,11 +33,11 @@ namespace Api
             switch (Operator.UserType)
             {
                 case UserType.系统用户:
-                    if (!AuthoritiesBusiness.UserHasResourcesUri(Operator.Id, context.HttpContext.Request.Path.Value?.ToLower()))
+                    if (!AuthoritiesBusiness.UserHasMenuUri(Operator.Id, context.HttpContext.Request.Path.Value?.ToLower()))
                         context.Result = Error("没有权限!", ErrorCode.forbidden);
                     break;
                 case UserType.会员:
-                    if (!AuthoritiesBusiness.MemberHasResourcesUri(Operator.Id, context.HttpContext.Request.Path.Value?.ToLower()))
+                    if (!AuthoritiesBusiness.MemberHasMenuUri(Operator.Id, context.HttpContext.Request.Path.Value?.ToLower()))
                         context.Result = Error("没有权限!", ErrorCode.forbidden);
                     break;
                 default:

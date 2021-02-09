@@ -115,7 +115,7 @@ namespace Business.Implementation.System
         }
 
         [AdministratorOnly]
-        public void Create(Create data)
+        public void Create(Create data, bool withOP = true)
         {
             var newData = Mapper.Map<System_Role>(data).InitEntity();
 
@@ -143,7 +143,7 @@ namespace Business.Implementation.System
                     DataType = nameof(System_Role),
                     DataId = newData.Id,
                     Explain = $"创建角色[名称 {newData.Name}, 类型 {newData.Type}]."
-                });
+                }, withOP);
             });
 
             if (!success)

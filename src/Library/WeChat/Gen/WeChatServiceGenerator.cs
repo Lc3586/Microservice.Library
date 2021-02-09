@@ -1,9 +1,7 @@
 ﻿using Library.WeChat.Application;
 using Library.WeChat.Model;
 using Library.WeChat.Services;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Library.WeChat.Gen
 {

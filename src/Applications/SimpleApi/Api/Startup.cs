@@ -91,24 +91,27 @@ namespace Api
 
             //不是发布模式时，开放swagger接口文档
             if (Config.RunMode != RunMode.Publish)
-                SwaggerConfigura.RegisterServices(services, Config);
+                services.RegisterSwagger(Config);
+
+            if (Config.EnableSampleAuthentication)
+                services.RegisterSampleAuthentication(Config);
 
             if (Config.EnableCAS)
-                CASConfigura.RegisterServices(services, Config);
+                services.RegisterCAS(Config);
 
             if (Config.EnableElasticsearch)
-                ElasticsearchConfigura.RegisterServices(services, Config);
+                services.RegisterElasticsearch(Config);
 
             if (Config.EnableFreeSql)
-                FreeSqlConfigura.RegisterServices(services, Config);
+                services.RegisterFreeSql(Config);
 
             if (Config.EnableAutoMapper)
-                AutoMapperConfigura.RegisterServices(services, Config);
+                services.RegisterAutoMapper(Config);
 
             if (Config.EnableWeChatService)
-                WeChatServiceConfigura.RegisterServices(services, Config);
+                services.RegisterWeChat(Config);
 
-            NLoggerConfigura.RegisterServices(services, Config);
+            services.RegisterNLog(Config);
         }
 
         /// <summary>
@@ -172,13 +175,19 @@ namespace Api
             });
 
             if (Config.RunMode != RunMode.Publish)
-                SwaggerConfigura.RegisterApplication(app, Config);
+                app.ConfiguraSwagger(Config);
+
+            if (Config.EnableSampleAuthentication)
+                app.ConfiguraSampleAuthentication(Config);
 
             if (Config.EnableCAS)
-                CASConfigura.RegisterApplication(app, Config);
+                app.ConfiguraCAS(Config);
 
             if (Config.EnableFreeSql)
-                FreeSqlConfigura.RegisterApplication(app, Config);
+                app.ConfiguraFreeSql(Config);
+
+            if (Config.EnableWeChatService)
+                app.ConfiguraWeChat(Config);
 
             app.UseEndpoints(endpoints =>
             {

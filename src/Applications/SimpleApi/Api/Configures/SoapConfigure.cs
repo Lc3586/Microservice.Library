@@ -15,16 +15,16 @@ namespace Api.Configures
     /// <summary>
     /// Soap配置类
     /// </summary>
-    public class SoapConfigure
+    public static class SoapConfigure
     {
         static SoapServerOptions[] ServerOptions;
 
         /// <summary>
-        /// 注册服务
+        /// 注册Soap服务
         /// </summary>
         /// <param name="services"></param>
         /// <param name="config"></param>
-        public static void RegisterServices(IServiceCollection services, SystemConfig config)
+        public static IServiceCollection RegisterSoap(this IServiceCollection services, SystemConfig config)
         {
             ServerOptions = config.Soaps.Where(w => w.Enable && w.Type == SoapType.Server).Select(w => new SoapServerOptions
             {
@@ -50,16 +50,20 @@ namespace Api.Configures
             //消息拦截器
             services.AddSingleton<IMessageFilter, MessageFilter>();
             //services.AddSingleton<IMessageInspector, MessageInspector>();
+
+            return services;
         }
 
         /// <summary>
-        /// 配置应用
+        /// 配置Soap
         /// </summary>
         /// <param name="app"></param>
         /// <param name="config"></param>
-        public static void RegisterEndpoint(IApplicationBuilder app, SystemConfig config)
+        public static IApplicationBuilder ConfiguraSoap(this IApplicationBuilder app, SystemConfig config)
         {
             app.AddSoapServer(ServerOptions);
+
+            return app;
         }
     }
 }

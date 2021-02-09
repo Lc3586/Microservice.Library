@@ -38,7 +38,7 @@ namespace Entity.Common
         /// </summary>
         [OpenApiSubTag("_List")]
         [Description("数据Id")]
-        [Column(IsNullable = true)]
+        [Column(IsNullable = true, StringLength = 370)]
         public string DataId { get; set; }
 
         /// <summary>

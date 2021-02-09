@@ -50,6 +50,11 @@ namespace Model.Common.FileDTO
         public string UrlOrBase64 { get; set; }
 
         /// <summary>
+        /// 下载外链资源链接
+        /// </summary>
+        public bool Download { get; set; } = false;
+
+        /// <summary>
         /// 保存至数据库
         /// </summary>
         public bool Save2Db { get; set; } = true;
@@ -119,6 +124,11 @@ namespace Model.Common.FileDTO
         /// 外链资源链接
         /// </summary>
         public string Url { get; set; }
+
+        /// <summary>
+        /// 下载外链资源链接
+        /// </summary>
+        public bool Download { get; set; } = false;
 
         /// <summary>
         /// 保存至数据库
