@@ -23,11 +23,15 @@ namespace Api.Configures
         /// <param name="config"></param>
         public static IServiceCollection RegisterSwagger(this IServiceCollection services, SystemConfig config)
         {
+            services.AddMvc()
+                //禁用框架结构属性小驼峰命名规则
+                .AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
+
             services.AddSwaggerGen(s =>
             {
                 #region 配置文档
 
-                s.SwaggerDoc(config.SwaggerApiVersion.Name, new OpenApiInfo
+                s.SwaggerDoc(config.SwaggerApiVersion.Version, new OpenApiInfo
                 {
                     Title = config.SwaggerApiVersion.Title,
                     Version = config.SwaggerApiVersion.Version,
@@ -57,7 +61,8 @@ namespace Api.Configures
 
                 #region 为JSON文件和UI设置xml文档路径
 
-                var basePath = Path.GetDirectoryName(typeof(Program).Assembly.Location);//获取应用程序所在目录（绝对，不受工作目录影响，建议采用此方法获取路径）
+                //获取应用程序所在目录（绝对，不受工作目录影响，建议采用此方法获取路径）
+                var basePath = Path.GetDirectoryName(typeof(Program).Assembly.Location);
                 foreach (var item in config.SwaggerXmlComments)
                 {
                     var xmlPath = Path.Combine(basePath, item);
@@ -70,10 +75,7 @@ namespace Api.Configures
 
                 //启用注解
                 s.EnableAnnotations();
-            })
-            .AddMvc()
-            //禁用框架结构属性小驼峰命名规则
-            .AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
+            });
 
             return services;
         }
@@ -89,6 +91,7 @@ namespace Api.Configures
 
             var supportedCultures = new[]
 {
+                new CultureInfo("zh-CN"),
                 new CultureInfo("en-US"),
                 new CultureInfo("fr"),
                 new CultureInfo("sv-SE"),
@@ -96,7 +99,7 @@ namespace Api.Configures
 
             app.UseRequestLocalization(new RequestLocalizationOptions
             {
-                DefaultRequestCulture = new RequestCulture("en-US"),
+                DefaultRequestCulture = new RequestCulture("zh-CN"),
                 // Formatting numbers, dates, etc.
                 SupportedCultures = supportedCultures,
                 // UI strings that we have localized.
@@ -123,11 +126,11 @@ namespace Api.Configures
             });
             app.UseSwaggerUI(s =>
             {
-                s.SwaggerEndpoint("/swagger/v1.0/swagger.json", "v1.0 文档");
+                s.SwaggerEndpoint($"/swagger/{config.SwaggerApiVersion.Version}/swagger.json", config.SwaggerApiVersion.Name);
 
                 #region 页面自定义选项
 
-                s.DocumentTitle = $"{config.ProjectName}接口文档";//页面标题
+                s.DocumentTitle = config.SwaggerApiVersion.Title;//页面标题
                 s.DisplayOperationId();//显示操作Id
                 s.DisplayRequestDuration();//显示请求持续时间
                 s.EnableFilter();//启用顶部筛选框
@@ -140,6 +143,8 @@ namespace Api.Configures
                 s.InjectJavascript("/swagger/custom-javascript.js");
                 if (config.EnableCAS)
                     s.InjectJavascript("/swagger/casLogin.js");//cas登录脚本脚本
+                if (config.EnableSampleAuthentication)
+                    s.InjectJavascript("/swagger/saLogin.js");//sa登录脚本脚本
 
                 #endregion
 

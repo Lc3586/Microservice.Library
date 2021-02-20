@@ -318,27 +318,27 @@
             角色详情
             </summary>
         </member>
-        <member name="T:Model.Common.OperatorDetail">
+        <member name="T:Model.Common.OperatorUserInfo">
             <summary>
-            操作者详细信息
+            操作者用户信息
             </summary>
         </member>
-        <member name="P:Model.Common.OperatorDetail.Id">
+        <member name="P:Model.Common.OperatorUserInfo.Id">
             <summary>
             标识
             </summary>
         </member>
-        <member name="P:Model.Common.OperatorDetail.Account">
+        <member name="P:Model.Common.OperatorUserInfo.Account">
             <summary>
             账号
             </summary>
         </member>
-        <member name="P:Model.Common.OperatorDetail.Name">
+        <member name="P:Model.Common.OperatorUserInfo.Name">
             <summary>
             姓名
             </summary>
         </member>
-        <member name="P:Model.Common.OperatorDetail.Tel">
+        <member name="P:Model.Common.OperatorUserInfo.Tel">
             <summary>
             电话号码
             </summary>
@@ -733,6 +733,66 @@
             授权给此会员的角色
             </summary>
         </member>
+        <member name="T:Model.SampleAuthentication.SampleAuthenticationDTO.LoginRequest">
+            <summary>
+            登录参数
+            </summary>
+        </member>
+        <member name="P:Model.SampleAuthentication.SampleAuthenticationDTO.LoginRequest.Account">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="P:Model.SampleAuthentication.SampleAuthenticationDTO.LoginRequest.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="T:Model.SampleAuthentication.SampleAuthenticationDTO.AuthenticationInfo">
+            <summary>
+            验证信息
+            </summary>
+        </member>
+        <member name="P:Model.SampleAuthentication.SampleAuthenticationDTO.AuthenticationInfo.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Model.SampleAuthentication.SampleAuthenticationDTO.AuthenticationInfo.UserType">
+            <summary>
+            用户类型
+            </summary>
+        </member>
+        <member name="P:Model.SampleAuthentication.SampleAuthenticationDTO.AuthenticationInfo.Account">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:Model.SampleAuthentication.SampleAuthenticationDTO.AuthenticationInfo.Nickname">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:Model.SampleAuthentication.SampleAuthenticationDTO.AuthenticationInfo.Sex">
+            <summary>
+            性别
+            </summary>
+        </member>
+        <member name="P:Model.SampleAuthentication.SampleAuthenticationDTO.AuthenticationInfo.HeadimgUrl">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="T:Model.SampleAuthentication.SampleAuthenticationDTO.LogoutRequest">
+            <summary>
+            登出参数
+            </summary>
+        </member>
+        <member name="P:Model.SampleAuthentication.SampleAuthenticationDTO.LogoutRequest.ReturnUrl">
+            <summary>
+            登出后跳转地址
+            </summary>
+        </member>
         <member name="T:Model.System.AjaxResult">
             <summary>
             Ajax请求结果
@@ -932,7 +992,7 @@
         </member>
         <member name="P:Model.System.AuthorizeDTO.RoleForUser.All">
             <summary>
-            撤销全部角色
+            全部角色
             </summary>
         </member>
         <member name="T:Model.System.AuthorizeDTO.RoleForMember">
@@ -952,7 +1012,7 @@
         </member>
         <member name="P:Model.System.AuthorizeDTO.RoleForMember.All">
             <summary>
-            撤销全部角色
+            全部角色
             </summary>
         </member>
         <member name="T:Model.System.AuthorizeDTO.MenuForUser">
@@ -972,7 +1032,7 @@
         </member>
         <member name="P:Model.System.AuthorizeDTO.MenuForUser.All">
             <summary>
-            撤销全部菜单
+            全部菜单
             </summary>
         </member>
         <member name="T:Model.System.AuthorizeDTO.ResourcesForUser">
@@ -992,7 +1052,7 @@
         </member>
         <member name="P:Model.System.AuthorizeDTO.ResourcesForUser.All">
             <summary>
-            撤销全部资源
+            全部资源
             </summary>
         </member>
         <member name="T:Model.System.AuthorizeDTO.MenuForRole">
@@ -1012,7 +1072,7 @@
         </member>
         <member name="P:Model.System.AuthorizeDTO.MenuForRole.All">
             <summary>
-            撤销全部菜单
+            全部菜单
             </summary>
         </member>
         <member name="T:Model.System.AuthorizeDTO.ResourcesForRole">
@@ -1032,7 +1092,7 @@
         </member>
         <member name="P:Model.System.AuthorizeDTO.ResourcesForRole.All">
             <summary>
-            撤销全部资源
+            全部资源
             </summary>
         </member>
         <member name="T:Model.System.Config.DatabaseSetting">

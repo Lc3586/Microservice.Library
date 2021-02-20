@@ -72,14 +72,12 @@ namespace Business.Implementation.Common
             return result;
         }
 
-        public string Create(Common_OperationRecord data, bool withOP = true)
+        public string Create(Common_OperationRecord data)
         {
-            if (withOP)
+            if (Operator.IsAuthenticated)
             {
-                var operatorDetail = Operator.Detail;
-
+                var operatorDetail = Operator.UserInfo;
                 data.InitEntity(operatorDetail);
-
                 data.Account = operatorDetail.Account;
                 data.IsAdmin = Operator.IsAdmin;
             }
@@ -91,12 +89,12 @@ namespace Business.Implementation.Common
             return data.Id;
         }
 
-        public List<string> Create(List<Common_OperationRecord> datas, bool withOP = true)
+        public List<string> Create(List<Common_OperationRecord> datas)
         {
-            if (withOP)
+            if (Operator.IsAuthenticated)
             {
                 var isAdmin = Operator.IsAdmin;
-                var operatorDetail = Operator.Detail;
+                var operatorDetail = Operator.UserInfo;
                 datas.ForEach(o =>
                 {
                     o.InitEntity(operatorDetail);

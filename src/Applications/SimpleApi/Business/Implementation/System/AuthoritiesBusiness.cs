@@ -27,9 +27,7 @@ namespace Business.Implementation.System
         public AuthoritiesBusiness(
             IFreeSqlProvider freeSqlProvider,
             IAutoMapperProvider autoMapperProvider,
-            IOperationRecordBusiness operationRecordBusiness,
-            IUserBusiness userBusiness,
-            IRoleBusiness roleBusiness)
+            IOperationRecordBusiness operationRecordBusiness)
         {
             Orm = freeSqlProvider.GetFreeSql();
             Repository_User = Orm.GetRepository<System_User, string>();
@@ -45,7 +43,6 @@ namespace Business.Implementation.System
             Repository_Resources = Orm.GetRepository<System_Resources, string>();
             Mapper = autoMapperProvider.GetMapper();
             OperationRecordBusiness = operationRecordBusiness;
-            RoleBusiness = roleBusiness;
         }
 
         #endregion
@@ -79,8 +76,6 @@ namespace Business.Implementation.System
         IMapper Mapper { get; set; }
 
         IOperationRecordBusiness OperationRecordBusiness { get; set; }
-
-        IRoleBusiness RoleBusiness { get; set; }
 
         private dynamic GetUserWithCheck(string userId)
         {
@@ -145,11 +140,11 @@ namespace Business.Implementation.System
 
         #region 授权
 
-        public void AuthorizeRoleForUser(RoleForUser data)
+        public void AuthorizeRoleForUser(RoleForUser data, bool runTransaction = true)
         {
             var users = data.UserIds.Select(o => GetUserWithCheck(o));
 
-            var roles = Repository_Role.Where(o => data.RoleIds.Contains(o.Id) && o.Enable).ToList(o => new
+            var roles = Repository_Role.Where(o => (data.All == true || data.RoleIds.Contains(o.Id)) && o.Enable).ToList(o => new
             {
                 o.Id,
                 o.Type,
@@ -159,7 +154,7 @@ namespace Business.Implementation.System
             if (!roles.Any())
                 throw new ApplicationException("没有可供授权的角色.");
 
-            (bool success, Exception ex) = Orm.RunTransaction(() =>
+            Action handler = () =>
             {
                 var orId = OperationRecordBusiness.Create(new Common_OperationRecord
                 {
@@ -167,7 +162,7 @@ namespace Business.Implementation.System
                     DataId = null,
                     Explain = $"授权角色给用户.",
                     Remark = $"被授权的用户: \r\n\t{string.Join(",", users.Select(o => $"[账号 {o.Account}, 姓名 {o.Name}]"))}\r\n" +
-                            $"授权的角色: \r\n\t{string.Join(",", roles.Select(o => $"[名称 {o.Name}, 类型 {o.Type}]"))}"
+                             $"授权的角色: \r\n\t{string.Join(",", roles.Select(o => $"[名称 {o.Name}, 类型 {o.Type}]"))}"
                 });
 
                 Repository_UserRole.Insert(roles.SelectMany(o => users.Select(p => new System_UserRole
@@ -175,17 +170,24 @@ namespace Business.Implementation.System
                     UserId = p.Id,
                     RoleId = o.Id
                 })));
-            });
+            };
 
-            if (!success)
-                throw new ApplicationException("授权失败.", ex);
+            if (runTransaction)
+            {
+                (bool success, Exception ex) = Orm.RunTransaction(handler);
+
+                if (!success)
+                    throw new ApplicationException("授权失败.", ex);
+            }
+            else
+                handler.Invoke();
         }
 
         public void AuthorizeRoleForMember(RoleForMember data)
         {
             var members = data.MemberIds.Select(o => GetMemberWithCheck(o));
 
-            var roles = Repository_Role.Where(o => data.RoleIds.Contains(o.Id) && o.Enable).ToList(o => new
+            var roles = Repository_Role.Where(o => (data.All == true || data.RoleIds.Contains(o.Id)) && o.Enable).ToList(o => new
             {
                 o.Id,
                 o.Type,
@@ -224,7 +226,7 @@ namespace Business.Implementation.System
         {
             var users = data.UserIds.Select(o => GetUserWithCheck(o));
 
-            var menus = Repository_Menu.Where(o => data.MenuIds.Contains(o.Id) && o.Enable).ToList(o => new
+            var menus = Repository_Menu.Where(o => (data.All == true || data.MenuIds.Contains(o.Id)) && o.Enable).ToList(o => new
             {
                 o.Id,
                 o.Type,
@@ -260,7 +262,7 @@ namespace Business.Implementation.System
         {
             var users = data.UserIds.Select(o => GetUserWithCheck(o));
 
-            var resources = Repository_Resources.Where(o => data.ResourcesIds.Contains(o.Id) && o.Enable).ToList(o => new
+            var resources = Repository_Resources.Where(o => (data.All == true || data.ResourcesIds.Contains(o.Id)) && o.Enable).ToList(o => new
             {
                 o.Id,
                 o.Type,
@@ -296,7 +298,7 @@ namespace Business.Implementation.System
         {
             var roles = data.RoleIds.Select(o => GetRoleWithCheck(o));
 
-            var menus = Repository_Menu.Where(o => data.MenuIds.Contains(o.Id) && o.Enable).ToList(o => new
+            var menus = Repository_Menu.Where(o => (data.All == true || data.MenuIds.Contains(o.Id)) && o.Enable).ToList(o => new
             {
                 o.Id,
                 o.Type,
@@ -332,7 +334,7 @@ namespace Business.Implementation.System
         {
             var roles = data.RoleIds.Select(o => GetRoleWithCheck(o));
 
-            var resources = Repository_Resources.Where(o => data.ResourcesIds.Contains(o.Id) && o.Enable).ToList(o => new
+            var resources = Repository_Resources.Where(o => (data.All == true || data.ResourcesIds.Contains(o.Id)) && o.Enable).ToList(o => new
             {
                 o.Id,
                 o.Type,

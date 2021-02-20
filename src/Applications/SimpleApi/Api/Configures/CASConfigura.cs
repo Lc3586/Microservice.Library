@@ -49,9 +49,9 @@ namespace Api.Configures
             .AddCookie(options =>
             {
                 //options.Cookie.Name = ".Cas";
-                options.LoginPath = new PathString("/casLogin");
-                options.AccessDeniedPath = new PathString("/casAccess-Denied");
-                options.LogoutPath = new PathString("/casLogout");
+                options.LoginPath = new PathString("/cas/login");
+                options.AccessDeniedPath = new PathString("/cas/access-denied");
+                options.LogoutPath = new PathString("/cas/logout");
                 options.Cookie.SameSite = SameSiteMode.None;
 
                 options.SessionStore = AutofacHelper.GetScopeService<ITicketStore>();
@@ -59,8 +59,8 @@ namespace Api.Configures
                 {
                     OnRedirectToLogin = context =>
                     {
-                        if (context.Request.Path.Value.Equals("/casLogin", StringComparison.OrdinalIgnoreCase)
-                            || (context.Request.Path.Value.Equals("/casAuthorize", StringComparison.OrdinalIgnoreCase)
+                        if (context.Request.Path.Value.Equals("/cas/login", StringComparison.OrdinalIgnoreCase)
+                            || (context.Request.Path.Value.Equals("/cas/authorize", StringComparison.OrdinalIgnoreCase)
                                 && context.Request.Method.Equals(System.Net.Http.HttpMethod.Get.Method, StringComparison.OrdinalIgnoreCase)))
                         {
                             context.Response.Redirect($"{options.LoginPath}?returnUrl={context.Request.Path.Value}{context.Request.QueryString}");
@@ -113,7 +113,7 @@ namespace Api.Configures
             .AddCAS(options =>
             {
                 options.CasServerUrlBase = config.CASBaseUrl;
-                options.AccessDeniedPath = new PathString("/casAccess-Denied");
+                options.AccessDeniedPath = new PathString("/cas/access-denied");
                 // required for CasSingleSignOutMiddleware
                 options.SaveTokens = true;
                 var protocolVersion = config.CASProtocolVersion;
@@ -162,7 +162,7 @@ namespace Api.Configures
 
                         logger.Error(failure, failure.Message);
 
-                        context.Response.Redirect("/casExternalLoginFailure");
+                        context.Response.Redirect("/cas/ExternalLoginFailure");
                         context.HandleResponse();
 
                         return Task.CompletedTask;

@@ -1,6 +1,7 @@
-﻿using Library.SampleAuthentication.Application;
+﻿using Library.SampleAuthentication.Extension;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Builder;
 using System;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -13,31 +14,30 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <summary>
         /// 注册简易身份验证服务
         /// </summary>
-        /// <param name="builder"></param>
+        /// <param name="services"></param>
         /// <param name="configureOptions"></param>
         /// <returns></returns>
         public static AuthenticationBuilder AddSampleAuthentication(
-            this AuthenticationBuilder builder,
-            Action<SampleAuthenticationOptions> configureOptions = null)
+            this IServiceCollection services,
+            Action<CookieAuthenticationOptions> configureOptions = null)
         {
-            return builder.AddSampleAuthentication(CookieAuthenticationDefaults.AuthenticationScheme, "SA", configureOptions);
+            if (services == null) throw new ArgumentNullException(nameof(services));
+
+            return services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+             .AddCookie(configureOptions);
         }
 
         /// <summary>
-        /// 注册简易身份验证服务
+        /// 配置简易身份验证服务中间件
         /// </summary>
-        /// <param name="builder"></param>
-        /// <param name="authenticationScheme">框架</param>
-        /// <param name="displayName">显示名称</param>
-        /// <param name="configureOptions"></param>
+        /// <param name="app"></param>
+        /// <exception cref="SampleAuthenticationException"></exception>
         /// <returns></returns>
-        public static AuthenticationBuilder AddSampleAuthentication(
-            this AuthenticationBuilder builder,
-            string authenticationScheme,
-            string displayName,
-            Action<SampleAuthenticationOptions> configureOptions = null)
+        public static IApplicationBuilder UseSampleAuthentication(this IApplicationBuilder app)
         {
-            return builder.AddScheme<SampleAuthenticationOptions, SampleAuthenticationHandler<SampleAuthenticationOptions>>(authenticationScheme, displayName, configureOptions);
+            if (app == null) throw new ArgumentNullException(nameof(app));
+
+            return app.UseMiddleware<SampleAuthenticationMiddleware>();
         }
     }
 }

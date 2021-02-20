@@ -106,7 +106,7 @@ if (!window.showDialog) {
 
                 switch (type) {
                     case 'H5':
-                        info += '<h5>' + _title + ': ' + _content + '</h5>';
+                        info += '<h5>' + _content + '</h5>';
                         break;
                     case 'input':
                     case 'input-readonly':

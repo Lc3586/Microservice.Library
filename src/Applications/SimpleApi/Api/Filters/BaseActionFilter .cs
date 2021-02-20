@@ -10,12 +10,13 @@ namespace Api
     /// <summary>
     /// 拦截类基类
     /// </summary>
+    [AttributeUsage(AttributeTargets.Class)]
     public class BaseActionFilter : Attribute
     {
         /// <summary>
-        /// 当前登录人
+        /// 当前操作者
         /// </summary>
-        public IOperator Operator { get => AutofacHelper.GetScopeService<IOperator>(); }
+        protected IOperator Operator => AutofacHelper.GetScopeService<IOperator>();
 
         /// <summary>
         /// 返回JSON

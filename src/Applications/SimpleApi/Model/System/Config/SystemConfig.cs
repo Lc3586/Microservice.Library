@@ -128,7 +128,7 @@ namespace Model.System.Config
 
         #endregion
 
-        #region MyRegion
+        #region Swagger
 
         /// <summary>
         /// 启用Swagger

@@ -15,6 +15,7 @@ namespace Api.Controllers.Utils
     /// <summary>
     /// CAS认证接口
     /// </summary>
+    [Route("/cas")]
     [CheckModel]
     [SwaggerTag("CAS认证接口")]
     public class CASController : BaseApiController
@@ -37,7 +38,7 @@ namespace Api.Controllers.Utils
         /// </remarks>
         /// <param name="returnUrl">重定向地址</param>
         /// <returns>身份信息</returns>
-        [HttpGet("casAuthorize")]
+        [HttpGet("authorize")]
         public async Task Authorize(string returnUrl)
         {
             var info = new AuthorizedInfo()
@@ -63,7 +64,7 @@ namespace Api.Controllers.Utils
         /// <para>未登录返回状态码401</para>
         /// </remarks>
         /// <returns>身份信息</returns>
-        [HttpPost("casAuthorized")]
+        [HttpPost("authorized")]
         public async Task<AuthorizedInfo> Authorized()
         {
             var info = new AuthorizedInfo()
@@ -82,12 +83,12 @@ namespace Api.Controllers.Utils
         /// 拒绝访问
         /// </summary>
         /// <returns></returns>
-        [HttpGet("casAccess-Denied")]
+        [HttpGet("access-denied")]
         [AllowAnonymous]
         public async Task AccessDenied()
         {
             if (Context.User.Identity.IsAuthenticated)
-                await Task.Run(() => Context.Response.Redirect("/casAuthorize"));
+                await Task.Run(() => Context.Response.Redirect("/cas/authorize"));
             else
                 await Context.Response.WriteAsync("拒绝访问");
         }
@@ -96,12 +97,12 @@ namespace Api.Controllers.Utils
         /// 登录异常
         /// </summary>
         /// <returns></returns>
-        [HttpGet("casExternalLoginFailure")]
+        [HttpGet("ExternalLoginFailure")]
         [AllowAnonymous]
         public async Task ExternalLoginFailure()
         {
             if (Context.User.Identity.IsAuthenticated)
-                await Task.Run(() => Context.Response.Redirect("/casAuthorize"));
+                await Task.Run(() => Context.Response.Redirect("/cas/authorize"));
             else
                 await Context.Response.WriteAsync("系统繁忙");
         }
@@ -111,11 +112,11 @@ namespace Api.Controllers.Utils
         /// </summary>
         /// <param name="returnUrl">登录后重定向地址</param>
         /// <returns></returns>
-        [HttpGet("casLogin")]
+        [HttpGet("login")]
         [AllowAnonymous]
         public async Task Login(string returnUrl)
         {
-            if (returnUrl?.ToLower().IndexOf("/caslogin") >= 0)
+            if (returnUrl?.ToLower().IndexOf("/cas/login") >= 0)
                 returnUrl = null;
 
             var props = new AuthenticationProperties { RedirectUri = returnUrl };
@@ -129,11 +130,11 @@ namespace Api.Controllers.Utils
         /// <param name="logoutCAS">单点注销（当前登录的所有应用都会注销）</param>
         /// <param name="tgt"></param>
         /// <returns></returns>
-        [HttpGet("casLogout")]
+        [HttpGet("logout")]
         public async Task LogOut(string returnUrl, bool logoutCAS = false, string tgt = null)
         {
             if (string.IsNullOrEmpty(returnUrl))
-                returnUrl = $"{Config.WebRootUrl}/casLogin";
+                returnUrl = $"{Config.WebRootUrl}/cas/login";
 
             await LogOut(tgt);
 
@@ -148,7 +149,7 @@ namespace Api.Controllers.Utils
         /// </summary>
         /// <param name="tgt"></param>
         /// <returns></returns>
-        [HttpPost("casLogout")]
+        [HttpPost("logout")]
         public async Task LogOut(string tgt = null)
         {
             await Context.SignOutAsync();

@@ -14,6 +14,7 @@ using Library.OpenApi.Extention;
 using Library.SelectOption;
 using Model.Common;
 using Model.Public.MemberDTO;
+using Model.SampleAuthentication.SampleAuthenticationDTO;
 using Model.System;
 using Model.System.Pagination;
 using System;
@@ -179,7 +180,7 @@ namespace Business.Implementation.Public
             return result;
         }
 
-        public void Create(Create data, bool runTransaction = true, bool withOP = true)
+        public void Create(Create data, bool runTransaction = true)
         {
             var newData = Mapper.Map<Public_Member>(data).InitEntity();
 
@@ -192,7 +193,7 @@ namespace Business.Implementation.Public
                     DataType = nameof(Public_Member),
                     DataId = newData.Id,
                     Explain = $"创建会员[账号 {newData.Account}, 昵称 {newData.Nickname}, 姓名 {newData.Name}]."
-                }, withOP);
+                });
             };
 
             if (runTransaction)
@@ -215,7 +216,7 @@ namespace Business.Implementation.Public
             return result;
         }
 
-        public void Edit(Edit data, bool runTransaction = true, bool withOP = true)
+        public void Edit(Edit data, bool runTransaction = true)
         {
             var editData = Mapper.Map<Public_Member>(data).ModifyEntity();
 
@@ -233,7 +234,7 @@ namespace Business.Implementation.Public
                     DataId = entity.Id,
                     Explain = $"修改会员[账号 {entity.Account}, 昵称 {entity.Nickname}, 姓名 {entity.Name}].",
                     Remark = $"变更详情: \r\n\t{changed_}"
-                }, withOP);
+                });
 
                 if (Repository.UpdateDiy
                       .SetSource(editData.ModifyEntity())
@@ -287,10 +288,10 @@ namespace Business.Implementation.Public
 
         #region 拓展功能
 
-        public void Login(string openId)
+        public AuthenticationInfo Login(string openId)
         {
             var member = Repository.Where(o => o.WeChatUserInfos.AsSelect().Where(p => p.OpenId == openId).Any())
-                .ToOne(o => new { o.Id, o.Account, o.Nickname, o.Name, o.HeadimgUrl, o.Enable });
+                .ToOne(o => new { o.Id, o.Account, o.Name, o.Nickname, o.Sex, o.HeadimgUrl, o.Enable });
 
             if (member == null)
                 throw new ApplicationException("账号还未绑定微信.");
@@ -307,15 +308,25 @@ namespace Business.Implementation.Public
                 IsAdmin = false,
                 Remark = "使用微信信息登录系统."
             });
+
+            return new AuthenticationInfo
+            {
+                Id = member.Id,
+                UserType = UserType.系统用户,
+                Account = member.Account,
+                Nickname = member.Nickname,
+                Sex = member.Sex,
+                HeadimgUrl = member.HeadimgUrl
+            };
         }
 
-        public OperatorDetail GetOperatorDetail(string id)
+        public OperatorUserInfo GetOperatorDetail(string id)
         {
             if (string.IsNullOrWhiteSpace(id))
                 return null;
 
             return Repository.Where(o => o.Id == id)
-                .ToOne(o => new OperatorDetail
+                .ToOne(o => new OperatorUserInfo
                 {
                     Account = o.Account,
                     Name = o.Nickname,

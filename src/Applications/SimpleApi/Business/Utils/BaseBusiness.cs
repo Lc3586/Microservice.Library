@@ -1,7 +1,6 @@
 ﻿using Business.Interface.System;
 using Library.Container;
 using Library.Extension;
-using Library.NLogger.Gen;
 using Model.System;
 using Model.System.Config;
 using Model.System.Pagination;
@@ -12,29 +11,25 @@ using System.Linq.Dynamic.Core;
 namespace Business.Utils
 {
     /// <summary>
-    /// 描述：业务处理基类
-    /// 作者：Coldairarrow
+    /// 业务处理基类
     /// </summary>
-    /// <typeparam name="T">泛型约束（数据库实体）</typeparam>
+    /// <remarks>
+    /// 原作者：Coldairarrow
+    /// 最近修改者：LCTR
+    /// </remarks>
     public class BaseBusiness : IDependency
     {
         #region DI
 
-        public BaseBusiness()
-        {
-            Config = AutofacHelper.GetScopeService<SystemConfig>();
-            Operator = AutofacHelper.GetScopeService<IOperator>();
-        }
-
         /// <summary>
         /// 系统日志
         /// </summary>
-        protected readonly SystemConfig Config;
+        protected SystemConfig Config => AutofacHelper.GetService<SystemConfig>();
 
         /// <summary>
         /// 当前登录人
         /// </summary>
-        protected readonly IOperator Operator;
+        protected IOperator Operator => AutofacHelper.GetScopeService<IOperator>();
 
         #endregion
 

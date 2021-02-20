@@ -90,7 +90,7 @@ namespace Api
             });
 
             //不是发布模式时，开放swagger接口文档
-            if (Config.RunMode != RunMode.Publish)
+            if (Config.EnableSwagger && Config.RunMode != RunMode.Publish)
                 services.RegisterSwagger(Config);
 
             if (Config.EnableSampleAuthentication)
@@ -110,6 +110,9 @@ namespace Api
 
             if (Config.EnableWeChatService)
                 services.RegisterWeChat(Config);
+
+            if (Config.EnableSoap)
+                services.RegisterSoap(Config);
 
             services.RegisterNLog(Config);
         }
@@ -174,7 +177,7 @@ namespace Api
                 option.RedisConfig = Config.RedisConfig;
             });
 
-            if (Config.RunMode != RunMode.Publish)
+            if (Config.EnableSwagger && Config.RunMode != RunMode.Publish)
                 app.ConfiguraSwagger(Config);
 
             if (Config.EnableSampleAuthentication)
@@ -198,6 +201,9 @@ namespace Api
             {
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
             });
+
+            if (Config.EnableSoap)
+                app.ConfiguraSoap(Config);
 
             //获取AutofacIOC容器
             AutofacHelper.Container = app.ApplicationServices.GetAutofacRoot();

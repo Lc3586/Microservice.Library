@@ -12,9 +12,9 @@ namespace Api
     /// </summary>
     public class ApiPermissionAttribute : BaseActionFilter, IActionFilter
     {
-        readonly SystemConfig Config = AutofacHelper.GetScopeService<SystemConfig>();
+        SystemConfig Config => AutofacHelper.GetScopeService<SystemConfig>();
 
-        readonly IAuthoritiesBusiness AuthoritiesBusiness = AutofacHelper.GetScopeService<IAuthoritiesBusiness>();
+        IAuthoritiesBusiness AuthoritiesBusiness => AutofacHelper.GetScopeService<IAuthoritiesBusiness>();
 
         /// <summary>
         /// Action执行之前执行
@@ -30,14 +30,14 @@ namespace Api
                 return;
 
             //验证权限
-            switch (Operator.UserType)
+            switch (Operator.AuthenticationInfo.UserType)
             {
                 case UserType.系统用户:
-                    if (!AuthoritiesBusiness.UserHasMenuUri(Operator.Id, context.HttpContext.Request.Path.Value?.ToLower()))
+                    if (!AuthoritiesBusiness.UserHasMenuUri(Operator.AuthenticationInfo.Id, context.HttpContext.Request.Path.Value?.ToLower()))
                         context.Result = Error("没有权限!", ErrorCode.forbidden);
                     break;
                 case UserType.会员:
-                    if (!AuthoritiesBusiness.MemberHasMenuUri(Operator.Id, context.HttpContext.Request.Path.Value?.ToLower()))
+                    if (!AuthoritiesBusiness.MemberHasMenuUri(Operator.AuthenticationInfo.Id, context.HttpContext.Request.Path.Value?.ToLower()))
                         context.Result = Error("没有权限!", ErrorCode.forbidden);
                     break;
                 default:

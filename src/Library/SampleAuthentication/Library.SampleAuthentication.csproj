@@ -22,7 +22,6 @@
   <ItemGroup>
     <Folder Include="Annotations\" />
     <Folder Include="Gen\" />
-    <Folder Include="Extention\" />
     <Folder Include="Test\" />
   </ItemGroup>
 

@@ -34,9 +34,16 @@ namespace Api.Configures
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddCookie(options =>
             {
-                //options.Cookie.Name = ".SampleAuthentication";
+                options.Cookie.Name = ".SA";
+                options.SlidingExpiration = true;
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+
                 options.Cookie.SameSite = SameSiteMode.Strict;
-                options.LogoutPath = new PathString();
+
+                options.LoginPath = new PathString("/sa/login");
+                options.LogoutPath = new PathString("/sa/logout");
+                options.AccessDeniedPath = new PathString("/sa/access-denied");
 
                 options.SessionStore = AutofacHelper.GetScopeService<ITicketStore>();
                 options.Events = new CookieAuthenticationEvents
@@ -45,21 +52,19 @@ namespace Api.Configures
                     {
                         Console.WriteLine("输出未登录提示.");
                         context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                        context.Response.ContentType = "text/plain;charset=UTF-8";
                         context.Response.WriteAsync("未登录.");
                         return context.Response.CompleteAsync();
                     },
-                    OnRedirectToAccessDenied = context =>
-                    {
-                        Console.WriteLine("输出禁止访问提示.");
-                        context.Response.StatusCode = StatusCodes.Status403Forbidden;
-                        context.Response.WriteAsync("禁止访问.");
-                        return context.Response.CompleteAsync();
-                    }
+                    //OnRedirectToAccessDenied = context =>
+                    //{
+                    //    Console.WriteLine("输出禁止访问提示.");
+                    //    context.Response.StatusCode = StatusCodes.Status403Forbidden;
+                    //    context.Response.ContentType = "text/plain;charset=UTF-8";
+                    //    context.Response.WriteAsync("拒绝访问.");
+                    //    return context.Response.CompleteAsync();
+                    //}
                 };
-            })
-            .AddSampleAuthentication(options =>
-            {
-
             });
 
             return services;
@@ -67,12 +72,13 @@ namespace Api.Configures
 
         /// <summary>
         /// 配置简易身份验证
-        /// 注：方法在UseMvc之前
+        /// 注：方法在UseEndpoints之前调用
         /// </summary>
         /// <param name="app"></param>
         /// <param name="config"></param>
         public static IApplicationBuilder ConfiguraSampleAuthentication(this IApplicationBuilder app, SystemConfig config)
         {
+            app.UseCookiePolicy();
             app.UseAuthentication();
             app.UseAuthorization();
 

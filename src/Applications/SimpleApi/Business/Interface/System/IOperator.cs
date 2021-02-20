@@ -1,4 +1,5 @@
 ﻿using Model.Common;
+using Model.SampleAuthentication.SampleAuthenticationDTO;
 using System.Collections.Generic;
 
 namespace Business.Interface.System
@@ -9,20 +10,19 @@ namespace Business.Interface.System
     public interface IOperator
     {
         /// <summary>
-        /// 当前操作者Id
+        /// 是否已登录
         /// </summary>
-        string Id { get; }
+        public bool IsAuthenticated { get; }
 
         /// <summary>
-        /// 用户类型
+        /// 身份验证信息
         /// </summary>
-        /// <remarks><see cref="Model.System.UserType"/></remarks>
-        string UserType { get; }
+        public AuthenticationInfo AuthenticationInfo { get; }
 
         /// <summary>
-        /// 详细信息
+        /// 用户信息
         /// </summary>
-        OperatorDetail Detail { get; }
+        OperatorUserInfo UserInfo { get; }
 
         /// <summary>
         /// 判断是否为管理员

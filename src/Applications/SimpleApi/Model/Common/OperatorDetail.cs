@@ -5,9 +5,9 @@ using System.Text;
 namespace Model.Common
 {
     /// <summary>
-    /// 操作者详细信息
+    /// 操作者用户信息
     /// </summary>
-    public class OperatorDetail
+    public class OperatorUserInfo
     {
         /// <summary>
         /// 标识

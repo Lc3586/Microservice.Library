@@ -45,8 +45,6 @@ namespace Business.Implementation.Common
             Repository = Orm.GetRepository<Common_File, string>();
             HttpContextAccessor = httpContextAccessor;
             PreviewDir = Path.GetDirectoryName("\\filetypes\\");
-            BaseDir = Path.GetDirectoryName($"\\Upload\\{Operator.Id}\\{DateTime.Now.ToUnixTimestamp()}\\");
-            BaseDirPath = PathHelper.GetAbsolutePath($"~{BaseDir}\\");
         }
 
         #endregion
@@ -69,12 +67,12 @@ namespace Business.Implementation.Common
         /// <summary>
         /// 存储路径根目录相对路径
         /// </summary>
-        string BaseDir { get; set; }
+        string BaseDir => Path.GetDirectoryName($"\\upload\\{Operator.AuthenticationInfo.Id}\\{DateTime.Now.ToUnixTimestamp()}\\");
 
         /// <summary>
         /// 存储路径根目录绝对路径
         /// </summary>
-        string BaseDirPath { get; set; }
+        string BaseDirPath => PathHelper.GetAbsolutePath($"~{BaseDir}\\");
 
         /// <summary>
         /// 保存
@@ -553,7 +551,7 @@ namespace Business.Implementation.Common
         public List<FileInfo> GetList(PaginationDTO pagination)
         {
             var list = Orm.Select<Common_File>()
-                        .Where(o => Operator.IsAdmin || o.CreatorId == Operator.Id)
+                        .Where(o => Operator.IsAdmin || o.CreatorId == Operator.AuthenticationInfo.Id)
                         .GetPagination(pagination)
                         .ToDtoList<Common_File, FileInfo>(typeof(FileInfo).GetNamesWithTagAndOther(true, "_List"));
 

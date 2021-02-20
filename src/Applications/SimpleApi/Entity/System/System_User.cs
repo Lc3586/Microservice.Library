@@ -69,6 +69,14 @@ namespace Entity.System
         public string Name { get; set; }
 
         /// <summary>
+        /// 性别
+        /// </summary>
+        [OpenApiSubTag("List", "Create", "Edit", "Detail")]
+        [Description("性别")]
+        [Column(StringLength = 2)]
+        public string Sex { get; set; }
+
+        /// <summary>
         /// 手机号码
         /// </summary>
         [OpenApiSubTag("List", "Create", "Edit", "Detail")]

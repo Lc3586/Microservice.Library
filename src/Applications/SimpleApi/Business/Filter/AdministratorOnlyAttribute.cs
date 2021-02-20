@@ -1,7 +1,7 @@
 ﻿using Business.Interface.System;
 using Castle.DynamicProxy;
 using Library.Container;
-using Model.System;
+using System;
 
 namespace Business.Filter
 {
@@ -18,8 +18,8 @@ namespace Business.Filter
         /// <param name="invocation"></param>
         public override void OnActionExecuting(IInvocation invocation)
         {
-            if (!Operator.IsAdmin)
-                invocation.ReturnValue = AjaxResultFactory.Error("无权限");
+            if (Operator.IsAuthenticated && !Operator.IsAdmin)
+                throw new ApplicationException("无权限");
         }
 
         /// <summary>

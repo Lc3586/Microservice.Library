@@ -1,7 +1,8 @@
 ﻿using Business.Interface.System;
 using Library.Container;
-using Library.WebApp;
+using Microsoft.AspNetCore.Http;
 using Model.Common;
+using Model.SampleAuthentication.SampleAuthenticationDTO;
 using System;
 using System.Linq;
 
@@ -15,6 +16,7 @@ namespace Business.Implementation.System
         #region DI
 
         public Operator(
+            IHttpContextAccessor httpContextAccessor,
             IAuthoritiesBusiness authoritiesBusiness,
             IUserBusiness userBusiness,
             IMemberBusiness memberBusiness)
@@ -23,43 +25,53 @@ namespace Business.Implementation.System
             UserBusiness = userBusiness;
             MemberBusiness = memberBusiness;
 
-            Id = HttpContextCore.Current.User.Claims?.FirstOrDefault(o => o.Type == nameof(Id))?.Value;
-            UserType = HttpContextCore.Current.User.Claims?.FirstOrDefault(o => o.Type == nameof(UserType))?.Value;
+            IsAuthenticated = httpContextAccessor.HttpContext.User.Identity.IsAuthenticated;
+
+            if (IsAuthenticated)
+                AuthenticationInfo = new AuthenticationInfo()
+                {
+                    Id = httpContextAccessor.HttpContext.User.Claims?.FirstOrDefault(o => o.Type == nameof(AuthenticationInfo.Id))?.Value,
+                    UserType = httpContextAccessor.HttpContext.User.Claims?.FirstOrDefault(o => o.Type == nameof(AuthenticationInfo.UserType))?.Value,
+                    Account = httpContextAccessor.HttpContext.User.Claims?.FirstOrDefault(o => o.Type == nameof(AuthenticationInfo.Account))?.Value,
+                    Nickname = httpContextAccessor.HttpContext.User.Claims?.FirstOrDefault(o => o.Type == nameof(AuthenticationInfo.Nickname))?.Value,
+                    HeadimgUrl = httpContextAccessor.HttpContext.User.Claims?.FirstOrDefault(o => o.Type == nameof(AuthenticationInfo.HeadimgUrl))?.Value
+                };
         }
 
-        readonly IAuthoritiesBusiness AuthoritiesBusiness;//= AutofacHelper.GetScopeService<IAuthoritiesBusiness>();
-        readonly IUserBusiness UserBusiness;//= AutofacHelper.GetScopeService<IUserBusiness>();
-        readonly IMemberBusiness MemberBusiness;//= AutofacHelper.GetScopeService<IMemberBusiness>();
+        readonly IAuthoritiesBusiness AuthoritiesBusiness;
+        readonly IUserBusiness UserBusiness;
+        readonly IMemberBusiness MemberBusiness;
 
         #endregion
 
         #region 公共
 
         /// <summary>
-        /// 当前操作者UserId
+        /// 是否已登录
         /// </summary>
-        public string Id { get; }
+        public bool IsAuthenticated { get; }
 
         /// <summary>
-        /// 用户类型
+        /// 当前操作者身份验证信息
         /// </summary>
-        public string UserType { get; }
+        public AuthenticationInfo AuthenticationInfo { get; }
 
         /// <summary>
         /// 用户信息
         /// </summary>
-        public OperatorDetail Detail
+        public OperatorUserInfo UserInfo
         {
             get
             {
-                switch (UserType)
+                switch (AuthenticationInfo?.UserType)
                 {
                     case Model.System.UserType.系统用户:
-                        return UserBusiness.GetOperatorDetail(Id);
+                        return UserBusiness.GetOperatorDetail(AuthenticationInfo.Id);
                     case Model.System.UserType.会员:
-                        return MemberBusiness.GetOperatorDetail(Id);
+                        return MemberBusiness.GetOperatorDetail(AuthenticationInfo.Id);
                     default:
-                        throw new ApplicationException("登录信息异常: 用户类型错误.");
+                        //throw new ApplicationException("登录信息异常: 用户类型错误.");
+                        return null;
                 }
             }
         }
@@ -68,7 +80,7 @@ namespace Business.Implementation.System
         /// 判断是否为管理员
         /// </summary>
         /// <returns></returns>
-        public bool IsAdmin => UserType == Model.System.UserType.系统用户 && AuthoritiesBusiness.IsAdminUser(Id);
+        public bool IsAdmin => AuthenticationInfo.UserType == Model.System.UserType.系统用户 && AuthoritiesBusiness.IsAdminUser(AuthenticationInfo.Id);
 
         #endregion
     }

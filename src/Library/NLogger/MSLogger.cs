@@ -43,7 +43,7 @@ namespace Library.NLogger
         public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
         {
             var log = new NLog.LogEventInfo(
-                NLog.LogLevel.FromString(logLevel.ToString()),
+                NLog.LogLevel.FromOrdinal((int)logLevel),
                 GetNLogger().Name,
                 formatter(state, exception));
             log.Properties.Add("Microsoft.Extensions.Logging.LogLevel", logLevel);

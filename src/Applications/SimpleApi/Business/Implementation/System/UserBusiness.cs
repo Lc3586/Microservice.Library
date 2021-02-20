@@ -14,6 +14,7 @@ using Library.FreeSql.Gen;
 using Library.OpenApi.Extention;
 using Library.SelectOption;
 using Model.Common;
+using Model.SampleAuthentication.SampleAuthenticationDTO;
 using Model.System;
 using Model.System.Pagination;
 using Model.System.UserDTO;
@@ -84,32 +85,38 @@ namespace Business.Implementation.System
         {
             try
             {
-                //创建账号
-                Create(new Create
+                (bool success, Exception ex) = Orm.RunTransaction(() =>
                 {
-                    Account = Config.AdminAccount,
-                    Password = Config.AdminInitPassword,
-                    Enable = true,
-                    Nickname = "超级管理员",
-                    Remark = "系统自动创建超级管理员账号."
-                }, false);
+                    //创建账号
+                    Create(new Create
+                    {
+                        Account = Config.AdminAccount,
+                        Password = Config.AdminInitPassword,
+                        Enable = true,
+                        Nickname = "超级管理员",
+                        Remark = "系统自动创建超级管理员账号."
+                    }, false);
 
-                //创建角色
-                RoleBusiness.Create(new Model.System.RoleDTO.Create
-                {
-                    Name = "超级管理员",
-                    Type = RoleType.超级管理员,
-                    Enable = true,
-                    Remark = "系统自动创建超级管理员角色.",
-                    Code = "000000"
+                    //创建角色
+                    RoleBusiness.Create(new Model.System.RoleDTO.Create
+                    {
+                        Name = "超级管理员",
+                        Type = RoleType.超级管理员,
+                        Enable = true,
+                        Remark = "系统自动创建超级管理员角色.",
+                        Code = "000000"
+                    }, false);
+
+                    //角色授权
+                    AuthoritiesBusiness.AuthorizeRoleForUser(new Model.System.AuthorizeDTO.RoleForUser
+                    {
+                        UserIds = new List<string> { Repository.Where(o => o.Account == Config.AdminAccount).ToOne(o => o.Id) },
+                        RoleIds = Repository_Role.Where(o => o.Type == $"{RoleType.超级管理员}").ToList(o => o.Id)
+                    }, false);
                 });
 
-                //角色授权
-                AuthoritiesBusiness.AuthorizeRoleForUser(new Model.System.AuthorizeDTO.RoleForUser
-                {
-                    UserIds = new List<string> { Repository.Where(o => o.Account == Config.AdminAccount).ToOne(o => o.Id) },
-                    RoleIds = Repository_Role.Where(o => o.Type == $"{RoleType.超级管理员}").ToList(o => o.Id)
-                });
+                if (!success)
+                    throw ex;
             }
             catch (ApplicationException ex)
             {
@@ -224,26 +231,33 @@ namespace Business.Implementation.System
         }
 
         [AdministratorOnly]
-        public void Create(Create data, bool withOP = true)
+        public void Create(Create data, bool runTransaction = true)
         {
             var newData = Mapper.Map<System_User>(data).InitEntity();
 
             newData.Password = $"{newData.Account}{newData.Password}".ToMD5String();
 
-            (bool success, Exception ex) = Orm.RunTransaction(() =>
+            Action handler = () =>
             {
-                Repository.Insert(newData);
-
                 var orId = OperationRecordBusiness.Create(new Common_OperationRecord
                 {
                     DataType = nameof(System_User),
                     DataId = newData.Id,
                     Explain = $"创建用户[账号 {newData.Account}, 姓名 {newData.Name}]."
-                }, withOP);
-            });
+                });
 
-            if (!success)
-                throw new ApplicationException("创建用户失败.", ex);
+                Repository.Insert(newData);
+            };
+
+            if (runTransaction)
+            {
+                (bool success, Exception ex) = Orm.RunTransaction(handler);
+
+                if (!success)
+                    throw new ApplicationException("创建用户失败.", ex);
+            }
+            else
+                handler.Invoke();
         }
 
         [AdministratorOnly]
@@ -257,7 +271,7 @@ namespace Business.Implementation.System
         }
 
         [AdministratorOnly]
-        public void Edit(Edit data, bool withOP = true)
+        public void Edit(Edit data, bool runTransaction = true)
         {
             var editData = Mapper.Map<System_User>(data).ModifyEntity();
 
@@ -266,8 +280,7 @@ namespace Business.Implementation.System
             var changed_ = string.Join(",",
                                        entity.GetPropertyValueChangeds<System_User, Edit>(editData)
                                             .Select(p => $"\r\n\t {p.Description}：{p.FormerValue} 更改为 {p.CurrentValue}"));
-
-            (bool success, Exception ex) = Orm.RunTransaction(() =>
+            Action handler = () =>
             {
                 var orId = OperationRecordBusiness.Create(new Common_OperationRecord
                 {
@@ -275,17 +288,24 @@ namespace Business.Implementation.System
                     DataId = entity.Id,
                     Explain = $"修改用户[账号 {entity.Account}, 姓名 {entity.Name}].",
                     Remark = $"变更详情: \r\n\t{changed_}"
-                }, withOP);
+                });
 
                 if (Repository.UpdateDiy
                       .SetSource(editData.ModifyEntity())
                       .UpdateColumns(typeof(Edit).GetNamesWithTagAndOther(false, "_Edit").ToArray())
                       .ExecuteAffrows() <= 0)
-                    throw new ApplicationException("修改用户失败.");
-            });
+                    throw new ApplicationException("未修改任何数据.");
+            };
 
-            if (!success)
-                throw ex;
+            if (runTransaction)
+            {
+                (bool success, Exception ex) = Orm.RunTransaction(handler);
+
+                if (!success)
+                    throw new ApplicationException("修改用户失败.", ex);
+            }
+            else
+                handler.Invoke();
         }
 
         [AdministratorOnly]
@@ -327,14 +347,14 @@ namespace Business.Implementation.System
 
         #region 拓展功能
 
-        public void Login(Login data)
+        public AuthenticationInfo Login(string account, string password)
         {
-            var user = Repository.Where(o => o.Account == data.Account)
-                .ToOne(o => new { o.Id, o.Account, o.Name, o.HeadimgUrl, o.Enable, o.Password });
+            var user = Repository.Where(o => o.Account == account)
+                .ToOne(o => new { o.Id, o.Account, o.Name, o.Nickname, o.Sex, o.HeadimgUrl, o.Enable, o.Password });
 
             if (user == null)
             {
-                if (data.Account == Config.AdminAccount && Repository.Select.Count() == 0)
+                if (account.Equals(Config.AdminAccount) && password.Equals(Config.AdminInitPassword) && Repository.Select.Count() == 0)
                 {
                     InitAdmin();
 
@@ -347,24 +367,34 @@ namespace Business.Implementation.System
             if (!user.Enable)
                 throw new ApplicationException("账号已被禁用.");
 
-            if (!$"{data.Account}{data.Password}".ToMD5String().Equals(user.Password))
+            if (!$"{account}{password}".ToMD5String().Equals(user.Password))
                 throw new ApplicationException("密码错误.");
 
             EntryLogBusiness.Create(new Common_EntryLog
             {
                 UserType = UserType.系统用户,
                 Account = user.Account,
-                Name = user.Name,
+                Name = user.Name ?? user.Nickname,
                 HeadimgUrl = user.HeadimgUrl,
                 IsAdmin = AuthoritiesBusiness.IsAdminUser(user.Id),
                 Remark = "使用账号密码信息登录系统."
             });
+
+            return new AuthenticationInfo
+            {
+                Id = user.Id,
+                UserType = UserType.系统用户,
+                Account = user.Account,
+                Nickname = user.Nickname,
+                Sex = user.Sex,
+                HeadimgUrl = user.HeadimgUrl
+            };
         }
 
-        public void Login(string openId)
+        public AuthenticationInfo Login(string openId)
         {
             var user = Repository.Where(o => o.WeChatUserInfos.AsSelect().Where(p => p.OpenId == openId).Any())
-                .ToOne(o => new { o.Id, o.Account, o.Name, o.HeadimgUrl, o.Enable, o.Password });
+                .ToOne(o => new { o.Id, o.Account, o.Name, o.Nickname, o.Sex, o.HeadimgUrl, o.Enable, o.Password });
 
             if (user == null)
                 throw new ApplicationException("账号还未绑定微信.");
@@ -381,6 +411,16 @@ namespace Business.Implementation.System
                 IsAdmin = AuthoritiesBusiness.IsAdminUser(user.Id),
                 Remark = "使用微信信息登录系统."
             });
+
+            return new AuthenticationInfo
+            {
+                Id = user.Id,
+                UserType = UserType.系统用户,
+                Account = user.Account,
+                Nickname = user.Name,
+                Sex = user.Sex,
+                HeadimgUrl = user.HeadimgUrl
+            };
         }
 
         public void UpdatePassword(UpdatePassword data)
@@ -409,13 +449,13 @@ namespace Business.Implementation.System
                 throw ex;
         }
 
-        public OperatorDetail GetOperatorDetail(string id)
+        public OperatorUserInfo GetOperatorDetail(string id)
         {
             if (string.IsNullOrWhiteSpace(id))
                 return null;
 
             return Repository.Where(o => o.Id == id)
-                .ToOne(o => new OperatorDetail
+                .ToOne(o => new OperatorUserInfo
                 {
                     Account = o.Account,
                     Name = o.Name,

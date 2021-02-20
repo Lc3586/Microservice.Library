@@ -14,13 +14,16 @@ using Library.FreeSql.Extention;
 using Library.FreeSql.Gen;
 using Library.OpenApi.Extention;
 using Library.WeChat.Extension;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Model.Common;
 using Model.Common.WeChatUserInfoDTO;
+using Model.SampleAuthentication.SampleAuthenticationDTO;
 using Model.System.Pagination;
 using Senparc.Weixin.MP.AdvancedAPIs.OAuth;
 using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Business.Implementation.Common
@@ -104,7 +107,7 @@ namespace Business.Implementation.Common
                     DataType = nameof(Common_WeChatUserInfo),
                     DataId = entity.Id,
                     Explain = $"创建微信用户信息[AppId {entity.AppId}, OpenId {entity.OpenId}]."
-                }, false);
+                });
             });
 
             if (!success)
@@ -221,11 +224,30 @@ namespace Business.Implementation.Common
                     DataType = nameof(System_UserWeChatUserInfo),
                     DataId = $"{entity.UserId}+{entity.WeChatUserInfoId}",
                     Explain = $"用户绑定微信[账号 {user.Account}, 姓名 {user.Name}], AppId {appId}, OpenId {openId}]."
-                }, false);
+                });
             });
 
             if (!success)
                 throw new ApplicationException("绑定微信失败.", ex);
+        }
+
+        /// <summary>
+        /// 更新系统用户信息
+        /// </summary>
+        /// <param name="userId">用户ID</param>
+        /// <param name="appId"></param>
+        /// <param name="openId"></param>
+        void UpdateUser(string userId, string appId, string openId)
+        {
+            var info = GetWeChatUserInfo(appId, openId);
+            SaveFile(info.HeadimgUrl, out string imgId);
+            UserBusiness.Edit(new Model.System.UserDTO.Edit
+            {
+                Id = userId,
+                Nickname = info.Nickname,
+                HeadimgUrl = imgId,
+                Sex = info.Sex == 1 ? "男" : info.Sex == 2 ? "女" : null
+            }, true);
         }
 
         /// <summary>
@@ -271,7 +293,7 @@ namespace Business.Implementation.Common
                     DataType = nameof(Public_MemberWeChatUserInfo),
                     DataId = $"{entity.MemberId}+{entity.WeChatUserInfoId}",
                     Explain = $"会员绑定微信[账号 {member.Account}, 昵称 {member.Nickname}, 姓名 {member.Name}], AppId {appId}, OpenId {openId}]."
-                }, false);
+                });
             });
 
             if (!success)
@@ -296,7 +318,7 @@ namespace Business.Implementation.Common
                 Sex = info.Sex == 1 ? "男" : info.Sex == 2 ? "女" : null,
                 Enable = true,
                 Remark = "通过微信自动创建会员账号."
-            }, false, false);
+            }, false);
         }
 
         /// <summary>
@@ -315,7 +337,29 @@ namespace Business.Implementation.Common
                 Nickname = info.Nickname,
                 HeadimgUrl = imgId,
                 Sex = info.Sex == 1 ? "男" : info.Sex == 2 ? "女" : null
-            }, true, false);
+            }, true);
+        }
+
+        /// <summary>
+        /// 登录
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="authenticationInfo"></param>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
+        async Task Login(HttpContext context, AuthenticationInfo authenticationInfo, string returnUrl)
+        {
+            var claims = new List<Claim>
+            {
+                new Claim(nameof(AuthenticationInfo.Id), authenticationInfo.Id),
+                new Claim(nameof(AuthenticationInfo.Account), authenticationInfo.Account),
+                new Claim(nameof(AuthenticationInfo.Nickname), authenticationInfo.Nickname),
+                new Claim(nameof(AuthenticationInfo.HeadimgUrl), authenticationInfo.HeadimgUrl)
+            };
+
+            var props = new AuthenticationProperties { RedirectUri = returnUrl };
+
+            await context.SignInAsync(new ClaimsPrincipal(new ClaimsIdentity(claims)), props);
         }
 
         #endregion
@@ -391,11 +435,11 @@ namespace Business.Implementation.Common
                     switch (stateInfo.Type)
                     {
                         case WeChatStateType.系统用户登录:
-                            UserBusiness.Login(openId);
-                            break;
+                            await Login(context, UserBusiness.Login(openId), stateInfo.RedirectUrl);
+                            return;
                         case WeChatStateType.会员登录:
-                            MemberBusiness.Login(openId);
-                            break;
+                            await Login(context, MemberBusiness.Login(openId), stateInfo.RedirectUrl);
+                            return;
                         case WeChatStateType.系统用户绑定微信:
                         case WeChatStateType.微信信息同步至会员信息:
                             goto next;
@@ -435,12 +479,20 @@ namespace Business.Implementation.Common
                 case WeChatStateType.系统用户绑定微信:
                     BindUser(stateInfo.Data[nameof(System_User.Id)].ToString(), appId, userinfo.openid);
                     if (stateInfo.Type == WeChatStateType.系统用户登录)
-                        UserBusiness.Login(userinfo.openid);
+                    {
+                        await Login(context, UserBusiness.Login(userinfo.openid), stateInfo.RedirectUrl);
+                        return;
+                    }
+                    else
+                    {
+                        if (stateInfo.Data["Update"]?.ToString() == true.ToString())
+                            UpdateUser(stateInfo.Data[nameof(System_User.Id)].ToString(), appId, userinfo.openid);
+                    }
                     break;
                 case WeChatStateType.会员登录:
                     BindMember(stateInfo.Data[nameof(Public_Member.Id)].ToString(), appId, userinfo.openid, false);
-                    MemberBusiness.Login(userinfo.openid);
-                    break;
+                    await Login(context, MemberBusiness.Login(userinfo.openid), stateInfo.RedirectUrl);
+                    return;
                 case WeChatStateType.微信信息同步至会员信息:
                     UpdateMember(stateInfo.Data[nameof(Public_Member.Id)].ToString(), appId, userinfo.openid);
                     break;

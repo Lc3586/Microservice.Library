@@ -37,9 +37,9 @@ namespace Business.Interface.System
         /// 新增
         /// </summary>
         /// <param name="data">数据</param>
-        /// <param name="withOP">写入操作人信息</param>
+        /// <param name="runTransaction">运行事务（默认运行）</param>
         /// <returns></returns>
-        void Create(Create data, bool withOP = true);
+        void Create(Create data, bool runTransaction = true);
 
         /// <summary>
         /// 获取编辑数据

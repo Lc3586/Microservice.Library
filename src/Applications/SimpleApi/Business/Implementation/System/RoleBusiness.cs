@@ -115,11 +115,11 @@ namespace Business.Implementation.System
         }
 
         [AdministratorOnly]
-        public void Create(Create data, bool withOP = true)
+        public void Create(Create data, bool runTransaction = true)
         {
             var newData = Mapper.Map<System_Role>(data).InitEntity();
 
-            (bool success, Exception ex) = Orm.RunTransaction(() =>
+            Action handler = () =>
             {
                 if (newData.ParentId.IsNullOrWhiteSpace())
                 {
@@ -143,11 +143,18 @@ namespace Business.Implementation.System
                     DataType = nameof(System_Role),
                     DataId = newData.Id,
                     Explain = $"创建角色[名称 {newData.Name}, 类型 {newData.Type}]."
-                }, withOP);
-            });
+                });
+            };
 
-            if (!success)
-                throw new ApplicationException("创建角色失败", ex);
+            if (runTransaction)
+            {
+                (bool success, Exception ex) = Orm.RunTransaction(handler);
+
+                if (!success)
+                    throw new ApplicationException("创建角色失败", ex);
+            }
+            else
+                handler.Invoke();
         }
 
         [AdministratorOnly]

@@ -144,7 +144,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.NLogger", "Library\NLogger\Library.NLogger.csproj", "{CEF43F1B-6E34-4A86-B0A6-9EDD323F38DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.SampleAuthentication", "Library\SampleAuthentication\Library.SampleAuthentication.csproj", "{87DDFCC0-8929-447D-A67B-E3AA9200B302}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.SampleAuthentication", "Library\SampleAuthentication\Library.SampleAuthentication.csproj", "{87DDFCC0-8929-447D-A67B-E3AA9200B302}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

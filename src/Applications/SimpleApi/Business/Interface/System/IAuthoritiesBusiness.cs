@@ -13,7 +13,8 @@ namespace Business.Interface.System
         /// 授权角色给用户
         /// </summary>
         /// <param name="data">数据</param>
-        void AuthorizeRoleForUser(Model.System.AuthorizeDTO.RoleForUser data);
+        /// <param name="runTransaction">运行事务（默认运行）</param>
+        void AuthorizeRoleForUser(Model.System.AuthorizeDTO.RoleForUser data, bool runTransaction = true);
 
         /// <summary>
         /// 授权角色给会员

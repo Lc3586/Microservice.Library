@@ -35,7 +35,7 @@ namespace Business.Utils
         /// <param name="entity"></param>
         /// <param name="operatorDetail"></param>
         /// <returns></returns>
-        public static T InitEntity<T>(this T entity, OperatorDetail operatorDetail = null)
+        public static T InitEntity<T>(this T entity, OperatorUserInfo operatorDetail = null)
         {
             var op = AutofacHelper.GetScopeService<IOperator>();
 
@@ -44,7 +44,7 @@ namespace Business.Utils
             if (entity.ContainsProperty("CreateTime"))
                 entity.SetPropertyValue("CreateTime", DateTime.Now);
             if (entity.ContainsProperty("CreatorId"))
-                entity.SetPropertyValue("CreatorId", operatorDetail == null ? op?.Id : operatorDetail.Id);
+                entity.SetPropertyValue("CreatorId", operatorDetail == null ? op?.AuthenticationInfo?.Id : operatorDetail.Id);
             if (entity.ContainsProperty("CreatorName"))
                 entity.SetPropertyValue("CreatorName", GetUserName(op, operatorDetail));
 
@@ -74,7 +74,7 @@ namespace Business.Utils
         /// <param name="entity"></param>
         /// <param name="operatorDetail"></param>
         /// <returns></returns>
-        public static T ModifyEntity<T>(this T entity, OperatorDetail operatorDetail = null)
+        public static T ModifyEntity<T>(this T entity, OperatorUserInfo operatorDetail = null)
         {
             var op = AutofacHelper.GetScopeService<IOperator>();
 
@@ -83,7 +83,7 @@ namespace Business.Utils
                 if (entity.ContainsProperty("ModifyTime"))
                     entity.SetPropertyValue("ModifyTime", DateTime.Now);
                 if (entity.ContainsProperty("ModifiedById"))
-                    entity.SetPropertyValue("ModifiedById", operatorDetail == null ? op?.Id : operatorDetail.Id);
+                    entity.SetPropertyValue("ModifiedById", operatorDetail == null ? op?.AuthenticationInfo?.Id : operatorDetail.Id);
                 if (entity.ContainsProperty("ModifiedByName"))
                     entity.SetPropertyValue("ModifiedByName", GetUserName(op, operatorDetail));
             }
@@ -96,16 +96,16 @@ namespace Business.Utils
         /// <param name="op"></param>
         /// <param name="operatorDetail"></param>
         /// <returns></returns>
-        public static string GetUserName(IOperator op = null, OperatorDetail operatorDetail = null)
+        public static string GetUserName(IOperator op = null, OperatorUserInfo operatorDetail = null)
         {
             op = op ?? AutofacHelper.GetScopeService<IOperator>();
 
             string Name;
             if (operatorDetail == null)
             {
-                Name = op?.Detail?.Name;
+                Name = op?.UserInfo?.Name;
                 if (string.IsNullOrEmpty(Name))
-                    Name = op?.Detail?.Account;
+                    Name = op?.UserInfo?.Account;
             }
             else
             {

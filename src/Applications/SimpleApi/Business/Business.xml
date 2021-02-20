@@ -149,6 +149,14 @@
             <param name="appId"></param>
             <param name="openId"></param>
         </member>
+        <member name="M:Business.Implementation.Common.WeChatOAuthHandler.UpdateUser(System.String,System.String,System.String)">
+            <summary>
+            更新系统用户信息
+            </summary>
+            <param name="userId">用户ID</param>
+            <param name="appId"></param>
+            <param name="openId"></param>
+        </member>
         <member name="M:Business.Implementation.Common.WeChatOAuthHandler.BindMember(System.String,System.String,System.String,System.Boolean)">
             <summary>
             会员绑定微信
@@ -173,6 +181,15 @@
             <param name="memberId">会员ID</param>
             <param name="appId"></param>
             <param name="openId"></param>
+        </member>
+        <member name="M:Business.Implementation.Common.WeChatOAuthHandler.Login(Microsoft.AspNetCore.Http.HttpContext,Model.SampleAuthentication.SampleAuthenticationDTO.AuthenticationInfo,System.String)">
+            <summary>
+            登录
+            </summary>
+            <param name="context"></param>
+            <param name="authenticationInfo"></param>
+            <param name="returnUrl"></param>
+            <returns></returns>
         </member>
         <member name="T:Business.Implementation.Public.MemberBusiness">
             <summary>
@@ -199,17 +216,17 @@
             操作者
             </summary>
         </member>
-        <member name="P:Business.Implementation.System.Operator.Id">
+        <member name="P:Business.Implementation.System.Operator.IsAuthenticated">
             <summary>
-            当前操作者UserId
+            是否已登录
             </summary>
         </member>
-        <member name="P:Business.Implementation.System.Operator.UserType">
+        <member name="P:Business.Implementation.System.Operator.AuthenticationInfo">
             <summary>
-            用户类型
+            当前操作者身份验证信息
             </summary>
         </member>
-        <member name="P:Business.Implementation.System.Operator.Detail">
+        <member name="P:Business.Implementation.System.Operator.UserInfo">
             <summary>
             用户信息
             </summary>
@@ -369,20 +386,18 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:Business.Interface.Common.IOperationRecordBusiness.Create(Entity.Common.Common_OperationRecord,System.Boolean)">
+        <member name="M:Business.Interface.Common.IOperationRecordBusiness.Create(Entity.Common.Common_OperationRecord)">
             <summary>
             新增
             </summary>
             <param name="data">数据</param>
-            <param name="withOP">写入操作人信息</param>
             <returns>操作记录Id</returns>
         </member>
-        <member name="M:Business.Interface.Common.IOperationRecordBusiness.Create(System.Collections.Generic.List{Entity.Common.Common_OperationRecord},System.Boolean)">
+        <member name="M:Business.Interface.Common.IOperationRecordBusiness.Create(System.Collections.Generic.List{Entity.Common.Common_OperationRecord})">
             <summary>
             新增
             </summary>
             <param name="datas">数据集合</param>
-            <param name="withOP">写入操作人信息</param>
             <returns></returns>
         </member>
         <member name="T:Business.Interface.Common.IWeChatUserInfoBusiness">
@@ -493,13 +508,12 @@
             <param name="id">Id</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Interface.System.IMemberBusiness.Create(Model.Public.MemberDTO.Create,System.Boolean,System.Boolean)">
+        <member name="M:Business.Interface.System.IMemberBusiness.Create(Model.Public.MemberDTO.Create,System.Boolean)">
             <summary>
             新增
             </summary>
             <param name="data">数据</param>
             <param name="runTransaction">运行事务（默认运行）</param>
-            <param name="withOP">写入操作人信息</param>
             <returns></returns>
         </member>
         <member name="M:Business.Interface.System.IMemberBusiness.GetEdit(System.String)">
@@ -509,13 +523,12 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:Business.Interface.System.IMemberBusiness.Edit(Model.Public.MemberDTO.Edit,System.Boolean,System.Boolean)">
+        <member name="M:Business.Interface.System.IMemberBusiness.Edit(Model.Public.MemberDTO.Edit,System.Boolean)">
             <summary>
             编辑
             </summary>
             <param name="data">数据</param>
             <param name="runTransaction">运行事务（默认运行）</param>
-            <param name="withOP">写入操作人信息</param>
             <returns></returns>
         </member>
         <member name="M:Business.Interface.System.IMemberBusiness.Delete(System.Collections.Generic.List{System.String})">
@@ -543,11 +556,12 @@
             权限业务接口类
             </summary>
         </member>
-        <member name="M:Business.Interface.System.IAuthoritiesBusiness.AuthorizeRoleForUser(Model.System.AuthorizeDTO.RoleForUser)">
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.AuthorizeRoleForUser(Model.System.AuthorizeDTO.RoleForUser,System.Boolean)">
             <summary>
             授权角色给用户
             </summary>
             <param name="data">数据</param>
+            <param name="runTransaction">运行事务（默认运行）</param>
         </member>
         <member name="M:Business.Interface.System.IAuthoritiesBusiness.AuthorizeRoleForMember(Model.System.AuthorizeDTO.RoleForMember)">
             <summary>
@@ -980,20 +994,19 @@
             操作者
             </summary>
         </member>
-        <member name="P:Business.Interface.System.IOperator.Id">
+        <member name="P:Business.Interface.System.IOperator.IsAuthenticated">
             <summary>
-            当前操作者Id
+            是否已登录
             </summary>
         </member>
-        <member name="P:Business.Interface.System.IOperator.UserType">
+        <member name="P:Business.Interface.System.IOperator.AuthenticationInfo">
             <summary>
-            用户类型
+            身份验证信息
             </summary>
-            <remarks><see cref="T:Model.System.UserType"/></remarks>
         </member>
-        <member name="P:Business.Interface.System.IOperator.Detail">
+        <member name="P:Business.Interface.System.IOperator.UserInfo">
             <summary>
-            详细信息
+            用户信息
             </summary>
         </member>
         <member name="P:Business.Interface.System.IOperator.IsAdmin">
@@ -1089,7 +1102,7 @@
             新增
             </summary>
             <param name="data">数据</param>
-            <param name="withOP">写入操作人信息</param>
+            <param name="runTransaction">运行事务（默认运行）</param>
             <returns></returns>
         </member>
         <member name="M:Business.Interface.System.IRoleBusiness.GetEdit(System.String)">
@@ -1167,7 +1180,7 @@
             新增
             </summary>
             <param name="data">数据</param>
-            <param name="withOP">写入操作人信息</param>
+            <param name="runTransaction">运行事务（默认运行）</param>
             <returns></returns>
         </member>
         <member name="M:Business.Interface.System.IUserBusiness.GetEdit(System.String)">
@@ -1182,7 +1195,7 @@
             编辑
             </summary>
             <param name="data">数据</param>
-            <param name="withOP">写入操作人信息</param>
+            <param name="runTransaction">运行事务（默认运行）</param>
             <returns></returns>
         </member>
         <member name="M:Business.Interface.System.IUserBusiness.Delete(System.Collections.Generic.List{System.String})">
@@ -1192,11 +1205,12 @@
             <param name="ids">Id集合</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Interface.System.IUserBusiness.Login(Model.System.UserDTO.Login)">
+        <member name="M:Business.Interface.System.IUserBusiness.Login(System.String,System.String)">
             <summary>
             登录
             </summary>
-            <param name="data">数据</param>
+            <param name="account"></param>
+            <param name="password"></param>
         </member>
         <member name="M:Business.Interface.System.IUserBusiness.Login(System.String)">
             <summary>
@@ -1224,17 +1238,19 @@
         </member>
         <member name="T:Business.Utils.BaseBusiness">
             <summary>
-            描述：业务处理基类
-            作者：Coldairarrow
+            业务处理基类
             </summary>
-            <typeparam name="T">泛型约束（数据库实体）</typeparam>
+            <remarks>
+            原作者：Coldairarrow
+            最近修改者：LCTR
+            </remarks>
         </member>
-        <member name="F:Business.Utils.BaseBusiness.Config">
+        <member name="P:Business.Utils.BaseBusiness.Config">
             <summary>
             系统日志
             </summary>
         </member>
-        <member name="F:Business.Utils.BaseBusiness.Operator">
+        <member name="P:Business.Utils.BaseBusiness.Operator">
             <summary>
             当前登录人
             </summary>
@@ -1364,7 +1380,7 @@
             <param name="entity"></param>
             <returns></returns>
         </member>
-        <member name="M:Business.Utils.EntityExtention.InitEntity``1(``0,Model.Common.OperatorDetail)">
+        <member name="M:Business.Utils.EntityExtention.InitEntity``1(``0,Model.Common.OperatorUserInfo)">
             <summary>
             初始化实体
             </summary>
@@ -1381,7 +1397,7 @@
             <param name="entity"></param>
             <returns></returns>
         </member>
-        <member name="M:Business.Utils.EntityExtention.ModifyEntity``1(``0,Model.Common.OperatorDetail)">
+        <member name="M:Business.Utils.EntityExtention.ModifyEntity``1(``0,Model.Common.OperatorUserInfo)">
             <summary>
             修改实体
             </summary>
@@ -1390,7 +1406,7 @@
             <param name="operatorDetail"></param>
             <returns></returns>
         </member>
-        <member name="M:Business.Utils.EntityExtention.GetUserName(Business.Interface.System.IOperator,Model.Common.OperatorDetail)">
+        <member name="M:Business.Utils.EntityExtention.GetUserName(Business.Interface.System.IOperator,Model.Common.OperatorUserInfo)">
             <summary>
             获取当前登录用户的用户名
             </summary>

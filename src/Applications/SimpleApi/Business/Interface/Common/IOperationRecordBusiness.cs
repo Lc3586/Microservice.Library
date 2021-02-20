@@ -28,16 +28,14 @@ namespace Business.Interface.Common
         /// 新增
         /// </summary>
         /// <param name="data">数据</param>
-        /// <param name="withOP">写入操作人信息</param>
         /// <returns>操作记录Id</returns>
-        string Create(Common_OperationRecord data, bool withOP = true);
+        string Create(Common_OperationRecord data);
 
         /// <summary>
         /// 新增
         /// </summary>
         /// <param name="datas">数据集合</param>
-        /// <param name="withOP">写入操作人信息</param>
         /// <returns></returns>
-        List<string> Create(List<Common_OperationRecord> datas, bool withOP = true);
+        List<string> Create(List<Common_OperationRecord> datas);
     }
 }

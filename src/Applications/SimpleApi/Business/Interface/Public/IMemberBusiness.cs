@@ -1,6 +1,7 @@
 ﻿using Library.SelectOption;
 using Model.Common;
 using Model.Public.MemberDTO;
+using Model.SampleAuthentication.SampleAuthenticationDTO;
 using Model.System.Pagination;
 using System.Collections.Generic;
 
@@ -40,9 +41,8 @@ namespace Business.Interface.System
         /// </summary>
         /// <param name="data">数据</param>
         /// <param name="runTransaction">运行事务（默认运行）</param>
-        /// <param name="withOP">写入操作人信息</param>
         /// <returns></returns>
-        void Create(Create data, bool runTransaction = true, bool withOP = true);
+        void Create(Create data, bool runTransaction = true);
 
         /// <summary>
         /// 获取编辑数据
@@ -56,9 +56,8 @@ namespace Business.Interface.System
         /// </summary>
         /// <param name="data">数据</param>
         /// <param name="runTransaction">运行事务（默认运行）</param>
-        /// <param name="withOP">写入操作人信息</param>
         /// <returns></returns>
-        void Edit(Edit data, bool runTransaction = true, bool withOP = true);
+        void Edit(Edit data, bool runTransaction = true);
 
         /// <summary>
         /// 删除
@@ -75,14 +74,14 @@ namespace Business.Interface.System
         /// 登录
         /// </summary>
         /// <param name="openId"></param>
-        void Login(string openId);
+        AuthenticationInfo Login(string openId);
 
         /// <summary>
         /// 获取操作者详情
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        OperatorDetail GetOperatorDetail(string id);
+        OperatorUserInfo GetOperatorDetail(string id);
 
         #endregion
     }

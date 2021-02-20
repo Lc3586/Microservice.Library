@@ -19,7 +19,7 @@ namespace Library.Container
             {
                 aFiler.OnActionExecuting(invocation);
 
-                if (invocation.ReturnValue != null || !string.IsNullOrEmpty(invocation.ReturnValue.ToString()))
+                if (invocation.ReturnValue != null && !string.IsNullOrEmpty(invocation.ReturnValue.ToString()))
                     return;
             }
 

@@ -1,13 +1,8 @@
-﻿using Library.OpenApi.Annotations;
-using Library.OpenApi.Extention;
-using Library.OpenApi.JsonSerialization;
+﻿using Library.OpenApi.JsonSerialization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Text;
 
 namespace Library.OpenApi.Extention
 {
@@ -127,7 +122,7 @@ namespace Library.OpenApi.Extention
         /// <returns></returns>
         public static string ToOpenApiJson(this object obj, Type openApiSchemaType, params string[] exceptionProperties)
         {
-            return obj.ToOpenApiJsonSpecifyType(openApiSchemaType, new Dictionary<string, List<string>>() { { openApiSchemaType.FullName, exceptionProperties?.ToList() } }, null);
+            return obj.ToOpenApiJsonSpecifyType(openApiSchemaType, exceptionProperties == null ? null : new Dictionary<string, List<string>>() { { openApiSchemaType.FullName, exceptionProperties?.ToList() } }, null);
         }
 
         /// <summary>
@@ -139,7 +134,7 @@ namespace Library.OpenApi.Extention
         /// <returns></returns>
         public static string ToOpenApiJsonIgnore(this object obj, Type openApiSchemaType, string[] ignoreProperties)
         {
-            return obj.ToOpenApiJsonSpecifyType(openApiSchemaType, null, new Dictionary<string, List<string>>() { { openApiSchemaType.FullName, ignoreProperties?.ToList() } });
+            return obj.ToOpenApiJsonSpecifyType(openApiSchemaType, null, ignoreProperties == null ? null : new Dictionary<string, List<string>>() { { openApiSchemaType.FullName, ignoreProperties?.ToList() } });
         }
 
         /// <summary>
@@ -152,8 +147,8 @@ namespace Library.OpenApi.Extention
         /// <returns></returns>
         public static string ToOpenApiJson(this object obj, Type openApiSchemaType, string[] exceptionProperties, string[] ignoreProperties)
         {
-            return obj.ToOpenApiJsonSpecifyType(openApiSchemaType, new Dictionary<string, List<string>>() { { openApiSchemaType.FullName, exceptionProperties?.ToList() } },
-                                             new Dictionary<string, List<string>>() { { openApiSchemaType.FullName, ignoreProperties?.ToList() } });
+            return obj.ToOpenApiJsonSpecifyType(openApiSchemaType, exceptionProperties == null ? null : new Dictionary<string, List<string>>() { { openApiSchemaType.FullName, exceptionProperties?.ToList() } },
+                                             ignoreProperties == null ? null : new Dictionary<string, List<string>>() { { openApiSchemaType.FullName, ignoreProperties?.ToList() } });
         }
 
         /// <summary>
@@ -205,7 +200,7 @@ namespace Library.OpenApi.Extention
         /// <returns></returns>
         public static string ToOpenApiJson<TOpenApiSchema>(this TOpenApiSchema obj, params string[] exceptionProperties)
         {
-            return obj.ToOpenApiJsonSpecifyType<TOpenApiSchema>(new Dictionary<string, List<string>>() { { typeof(TOpenApiSchema).FullName, exceptionProperties?.ToList() } }, null);
+            return obj.ToOpenApiJsonSpecifyType<TOpenApiSchema>(exceptionProperties == null ? null : new Dictionary<string, List<string>>() { { typeof(TOpenApiSchema).FullName, exceptionProperties?.ToList() } }, null);
         }
 
         /// <summary>
@@ -307,7 +302,7 @@ namespace Library.OpenApi.Extention
         /// <returns></returns>
         public static object ToOpenApiObject(this string json, Type openApiSchemaType, params string[] exceptionProperties)
         {
-            return json.ToOpenApiObject(openApiSchemaType, new Dictionary<string, List<string>>() { { openApiSchemaType.FullName, exceptionProperties?.ToList() } }, null);
+            return json.ToOpenApiObject(openApiSchemaType, exceptionProperties == null ? null : new Dictionary<string, List<string>>() { { openApiSchemaType.FullName, exceptionProperties?.ToList() } }, null);
         }
 
         /// <summary>
@@ -319,7 +314,7 @@ namespace Library.OpenApi.Extention
         /// <returns></returns>
         public static object ToOpenApiObjectIgnore(this string json, Type openApiSchemaType, string[] ignoreProperties)
         {
-            return json.ToOpenApiObject(openApiSchemaType, null, new Dictionary<string, List<string>>() { { openApiSchemaType.FullName, ignoreProperties?.ToList() } });
+            return json.ToOpenApiObject(openApiSchemaType, null, ignoreProperties == null ? null : new Dictionary<string, List<string>>() { { openApiSchemaType.FullName, ignoreProperties?.ToList() } });
         }
 
         /// <summary>
@@ -332,8 +327,8 @@ namespace Library.OpenApi.Extention
         /// <returns></returns>
         public static object ToOpenApiObject(this string json, Type openApiSchemaType, string[] exceptionProperties, string[] ignoreProperties)
         {
-            return json.ToOpenApiObject(openApiSchemaType, new Dictionary<string, List<string>>() { { openApiSchemaType.FullName, exceptionProperties?.ToList() } },
-                                             new Dictionary<string, List<string>>() { { openApiSchemaType.FullName, ignoreProperties?.ToList() } });
+            return json.ToOpenApiObject(openApiSchemaType, exceptionProperties == null ? null : new Dictionary<string, List<string>>() { { openApiSchemaType.FullName, exceptionProperties?.ToList() } },
+                                            ignoreProperties == null ? null : new Dictionary<string, List<string>>() { { openApiSchemaType.FullName, ignoreProperties?.ToList() } });
         }
 
         /// <summary>
@@ -371,7 +366,7 @@ namespace Library.OpenApi.Extention
         /// <returns></returns>
         public static object ToOpenApiObject(this string json, Type openApiSchemaType, Dictionary<string, List<string>> exceptionProperties, Dictionary<string, List<string>> ignoreProperties)
         {
-            return JsonConvert.DeserializeObject(json, new JsonSerializerSettings
+            return JsonConvert.DeserializeObject(json, openApiSchemaType, new JsonSerializerSettings
             {
                 ContractResolver = new OpenApiContractResolver(openApiSchemaType.GetOrNullForPropertyDic(true, exceptionProperties, ignoreProperties))
             });
@@ -386,7 +381,7 @@ namespace Library.OpenApi.Extention
         /// <returns></returns>
         public static TOpenApiSchema ToOpenApiObject<TOpenApiSchema>(this string json, params string[] exceptionProperties) where TOpenApiSchema : class
         {
-            return json.ToOpenApiObject<TOpenApiSchema>(new Dictionary<string, List<string>>() { { typeof(TOpenApiSchema).FullName, exceptionProperties?.ToList() } }, null);
+            return json.ToOpenApiObject<TOpenApiSchema>(exceptionProperties == null ? null : new Dictionary<string, List<string>>() { { typeof(TOpenApiSchema).FullName, exceptionProperties?.ToList() } }, null);
         }
 
         /// <summary>
@@ -398,7 +393,7 @@ namespace Library.OpenApi.Extention
         /// <returns></returns>
         public static TOpenApiSchema ToOpenApiObjectIgnore<TOpenApiSchema>(this string json, string[] ignoreProperties) where TOpenApiSchema : class
         {
-            return json.ToOpenApiObject<TOpenApiSchema>(null, new Dictionary<string, List<string>>() { { typeof(TOpenApiSchema).FullName, ignoreProperties?.ToList() } });
+            return json.ToOpenApiObject<TOpenApiSchema>(null, ignoreProperties == null ? null : new Dictionary<string, List<string>>() { { typeof(TOpenApiSchema).FullName, ignoreProperties?.ToList() } });
         }
 
         /// <summary>
@@ -411,8 +406,8 @@ namespace Library.OpenApi.Extention
         /// <returns></returns>
         public static TOpenApiSchema ToOpenApiObject<TOpenApiSchema>(this string json, string[] exceptionProperties, string[] ignoreProperties) where TOpenApiSchema : class
         {
-            return json.ToOpenApiObject<TOpenApiSchema>(new Dictionary<string, List<string>>() { { typeof(TOpenApiSchema).FullName, exceptionProperties?.ToList() } },
-                                             new Dictionary<string, List<string>>() { { typeof(TOpenApiSchema).FullName, ignoreProperties?.ToList() } });
+            return json.ToOpenApiObject<TOpenApiSchema>(exceptionProperties == null ? null : new Dictionary<string, List<string>>() { { typeof(TOpenApiSchema).FullName, exceptionProperties?.ToList() } },
+                                             ignoreProperties == null ? null : new Dictionary<string, List<string>>() { { typeof(TOpenApiSchema).FullName, ignoreProperties?.ToList() } });
         }
 
         /// <summary>

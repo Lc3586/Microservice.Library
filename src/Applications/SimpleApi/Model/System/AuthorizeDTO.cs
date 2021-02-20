@@ -26,7 +26,7 @@ namespace Model.System.AuthorizeDTO
         public List<string> RoleIds { get; set; }
 
         /// <summary>
-        /// 撤销全部角色
+        /// 全部角色
         /// </summary>
         [OpenApiIgnore]
         [JsonIgnore]
@@ -51,7 +51,7 @@ namespace Model.System.AuthorizeDTO
         public List<string> RoleIds { get; set; }
 
         /// <summary>
-        /// 撤销全部角色
+        /// 全部角色
         /// </summary>
         [OpenApiIgnore]
         [JsonIgnore]
@@ -76,7 +76,7 @@ namespace Model.System.AuthorizeDTO
         public List<string> MenuIds { get; set; }
 
         /// <summary>
-        /// 撤销全部菜单
+        /// 全部菜单
         /// </summary>
         [OpenApiIgnore]
         [JsonIgnore]
@@ -101,7 +101,7 @@ namespace Model.System.AuthorizeDTO
         public List<string> ResourcesIds { get; set; }
 
         /// <summary>
-        /// 撤销全部资源
+        /// 全部资源
         /// </summary>
         [OpenApiIgnore]
         [JsonIgnore]
@@ -126,7 +126,7 @@ namespace Model.System.AuthorizeDTO
         public List<string> MenuIds { get; set; }
 
         /// <summary>
-        /// 撤销全部菜单
+        /// 全部菜单
         /// </summary>
         [OpenApiIgnore]
         [JsonIgnore]
@@ -151,7 +151,7 @@ namespace Model.System.AuthorizeDTO
         public List<string> ResourcesIds { get; set; }
 
         /// <summary>
-        /// 撤销全部资源
+        /// 全部资源
         /// </summary>
         [OpenApiIgnore]
         [JsonIgnore]
