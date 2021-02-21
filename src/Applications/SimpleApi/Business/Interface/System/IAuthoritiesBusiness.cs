@@ -10,6 +10,20 @@ namespace Business.Interface.System
         #region 授权
 
         /// <summary>
+        /// 自动授权角色给用户
+        /// </summary>
+        /// <param name="data">数据</param>
+        /// <param name="runTransaction">运行事务（默认运行）</param>
+        void AutoAuthorizeRoleForUser(Model.System.AuthorizeDTO.RoleForUser data, bool runTransaction = true);
+
+        /// <summary>
+        /// 自动授权角色给会员
+        /// </summary>
+        /// <param name="data">数据</param>
+        /// <param name="runTransaction">运行事务（默认运行）</param>
+        void AutoAuthorizeRoleForMember(Model.System.AuthorizeDTO.RoleForMember data, bool runTransaction = true);
+
+        /// <summary>
         /// 授权角色给用户
         /// </summary>
         /// <param name="data">数据</param>
@@ -20,7 +34,8 @@ namespace Business.Interface.System
         /// 授权角色给会员
         /// </summary>
         /// <param name="data">数据</param>
-        void AuthorizeRoleForMember(Model.System.AuthorizeDTO.RoleForMember data);
+        /// <param name="runTransaction">运行事务（默认运行）</param>
+        void AuthorizeRoleForMember(Model.System.AuthorizeDTO.RoleForMember data, bool runTransaction = true);
 
         /// <summary>
         /// 授权菜单给用户
@@ -49,6 +64,20 @@ namespace Business.Interface.System
         #endregion
 
         #region 撤销授权
+
+        /// <summary>
+        /// 撤销角色的全部系统用户授权
+        /// </summary>
+        /// <param name="roleIds">角色Id</param>
+        /// <param name="runTransaction">运行事务（默认运行）</param>
+        void RevocationRoleForAllUser(List<string> roleIds, bool runTransaction = true);
+
+        /// <summary>
+        /// 撤销角色的全部会员授权
+        /// </summary>
+        /// <param name="roleIds">角色Id</param>
+        /// <param name="runTransaction">运行事务（默认运行）</param>
+        void RevocationRoleForAllMember(List<string> roleIds, bool runTransaction = true);
 
         /// <summary>
         /// 撤销用户的全部角色授权
@@ -376,6 +405,12 @@ namespace Business.Interface.System
         /// <param name="resourcesUri">资源链接</param>
         /// <returns></returns>
         bool MemberHasResourcesUri(string memberId, string resourcesUri);
+
+        #endregion
+
+        #region 拓展功能
+
+
 
         #endregion
     }

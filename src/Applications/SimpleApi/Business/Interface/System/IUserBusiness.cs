@@ -1,7 +1,7 @@
 ﻿using Library.SelectOption;
 using Model.Common;
-using Model.SampleAuthentication.SampleAuthenticationDTO;
-using Model.System.Pagination;
+using Model.Utils.SampleAuthentication.SampleAuthenticationDTO;
+using Model.Utils.Pagination;
 using Model.System.UserDTO;
 using System.Collections.Generic;
 
@@ -71,6 +71,20 @@ namespace Business.Interface.System
         #region 拓展功能
 
         /// <summary>
+        /// 启用/禁用
+        /// </summary>
+        /// <param name="id">数据</param>
+        /// <param name="enable">设置状态</param>
+        /// <returns></returns>
+        void Enable(string id, bool enable);
+
+        /// <summary>
+        /// 更新密码
+        /// </summary>
+        /// <param name="data">数据</param>
+        void UpdatePassword(UpdatePassword data);
+
+        /// <summary>
         /// 登录
         /// </summary>
         /// <param name="account"></param>
@@ -82,12 +96,6 @@ namespace Business.Interface.System
         /// </summary>
         /// <param name="openId"></param>
         AuthenticationInfo Login(string openId);
-
-        /// <summary>
-        /// 更新密码
-        /// </summary>
-        /// <param name="data">数据</param>
-        void UpdatePassword(UpdatePassword data);
 
         /// <summary>
         /// 获取操作者详情

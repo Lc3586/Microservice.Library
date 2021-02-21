@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using Model.System.Config;
+using Model.Utils.Config;
 
 namespace Api.Configures
 {

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Model.SampleAuthentication.SampleAuthenticationDTO;
+using Model.Utils.SampleAuthentication.SampleAuthenticationDTO;
 using Model.System;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Collections.Generic;

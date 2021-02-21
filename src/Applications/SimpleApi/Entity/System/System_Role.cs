@@ -103,6 +103,28 @@ namespace Entity.System
         public int Sort { get; set; }
 
         /// <summary>
+        /// 自动授权角色给系统用户
+        /// </summary>
+        /// <remarks>
+        /// <para>创建角色后自动授权给所有已创建的系统用户</para>
+        /// <para>创建系统用户时自动授权此角色</para>
+        /// </remarks>
+        [OpenApiSubTag("List", "TreeList", "Create", "Edit", "Detail")]
+        [Description("启用")]
+        public bool AutoAuthorizeRoleForUser { get; set; }
+
+        /// <summary>
+        /// 自动授权角色给会员
+        /// </summary>
+        /// <remarks>
+        /// <para>创建角色后自动授权给所有已创建的会员</para>
+        /// <para>创建会员时自动授权此角色</para>
+        /// </remarks>
+        [OpenApiSubTag("List", "TreeList", "Create", "Edit", "Detail")]
+        [Description("启用")]
+        public bool AutoAuthorizeRoleForMember { get; set; }
+
+        /// <summary>
         /// 备注
         /// </summary>
         [OpenApiSubTag("Create", "Edit", "Detail")]

@@ -5,7 +5,7 @@ using Library.OpenApi.Annotations;
 using Library.OpenApi.Extention;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Model.System;
+using Model.Utils.Result;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

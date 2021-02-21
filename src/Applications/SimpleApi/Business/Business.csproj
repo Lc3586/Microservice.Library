@@ -22,7 +22,6 @@
     <ProjectReference Include="..\..\..\Library\SelectOption\Library.SelectOption.csproj" />
     <ProjectReference Include="..\..\..\Library\TypeTool\Library.TypeTool.csproj" />
     <ProjectReference Include="..\..\..\Library\WebApp\Library.WebApp.csproj" />
-    <ProjectReference Include="..\..\..\Library\WeChat\Library.WeChat.csproj" />
     <ProjectReference Include="..\Model\Model.csproj" />
   </ItemGroup>
 

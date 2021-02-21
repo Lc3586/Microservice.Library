@@ -3,7 +3,6 @@ using IocServiceDemo;
 using Library.DataMapping.Gen;
 using Library.Extension;
 using Library.FreeSql.Gen;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Threading.Tasks;
@@ -13,7 +12,7 @@ namespace Api.Controllers.Utils
     /// <summary>
     /// 测试
     /// </summary>
-    [Route("/[controller]/[action]")]
+    [Route("/test")]
     [CheckModel]
     [SwaggerTag("测试接口")]
     public class TestController : BaseApiController
@@ -49,14 +48,14 @@ namespace Api.Controllers.Utils
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        [HttpGet]
-        public async Task<string> DependencyInjectionTest(string value)
+        [HttpGet("di/{value}")]
+        public async Task<object> DependencyInjectionTest(string value)
         {
             var result = DemoService.Change(value);
 
             DemoService.Quit();
 
-            return await Task.FromResult(result);
+            return await Task.FromResult(Success<string>(result));
         }
 
         /// <summary>
@@ -65,12 +64,12 @@ namespace Api.Controllers.Utils
         /// <param name="table">表名</param>
         /// <param name="where">过滤条件</param>
         /// <returns></returns>
-        [HttpGet]
+        [HttpGet("database-table/{table}")]
         public async Task<object> TestDataBaseWithTable(string table, string where = null)
         {
             var dt = Orm.Ado.ExecuteDataTable($"select * from {table} where {(where.IsNullOrEmpty() ? "1=1" : where)}");
 
-            return await Task.FromResult(dt);
+            return await Task.FromResult(Success(dt));
         }
 
         /// <summary>
@@ -78,12 +77,12 @@ namespace Api.Controllers.Utils
         /// </summary>
         /// <param name="procedure">存储过程</param>
         /// <returns></returns>
-        [HttpGet]
+        [HttpGet("database-sp/{procedure}")]
         public async Task<object> TestDataBaseWithStoredProcedure(string procedure)
         {
             var ds = Orm.Ado.ExecuteNonQuery(System.Data.CommandType.StoredProcedure, procedure);
 
-            return await Task.FromResult(ds);
+            return await Task.FromResult(Success(ds));
         }
     }
 }

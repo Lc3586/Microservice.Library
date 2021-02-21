@@ -14,10 +14,10 @@ using Library.FreeSql.Gen;
 using Library.OpenApi.Extention;
 using Library.SelectOption;
 using Model.Common;
-using Model.SampleAuthentication.SampleAuthenticationDTO;
 using Model.System;
-using Model.System.Pagination;
 using Model.System.UserDTO;
+using Model.Utils.Pagination;
+using Model.Utils.SampleAuthentication.SampleAuthenticationDTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -247,6 +247,11 @@ namespace Business.Implementation.System
                 });
 
                 Repository.Insert(newData);
+
+                AuthoritiesBusiness.AutoAuthorizeRoleForUser(new Model.System.AuthorizeDTO.RoleForUser
+                {
+                    UserIds = new List<string> { newData.Id }
+                }, false);
             };
 
             if (runTransaction)
@@ -347,6 +352,56 @@ namespace Business.Implementation.System
 
         #region 拓展功能
 
+        [AdministratorOnly]
+        public void Enable(string id, bool enable)
+        {
+            var entity = Repository.GetAndCheckNull(id);
+
+            entity.Enable = enable;
+
+            (bool success, Exception ex) = Orm.RunTransaction(() =>
+            {
+                var orId = OperationRecordBusiness.Create(new Common_OperationRecord
+                {
+                    DataType = nameof(System_User),
+                    DataId = entity.Id,
+                    Explain = $"{(enable ? "启用" : "禁用")}用户[账号 {entity.Account}, 姓名 {entity.Name}]."
+                });
+
+                if (Repository.Update(entity) <= 0)
+                    throw new ApplicationException($"{(enable ? "启用" : "禁用")}用户失败");
+            });
+
+            if (!success)
+                throw ex;
+        }
+
+        public void UpdatePassword(UpdatePassword data)
+        {
+            var editData = Mapper.Map<System_User>(data).ModifyEntity();
+
+            var entity = Repository.GetAndCheckNull(editData.Id);
+
+            (bool success, Exception ex) = Orm.RunTransaction(() =>
+            {
+                var orId = OperationRecordBusiness.Create(new Common_OperationRecord
+                {
+                    DataType = nameof(System_User),
+                    DataId = entity.Id,
+                    Explain = $"更新密码[账号 {entity.Account}, 姓名 {entity.Name}]."
+                });
+
+                if (Repository.UpdateDiy
+                      .SetSource(editData.ModifyEntity())
+                      .UpdateColumns(typeof(UpdatePassword).GetNamesWithTagAndOther(false, "_Edit").ToArray())
+                      .ExecuteAffrows() <= 0)
+                    throw new ApplicationException("更新密码失败");
+            });
+
+            if (!success)
+                throw ex;
+        }
+
         public AuthenticationInfo Login(string account, string password)
         {
             var user = Repository.Where(o => o.Account == account)
@@ -421,32 +476,6 @@ namespace Business.Implementation.System
                 Sex = user.Sex,
                 HeadimgUrl = user.HeadimgUrl
             };
-        }
-
-        public void UpdatePassword(UpdatePassword data)
-        {
-            var editData = Mapper.Map<System_User>(data).ModifyEntity();
-
-            var entity = Repository.GetAndCheckNull(editData.Id);
-
-            (bool success, Exception ex) = Orm.RunTransaction(() =>
-            {
-                var orId = OperationRecordBusiness.Create(new Common_OperationRecord
-                {
-                    DataType = nameof(System_User),
-                    DataId = entity.Id,
-                    Explain = $"更新密码[账号 {entity.Account}, 姓名 {entity.Name}]."
-                });
-
-                if (Repository.UpdateDiy
-                      .SetSource(editData.ModifyEntity())
-                      .UpdateColumns(typeof(UpdatePassword).GetNamesWithTagAndOther(false, "_Edit").ToArray())
-                      .ExecuteAffrows() <= 0)
-                    throw new ApplicationException("更新密码失败");
-            });
-
-            if (!success)
-                throw ex;
         }
 
         public OperatorUserInfo GetOperatorDetail(string id)

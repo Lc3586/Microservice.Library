@@ -1,6 +1,6 @@
 ﻿using Elasticsearch.Net;
 using Microsoft.Extensions.DependencyInjection;
-using Model.System.Config;
+using Model.Utils.Config;
 using Nest;
 using System.Linq;
 

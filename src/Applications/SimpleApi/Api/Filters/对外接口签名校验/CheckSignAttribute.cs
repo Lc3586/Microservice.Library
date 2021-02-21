@@ -5,9 +5,9 @@ using Library.Extension;
 using Library.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Model.System;
-using Model.System.Config;
-using Model.System.Log;
+using Model.Utils.Config;
+using Model.Utils.Log;
+using Model.Utils.Result;
 using System;
 
 namespace Api

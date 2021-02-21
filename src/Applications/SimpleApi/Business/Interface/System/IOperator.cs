@@ -1,6 +1,5 @@
 ﻿using Model.Common;
-using Model.SampleAuthentication.SampleAuthenticationDTO;
-using System.Collections.Generic;
+using Model.Utils.SampleAuthentication.SampleAuthenticationDTO;
 
 namespace Business.Interface.System
 {

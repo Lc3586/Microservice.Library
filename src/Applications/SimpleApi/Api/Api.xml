@@ -9,7 +9,7 @@
             AutoMapper配置类
             </summary>
         </member>
-        <member name="M:Api.Configures.AutoMapperConfigura.RegisterAutoMapper(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.System.Config.SystemConfig)">
+        <member name="M:Api.Configures.AutoMapperConfigura.RegisterAutoMapper(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.Utils.Config.SystemConfig)">
             <summary>
             注册AutoMapper服务
             </summary>
@@ -21,14 +21,14 @@
             CAS配置类
             </summary>
         </member>
-        <member name="M:Api.Configures.CASConfigura.RegisterCAS(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.System.Config.SystemConfig)">
+        <member name="M:Api.Configures.CASConfigura.RegisterCAS(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.Utils.Config.SystemConfig)">
             <summary>
             注册CAS服务
             </summary>
             <param name="services"></param>
             <param name="config"></param>
         </member>
-        <member name="M:Api.Configures.CASConfigura.ConfiguraCAS(Microsoft.AspNetCore.Builder.IApplicationBuilder,Model.System.Config.SystemConfig)">
+        <member name="M:Api.Configures.CASConfigura.ConfiguraCAS(Microsoft.AspNetCore.Builder.IApplicationBuilder,Model.Utils.Config.SystemConfig)">
             <summary>
             配置CAS
             注：方法在UseMvc之前
@@ -42,7 +42,7 @@
             </summary>
             <remarks>当Api有多个版本时使用此类,将系统配置应用于Swagger配置</remarks>
         </member>
-        <member name="M:Api.Configures.ConfigureSwaggerGenOptions.#ctor(System.IServiceProvider,Microsoft.Extensions.Options.IOptions{Model.System.Config.SwaggerApiMultiVersionDescriptionOptions})">
+        <member name="M:Api.Configures.ConfigureSwaggerGenOptions.#ctor(System.IServiceProvider,Microsoft.Extensions.Options.IOptions{Model.Utils.Config.SwaggerApiMultiVersionDescriptionOptions})">
             <summary>
             
             </summary>
@@ -60,7 +60,7 @@
             ES搜索服务配置类
             </summary>
         </member>
-        <member name="M:Api.Configures.ElasticsearchConfigura.RegisterElasticsearch(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.System.Config.SystemConfig)">
+        <member name="M:Api.Configures.ElasticsearchConfigura.RegisterElasticsearch(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.Utils.Config.SystemConfig)">
             <summary>
             注册ES搜索服务
             </summary>
@@ -72,14 +72,14 @@
             FreeSql配置类
             </summary>
         </member>
-        <member name="M:Api.Configures.FreeSqlConfigura.RegisterFreeSql(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.System.Config.SystemConfig)">
+        <member name="M:Api.Configures.FreeSqlConfigura.RegisterFreeSql(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.Utils.Config.SystemConfig)">
             <summary>
             注册FreeSql服务
             </summary>
             <param name="services"></param>
             <param name="config"></param>
         </member>
-        <member name="M:Api.Configures.FreeSqlConfigura.ConfiguraFreeSql(Microsoft.AspNetCore.Builder.IApplicationBuilder,Model.System.Config.SystemConfig)">
+        <member name="M:Api.Configures.FreeSqlConfigura.ConfiguraFreeSql(Microsoft.AspNetCore.Builder.IApplicationBuilder,Model.Utils.Config.SystemConfig)">
             <summary>
             配置FreeSql
             </summary>
@@ -91,14 +91,14 @@
             FreeSql多数据库配置类
             </summary>
         </member>
-        <member name="M:Api.Configures.FreeSqlMultiDatabaseConfigura.RegisterFreeSqlMultiDatabase(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.System.Config.SystemConfig)">
+        <member name="M:Api.Configures.FreeSqlMultiDatabaseConfigura.RegisterFreeSqlMultiDatabase(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.Utils.Config.SystemConfig)">
             <summary>
             注册FreeSql多数据库服务
             </summary>
             <param name="services"></param>
             <param name="config"></param>
         </member>
-        <member name="M:Api.Configures.FreeSqlMultiDatabaseConfigura.ConfiguraFreeSqlMultiDatabase(Microsoft.AspNetCore.Builder.IApplicationBuilder,Model.System.Config.SystemConfig)">
+        <member name="M:Api.Configures.FreeSqlMultiDatabaseConfigura.ConfiguraFreeSqlMultiDatabase(Microsoft.AspNetCore.Builder.IApplicationBuilder,Model.Utils.Config.SystemConfig)">
             <summary>
             配置FreeSql多数据库服务
             </summary>
@@ -110,14 +110,14 @@
             NLog配置类
             </summary>
         </member>
-        <member name="M:Api.Configures.NLogConfigura.RegisterNLog(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.System.Config.SystemConfig)">
+        <member name="M:Api.Configures.NLogConfigura.RegisterNLog(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.Utils.Config.SystemConfig)">
             <summary>
             注册NLog服务
             </summary>
             <param name="services"></param>
             <param name="config"></param>
         </member>
-        <member name="M:Api.Configures.NLogConfigura.ConfiguraNLog(Microsoft.AspNetCore.Builder.IApplicationBuilder,Model.System.Config.SystemConfig)">
+        <member name="M:Api.Configures.NLogConfigura.ConfiguraNLog(Microsoft.AspNetCore.Builder.IApplicationBuilder,Model.Utils.Config.SystemConfig)">
             <summary>
             配置NLog
             </summary>
@@ -129,14 +129,14 @@
             简易身份验证配置类
             </summary>
         </member>
-        <member name="M:Api.Configures.SampleAuthenticationConfigura.RegisterSampleAuthentication(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.System.Config.SystemConfig)">
+        <member name="M:Api.Configures.SampleAuthenticationConfigura.RegisterSampleAuthentication(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.Utils.Config.SystemConfig)">
             <summary>
             注册简易身份验证服务
             </summary>
             <param name="services"></param>
             <param name="config"></param>
         </member>
-        <member name="M:Api.Configures.SampleAuthenticationConfigura.ConfiguraSampleAuthentication(Microsoft.AspNetCore.Builder.IApplicationBuilder,Model.System.Config.SystemConfig)">
+        <member name="M:Api.Configures.SampleAuthenticationConfigura.ConfiguraSampleAuthentication(Microsoft.AspNetCore.Builder.IApplicationBuilder,Model.Utils.Config.SystemConfig)">
             <summary>
             配置简易身份验证
             注：方法在UseEndpoints之前调用
@@ -149,14 +149,14 @@
             Soap配置类
             </summary>
         </member>
-        <member name="M:Api.Configures.SoapConfigure.RegisterSoap(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.System.Config.SystemConfig)">
+        <member name="M:Api.Configures.SoapConfigure.RegisterSoap(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.Utils.Config.SystemConfig)">
             <summary>
             注册Soap服务
             </summary>
             <param name="services"></param>
             <param name="config"></param>
         </member>
-        <member name="M:Api.Configures.SoapConfigure.ConfiguraSoap(Microsoft.AspNetCore.Builder.IApplicationBuilder,Model.System.Config.SystemConfig)">
+        <member name="M:Api.Configures.SoapConfigure.ConfiguraSoap(Microsoft.AspNetCore.Builder.IApplicationBuilder,Model.Utils.Config.SystemConfig)">
             <summary>
             配置Soap
             </summary>
@@ -168,14 +168,14 @@
             Swagger单文档配置类
             </summary>
         </member>
-        <member name="M:Api.Configures.SwaggerConfigura.RegisterSwagger(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.System.Config.SystemConfig)">
+        <member name="M:Api.Configures.SwaggerConfigura.RegisterSwagger(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.Utils.Config.SystemConfig)">
             <summary>
             注册Swagger服务
             </summary>
             <param name="services"></param>
             <param name="config"></param>
         </member>
-        <member name="M:Api.Configures.SwaggerConfigura.ConfiguraSwagger(Microsoft.AspNetCore.Builder.IApplicationBuilder,Model.System.Config.SystemConfig)">
+        <member name="M:Api.Configures.SwaggerConfigura.ConfiguraSwagger(Microsoft.AspNetCore.Builder.IApplicationBuilder,Model.Utils.Config.SystemConfig)">
             <summary>
             配置Swagger
             </summary>
@@ -187,14 +187,14 @@
             Swagger多版本文档配置类
             </summary>
         </member>
-        <member name="M:Api.Configures.SwaggerMultiVersionConfigura.RegisterSwaggerMultiVersion(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.System.Config.SystemConfig)">
+        <member name="M:Api.Configures.SwaggerMultiVersionConfigura.RegisterSwaggerMultiVersion(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.Utils.Config.SystemConfig)">
             <summary>
             注册Swagger多版本文档服务
             </summary>
             <param name="services"></param>
             <param name="config"></param>
         </member>
-        <member name="M:Api.Configures.SwaggerMultiVersionConfigura.ConfiguraSwaggerMultiVersion(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Mvc.ApiExplorer.IApiVersionDescriptionProvider,Model.System.Config.SystemConfig)">
+        <member name="M:Api.Configures.SwaggerMultiVersionConfigura.ConfiguraSwaggerMultiVersion(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Mvc.ApiExplorer.IApiVersionDescriptionProvider,Model.Utils.Config.SystemConfig)">
             <summary>
             配置Swagger多版本文档
             </summary>
@@ -207,19 +207,198 @@
             微信配置类
             </summary>
         </member>
-        <member name="M:Api.Configures.WeChatServiceConfigura.RegisterWeChat(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.System.Config.SystemConfig)">
+        <member name="M:Api.Configures.WeChatServiceConfigura.RegisterWeChat(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.Utils.Config.SystemConfig)">
             <summary>
             注册WeChat服务
             </summary>
             <param name="services"></param>
             <param name="config"></param>
         </member>
-        <member name="M:Api.Configures.WeChatServiceConfigura.ConfiguraWeChat(Microsoft.AspNetCore.Builder.IApplicationBuilder,Model.System.Config.SystemConfig)">
+        <member name="M:Api.Configures.WeChatServiceConfigura.ConfiguraWeChat(Microsoft.AspNetCore.Builder.IApplicationBuilder,Model.Utils.Config.SystemConfig)">
             <summary>
             配置WeChat
             </summary>
             <param name="app"></param>
             <param name="config"></param>
+        </member>
+        <member name="T:Api.Controllers.EntryLogController">
+            <summary>
+            登录日志接口
+            </summary>
+        </member>
+        <member name="M:Api.Controllers.EntryLogController.GetList(Model.Utils.Pagination.PaginationDTO)">
+            <summary>
+            获取列表数据
+            </summary>
+            <param name="pagination">分页设置</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.EntryLogController.GetDetail(System.String)">
+            <summary>
+            获取详情数据
+            </summary>
+            <param name="id">Id</param>
+            <returns></returns>
+        </member>
+        <member name="T:Api.Controllers.FileController">
+            <summary>
+            文件处理接口
+            </summary>
+        </member>
+        <member name="M:Api.Controllers.FileController.GetList(Model.Utils.Pagination.PaginationDTO)">
+            <summary>
+            获取列表数据
+            </summary>
+            <param name="pagination">分页设置</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.FileController.GetDetail(System.String)">
+            <summary>
+            获取详情数据
+            </summary>
+            <param name="id">Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.FileController.GetDetails(System.String)">
+            <summary>
+            获取详情数据集合
+            </summary>
+            <param name="ids">id逗号拼接</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.FileController.GetDetails(System.Collections.Generic.List{System.String})">
+            <summary>
+            获取详情数据集合
+            </summary>
+            <param name="ids">id集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.FileController.CheckMD5(System.String)">
+            <summary>
+            MD5校验
+            </summary>
+            <param name="md5"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.FileController.UploadSingleImage(Model.Common.FileDTO.ImageUploadParams)">
+            <summary>
+            单图上传
+            </summary>
+            <param name="option">选项</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.FileController.UploadSingleFile(Model.Common.FileDTO.FileUploadParams)">
+            <summary>
+            单文件上传
+            </summary>
+            <param name="option">选项</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.FileController.Preview(System.String)">
+            <summary>
+            预览
+            </summary>
+            <param name="id">文件Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.FileController.Browse(System.String)">
+            <summary>
+            浏览
+            </summary>
+            <param name="id">文件Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.FileController.Download(System.String)">
+            <summary>
+            下载
+            </summary>
+            <param name="id">文件Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.FileController.Delete(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            删除
+            </summary>
+            <param name="ids">Id集合</param>
+            <returns></returns>
+        </member>
+        <member name="T:Api.Controllers.OperationRecordController">
+            <summary>
+            操作记录接口
+            </summary>
+        </member>
+        <member name="M:Api.Controllers.OperationRecordController.GetList(Model.Utils.Pagination.PaginationDTO)">
+            <summary>
+            获取列表数据
+            </summary>
+            <param name="pagination">分页设置</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.OperationRecordController.GetDetail(System.String)">
+            <summary>
+            获取详情数据
+            </summary>
+            <param name="id">Id</param>
+            <returns></returns>
+        </member>
+        <member name="T:Api.Controllers.WeChatOAuthController">
+            <summary>
+            微信认证接口
+            </summary>
+        </member>
+        <member name="M:Api.Controllers.WeChatOAuthController.MemberLogin(System.String)">
+            <summary>
+            会员登录
+            </summary>
+            <param name="returnUrl">重定向地址</param>
+        </member>
+        <member name="M:Api.Controllers.WeChatOAuthController.UpdateMemberWeChatUserInfo(System.String,System.String)">
+            <summary>
+            更新会员微信用户信息
+            </summary>
+            <param name="memberId">会员Id</param>
+            <param name="returnUrl">重定向地址</param>
+        </member>
+        <member name="M:Api.Controllers.WeChatOAuthController.GetUserBindUrl(System.String,System.Boolean,System.String)">
+            <summary>
+            获取用于系统用户绑定微信的链接
+            </summary>
+            <param name="userId">用户Id</param>
+            <param name="asyncUserInfo">同步微信信息至用户信息</param>
+            <param name="returnUrl">重定向地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.WeChatOAuthController.UserLogin(System.String)">
+            <summary>
+            系统用户登录
+            </summary>
+            <param name="returnUrl">重定向地址</param>
+        </member>
+        <member name="M:Api.Controllers.WeChatOAuthController.UpdateUserWeChatUserInfo(System.String,System.String)">
+            <summary>
+            更新系统用户微信用户信息
+            </summary>
+            <param name="userId">用户Id</param>
+            <param name="returnUrl">重定向地址</param>
+        </member>
+        <member name="T:Api.Controllers.WeChatUserController">
+            <summary>
+            微信用户信息接口
+            </summary>
+        </member>
+        <member name="M:Api.Controllers.WeChatUserController.GetList(Model.Utils.Pagination.PaginationDTO)">
+            <summary>
+            获取列表数据
+            </summary>
+            <param name="pagination">分页设置</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.WeChatUserController.GetDetail(System.String)">
+            <summary>
+            获取详情数据
+            </summary>
+            <param name="id">Id</param>
+            <returns></returns>
         </member>
         <member name="T:Api.Controllers.SampleController">
             <summary>
@@ -237,7 +416,7 @@
             </summary>
             <param name="_exampleBusiness"></param>
         </member>
-        <member name="M:Api.Controllers.SampleController.GetList(Model.System.Pagination.PaginationDTO)">
+        <member name="M:Api.Controllers.SampleController.GetList(Model.Utils.Pagination.PaginationDTO)">
              <summary>
              获取列表数据
              </summary>
@@ -365,9 +544,688 @@
             <param name="ids">Id集合</param>
             <returns></returns>
         </member>
+        <member name="T:Api.Controllers.MemberController">
+            <summary>
+            会员接口
+            </summary>
+        </member>
+        <member name="M:Api.Controllers.MemberController.GetList(Model.Utils.Pagination.PaginationDTO)">
+            <summary>
+            获取列表数据
+            </summary>
+            <param name="pagination">分页设置</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.MemberController.DropdownList(System.String,Model.Utils.Pagination.PaginationDTO)">
+            <summary>
+            获取下拉列表数据
+            </summary>
+            <param name="condition">关键词(多个用空格分隔)</param>
+            <param name="pagination">分页设置</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.MemberController.GetDetail(System.String)">
+            <summary>
+            获取详情数据
+            </summary>
+            <param name="id">Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.MemberController.GetEdit(System.String)">
+            <summary>
+            获取编辑数据
+            </summary>
+            <param name="id">Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.MemberController.Edit(Model.Public.MemberDTO.Edit)">
+            <summary>
+            编辑
+            </summary>
+            <param name="data">数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.MemberController.Delete(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            删除
+            </summary>
+            <param name="ids">Id集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.MemberController.Enable(System.String,System.Boolean)">
+            <summary>
+            启用/禁用
+            </summary>
+            <param name="id">数据</param>
+            <param name="enable">设置状态</param>
+            <returns></returns>
+        </member>
+        <member name="T:Api.Controllers.AuthoritiesController">
+            <summary>
+            权限接口
+            </summary>
+        </member>
+        <member name="M:Api.Controllers.AuthoritiesController.AuthorizeRoleForUser(Model.System.AuthorizeDTO.RoleForUser)">
+            <summary>
+            为用户授权角色
+            </summary>
+            <param name="data">数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthoritiesController.AuthorizeRoleForMember(Model.System.AuthorizeDTO.RoleForMember)">
+            <summary>
+            为会员授权角色
+            </summary>
+            <param name="data">数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthoritiesController.AuthorizeMenuForUser(Model.System.AuthorizeDTO.MenuForUser)">
+            <summary>
+            为用户授权菜单
+            </summary>
+            <param name="data">数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthoritiesController.AuthorizeResourcesForUser(Model.System.AuthorizeDTO.ResourcesForUser)">
+            <summary>
+            为用户授权资源
+            </summary>
+            <param name="data">数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthoritiesController.AuthorizeMenuForRole(Model.System.AuthorizeDTO.MenuForRole)">
+            <summary>
+            为角色授权菜单
+            </summary>
+            <param name="data">数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthoritiesController.AuthorizeResourcesForRole(Model.System.AuthorizeDTO.ResourcesForRole)">
+            <summary>
+            为角色授权资源
+            </summary>
+            <param name="data">数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthoritiesController.RevocationRoleForAllUser(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            撤销角色的全部系统用户授权
+            </summary>
+            <param name="roleIds">角色Id集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthoritiesController.RevocationRoleForAllMember(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            撤销角色的全部会员授权
+            </summary>
+            <param name="roleIds">角色Id集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthoritiesController.RevocationRoleForUser(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            撤销用户的全部角色授权
+            </summary>
+            <param name="userIds">用户Id集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthoritiesController.RevocationRoleForMember(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            撤销会员的全部角色授权
+            </summary>
+            <param name="memberIds">会员Id集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthoritiesController.RevocationMenuForUser(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            撤销用户的全部菜单授权
+            </summary>
+            <param name="userIds">用户Id集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthoritiesController.RevocationResourcesForUser(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            撤销用户的全部资源授权
+            </summary>
+            <param name="userIds">用户Id集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthoritiesController.RevocationMenuForRole(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            撤销角色的全部菜单授权
+            </summary>
+            <param name="roleIds">角色Id集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthoritiesController.RevocationResourcesForRole(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            撤销角色的全部资源授权
+            </summary>
+            <param name="roleIds">角色Id集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthoritiesController.RevocationRoleForUser(Model.System.AuthorizeDTO.RoleForUser)">
+            <summary>
+            撤销用户的角色授权
+            </summary>
+            <param name="data">数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthoritiesController.RevocationRoleForMember(Model.System.AuthorizeDTO.RoleForMember)">
+            <summary>
+            撤销会员的角色授权
+            </summary>
+            <param name="data">数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthoritiesController.RevocationMenuForUser(Model.System.AuthorizeDTO.MenuForUser)">
+            <summary>
+            撤销用户的菜单授权
+            </summary>
+            <param name="data">数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthoritiesController.RevocationResourcesForUser(Model.System.AuthorizeDTO.ResourcesForUser)">
+            <summary>
+            撤销用户的资源授权
+            </summary>
+            <param name="data">数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthoritiesController.RevocationMenuForRole(Model.System.AuthorizeDTO.MenuForRole)">
+            <summary>
+            撤销角色的菜单授权
+            </summary>
+            <param name="data">数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthoritiesController.RevocationResourcesForRole(Model.System.AuthorizeDTO.ResourcesForRole)">
+            <summary>
+            撤销角色的资源授权
+            </summary>
+            <param name="data">数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthoritiesController.RevocationMenuForAll(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            撤销所有用户和角色的菜单授权
+            </summary>
+            <param name="menuIds">菜单Id集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthoritiesController.RevocationResourcesForAll(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            撤销所有用户和角色的资源授权
+            </summary>
+            <param name="resourcesIds">资源Id集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthoritiesController.GetUser(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            获取用户的授权数据
+            </summary>
+            <param name="userId">用户Id</param>
+            <param name="includeRole">包括授权角色</param>
+            <param name="includeMenu">包括授权菜单</param>
+            <param name="includeResources">包括授权资源</param>
+            <param name="mergeRoleMenu">合并角色的授权菜单</param>
+            <param name="mergeRoleResources">合并角色的授权资源</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthoritiesController.GetMember(System.String,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            获取会员的授权数据
+            </summary>
+            <param name="memberId">会员Id</param>
+            <param name="includeRole">包括授权角色</param>
+            <param name="includeMenu">包括授权菜单</param>
+            <param name="includeResources">包括授权资源</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthoritiesController.GetUserRole(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            获取授权给用户的角色
+            </summary>
+            <param name="userId">用户Id</param>
+            <param name="includeMenu">包括授权菜单</param>
+            <param name="includeResources">包括授权资源</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthoritiesController.GetMemberRole(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            获取授权给会员的角色
+            </summary>
+            <param name="memberId">会员Id</param>
+            <param name="includeMenu">包括授权菜单</param>
+            <param name="includeResources">包括授权资源</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthoritiesController.GetUserMenu(System.String,System.Boolean)">
+            <summary>
+            获取授权给用户的菜单
+            </summary>
+            <param name="userId">用户Id</param>
+            <param name="mergeRoleMenu">包括角色的授权菜单</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthoritiesController.GetMemberMenu(System.String)">
+            <summary>
+            获取授权给会员的菜单
+            </summary>
+            <param name="memberId">会员Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthoritiesController.GetUserResources(System.String,System.Boolean)">
+            <summary>
+            获权授权给用户的资源
+            </summary>
+            <param name="userId">用户Id</param>
+            <param name="mergeRoleResources">包括角色的授权资源</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthoritiesController.GetMemberResources(System.String)">
+            <summary>
+            获权授权给会员的资源
+            </summary>
+            <param name="memberId">会员Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthoritiesController.GetRole(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            获取角色的授权数据
+            </summary>
+            <param name="roleId">角色Id</param>
+            <param name="includeMenu">包括授权菜单</param>
+            <param name="includeResources">包括授权资源</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthoritiesController.GetRoleMenu(System.String)">
+            <summary>
+            获取授权给角色的菜单
+            </summary>
+            <param name="roleId">角色Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthoritiesController.GetRoleResources(System.String)">
+            <summary>
+            获取授权给角色的资源
+            </summary>
+            <param name="roleId">角色Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthoritiesController.IsAdminUser(System.String)">
+            <summary>
+            是否为管理员
+            </summary>
+            <param name="userId">用户Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthoritiesController.IsAdminRole(System.String)">
+            <summary>
+            是否为管理角色
+            </summary>
+            <param name="roleId">角色Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthoritiesController.UserHasRole(System.String,System.String)">
+            <summary>
+            用户是否拥有角色授权
+            </summary>
+            <param name="userId">用户Id</param>
+            <param name="roleId">角色Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthoritiesController.MemberHasRole(System.String,System.String)">
+            <summary>
+            会员是否拥有角色授权
+            </summary>
+            <param name="memberId">会员Id</param>
+            <param name="roleId">角色Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthoritiesController.UserHasMenu(System.String,System.String)">
+            <summary>
+            用户是否拥有菜单授权
+            </summary>
+            <param name="userId">用户Id</param>
+            <param name="menuId">菜单Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthoritiesController.UserHasMenuUri(System.String,System.String)">
+            <summary>
+            用户是否拥有菜单授权
+            </summary>
+            <param name="userId">用户Id</param>
+            <param name="menuUri">菜单链接</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthoritiesController.MemberHasMenu(System.String,System.String)">
+            <summary>
+            会员是否拥有菜单授权
+            </summary>
+            <param name="userId">用户Id</param>
+            <param name="menuId">菜单Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthoritiesController.MemberHasMenuUri(System.String,System.String)">
+            <summary>
+            会员是否拥有菜单授权
+            </summary>
+            <param name="userId">用户Id</param>
+            <param name="menuUri">菜单链接</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthoritiesController.UserHasResources(System.String,System.String)">
+            <summary>
+            用户是否拥有资源授权
+            </summary>
+            <param name="userId">用户Id</param>
+            <param name="resourcesId">资源Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthoritiesController.UserHasResourcesUri(System.String,System.String)">
+            <summary>
+            用户是否拥有资源授权
+            </summary>
+            <param name="userId">用户Id</param>
+            <param name="resourcesUri">资源链接</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthoritiesController.MemberHasResources(System.String,System.String)">
+            <summary>
+            会员是否拥有资源授权
+            </summary>
+            <param name="memberId">会员Id</param>
+            <param name="resourcesId">资源Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthoritiesController.MemberHasResourcesUri(System.String,System.String)">
+            <summary>
+            会员是否拥有资源授权
+            </summary>
+            <param name="memberId">会员Id</param>
+            <param name="resourcesUri">资源链接</param>
+            <returns></returns>
+        </member>
+        <member name="T:Api.Controllers.MenuController">
+            <summary>
+            菜单接口
+            </summary>
+        </member>
+        <member name="M:Api.Controllers.MenuController.GetList(Model.Utils.Pagination.PaginationDTO)">
+            <summary>
+            获取列表数据
+            </summary>
+            <param name="pagination">分页设置</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.MenuController.GetTreeList(Model.System.MenuDTO.TreeListParamter)">
+            <summary>
+            获取树状列表数据
+            </summary>
+            <param name="paramter">树状列表</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.MenuController.GetDetail(System.String)">
+            <summary>
+            获取详情数据
+            </summary>
+            <param name="id">Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.MenuController.Create(Model.System.MenuDTO.Create)">
+            <summary>
+            新增
+            </summary>
+            <param name="data">数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.MenuController.GetEdit(System.String)">
+            <summary>
+            获取编辑数据
+            </summary>
+            <param name="id">Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.MenuController.Edit(Model.System.MenuDTO.Edit)">
+            <summary>
+            编辑
+            </summary>
+            <param name="data">数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.MenuController.Delete(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            删除
+            </summary>
+            <param name="ids">Id集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.MenuController.Enable(System.String,System.Boolean)">
+            <summary>
+            启用/禁用
+            </summary>
+            <param name="id">数据</param>
+            <param name="enable">设置状态</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.MenuController.Sort(Model.System.MenuDTO.Sort)">
+            <summary>
+            排序
+            </summary>
+            <param name="data">数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.MenuController.DragSort(Model.System.MenuDTO.DragSort)">
+            <summary>
+            拖动排序
+            </summary>
+            <param name="data">数据</param>
+            <returns></returns>
+        </member>
+        <member name="T:Api.Controllers.ResourcesController">
+            <summary>
+            资源接口
+            </summary>
+        </member>
+        <member name="M:Api.Controllers.ResourcesController.GetList(Model.Utils.Pagination.PaginationDTO)">
+            <summary>
+            获取列表数据
+            </summary>
+            <param name="pagination">分页设置</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.ResourcesController.GetDetail(System.String)">
+            <summary>
+            获取详情数据
+            </summary>
+            <param name="id">Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.ResourcesController.Create(Model.System.ResourcesDTO.Create)">
+            <summary>
+            新增
+            </summary>
+            <param name="data">数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.ResourcesController.GetEdit(System.String)">
+            <summary>
+            获取编辑数据
+            </summary>
+            <param name="id">Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.ResourcesController.Edit(Model.System.ResourcesDTO.Edit)">
+            <summary>
+            编辑
+            </summary>
+            <param name="data">数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.ResourcesController.Delete(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            删除
+            </summary>
+            <param name="ids">Id集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.ResourcesController.Enable(System.String,System.Boolean)">
+            <summary>
+            启用/禁用
+            </summary>
+            <param name="id">数据</param>
+            <param name="enable">设置状态</param>
+            <returns></returns>
+        </member>
+        <member name="T:Api.Controllers.RoleController">
+            <summary>
+            角色接口
+            </summary>
+        </member>
+        <member name="M:Api.Controllers.RoleController.GetList(Model.Utils.Pagination.PaginationDTO)">
+            <summary>
+            获取列表数据
+            </summary>
+            <param name="pagination">分页设置</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.RoleController.GetTreeList(Model.System.RoleDTO.TreeListParamter)">
+            <summary>
+            获取树状列表数据
+            </summary>
+            <param name="paramter">树状列表</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.RoleController.GetDetail(System.String)">
+            <summary>
+            获取详情数据
+            </summary>
+            <param name="id">Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.RoleController.Create(Model.System.RoleDTO.Create)">
+            <summary>
+            新增
+            </summary>
+            <param name="data">数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.RoleController.GetEdit(System.String)">
+            <summary>
+            获取编辑数据
+            </summary>
+            <param name="id">Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.RoleController.Edit(Model.System.RoleDTO.Edit)">
+            <summary>
+            编辑
+            </summary>
+            <param name="data">数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.RoleController.Delete(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            删除
+            </summary>
+            <param name="ids">Id集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.RoleController.Enable(System.String,System.Boolean)">
+            <summary>
+            启用/禁用
+            </summary>
+            <param name="id">数据</param>
+            <param name="enable">设置状态</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.RoleController.Sort(Model.System.RoleDTO.Sort)">
+            <summary>
+            排序
+            </summary>
+            <param name="data">数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.RoleController.DragSort(Model.System.RoleDTO.DragSort)">
+            <summary>
+            拖动排序
+            </summary>
+            <param name="data">数据</param>
+            <returns></returns>
+        </member>
+        <member name="T:Api.Controllers.UserController">
+            <summary>
+            系统用户接口
+            </summary>
+        </member>
+        <member name="M:Api.Controllers.UserController.GetList(Model.Utils.Pagination.PaginationDTO)">
+            <summary>
+            获取列表数据
+            </summary>
+            <param name="pagination">分页设置</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.UserController.DropdownList(System.String,Model.Utils.Pagination.PaginationDTO)">
+            <summary>
+            获取下拉列表数据
+            </summary>
+            <param name="condition">关键词(多个用空格分隔)</param>
+            <param name="pagination">分页设置</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.UserController.GetDetail(System.String)">
+            <summary>
+            获取详情数据
+            </summary>
+            <param name="id">Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.UserController.Create(Model.System.UserDTO.Create)">
+            <summary>
+            新增
+            </summary>
+            <param name="data">数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.UserController.GetEdit(System.String)">
+            <summary>
+            获取编辑数据
+            </summary>
+            <param name="id">Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.UserController.Edit(Model.System.UserDTO.Edit)">
+            <summary>
+            编辑
+            </summary>
+            <param name="data">数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.UserController.Delete(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            删除
+            </summary>
+            <param name="ids">Id集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.UserController.Enable(System.String,System.Boolean)">
+            <summary>
+            启用/禁用
+            </summary>
+            <param name="id">数据</param>
+            <param name="enable">设置状态</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.UserController.UpdatePassword(Model.System.UserDTO.UpdatePassword)">
+            <summary>
+            更新密码
+            </summary>
+            <param name="data">数据</param>
+            <returns></returns>
+        </member>
         <member name="T:Api.Controllers.Utils.BaseApiController">
             <summary>
-            Mvc对外接口基控制器
+            对外接口基控制器
             </summary>
         </member>
         <member name="P:Api.Controllers.Utils.BaseApiController.Config">
@@ -385,7 +1243,7 @@
             基控制器
             </summary>
         </member>
-        <member name="M:Api.Controllers.Utils.BaseController.JsonContent``1(Model.System.AjaxResult{System.Collections.Generic.List{``0}})">
+        <member name="M:Api.Controllers.Utils.BaseController.JsonContent``1(Model.Utils.Result.AjaxResult{System.Collections.Generic.List{``0}})">
             <summary>
             返回JSON
             </summary>
@@ -393,7 +1251,7 @@
             <param name="result"></param>
             <returns></returns>
         </member>
-        <member name="M:Api.Controllers.Utils.BaseController.JsonContent``1(Model.System.AjaxResult{``0})">
+        <member name="M:Api.Controllers.Utils.BaseController.JsonContent``1(Model.Utils.Result.AjaxResult{``0})">
             <summary>
             返回JSON
             </summary>
@@ -409,7 +1267,7 @@
             <param name="obj"></param>
             <returns></returns>
         </member>
-        <member name="M:Api.Controllers.Utils.BaseController.JsonContent``1(System.Collections.Generic.List{``0},Model.System.Pagination.PaginationDTO,System.Boolean,System.String)">
+        <member name="M:Api.Controllers.Utils.BaseController.JsonContent``1(System.Collections.Generic.List{``0},Model.Utils.Pagination.PaginationDTO,System.Boolean,System.String)">
             <summary>
             返回JSON
             </summary>
@@ -420,7 +1278,7 @@
             <param name="error"></param>
             <returns></returns>
         </member>
-        <member name="M:Api.Controllers.Utils.BaseController.JsonContent(System.Object,Model.System.Pagination.PaginationDTO,System.Boolean,System.String)">
+        <member name="M:Api.Controllers.Utils.BaseController.JsonContent(System.Object,Model.Utils.Pagination.PaginationDTO,System.Boolean,System.String)">
             <summary>
             返回JSON
             </summary>
@@ -511,7 +1369,7 @@
             <param name="list">数据列表</param>
             <returns></returns>
         </member>
-        <member name="M:Api.Controllers.Utils.BaseController.DataTable``1(System.Collections.Generic.List{``0},Model.System.Pagination.PaginationDTO)">
+        <member name="M:Api.Controllers.Utils.BaseController.DataTable``1(System.Collections.Generic.List{``0},Model.Utils.Pagination.PaginationDTO)">
             <summary>
             返回表格数据
             </summary>
@@ -618,14 +1476,14 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Api.Controllers.Utils.SampleAuthenticationController.Login(Model.SampleAuthentication.SampleAuthenticationDTO.LoginRequest)">
+        <member name="M:Api.Controllers.Utils.SampleAuthenticationController.Login(Model.Utils.SampleAuthentication.SampleAuthenticationDTO.LoginRequest)">
             <summary>
             登录
             </summary>
             <param name="data">参数</param>
             <returns></returns>
         </member>
-        <member name="M:Api.Controllers.Utils.SampleAuthenticationController.Logout(Model.SampleAuthentication.SampleAuthenticationDTO.LogoutRequest)">
+        <member name="M:Api.Controllers.Utils.SampleAuthenticationController.Logout(Model.Utils.SampleAuthentication.SampleAuthenticationDTO.LogoutRequest)">
             <summary>
             注销
             </summary>
@@ -715,7 +1573,7 @@
             <param name="msg">错误提示</param>
             <returns></returns>
         </member>
-        <member name="M:Api.BaseActionFilter.Error(System.String,Model.System.ErrorCode)">
+        <member name="M:Api.BaseActionFilter.Error(System.String,Model.Utils.Result.ErrorCode)">
             <summary>
             返回错误
             </summary>
@@ -802,16 +1660,17 @@
             </summary>
             <param name="context"></param>
         </member>
+        <member name="T:Api.DocumentFilter">
+            <summary>
+            接口文档过滤器
+            </summary>
+            <remarks>LCTR 2021-02-21</remarks>
+        </member>
         <member name="T:Api.OpenApiSchemaFilter">
             <summary>
             接口架构过滤器
             </summary>
             <remarks>LCTR 2020-03-10</remarks>
-        </member>
-        <member name="T:Api.SwaggerFileUploadFilter">
-            <summary>
-            Swagger实现文件上传功能
-            </summary>
         </member>
         <member name="T:Api.GlobalExceptionFilter">
             <summary>

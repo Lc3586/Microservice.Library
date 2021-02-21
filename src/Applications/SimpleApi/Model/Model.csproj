@@ -20,6 +20,7 @@
     <ProjectReference Include="..\..\..\Library\Cache\Library.Cache.csproj" />
     <ProjectReference Include="..\..\..\Library\Configuration\Library.Configuration.csproj" />
     <ProjectReference Include="..\..\..\Library\DataMapping\Library.DataMapping.csproj" />
+    <ProjectReference Include="..\..\..\Library\WeChat\Library.WeChat.csproj" />
     <ProjectReference Include="..\Entity\Entity.csproj" />
   </ItemGroup>
 

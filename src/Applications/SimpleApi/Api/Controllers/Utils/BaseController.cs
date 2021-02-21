@@ -1,8 +1,8 @@
 ﻿using Library.Extension;
 using Library.OpenApi.Extention;
 using Microsoft.AspNetCore.Mvc;
-using Model.System;
-using Model.System.Pagination;
+using Model.Utils.Result;
+using Model.Utils.Pagination;
 using System.Collections.Generic;
 using System.Text;
 

@@ -1,6 +1,6 @@
 ﻿using Library.TypeTool;
 using Microsoft.Extensions.DependencyInjection;
-using Model.System.Config;
+using Model.Utils.Config;
 
 namespace Api.Configures
 {

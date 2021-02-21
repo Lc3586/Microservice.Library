@@ -1,5 +1,5 @@
 ﻿using Model.Common.FileDTO;
-using Model.System.Pagination;
+using Model.Utils.Pagination;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -10,6 +10,40 @@ namespace Business.Interface.Common
     /// </summary>
     public interface IFileBusiness
     {
+        #region 数据
+
+        /// <summary>
+        /// 获取列表数据
+        /// </summary>
+        /// <param name="pagination">分页设置</param>
+        /// <returns></returns>
+        List<FileInfo> GetList(PaginationDTO pagination);
+
+        /// <summary>
+        /// 获取详情数据
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        FileInfo GetDetail(string id);
+
+        /// <summary>
+        /// 获取详情数据集合
+        /// </summary>
+        /// <param name="ids">id逗号拼接</param>
+        /// <returns></returns>
+        List<FileInfo> GetDetails(string ids);
+
+        /// <summary>
+        /// 获取详情数据集合
+        /// </summary>
+        /// <param name="ids">id集合</param>
+        /// <returns></returns>
+        List<FileInfo> GetDetails(List<string> ids);
+
+        #endregion
+
+        #region 文件操作
+
         /// <summary>
         /// MD5校验
         /// </summary>
@@ -55,38 +89,12 @@ namespace Business.Interface.Common
         void Download(string id);
 
         /// <summary>
-        /// 获取列表数据
-        /// </summary>
-        /// <param name="pagination">分页设置</param>
-        /// <returns></returns>
-        List<FileInfo> GetList(PaginationDTO pagination);
-
-        /// <summary>
-        /// 获取详情数据
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        FileInfo GetDetail(string id);
-
-        /// <summary>
-        /// 获取详情数据集合
-        /// </summary>
-        /// <param name="ids">id逗号拼接</param>
-        /// <returns></returns>
-        List<FileInfo> GetDetails(string ids);
-
-        /// <summary>
-        /// 获取详情数据集合
-        /// </summary>
-        /// <param name="ids">id集合</param>
-        /// <returns></returns>
-        List<FileInfo> GetDetails(List<string> ids);
-
-        /// <summary>
         /// 删除
         /// </summary>
         /// <param name="ids">Id集合</param>
         /// <returns></returns>
         void Delete(List<string> ids);
+
+        #endregion
     }
 }

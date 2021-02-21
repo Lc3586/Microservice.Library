@@ -13,7 +13,7 @@ using Library.FreeSql.Extention;
 using Library.FreeSql.Gen;
 using Library.OpenApi.Extention;
 using Model.System.MenuDTO;
-using Model.System.Pagination;
+using Model.Utils.Pagination;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -213,6 +213,41 @@ namespace Business.Implementation.System
             if (!success)
                 throw ex;
         }
+
+        [AdministratorOnly]
+        public void Delete(List<string> ids)
+        {
+            var entityList = Repository.Select.Where(c => ids.Contains(c.Id)).ToList(c => new { c.Id, c.Name, c.Type });
+
+            var orList = new List<Common_OperationRecord>();
+
+            foreach (var entity in entityList)
+            {
+                orList.Add(new Common_OperationRecord
+                {
+                    DataType = nameof(System_Menu),
+                    DataId = entity.Id,
+                    Explain = $"删除菜单[名称 {entity.Name}, 类型 {entity.Type}]."
+                });
+            }
+
+            (bool success, Exception ex) = Orm.RunTransaction(() =>
+            {
+                AuthoritiesBusiness.RevocationMenuForAll(ids, false);
+
+                if (Repository.Delete(o => ids.Contains(o.Id)) <= 0)
+                    throw new ApplicationException("未删除任何数据");
+
+                var orIds = OperationRecordBusiness.Create(orList);
+            });
+
+            if (!success)
+                throw new ApplicationException("删除菜单失败", ex);
+        }
+
+        #endregion
+
+        #region 拓展功能
 
         [AdministratorOnly]
         public void Enable(string id, bool enable)
@@ -418,43 +453,6 @@ namespace Business.Implementation.System
             if (!success)
                 throw ex;
         }
-
-        [AdministratorOnly]
-        public void Delete(List<string> ids)
-        {
-            var entityList = Repository.Select.Where(c => ids.Contains(c.Id)).ToList(c => new { c.Id, c.Name, c.Type });
-
-            var orList = new List<Common_OperationRecord>();
-
-            foreach (var entity in entityList)
-            {
-                orList.Add(new Common_OperationRecord
-                {
-                    DataType = nameof(System_Menu),
-                    DataId = entity.Id,
-                    Explain = $"删除菜单[名称 {entity.Name}, 类型 {entity.Type}]."
-                });
-            }
-
-            (bool success, Exception ex) = Orm.RunTransaction(() =>
-            {
-                AuthoritiesBusiness.RevocationMenuForAll(ids, false);
-
-                if (Repository.Delete(o => ids.Contains(o.Id)) <= 0)
-                    throw new ApplicationException("未删除任何数据");
-
-                var orIds = OperationRecordBusiness.Create(orList);
-            });
-
-            if (!success)
-                throw new ApplicationException("删除菜单失败", ex);
-        }
-
-        #endregion
-
-        #region 拓展功能
-
-
 
         #endregion
 

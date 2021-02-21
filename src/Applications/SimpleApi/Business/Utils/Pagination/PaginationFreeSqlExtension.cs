@@ -1,6 +1,6 @@
 ﻿using FreeSql;
 using FreeSql.Internal.Model;
-using Model.System.Pagination;
+using Model.Utils.Pagination;
 using System;
 using System.Collections.Generic;
 using System.Linq;

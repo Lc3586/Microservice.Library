@@ -4,106 +4,6 @@
         <name>Model</name>
     </assembly>
     <members>
-        <member name="T:Model.CAS.CASDTO.AuthorizedInfo">
-            <summary>
-            验证后的身份信息
-            </summary>
-        </member>
-        <member name="P:Model.CAS.CASDTO.AuthorizedInfo.AppName">
-            <summary>
-            应用名称
-            </summary>
-        </member>
-        <member name="P:Model.CAS.CASDTO.AuthorizedInfo.Id">
-            <summary>
-            ID
-            </summary>
-        </member>
-        <member name="P:Model.CAS.CASDTO.AuthorizedInfo.Account">
-            <summary>
-            账号
-            </summary>
-        </member>
-        <member name="P:Model.CAS.CASDTO.AuthorizedInfo.Name">
-            <summary>
-            名称
-            </summary>
-        </member>
-        <member name="T:Model.CAS.CASDTO.GetTGT">
-            <summary>
-            获取tgt
-            </summary>
-        </member>
-        <member name="P:Model.CAS.CASDTO.GetTGT.Username">
-            <summary>
-            用户名
-            </summary>
-        </member>
-        <member name="P:Model.CAS.CASDTO.GetTGT.Password">
-            <summary>
-            密码
-            </summary>
-        </member>
-        <member name="T:Model.CAS.CASDTO.GetST">
-            <summary>
-            获取票据
-            </summary>
-        </member>
-        <member name="P:Model.CAS.CASDTO.GetST.Service">
-            <summary>
-            服务地址
-            </summary>
-        </member>
-        <member name="T:Model.CAS.CASDTO.GetUserInfo">
-            <summary>
-            获取用户信息
-            </summary>
-        </member>
-        <member name="P:Model.CAS.CASDTO.GetUserInfo.ST">
-            <summary>
-            票据
-            </summary>
-        </member>
-        <member name="P:Model.CAS.CASDTO.GetUserInfo.Service">
-            <summary>
-            服务地址
-            </summary>
-        </member>
-        <member name="T:Model.CAS.CASDTO.UserInfo">
-            <summary>
-            用户信息
-            </summary>
-        </member>
-        <member name="P:Model.CAS.CASDTO.UserInfo.name">
-            <summary>
-            昵称
-            </summary>
-        </member>
-        <member name="P:Model.CAS.CASDTO.UserInfo.id">
-            <summary>
-            id
-            </summary>
-        </member>
-        <member name="P:Model.CAS.CASDTO.UserInfo.account">
-            <summary>
-            账号
-            </summary>
-        </member>
-        <member name="T:Model.CAS.CASDTO.LogOut">
-            <summary>
-            登出
-            </summary>
-        </member>
-        <member name="P:Model.CAS.CASDTO.LogOut.LogoutCAS">
-            <summary>
-            注销cas（当前账号登录的所有应用都会注销）
-            </summary>
-        </member>
-        <member name="P:Model.CAS.CASDTO.LogOut.ReturnUrl">
-            <summary>
-            登出后跳转地址
-            </summary>
-        </member>
         <member name="T:Model.Common.ChunkMergeTaskState">
             <summary>
             分片合并任务状态
@@ -733,248 +633,6 @@
             授权给此会员的角色
             </summary>
         </member>
-        <member name="T:Model.SampleAuthentication.SampleAuthenticationDTO.LoginRequest">
-            <summary>
-            登录参数
-            </summary>
-        </member>
-        <member name="P:Model.SampleAuthentication.SampleAuthenticationDTO.LoginRequest.Account">
-            <summary>
-            账号
-            </summary>
-        </member>
-        <member name="P:Model.SampleAuthentication.SampleAuthenticationDTO.LoginRequest.Password">
-            <summary>
-            密码
-            </summary>
-        </member>
-        <member name="T:Model.SampleAuthentication.SampleAuthenticationDTO.AuthenticationInfo">
-            <summary>
-            验证信息
-            </summary>
-        </member>
-        <member name="P:Model.SampleAuthentication.SampleAuthenticationDTO.AuthenticationInfo.Id">
-            <summary>
-            Id
-            </summary>
-        </member>
-        <member name="P:Model.SampleAuthentication.SampleAuthenticationDTO.AuthenticationInfo.UserType">
-            <summary>
-            用户类型
-            </summary>
-        </member>
-        <member name="P:Model.SampleAuthentication.SampleAuthenticationDTO.AuthenticationInfo.Account">
-            <summary>
-            昵称
-            </summary>
-        </member>
-        <member name="P:Model.SampleAuthentication.SampleAuthenticationDTO.AuthenticationInfo.Nickname">
-            <summary>
-            昵称
-            </summary>
-        </member>
-        <member name="P:Model.SampleAuthentication.SampleAuthenticationDTO.AuthenticationInfo.Sex">
-            <summary>
-            性别
-            </summary>
-        </member>
-        <member name="P:Model.SampleAuthentication.SampleAuthenticationDTO.AuthenticationInfo.HeadimgUrl">
-            <summary>
-            头像
-            </summary>
-        </member>
-        <member name="T:Model.SampleAuthentication.SampleAuthenticationDTO.LogoutRequest">
-            <summary>
-            登出参数
-            </summary>
-        </member>
-        <member name="P:Model.SampleAuthentication.SampleAuthenticationDTO.LogoutRequest.ReturnUrl">
-            <summary>
-            登出后跳转地址
-            </summary>
-        </member>
-        <member name="T:Model.System.AjaxResult">
-            <summary>
-            Ajax请求结果
-            </summary>
-        </member>
-        <member name="P:Model.System.AjaxResult.Success">
-            <summary>
-            是否成功
-            </summary>
-        </member>
-        <member name="P:Model.System.AjaxResult.ErrorCode">
-            <summary>
-            错误代码
-            <see cref="T:Model.System.ErrorCode"/>
-            </summary>
-        </member>
-        <member name="P:Model.System.AjaxResult.Msg">
-            <summary>
-            返回消息
-            </summary>
-        </member>
-        <member name="T:Model.System.AjaxResult`1">
-            <summary>
-            Ajax请求结果
-            </summary>
-        </member>
-        <member name="P:Model.System.AjaxResult`1.Data">
-            <summary>
-            返回数据
-            </summary>
-        </member>
-        <member name="T:Model.System.AjaxDevelopmentResult`1">
-            <summary>
-            Ajax请求结果（开发模式）
-            </summary>
-        </member>
-        <member name="P:Model.System.AjaxDevelopmentResult`1.Data">
-            <summary>
-            返回数据
-            </summary>
-        </member>
-        <member name="P:Model.System.AjaxDevelopmentResult`1.ExMsg">
-            <summary>
-            异常信息
-            </summary>
-        </member>
-        <member name="T:Model.System.ErrorCode">
-            <summary>
-            异常代码
-            </summary>
-        </member>
-        <member name="F:Model.System.ErrorCode.none">
-            <summary>
-            无
-            </summary>
-        </member>
-        <member name="F:Model.System.ErrorCode.nologin">
-            <summary>
-            未登录
-            </summary>
-        </member>
-        <member name="F:Model.System.ErrorCode.unauthorized">
-            <summary>
-            未授权
-            </summary>
-        </member>
-        <member name="F:Model.System.ErrorCode.forbidden">
-            <summary>
-            权限不足
-            </summary>
-        </member>
-        <member name="F:Model.System.ErrorCode.validation">
-            <summary>
-            验证失败
-            </summary>
-        </member>
-        <member name="F:Model.System.ErrorCode.business">
-            <summary>
-            业务错误
-            </summary>
-        </member>
-        <member name="F:Model.System.ErrorCode.error">
-            <summary>
-            系统错误
-            </summary>
-        </member>
-        <member name="M:Model.System.AjaxResultFactory.Success">
-            <summary>
-            返回成功
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Model.System.AjaxResultFactory.Success``1">
-            <summary>
-            返回成功
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Model.System.AjaxResultFactory.Success(System.String)">
-            <summary>
-            返回成功
-            </summary>
-            <param name="msg">返回的消息</param>
-            <returns></returns>
-        </member>
-        <member name="M:Model.System.AjaxResultFactory.Success``1(System.String)">
-            <summary>
-            返回成功
-            </summary>
-            <param name="msg">返回的消息</param>
-            <returns></returns>
-        </member>
-        <member name="M:Model.System.AjaxResultFactory.Success``1(``0)">
-            <summary>
-            返回成功
-            </summary>
-            <param name="data">返回的数据</param>
-            <returns></returns>
-        </member>
-        <member name="M:Model.System.AjaxResultFactory.Success``1(System.String,``0)">
-            <summary>
-            返回成功
-            </summary>
-            <param name="msg">返回的消息</param>
-            <param name="data">返回的数据</param>
-            <returns></returns>
-        </member>
-        <member name="M:Model.System.AjaxResultFactory.Error">
-            <summary>
-            返回错误
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Model.System.AjaxResultFactory.Error``1">
-            <summary>
-            返回错误
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:Model.System.AjaxResultFactory.Error(System.String,Model.System.ErrorCode)">
-            <summary>
-            返回错误
-            </summary>
-            <param name="msg">返回的消息</param>
-            <param name="errorCode">错误代码<see cref="T:Model.System.ErrorCode"/></param>
-            <returns></returns>
-        </member>
-        <member name="M:Model.System.AjaxResultFactory.Error``1(System.String,Model.System.ErrorCode)">
-            <summary>
-            返回错误
-            </summary>
-            <param name="msg">返回的消息</param>
-            <param name="errorCode">错误代码<see cref="T:Model.System.ErrorCode"/></param>
-            <returns></returns>
-        </member>
-        <member name="M:Model.System.AjaxResultFactory.Error``1(``0,Model.System.ErrorCode)">
-            <summary>
-            返回错误
-            </summary>
-            <param name="data">返回的数据</param>
-            <param name="errorCode">错误代码<see cref="T:Model.System.ErrorCode"/></param>
-            <returns></returns>
-        </member>
-        <member name="M:Model.System.AjaxResultFactory.Error``1(System.String,``0,Model.System.ErrorCode)">
-            <summary>
-            返回成功
-            </summary>
-            <param name="msg">返回的消息</param>
-            <param name="data">返回的数据</param>
-            <param name="errorCode">错误代码<see cref="T:Model.System.ErrorCode"/></param>
-            <returns></returns>
-        </member>
-        <member name="M:Model.System.AjaxResultFactory.Error``1(System.String,System.String,``0,Model.System.ErrorCode)">
-            <summary>
-            返回错误（开发模式）
-            </summary>
-            <param name="msg">返回的消息</param>
-            <param name="exMsg">异常信息</param>
-            <param name="data">返回的数据</param>
-            <param name="errorCode">错误代码<see cref="T:Model.System.ErrorCode"/></param>
-            <returns></returns>
-        </member>
         <member name="T:Model.System.AuthorizeDTO.RoleForUser">
             <summary>
             授权角色给用户
@@ -988,6 +646,11 @@
         <member name="P:Model.System.AuthorizeDTO.RoleForUser.RoleIds">
             <summary>
             角色Id
+            </summary>
+        </member>
+        <member name="P:Model.System.AuthorizeDTO.RoleForUser.RevocationOtherRoles">
+            <summary>
+            撤销已授权给用户但未包含在RoleIds参数中的角色授权
             </summary>
         </member>
         <member name="P:Model.System.AuthorizeDTO.RoleForUser.All">
@@ -1008,6 +671,11 @@
         <member name="P:Model.System.AuthorizeDTO.RoleForMember.RoleIds">
             <summary>
             角色Id
+            </summary>
+        </member>
+        <member name="P:Model.System.AuthorizeDTO.RoleForMember.RevocationOtherRoles">
+            <summary>
+            撤销已授权给会员但未包含在RoleIds参数中的角色授权
             </summary>
         </member>
         <member name="P:Model.System.AuthorizeDTO.RoleForMember.All">
@@ -1095,607 +763,6 @@
             全部资源
             </summary>
         </member>
-        <member name="T:Model.System.Config.DatabaseSetting">
-            <summary>
-            数据库配置
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.DatabaseSetting.Name">
-            <summary>
-            名称
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.DatabaseSetting.Enable">
-            <summary>
-            启用
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.DatabaseSetting.DatabaseType">
-            <summary>
-            数据库类型
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.DatabaseSetting.ConnectString">
-            <summary>
-            默认数据库连接字符串
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.DatabaseSetting.EntityAssembly">
-            <summary>
-            实体类命名空间
-            </summary>
-        </member>
-        <member name="T:Model.System.Config.DeleteMode">
-            <summary>
-            删除模式
-            </summary>
-        </member>
-        <member name="F:Model.System.Config.DeleteMode.Physic">
-            <summary>
-            物理删除,即直接从数据库删除
-            </summary>
-        </member>
-        <member name="F:Model.System.Config.DeleteMode.Logic">
-            <summary>
-            逻辑删除,即仅将Deleted字段置为true
-            </summary>
-        </member>
-        <member name="T:Model.System.Config.LoggerType">
-            <summary>
-            日志组件类型
-            </summary>
-        </member>
-        <member name="F:Model.System.Config.LoggerType.Console">
-            <summary>
-            输出到控制台
-            </summary>
-        </member>
-        <member name="F:Model.System.Config.LoggerType.File">
-            <summary>
-            使用txt文件记录日志,默认存放目录为/A_Logs/yyy-MM/yyyy-MM-dd.txt
-            </summary>
-        </member>
-        <member name="F:Model.System.Config.LoggerType.RDBMS">
-            <summary>
-            使用关系型数据库记录日志,例如SQlServer、MySQL、Oracle等
-            </summary>
-        </member>
-        <member name="F:Model.System.Config.LoggerType.ElasticSearch">
-            <summary>
-            使用ElasticSearch记录日志
-            </summary>
-        </member>
-        <member name="T:Model.System.Config.NLoggerConfig">
-            <summary>
-            日志组件配置
-            </summary>
-        </member>
-        <member name="T:Model.System.Config.RunMode">
-            <summary>
-            运行模式
-            </summary>
-        </member>
-        <member name="F:Model.System.Config.RunMode.LocalTest">
-            <summary>
-            本地测试模式
-            </summary>
-        </member>
-        <member name="F:Model.System.Config.RunMode.LocalTest_Strict">
-            <summary>
-            本地测试模式（严格）
-            </summary>
-        </member>
-        <member name="F:Model.System.Config.RunMode.Publish">
-            <summary>
-            发布模式
-            </summary>
-        </member>
-        <member name="F:Model.System.Config.RunMode.Publish_Swagger">
-            <summary>
-            发布模式（开放接口文档）
-            </summary>
-        </member>
-        <member name="T:Model.System.Config.SoapSerializer">
-            <summary>
-            序列化类型
-            </summary>
-        </member>
-        <member name="F:Model.System.Config.SoapSerializer.Xml">
-            <summary>
-            .asmx
-            </summary>
-        </member>
-        <member name="F:Model.System.Config.SoapSerializer.DataContract">
-            <summary>
-            .svc
-            </summary>
-        </member>
-        <member name="T:Model.System.Config.SoapSetting">
-            <summary>
-            Soap配置
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SoapSetting.Name">
-            <summary>
-            名称
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SoapSetting.Type">
-            <summary>
-            Soap类型
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SoapSetting.Enable">
-            <summary>
-            启用
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SoapSetting.Uri">
-            <summary>
-            资源位置
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SoapSetting.ServiceType">
-            <summary>
-            服务接口类
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SoapSetting.ImplementationType">
-            <summary>
-            服务实现类
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SoapSetting.Serializer">
-            <summary>
-            序列化类型
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SoapSetting.Path">
-            <summary>
-            路径
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SoapSetting.CustomResponse">
-            <summary>
-            自定义响应
-            </summary>
-        </member>
-        <member name="T:Model.System.Config.SoapType">
-            <summary>
-            Soap类型
-            </summary>
-        </member>
-        <member name="F:Model.System.Config.SoapType.Client">
-            <summary>
-            客户端
-            </summary>
-        </member>
-        <member name="F:Model.System.Config.SoapType.Server">
-            <summary>
-            服务
-            </summary>
-        </member>
-        <member name="T:Model.System.Config.SwaggerApiMultiVersionDescription">
-            <summary>
-            swagger接口文档多版本说明配置
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SwaggerApiMultiVersionDescription.GroupName">
-            <summary>
-            分组名称
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SwaggerApiMultiVersionDescription.Title">
-            <summary>
-            标题
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SwaggerApiMultiVersionDescription.Version">
-            <summary>
-            版本
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SwaggerApiMultiVersionDescription.Description">
-            <summary>
-            说明
-            </summary>
-        </member>
-        <member name="T:Model.System.Config.SwaggerApiMultiVersionDescriptionOptions">
-            <summary>
-            swagger多版本说明配置
-            </summary>
-        </member>
-        <member name="T:Model.System.Config.SwaggerApiVersionDescription">
-            <summary>
-            swagger接口文档说明配置
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SwaggerApiVersionDescription.Name">
-            <summary>
-            名称
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SwaggerApiVersionDescription.Title">
-            <summary>
-            标题
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SwaggerApiVersionDescription.Version">
-            <summary>
-            版本
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SwaggerApiVersionDescription.Description">
-            <summary>
-            说明
-            </summary>
-        </member>
-        <member name="T:Model.System.Config.SystemConfig">
-            <summary>
-            系统配置
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.AdminId">
-            <summary>
-            超级管理员Id
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.AdminAccount">
-            <summary>
-            超级管理员账号
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.AdminInitPassword">
-            <summary>
-            超级管理员账号初始化密码
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.ProjectName">
-            <summary>
-            项目名称
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.WebRootUrl">
-            <summary>
-            网站根地址
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.PublishRootUrl">
-            <summary>
-            发布后网站根地址
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.LocalRootUrl">
-            <summary>
-            本地调试根地址
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.RunMode">
-            <summary>
-            运行模式
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.ServerKey">
-            <summary>
-            服务器标识
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.FxAssembly">
-            <summary>
-            标记了IDependency的类的命名空间集合
-            <para>支持通配符</para>
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.DeleteMode">
-            <summary>
-            数据删除模式,默认逻辑删除
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.JWTSecret">
-            <summary>
-            JWT秘钥
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.WorkerId">
-            <summary>
-            工作ID
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.EnableSampleAuthentication">
-            <summary>
-            简易身份验证
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.DefaultLoggerName">
-            <summary>
-            默认日志组件名称
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.DefaultLoggerType">
-            <summary>
-            默认日志组件类型
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.DefaultLoggerLayout">
-            <summary>
-            默认日志组件布局
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.MinLogLevel">
-            <summary>
-            需要记录的日志的最低等级
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.EnableSwagger">
-            <summary>
-            启用Swagger
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.SwaggerXmlComments">
-            <summary>
-            swagger说明文档
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.SwaggerApiVersion">
-            <summary>
-            swagger接口版本说明
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.SwaggerApiMultiVersion">
-            <summary>
-            swagger接口多版本说明
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.DefaultCacheType">
-            <summary>
-            默认缓存类型
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.RedisConfig">
-            <summary>
-            Redis配置
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.EnableAutoMapper">
-            <summary>
-            启用AutoMapper
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.AutoMapperAssemblys">
-            <summary>
-            AutoMapper命名空间集合
-            <para>支持通配符</para>
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.DefaultDatabaseType">
-            <summary>
-            默认数据库类型
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.DefaultDatabaseConnectString">
-            <summary>
-            默认数据库连接字符串
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.EntityAssembly">
-            <summary>
-            实体类命名空间
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.MultiDatabases">
-            <summary>
-            是否多数据库
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.Databases">
-            <summary>
-            多数据库配置
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.EnableFreeSql">
-            <summary>
-            启用FreeSql
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.DbCacheFilter">
-            <summary>
-            数据库缓存过滤（不将相同的变更提交数据库）
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.FreeSqlAutoSyncStructure">
-            <summary>
-            自动同步实体结构到数据库，程序运行中检查实体表是否存在，然后创建或修改
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.FreeSqlSyncStructureNameConvert">
-            <summary>
-            实体类名 -> 数据库表名，命名转换（类名、属性名都生效）
-            优先级小于 [Table(Name = "xxx")]、[Column(Name = "xxx")]
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.FreeSqlSyncStructureOnStartup">
-            <summary>
-            启动时同步实体类型集合到数据库
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.EnableElasticsearch">
-            <summary>
-            启用ElasticSearch
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.ElasticsearchNodes">
-            <summary>
-            ElasticSearch集群
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.EnableSoap">
-            <summary>
-            启用Soap
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.Soaps">
-            <summary>
-            Soap配置
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.EnableCAS">
-            <summary>
-            启用CAS
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.CASProtocolVersion">
-            <summary>
-            协议版本号
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.CASCorsUrl">
-            <summary>
-            CAS跨域地址
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.CASBaseUrl">
-            <summary>
-            CAS地址
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.EnableCasSingleSignOut">
-            <summary>
-            启用单点注销
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.CASTGTUrl">
-            <summary>
-            CAS获取TGT票据地址
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.CASSTUrl">
-            <summary>
-            CAS生成ST票据地址
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.CASUserInfoUrl">
-            <summary>
-            CAS获取用户信息地址
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.CASDeleteSTUrl">
-            <summary>
-            CAS删除TGT地址
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.EnableWeChatService">
-            <summary>
-            启用微信服务
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.SystemConfig.WeChatService">
-            <summary>
-            微信服务配置
-            </summary>
-        </member>
-        <member name="T:Model.System.Config.WeChatServiceSetting">
-            <summary>
-            微信服务配置
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.WeChatServiceSetting.AppId">
-            <summary>
-            公众账号ID
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.WeChatServiceSetting.Appsecret">
-            <summary>
-            公众账号密钥
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.WeChatServiceSetting.MchId">
-            <summary>
-            服务商户号
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.WeChatServiceSetting.Key">
-            <summary>
-            服务商户秘钥
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.WeChatServiceSetting.PayNotifyUrl">
-            <summary>
-            接收财付通通知的URL
-            </summary>
-            <remarks>使用<see cref="!:Library.WeChat.Extension.WeChatNotifyV3Middleware"/>中间件时可不配置此属性</remarks>
-        </member>
-        <member name="P:Model.System.Config.WeChatServiceSetting.RefundNotifyUrl">
-            <summary>
-            异步接收微信支付退款结果通知的回调地址，通知URL必须为外网可访问的url，不允许带参数。
-            </summary>
-            <remarks>使用<see cref="!:Library.WeChat.Extension.WeChatNotifyV3Middleware"/>中间件时可不配置此属性</remarks>
-        </member>
-        <member name="P:Model.System.Config.WeChatServiceSetting.UserHostAddress">
-            <summary>
-            当前服务器的公网IP
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.WeChatServiceSetting.CertFilePath">
-            <summary>
-            p12证书地址
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.WeChatServiceSetting.CertPassword">
-            <summary>
-            证书密码
-            <para>一般默认为商户号</para>
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.WeChatServiceSetting.PemFilePath">
-            <summary>
-            pem公钥文件地址
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.WeChatServiceSetting.Token">
-            <summary>
-            开发令牌
-            </summary>
-            <remarks>不使用<see cref="!:Library.WeChat.Extension.WeChatTokenVerificationMiddleware"/>中间件时可不配置此属性</remarks>
-        </member>
-        <member name="P:Model.System.Config.WeChatServiceSetting.TokenVerificationUrl">
-            <summary>
-            开发令牌验证接口
-            </summary>
-            <remarks>不使用<see cref="!:Library.WeChat.Extension.WeChatTokenVerificationMiddleware"/>中间件时可不配置此属性</remarks>
-        </member>
-        <member name="P:Model.System.Config.WeChatServiceSetting.AuthorizeUrl">
-            <summary>
-            获取Code接口
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.WeChatServiceSetting.AccessTokenUrl">
-            <summary>
-            code换取网页授权access_token接口
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.WeChatServiceSetting.UserInfoUrl">
-            <summary>
-            拉取用户信息接口
-            </summary>
-        </member>
-        <member name="P:Model.System.Config.WeChatServiceSetting.OAuthBaseUrl">
-            <summary>
-            授权接口
-            </summary>
-            <remarks>
-            <para>scope为snsapi_base</para>
-            <para>使用<see cref="!:Library.WeChat.Extension.WeChatOAuthV2Middleware"/>中间件时，中间件监听的接口。</para>
-            </remarks>
-        </member>
-        <member name="P:Model.System.Config.WeChatServiceSetting.OAuthUserInfoUrl">
-            <summary>
-            授权接口
-            </summary>
-            <remarks>
-            <para>scope为snsapi_userinfo</para>
-            <para>使用<see cref="!:Library.WeChat.Extension.WeChatOAuthV2Middleware"/>中间件时，中间件监听的接口。</para>
-            </remarks>
-        </member>
         <member name="T:Model.System.LogDTO.List">
             <summary>
             列表
@@ -1710,25 +777,6 @@
             <summary>
             新增
             </summary>
-        </member>
-        <member name="T:Model.System.Log.LogType">
-            <summary>
-            日志类型
-            </summary>
-        </member>
-        <member name="M:Model.System.Log.LogType.GetName(System.Byte)">
-            <summary>
-            获取名称
-            </summary>
-            <param name="value">值</param>
-            <returns>名称</returns>
-        </member>
-        <member name="M:Model.System.Log.LogType.GetValue(System.String)">
-            <summary>
-            获取值
-            </summary>
-            <param name="name">名称</param>
-            <returns>值</returns>
         </member>
         <member name="T:Model.System.MenuDTO.List">
             <summary>
@@ -1832,606 +880,6 @@
         <member name="T:Model.System.MenuType">
             <summary>
             菜单类型
-            </summary>
-        </member>
-        <member name="T:Model.System.Pagination.FilterCompare">
-            <summary>
-            筛选条件比较类型
-            <para>in / 0 (包含)</para>
-            <para>inStart / 1 (前段包含)</para>
-            <para>inEnd / 2 (后段包含)</para>
-            <para>includedIn / 3 (包含于)</para>
-            <para>notIn / 4 (不包含)</para>
-            <para>notInStart / 5 (前段不包含)</para>
-            <para>notInEnd / 6 (后段不包含)</para>
-            <para>notIncludedIn / 7 (不包含于)</para>
-            <para>eq / 8 (相等)</para>
-            <para>notEq / 9 (不相等)</para>
-            <para>le / 10 (小于等于)</para>
-            <para>lt / 11 (小于)</para>
-            <para>ge / 12 (大于等于)</para>
-            <para>gt / 13 (大于)</para>
-            <para>inSet / 14 (在集合中 <para>,号分隔</para><para>示例:1, 2, 3</para>)</para>
-            <para>notInSet / 15 (不在集合中 <para>,号分隔</para><para>示例:1, 2, 3</para>)</para>
-            <para>range / 16 (范围)</para>
-            <para>dateRange / 17 (日期范围)</para>
-            </summary>
-        </member>
-        <member name="F:Model.System.Pagination.FilterCompare.in">
-            <summary>
-            包含（'%Value%'）
-            </summary>
-        </member>
-        <member name="F:Model.System.Pagination.FilterCompare.inStart">
-            <summary>
-            前段包含（'Value%'）
-            </summary>
-        </member>
-        <member name="F:Model.System.Pagination.FilterCompare.inEnd">
-            <summary>
-            后段包含（'%Value'）
-            </summary>
-        </member>
-        <member name="F:Model.System.Pagination.FilterCompare.includedIn">
-            <summary>
-            包含于
-            </summary>
-        </member>
-        <member name="F:Model.System.Pagination.FilterCompare.notIn">
-            <summary>
-            不包含（'%Value%'）
-            </summary>
-        </member>
-        <member name="F:Model.System.Pagination.FilterCompare.notInStart">
-            <summary>
-            前段不包含（'Value%'）
-            </summary>
-        </member>
-        <member name="F:Model.System.Pagination.FilterCompare.notInEnd">
-            <summary>
-            后段不包含（'%Value'）
-            </summary>
-        </member>
-        <member name="F:Model.System.Pagination.FilterCompare.notIncludedIn">
-            <summary>
-            不包含于
-            </summary>
-        </member>
-        <member name="F:Model.System.Pagination.FilterCompare.eq">
-            <summary>
-            相等
-            </summary>
-        </member>
-        <member name="F:Model.System.Pagination.FilterCompare.notEq">
-            <summary>
-            不相等
-            </summary>
-        </member>
-        <member name="F:Model.System.Pagination.FilterCompare.le">
-            <summary>
-            小于等于
-            </summary>
-        </member>
-        <member name="F:Model.System.Pagination.FilterCompare.lt">
-            <summary>
-            小于
-            </summary>
-        </member>
-        <member name="F:Model.System.Pagination.FilterCompare.ge">
-            <summary>
-            大于等于
-            </summary>
-        </member>
-        <member name="F:Model.System.Pagination.FilterCompare.gt">
-            <summary>
-            大于
-            </summary>
-        </member>
-        <member name="F:Model.System.Pagination.FilterCompare.inSet">
-            <summary>
-            在集合中
-            <para>,号分隔</para>
-            <para>示例:1, 2, 3</para>
-            </summary>
-        </member>
-        <member name="F:Model.System.Pagination.FilterCompare.notInSet">
-            <summary>
-            不在集合中
-            <para>,号分隔</para>
-            <para>示例:1, 2, 3</para>
-            </summary>
-        </member>
-        <member name="F:Model.System.Pagination.FilterCompare.range">
-            <summary>
-            范围
-            <para>Value1, Value2</para>
-            </summary>
-        </member>
-        <member name="F:Model.System.Pagination.FilterCompare.dateRange">
-            <summary>
-            日期范围
-            <para>date1, date2</para>
-            <para>这是专门为日期范围查询定制的操作符，它会处理 date2 + 1，比如：</para>
-            <para>当 date2 选择的是 2020-05-30，那查询的时候是 小于 2020-05-31</para>
-            <para>当 date2 选择的是 2020-05，那查询的时候是 小于 2020-06</para>
-            <para>当 date2 选择的是 2020，那查询的时候是 小于 2021</para>
-            <para>当 date2 选择的是 2020-05-30 12，那查询的时候是 小于 2020-05-30 13</para>
-            <para>当 date2 选择的是 2020-05-30 12:30，那查询的时候是 小于 2020-05-30 12:31</para>
-            <para>并且 date2 只支持以上 5 种格式 (date1 没有限制)</para>
-            </summary>
-        </member>
-        <member name="T:Model.System.Pagination.FilterGroupFlag">
-            <summary>
-            筛选条件分组标识
-            <para>start / 0 (开始)</para>
-            <para>keep / 1 (还在分组内)</para>
-            <para>end / 2 (结束)</para>
-            </summary>
-        </member>
-        <member name="F:Model.System.Pagination.FilterGroupFlag.start">
-            <summary>
-            开始
-            </summary>
-        </member>
-        <member name="F:Model.System.Pagination.FilterGroupFlag.keep">
-            <summary>
-            还在分组内
-            </summary>
-        </member>
-        <member name="F:Model.System.Pagination.FilterGroupFlag.end">
-            <summary>
-            结束
-            </summary>
-        </member>
-        <member name="T:Model.System.Pagination.FilterGroupRelation">
-            <summary>
-            筛选条件分组关系类型
-            <para>and / 0 (并且)</para>
-            <para>or / 1 (或)</para>
-            </summary>
-        </member>
-        <member name="F:Model.System.Pagination.FilterGroupRelation.and">
-            <summary>
-            并且
-            </summary>
-        </member>
-        <member name="F:Model.System.Pagination.FilterGroupRelation.or">
-            <summary>
-            或
-            </summary>
-        </member>
-        <member name="T:Model.System.Pagination.FilterGroupSetting">
-            <summary>
-            分组设置
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.FilterGroupSetting.Flag">
-            <summary>
-            分组标识
-            <para>默认值 keep</para>
-            <para>用于标识分组的开始和结束</para>
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.FilterGroupSetting.Relation">
-            <summary>
-            组内关系
-            <para>默认值 and</para>
-            </summary>
-        </member>
-        <member name="T:Model.System.Pagination.PaginationAdvancedSort">
-            <summary>
-            分页高级排序
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationAdvancedSort.Field">
-            <summary>
-            字段
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationAdvancedSort.Type">
-            <summary>
-            类型
-            <para>默认值 desc</para>
-            </summary>
-        </member>
-        <member name="T:Model.System.Pagination.PaginationDTO">
-            <summary>
-            数据表格分页
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDTO._schema">
-            <summary>
-            架构
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDTO._pageIndex">
-            <summary>
-            当前页码
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDTO._pageRows">
-            <summary>
-            每页行数
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDTO._sortField">
-            <summary>
-            排序列
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDTO._sortType">
-            <summary>
-            排序类型
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDTO._advancedSort">
-            <summary>
-            高级排序
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDTO._filter">
-            <summary>
-            筛选条件
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDTO._dynamicFilterInfo">
-            <summary>
-            筛选条件
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDTO._recordCount">
-            <summary>
-            总记录数
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDTO._pageCount">
-            <summary>
-            总页数
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDTO.PageIndex">
-            <summary>
-            当前页码
-            <para>默认值 1</para>
-            <para>值为-1时表示不分页</para>
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDTO.PageRows">
-            <summary>
-            每页数据量
-            <para>默认值 50</para>
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDTO.SortField">
-            <summary>
-            排序列
-            <para>默认值 Id</para>
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDTO.SortType">
-            <summary>
-            排序类型
-            <para>默认值 desc</para>
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDTO.AdvancedSort">
-            <summary>
-            高级排序
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDTO.Filter">
-            <summary>
-            筛选条件
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDTO.Alias">
-            <summary>
-            别名
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDTO.DynamicFilterInfo">
-            <summary>
-            筛选条件
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDTO.Schema">
-            <summary>
-            架构
-            <para>默认值 defaul</para>
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDTO.RecordCount">
-            <summary>
-            总记录数
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDTO.PageCount">
-            <summary>
-            总页数
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDTO.page">
-            <summary>
-            当前页
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDTO.rows">
-            <summary>
-            每页数据量
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDTO.sidx">
-            <summary>
-            排序列
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDTO.sord">
-            <summary>
-            排序类型
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDTO.records">
-            <summary>
-            总记录数
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDTO.total">
-            <summary>
-            总页数
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDTO.sort">
-            <summary>
-            排序列
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDTO.order">
-            <summary>
-            排序类型
-            </summary>
-        </member>
-        <member name="M:Model.System.Pagination.PaginationDTO.BuildResult(System.Object,System.Boolean,System.String)">
-            <summary>
-            输出
-            </summary>
-            <param name="data">数据</param>
-            <param name="success">成功与否</param>
-            <param name="error">异常信息</param>
-            <returns></returns>
-        </member>
-        <member name="T:Model.System.Pagination.PaginationDTO.Result">
-            <summary>
-            返回信息
-            </summary>
-        </member>
-        <member name="T:Model.System.Pagination.PaginationDTO.Result.Layui">
-            <summary>
-            Layui方案
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDTO.Result.Layui.data">
-            <summary>
-            数据
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDTO.Result.Layui.code">
-            <summary>
-            状态码
-            <para>成功0，失败-1</para>
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDTO.Result.Layui.msg">
-            <summary>
-            信息
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDTO.Result.Layui.count">
-            <summary>
-            总记录数
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDTO.Result.Layui.costtime">
-            <summary>
-            耗时（毫秒）
-            </summary>
-        </member>
-        <member name="T:Model.System.Pagination.PaginationDTO.Result.JqGrid">
-            <summary>
-            JqGrid方案
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDTO.Result.JqGrid.rows">
-            <summary>
-            数据
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDTO.Result.JqGrid.total">
-            <summary>
-            总页数
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDTO.Result.JqGrid.page">
-            <summary>
-            当前页码
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDTO.Result.JqGrid.records">
-            <summary>
-            总记录数
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDTO.Result.JqGrid.costtime">
-            <summary>
-            耗时（毫秒）
-            </summary>
-        </member>
-        <member name="T:Model.System.Pagination.PaginationDTO.Result.Easyui">
-            <summary>
-            Easyui DataGrid方案
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDTO.Result.Easyui.rows">
-            <summary>
-            数据
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDTO.Result.Easyui.total">
-            <summary>
-            总记录数
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDTO.Result.Easyui.currentPage">
-            <summary>
-            当前页码
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDTO.Result.Easyui.pageSize">
-            <summary>
-            每页数据量
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDTO.Result.Easyui.costtime">
-            <summary>
-            耗时（毫秒）
-            </summary>
-        </member>
-        <member name="T:Model.System.Pagination.PaginationDynamicFilterInfo">
-            <summary>
-            分页筛选条件
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDynamicFilterInfo.Field">
-            <summary>
-            要比较的字段
-            <para>注意区分大小写</para>
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDynamicFilterInfo.Value">
-            <summary>
-            用于比较的值
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDynamicFilterInfo.Compare">
-            <summary>
-            比较类型
-            <para>默认值 eq</para>
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDynamicFilterInfo.Relation">
-            <summary>
-            组内关系
-            <para>默认值 and</para>
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationDynamicFilterInfo.DynamicFilterInfo">
-            <summary>
-            分组设置
-            </summary>
-        </member>
-        <member name="T:Model.System.Pagination.PaginationFilter">
-            <summary>
-            分页筛选条件
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationFilter.Field">
-            <summary>
-            要比较的字段
-            <para>注意区分大小写</para>
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationFilter.Value">
-            <summary>
-            用于比较的值
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationFilter.ValueIsField">
-            <summary>
-            Value值是用来比较的字段
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationFilter.Compare">
-            <summary>
-            比较类型
-            <para>默认值 eq</para>
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationFilter.Group">
-            <summary>
-            分组设置（已弃用）
-            </summary>
-        </member>
-        <member name="P:Model.System.Pagination.PaginationFilter.DynamicFilterInfo">
-            <summary>
-            分组设置
-            </summary>
-        </member>
-        <member name="T:Model.System.Pagination.Schema">
-            <summary>
-            架构
-            <para>defaul / 0 (默认)</para>
-            <para>layui / 1 (layui <para>https://www.layui.com/doc/modules/table.html#response</para>)</para>
-            <para>jqGrid / 2 (jqGrid <para>https://blog.mn886.net/jqGrid/api/jsondata/index.jsp</para>)</para>
-            <para>easyui / 3 (easyui <para>http://www.jeasyui.net/plugins/183.html</para>)</para>
-            <para>bootstrapTable / 4 (bootstrapTable <para>https://bootstrap-table.com/docs/api/table-options/</para>)</para>
-            <para>antdVue / 5 (Ant Design + Vue <para>https://www.antdv.com/components/list-cn/#api</para>)</para>
-            <para>elementVue / 6 (element + Vue)</para>
-            </summary>
-        </member>
-        <member name="F:Model.System.Pagination.Schema.defaul">
-            <summary>
-            默认
-            </summary>
-        </member>
-        <member name="F:Model.System.Pagination.Schema.layui">
-            <summary>
-            layui
-            <para>https://www.layui.com/doc/modules/table.html#response</para>
-            </summary>
-        </member>
-        <member name="F:Model.System.Pagination.Schema.jqGrid">
-            <summary>
-            jqGrid
-            <para>https://blog.mn886.net/jqGrid/api/jsondata/index.jsp</para>
-            </summary>
-        </member>
-        <member name="F:Model.System.Pagination.Schema.easyui">
-            <summary>
-            easyui
-            <para>http://www.jeasyui.net/plugins/183.html</para>
-            </summary>
-        </member>
-        <member name="F:Model.System.Pagination.Schema.bootstrapTable">
-            <summary>
-            bootstrapTable
-            <para>https://bootstrap-table.com/docs/api/table-options/</para>
-            </summary>
-        </member>
-        <member name="F:Model.System.Pagination.Schema.antdVue">
-            <summary>
-            Ant Design + Vue
-            <para>https://www.antdv.com/components/list-cn/#api</para>
-            </summary>
-        </member>
-        <member name="F:Model.System.Pagination.Schema.elementVue">
-            <summary>
-            element + Vue
-            </summary>
-        </member>
-        <member name="T:Model.System.Pagination.SortType">
-            <summary>
-            排序类型
-            <para>asc / 0 (正序)</para>
-            <para>desc / 1 (倒序)</para>
-            </summary>
-        </member>
-        <member name="F:Model.System.Pagination.SortType.asc">
-            <summary>
-            正序
-            </summary>
-        </member>
-        <member name="F:Model.System.Pagination.SortType.desc">
-            <summary>
-            倒序
             </summary>
         </member>
         <member name="T:Model.System.ResourcesDTO.List">
@@ -2711,6 +1159,1568 @@
         <member name="T:Model.System.UserType">
             <summary>
             用户类型
+            </summary>
+        </member>
+        <member name="T:Model.Utils.CAS.CASDTO.AuthorizedInfo">
+            <summary>
+            验证后的身份信息
+            </summary>
+        </member>
+        <member name="P:Model.Utils.CAS.CASDTO.AuthorizedInfo.AppName">
+            <summary>
+            应用名称
+            </summary>
+        </member>
+        <member name="P:Model.Utils.CAS.CASDTO.AuthorizedInfo.Id">
+            <summary>
+            ID
+            </summary>
+        </member>
+        <member name="P:Model.Utils.CAS.CASDTO.AuthorizedInfo.Account">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="P:Model.Utils.CAS.CASDTO.AuthorizedInfo.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="T:Model.Utils.CAS.CASDTO.GetTGT">
+            <summary>
+            获取tgt
+            </summary>
+        </member>
+        <member name="P:Model.Utils.CAS.CASDTO.GetTGT.Username">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:Model.Utils.CAS.CASDTO.GetTGT.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="T:Model.Utils.CAS.CASDTO.GetST">
+            <summary>
+            获取票据
+            </summary>
+        </member>
+        <member name="P:Model.Utils.CAS.CASDTO.GetST.Service">
+            <summary>
+            服务地址
+            </summary>
+        </member>
+        <member name="T:Model.Utils.CAS.CASDTO.GetUserInfo">
+            <summary>
+            获取用户信息
+            </summary>
+        </member>
+        <member name="P:Model.Utils.CAS.CASDTO.GetUserInfo.ST">
+            <summary>
+            票据
+            </summary>
+        </member>
+        <member name="P:Model.Utils.CAS.CASDTO.GetUserInfo.Service">
+            <summary>
+            服务地址
+            </summary>
+        </member>
+        <member name="T:Model.Utils.CAS.CASDTO.UserInfo">
+            <summary>
+            用户信息
+            </summary>
+        </member>
+        <member name="P:Model.Utils.CAS.CASDTO.UserInfo.name">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:Model.Utils.CAS.CASDTO.UserInfo.id">
+            <summary>
+            id
+            </summary>
+        </member>
+        <member name="P:Model.Utils.CAS.CASDTO.UserInfo.account">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="T:Model.Utils.CAS.CASDTO.LogOut">
+            <summary>
+            登出
+            </summary>
+        </member>
+        <member name="P:Model.Utils.CAS.CASDTO.LogOut.LogoutCAS">
+            <summary>
+            注销cas（当前账号登录的所有应用都会注销）
+            </summary>
+        </member>
+        <member name="P:Model.Utils.CAS.CASDTO.LogOut.ReturnUrl">
+            <summary>
+            登出后跳转地址
+            </summary>
+        </member>
+        <member name="T:Model.Utils.Config.DatabaseSetting">
+            <summary>
+            数据库配置
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.DatabaseSetting.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.DatabaseSetting.Enable">
+            <summary>
+            启用
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.DatabaseSetting.DatabaseType">
+            <summary>
+            数据库类型
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.DatabaseSetting.ConnectString">
+            <summary>
+            默认数据库连接字符串
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.DatabaseSetting.EntityAssembly">
+            <summary>
+            实体类命名空间
+            </summary>
+        </member>
+        <member name="T:Model.Utils.Config.DeleteMode">
+            <summary>
+            删除模式
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Config.DeleteMode.Physic">
+            <summary>
+            物理删除,即直接从数据库删除
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Config.DeleteMode.Logic">
+            <summary>
+            逻辑删除,即仅将Deleted字段置为true
+            </summary>
+        </member>
+        <member name="T:Model.Utils.Config.LoggerType">
+            <summary>
+            日志组件类型
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Config.LoggerType.Console">
+            <summary>
+            输出到控制台
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Config.LoggerType.File">
+            <summary>
+            使用txt文件记录日志,默认存放目录为/A_Logs/yyy-MM/yyyy-MM-dd.txt
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Config.LoggerType.RDBMS">
+            <summary>
+            使用关系型数据库记录日志,例如SQlServer、MySQL、Oracle等
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Config.LoggerType.ElasticSearch">
+            <summary>
+            使用ElasticSearch记录日志
+            </summary>
+        </member>
+        <member name="T:Model.Utils.Config.NLoggerConfig">
+            <summary>
+            日志组件配置
+            </summary>
+        </member>
+        <member name="T:Model.Utils.Config.RunMode">
+            <summary>
+            运行模式
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Config.RunMode.LocalTest">
+            <summary>
+            本地测试模式
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Config.RunMode.LocalTest_Strict">
+            <summary>
+            本地测试模式（严格）
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Config.RunMode.Publish">
+            <summary>
+            发布模式
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Config.RunMode.Publish_Swagger">
+            <summary>
+            发布模式（开放接口文档）
+            </summary>
+        </member>
+        <member name="T:Model.Utils.Config.SoapSerializer">
+            <summary>
+            序列化类型
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Config.SoapSerializer.Xml">
+            <summary>
+            .asmx
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Config.SoapSerializer.DataContract">
+            <summary>
+            .svc
+            </summary>
+        </member>
+        <member name="T:Model.Utils.Config.SoapSetting">
+            <summary>
+            Soap配置
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SoapSetting.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SoapSetting.Type">
+            <summary>
+            Soap类型
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SoapSetting.Enable">
+            <summary>
+            启用
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SoapSetting.Uri">
+            <summary>
+            资源位置
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SoapSetting.ServiceType">
+            <summary>
+            服务接口类
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SoapSetting.ImplementationType">
+            <summary>
+            服务实现类
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SoapSetting.Serializer">
+            <summary>
+            序列化类型
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SoapSetting.Path">
+            <summary>
+            路径
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SoapSetting.CustomResponse">
+            <summary>
+            自定义响应
+            </summary>
+        </member>
+        <member name="T:Model.Utils.Config.SoapType">
+            <summary>
+            Soap类型
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Config.SoapType.Client">
+            <summary>
+            客户端
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Config.SoapType.Server">
+            <summary>
+            服务
+            </summary>
+        </member>
+        <member name="T:Model.Utils.Config.SwaggerApiMultiVersionDescription">
+            <summary>
+            swagger接口文档多版本说明配置
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SwaggerApiMultiVersionDescription.GroupName">
+            <summary>
+            分组名称
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SwaggerApiMultiVersionDescription.Title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SwaggerApiMultiVersionDescription.Version">
+            <summary>
+            版本
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SwaggerApiMultiVersionDescription.Description">
+            <summary>
+            说明
+            </summary>
+        </member>
+        <member name="T:Model.Utils.Config.SwaggerApiMultiVersionDescriptionOptions">
+            <summary>
+            swagger多版本说明配置
+            </summary>
+        </member>
+        <member name="T:Model.Utils.Config.SwaggerApiVersionDescription">
+            <summary>
+            swagger接口文档说明配置
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SwaggerApiVersionDescription.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SwaggerApiVersionDescription.Title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SwaggerApiVersionDescription.Version">
+            <summary>
+            版本
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SwaggerApiVersionDescription.Description">
+            <summary>
+            说明
+            </summary>
+        </member>
+        <member name="T:Model.Utils.Config.SystemConfig">
+            <summary>
+            系统配置
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.AdminId">
+            <summary>
+            超级管理员Id
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.AdminAccount">
+            <summary>
+            超级管理员账号
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.AdminInitPassword">
+            <summary>
+            超级管理员账号初始化密码
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.ProjectName">
+            <summary>
+            项目名称
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.WebRootUrl">
+            <summary>
+            网站根地址
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.PublishRootUrl">
+            <summary>
+            发布后网站根地址
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.LocalRootUrl">
+            <summary>
+            本地调试根地址
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.RunMode">
+            <summary>
+            运行模式
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.ServerKey">
+            <summary>
+            服务器标识
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.FxAssembly">
+            <summary>
+            标记了IDependency的类的命名空间集合
+            <para>支持通配符</para>
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.DeleteMode">
+            <summary>
+            数据删除模式,默认逻辑删除
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.JWTSecret">
+            <summary>
+            JWT秘钥
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.WorkerId">
+            <summary>
+            工作ID
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.EnableSampleAuthentication">
+            <summary>
+            简易身份验证
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.DefaultLoggerName">
+            <summary>
+            默认日志组件名称
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.DefaultLoggerType">
+            <summary>
+            默认日志组件类型
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.DefaultLoggerLayout">
+            <summary>
+            默认日志组件布局
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.MinLogLevel">
+            <summary>
+            需要记录的日志的最低等级
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.EnableSwagger">
+            <summary>
+            启用Swagger
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.SwaggerXmlComments">
+            <summary>
+            swagger说明文档
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.SwaggerApiVersion">
+            <summary>
+            swagger接口版本说明
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.SwaggerApiMultiVersion">
+            <summary>
+            swagger接口多版本说明
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.DefaultCacheType">
+            <summary>
+            默认缓存类型
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.RedisConfig">
+            <summary>
+            Redis配置
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.EnableAutoMapper">
+            <summary>
+            启用AutoMapper
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.AutoMapperAssemblys">
+            <summary>
+            AutoMapper命名空间集合
+            <para>支持通配符</para>
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.DefaultDatabaseType">
+            <summary>
+            默认数据库类型
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.DefaultDatabaseConnectString">
+            <summary>
+            默认数据库连接字符串
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.EntityAssembly">
+            <summary>
+            实体类命名空间
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.MultiDatabases">
+            <summary>
+            是否多数据库
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.Databases">
+            <summary>
+            多数据库配置
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.EnableFreeSql">
+            <summary>
+            启用FreeSql
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.DbCacheFilter">
+            <summary>
+            数据库缓存过滤（不将相同的变更提交数据库）
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.FreeSqlAutoSyncStructure">
+            <summary>
+            自动同步实体结构到数据库，程序运行中检查实体表是否存在，然后创建或修改
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.FreeSqlSyncStructureNameConvert">
+            <summary>
+            实体类名 -> 数据库表名，命名转换（类名、属性名都生效）
+            优先级小于 [Table(Name = "xxx")]、[Column(Name = "xxx")]
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.FreeSqlSyncStructureOnStartup">
+            <summary>
+            启动时同步实体类型集合到数据库
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.EnableElasticsearch">
+            <summary>
+            启用ElasticSearch
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.ElasticsearchNodes">
+            <summary>
+            ElasticSearch集群
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.EnableSoap">
+            <summary>
+            启用Soap
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.Soaps">
+            <summary>
+            Soap配置
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.EnableCAS">
+            <summary>
+            启用CAS
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.CASProtocolVersion">
+            <summary>
+            协议版本号
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.CASCorsUrl">
+            <summary>
+            CAS跨域地址
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.CASBaseUrl">
+            <summary>
+            CAS地址
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.EnableCasSingleSignOut">
+            <summary>
+            启用单点注销
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.CASTGTUrl">
+            <summary>
+            CAS获取TGT票据地址
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.CASSTUrl">
+            <summary>
+            CAS生成ST票据地址
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.CASUserInfoUrl">
+            <summary>
+            CAS获取用户信息地址
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.CASDeleteSTUrl">
+            <summary>
+            CAS删除TGT地址
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.EnableWeChatService">
+            <summary>
+            启用微信服务
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.WeChatService">
+            <summary>
+            微信服务配置
+            </summary>
+        </member>
+        <member name="T:Model.Utils.Config.WeChatServiceSetting">
+            <summary>
+            微信服务配置
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.WeChatServiceSetting.AppId">
+            <summary>
+            公众账号ID
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.WeChatServiceSetting.Appsecret">
+            <summary>
+            公众账号密钥
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.WeChatServiceSetting.MchId">
+            <summary>
+            服务商户号
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.WeChatServiceSetting.Key">
+            <summary>
+            服务商户秘钥
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.WeChatServiceSetting.PayNotifyUrl">
+            <summary>
+            接收财付通通知的URL
+            </summary>
+            <remarks>使用<see cref="T:Library.WeChat.Extension.WeChatNotifyV3Middleware"/>中间件时可不配置此属性</remarks>
+        </member>
+        <member name="P:Model.Utils.Config.WeChatServiceSetting.RefundNotifyUrl">
+            <summary>
+            异步接收微信支付退款结果通知的回调地址，通知URL必须为外网可访问的url，不允许带参数。
+            </summary>
+            <remarks>使用<see cref="T:Library.WeChat.Extension.WeChatNotifyV3Middleware"/>中间件时可不配置此属性</remarks>
+        </member>
+        <member name="P:Model.Utils.Config.WeChatServiceSetting.UserHostAddress">
+            <summary>
+            当前服务器的公网IP
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.WeChatServiceSetting.CertFilePath">
+            <summary>
+            p12证书地址
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.WeChatServiceSetting.CertPassword">
+            <summary>
+            证书密码
+            <para>一般默认为商户号</para>
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.WeChatServiceSetting.PemFilePath">
+            <summary>
+            pem公钥文件地址
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.WeChatServiceSetting.Token">
+            <summary>
+            开发令牌
+            </summary>
+            <remarks>不使用<see cref="T:Library.WeChat.Extension.WeChatTokenVerificationMiddleware"/>中间件时可不配置此属性</remarks>
+        </member>
+        <member name="P:Model.Utils.Config.WeChatServiceSetting.TokenVerificationUrl">
+            <summary>
+            开发令牌验证接口
+            </summary>
+            <remarks>不使用<see cref="T:Library.WeChat.Extension.WeChatTokenVerificationMiddleware"/>中间件时可不配置此属性</remarks>
+        </member>
+        <member name="P:Model.Utils.Config.WeChatServiceSetting.AuthorizeUrl">
+            <summary>
+            获取Code接口
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.WeChatServiceSetting.AccessTokenUrl">
+            <summary>
+            code换取网页授权access_token接口
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.WeChatServiceSetting.UserInfoUrl">
+            <summary>
+            拉取用户信息接口
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.WeChatServiceSetting.OAuthBaseUrl">
+            <summary>
+            授权接口
+            </summary>
+            <remarks>
+            <para>scope为snsapi_base</para>
+            <para>使用<see cref="T:Library.WeChat.Extension.WeChatOAuthV2Middleware"/>中间件时，中间件监听的接口。</para>
+            </remarks>
+        </member>
+        <member name="P:Model.Utils.Config.WeChatServiceSetting.OAuthUserInfoUrl">
+            <summary>
+            授权接口
+            </summary>
+            <remarks>
+            <para>scope为snsapi_userinfo</para>
+            <para>使用<see cref="T:Library.WeChat.Extension.WeChatOAuthV2Middleware"/>中间件时，中间件监听的接口。</para>
+            </remarks>
+        </member>
+        <member name="T:Model.Utils.Log.LogType">
+            <summary>
+            日志类型
+            </summary>
+        </member>
+        <member name="M:Model.Utils.Log.LogType.GetName(System.Byte)">
+            <summary>
+            获取名称
+            </summary>
+            <param name="value">值</param>
+            <returns>名称</returns>
+        </member>
+        <member name="M:Model.Utils.Log.LogType.GetValue(System.String)">
+            <summary>
+            获取值
+            </summary>
+            <param name="name">名称</param>
+            <returns>值</returns>
+        </member>
+        <member name="T:Model.Utils.Pagination.FilterCompare">
+            <summary>
+            筛选条件比较类型
+            <para>in / 0 (包含)</para>
+            <para>inStart / 1 (前段包含)</para>
+            <para>inEnd / 2 (后段包含)</para>
+            <para>includedIn / 3 (包含于)</para>
+            <para>notIn / 4 (不包含)</para>
+            <para>notInStart / 5 (前段不包含)</para>
+            <para>notInEnd / 6 (后段不包含)</para>
+            <para>notIncludedIn / 7 (不包含于)</para>
+            <para>eq / 8 (相等)</para>
+            <para>notEq / 9 (不相等)</para>
+            <para>le / 10 (小于等于)</para>
+            <para>lt / 11 (小于)</para>
+            <para>ge / 12 (大于等于)</para>
+            <para>gt / 13 (大于)</para>
+            <para>inSet / 14 (在集合中 <para>,号分隔</para><para>示例:1, 2, 3</para>)</para>
+            <para>notInSet / 15 (不在集合中 <para>,号分隔</para><para>示例:1, 2, 3</para>)</para>
+            <para>range / 16 (范围)</para>
+            <para>dateRange / 17 (日期范围)</para>
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Pagination.FilterCompare.in">
+            <summary>
+            包含（'%Value%'）
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Pagination.FilterCompare.inStart">
+            <summary>
+            前段包含（'Value%'）
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Pagination.FilterCompare.inEnd">
+            <summary>
+            后段包含（'%Value'）
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Pagination.FilterCompare.includedIn">
+            <summary>
+            包含于
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Pagination.FilterCompare.notIn">
+            <summary>
+            不包含（'%Value%'）
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Pagination.FilterCompare.notInStart">
+            <summary>
+            前段不包含（'Value%'）
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Pagination.FilterCompare.notInEnd">
+            <summary>
+            后段不包含（'%Value'）
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Pagination.FilterCompare.notIncludedIn">
+            <summary>
+            不包含于
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Pagination.FilterCompare.eq">
+            <summary>
+            相等
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Pagination.FilterCompare.notEq">
+            <summary>
+            不相等
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Pagination.FilterCompare.le">
+            <summary>
+            小于等于
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Pagination.FilterCompare.lt">
+            <summary>
+            小于
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Pagination.FilterCompare.ge">
+            <summary>
+            大于等于
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Pagination.FilterCompare.gt">
+            <summary>
+            大于
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Pagination.FilterCompare.inSet">
+            <summary>
+            在集合中
+            <para>,号分隔</para>
+            <para>示例:1, 2, 3</para>
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Pagination.FilterCompare.notInSet">
+            <summary>
+            不在集合中
+            <para>,号分隔</para>
+            <para>示例:1, 2, 3</para>
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Pagination.FilterCompare.range">
+            <summary>
+            范围
+            <para>Value1, Value2</para>
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Pagination.FilterCompare.dateRange">
+            <summary>
+            日期范围
+            <para>date1, date2</para>
+            <para>这是专门为日期范围查询定制的操作符，它会处理 date2 + 1，比如：</para>
+            <para>当 date2 选择的是 2020-05-30，那查询的时候是 小于 2020-05-31</para>
+            <para>当 date2 选择的是 2020-05，那查询的时候是 小于 2020-06</para>
+            <para>当 date2 选择的是 2020，那查询的时候是 小于 2021</para>
+            <para>当 date2 选择的是 2020-05-30 12，那查询的时候是 小于 2020-05-30 13</para>
+            <para>当 date2 选择的是 2020-05-30 12:30，那查询的时候是 小于 2020-05-30 12:31</para>
+            <para>并且 date2 只支持以上 5 种格式 (date1 没有限制)</para>
+            </summary>
+        </member>
+        <member name="T:Model.Utils.Pagination.FilterGroupFlag">
+            <summary>
+            筛选条件分组标识
+            <para>start / 0 (开始)</para>
+            <para>keep / 1 (还在分组内)</para>
+            <para>end / 2 (结束)</para>
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Pagination.FilterGroupFlag.start">
+            <summary>
+            开始
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Pagination.FilterGroupFlag.keep">
+            <summary>
+            还在分组内
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Pagination.FilterGroupFlag.end">
+            <summary>
+            结束
+            </summary>
+        </member>
+        <member name="T:Model.Utils.Pagination.FilterGroupRelation">
+            <summary>
+            筛选条件分组关系类型
+            <para>and / 0 (并且)</para>
+            <para>or / 1 (或)</para>
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Pagination.FilterGroupRelation.and">
+            <summary>
+            并且
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Pagination.FilterGroupRelation.or">
+            <summary>
+            或
+            </summary>
+        </member>
+        <member name="T:Model.Utils.Pagination.FilterGroupSetting">
+            <summary>
+            分组设置
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.FilterGroupSetting.Flag">
+            <summary>
+            分组标识
+            <para>默认值 keep</para>
+            <para>用于标识分组的开始和结束</para>
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.FilterGroupSetting.Relation">
+            <summary>
+            组内关系
+            <para>默认值 and</para>
+            </summary>
+        </member>
+        <member name="T:Model.Utils.Pagination.PaginationAdvancedSort">
+            <summary>
+            分页高级排序
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationAdvancedSort.Field">
+            <summary>
+            字段
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationAdvancedSort.Type">
+            <summary>
+            类型
+            <para>默认值 desc</para>
+            </summary>
+        </member>
+        <member name="T:Model.Utils.Pagination.PaginationDTO">
+            <summary>
+            数据表格分页
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDTO._schema">
+            <summary>
+            架构
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDTO._pageIndex">
+            <summary>
+            当前页码
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDTO._pageRows">
+            <summary>
+            每页行数
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDTO._sortField">
+            <summary>
+            排序列
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDTO._sortType">
+            <summary>
+            排序类型
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDTO._advancedSort">
+            <summary>
+            高级排序
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDTO._filter">
+            <summary>
+            筛选条件
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDTO._dynamicFilterInfo">
+            <summary>
+            筛选条件
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDTO._recordCount">
+            <summary>
+            总记录数
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDTO._pageCount">
+            <summary>
+            总页数
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDTO.PageIndex">
+            <summary>
+            当前页码
+            <para>默认值 1</para>
+            <para>值为-1时表示不分页</para>
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDTO.PageRows">
+            <summary>
+            每页数据量
+            <para>默认值 50</para>
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDTO.SortField">
+            <summary>
+            排序列
+            <para>默认值 Id</para>
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDTO.SortType">
+            <summary>
+            排序类型
+            <para>默认值 desc</para>
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDTO.AdvancedSort">
+            <summary>
+            高级排序
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDTO.Filter">
+            <summary>
+            筛选条件
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDTO.Alias">
+            <summary>
+            别名
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDTO.DynamicFilterInfo">
+            <summary>
+            筛选条件
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDTO.Schema">
+            <summary>
+            架构
+            <para>默认值 defaul</para>
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDTO.RecordCount">
+            <summary>
+            总记录数
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDTO.PageCount">
+            <summary>
+            总页数
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDTO.page">
+            <summary>
+            当前页
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDTO.rows">
+            <summary>
+            每页数据量
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDTO.sidx">
+            <summary>
+            排序列
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDTO.sord">
+            <summary>
+            排序类型
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDTO.records">
+            <summary>
+            总记录数
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDTO.total">
+            <summary>
+            总页数
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDTO.sort">
+            <summary>
+            排序列
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDTO.order">
+            <summary>
+            排序类型
+            </summary>
+        </member>
+        <member name="M:Model.Utils.Pagination.PaginationDTO.BuildResult(System.Object,System.Boolean,System.String)">
+            <summary>
+            输出
+            </summary>
+            <param name="data">数据</param>
+            <param name="success">成功与否</param>
+            <param name="error">异常信息</param>
+            <returns></returns>
+        </member>
+        <member name="T:Model.Utils.Pagination.PaginationDTO.Result">
+            <summary>
+            返回信息
+            </summary>
+        </member>
+        <member name="T:Model.Utils.Pagination.PaginationDTO.Result.Layui">
+            <summary>
+            Layui方案
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDTO.Result.Layui.data">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDTO.Result.Layui.code">
+            <summary>
+            状态码
+            <para>成功0，失败-1</para>
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDTO.Result.Layui.msg">
+            <summary>
+            信息
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDTO.Result.Layui.count">
+            <summary>
+            总记录数
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDTO.Result.Layui.costtime">
+            <summary>
+            耗时（毫秒）
+            </summary>
+        </member>
+        <member name="T:Model.Utils.Pagination.PaginationDTO.Result.JqGrid">
+            <summary>
+            JqGrid方案
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDTO.Result.JqGrid.rows">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDTO.Result.JqGrid.total">
+            <summary>
+            总页数
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDTO.Result.JqGrid.page">
+            <summary>
+            当前页码
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDTO.Result.JqGrid.records">
+            <summary>
+            总记录数
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDTO.Result.JqGrid.costtime">
+            <summary>
+            耗时（毫秒）
+            </summary>
+        </member>
+        <member name="T:Model.Utils.Pagination.PaginationDTO.Result.Easyui">
+            <summary>
+            Easyui DataGrid方案
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDTO.Result.Easyui.rows">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDTO.Result.Easyui.total">
+            <summary>
+            总记录数
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDTO.Result.Easyui.currentPage">
+            <summary>
+            当前页码
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDTO.Result.Easyui.pageSize">
+            <summary>
+            每页数据量
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDTO.Result.Easyui.costtime">
+            <summary>
+            耗时（毫秒）
+            </summary>
+        </member>
+        <member name="T:Model.Utils.Pagination.PaginationDynamicFilterInfo">
+            <summary>
+            分页筛选条件
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDynamicFilterInfo.Field">
+            <summary>
+            要比较的字段
+            <para>注意区分大小写</para>
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDynamicFilterInfo.Value">
+            <summary>
+            用于比较的值
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDynamicFilterInfo.Compare">
+            <summary>
+            比较类型
+            <para>默认值 eq</para>
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDynamicFilterInfo.Relation">
+            <summary>
+            组内关系
+            <para>默认值 and</para>
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationDynamicFilterInfo.DynamicFilterInfo">
+            <summary>
+            分组设置
+            </summary>
+        </member>
+        <member name="T:Model.Utils.Pagination.PaginationFilter">
+            <summary>
+            分页筛选条件
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationFilter.Field">
+            <summary>
+            要比较的字段
+            <para>注意区分大小写</para>
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationFilter.Value">
+            <summary>
+            用于比较的值
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationFilter.ValueIsField">
+            <summary>
+            Value值是用来比较的字段
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationFilter.Compare">
+            <summary>
+            比较类型
+            <para>默认值 eq</para>
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationFilter.Group">
+            <summary>
+            分组设置（已弃用）
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Pagination.PaginationFilter.DynamicFilterInfo">
+            <summary>
+            分组设置
+            </summary>
+        </member>
+        <member name="T:Model.Utils.Pagination.Schema">
+            <summary>
+            架构
+            <para>defaul / 0 (默认)</para>
+            <para>layui / 1 (layui <para>https://www.layui.com/doc/modules/table.html#response</para>)</para>
+            <para>jqGrid / 2 (jqGrid <para>https://blog.mn886.net/jqGrid/api/jsondata/index.jsp</para>)</para>
+            <para>easyui / 3 (easyui <para>http://www.jeasyui.net/plugins/183.html</para>)</para>
+            <para>bootstrapTable / 4 (bootstrapTable <para>https://bootstrap-table.com/docs/api/table-options/</para>)</para>
+            <para>antdVue / 5 (Ant Design + Vue <para>https://www.antdv.com/components/list-cn/#api</para>)</para>
+            <para>elementVue / 6 (element + Vue)</para>
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Pagination.Schema.defaul">
+            <summary>
+            默认
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Pagination.Schema.layui">
+            <summary>
+            layui
+            <para>https://www.layui.com/doc/modules/table.html#response</para>
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Pagination.Schema.jqGrid">
+            <summary>
+            jqGrid
+            <para>https://blog.mn886.net/jqGrid/api/jsondata/index.jsp</para>
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Pagination.Schema.easyui">
+            <summary>
+            easyui
+            <para>http://www.jeasyui.net/plugins/183.html</para>
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Pagination.Schema.bootstrapTable">
+            <summary>
+            bootstrapTable
+            <para>https://bootstrap-table.com/docs/api/table-options/</para>
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Pagination.Schema.antdVue">
+            <summary>
+            Ant Design + Vue
+            <para>https://www.antdv.com/components/list-cn/#api</para>
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Pagination.Schema.elementVue">
+            <summary>
+            element + Vue
+            </summary>
+        </member>
+        <member name="T:Model.Utils.Pagination.SortType">
+            <summary>
+            排序类型
+            <para>asc / 0 (正序)</para>
+            <para>desc / 1 (倒序)</para>
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Pagination.SortType.asc">
+            <summary>
+            正序
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Pagination.SortType.desc">
+            <summary>
+            倒序
+            </summary>
+        </member>
+        <member name="T:Model.Utils.Result.AjaxDevelopmentResult`1">
+            <summary>
+            Ajax请求结果（开发模式）
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Result.AjaxDevelopmentResult`1.Data">
+            <summary>
+            返回数据
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Result.AjaxDevelopmentResult`1.ExMsg">
+            <summary>
+            异常信息
+            </summary>
+        </member>
+        <member name="T:Model.Utils.Result.AjaxResult">
+            <summary>
+            Ajax请求结果
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Result.AjaxResult.Success">
+            <summary>
+            是否成功
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Result.AjaxResult.ErrorCode">
+            <summary>
+            错误代码
+            <see cref="T:Model.Utils.Result.ErrorCode"/>
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Result.AjaxResult.Msg">
+            <summary>
+            返回消息
+            </summary>
+        </member>
+        <member name="T:Model.Utils.Result.AjaxResult`1">
+            <summary>
+            Ajax请求结果
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Result.AjaxResult`1.Data">
+            <summary>
+            返回数据
+            </summary>
+        </member>
+        <member name="M:Model.Utils.Result.AjaxResultFactory.Success">
+            <summary>
+            返回成功
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Model.Utils.Result.AjaxResultFactory.Success``1">
+            <summary>
+            返回成功
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Model.Utils.Result.AjaxResultFactory.Success(System.String)">
+            <summary>
+            返回成功
+            </summary>
+            <param name="msg">返回的消息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Model.Utils.Result.AjaxResultFactory.Success``1(System.String)">
+            <summary>
+            返回成功
+            </summary>
+            <param name="msg">返回的消息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Model.Utils.Result.AjaxResultFactory.Success``1(``0)">
+            <summary>
+            返回成功
+            </summary>
+            <param name="data">返回的数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Model.Utils.Result.AjaxResultFactory.Success``1(System.String,``0)">
+            <summary>
+            返回成功
+            </summary>
+            <param name="msg">返回的消息</param>
+            <param name="data">返回的数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Model.Utils.Result.AjaxResultFactory.Error">
+            <summary>
+            返回错误
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Model.Utils.Result.AjaxResultFactory.Error``1">
+            <summary>
+            返回错误
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Model.Utils.Result.AjaxResultFactory.Error(System.String,Model.Utils.Result.ErrorCode)">
+            <summary>
+            返回错误
+            </summary>
+            <param name="msg">返回的消息</param>
+            <param name="errorCode">错误代码<see cref="T:Model.Utils.Result.ErrorCode"/></param>
+            <returns></returns>
+        </member>
+        <member name="M:Model.Utils.Result.AjaxResultFactory.Error``1(System.String,Model.Utils.Result.ErrorCode)">
+            <summary>
+            返回错误
+            </summary>
+            <param name="msg">返回的消息</param>
+            <param name="errorCode">错误代码<see cref="T:Model.Utils.Result.ErrorCode"/></param>
+            <returns></returns>
+        </member>
+        <member name="M:Model.Utils.Result.AjaxResultFactory.Error``1(``0,Model.Utils.Result.ErrorCode)">
+            <summary>
+            返回错误
+            </summary>
+            <param name="data">返回的数据</param>
+            <param name="errorCode">错误代码<see cref="T:Model.Utils.Result.ErrorCode"/></param>
+            <returns></returns>
+        </member>
+        <member name="M:Model.Utils.Result.AjaxResultFactory.Error``1(System.String,``0,Model.Utils.Result.ErrorCode)">
+            <summary>
+            返回成功
+            </summary>
+            <param name="msg">返回的消息</param>
+            <param name="data">返回的数据</param>
+            <param name="errorCode">错误代码<see cref="T:Model.Utils.Result.ErrorCode"/></param>
+            <returns></returns>
+        </member>
+        <member name="M:Model.Utils.Result.AjaxResultFactory.Error``1(System.String,System.String,``0,Model.Utils.Result.ErrorCode)">
+            <summary>
+            返回错误（开发模式）
+            </summary>
+            <param name="msg">返回的消息</param>
+            <param name="exMsg">异常信息</param>
+            <param name="data">返回的数据</param>
+            <param name="errorCode">错误代码<see cref="T:Model.Utils.Result.ErrorCode"/></param>
+            <returns></returns>
+        </member>
+        <member name="T:Model.Utils.Result.ErrorCode">
+            <summary>
+            异常代码
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Result.ErrorCode.none">
+            <summary>
+            无
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Result.ErrorCode.nologin">
+            <summary>
+            未登录
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Result.ErrorCode.unauthorized">
+            <summary>
+            未授权
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Result.ErrorCode.forbidden">
+            <summary>
+            权限不足
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Result.ErrorCode.validation">
+            <summary>
+            验证失败
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Result.ErrorCode.business">
+            <summary>
+            业务错误
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Result.ErrorCode.error">
+            <summary>
+            系统错误
+            </summary>
+        </member>
+        <member name="T:Model.Utils.SampleAuthentication.SampleAuthenticationDTO.LoginRequest">
+            <summary>
+            登录参数
+            </summary>
+        </member>
+        <member name="P:Model.Utils.SampleAuthentication.SampleAuthenticationDTO.LoginRequest.Account">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="P:Model.Utils.SampleAuthentication.SampleAuthenticationDTO.LoginRequest.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="T:Model.Utils.SampleAuthentication.SampleAuthenticationDTO.AuthenticationInfo">
+            <summary>
+            验证信息
+            </summary>
+        </member>
+        <member name="P:Model.Utils.SampleAuthentication.SampleAuthenticationDTO.AuthenticationInfo.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Model.Utils.SampleAuthentication.SampleAuthenticationDTO.AuthenticationInfo.UserType">
+            <summary>
+            用户类型
+            </summary>
+        </member>
+        <member name="P:Model.Utils.SampleAuthentication.SampleAuthenticationDTO.AuthenticationInfo.Account">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:Model.Utils.SampleAuthentication.SampleAuthenticationDTO.AuthenticationInfo.Nickname">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:Model.Utils.SampleAuthentication.SampleAuthenticationDTO.AuthenticationInfo.Sex">
+            <summary>
+            性别
+            </summary>
+        </member>
+        <member name="P:Model.Utils.SampleAuthentication.SampleAuthenticationDTO.AuthenticationInfo.HeadimgUrl">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="T:Model.Utils.SampleAuthentication.SampleAuthenticationDTO.LogoutRequest">
+            <summary>
+            登出参数
+            </summary>
+        </member>
+        <member name="P:Model.Utils.SampleAuthentication.SampleAuthenticationDTO.LogoutRequest.ReturnUrl">
+            <summary>
+            登出后跳转地址
             </summary>
         </member>
     </members>

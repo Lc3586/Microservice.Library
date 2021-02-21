@@ -2,7 +2,7 @@
 using Library.NLogger.Application;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using Model.System.Config;
+using Model.Utils.Config;
 using NLog.Targets;
 using System.IO;
 using System.Text;

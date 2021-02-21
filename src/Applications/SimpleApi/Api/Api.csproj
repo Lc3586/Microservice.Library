@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -17,305 +17,304 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="appsettings.json" />
-    <None Remove="jsonconfig\database.json" />
-    <None Remove="jsonconfig\soap.json" />
-    <None Remove="jsonconfig\wechatservice.json" />
-    <None Remove="wwwroot\filetypes\7z.png" />
-    <None Remove="wwwroot\filetypes\accdb.png" />
-    <None Remove="wwwroot\filetypes\ai.png" />
-    <None Remove="wwwroot\filetypes\ape.png" />
-    <None Remove="wwwroot\filetypes\ape_0.png" />
-    <None Remove="wwwroot\filetypes\apk.png" />
-    <None Remove="wwwroot\filetypes\apk_0.png" />
-    <None Remove="wwwroot\filetypes\avi.png" />
-    <None Remove="wwwroot\filetypes\bmp.png" />
-    <None Remove="wwwroot\filetypes\css.png" />
-    <None Remove="wwwroot\filetypes\csv.png" />
-    <None Remove="wwwroot\filetypes\dbf.png" />
-    <None Remove="wwwroot\filetypes\dmg.png" />
-    <None Remove="wwwroot\filetypes\dmg_0.png" />
-    <None Remove="wwwroot\filetypes\doc.png" />
-    <None Remove="wwwroot\filetypes\docx.png" />
-    <None Remove="wwwroot\filetypes\dwg.png" />
-    <None Remove="wwwroot\filetypes\eml.png" />
-    <None Remove="wwwroot\filetypes\empty.png" />
-    <None Remove="wwwroot\filetypes\eps.png" />
-    <None Remove="wwwroot\filetypes\exe.png" />
-    <None Remove="wwwroot\filetypes\exe_0.png" />
-    <None Remove="wwwroot\filetypes\fla.png" />
-    <None Remove="wwwroot\filetypes\flac.png" />
-    <None Remove="wwwroot\filetypes\flac_0.png" />
-    <None Remove="wwwroot\filetypes\flv.png" />
-    <None Remove="wwwroot\filetypes\flv_0.png" />
-    <None Remove="wwwroot\filetypes\flv_1.png" />
-    <None Remove="wwwroot\filetypes\gif.png" />
-    <None Remove="wwwroot\filetypes\gif_0.png" />
-    <None Remove="wwwroot\filetypes\gif_1.png" />
-    <None Remove="wwwroot\filetypes\html.png" />
-    <None Remove="wwwroot\filetypes\iso.png" />
-    <None Remove="wwwroot\filetypes\jpeg.png" />
-    <None Remove="wwwroot\filetypes\jpg.png" />
-    <None Remove="wwwroot\filetypes\js.png" />
-    <None Remove="wwwroot\filetypes\json.png" />
-    <None Remove="wwwroot\filetypes\mid.png" />
-    <None Remove="wwwroot\filetypes\mid_0.png" />
-    <None Remove="wwwroot\filetypes\mid_1.png" />
-    <None Remove="wwwroot\filetypes\mp3.png" />
-    <None Remove="wwwroot\filetypes\mp4.png" />
-    <None Remove="wwwroot\filetypes\msi.png" />
-    <None Remove="wwwroot\filetypes\pdf.png" />
-    <None Remove="wwwroot\filetypes\pdf_0.png" />
-    <None Remove="wwwroot\filetypes\png.png" />
-    <None Remove="wwwroot\filetypes\ppt.png" />
-    <None Remove="wwwroot\filetypes\pptx.png" />
-    <None Remove="wwwroot\filetypes\rar.png" />
-    <None Remove="wwwroot\filetypes\rm.png" />
-    <None Remove="wwwroot\filetypes\rm_0.png" />
-    <None Remove="wwwroot\filetypes\rm_1.png" />
-    <None Remove="wwwroot\filetypes\svg.png" />
-    <None Remove="wwwroot\filetypes\tmp.png" />
-    <None Remove="wwwroot\filetypes\torrent.png" />
-    <None Remove="wwwroot\filetypes\torrent_0.png" />
-    <None Remove="wwwroot\filetypes\txt.png" />
-    <None Remove="wwwroot\filetypes\wav.png" />
-    <None Remove="wwwroot\filetypes\xls.png" />
-    <None Remove="wwwroot\filetypes\xlsx.png" />
-    <None Remove="wwwroot\filetypes\xmind.png" />
-    <None Remove="wwwroot\filetypes\xml.png" />
-    <None Remove="wwwroot\filetypes\zip.png" />
-    <None Remove="wwwroot\swagger\casLogin.js" />
-    <None Remove="wwwroot\swagger\custom-javascript.js" />
-    <None Remove="wwwroot\swagger\custom-stylesheet.css" />
-    <None Remove="wwwroot\swagger\jquery-1.8.3.min.js" />
-    <None Remove="wwwroot\swagger\saLogin.js" />
-    <None Remove="wwwroot\swagger\waiting.css" />
-    <None Remove="wwwroot\swagger\waiting.min.js" />
+    <Content Remove="jsonconfig\database.json" />
+    <Content Remove="jsonconfig\soap.json" />
+    <Content Remove="jsonconfig\wechatservice.json" />
+    <Content Remove="wwwroot\filetypes\7z.png" />
+    <Content Remove="wwwroot\filetypes\accdb.png" />
+    <Content Remove="wwwroot\filetypes\ai.png" />
+    <Content Remove="wwwroot\filetypes\ape.png" />
+    <Content Remove="wwwroot\filetypes\ape_0.png" />
+    <Content Remove="wwwroot\filetypes\apk.png" />
+    <Content Remove="wwwroot\filetypes\apk_0.png" />
+    <Content Remove="wwwroot\filetypes\avi.png" />
+    <Content Remove="wwwroot\filetypes\bmp.png" />
+    <Content Remove="wwwroot\filetypes\css.png" />
+    <Content Remove="wwwroot\filetypes\csv.png" />
+    <Content Remove="wwwroot\filetypes\dbf.png" />
+    <Content Remove="wwwroot\filetypes\dmg.png" />
+    <Content Remove="wwwroot\filetypes\dmg_0.png" />
+    <Content Remove="wwwroot\filetypes\doc.png" />
+    <Content Remove="wwwroot\filetypes\docx.png" />
+    <Content Remove="wwwroot\filetypes\dwg.png" />
+    <Content Remove="wwwroot\filetypes\eml.png" />
+    <Content Remove="wwwroot\filetypes\empty.png" />
+    <Content Remove="wwwroot\filetypes\eps.png" />
+    <Content Remove="wwwroot\filetypes\exe.png" />
+    <Content Remove="wwwroot\filetypes\exe_0.png" />
+    <Content Remove="wwwroot\filetypes\fla.png" />
+    <Content Remove="wwwroot\filetypes\flac.png" />
+    <Content Remove="wwwroot\filetypes\flac_0.png" />
+    <Content Remove="wwwroot\filetypes\flv.png" />
+    <Content Remove="wwwroot\filetypes\flv_0.png" />
+    <Content Remove="wwwroot\filetypes\flv_1.png" />
+    <Content Remove="wwwroot\filetypes\gif.png" />
+    <Content Remove="wwwroot\filetypes\gif_0.png" />
+    <Content Remove="wwwroot\filetypes\gif_1.png" />
+    <Content Remove="wwwroot\filetypes\html.png" />
+    <Content Remove="wwwroot\filetypes\iso.png" />
+    <Content Remove="wwwroot\filetypes\jpeg.png" />
+    <Content Remove="wwwroot\filetypes\jpg.png" />
+    <Content Remove="wwwroot\filetypes\js.png" />
+    <Content Remove="wwwroot\filetypes\json.png" />
+    <Content Remove="wwwroot\filetypes\mid.png" />
+    <Content Remove="wwwroot\filetypes\mid_0.png" />
+    <Content Remove="wwwroot\filetypes\mid_1.png" />
+    <Content Remove="wwwroot\filetypes\mp3.png" />
+    <Content Remove="wwwroot\filetypes\mp4.png" />
+    <Content Remove="wwwroot\filetypes\msi.png" />
+    <Content Remove="wwwroot\filetypes\pdf.png" />
+    <Content Remove="wwwroot\filetypes\pdf_0.png" />
+    <Content Remove="wwwroot\filetypes\png.png" />
+    <Content Remove="wwwroot\filetypes\ppt.png" />
+    <Content Remove="wwwroot\filetypes\pptx.png" />
+    <Content Remove="wwwroot\filetypes\rar.png" />
+    <Content Remove="wwwroot\filetypes\rm.png" />
+    <Content Remove="wwwroot\filetypes\rm_0.png" />
+    <Content Remove="wwwroot\filetypes\rm_1.png" />
+    <Content Remove="wwwroot\filetypes\svg.png" />
+    <Content Remove="wwwroot\filetypes\tmp.png" />
+    <Content Remove="wwwroot\filetypes\torrent.png" />
+    <Content Remove="wwwroot\filetypes\torrent_0.png" />
+    <Content Remove="wwwroot\filetypes\txt.png" />
+    <Content Remove="wwwroot\filetypes\wav.png" />
+    <Content Remove="wwwroot\filetypes\xls.png" />
+    <Content Remove="wwwroot\filetypes\xlsx.png" />
+    <Content Remove="wwwroot\filetypes\xmind.png" />
+    <Content Remove="wwwroot\filetypes\xml.png" />
+    <Content Remove="wwwroot\filetypes\zip.png" />
+    <Content Remove="wwwroot\swagger\casLogin.js" />
+    <Content Remove="wwwroot\swagger\custom-javascript.js" />
+    <Content Remove="wwwroot\swagger\custom-stylesheet.css" />
+    <Content Remove="wwwroot\swagger\jquery-1.8.3.min.js" />
+    <Content Remove="wwwroot\swagger\saLogin.js" />
+    <Content Remove="wwwroot\swagger\waiting.css" />
+    <Content Remove="wwwroot\swagger\waiting.min.js" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="appsettings.json">
+    <None Include="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="jsonconfig\wechatservice.json">
+    </None>
+    <None Include="jsonconfig\wechatservice.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="jsonconfig\database.json">
+    </None>
+    <None Include="jsonconfig\database.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="jsonconfig\soap.json">
+    </None>
+    <None Include="jsonconfig\soap.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\7z.png">
+    </None>
+    <None Include="wwwroot\filetypes\7z.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\accdb.png">
+    </None>
+    <None Include="wwwroot\filetypes\accdb.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\ai.png">
+    </None>
+    <None Include="wwwroot\filetypes\ai.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\ape.png">
+    </None>
+    <None Include="wwwroot\filetypes\ape.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\ape_0.png">
+    </None>
+    <None Include="wwwroot\filetypes\ape_0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\apk.png">
+    </None>
+    <None Include="wwwroot\filetypes\apk.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\apk_0.png">
+    </None>
+    <None Include="wwwroot\filetypes\apk_0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\avi.png">
+    </None>
+    <None Include="wwwroot\filetypes\avi.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\bmp.png">
+    </None>
+    <None Include="wwwroot\filetypes\bmp.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\css.png">
+    </None>
+    <None Include="wwwroot\filetypes\css.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\csv.png">
+    </None>
+    <None Include="wwwroot\filetypes\csv.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\dbf.png">
+    </None>
+    <None Include="wwwroot\filetypes\dbf.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\dmg.png">
+    </None>
+    <None Include="wwwroot\filetypes\dmg.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\dmg_0.png">
+    </None>
+    <None Include="wwwroot\filetypes\dmg_0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\doc.png">
+    </None>
+    <None Include="wwwroot\filetypes\doc.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\docx.png">
+    </None>
+    <None Include="wwwroot\filetypes\docx.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\dwg.png">
+    </None>
+    <None Include="wwwroot\filetypes\dwg.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\eml.png">
+    </None>
+    <None Include="wwwroot\filetypes\eml.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\empty.png">
+    </None>
+    <None Include="wwwroot\filetypes\empty.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\eps.png">
+    </None>
+    <None Include="wwwroot\filetypes\eps.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\exe.png">
+    </None>
+    <None Include="wwwroot\filetypes\exe.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\exe_0.png">
+    </None>
+    <None Include="wwwroot\filetypes\exe_0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\fla.png">
+    </None>
+    <None Include="wwwroot\filetypes\fla.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\flac.png">
+    </None>
+    <None Include="wwwroot\filetypes\flac.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\flac_0.png">
+    </None>
+    <None Include="wwwroot\filetypes\flac_0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\flv.png">
+    </None>
+    <None Include="wwwroot\filetypes\flv.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\flv_0.png">
+    </None>
+    <None Include="wwwroot\filetypes\flv_0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\flv_1.png">
+    </None>
+    <None Include="wwwroot\filetypes\flv_1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\gif.png">
+    </None>
+    <None Include="wwwroot\filetypes\gif.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\gif_0.png">
+    </None>
+    <None Include="wwwroot\filetypes\gif_0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\gif_1.png">
+    </None>
+    <None Include="wwwroot\filetypes\gif_1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\html.png">
+    </None>
+    <None Include="wwwroot\filetypes\html.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\iso.png">
+    </None>
+    <None Include="wwwroot\filetypes\iso.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\jpeg.png">
+    </None>
+    <None Include="wwwroot\filetypes\jpeg.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\jpg.png">
+    </None>
+    <None Include="wwwroot\filetypes\jpg.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\js.png">
+    </None>
+    <None Include="wwwroot\filetypes\js.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\json.png">
+    </None>
+    <None Include="wwwroot\filetypes\json.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\mid.png">
+    </None>
+    <None Include="wwwroot\filetypes\mid.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\mid_0.png">
+    </None>
+    <None Include="wwwroot\filetypes\mid_0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\mid_1.png">
+    </None>
+    <None Include="wwwroot\filetypes\mid_1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\mp3.png">
+    </None>
+    <None Include="wwwroot\filetypes\mp3.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\mp4.png">
+    </None>
+    <None Include="wwwroot\filetypes\mp4.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\msi.png">
+    </None>
+    <None Include="wwwroot\filetypes\msi.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\pdf.png">
+    </None>
+    <None Include="wwwroot\filetypes\pdf.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\pdf_0.png">
+    </None>
+    <None Include="wwwroot\filetypes\pdf_0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\png.png">
+    </None>
+    <None Include="wwwroot\filetypes\png.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\ppt.png">
+    </None>
+    <None Include="wwwroot\filetypes\ppt.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\pptx.png">
+    </None>
+    <None Include="wwwroot\filetypes\pptx.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\rar.png">
+    </None>
+    <None Include="wwwroot\filetypes\rar.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\rm.png">
+    </None>
+    <None Include="wwwroot\filetypes\rm.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\rm_0.png">
+    </None>
+    <None Include="wwwroot\filetypes\rm_0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\rm_1.png">
+    </None>
+    <None Include="wwwroot\filetypes\rm_1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\svg.png">
+    </None>
+    <None Include="wwwroot\filetypes\svg.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\tmp.png">
+    </None>
+    <None Include="wwwroot\filetypes\tmp.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\torrent.png">
+    </None>
+    <None Include="wwwroot\filetypes\torrent.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\torrent_0.png">
+    </None>
+    <None Include="wwwroot\filetypes\torrent_0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\txt.png">
+    </None>
+    <None Include="wwwroot\filetypes\txt.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\wav.png">
+    </None>
+    <None Include="wwwroot\filetypes\wav.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\xls.png">
+    </None>
+    <None Include="wwwroot\filetypes\xls.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\xlsx.png">
+    </None>
+    <None Include="wwwroot\filetypes\xlsx.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\xmind.png">
+    </None>
+    <None Include="wwwroot\filetypes\xmind.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\xml.png">
+    </None>
+    <None Include="wwwroot\filetypes\xml.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\filetypes\zip.png">
+    </None>
+    <None Include="wwwroot\filetypes\zip.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\swagger\casLogin.js">
+    </None>
+    <None Include="wwwroot\swagger\casLogin.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\swagger\custom-javascript.js">
+    </None>
+    <None Include="wwwroot\swagger\custom-javascript.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\swagger\custom-stylesheet.css">
+    </None>
+    <None Include="wwwroot\swagger\custom-stylesheet.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\swagger\jquery-1.8.3.min.js">
+    </None>
+    <None Include="wwwroot\swagger\jquery-1.8.3.min.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\swagger\saLogin.js">
+    </None>
+    <None Include="wwwroot\swagger\saLogin.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\swagger\waiting.css">
+    </None>
+    <None Include="wwwroot\swagger\waiting.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="wwwroot\swagger\waiting.min.js">
+    </None>
+    <None Include="wwwroot\swagger\waiting.min.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
@@ -347,9 +346,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\System\" />
-    <Folder Include="wwwroot\filetypes\" />
-    <Folder Include="wwwroot\swagger\" />
     <Folder Include="wwwroot\upload\" />
   </ItemGroup>
 

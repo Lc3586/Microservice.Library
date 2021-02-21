@@ -2,8 +2,7 @@
 using Library.Container;
 using Microsoft.AspNetCore.Http;
 using Model.Common;
-using Model.SampleAuthentication.SampleAuthenticationDTO;
-using System;
+using Model.Utils.SampleAuthentication.SampleAuthenticationDTO;
 using System.Linq;
 
 namespace Business.Implementation.System

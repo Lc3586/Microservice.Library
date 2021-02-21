@@ -2,15 +2,15 @@
 using Library.Container;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Model.System;
-using Model.System.Config;
+using Model.Utils.Config;
+using Model.Utils.Result;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Net;
 
 namespace Api.Controllers.Utils
 {
     /// <summary>
-    /// Mvc对外接口基控制器
+    /// 对外接口基控制器
     /// </summary>
     [Authorize]//登录校验
     [Consumes("application/json", "application/x-www-form-urlencoded")]//接收数据类型

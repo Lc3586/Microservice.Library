@@ -1,9 +1,9 @@
 ﻿using Business.Utils.Log;
 using Library.Container;
 using Library.Extension;
-using Model.System;
-using Model.System.Config;
-using Model.System.Log;
+using Model.Utils.Config;
+using Model.Utils.Log;
+using Model.Utils.Result;
 using System;
 
 namespace Business.Utils

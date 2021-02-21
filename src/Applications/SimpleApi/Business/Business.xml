@@ -127,6 +127,14 @@
             <param name="openId"></param>
             <returns></returns>
         </member>
+        <member name="M:Business.Implementation.Common.WeChatOAuthHandler.GetMember(System.String,System.String)">
+            <summary>
+            获取会员信息
+            </summary>
+            <param name="appId"></param>
+            <param name="openId"></param>
+            <returns></returns>
+        </member>
         <member name="M:Business.Implementation.Common.WeChatOAuthHandler.GetMember(System.String)">
             <summary>
             获取会员信息
@@ -157,21 +165,21 @@
             <param name="appId"></param>
             <param name="openId"></param>
         </member>
-        <member name="M:Business.Implementation.Common.WeChatOAuthHandler.BindMember(System.String,System.String,System.String,System.Boolean)">
+        <member name="M:Business.Implementation.Common.WeChatOAuthHandler.BindMember(System.String,System.String,System.Boolean)">
             <summary>
             会员绑定微信
             </summary>
-            <param name="memberId">会员ID</param>
             <param name="appId"></param>
             <param name="openId"></param>
             <param name="autoCreate">会员不存在时自动创建会员</param>
         </member>
-        <member name="M:Business.Implementation.Common.WeChatOAuthHandler.CreateMember(System.String,System.String)">
+        <member name="M:Business.Implementation.Common.WeChatOAuthHandler.CreateMember(System.String,System.String,System.Boolean)">
             <summary>
             创建会员
             </summary>
             <param name="appId"></param>
             <param name="openId"></param>
+            <param name="runTransaction">运行事务（默认运行）</param>
             <returns>返回会员信息</returns>
         </member>
         <member name="M:Business.Implementation.Common.WeChatOAuthHandler.UpdateMember(System.String,System.String,System.String)">
@@ -182,7 +190,7 @@
             <param name="appId"></param>
             <param name="openId"></param>
         </member>
-        <member name="M:Business.Implementation.Common.WeChatOAuthHandler.Login(Microsoft.AspNetCore.Http.HttpContext,Model.SampleAuthentication.SampleAuthenticationDTO.AuthenticationInfo,System.String)">
+        <member name="M:Business.Implementation.Common.WeChatOAuthHandler.Login(Microsoft.AspNetCore.Http.HttpContext,Model.Utils.SampleAuthentication.SampleAuthenticationDTO.AuthenticationInfo,System.String)">
             <summary>
             登录
             </summary>
@@ -262,7 +270,7 @@
             登录日志业务接口类
             </summary>
         </member>
-        <member name="M:Business.Interface.Common.IEntryLogBusiness.GetList(Model.System.Pagination.PaginationDTO)">
+        <member name="M:Business.Interface.Common.IEntryLogBusiness.GetList(Model.Utils.Pagination.PaginationDTO)">
             <summary>
             获取列表数据
             </summary>
@@ -287,6 +295,34 @@
             <summary>
             文件处理业务接口类
             </summary>
+        </member>
+        <member name="M:Business.Interface.Common.IFileBusiness.GetList(Model.Utils.Pagination.PaginationDTO)">
+            <summary>
+            获取列表数据
+            </summary>
+            <param name="pagination">分页设置</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.Common.IFileBusiness.GetDetail(System.String)">
+            <summary>
+            获取详情数据
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.Common.IFileBusiness.GetDetails(System.String)">
+            <summary>
+            获取详情数据集合
+            </summary>
+            <param name="ids">id逗号拼接</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.Common.IFileBusiness.GetDetails(System.Collections.Generic.List{System.String})">
+            <summary>
+            获取详情数据集合
+            </summary>
+            <param name="ids">id集合</param>
+            <returns></returns>
         </member>
         <member name="M:Business.Interface.Common.IFileBusiness.CheckMD5(System.String)">
             <summary>
@@ -332,34 +368,6 @@
             <param name="id">文件Id</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Interface.Common.IFileBusiness.GetList(Model.System.Pagination.PaginationDTO)">
-            <summary>
-            获取列表数据
-            </summary>
-            <param name="pagination">分页设置</param>
-            <returns></returns>
-        </member>
-        <member name="M:Business.Interface.Common.IFileBusiness.GetDetail(System.String)">
-            <summary>
-            获取详情数据
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Business.Interface.Common.IFileBusiness.GetDetails(System.String)">
-            <summary>
-            获取详情数据集合
-            </summary>
-            <param name="ids">id逗号拼接</param>
-            <returns></returns>
-        </member>
-        <member name="M:Business.Interface.Common.IFileBusiness.GetDetails(System.Collections.Generic.List{System.String})">
-            <summary>
-            获取详情数据集合
-            </summary>
-            <param name="ids">id集合</param>
-            <returns></returns>
-        </member>
         <member name="M:Business.Interface.Common.IFileBusiness.Delete(System.Collections.Generic.List{System.String})">
             <summary>
             删除
@@ -372,7 +380,7 @@
             操作记录业务接口类
             </summary>
         </member>
-        <member name="M:Business.Interface.Common.IOperationRecordBusiness.GetList(Model.System.Pagination.PaginationDTO)">
+        <member name="M:Business.Interface.Common.IOperationRecordBusiness.GetList(Model.Utils.Pagination.PaginationDTO)">
             <summary>
             获取列表数据
             </summary>
@@ -405,7 +413,7 @@
             微信用户信息业务接口类
             </summary>
         </member>
-        <member name="M:Business.Interface.Common.IWeChatUserInfoBusiness.GetList(Model.System.Pagination.PaginationDTO)">
+        <member name="M:Business.Interface.Common.IWeChatUserInfoBusiness.GetList(Model.Utils.Pagination.PaginationDTO)">
             <summary>
             获取列表数据
             </summary>
@@ -431,7 +439,7 @@
             示例业务接口类
             </summary>
         </member>
-        <member name="M:Business.Interface.Example.ISampleBusiness.GetList(Model.System.Pagination.PaginationDTO)">
+        <member name="M:Business.Interface.Example.ISampleBusiness.GetList(Model.Utils.Pagination.PaginationDTO)">
             <summary>
             获取列表数据
             </summary>
@@ -486,14 +494,14 @@
             会员业务接口类
             </summary>
         </member>
-        <member name="M:Business.Interface.System.IMemberBusiness.GetList(Model.System.Pagination.PaginationDTO)">
+        <member name="M:Business.Interface.System.IMemberBusiness.GetList(Model.Utils.Pagination.PaginationDTO)">
             <summary>
             获取列表数据
             </summary>
             <param name="pagination">分页设置</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Interface.System.IMemberBusiness.DropdownList(System.String,Model.System.Pagination.PaginationDTO)">
+        <member name="M:Business.Interface.System.IMemberBusiness.DropdownList(System.String,Model.Utils.Pagination.PaginationDTO)">
             <summary>
             获取下拉框数据
             </summary>
@@ -538,6 +546,14 @@
             <param name="ids">Id集合</param>
             <returns></returns>
         </member>
+        <member name="M:Business.Interface.System.IMemberBusiness.Enable(System.String,System.Boolean)">
+            <summary>
+            启用/禁用
+            </summary>
+            <param name="id">数据</param>
+            <param name="enable">设置状态</param>
+            <returns></returns>
+        </member>
         <member name="M:Business.Interface.System.IMemberBusiness.Login(System.String)">
             <summary>
             登录
@@ -556,6 +572,20 @@
             权限业务接口类
             </summary>
         </member>
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.AutoAuthorizeRoleForUser(Model.System.AuthorizeDTO.RoleForUser,System.Boolean)">
+            <summary>
+            自动授权角色给用户
+            </summary>
+            <param name="data">数据</param>
+            <param name="runTransaction">运行事务（默认运行）</param>
+        </member>
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.AutoAuthorizeRoleForMember(Model.System.AuthorizeDTO.RoleForMember,System.Boolean)">
+            <summary>
+            自动授权角色给会员
+            </summary>
+            <param name="data">数据</param>
+            <param name="runTransaction">运行事务（默认运行）</param>
+        </member>
         <member name="M:Business.Interface.System.IAuthoritiesBusiness.AuthorizeRoleForUser(Model.System.AuthorizeDTO.RoleForUser,System.Boolean)">
             <summary>
             授权角色给用户
@@ -563,11 +593,12 @@
             <param name="data">数据</param>
             <param name="runTransaction">运行事务（默认运行）</param>
         </member>
-        <member name="M:Business.Interface.System.IAuthoritiesBusiness.AuthorizeRoleForMember(Model.System.AuthorizeDTO.RoleForMember)">
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.AuthorizeRoleForMember(Model.System.AuthorizeDTO.RoleForMember,System.Boolean)">
             <summary>
             授权角色给会员
             </summary>
             <param name="data">数据</param>
+            <param name="runTransaction">运行事务（默认运行）</param>
         </member>
         <member name="M:Business.Interface.System.IAuthoritiesBusiness.AuthorizeMenuForUser(Model.System.AuthorizeDTO.MenuForUser)">
             <summary>
@@ -592,6 +623,20 @@
             授权资源给角色
             </summary>
             <param name="data">数据</param>
+        </member>
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.RevocationRoleForAllUser(System.Collections.Generic.List{System.String},System.Boolean)">
+            <summary>
+            撤销角色的全部系统用户授权
+            </summary>
+            <param name="roleIds">角色Id</param>
+            <param name="runTransaction">运行事务（默认运行）</param>
+        </member>
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.RevocationRoleForAllMember(System.Collections.Generic.List{System.String},System.Boolean)">
+            <summary>
+            撤销角色的全部会员授权
+            </summary>
+            <param name="roleIds">角色Id</param>
+            <param name="runTransaction">运行事务（默认运行）</param>
         </member>
         <member name="M:Business.Interface.System.IAuthoritiesBusiness.RevocationRoleForUser(System.Collections.Generic.List{System.String},System.Boolean)">
             <summary>
@@ -914,10 +959,10 @@
         </member>
         <member name="T:Business.Interface.System.IMenuBusiness">
             <summary>
-            角色业务接口类
+            菜单业务接口类
             </summary>
         </member>
-        <member name="M:Business.Interface.System.IMenuBusiness.GetList(Model.System.Pagination.PaginationDTO)">
+        <member name="M:Business.Interface.System.IMenuBusiness.GetList(Model.Utils.Pagination.PaginationDTO)">
             <summary>
             获取列表数据
             </summary>
@@ -960,6 +1005,13 @@
             <param name="data">数据</param>
             <returns></returns>
         </member>
+        <member name="M:Business.Interface.System.IMenuBusiness.Delete(System.Collections.Generic.List{System.String})">
+            <summary>
+            删除
+            </summary>
+            <param name="ids">Id集合</param>
+            <returns></returns>
+        </member>
         <member name="M:Business.Interface.System.IMenuBusiness.Enable(System.String,System.Boolean)">
             <summary>
             启用/禁用
@@ -980,13 +1032,6 @@
             拖动排序
             </summary>
             <param name="data">数据</param>
-            <returns></returns>
-        </member>
-        <member name="M:Business.Interface.System.IMenuBusiness.Delete(System.Collections.Generic.List{System.String})">
-            <summary>
-            删除
-            </summary>
-            <param name="ids">Id集合</param>
             <returns></returns>
         </member>
         <member name="T:Business.Interface.System.IOperator">
@@ -1020,14 +1065,14 @@
             资源业务接口类
             </summary>
         </member>
-        <member name="M:Business.Interface.System.IResourcesBusiness.GetList(Model.System.Pagination.PaginationDTO)">
+        <member name="M:Business.Interface.System.IResourcesBusiness.GetList(Model.Utils.Pagination.PaginationDTO)">
             <summary>
             获取列表数据
             </summary>
             <param name="pagination">分页设置</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Interface.System.IResourcesBusiness.DropdownList(System.String,Model.System.Pagination.PaginationDTO)">
+        <member name="M:Business.Interface.System.IResourcesBusiness.DropdownList(System.String,Model.Utils.Pagination.PaginationDTO)">
             <summary>
             获取下拉框数据
             </summary>
@@ -1070,12 +1115,20 @@
             <param name="ids">Id集合</param>
             <returns></returns>
         </member>
+        <member name="M:Business.Interface.System.IResourcesBusiness.Enable(System.String,System.Boolean)">
+            <summary>
+            启用/禁用
+            </summary>
+            <param name="id">数据</param>
+            <param name="enable">设置状态</param>
+            <returns></returns>
+        </member>
         <member name="T:Business.Interface.System.IRoleBusiness">
             <summary>
             角色业务接口类
             </summary>
         </member>
-        <member name="M:Business.Interface.System.IRoleBusiness.GetList(Model.System.Pagination.PaginationDTO)">
+        <member name="M:Business.Interface.System.IRoleBusiness.GetList(Model.Utils.Pagination.PaginationDTO)">
             <summary>
             获取列表数据
             </summary>
@@ -1119,6 +1172,13 @@
             <param name="data">数据</param>
             <returns></returns>
         </member>
+        <member name="M:Business.Interface.System.IRoleBusiness.Delete(System.Collections.Generic.List{System.String})">
+            <summary>
+            删除
+            </summary>
+            <param name="ids">Id集合</param>
+            <returns></returns>
+        </member>
         <member name="M:Business.Interface.System.IRoleBusiness.Enable(System.String,System.Boolean)">
             <summary>
             启用/禁用
@@ -1141,26 +1201,19 @@
             <param name="data">数据</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Interface.System.IRoleBusiness.Delete(System.Collections.Generic.List{System.String})">
-            <summary>
-            删除
-            </summary>
-            <param name="ids">Id集合</param>
-            <returns></returns>
-        </member>
         <member name="T:Business.Interface.System.IUserBusiness">
             <summary>
             系统用户业务接口类
             </summary>
         </member>
-        <member name="M:Business.Interface.System.IUserBusiness.GetList(Model.System.Pagination.PaginationDTO)">
+        <member name="M:Business.Interface.System.IUserBusiness.GetList(Model.Utils.Pagination.PaginationDTO)">
             <summary>
             获取列表数据
             </summary>
             <param name="pagination">分页设置</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Interface.System.IUserBusiness.DropdownList(System.String,Model.System.Pagination.PaginationDTO)">
+        <member name="M:Business.Interface.System.IUserBusiness.DropdownList(System.String,Model.Utils.Pagination.PaginationDTO)">
             <summary>
             获取下拉框数据
             </summary>
@@ -1205,6 +1258,20 @@
             <param name="ids">Id集合</param>
             <returns></returns>
         </member>
+        <member name="M:Business.Interface.System.IUserBusiness.Enable(System.String,System.Boolean)">
+            <summary>
+            启用/禁用
+            </summary>
+            <param name="id">数据</param>
+            <param name="enable">设置状态</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.System.IUserBusiness.UpdatePassword(Model.System.UserDTO.UpdatePassword)">
+            <summary>
+            更新密码
+            </summary>
+            <param name="data">数据</param>
+        </member>
         <member name="M:Business.Interface.System.IUserBusiness.Login(System.String,System.String)">
             <summary>
             登录
@@ -1217,12 +1284,6 @@
             登录
             </summary>
             <param name="openId"></param>
-        </member>
-        <member name="M:Business.Interface.System.IUserBusiness.UpdatePassword(Model.System.UserDTO.UpdatePassword)">
-            <summary>
-            更新密码
-            </summary>
-            <param name="data">数据</param>
         </member>
         <member name="M:Business.Interface.System.IUserBusiness.GetOperatorDetail(System.String)">
             <summary>
@@ -1255,7 +1316,7 @@
             当前登录人
             </summary>
         </member>
-        <member name="M:Business.Utils.BaseBusiness.GetPagination``1(System.Linq.IQueryable{``0},Model.System.Pagination.PaginationDTO)">
+        <member name="M:Business.Utils.BaseBusiness.GetPagination``1(System.Linq.IQueryable{``0},Model.Utils.Pagination.PaginationDTO)">
             <summary>
             获取分页后的数据
             </summary>
@@ -1264,7 +1325,7 @@
             <param name="pagination">分页参数</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Utils.BaseBusiness.GetPagination``1(System.Linq.IQueryable{``0},System.Int32,System.Int32,System.String,Model.System.Pagination.SortType,System.Int32@,System.Int32@)">
+        <member name="M:Business.Utils.BaseBusiness.GetPagination``1(System.Linq.IQueryable{``0},System.Int32,System.Int32,System.String,Model.Utils.Pagination.SortType,System.Int32@,System.Int32@)">
             <summary>
             获取分页后的数据
             </summary>
@@ -1318,40 +1379,40 @@
             </summary>
             <exception cref="T:System.NotImplementedException"></exception>
         </member>
-        <member name="T:Business.Utils.CASHelper">
+        <member name="T:Business.Utils.CAS.CASHelper">
             <summary>
             CAS帮助类
             </summary>
         </member>
-        <member name="M:Business.Utils.CASHelper.GetTGT(Model.CAS.CASDTO.GetTGT)">
+        <member name="M:Business.Utils.CAS.CASHelper.GetTGT(Model.Utils.CAS.CASDTO.GetTGT)">
             <summary>
             获取TGT
             </summary>
             <param name="getTGT"></param>
             <returns></returns>
         </member>
-        <member name="M:Business.Utils.CASHelper.DeleteTGT(Model.CAS.CASDTO.LogOut)">
+        <member name="M:Business.Utils.CAS.CASHelper.DeleteTGT(Model.Utils.CAS.CASDTO.LogOut)">
             <summary>
             删除TGT
             </summary>
             <param name="logOut"></param>
             <returns></returns>
         </member>
-        <member name="M:Business.Utils.CASHelper.GetST(Model.CAS.CASDTO.GetST)">
+        <member name="M:Business.Utils.CAS.CASHelper.GetST(Model.Utils.CAS.CASDTO.GetST)">
             <summary>
             获取ST
             </summary>
             <param name="getST"></param>
             <returns></returns>
         </member>
-        <member name="M:Business.Utils.CASHelper.GetUserInfo(Model.CAS.CASDTO.GetUserInfo)">
+        <member name="M:Business.Utils.CAS.CASHelper.GetUserInfo(Model.Utils.CAS.CASDTO.GetUserInfo)">
             <summary>
             获取用户信息
             </summary>
             <param name="getUserInfo"></param>
             <returns></returns>
         </member>
-        <member name="M:Business.Utils.CASHelper.GetTGT(System.String,System.String@)">
+        <member name="M:Business.Utils.CAS.CASHelper.GetTGT(System.String,System.String@)">
             <summary>
             解析html以获取tgt
             </summary>
@@ -1359,7 +1420,7 @@
             <param name="tgt">tgt</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Utils.CASHelper.GetUserInfo(System.String,Model.CAS.CASDTO.UserInfo@)">
+        <member name="M:Business.Utils.CAS.CASHelper.GetUserInfo(System.String,Model.Utils.CAS.CASDTO.UserInfo@)">
             <summary>
             解析xml以获取用户信息
             </summary>
@@ -1483,7 +1544,7 @@
             消息异常
             </summary>
         </member>
-        <member name="M:Business.Utils.MessageException.#ctor(System.String,Model.System.ErrorCode,System.Exception)">
+        <member name="M:Business.Utils.MessageException.#ctor(System.String,Model.Utils.Result.ErrorCode,System.Exception)">
             <summary>
             
             </summary>
@@ -1583,7 +1644,7 @@
             分页设置拓展方法
             </summary>
         </member>
-        <member name="M:Business.Utils.Pagination.PaginationExtension.FilterToSql(Model.System.Pagination.PaginationDTO,System.String@,System.String)">
+        <member name="M:Business.Utils.Pagination.PaginationExtension.FilterToSql(Model.Utils.Pagination.PaginationDTO,System.String@,System.String)">
             <summary>
             筛选条件转sql语句
             </summary>
@@ -1592,7 +1653,7 @@
             <param name="alias">别名</param>
             <returns>筛选条件是否有误</returns>
         </member>
-        <member name="M:Business.Utils.Pagination.PaginationExtension.OrderByToSql(Model.System.Pagination.PaginationDTO,System.String@,System.String)">
+        <member name="M:Business.Utils.Pagination.PaginationExtension.OrderByToSql(Model.Utils.Pagination.PaginationDTO,System.String@,System.String)">
             <summary>
             排序条件转sql语句
             </summary>
@@ -1601,7 +1662,7 @@
             <param name="alias">别名</param>
             <returns>排序条件是否有误</returns>
         </member>
-        <member name="M:Business.Utils.Pagination.PaginationExtension.FilterToLinqDynamic``1(Model.System.Pagination.PaginationDTO,System.Linq.IQueryable{``0}@)">
+        <member name="M:Business.Utils.Pagination.PaginationExtension.FilterToLinqDynamic``1(Model.Utils.Pagination.PaginationDTO,System.Linq.IQueryable{``0}@)">
             <summary>
             筛选条件转动态linq
             </summary>
@@ -1609,7 +1670,7 @@
             <param name="LinqDynamic">动态linq</param>
             <returns>筛选条件是否有误</returns>
         </member>
-        <member name="M:Business.Utils.Pagination.PaginationExtension.OrderByToLinqDynamic``1(Model.System.Pagination.PaginationDTO,System.Linq.IQueryable{``0}@)">
+        <member name="M:Business.Utils.Pagination.PaginationExtension.OrderByToLinqDynamic``1(Model.Utils.Pagination.PaginationDTO,System.Linq.IQueryable{``0}@)">
             <summary>
             排序条件转动态linq
             </summary>
@@ -1623,7 +1684,7 @@
             分页设置FreeSql拓展方法
             </summary>
         </member>
-        <member name="M:Business.Utils.Pagination.PaginationFreeSqlExtension.Filter``1(FreeSql.ISelect{``0},Model.System.Pagination.PaginationDTO,System.String)">
+        <member name="M:Business.Utils.Pagination.PaginationFreeSqlExtension.Filter``1(FreeSql.ISelect{``0},Model.Utils.Pagination.PaginationDTO,System.String)">
             <summary>
             过滤
             </summary>
@@ -1633,7 +1694,7 @@
             <param name="alias">指定别名</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Utils.Pagination.PaginationFreeSqlExtension.OrderBy``1(FreeSql.ISelect{``0},Model.System.Pagination.PaginationDTO,System.String)">
+        <member name="M:Business.Utils.Pagination.PaginationFreeSqlExtension.OrderBy``1(FreeSql.ISelect{``0},Model.Utils.Pagination.PaginationDTO,System.String)">
             <summary>
             排序
             </summary>
@@ -1643,7 +1704,7 @@
             <param name="alias">指定别名</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Utils.Pagination.PaginationFreeSqlExtension.Filter``2(FreeSql.ISelectGrouping{``0,``1},Model.System.Pagination.PaginationDTO,System.String)">
+        <member name="M:Business.Utils.Pagination.PaginationFreeSqlExtension.Filter``2(FreeSql.ISelectGrouping{``0,``1},Model.Utils.Pagination.PaginationDTO,System.String)">
             <summary>
             过滤
             </summary>
@@ -1654,7 +1715,7 @@
             <param name="alias">指定别名</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Utils.Pagination.PaginationFreeSqlExtension.OrderBy``2(FreeSql.ISelectGrouping{``0,``1},Model.System.Pagination.PaginationDTO,System.String)">
+        <member name="M:Business.Utils.Pagination.PaginationFreeSqlExtension.OrderBy``2(FreeSql.ISelectGrouping{``0,``1},Model.Utils.Pagination.PaginationDTO,System.String)">
             <summary>
             排序
             </summary>
@@ -1665,7 +1726,7 @@
             <param name="alias">指定别名</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Utils.Pagination.PaginationFreeSqlExtension.GetPagination``1(FreeSql.ISelect{``0},Model.System.Pagination.PaginationDTO,System.String)">
+        <member name="M:Business.Utils.Pagination.PaginationFreeSqlExtension.GetPagination``1(FreeSql.ISelect{``0},Model.Utils.Pagination.PaginationDTO,System.String)">
             <summary>
             获取分页后的数据
             </summary>
@@ -1675,7 +1736,7 @@
             <param name="alias">指定别名</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Utils.Pagination.PaginationFreeSqlExtension.GetPagination``2(FreeSql.ISelectGrouping{``0,``1},Model.System.Pagination.PaginationDTO,System.String)">
+        <member name="M:Business.Utils.Pagination.PaginationFreeSqlExtension.GetPagination``2(FreeSql.ISelectGrouping{``0,``1},Model.Utils.Pagination.PaginationDTO,System.String)">
             <summary>
             获取分页后的数据
             </summary>

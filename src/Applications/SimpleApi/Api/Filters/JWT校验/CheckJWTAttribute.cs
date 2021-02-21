@@ -2,8 +2,8 @@
 using Library.Http;
 using Library.Http.Model;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Model.System;
-using Model.System.Config;
+using Model.Utils.Result;
+using Model.Utils.Config;
 using System;
 
 namespace Api

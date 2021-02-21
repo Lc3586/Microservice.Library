@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Model.CAS.CASDTO;
+using Model.Utils.CAS.CASDTO;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Linq;
 using System.Text.Encodings.Web;

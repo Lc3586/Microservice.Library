@@ -1,8 +1,8 @@
 ﻿using Library.SelectOption;
 using Model.Common;
 using Model.Public.MemberDTO;
-using Model.SampleAuthentication.SampleAuthenticationDTO;
-using Model.System.Pagination;
+using Model.Utils.Pagination;
+using Model.Utils.SampleAuthentication.SampleAuthenticationDTO;
 using System.Collections.Generic;
 
 namespace Business.Interface.System
@@ -69,6 +69,14 @@ namespace Business.Interface.System
         #endregion
 
         #region 拓展功能
+
+        /// <summary>
+        /// 启用/禁用
+        /// </summary>
+        /// <param name="id">数据</param>
+        /// <param name="enable">设置状态</param>
+        /// <returns></returns>
+        void Enable(string id, bool enable);
 
         /// <summary>
         /// 登录

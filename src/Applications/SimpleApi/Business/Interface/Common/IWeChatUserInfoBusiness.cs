@@ -1,5 +1,5 @@
 ﻿using Model.Common.WeChatUserInfoDTO;
-using Model.System.Pagination;
+using Model.Utils.Pagination;
 using System.Collections.Generic;
 
 namespace Business.Interface.Common

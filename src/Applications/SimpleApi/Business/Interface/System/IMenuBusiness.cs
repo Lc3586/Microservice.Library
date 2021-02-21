@@ -1,11 +1,11 @@
 ﻿using Model.System.MenuDTO;
-using Model.System.Pagination;
+using Model.Utils.Pagination;
 using System.Collections.Generic;
 
 namespace Business.Interface.System
 {
     /// <summary>
-    /// 角色业务接口类
+    /// 菜单业务接口类
     /// </summary>
     public interface IMenuBusiness
     {
@@ -55,6 +55,17 @@ namespace Business.Interface.System
         void Edit(Edit data);
 
         /// <summary>
+        /// 删除
+        /// </summary>
+        /// <param name="ids">Id集合</param>
+        /// <returns></returns>
+        void Delete(List<string> ids);
+
+        #endregion
+
+        #region 拓展功能
+
+        /// <summary>
         /// 启用/禁用
         /// </summary>
         /// <param name="id">数据</param>
@@ -75,19 +86,6 @@ namespace Business.Interface.System
         /// <param name="data">数据</param>
         /// <returns></returns>
         void DragSort(DragSort data);
-
-        /// <summary>
-        /// 删除
-        /// </summary>
-        /// <param name="ids">Id集合</param>
-        /// <returns></returns>
-        void Delete(List<string> ids);
-
-        #endregion
-
-        #region 拓展功能
-
-
 
         #endregion
     }

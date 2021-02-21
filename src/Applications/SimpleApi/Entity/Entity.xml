@@ -1248,6 +1248,24 @@
             排序值
             </summary>
         </member>
+        <member name="P:Entity.System.System_Role.AutoAuthorizeRoleForUser">
+            <summary>
+            自动授权角色给系统用户
+            </summary>
+            <remarks>
+            <para>创建角色后自动授权给所有已创建的系统用户</para>
+            <para>创建系统用户时自动授权此角色</para>
+            </remarks>
+        </member>
+        <member name="P:Entity.System.System_Role.AutoAuthorizeRoleForMember">
+            <summary>
+            自动授权角色给会员
+            </summary>
+            <remarks>
+            <para>创建角色后自动授权给所有已创建的会员</para>
+            <para>创建会员时自动授权此角色</para>
+            </remarks>
+        </member>
         <member name="P:Entity.System.System_Role.Remark">
             <summary>
             备注

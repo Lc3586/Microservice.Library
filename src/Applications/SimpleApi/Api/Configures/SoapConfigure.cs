@@ -5,7 +5,7 @@ using Library.Soap.Application;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using Model.System.Config;
+using Model.Utils.Config;
 using SoapCore.Extensibility;
 using System.Linq;
 using SoapSerializer = SoapCore.SoapSerializer;

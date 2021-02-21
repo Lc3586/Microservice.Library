@@ -26,6 +26,11 @@ namespace Model.System.AuthorizeDTO
         public List<string> RoleIds { get; set; }
 
         /// <summary>
+        /// 撤销已授权给用户但未包含在RoleIds参数中的角色授权
+        /// </summary>
+        public bool RevocationOtherRoles { get; set; } = false;
+
+        /// <summary>
         /// 全部角色
         /// </summary>
         [OpenApiIgnore]
@@ -49,6 +54,11 @@ namespace Model.System.AuthorizeDTO
         /// </summary>
         [MinLength(1, ErrorMessage = "最少指定一个角色")]
         public List<string> RoleIds { get; set; }
+
+        /// <summary>
+        /// 撤销已授权给会员但未包含在RoleIds参数中的角色授权
+        /// </summary>
+        public bool RevocationOtherRoles { get; set; } = false;
 
         /// <summary>
         /// 全部角色

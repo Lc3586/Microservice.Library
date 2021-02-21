@@ -2,7 +2,7 @@
 using Library.Container;
 using Library.Extension;
 using Microsoft.AspNetCore.Mvc;
-using Model.System;
+using Model.Utils.Result;
 using System;
 
 namespace Api

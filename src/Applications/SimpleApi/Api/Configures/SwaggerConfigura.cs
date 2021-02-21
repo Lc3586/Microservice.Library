@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
-using Model.System.Config;
+using Model.Utils.Config;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -58,6 +58,8 @@ namespace Api.Configures
                 #endregion
 
                 s.SchemaFilter<OpenApiSchemaFilter>();
+
+                s.DocumentFilter<DocumentFilter>();
 
                 #region 为JSON文件和UI设置xml文档路径
 

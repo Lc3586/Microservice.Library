@@ -4,16 +4,16 @@ using Business.Interface.Common;
 using Business.Interface.System;
 using Business.Utils;
 using Business.Utils.Pagination;
-using Entity.System;
 using Entity.Common;
+using Entity.System;
 using FreeSql;
 using Library.DataMapping.Gen;
 using Library.Extension;
 using Library.FreeSql.Extention;
 using Library.FreeSql.Gen;
 using Library.OpenApi.Extention;
-using Model.System.Pagination;
 using Model.System.RoleDTO;
+using Model.Utils.Pagination;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -144,6 +144,17 @@ namespace Business.Implementation.System
                     DataId = newData.Id,
                     Explain = $"创建角色[名称 {newData.Name}, 类型 {newData.Type}]."
                 });
+
+                if (newData.AutoAuthorizeRoleForUser)
+                    AuthoritiesBusiness.AutoAuthorizeRoleForUser(new Model.System.AuthorizeDTO.RoleForUser
+                    {
+                        RoleIds = new List<string> { newData.Id }
+                    }, false);
+                if (newData.AutoAuthorizeRoleForMember)
+                    AuthoritiesBusiness.AutoAuthorizeRoleForMember(new Model.System.AuthorizeDTO.RoleForMember
+                    {
+                        RoleIds = new List<string> { newData.Id }
+                    }, false);
             };
 
             if (runTransaction)
@@ -217,11 +228,74 @@ namespace Business.Implementation.System
                       .UpdateColumns(typeof(Edit).GetNamesWithTagAndOther(false, "_Edit").ToArray())
                       .ExecuteAffrows() <= 0)
                     throw new ApplicationException("修改角色失败");
+
+                if (!entity.AutoAuthorizeRoleForUser && editData.AutoAuthorizeRoleForUser)
+                    AuthoritiesBusiness.AutoAuthorizeRoleForUser(new Model.System.AuthorizeDTO.RoleForUser
+                    {
+                        RoleIds = new List<string> { editData.Id }
+                    }, false);
+                else if (entity.AutoAuthorizeRoleForUser && !editData.AutoAuthorizeRoleForUser)
+                    AuthoritiesBusiness.RevocationRoleForAllUser(new List<string>
+                    {
+                        editData.Id
+                    }, false);
+
+                if (!entity.AutoAuthorizeRoleForMember && editData.AutoAuthorizeRoleForMember)
+                    AuthoritiesBusiness.AutoAuthorizeRoleForMember(new Model.System.AuthorizeDTO.RoleForMember
+                    {
+                        RoleIds = new List<string> { editData.Id }
+                    }, false);
+                else if (entity.AutoAuthorizeRoleForMember && !editData.AutoAuthorizeRoleForMember)
+                    AuthoritiesBusiness.RevocationRoleForAllMember(new List<string>
+                    {
+                        editData.Id
+                    }, false);
             });
 
             if (!success)
                 throw ex;
         }
+
+        [AdministratorOnly]
+        public void Delete(List<string> ids)
+        {
+            var entityList = Repository.Select.Where(c => ids.Contains(c.Id)).ToList(c => new { c.Id, c.Name, c.Type });
+
+            var orList = new List<Common_OperationRecord>();
+
+            foreach (var entity in entityList)
+            {
+                orList.Add(new Common_OperationRecord
+                {
+                    DataType = nameof(System_Role),
+                    DataId = entity.Id,
+                    Explain = $"删除角色[名称 {entity.Name}, 类型 {entity.Type}]."
+                });
+            }
+
+            (bool success, Exception ex) = Orm.RunTransaction(() =>
+            {
+                AuthoritiesBusiness.RevocationRoleForAllUser(ids, false);
+
+                AuthoritiesBusiness.RevocationRoleForAllMember(ids, false);
+
+                AuthoritiesBusiness.RevocationMenuForRole(ids, false);
+
+                AuthoritiesBusiness.RevocationResourcesForRole(ids, false);
+
+                if (Repository.Delete(o => ids.Contains(o.Id)) <= 0)
+                    throw new ApplicationException("未删除任何数据");
+
+                var orIds = OperationRecordBusiness.Create(orList);
+            });
+
+            if (!success)
+                throw new ApplicationException("删除角色失败", ex);
+        }
+
+        #endregion
+
+        #region 拓展功能
 
         [AdministratorOnly]
         public void Enable(string id, bool enable)
@@ -427,45 +501,6 @@ namespace Business.Implementation.System
             if (!success)
                 throw ex;
         }
-
-        [AdministratorOnly]
-        public void Delete(List<string> ids)
-        {
-            var entityList = Repository.Select.Where(c => ids.Contains(c.Id)).ToList(c => new { c.Id, c.Name, c.Type });
-
-            var orList = new List<Common_OperationRecord>();
-
-            foreach (var entity in entityList)
-            {
-                orList.Add(new Common_OperationRecord
-                {
-                    DataType = nameof(System_Role),
-                    DataId = entity.Id,
-                    Explain = $"删除角色[名称 {entity.Name}, 类型 {entity.Type}]."
-                });
-            }
-
-            (bool success, Exception ex) = Orm.RunTransaction(() =>
-            {
-                AuthoritiesBusiness.RevocationMenuForRole(ids, false);
-
-                AuthoritiesBusiness.RevocationResourcesForRole(ids, false);
-
-                if (Repository.Delete(o => ids.Contains(o.Id)) <= 0)
-                    throw new ApplicationException("未删除任何数据");
-
-                var orIds = OperationRecordBusiness.Create(orList);
-            });
-
-            if (!success)
-                throw new ApplicationException("删除角色失败", ex);
-        }
-
-        #endregion
-
-        #region 拓展功能
-
-
 
         #endregion
 

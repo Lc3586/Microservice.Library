@@ -4,8 +4,8 @@ using Business.Interface.Common;
 using Business.Interface.System;
 using Business.Utils;
 using Business.Utils.Pagination;
-using Entity.System;
 using Entity.Common;
+using Entity.System;
 using FreeSql;
 using Library.DataMapping.Gen;
 using Library.Extension;
@@ -13,8 +13,8 @@ using Library.FreeSql.Extention;
 using Library.FreeSql.Gen;
 using Library.OpenApi.Extention;
 using Library.SelectOption;
-using Model.System.Pagination;
 using Model.System.ResourcesDTO;
+using Model.Utils.Pagination;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -252,7 +252,29 @@ namespace Business.Implementation.System
 
         #region 拓展功能
 
+        [AdministratorOnly]
+        public void Enable(string id, bool enable)
+        {
+            var entity = Repository.GetAndCheckNull(id);
 
+            entity.Enable = enable;
+
+            (bool success, Exception ex) = Orm.RunTransaction(() =>
+            {
+                var orId = OperationRecordBusiness.Create(new Common_OperationRecord
+                {
+                    DataType = nameof(System_Resources),
+                    DataId = entity.Id,
+                    Explain = $"{(enable ? "启用" : "禁用")}资源[编号 {entity.Code}, 类型 {entity.Type}]."
+                });
+
+                if (Repository.Update(entity) <= 0)
+                    throw new ApplicationException($"{(enable ? "启用" : "禁用")}资源失败");
+            });
+
+            if (!success)
+                throw ex;
+        }
 
         #endregion
 

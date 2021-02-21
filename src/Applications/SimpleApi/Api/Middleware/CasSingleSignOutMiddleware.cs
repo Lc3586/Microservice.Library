@@ -1,7 +1,7 @@
 ﻿using Business.Utils.Log;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
-using Model.System.Log;
+using Model.Utils.Log;
 using System;
 using System.Linq;
 using System.Net.Http;

@@ -1,9 +1,9 @@
 ﻿using Business.Interface.System;
 using Library.Container;
 using Library.Extension;
-using Model.System;
-using Model.System.Config;
-using Model.System.Pagination;
+using Model.Utils.Config;
+using Model.Utils.Pagination;
+using Model.Utils.Result;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic.Core;
@@ -96,7 +96,7 @@ namespace Business.Utils
         /// <param name="count">总记录数</param>
         /// <param name="pages">总页数</param>
         /// <returns></returns>
-        public List<U> GetPagination<U>(IQueryable<U> query, int pageIndex, int pageRows, string orderColumn, Model.System.Pagination.SortType orderType, ref int count, ref int pages)
+        public List<U> GetPagination<U>(IQueryable<U> query, int pageIndex, int pageRows, string orderColumn, SortType orderType, ref int count, ref int pages)
         {
             PaginationDTO pagination = new PaginationDTO
             {

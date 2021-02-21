@@ -9,7 +9,7 @@ using Library.FreeSql.Extention;
 using Library.FreeSql.Gen;
 using Library.OpenApi.Extention;
 using Model.Common.EntryLogDTO;
-using Model.System.Pagination;
+using Model.Utils.Pagination;
 using System.Collections.Generic;
 
 namespace Business.Implementation.Common

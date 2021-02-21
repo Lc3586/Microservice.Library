@@ -2,8 +2,8 @@
   //微信服务配置
   "WeChatService": {
     //基础配置
-    "AppId": "wx4ebc25d1c0bae268",
-    "Appsecret": "a852aab461307b7ff4525f55b55bc153",
+    "AppId": "",
+    "Appsecret": "",
     "MchId": null,
     "Key": null,
     "PayNotifyUrl": null,
@@ -21,7 +21,7 @@
     "AuthorizeUrl": "https://open.weixin.qq.com/connect/oauth2/authorize",
     "AccessTokenUrl": "https://api.weixin.qq.com/sns/oauth2/access_token",
     "UserInfoUrl": "https://api.weixin.qq.com/sns/userinfo",
-    "OAuthUrl": "/wechat/oauth2"
-
+    "OAuthBaseUrl": "/wechat/oauth2/base",
+    "OAuthUserInfoUrl": "/wechat/oauth2/userinfo"
   }
 }

@@ -7,6 +7,7 @@ using Entity.Public;
 using Entity.System;
 using FreeSql;
 using Library.DataMapping.Gen;
+using Library.Extension;
 using Library.FreeSql.Extention;
 using Library.FreeSql.Gen;
 using Model.System;
@@ -140,6 +141,54 @@ namespace Business.Implementation.System
 
         #region 授权
 
+        public void AutoAuthorizeRoleForUser(RoleForUser data, bool runTransaction = true)
+        {
+            if (data.UserIds.Any_Ex())
+            {
+                var roleIds = Repository_Role.Where(o => o.AutoAuthorizeRoleForUser && o.Enable).ToList(o => o.Id);
+                AuthorizeRoleForUser(new RoleForUser
+                {
+                    UserIds = data.UserIds,
+                    RoleIds = roleIds
+                }, runTransaction);
+            }
+            else if (data.RoleIds.Any_Ex())
+            {
+                var userIds = Repository_User.Select.ToList(o => o.Id);
+                AuthorizeRoleForUser(new RoleForUser
+                {
+                    UserIds = userIds,
+                    RoleIds = data.RoleIds
+                }, runTransaction);
+            }
+            else
+                throw new ApplicationException("参数不可为空.");
+        }
+
+        public void AutoAuthorizeRoleForMember(RoleForMember data, bool runTransaction = true)
+        {
+            if (data.MemberIds.Any_Ex())
+            {
+                var roleIds = Repository_Role.Where(o => o.AutoAuthorizeRoleForUser && o.Enable).ToList(o => o.Id);
+                AuthorizeRoleForMember(new RoleForMember
+                {
+                    MemberIds = data.MemberIds,
+                    RoleIds = roleIds
+                }, runTransaction);
+            }
+            else if (data.RoleIds.Any_Ex())
+            {
+                var memberIds = Repository_Member.Select.ToList(o => o.Id);
+                AuthorizeRoleForMember(new RoleForMember
+                {
+                    MemberIds = memberIds,
+                    RoleIds = data.RoleIds
+                }, runTransaction);
+            }
+            else
+                throw new ApplicationException("参数不可为空.");
+        }
+
         public void AuthorizeRoleForUser(RoleForUser data, bool runTransaction = true)
         {
             var users = data.UserIds.Select(o => GetUserWithCheck(o));
@@ -170,6 +219,17 @@ namespace Business.Implementation.System
                     UserId = p.Id,
                     RoleId = o.Id
                 })));
+
+                if (data.RevocationOtherRoles)
+                    data.UserIds.ForEach(o =>
+                    {
+                        var roleIds = roles.Select(p => p.Id);
+                        RevocationRoleForUser(new RoleForUser
+                        {
+                            UserIds = new List<string> { o },
+                            RoleIds = Repository_UserRole.Where(p => p.UserId == o && !roleIds.Contains(p.RoleId)).ToList(p => p.RoleId)
+                        }, false);
+                    });
             };
 
             if (runTransaction)
@@ -183,7 +243,7 @@ namespace Business.Implementation.System
                 handler.Invoke();
         }
 
-        public void AuthorizeRoleForMember(RoleForMember data)
+        public void AuthorizeRoleForMember(RoleForMember data, bool runTransaction = true)
         {
             var members = data.MemberIds.Select(o => GetMemberWithCheck(o));
 
@@ -200,7 +260,7 @@ namespace Business.Implementation.System
             if (roles.Any(o => o.Type != RoleType.会员))
                 throw new ApplicationException($"只能将角色类型为{RoleType.会员}的角色授权给会员.");
 
-            (bool success, Exception ex) = Orm.RunTransaction(() =>
+            Action handler = () =>
             {
                 var orId = OperationRecordBusiness.Create(new Common_OperationRecord
                 {
@@ -216,10 +276,28 @@ namespace Business.Implementation.System
                     MemberId = p.Id,
                     RoleId = o.Id
                 })));
-            });
 
-            if (!success)
-                throw new ApplicationException("授权失败.", ex);
+                if (data.RevocationOtherRoles)
+                    data.MemberIds.ForEach(o =>
+                    {
+                        var roleIds = roles.Select(p => p.Id);
+                        RevocationRoleForMember(new RoleForMember
+                        {
+                            MemberIds = new List<string> { o },
+                            RoleIds = Repository_MemberRole.Where(p => p.MemberId == o && !roleIds.Contains(p.RoleId)).ToList(p => p.RoleId)
+                        }, false);
+                    });
+            };
+
+            if (runTransaction)
+            {
+                (bool success, Exception ex) = Orm.RunTransaction(handler);
+
+                if (!success)
+                    throw new ApplicationException("授权失败.", ex);
+            }
+            else
+                handler.Invoke();
         }
 
         public void AuthorizeMenuForUser(MenuForUser data)
@@ -369,6 +447,28 @@ namespace Business.Implementation.System
         #endregion
 
         #region 撤销授权
+
+        public void RevocationRoleForAllUser(List<string> roleIds, bool runTransaction = true)
+        {
+            var userIds = Repository_User.Where(o => o.Roles.AsSelect().Where(p => roleIds.Contains(p.Id)).Any()).ToList(o => o.Id);
+
+            RevocationRoleForUser(new RoleForUser
+            {
+                UserIds = userIds,
+                RoleIds = roleIds
+            }, runTransaction);
+        }
+
+        public void RevocationRoleForAllMember(List<string> roleIds, bool runTransaction = true)
+        {
+            var memberIds = Repository_Member.Where(o => o.Roles.AsSelect().Where(p => roleIds.Contains(p.Id)).Any()).ToList(o => o.Id);
+
+            RevocationRoleForMember(new RoleForMember
+            {
+                MemberIds = memberIds,
+                RoleIds = roleIds
+            }, runTransaction);
+        }
 
         public void RevocationRoleForUser(List<string> userIds, bool runTransaction = true)
         {

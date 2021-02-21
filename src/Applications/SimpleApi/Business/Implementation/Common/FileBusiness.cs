@@ -15,7 +15,7 @@ using Library.OpenApi.Extention;
 using Microsoft.AspNetCore.Http;
 using Model.Common;
 using Model.Common.FileDTO;
-using Model.System.Pagination;
+using Model.Utils.Pagination;
 using System;
 using System.Collections.Generic;
 using System.Drawing;

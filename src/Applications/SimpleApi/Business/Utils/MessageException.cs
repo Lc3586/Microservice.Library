@@ -1,4 +1,4 @@
-﻿using Model.System;
+﻿using Model.Utils.Result;
 using System;
 
 namespace Business.Utils
@@ -43,6 +43,15 @@ namespace Business.Utils
     /// </summary>
     public class ValidationException : Exception
     {
+        public ValidationException()
+        {
+        }
+
+        public ValidationException(string message) : base(message)
+        {
+
+        }
+
         /// <summary>
         /// 
         /// </summary>

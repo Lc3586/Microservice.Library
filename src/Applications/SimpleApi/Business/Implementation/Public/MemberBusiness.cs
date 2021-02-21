@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Business.Filter;
 using Business.Interface.Common;
 using Business.Interface.System;
 using Business.Utils;
@@ -14,9 +15,9 @@ using Library.OpenApi.Extention;
 using Library.SelectOption;
 using Model.Common;
 using Model.Public.MemberDTO;
-using Model.SampleAuthentication.SampleAuthenticationDTO;
 using Model.System;
-using Model.System.Pagination;
+using Model.Utils.Pagination;
+using Model.Utils.SampleAuthentication.SampleAuthenticationDTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -186,14 +187,19 @@ namespace Business.Implementation.Public
 
             Action handler = () =>
             {
-                Repository.Insert(newData);
-
                 var orId = OperationRecordBusiness.Create(new Common_OperationRecord
                 {
                     DataType = nameof(Public_Member),
                     DataId = newData.Id,
                     Explain = $"创建会员[账号 {newData.Account}, 昵称 {newData.Nickname}, 姓名 {newData.Name}]."
                 });
+
+                Repository.Insert(newData);
+
+                AuthoritiesBusiness.AutoAuthorizeRoleForMember(new Model.System.AuthorizeDTO.RoleForMember
+                {
+                    MemberIds = new List<string> { newData.Id }
+                }, false);
             };
 
             if (runTransaction)
@@ -287,6 +293,30 @@ namespace Business.Implementation.Public
         #endregion
 
         #region 拓展功能
+
+        [AdministratorOnly]
+        public void Enable(string id, bool enable)
+        {
+            var entity = Repository.GetAndCheckNull(id);
+
+            entity.Enable = enable;
+
+            (bool success, Exception ex) = Orm.RunTransaction(() =>
+            {
+                var orId = OperationRecordBusiness.Create(new Common_OperationRecord
+                {
+                    DataType = nameof(Public_Member),
+                    DataId = entity.Id,
+                    Explain = $"{(enable ? "启用" : "禁用")}会员[账号 {entity.Account}, 昵称 {entity.Nickname}, 姓名 {entity.Name}]."
+                });
+
+                if (Repository.Update(entity) <= 0)
+                    throw new ApplicationException($"{(enable ? "启用" : "禁用")}会员失败");
+            });
+
+            if (!success)
+                throw ex;
+        }
 
         public AuthenticationInfo Login(string openId)
         {

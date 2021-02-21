@@ -1,9 +1,8 @@
-﻿using Model.System.Pagination;
+﻿using Model.Utils.Pagination;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic.Core;
-using System.Text;
 
 namespace Business.Utils.Pagination
 {

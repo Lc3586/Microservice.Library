@@ -1,7 +1,7 @@
 ﻿using Library.Extension;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using Model.System.Config;
+using Model.Utils.Config;
 using System;
 using System.Linq;
 
