@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.Common;
-using System.Data.Odbc;
-using System.Data.SqlClient;
-using System.Data.SQLite;
-using System.Linq;
-using System.Reflection;
-using Dm;
+﻿using Dm;
 using FreeSql;
 using Library.FreeSql.Application;
 using Microsoft.Data.SqlClient;
@@ -17,6 +7,15 @@ using Newtonsoft.Json;
 using Npgsql;
 using NpgsqlTypes;
 using Oracle.ManagedDataAccess.Client;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Data.Common;
+using System.Data.Odbc;
+using System.Data.SQLite;
+using System.Linq;
+using System.Reflection;
 
 namespace Library.FreeSql.Annotations
 {
@@ -158,11 +157,13 @@ namespace Library.FreeSql.Annotations
                             value = Convert.ChangeType(_value, parameter.Key.PropertyType);
                         }
                     }
-                    catch (Exception ex)
+#pragma warning disable CA1031 // Do not catch general exception types
+                    catch (Exception)
                     {
                         //使用Json序列化
                         value = JsonConvert.DeserializeObject(JsonConvert.SerializeObject(_value), parameter.Key.PropertyType);
                     }
+#pragma warning restore CA1031 // Do not catch general exception types
                 }
 
                 parameter.Key.SetValue(models.First(m => m.GetType() == parameter.Key.ReflectedType), value);

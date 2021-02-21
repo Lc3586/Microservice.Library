@@ -5,6 +5,7 @@
     <!--<TargetFrameworks>net5.0;netcoreapp3.1;net461</TargetFrameworks>-->
     <TargetFramework>net5.0</TargetFramework>
     <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
+    <UserSecretsId>4be146dc-3dc7-49fc-b525-5a296a2c7c19</UserSecretsId>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net5.0|AnyCPU'">
@@ -319,7 +320,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Library\SampleAuthentication\Library.SampleAuthentication.csproj" />
-    <ProjectReference Include="..\..\..\Library\WeChat\Library.WeChat.csproj" />
     <ProjectReference Include="..\Business\Business.csproj" />
     <ProjectReference Include="..\IocServiceDemo\IocServiceDemo.csproj" />
     <ProjectReference Include="..\SoapServices\SoapServices.csproj" />

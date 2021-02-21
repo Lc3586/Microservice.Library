@@ -69,6 +69,7 @@ namespace Library.ConsoleTool
         /// <param name="count">进度条数量</param>
         /// <param name="width">进度条宽度（单位为字符的宽度）</param>
         /// <param name="ProgressBarType">进度条类型</param>
+        /// <param name="init">初始化进度条</param>
         /// <param name="left">光标左侧位置(默认使用控制台当前的值)</param>
         /// <param name="top">光标顶部位置(默认使用控制台当前的值)</param>
         public ProgressBar(int count = 1, int width = 50, ProgressBarType ProgressBarType = ProgressBarType.Multicolor, bool init = false, int? left = null, int? top = null)

@@ -32,10 +32,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FreeSql.All" Version="2.0.105" />
+    <PackageReference Include="FreeSql.All" Version="2.3.100" />
     <PackageReference Include="IdleBus" Version="1.5.2" />
     <PackageReference Include="JetBrains.Annotations" Version="2020.3.0" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="5.0.0" />
+    <PackageReference Include="System.Net.NameResolution" Version="4.3.0" />
+    <PackageReference Include="System.Net.Primitives" Version="4.3.0" />
   </ItemGroup>
 
 </Project>

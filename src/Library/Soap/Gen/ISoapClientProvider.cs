@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Library.Soap.Gen
 {
@@ -19,7 +18,7 @@ namespace Library.Soap.Gen
         /// <summary>
         /// 获取客户端
         /// </summary>
-        /// <typeparam name="type">客户端类型</typeparam>
+        /// <param name="type">客户端类型</param>
         /// <returns>客户端</returns>
         object GetClient(Type type);
 

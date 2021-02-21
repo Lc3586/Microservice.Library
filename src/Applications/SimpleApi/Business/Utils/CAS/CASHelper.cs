@@ -16,7 +16,7 @@ namespace Business.Utils.CAS
     /// <summary>
     /// CAS帮助类
     /// </summary>
-    public class CASHelper
+    public static class CASHelper
     {
         static readonly SystemConfig Config = AutofacHelper.GetScopeService<SystemConfig>();
 
@@ -95,7 +95,7 @@ namespace Business.Utils.CAS
             var attr = node.Attributes["action"];
             if (attr == null)
                 return false;
-            tgt = attr.Value.Substring(attr.Value.LastIndexOf('/') + 1);
+            tgt = attr.Value[(attr.Value.LastIndexOf('/') + 1)..];
             return true;
         }
 
@@ -123,10 +123,12 @@ namespace Business.Utils.CAS
                 userInfo.account = doc.SelectSingleNode("//cas:account", nameSpaceManager)?.InnerText;
                 return true;
             }
-            catch (Exception ex)
+#pragma warning disable CA1031 // Do not catch general exception types
+            catch (Exception)
             {
                 return false;
             }
+#pragma warning restore CA1031 // Do not catch general exception types
         }
     }
 }

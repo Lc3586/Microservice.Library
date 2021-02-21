@@ -51,7 +51,7 @@ namespace Api
             //.AddSingleton(typeof(IDemoService),typeof(DemoServiceA))
 
             //使用工厂模式注册服务
-            services.AddTransient(typeof(IDemoService), DemoServiceProvider.GetService);
+            services.AddScoped(typeof(IDemoService), DemoServiceProvider.GetService);
 
             //通过自定义方法注册服务构造器
             services.AddDemoService(options =>

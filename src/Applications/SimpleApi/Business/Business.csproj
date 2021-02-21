@@ -37,7 +37,7 @@
 
   <ItemGroup>
     <PackageReference Include="NewId" Version="3.0.3" />
-    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.7" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.8" />
   </ItemGroup>
 
 </Project>

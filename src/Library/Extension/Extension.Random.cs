@@ -13,6 +13,7 @@ namespace Library.Extension
         /// 下一个随机值
         /// </summary>
         /// <typeparam name="T">值类型</typeparam>
+        /// <param name="random"></param>
         /// <param name="source">值的集合</param>
         /// <returns></returns>
         public static T Next<T>(this Random random, IEnumerable<T> source)

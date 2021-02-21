@@ -66,16 +66,18 @@ namespace Library.Extension
         /// <returns></returns>
         public static string Base64Encode(this string source, Encoding encoding)
         {
-            string encode = string.Empty;
+            string encode;
             byte[] bytes = encoding.GetBytes(source);
             try
             {
                 encode = Convert.ToBase64String(bytes);
             }
+#pragma warning disable CA1031 // Do not catch general exception types
             catch
             {
                 encode = source;
             }
+#pragma warning restore CA1031 // Do not catch general exception types
             return encode;
         }
 
@@ -98,16 +100,18 @@ namespace Library.Extension
         /// <returns>解密后的字符串</returns>
         public static string Base64Decode(this string result, Encoding encoding)
         {
-            string decode = string.Empty;
+            string decode;
             byte[] bytes = Convert.FromBase64String(result);
             try
             {
                 decode = encoding.GetString(bytes);
             }
+#pragma warning disable CA1031 // Do not catch general exception types
             catch
             {
                 decode = result;
             }
+#pragma warning restore CA1031 // Do not catch general exception types
             return decode;
         }
 
@@ -344,7 +348,7 @@ namespace Library.Extension
         public static byte[] To0XBytes(this string str)
         {
             List<byte> resBytes = new List<byte>();
-            for (int i = 0; i < str.Length; i = i + 2)
+            for (int i = 0; i < str.Length; i += 2)
             {
                 string numStr = $@"{str[i]}{str[i + 1]}";
                 resBytes.Add((byte)numStr.ToInt0X());
@@ -476,9 +480,10 @@ namespace Library.Extension
         }
 
         /// <summary>
-        /// 将Json字符串转为Dictionary<'TK','TV'>
+        /// 将Json字符串转为Dictionary《'TK','TV'》
         /// </summary>
-        /// <typeparam name="T">对象类型</typeparam>
+        /// <typeparam name="TK">键类型</typeparam>
+        /// <typeparam name="TV">值类型</typeparam>
         /// <param name="jsonStr"></param>
         /// <returns></returns>
         public static Dictionary<TK, TV> ToDictionary<TK, TV>(this string jsonStr)
@@ -524,8 +529,8 @@ namespace Library.Extension
         /// <returns></returns>
         public static T ToEntity<T>(this string json)
         {
-            if (json == null || json == "")
-                return default(T);
+            if (json.IsNullOrEmpty())
+                return default;
 
             Type type = typeof(T);
             object obj = Activator.CreateInstance(type, null);
@@ -576,7 +581,7 @@ namespace Library.Extension
         /// <returns></returns>
         public static IPEndPoint ToIPEndPoint(this string str)
         {
-            IPEndPoint iPEndPoint = null;
+            IPEndPoint iPEndPoint;
             try
             {
                 string[] strArray = str.Split(':').ToArray();
@@ -584,10 +589,12 @@ namespace Library.Extension
                 int port = Convert.ToInt32(strArray[1]);
                 iPEndPoint = new IPEndPoint(IPAddress.Parse(addr), port);
             }
+#pragma warning disable CA1031 // Do not catch general exception types
             catch
             {
                 iPEndPoint = null;
             }
+#pragma warning restore CA1031 // Do not catch general exception types
 
             return iPEndPoint;
         }
@@ -797,44 +804,37 @@ namespace Library.Extension
                     data = str;
                 else if (type == typeof(byte))
                 {
-                    byte value;
-                    if (byte.TryParse(str, out value))
+                    if (byte.TryParse(str, out byte value))
                         data = value;
                 }
                 else if (type == typeof(int))
                 {
-                    int value;
-                    if (int.TryParse(str, out value))
+                    if (int.TryParse(str, out int value))
                         data = value;
                 }
                 else if (type == typeof(double))
                 {
-                    double value;
-                    if (double.TryParse(str, out value))
+                    if (double.TryParse(str, out double value))
                         data = value;
                 }
                 else if (type == typeof(decimal))
                 {
-                    decimal value;
-                    if (decimal.TryParse(str, out value))
+                    if (decimal.TryParse(str, out decimal value))
                         data = value;
                 }
                 else if (type == typeof(bool))
                 {
-                    bool value;
-                    if (bool.TryParse(str, out value))
+                    if (bool.TryParse(str, out bool value))
                         data = value;
                 }
                 else if (type == typeof(TimeSpan))
                 {
-                    TimeSpan value;
-                    if (TimeSpan.TryParse(str, out value))
+                    if (TimeSpan.TryParse(str, out TimeSpan value))
                         data = value;
                 }
                 else if (type == typeof(DateTime))
                 {
-                    DateTime value;
-                    if (DateTime.TryParse(str, out value))
+                    if (DateTime.TryParse(str, out DateTime value))
                         data = value;
                 }
                 if (data == null && type.IsValueType)
@@ -842,10 +842,12 @@ namespace Library.Extension
 
                 result = (T)Convert.ChangeType(data, type, CultureInfo.InvariantCulture);
             }
-            catch (Exception ex)
+#pragma warning disable CA1031 // Do not catch general exception types
+            catch (Exception)
             {
                 result = defaultValue;
             }
+#pragma warning restore CA1031 // Do not catch general exception types
             return result;
         }
     }

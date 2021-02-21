@@ -72,6 +72,7 @@ namespace Library.Extension
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="iEnumberable"></param>
+        /// <param name="predicate"></param>
         /// <returns></returns>
         public static bool Any_Ex<T>(this IEnumerable<T> iEnumberable, Func<T, bool> predicate)
         {

@@ -12,7 +12,7 @@ namespace Library.Extension
         /// <summary>
         /// JavaScript时间戳转换为C# DateTime
         /// </summary>
-        /// <param name="unixTimestamp">JavaScript时间戳</param>
+        /// <param name="jsTimestamp">JavaScript时间戳</param>
         public static DateTime JSTimestampToDatetime(this long jsTimestamp)
         {
             return new DateTime().LocalDefault().AddMilliseconds(jsTimestamp);

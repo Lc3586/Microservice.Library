@@ -27,7 +27,7 @@ namespace Library.Extension
         //    });
         //}
 
-        private static BindingFlags _bindingFlags { get; }
+        private static BindingFlags BindingFlags { get; }
             = BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public | BindingFlags.Static;
 
         /// <summary>
@@ -65,6 +65,7 @@ namespace Library.Extension
         /// 将对象序列化成Json字符串
         /// </summary>
         /// <param name="obj">需要序列化的对象</param>
+        /// <param name="contractResolver"></param>
         /// <returns></returns>
         public static string ToJson(this object obj, DefaultContractResolver contractResolver = null)
         {
@@ -139,7 +140,7 @@ namespace Library.Extension
         /// <returns></returns>
         public static bool ContainsProperty(this object obj, string propertyName)
         {
-            return obj.GetType().GetProperty(propertyName, _bindingFlags) != null;
+            return obj.GetType().GetProperty(propertyName, BindingFlags) != null;
         }
 
         /// <summary>
@@ -150,7 +151,7 @@ namespace Library.Extension
         /// <returns></returns>
         public static object GetPropertyValue(this object obj, string propertyName)
         {
-            return obj.GetType().GetProperty(propertyName, _bindingFlags).GetValue(obj);
+            return obj.GetType().GetProperty(propertyName, BindingFlags).GetValue(obj);
         }
 
         /// <summary>
@@ -162,7 +163,7 @@ namespace Library.Extension
         /// <returns></returns>
         public static void SetPropertyValue(this object obj, string propertyName, object value)
         {
-            obj.GetType().GetProperty(propertyName, _bindingFlags).SetValue(obj, value);
+            obj.GetType().GetProperty(propertyName, BindingFlags).SetValue(obj, value);
         }
 
         /// <summary>
@@ -173,7 +174,7 @@ namespace Library.Extension
         /// <returns></returns>
         public static bool ContainsField(this object obj, string fieldName)
         {
-            return obj.GetType().GetField(fieldName, _bindingFlags) != null;
+            return obj.GetType().GetField(fieldName, BindingFlags) != null;
         }
 
         /// <summary>
@@ -184,7 +185,7 @@ namespace Library.Extension
         /// <returns></returns>
         public static object GetGetFieldValue(this object obj, string fieldName)
         {
-            return obj.GetType().GetField(fieldName, _bindingFlags).GetValue(obj);
+            return obj.GetType().GetField(fieldName, BindingFlags).GetValue(obj);
         }
 
         /// <summary>
@@ -196,7 +197,7 @@ namespace Library.Extension
         /// <returns></returns>
         public static void SetFieldValue(this object obj, string fieldName, object value)
         {
-            obj.GetType().GetField(fieldName, _bindingFlags).SetValue(obj, value);
+            obj.GetType().GetField(fieldName, BindingFlags).SetValue(obj, value);
         }
 
         /// <summary>
@@ -257,7 +258,8 @@ namespace Library.Extension
             {
                 result = Convert.ChangeType(obj, targetType);
             }
-            catch (Exception ex)
+#pragma warning disable CA1031 // Do not catch general exception types
+            catch (Exception)
             {
                 switch (Type.GetTypeCode(targetType))
                 {
@@ -282,7 +284,7 @@ namespace Library.Extension
                         }
                         break;
                     case TypeCode.String:
-                        result = System.Text.Encoding.Default.GetString(obj is Array ? (byte[])obj : (ObjectToBytes(obj) ?? new byte[0]));
+                        result = System.Text.Encoding.Default.GetString(obj is Array ? (byte[])obj : (ObjectToBytes(obj) ?? Array.Empty<byte>()));
                         break;
                     case TypeCode.Byte:
                     case TypeCode.Char:
@@ -305,6 +307,7 @@ namespace Library.Extension
                         break;
                 }
             }
+#pragma warning restore CA1031 // Do not catch general exception types
             return result;
         }
 
@@ -324,10 +327,12 @@ namespace Library.Extension
                     return ms.GetBuffer();
                 }
             }
-            catch (Exception ex)
+#pragma warning disable CA1031 // Do not catch general exception types
+            catch (Exception)
             {
                 return null;
             }
+#pragma warning restore CA1031 // Do not catch general exception types
         }
 
         /// <summary> 

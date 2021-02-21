@@ -27,11 +27,11 @@ namespace Library.SampleAuthentication.Extension
 
         #region 私有成员
 
-        readonly PathString LoginPath;
+        //readonly PathString LoginPath;
 
-        readonly PathString LogoutPath;
+        //readonly PathString LogoutPath;
 
-        readonly PathString AccessDeniedPath;
+        //readonly PathString AccessDeniedPath;
 
         readonly RequestDelegate Next;
 

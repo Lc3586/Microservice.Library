@@ -1,7 +1,4 @@
-﻿using Library.WeChat.Model;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 
 namespace Library.WeChat.Extension
 {
@@ -13,7 +10,23 @@ namespace Library.WeChat.Extension
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="version"></param>
+        public WeChatTokenVerificationException()
+        {
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="message"></param>
+        public WeChatTokenVerificationException(string message) : base(message)
+        {
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="message"></param>
         /// <param name="ex"></param>
         public WeChatTokenVerificationException(string message, Exception ex = null)
@@ -25,7 +38,6 @@ namespace Library.WeChat.Extension
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="version"></param>
         /// <param name="title"></param>
         /// <param name="message"></param>
         /// <param name="ex"></param>

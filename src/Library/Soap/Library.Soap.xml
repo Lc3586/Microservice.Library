@@ -128,7 +128,7 @@
             <summary>
             获取客户端
             </summary>
-            <typeparam name="type">客户端类型</typeparam>
+            <param name="type">客户端类型</param>
             <returns>客户端</returns>
         </member>
         <member name="M:Library.Soap.Gen.ISoapClientProvider.GetClients">

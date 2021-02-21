@@ -66,7 +66,6 @@ namespace Library.FreeSql.Gen
         /// <summary>
         /// 获取所有库的数据库上下文
         /// </summary>
-        /// <param name="name">库名称</param>
         /// <returns></returns>
         List<BaseDbContext> GetAllDbContext();
 

@@ -1,13 +1,10 @@
 ﻿using Entity.Public;
 using Entity.System;
 using FreeSql.DataAnnotations;
-using Library.Json.Converters;
 using Library.OpenApi.Annotations;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace Entity.Common
@@ -58,11 +55,14 @@ namespace Entity.Common
         [Column(StringLength = 50)]
         public string Account { get; set; }
 
+
+#pragma warning disable CS1574 // XML 注释中有无法解析的 cref 特性
         /// <summary>
         /// 用户类型
         /// </summary>
         /// <remarks><see cref="Model.System.UserType"/></remarks>
         [OpenApiSubTag("List", "Create", "Detail")]
+#pragma warning restore CS1574 // XML 注释中有无法解析的 cref 特性
         [Description("用户类型")]
         [Column(StringLength = 20)]
         public string UserType { get; set; }

@@ -20,15 +20,21 @@ namespace Business.Utils.Pagination
         /// <returns>筛选条件是否有误</returns>
         public static bool FilterToSql(this PaginationDTO pagination, ref string sql, string alias = null)
         {
+#pragma warning disable CS0618 // 类型或成员已过时
             if (pagination.Filter == null || !pagination.Filter.Any())
+#pragma warning restore CS0618 // 类型或成员已过时
                 return true;
             try
             {
                 string predicate = string.Empty;
 
+#pragma warning disable CS0618 // 类型或成员已过时
                 for (int i = 0, j = i; i < pagination.Filter.Count; i++)
+#pragma warning restore CS0618 // 类型或成员已过时
                 {
+#pragma warning disable CS0618 // 类型或成员已过时
                     var filter = pagination.Filter[i];
+#pragma warning restore CS0618 // 类型或成员已过时
                     if (filter == null)
                         continue;
 
@@ -65,7 +71,9 @@ namespace Business.Utils.Pagination
                             else
                                 predicate += $"{field} LIKE '{value}'";
                             break;
+#pragma warning disable CS0618 // 类型或成员已过时
                         case FilterCompare.includedIn:
+#pragma warning restore CS0618 // 类型或成员已过时
                             if (string.IsNullOrEmpty(value))
                             {
                                 skip = true;
@@ -136,19 +144,16 @@ namespace Business.Utils.Pagination
                     if (filter.Group?.Flag == FilterGroupFlag.end)
                         predicate += ")";
 
+#pragma warning disable CS0618 // 类型或成员已过时
                     if (!skip && i != pagination.Filter.Count - 1)
+#pragma warning restore CS0618 // 类型或成员已过时
                     {
                         string relation = filter.Group?.Relation.ToString();
-                        switch (relation)
+                        predicate += relation switch
                         {
-                            case "or":
-                                predicate += $" OR ";
-                                break;
-                            case "and":
-                            default:
-                                predicate += $" AND ";
-                                break;
-                        }
+                            "or" => $" OR ",
+                            _ => $" AND ",
+                        };
                     }
 
                     if (!skip)
@@ -160,10 +165,12 @@ namespace Business.Utils.Pagination
 
                 return true;
             }
+#pragma warning disable CA1031 // Do not catch general exception types
             catch (Exception)
             {
                 return false;
             }
+#pragma warning restore CA1031 // Do not catch general exception types
         }
 
         /// <summary>
@@ -218,10 +225,12 @@ namespace Business.Utils.Pagination
 
                 return true;
             }
+#pragma warning disable CA1031 // Do not catch general exception types
             catch (Exception)
             {
                 return false;
             }
+#pragma warning restore CA1031 // Do not catch general exception types
         }
 
         /// <summary>
@@ -234,15 +243,21 @@ namespace Business.Utils.Pagination
         {
             try
             {
+#pragma warning disable CS0618 // 类型或成员已过时
                 if (pagination.Filter == null || !pagination.Filter.Any())
+#pragma warning restore CS0618 // 类型或成员已过时
                     return true;
 
                 string predicate = string.Empty;
                 List<object> args = new List<object>();
 
+#pragma warning disable CS0618 // 类型或成员已过时
                 for (int i = 0, j = i; i < pagination.Filter.Count; i++)
+#pragma warning restore CS0618 // 类型或成员已过时
                 {
+#pragma warning disable CS0618 // 类型或成员已过时
                     var filter = pagination.Filter[i];
+#pragma warning restore CS0618 // 类型或成员已过时
                     if (filter == null)
                         continue;
 
@@ -264,7 +279,9 @@ namespace Business.Utils.Pagination
                             predicate += $"{field}.Contains({(filter.ValueIsField ? "" : "@")}{j})";
                             args.Add(value);
                             break;
+#pragma warning disable CS0618 // 类型或成员已过时
                         case FilterCompare.includedIn:
+#pragma warning restore CS0618 // 类型或成员已过时
                             if (string.IsNullOrEmpty(value.ToString()))
                             {
                                 skip = true;
@@ -307,7 +324,9 @@ namespace Business.Utils.Pagination
                     if (filter.Group?.Flag == FilterGroupFlag.end)
                         predicate += ")";
 
+#pragma warning disable CS0618 // 类型或成员已过时
                     if (!skip && i != pagination.Filter.Count - 1)
+#pragma warning restore CS0618 // 类型或成员已过时
                     {
                         string relation = filter.Group.Relation.ToString();
                         switch (filter.Group.Relation)
@@ -343,10 +362,12 @@ namespace Business.Utils.Pagination
 
                 return true;
             }
+#pragma warning disable CA1031 // Do not catch general exception types
             catch (Exception)
             {
                 return false;
             }
+#pragma warning restore CA1031 // Do not catch general exception types
         }
 
         /// <summary>
@@ -386,10 +407,12 @@ namespace Business.Utils.Pagination
                 }
                 return true;
             }
-            catch (Exception ex)
+#pragma warning disable CA1031 // Do not catch general exception types
+            catch (Exception)
             {
                 return false;
             }
+#pragma warning restore CA1031 // Do not catch general exception types
         }
     }
 }

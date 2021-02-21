@@ -738,7 +738,6 @@
             <summary>
             获取所有库的数据库上下文
             </summary>
-            <param name="name">库名称</param>
             <returns></returns>
         </member>
         <member name="M:Library.FreeSql.Gen.IFreeSqlMultipleProvider`1.GetAllDbContextWithKey">

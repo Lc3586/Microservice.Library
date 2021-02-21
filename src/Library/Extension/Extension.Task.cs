@@ -23,10 +23,12 @@ namespace Library.Extension
                 tcs.SetResult(result);
                 return true;
             }
-            catch (Exception ex)
+#pragma warning disable CA1031 // Do not catch general exception types
+            catch (Exception)
             {
                 return false;
             }
+#pragma warning restore CA1031 // Do not catch general exception types
         }
     }
 }

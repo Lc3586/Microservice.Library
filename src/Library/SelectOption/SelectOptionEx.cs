@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Library.Extension;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Library.Extension;
 
 namespace Library.SelectOption
 {
@@ -208,10 +208,12 @@ namespace Library.SelectOption
                         OI.text = (pis.First(o => o.Name == TextField)).GetValue(model, null);
                     result.Add(OI);
                 }
-                catch (Exception ex)
+#pragma warning disable CA1031 // Do not catch general exception types
+                catch (Exception)
                 {
                     continue;
                 }
+#pragma warning restore CA1031 // Do not catch general exception types
             }
             return result.OrderBy(o => o.groupOrder).ThenBy(o => o.order).ToList();
         }

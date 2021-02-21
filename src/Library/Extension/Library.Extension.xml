@@ -533,7 +533,7 @@
             <param name="expression">表达式</param>
             <returns></returns>
         </member>
-        <member name="M:Library.Extension.Extension.GetLinqWhere``1(Library.Models.Filter)">
+        <member name="M:Library.Extension.Extension.GetLinqWhere``1(Library.Extension.Model.Filter)">
             <summary>
             获取linq表达式
             </summary>
@@ -595,6 +595,7 @@
             </summary>
             <typeparam name="T"></typeparam>
             <param name="iEnumberable"></param>
+            <param name="predicate"></param>
             <returns></returns>
         </member>
         <member name="M:Library.Extension.Extension.CastToList``1(System.Collections.IEnumerable)">
@@ -613,13 +614,17 @@
             <param name="iEnumberable">数据源</param>
             <returns>DataTable</returns>
         </member>
-        <member name="M:Library.Extension.Extension.GetPagination``1(System.Collections.Generic.IEnumerable{``0},Library.Models.Pagination)">
+        <member name="M:Library.Extension.Extension.GetPagination``1(System.Collections.Generic.IEnumerable{``0},System.Int32@,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.String)">
             <summary>
             获取分页数据
             </summary>
             <typeparam name="T">泛型</typeparam>
             <param name="iEnumberable">数据源</param>
-            <param name="pagination">分页参数</param>
+            <param name="recordCount">总数据量(不分页)</param>
+            <param name="pageIndex">指定页码</param>
+            <param name="pageRows">每页数据量</param>
+            <param name="sortField">排序字段</param>
+            <param name="sortType">排序类型(desc,asc)</param>
             <returns></returns>
         </member>
         <member name="M:Library.Extension.Extension.Next``1(System.Collections.Generic.IEnumerable{``0})">
@@ -635,6 +640,17 @@
             建造树结构
             </summary>
             <param name="allNodes">所有的节点</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Extension.Extension.GetChildren``1(System.Collections.Generic.List{``0},``0,System.Boolean)">
+            <summary>
+            获取所有子节点
+            注：包括自己
+            </summary>
+            <typeparam name="T">节点类型</typeparam>
+            <param name="allNodes">所有节点</param>
+            <param name="parentNode">父节点</param>
+            <param name="includeSelf">是否包括自己</param>
             <returns></returns>
         </member>
         <member name="M:Library.Extension.Extension.GetChildren``1(System.Collections.Generic.List{``0},``0)">
@@ -689,7 +705,7 @@
             <summary>
             JavaScript时间戳转换为C# DateTime
             </summary>
-            <param name="unixTimestamp">JavaScript时间戳</param>
+            <param name="jsTimestamp">JavaScript时间戳</param>
         </member>
         <member name="M:Library.Extension.Extension.UnixTimestampToDatetime(System.Int64)">
             <summary>
@@ -697,7 +713,7 @@
             </summary>
             <param name="unixTimestamp">Unix时间戳</param>
         </member>
-        <member name="P:Library.Extension.Extension._bindingFlags">
+        <member name="P:Library.Extension.Extension.BindingFlags">
             <summary>
             构造函数
             </summary>
@@ -721,6 +737,7 @@
             将对象序列化成Json字符串
             </summary>
             <param name="obj">需要序列化的对象</param>
+            <param name="contractResolver"></param>
             <returns></returns>
         </member>
         <member name="M:Library.Extension.Extension.EntityToJson(System.Object)">
@@ -867,6 +884,7 @@
             下一个随机值
             </summary>
             <typeparam name="T">值类型</typeparam>
+            <param name="random"></param>
             <param name="source">值的集合</param>
             <returns></returns>
         </member>
@@ -1150,7 +1168,15 @@
             <param name="jsonStr"></param>
             <returns></returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:Library.Extension.Extension.ToDictionary``2(System.String)" -->
+        <member name="M:Library.Extension.Extension.ToDictionary``2(System.String)">
+            <summary>
+            将Json字符串转为Dictionary《'TK','TV'》
+            </summary>
+            <typeparam name="TK">键类型</typeparam>
+            <typeparam name="TV">值类型</typeparam>
+            <param name="jsonStr"></param>
+            <returns></returns>
+        </member>
         <member name="M:Library.Extension.Extension.ToDataTable(System.String)">
             <summary>
             将Json字符串转为DataTable
@@ -1315,6 +1341,149 @@
         <member name="T:Library.Extension.ConcatType">
             <summary>
             连接类型
+            </summary>
+        </member>
+        <member name="T:Library.Extension.Model.Filter">
+            <summary>
+            筛选
+            <para>LCTR 2019-06-04</para>
+            </summary>
+        </member>
+        <member name="P:Library.Extension.Model.Filter.Group">
+            <summary>
+            分组
+            </summary>
+        </member>
+        <member name="P:Library.Extension.Model.Filter.Param">
+            <summary>
+            条件
+            </summary>
+        </member>
+        <member name="T:Library.Extension.Model.GroupFilter">
+            <summary>
+            分组
+            </summary>
+        </member>
+        <member name="P:Library.Extension.Model.GroupFilter.AndOr">
+            <summary>
+            true:AND,false:OR
+            </summary>
+        </member>
+        <member name="P:Library.Extension.Model.GroupFilter.Filter">
+            <summary>
+            筛选
+            </summary>
+        </member>
+        <member name="T:Library.Extension.Model.FilterParam">
+            <summary>
+            条件
+            </summary>
+        </member>
+        <member name="P:Library.Extension.Model.FilterParam.Field">
+            <summary>
+            字段
+            </summary>
+        </member>
+        <member name="P:Library.Extension.Model.FilterParam.Compare">
+            <summary>
+            比较方式
+            </summary>
+        </member>
+        <member name="P:Library.Extension.Model.FilterParam.Value">
+            <summary>
+            值
+            </summary>
+        </member>
+        <member name="T:Library.Extension.Model.CompareType">
+            <summary>
+            比较类型
+            </summary>
+        </member>
+        <member name="F:Library.Extension.Model.CompareType.IN">
+            <summary>
+            包含
+            </summary>
+        </member>
+        <member name="F:Library.Extension.Model.CompareType.BIN">
+            <summary>
+            被包含
+            </summary>
+        </member>
+        <member name="F:Library.Extension.Model.CompareType.SIN">
+            <summary>
+            包含
+            <para>集合</para>
+            </summary>
+        </member>
+        <member name="F:Library.Extension.Model.CompareType.NSIN">
+            <summary>
+            不包含
+            <para>集合</para>
+            </summary>
+        </member>
+        <member name="F:Library.Extension.Model.CompareType.EQ">
+            <summary>
+            相等
+            </summary>
+        </member>
+        <member name="F:Library.Extension.Model.CompareType.NE">
+            <summary>
+            不相等
+            </summary>
+        </member>
+        <member name="F:Library.Extension.Model.CompareType.LE">
+            <summary>
+            小于等于
+            </summary>
+        </member>
+        <member name="F:Library.Extension.Model.CompareType.LT">
+            <summary>
+            小于
+            </summary>
+        </member>
+        <member name="F:Library.Extension.Model.CompareType.GE">
+            <summary>
+            大于等于
+            </summary>
+        </member>
+        <member name="F:Library.Extension.Model.CompareType.GT">
+            <summary>
+            大于
+            </summary>
+        </member>
+        <member name="T:Library.Extension.Model.TreeModel">
+            <summary>
+            树模型（可以作为父类）
+            </summary>
+        </member>
+        <member name="P:Library.Extension.Model.TreeModel.Id">
+            <summary>
+            唯一标识Id
+            </summary>
+        </member>
+        <member name="P:Library.Extension.Model.TreeModel.Value">
+            <summary>
+            数据值
+            </summary>
+        </member>
+        <member name="P:Library.Extension.Model.TreeModel.ParentId">
+            <summary>
+            父Id
+            </summary>
+        </member>
+        <member name="P:Library.Extension.Model.TreeModel.Level">
+            <summary>
+            节点深度
+            </summary>
+        </member>
+        <member name="P:Library.Extension.Model.TreeModel.Text">
+            <summary>
+            显示的内容
+            </summary>
+        </member>
+        <member name="P:Library.Extension.Model.TreeModel.Children">
+            <summary>
+            孩子节点
             </summary>
         </member>
     </members>

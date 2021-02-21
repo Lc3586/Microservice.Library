@@ -4,42 +4,117 @@
         <name>Library.WeChat</name>
     </assembly>
     <members>
+        <member name="T:Library.WeChat.Application.WeChatDevOptions">
+            <summary>
+            微信开发配置
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Application.WeChatDevOptions.IsDebug">
+            <summary>
+            Debug状态
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Application.WeChatDevOptions.Token">
+            <summary>
+            开发令牌
+            </summary>
+            <remarks>使用<see cref="T:Library.WeChat.Extension.WeChatTokenVerificationMiddleware"/>中间件时，中间件使用的Token。</remarks>
+        </member>
+        <member name="P:Library.WeChat.Application.WeChatDevOptions.TokenVerificationUrl">
+            <summary>
+            开发令牌验证接口
+            </summary>
+            <remarks>使用<see cref="T:Library.WeChat.Extension.WeChatTokenVerificationMiddleware"/>中间件时，中间件监听的接口。</remarks>
+        </member>
+        <member name="P:Library.WeChat.Application.WeChatDevOptions.Encoding">
+            <summary>
+            编码格式
+            <para>默认utf-8</para>
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Application.WeChatDevOptions.RequestHeaderSign">
+            <summary>
+            请求签名在请求头中的键
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Application.WeChatDevOptions.RequestHeaderTimestamp">
+            <summary>
+            时间戳在请求头中的键
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Application.WeChatDevOptions.RequestHeaderNonce">
+            <summary>
+            随机字符串在请求头中的键
+            </summary>
+        </member>
         <member name="T:Library.WeChat.Application.WeChatGenOptions">
             <summary>
             WeChat配置
             </summary>
         </member>
-        <member name="P:Library.WeChat.Application.WeChatGenOptions.WeChatServiceOptions">
+        <member name="P:Library.WeChat.Application.WeChatGenOptions.WeChatBaseOptions">
             <summary>
-            服务配置
+            基础配置
             </summary>
         </member>
-        <member name="T:Library.WeChat.Application.WeChatNotifyException">
+        <member name="P:Library.WeChat.Application.WeChatGenOptions.WeChatDevOptions">
             <summary>
-            微信财付通通知异常
+            开发配置
             </summary>
         </member>
-        <member name="M:Library.WeChat.Application.WeChatNotifyException.#ctor(Library.WeChat.Model.WeChatNotifyType,System.String,System.Exception)">
+        <member name="P:Library.WeChat.Application.WeChatGenOptions.WeChatOAuthOptions">
             <summary>
-            
+            授权配置
             </summary>
-            <param name="notifyType"></param>
-            <param name="message"></param>
-            <param name="ex"></param>
         </member>
-        <member name="M:Library.WeChat.Application.WeChatNotifyException.#ctor(Library.WeChat.Model.WeChatNotifyType,System.String,System.String,System.Exception)">
+        <member name="T:Library.WeChat.Application.WeChatOAuthOptions">
             <summary>
-            
+            微信授权配置
             </summary>
-            <param name="notifyType"></param>
-            <param name="title"></param>
-            <param name="message"></param>
-            <param name="ex"></param>
         </member>
-        <member name="P:Library.WeChat.Application.WeChatNotifyException.NotifyType">
+        <member name="P:Library.WeChat.Application.WeChatOAuthOptions.WebRootUrl">
             <summary>
-            财付通通知类型
+            站点根地址
             </summary>
+        </member>
+        <member name="P:Library.WeChat.Application.WeChatOAuthOptions.AuthorizeUrl">
+            <summary>
+            获取Code接口
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Application.WeChatOAuthOptions.AccessTokenUrl">
+            <summary>
+            code换取网页授权access_token接口
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Application.WeChatOAuthOptions.UserInfoUrl">
+            <summary>
+            拉取用户信息接口
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Application.WeChatOAuthOptions.Language">
+            <summary>
+            语言
+            </summary>
+            <remarks>默认值 zh_CN</remarks>
+        </member>
+        <member name="P:Library.WeChat.Application.WeChatOAuthOptions.OAuthBaseUrl">
+            <summary>
+            授权接口
+            </summary>
+            <remarks>
+            <para>scope为snsapi_base</para>
+            <para>使用<see cref="T:Library.WeChat.Extension.WeChatOAuthV2Middleware"/>中间件时，中间件监听的接口。</para>
+            </remarks>
+        </member>
+        <member name="P:Library.WeChat.Application.WeChatOAuthOptions.OAuthUserInfoUrl">
+            <summary>
+            授权接口
+            </summary>
+            <remarks>
+            <para>scope为snsapi_userinfo</para>
+            <para>使用<see cref="T:Library.WeChat.Extension.WeChatOAuthV2Middleware"/>中间件时，中间件监听的接口。</para>
+            </remarks>
         </member>
         <member name="T:Library.WeChat.Application.WeChatServiceException">
             <summary>
@@ -90,88 +165,62 @@
             数据类型
             </summary>
         </member>
-        <member name="T:Library.WeChat.Application.WeChatServiceOptions">
+        <member name="T:Library.WeChat.Application.WeChatBaseOptions">
             <summary>
-            微信服务配置
+            微信基础配置
             </summary>
         </member>
-        <member name="P:Library.WeChat.Application.WeChatServiceOptions.IsDebug">
-            <summary>
-            Debug状态
-            </summary>
-        </member>
-        <member name="P:Library.WeChat.Application.WeChatServiceOptions.AppId">
+        <member name="P:Library.WeChat.Application.WeChatBaseOptions.AppId">
             <summary>
             公众账号ID
             </summary>
         </member>
-        <member name="P:Library.WeChat.Application.WeChatServiceOptions.Appsecret">
+        <member name="P:Library.WeChat.Application.WeChatBaseOptions.Appsecret">
             <summary>
             公众账号密钥
             </summary>
         </member>
-        <member name="P:Library.WeChat.Application.WeChatServiceOptions.MchId">
+        <member name="P:Library.WeChat.Application.WeChatBaseOptions.MchId">
             <summary>
             服务商户号
             </summary>
         </member>
-        <member name="P:Library.WeChat.Application.WeChatServiceOptions.Key">
+        <member name="P:Library.WeChat.Application.WeChatBaseOptions.Key">
             <summary>
             服务商户秘钥
             </summary>
         </member>
-        <member name="P:Library.WeChat.Application.WeChatServiceOptions.PayNotifyUrl">
+        <member name="P:Library.WeChat.Application.WeChatBaseOptions.PayNotifyUrl">
             <summary>
             接收财付通通知的URL
             </summary>
             <remarks>使用付款通知中间件<see cref="T:Library.WeChat.Extension.WeChatNotifyV3Middleware"/>时可不配置此属性</remarks>
         </member>
-        <member name="P:Library.WeChat.Application.WeChatServiceOptions.RefundNotifyUrl">
+        <member name="P:Library.WeChat.Application.WeChatBaseOptions.RefundNotifyUrl">
             <summary>
             异步接收微信支付退款结果通知的回调地址，通知URL必须为外网可访问的url，不允许带参数。
             </summary>
             <remarks>使用付款通知中间件<see cref="T:Library.WeChat.Extension.WeChatNotifyV3Middleware"/>时可不配置此属性</remarks>
         </member>
-        <member name="P:Library.WeChat.Application.WeChatServiceOptions.UserHostAddress">
+        <member name="P:Library.WeChat.Application.WeChatBaseOptions.UserHostAddress">
             <summary>
             当前服务器的公网IP
             </summary>
         </member>
-        <member name="P:Library.WeChat.Application.WeChatServiceOptions.CertFilePath">
+        <member name="P:Library.WeChat.Application.WeChatBaseOptions.CertFilePath">
             <summary>
             p12证书地址
             </summary>
         </member>
-        <member name="P:Library.WeChat.Application.WeChatServiceOptions.CertPassword">
+        <member name="P:Library.WeChat.Application.WeChatBaseOptions.CertPassword">
             <summary>
             证书密码
             <para>一般默认为商户号</para>
             </summary>
         </member>
-        <member name="P:Library.WeChat.Application.WeChatServiceOptions.PemFilePath">
+        <member name="P:Library.WeChat.Application.WeChatBaseOptions.PemFilePath">
             <summary>
             pem公钥文件地址
-            </summary>
-        </member>
-        <member name="P:Library.WeChat.Application.WeChatServiceOptions.Encoding">
-            <summary>
-            编码格式
-            <para>默认utf-8</para>
-            </summary>
-        </member>
-        <member name="P:Library.WeChat.Application.WeChatServiceOptions.RequestHeaderSign">
-            <summary>
-            请求签名在请求头中的键
-            </summary>
-        </member>
-        <member name="P:Library.WeChat.Application.WeChatServiceOptions.RequestHeaderTimestamp">
-            <summary>
-            时间戳在请求头中的键
-            </summary>
-        </member>
-        <member name="P:Library.WeChat.Application.WeChatServiceOptions.RequestHeaderNonce">
-            <summary>
-            随机字符串在请求头中的键
             </summary>
         </member>
         <member name="T:Library.WeChat.Extension.IWeChatNotifyHandler">
@@ -193,20 +242,44 @@
             <param name="notifyInfo">通知信息</param>
             <returns>通知应答信息</returns>
         </member>
+        <member name="T:Library.WeChat.Extension.IWeChatOAuthHandler">
+            <summary>
+            微信网页授权处理接口
+            </summary>
+        </member>
+        <member name="M:Library.WeChat.Extension.IWeChatOAuthHandler.Handler(Microsoft.AspNetCore.Http.HttpContext,System.String,System.String,System.String,System.String)">
+            <summary>
+            处理用户公众号唯一标识
+            </summary>
+            <param name="context">当前请求上下文</param>
+            <param name="appId">公众号标识</param>
+            <param name="openId">用户公众号唯一标识</param>
+            <param name="scope">用户授权的作用域, 使用逗号（,）分隔</param>
+            <param name="state">url中附带的state参数</param>
+        </member>
+        <member name="M:Library.WeChat.Extension.IWeChatOAuthHandler.Handler(Microsoft.AspNetCore.Http.HttpContext,System.String,Senparc.Weixin.MP.AdvancedAPIs.OAuth.OAuthUserInfo,System.String)">
+            <summary>
+            处理用户基础信息
+            </summary>
+            <param name="context">当前请求上下文</param>
+            <param name="appId">公众号标识</param>
+            <param name="userinfo">用户基础信息</param>
+            <param name="state">url中附带的state参数</param>
+        </member>
         <member name="T:Library.WeChat.Extension.SecurityHelper">
             <summary>
             安全措施帮助类
             </summary>
         </member>
-        <member name="M:Library.WeChat.Extension.SecurityHelper.#ctor(Library.WeChat.Application.WeChatServiceOptions)">
+        <member name="M:Library.WeChat.Extension.SecurityHelper.#ctor(Library.WeChat.Application.WeChatGenOptions)">
             <summary>
             
             </summary>
-            <param name="options">微信服务配置</param>
+            <param name="options">微信配置</param>
         </member>
         <member name="P:Library.WeChat.Extension.SecurityHelper.Options">
             <summary>
-            微信服务配置
+            微信配置
             </summary>
         </member>
         <member name="P:Library.WeChat.Extension.SecurityHelper.CertSN">
@@ -228,6 +301,21 @@
             <summary>
             公钥
             </summary>
+        </member>
+        <member name="M:Library.WeChat.Extension.SecurityHelper.ToSHA1Bytes(System.String)">
+            <summary>
+            计算SHA1摘要
+            </summary>
+            <param name="data">字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.WeChat.Extension.SecurityHelper.ToSHA1String(System.String,System.Boolean)">
+            <summary>
+            转为SHA1哈希
+            </summary>
+            <param name="data">字符串</param>
+            <param name="toLower">转为小写</param>
+            <returns></returns>
         </member>
         <member name="M:Library.WeChat.Extension.SecurityHelper.GetSignByteWithSHA256_RSA(System.String)">
             <summary>
@@ -297,17 +385,23 @@
             <exception cref="T:Library.WeChat.Application.WeChatServiceException"></exception>
             <remarks></remarks>
         </member>
-        <member name="M:Library.WeChat.Extension.WeChatNotifyData.#ctor(Library.WeChat.Application.WeChatServiceOptions,Library.WeChat.Model.WeChatNotifyType,Microsoft.AspNetCore.Http.HttpRequest)">
+        <member name="M:Library.WeChat.Extension.WeChatNotifyData.#ctor(Library.WeChat.Application.WeChatGenOptions,Library.WeChat.Model.WeChatPayApiVersion,Library.WeChat.Model.WeChatNotifyType,Microsoft.AspNetCore.Http.HttpRequest)">
             <summary>
             
             </summary>
             <param name="options">微信服务配置</param>
-            <param name="notifyType">通知类型</param>
+            <param name="version">微信支付接口版本</param>
+            <param name="notifyType">微信财付通通知类型</param>
             <param name="request">请求信息</param>
+        </member>
+        <member name="F:Library.WeChat.Extension.WeChatNotifyData.Version">
+            <summary>
+            微信支付接口版本
+            </summary>
         </member>
         <member name="F:Library.WeChat.Extension.WeChatNotifyData.NotifyType">
             <summary>
-            通知类型
+            微信财付通通知类型
             </summary>
         </member>
         <member name="F:Library.WeChat.Extension.WeChatNotifyData.Options">
@@ -362,22 +456,148 @@
             获取退款通知信息
             </summary>
         </member>
+        <member name="T:Library.WeChat.Extension.WeChatNotifyException">
+            <summary>
+            微信服务财付通通知中间件异常
+            </summary>
+        </member>
+        <member name="M:Library.WeChat.Extension.WeChatNotifyException.#ctor(Library.WeChat.Model.WeChatPayApiVersion,System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="version"></param>
+            <param name="message"></param>
+            <param name="ex"></param>
+        </member>
+        <member name="M:Library.WeChat.Extension.WeChatNotifyException.#ctor(Library.WeChat.Model.WeChatPayApiVersion,System.String,System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="version"></param>
+            <param name="title"></param>
+            <param name="message"></param>
+            <param name="ex"></param>
+        </member>
+        <member name="P:Library.WeChat.Extension.WeChatNotifyException.Version">
+            <summary>
+            微信支付接口版本
+            </summary>
+        </member>
         <member name="T:Library.WeChat.Extension.WeChatNotifyV3Middleware">
             <summary>
             微信服务财付通通知中间件
             <para>V3版本</para>
             </summary>
-            <exception cref="T:Library.WeChat.Application.WeChatServiceException"></exception>
+            <exception cref="T:Library.WeChat.Extension.WeChatNotifyException"></exception>
         </member>
-        <member name="M:Library.WeChat.Extension.WeChatNotifyV3Middleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Library.WeChat.Extension.IWeChatNotifyHandler,Library.WeChat.Application.WeChatServiceOptions)">
+        <member name="M:Library.WeChat.Extension.WeChatNotifyV3Middleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Library.WeChat.Application.WeChatGenOptions,Library.WeChat.Extension.IWeChatNotifyHandler)">
             <summary>
             
             </summary>
             <param name="next"></param>
-            <param name="handler"></param>
             <param name="options"></param>
+            <param name="handler"></param>
         </member>
         <member name="M:Library.WeChat.Extension.WeChatNotifyV3Middleware.Invoke(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Library.WeChat.Extension.WeChatOAuthException">
+            <summary>
+            微信网页授权中间件异常
+            </summary>
+        </member>
+        <member name="M:Library.WeChat.Extension.WeChatOAuthException.#ctor(Library.WeChat.Model.OAuthVersion,System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="version"></param>
+            <param name="message"></param>
+            <param name="ex"></param>
+        </member>
+        <member name="M:Library.WeChat.Extension.WeChatOAuthException.#ctor(Library.WeChat.Model.OAuthVersion,System.String,System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="version"></param>
+            <param name="title"></param>
+            <param name="message"></param>
+            <param name="ex"></param>
+        </member>
+        <member name="P:Library.WeChat.Extension.WeChatOAuthException.Version">
+            <summary>
+            财付通通知类型
+            </summary>
+        </member>
+        <member name="T:Library.WeChat.Extension.WeChatOAuthV2Middleware">
+            <summary>
+            微信网页授权中间件
+            </summary>
+            <exception cref="T:Library.WeChat.Extension.WeChatOAuthException"></exception>
+        </member>
+        <member name="M:Library.WeChat.Extension.WeChatOAuthV2Middleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Library.WeChat.Application.WeChatGenOptions,Library.WeChat.Extension.IWeChatOAuthHandler)">
+            <summary>
+            
+            </summary>
+            <param name="next"></param>
+            <param name="options"></param>
+            <param name="handler"></param>
+        </member>
+        <member name="M:Library.WeChat.Extension.WeChatOAuthV2Middleware.Invoke(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Library.WeChat.Extension.WeChatTokenVerificationException">
+            <summary>
+            微信开发令牌验证中间件异常
+            </summary>
+        </member>
+        <member name="M:Library.WeChat.Extension.WeChatTokenVerificationException.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.WeChat.Extension.WeChatTokenVerificationException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Library.WeChat.Extension.WeChatTokenVerificationException.#ctor(System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="ex"></param>
+        </member>
+        <member name="M:Library.WeChat.Extension.WeChatTokenVerificationException.#ctor(System.String,System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="title"></param>
+            <param name="message"></param>
+            <param name="ex"></param>
+        </member>
+        <member name="T:Library.WeChat.Extension.WeChatTokenVerificationMiddleware">
+            <summary>
+            微信开发令牌验证中间件
+            </summary>
+            <exception cref="T:Library.WeChat.Extension.WeChatTokenVerificationException"></exception>
+        </member>
+        <member name="M:Library.WeChat.Extension.WeChatTokenVerificationMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Library.WeChat.Application.WeChatGenOptions)">
+            <summary>
+            
+            </summary>
+            <param name="next"></param>
+            <param name="options"></param>
+        </member>
+        <member name="M:Library.WeChat.Extension.WeChatTokenVerificationMiddleware.Invoke(Microsoft.AspNetCore.Http.HttpContext)">
             <summary>
             
             </summary>
@@ -498,6 +718,50 @@
         <member name="P:Library.WeChat.Model.GoodsDetailInfo.goods_remark">
             <summary>
             商品备注
+            </summary>
+        </member>
+        <member name="T:Library.WeChat.Model.OAuthAccessTokenReply">
+            <summary>
+            网页授权access_token接口返回数据
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.OAuthAccessTokenReply.access_token">
+            <summary>
+            网页授权接口调用凭证
+            </summary>
+            <remarks>注意：此access_token与基础支持的access_token不同</remarks>
+        </member>
+        <member name="P:Library.WeChat.Model.OAuthAccessTokenReply.expires_in">
+            <summary>
+            access_token接口调用凭证超时时间
+            </summary>
+            <remarks>单位（秒）</remarks>
+        </member>
+        <member name="P:Library.WeChat.Model.OAuthAccessTokenReply.refresh_token">
+            <summary>
+            用户刷新access_token
+            </summary>
+        </member>
+        <member name="P:Library.WeChat.Model.OAuthAccessTokenReply.openid">
+            <summary>
+            用户唯一标识
+            </summary>
+            <remarks>请注意，在未关注公众号时，用户访问公众号的网页，也会产生一个用户和公众号唯一的OpenID</remarks>
+        </member>
+        <member name="P:Library.WeChat.Model.OAuthAccessTokenReply.scope">
+            <summary>
+            用户授权的作用域
+            </summary>
+            <remarks>使用逗号（,）分隔</remarks>
+        </member>
+        <member name="T:Library.WeChat.Model.OAuthVersion">
+            <summary>
+            网页授权版本
+            </summary>
+        </member>
+        <member name="F:Library.WeChat.Model.OAuthVersion.V2_0">
+            <summary>
+            2.0
             </summary>
         </member>
         <member name="T:Library.WeChat.Model.OriginalType">
@@ -1869,7 +2133,7 @@
             </summary>
             <exception cref="T:Library.WeChat.Application.WeChatServiceException"></exception>
         </member>
-        <member name="M:Library.WeChat.Services.WeChatServiceV3.#ctor(Library.WeChat.Application.WeChatServiceOptions)">
+        <member name="M:Library.WeChat.Services.WeChatServiceV3.#ctor(Library.WeChat.Application.WeChatGenOptions)">
             <summary>
             
             </summary>
@@ -1890,17 +2154,34 @@
         </member>
         <member name="T:Microsoft.AspNetCore.Builder.WeChatServiceApplicationBuilderExtensions">
             <summary>
-            使用中间件<see cref="T:Library.WeChat.Extension.WeChatNotifyV3Middleware"/>的扩展方法
+            使用微信中间件的扩展方法
             </summary>
         </member>
-        <member name="M:Microsoft.AspNetCore.Builder.WeChatServiceApplicationBuilderExtensions.UseWeChatNotifyV3(Microsoft.AspNetCore.Builder.IApplicationBuilder,Library.WeChat.Extension.IWeChatNotifyHandler)">
+        <member name="M:Microsoft.AspNetCore.Builder.WeChatServiceApplicationBuilderExtensions.UseWeChatNotifyV3(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
             <summary>
             使用微信通知中间件
             <para>V3版本</para>
             </summary>
             <param name="app"></param>
-            <param name="handler">处理类</param>
-            <exception cref="T:Library.WeChat.Application.WeChatNotifyException"></exception>
+            <exception cref="T:Library.WeChat.Extension.WeChatNotifyException"></exception>
+            <remarks>需要先将<see cref="T:Library.WeChat.Extension.IWeChatNotifyHandler"/>注册到容器中</remarks>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Builder.WeChatServiceApplicationBuilderExtensions.UseWeChatTokenVerification(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            使用微信开发令牌验证中间件
+            </summary>
+            <param name="app"></param>
+            <exception cref="T:Library.WeChat.Extension.WeChatTokenVerificationException"></exception>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Builder.WeChatServiceApplicationBuilderExtensions.UseWeChatOAuthV2(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            使用微信网页授权中间件
+            </summary>
+            <param name="app"></param>
+            <exception cref="T:Library.WeChat.Extension.WeChatOAuthException"></exception>
+            <remarks>需要先将<see cref="T:Library.WeChat.Extension.IWeChatOAuthHandler"/>注册到容器中</remarks>
             <returns></returns>
         </member>
         <member name="T:Microsoft.Extensions.DependencyInjection.WeChatServiceCollectionExtensions">
