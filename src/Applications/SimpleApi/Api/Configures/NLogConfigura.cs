@@ -36,7 +36,10 @@ namespace Api.Configures
                             FileName = Path.Combine(Directory.GetCurrentDirectory(), NLoggerConfig.FileDic, NLoggerConfig.FileName),
                             Encoding = Encoding.UTF8
                         },
-                        LoggerType.RDBMS => null,
+                        LoggerType.RDBMS => new RDBMSTarget()
+                        {
+                            Layout = config.DefaultLoggerLayout ?? NLoggerConfig.Layout
+                        },
                         LoggerType.ElasticSearch => new ElasticSearchTarget()
                         {
                             Layout = config.DefaultLoggerLayout ?? NLoggerConfig.Layout

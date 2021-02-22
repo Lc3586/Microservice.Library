@@ -125,12 +125,12 @@ namespace Library.File
         /// 输出日志到指定文件
         /// </summary>
         /// <param name="msg">日志消息</param>
-        /// <param name="path">日志文件位置（默认为D:\测试\a.log）</param>
-        public static void WriteLog(string msg, string path = @"Log.txt")
+        /// <param name="path">日志文件位置（默认为 log.txt）</param>
+        public static void WriteLog(string msg, string path = @"log.txt")
         {
-            string content = $"{DateTime.Now.ToCstTime().ToString("yyyy-MM-dd HH:mm:ss")}:{msg}";
+            string content = $"{DateTime.Now.ToCstTime():yyyy-MM-dd HH:mm:ss}:{msg}";
 
-            WriteTxt(content, $"{GetCurrentDir()}{content}");
+            WriteTxt(content, $"{GetCurrentDir()}{path}");
         }
 
         /// <summary>
@@ -142,12 +142,59 @@ namespace Library.File
         {
             if (!path.Contains("\\"))
                 return GetCurrentDir();
-
-            string pathDirectory = string.Empty;
             string pattern = @"^(.*\\).*?$";
             Match match = Regex.Match(path, pattern);
 
             return match.Groups[1].ToString();
+        }
+
+        /// <summary>
+        /// 获取文件字节数
+        /// </summary>
+        /// <param name="path">绝对路径</param>
+        /// <returns></returns>
+        public static long GetFileBytes(string path)
+        {
+            using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
+                return fs.Length;
+        }
+
+        /// <summary>
+        /// 获取文件大小
+        /// </summary>
+        /// <param name="path">绝对路径</param>
+        /// <param name="unit">单位</param>
+        /// <param name="precision">精度</param>
+        /// <returns></returns>
+        public static string GetFileSize(string path, int unit = 1024, int precision = 2)
+        {
+            var length = GetFileBytes(path);
+            return GetFileSize(length, unit, precision);
+        }
+
+        /// <summary>
+        /// 获取文件大小
+        /// </summary>
+        /// <param name="length">字节数</param>
+        /// <param name="unit">单位</param>
+        /// <param name="precision">精度</param>
+        /// <returns></returns>
+        public static string GetFileSize(long length, int unit = 1024, int precision = 2)
+        {
+            if (length <= 0)
+                return "0 KB";
+
+            var formats = new string[] { "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB" };
+
+            for (int i = 0; i < formats.Length; i++)
+            {
+                var value = length / Math.Pow(unit, i + 1);
+
+                if (value < unit)
+                    return $"{Math.Round(value, precision)} {formats[i]}";
+            }
+
+            return $"{Math.Round(length / Math.Pow(unit, formats.Length), precision)} {formats[formats.Length - 1]}";
         }
 
         #endregion

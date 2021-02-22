@@ -1862,6 +1862,41 @@
             <para>使用<see cref="T:Library.WeChat.Extension.WeChatOAuthV2Middleware"/>中间件时，中间件监听的接口。</para>
             </remarks>
         </member>
+        <member name="T:Model.Utils.Log.LogDTO.FileInfo">
+            <summary>
+            文件信息
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Log.LogDTO.FileInfo.Name">
+            <summary>
+            文件名
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Log.LogDTO.FileInfo.Suffix">
+            <summary>
+            文件后缀
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Log.LogDTO.FileInfo.Bytes">
+            <summary>
+            字节数
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Log.LogDTO.FileInfo.Size">
+            <summary>
+            文件大小
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Log.LogDTO.FileInfo.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Log.LogDTO.FileInfo.LastWriteTime">
+            <summary>
+            上次写入时间
+            </summary>
+        </member>
         <member name="T:Model.Utils.Log.LogType">
             <summary>
             日志类型

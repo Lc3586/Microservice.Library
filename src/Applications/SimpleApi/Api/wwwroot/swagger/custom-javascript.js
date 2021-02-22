@@ -136,7 +136,7 @@ if (!window.showDialog) {
 
 var callback = function () {
     //本土化
-    var replacePlaceholder = setInterval(() => { $('.operation-filter-input').length ? ($('.operation-filter-input').attr('placeholder', '接口名称（区分大小写）'), window.clearInterval(replacePlaceholder)) : 0; });
+    var replacePlaceholder = setInterval(() => { $('.operation-filter-input').length ? ($('.operation-filter-input').attr('placeholder', '标签名称（区分大小写）'), window.clearInterval(replacePlaceholder)) : 0; });
 };
 
 document.readyState === "complete" || (document.readyState !== "loading" && !document.documentElement.doScroll) ? callback() : document.addEventListener("DOMContentLoaded", callback);

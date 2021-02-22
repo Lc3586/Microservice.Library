@@ -237,7 +237,7 @@ namespace Business.Implementation.System
 
             newData.Password = $"{newData.Account}{newData.Password}".ToMD5String();
 
-            Action handler = () =>
+            void handler()
             {
                 var orId = OperationRecordBusiness.Create(new Common_OperationRecord
                 {
@@ -252,7 +252,7 @@ namespace Business.Implementation.System
                 {
                     UserIds = new List<string> { newData.Id }
                 }, false);
-            };
+            }
 
             if (runTransaction)
             {
@@ -262,7 +262,7 @@ namespace Business.Implementation.System
                     throw new ApplicationException("创建用户失败.", ex);
             }
             else
-                handler.Invoke();
+                handler();
         }
 
         [AdministratorOnly]
@@ -285,7 +285,7 @@ namespace Business.Implementation.System
             var changed_ = string.Join(",",
                                        entity.GetPropertyValueChangeds<System_User, Edit>(editData)
                                             .Select(p => $"\r\n\t {p.Description}：{p.FormerValue} 更改为 {p.CurrentValue}"));
-            Action handler = () =>
+            void handler()
             {
                 var orId = OperationRecordBusiness.Create(new Common_OperationRecord
                 {
@@ -300,7 +300,7 @@ namespace Business.Implementation.System
                       .UpdateColumns(typeof(Edit).GetNamesWithTagAndOther(false, "_Edit").ToArray())
                       .ExecuteAffrows() <= 0)
                     throw new ApplicationException("未修改任何数据.");
-            };
+            }
 
             if (runTransaction)
             {
@@ -310,7 +310,7 @@ namespace Business.Implementation.System
                     throw new ApplicationException("修改用户失败.", ex);
             }
             else
-                handler.Invoke();
+                handler();
         }
 
         [AdministratorOnly]

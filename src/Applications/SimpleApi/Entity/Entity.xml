@@ -203,6 +203,16 @@
             预览图路径
             </summary>
         </member>
+        <member name="P:Entity.Common.Common_File.Bytes">
+            <summary>
+            字节数
+            </summary>
+        </member>
+        <member name="P:Entity.Common.Common_File.Size">
+            <summary>
+            文件大小
+            </summary>
+        </member>
         <member name="P:Entity.Common.Common_File.CreatorId">
             <summary>
             创建者

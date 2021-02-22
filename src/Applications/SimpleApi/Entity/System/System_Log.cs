@@ -4,10 +4,7 @@ using Library.OpenApi.Annotations;
 using Nest;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace Entity.System
@@ -34,6 +31,7 @@ namespace Entity.System
         /// </summary>
         [OpenApiSubTag("List", "Detail")]
         [Column(IsPrimary = true, StringLength = 36)]
+        [Keyword]
         public string Id { get; set; }
 
         /// <summary>
@@ -88,9 +86,9 @@ namespace Entity.System
         /// </summary>
         [OpenApiSubTag("List", "Detail")]
         [OpenApiSchema(OpenApiSchemaType.@string, OpenApiSchemaFormat.string_datetime)]
-        [JsonConverter(typeof(Library.Json.Converters.DateTimeConverter), "yyyy-MM-dd HH:mm:ss")]
+        [JsonConverter(typeof(Library.Json.Converters.DateTimeConverter), "yyyy-MM-dd HH:mm:ss.ffff")]
         [Description("操作时间")]
-        [Date(Format = "yyyy-MM-dd HH:mm:ss.ffff")]
+        [Date(Format = "yyyy-MM-dd HH:mm:ss.SSSZ")]
         public DateTime CreateTime { get; set; }
 
         #region 关联

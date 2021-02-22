@@ -23,6 +23,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Net;
 using System.Runtime.InteropServices;
+using System.Text;
 using System.Threading.Tasks;
 using FileInfo = Model.Common.FileDTO.FileInfo;
 
@@ -51,18 +52,18 @@ namespace Business.Implementation.Common
 
         #region 私有成员
 
-        IMapper Mapper { get; set; }
+        readonly IMapper Mapper;
 
-        IFreeSql Orm { get; set; }
+        readonly IFreeSql Orm;
 
-        IBaseRepository<Common_File, string> Repository { get; set; }
+        readonly IBaseRepository<Common_File, string> Repository;
 
-        IHttpContextAccessor HttpContextAccessor { get; set; }
+        readonly IHttpContextAccessor HttpContextAccessor;
 
         /// <summary>
         /// 文件类型预览图存储路径根目录相对路径
         /// </summary>
-        string PreviewDir { get; set; }
+        readonly string PreviewDir;
 
         /// <summary>
         /// 存储路径根目录相对路径
@@ -305,13 +306,15 @@ namespace Business.Implementation.Common
                 if (option.ToBase64)
                 {
                     result.StorageType = StorageType.Base64;
-                    result.Path = ImgHelper.ToBase64String(image);
+                    if (!option.IsCompress)
+                        result.Path = ImgHelper.ToBase64String(image);
                 }
 
                 if (option.ToBase64Url)
                 {
                     result.StorageType = StorageType.Base64Url;
-                    result.Path = ImgHelper.ToBase64StringUrl(image);
+                    if (!option.IsCompress)
+                        result.Path = ImgHelper.ToBase64StringUrl(image);
                 }
             }
 
@@ -381,6 +384,23 @@ namespace Business.Implementation.Common
             result.StorageType = StorageType.Path;
 
             success:
+
+            if (result.StorageType == StorageType.Path)
+            {
+                result.Bytes = FileHelper.GetFileBytes(result.Path);
+            }
+            else if (result.StorageType == StorageType.Base64)
+            {
+                result.Bytes = Encoding.Default.GetBytes(result.Path).Length;
+            }
+            else if (result.StorageType == StorageType.Base64Url)
+            {
+                result.Bytes = Encoding.Default.GetBytes(result.Path.Replace("data:image/jpg;base64,", "")).Length;
+            }
+
+            if (result.Bytes.HasValue)
+                result.Size = FileHelper.GetFileSize(result.Bytes.Value);
+
             if (option.Save2Db)
             {
                 var entity = Mapper.Map<Common_File>(result).InitEntity();
@@ -464,6 +484,15 @@ namespace Business.Implementation.Common
             result.StorageType = StorageType.Path;
 
             success:
+
+            if (result.StorageType == StorageType.Path)
+            {
+                result.Bytes = FileHelper.GetFileBytes(result.Path);
+            }
+
+            if (result.Bytes.HasValue)
+                result.Size = FileHelper.GetFileSize(result.Bytes.Value);
+
             if (option.Save2Db)
             {
                 var entity = Mapper.Map<Common_File>(result).InitEntity();
@@ -527,7 +556,7 @@ namespace Business.Implementation.Common
             response.StatusCode = StatusCodes.Status200OK;
 
             response.ContentType = "applicatoin/octet-stream";
-            response.Headers.Add("Content-Disposition", $"attachment; filename=\"{file.FullName}\"");//
+            response.Headers.Add("Content-Disposition", $"attachment; filename=\"{file.FullName}\"");
 
             switch (file.StorageType)
             {

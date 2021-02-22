@@ -185,7 +185,7 @@ namespace Business.Implementation.Public
         {
             var newData = Mapper.Map<Public_Member>(data).InitEntity();
 
-            Action handler = () =>
+            void handler()
             {
                 var orId = OperationRecordBusiness.Create(new Common_OperationRecord
                 {
@@ -200,7 +200,7 @@ namespace Business.Implementation.Public
                 {
                     MemberIds = new List<string> { newData.Id }
                 }, false);
-            };
+            }
 
             if (runTransaction)
             {
@@ -210,7 +210,7 @@ namespace Business.Implementation.Public
                     throw new ApplicationException("创建会员失败.", ex);
             }
             else
-                handler.Invoke();
+                handler();
         }
 
         public Edit GetEdit(string id)
@@ -232,7 +232,7 @@ namespace Business.Implementation.Public
                                        entity.GetPropertyValueChangeds<Public_Member, Edit>(editData)
                                             .Select(p => $"\r\n\t {p.Description}：{p.FormerValue} 更改为 {p.CurrentValue}"));
 
-            Action handler = () =>
+            void handler()
             {
                 var orId = OperationRecordBusiness.Create(new Common_OperationRecord
                 {
@@ -247,7 +247,7 @@ namespace Business.Implementation.Public
                       .UpdateColumns(typeof(Edit).GetNamesWithTagAndOther(false, "_Edit").ToArray())
                       .ExecuteAffrows() <= 0)
                     throw new ApplicationException("修改会员失败.");
-            };
+            }
 
             if (runTransaction)
             {
@@ -257,7 +257,7 @@ namespace Business.Implementation.Public
                     throw new ApplicationException("修改会员失败.", ex);
             }
             else
-                handler.Invoke();
+                handler();
         }
 
         public void Delete(List<string> ids)

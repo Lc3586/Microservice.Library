@@ -119,7 +119,7 @@ namespace Business.Implementation.System
         {
             var newData = Mapper.Map<System_Role>(data).InitEntity();
 
-            Action handler = () =>
+            void handler()
             {
                 if (newData.ParentId.IsNullOrWhiteSpace())
                 {
@@ -155,7 +155,7 @@ namespace Business.Implementation.System
                     {
                         RoleIds = new List<string> { newData.Id }
                     }, false);
-            };
+            }
 
             if (runTransaction)
             {
@@ -165,7 +165,7 @@ namespace Business.Implementation.System
                     throw new ApplicationException("创建角色失败", ex);
             }
             else
-                handler.Invoke();
+                handler();
         }
 
         [AdministratorOnly]

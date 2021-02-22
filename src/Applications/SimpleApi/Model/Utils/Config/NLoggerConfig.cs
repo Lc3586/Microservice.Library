@@ -17,5 +17,6 @@
                                                 |备份数据:${{event-properties:item={Data}}}";
         public static readonly string FileDic = "log";
         public static readonly string FileName = "${date:format=yyyy-MM-dd}.txt";
+        public static readonly string FileNameFormat = "{0:yyyy-MM-dd}.txt";
     }
 }

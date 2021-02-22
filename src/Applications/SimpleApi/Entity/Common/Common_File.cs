@@ -116,6 +116,20 @@ namespace Entity.Common
         public string ThumbnailPath { get; set; }
 
         /// <summary>
+        /// 字节数
+        /// </summary>
+        [OpenApiSubTag("_List")]
+        [Column(IsNullable = true)]
+        public long? Bytes { get; set; }
+
+        /// <summary>
+        /// 文件大小
+        /// </summary>
+        [OpenApiSubTag("List", "Detail", "FileInfo")]
+        [Column(IsNullable = true)]
+        public string Size { get; set; }
+
+        /// <summary>
         /// 创建者
         /// </summary>
         [OpenApiSubTag("_List")]

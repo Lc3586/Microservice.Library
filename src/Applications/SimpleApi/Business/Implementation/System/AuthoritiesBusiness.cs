@@ -203,7 +203,7 @@ namespace Business.Implementation.System
             if (!roles.Any())
                 throw new ApplicationException("没有可供授权的角色.");
 
-            Action handler = () =>
+            void handler()
             {
                 var orId = OperationRecordBusiness.Create(new Common_OperationRecord
                 {
@@ -230,7 +230,7 @@ namespace Business.Implementation.System
                             RoleIds = Repository_UserRole.Where(p => p.UserId == o && !roleIds.Contains(p.RoleId)).ToList(p => p.RoleId)
                         }, false);
                     });
-            };
+            }
 
             if (runTransaction)
             {
@@ -240,7 +240,7 @@ namespace Business.Implementation.System
                     throw new ApplicationException("授权失败.", ex);
             }
             else
-                handler.Invoke();
+                handler();
         }
 
         public void AuthorizeRoleForMember(RoleForMember data, bool runTransaction = true)
@@ -260,7 +260,7 @@ namespace Business.Implementation.System
             if (roles.Any(o => o.Type != RoleType.会员))
                 throw new ApplicationException($"只能将角色类型为{RoleType.会员}的角色授权给会员.");
 
-            Action handler = () =>
+            void handler()
             {
                 var orId = OperationRecordBusiness.Create(new Common_OperationRecord
                 {
@@ -287,7 +287,7 @@ namespace Business.Implementation.System
                             RoleIds = Repository_MemberRole.Where(p => p.MemberId == o && !roleIds.Contains(p.RoleId)).ToList(p => p.RoleId)
                         }, false);
                     });
-            };
+            }
 
             if (runTransaction)
             {
@@ -297,7 +297,7 @@ namespace Business.Implementation.System
                     throw new ApplicationException("授权失败.", ex);
             }
             else
-                handler.Invoke();
+                handler();
         }
 
         public void AuthorizeMenuForUser(MenuForUser data)
@@ -538,7 +538,7 @@ namespace Business.Implementation.System
             if (!roles.Any())
                 return;
 
-            Action handler = () =>
+            void handler()
             {
                 var orId = OperationRecordBusiness.Create(new Common_OperationRecord
                 {
@@ -553,7 +553,7 @@ namespace Business.Implementation.System
 
                 if (Repository_UserRole.Delete(o => data.UserIds.Contains(o.UserId) && (roleIds.Contains(o.RoleId))) < 0)
                     throw new ApplicationException("撤销授权失败.");
-            };
+            }
 
             if (runTransaction)
             {
@@ -563,7 +563,7 @@ namespace Business.Implementation.System
                     throw new ApplicationException("撤销授权失败.", ex);
             }
             else
-                handler.Invoke();
+                handler();
         }
 
         public void RevocationRoleForMember(RoleForMember data, bool runTransaction = true)
@@ -580,7 +580,7 @@ namespace Business.Implementation.System
             if (!roles.Any())
                 return;
 
-            Action handler = () =>
+            void handler()
             {
                 var orId = OperationRecordBusiness.Create(new Common_OperationRecord
                 {
@@ -595,7 +595,7 @@ namespace Business.Implementation.System
 
                 if (Repository_MemberRole.Delete(o => data.MemberIds.Contains(o.MemberId) && (roleIds.Contains(o.RoleId))) < 0)
                     throw new ApplicationException("撤销授权失败.");
-            };
+            }
 
             if (runTransaction)
             {
@@ -605,7 +605,7 @@ namespace Business.Implementation.System
                     throw new ApplicationException("撤销授权失败.", ex);
             }
             else
-                handler.Invoke();
+                handler();
         }
 
         public void RevocationMenuForUser(MenuForUser data, bool runTransaction = true)
@@ -622,7 +622,7 @@ namespace Business.Implementation.System
             if (!menus.Any())
                 return;
 
-            Action handler = () =>
+            void handler()
             {
                 var orId = OperationRecordBusiness.Create(new Common_OperationRecord
                 {
@@ -637,7 +637,7 @@ namespace Business.Implementation.System
 
                 if (Repository_UserMenu.Delete(o => data.UserIds.Contains(o.UserId) && (menuIds.Contains(o.MenuId))) < 0)
                     throw new ApplicationException("撤销授权失败.");
-            };
+            }
 
             if (runTransaction)
             {
@@ -647,7 +647,7 @@ namespace Business.Implementation.System
                     throw new ApplicationException("撤销授权失败.", ex);
             }
             else
-                handler.Invoke();
+                handler();
         }
 
         public void RevocationResourcesForUser(ResourcesForUser data, bool runTransaction = true)
@@ -664,7 +664,7 @@ namespace Business.Implementation.System
             if (!resourcess.Any())
                 return;
 
-            Action handler = () =>
+            void handler()
             {
                 var orId = OperationRecordBusiness.Create(new Common_OperationRecord
                 {
@@ -679,7 +679,7 @@ namespace Business.Implementation.System
 
                 if (Repository_UserResources.Delete(o => data.UserIds.Contains(o.UserId) && (resourcesIds.Contains(o.ResourcesId))) < 0)
                     throw new ApplicationException("撤销授权失败.");
-            };
+            }
 
             if (runTransaction)
             {
@@ -689,7 +689,7 @@ namespace Business.Implementation.System
                     throw new ApplicationException("撤销授权失败.", ex);
             }
             else
-                handler.Invoke();
+                handler();
         }
 
         public void RevocationMenuForRole(MenuForRole data, bool runTransaction = true)
@@ -706,7 +706,7 @@ namespace Business.Implementation.System
             if (!menus.Any())
                 return;
 
-            Action handler = () =>
+            void handler()
             {
                 var orId = OperationRecordBusiness.Create(new Common_OperationRecord
                 {
@@ -721,7 +721,7 @@ namespace Business.Implementation.System
 
                 if (Repository_RoleMenu.Delete(o => data.RoleIds.Contains(o.RoleId) && (menuIds.Contains(o.MenuId))) < 0)
                     throw new ApplicationException("撤销授权失败.");
-            };
+            }
 
             if (runTransaction)
             {
@@ -731,7 +731,7 @@ namespace Business.Implementation.System
                     throw new ApplicationException("撤销授权失败.", ex);
             }
             else
-                handler.Invoke();
+                handler();
         }
 
         public void RevocationResourcesForRole(ResourcesForRole data, bool runTransaction = true)
@@ -748,7 +748,7 @@ namespace Business.Implementation.System
             if (!resourcess.Any())
                 return;
 
-            Action handler = () =>
+            void handler()
             {
                 var orId = OperationRecordBusiness.Create(new Common_OperationRecord
                 {
@@ -763,7 +763,7 @@ namespace Business.Implementation.System
 
                 if (Repository_RoleResources.Delete(o => data.RoleIds.Contains(o.RoleId) && (resourcesIds.Contains(o.ResourcesId))) < 0)
                     throw new ApplicationException("撤销授权失败.");
-            };
+            }
 
             if (runTransaction)
             {
@@ -773,7 +773,7 @@ namespace Business.Implementation.System
                     throw new ApplicationException("撤销授权失败.", ex);
             }
             else
-                handler.Invoke();
+                handler();
         }
 
         public void RevocationMenuForAll(List<string> menuIds, bool runTransaction = true)
@@ -788,7 +788,7 @@ namespace Business.Implementation.System
             if (!menus.Any())
                 return;
 
-            Action handler = () =>
+            void handler()
             {
                 var orId = OperationRecordBusiness.Create(new Common_OperationRecord
                 {
@@ -802,7 +802,7 @@ namespace Business.Implementation.System
 
                 if (Repository_RoleMenu.Delete(o => (menuIds.Contains(o.MenuId))) < 0)
                     throw new ApplicationException("撤销角色的菜单授权失败.");
-            };
+            }
 
             if (runTransaction)
             {
@@ -812,7 +812,7 @@ namespace Business.Implementation.System
                     throw new ApplicationException("撤销授权失败.", ex);
             }
             else
-                handler.Invoke();
+                handler();
         }
 
         public void RevocationResourcesForAll(List<string> resourcesIds, bool runTransaction = true)
@@ -827,7 +827,7 @@ namespace Business.Implementation.System
             if (!resources.Any())
                 return;
 
-            Action handler = () =>
+            void handler()
             {
                 var orId = OperationRecordBusiness.Create(new Common_OperationRecord
                 {
@@ -841,7 +841,7 @@ namespace Business.Implementation.System
 
                 if (Repository_RoleResources.Delete(o => (resourcesIds.Contains(o.ResourcesId))) < 0)
                     throw new ApplicationException("撤销角色的资源授权失败.");
-            };
+            }
 
             if (runTransaction)
             {
@@ -851,7 +851,7 @@ namespace Business.Implementation.System
                     throw new ApplicationException("撤销授权失败.", ex);
             }
             else
-                handler.Invoke();
+                handler();
         }
 
         #endregion

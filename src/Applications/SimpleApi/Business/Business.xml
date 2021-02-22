@@ -31,7 +31,7 @@
             文件处理业务类
             </summary>
         </member>
-        <member name="P:Business.Implementation.Common.FileBusiness.PreviewDir">
+        <member name="F:Business.Implementation.Common.FileBusiness.PreviewDir">
             <summary>
             文件类型预览图存储路径根目录相对路径
             </summary>
@@ -1538,6 +1538,64 @@
             <para>转小写</para>
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:Business.Utils.Log.ILogBusiness">
+            <summary>
+            日志业务接口类
+            </summary>
+        </member>
+        <member name="M:Business.Utils.Log.ILogBusiness.GetDefaultType">
+            <summary>
+            获取默认的日志组件类型
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Utils.Log.ILogBusiness.GetFileList(System.DateTime,System.DateTime)">
+            <summary>
+            获取日志文件列表
+            </summary>
+            <param name="start"></param>
+            <param name="end"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Utils.Log.ILogBusiness.GetFileContent(System.String)">
+            <summary>
+            获取日志文件内容
+            </summary>
+            <param name="filename">文件名</param>
+        </member>
+        <member name="M:Business.Utils.Log.ILogBusiness.GetESList(Model.Utils.Pagination.PaginationDTO)">
+            <summary>
+            获取ES数据列表
+            </summary>
+            <param name="pagination">分页设置</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Utils.Log.ILogBusiness.GetESDetail(System.String)">
+            <summary>
+            获取ES数据详情
+            </summary>
+            <param name="id">Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Utils.Log.ILogBusiness.GetDBList(Model.Utils.Pagination.PaginationDTO)">
+            <summary>
+            获取数据库数据列表
+            </summary>
+            <param name="pagination">分页设置</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Utils.Log.ILogBusiness.GetDBDetail(System.String)">
+            <summary>
+            获取数据库数据详情
+            </summary>
+            <param name="id">Id</param>
+            <returns></returns>
+        </member>
+        <member name="T:Business.Utils.Log.LogBusiness">
+            <summary>
+            日志业务类
+            </summary>
         </member>
         <member name="T:Business.Utils.MessageException">
             <summary>
