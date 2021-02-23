@@ -5,8 +5,6 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace Entity.System
@@ -23,6 +21,8 @@ namespace Entity.System
     [Index(nameof(System_Role) + "_idx_" + nameof(Type), nameof(Type) + " ASC")]
     [Index(nameof(System_Role) + "_idx_" + nameof(Code), nameof(Code) + " ASC")]
     [Index(nameof(System_Role) + "_idx_" + nameof(Enable), nameof(Enable) + " DESC")]
+    [Index(nameof(System_Role) + "_idx_" + nameof(AutoAuthorizeRoleForUser), nameof(AutoAuthorizeRoleForUser) + " DESC")]
+    [Index(nameof(System_Role) + "_idx_" + nameof(AutoAuthorizeRoleForMember), nameof(AutoAuthorizeRoleForMember) + " DESC")]
     [Index(nameof(System_Role) + "_idx_" + nameof(CreatorId), nameof(CreatorId) + " ASC")]
     [Index(nameof(System_Role) + "_idx_" + nameof(CreateTime), nameof(CreateTime) + " DESC")]
     [Index(nameof(System_Role) + "_idx_" + nameof(ModifyTime), nameof(ModifyTime) + " DESC")]
