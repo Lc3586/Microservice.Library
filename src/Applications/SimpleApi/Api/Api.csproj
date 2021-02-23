@@ -18,6 +18,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="log\**" />
+    <Content Remove="log\**" />
+    <EmbeddedResource Remove="log\**" />
+    <None Remove="log\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="jsonconfig\database.json" />
     <Content Remove="jsonconfig\soap.json" />
     <Content Remove="jsonconfig\wechatservice.json" />

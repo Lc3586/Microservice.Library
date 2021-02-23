@@ -179,8 +179,9 @@ namespace Business.Utils.Pagination
         /// <param name="pagination">分页设置</param>
         /// <param name="sql">sql语句</param>
         /// <param name="alias">别名</param>
+        /// <param name="withOrderByKeyword">附加orderby关键词</param>
         /// <returns>排序条件是否有误</returns>
-        public static bool OrderByToSql(this PaginationDTO pagination, ref string sql, string alias = null)
+        public static bool OrderByToSql(this PaginationDTO pagination, ref string sql, string alias = null, bool withOrderByKeyword = false)
         {
             try
             {
@@ -221,7 +222,12 @@ namespace Business.Utils.Pagination
                 }
 
                 if (!string.IsNullOrWhiteSpace(predicate))
+                {
+                    if (withOrderByKeyword)
+                        sql += " order by ";
+
                     sql += ' ' + predicate + ' ';
+                }
 
                 return true;
             }

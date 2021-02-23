@@ -252,7 +252,32 @@ namespace Model.Utils.Config
         /// <summary>
         /// ElasticSearch集群
         /// </summary>
-        public List<Uri> ElasticsearchNodes { get; set; }
+        public List<Uri> ESNodes { get; set; }
+
+        /// <summary>
+        /// ElasticSearch安全验证类型
+        /// </summary>
+        public ESSecurityType ESSecurityType { get; set; }
+
+        /// <summary>
+        /// ElasticSearch用户名
+        /// </summary>
+        public string ESUserName { get; set; }
+
+        /// <summary>
+        /// ElasticSearch密码
+        /// </summary>
+        public string ESPassword { get; set; }
+
+        /// <summary>
+        /// ElasticSearch密钥标识
+        /// </summary>
+        public string ESKeyId { get; set; }
+
+        /// <summary>
+        /// ElasticSearch接口密钥
+        /// </summary>
+        public string ESApiKey { get; set; }
 
         #endregion
 

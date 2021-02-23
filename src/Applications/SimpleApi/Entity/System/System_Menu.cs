@@ -4,8 +4,6 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace Entity.System
@@ -104,6 +102,13 @@ namespace Entity.System
         [Description("图标")]
         [Column(StringLength = 36)]
         public string Icon { get; set; }
+
+        /// <summary>
+        /// 启用缓存
+        /// </summary>
+        [OpenApiSubTag("List", "TreeList", "Create", "Edit", "Detail")]
+        [Description("启用缓存")]
+        public bool Cache { get; set; }
 
         /// <summary>
         /// 启用

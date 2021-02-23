@@ -1568,7 +1568,7 @@
             <summary>
             获取ES数据列表
             </summary>
-            <param name="pagination">分页设置</param>
+            <param name="pagination">排序、筛选以及数据量设置</param>
             <returns></returns>
         </member>
         <member name="M:Business.Utils.Log.ILogBusiness.GetESDetail(System.String)">
@@ -1711,13 +1711,14 @@
             <param name="alias">别名</param>
             <returns>筛选条件是否有误</returns>
         </member>
-        <member name="M:Business.Utils.Pagination.PaginationExtension.OrderByToSql(Model.Utils.Pagination.PaginationDTO,System.String@,System.String)">
+        <member name="M:Business.Utils.Pagination.PaginationExtension.OrderByToSql(Model.Utils.Pagination.PaginationDTO,System.String@,System.String,System.Boolean)">
             <summary>
             排序条件转sql语句
             </summary>
             <param name="pagination">分页设置</param>
             <param name="sql">sql语句</param>
             <param name="alias">别名</param>
+            <param name="withOrderByKeyword">附加orderby关键词</param>
             <returns>排序条件是否有误</returns>
         </member>
         <member name="M:Business.Utils.Pagination.PaginationExtension.FilterToLinqDynamic``1(Model.Utils.Pagination.PaginationDTO,System.Linq.IQueryable{``0}@)">

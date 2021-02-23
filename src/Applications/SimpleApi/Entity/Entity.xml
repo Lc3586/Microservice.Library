@@ -1048,6 +1048,11 @@
             图标
             </summary>
         </member>
+        <member name="P:Entity.System.System_Menu.Cache">
+            <summary>
+            启用缓存
+            </summary>
+        </member>
         <member name="P:Entity.System.System_Menu.Enable">
             <summary>
             启用

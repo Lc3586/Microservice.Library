@@ -68,7 +68,7 @@ namespace Api.Controllers.Utils
         /// <summary>
         /// 获取ES数据列表
         /// </summary>
-        /// <param name="pagination">分页设置</param>
+        /// <param name="pagination">排序、筛选以及数据量设置</param>
         /// <returns></returns>
         [HttpPost("es-list")]
         [SwaggerResponse((int)HttpStatusCode.OK, "列表数据", typeof(List))]

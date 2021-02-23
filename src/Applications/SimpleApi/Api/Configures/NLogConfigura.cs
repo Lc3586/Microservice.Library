@@ -38,10 +38,12 @@ namespace Api.Configures
                         },
                         LoggerType.RDBMS => new RDBMSTarget()
                         {
+                            Name = config.DefaultLoggerName,
                             Layout = config.DefaultLoggerLayout ?? NLoggerConfig.Layout
                         },
                         LoggerType.ElasticSearch => new ElasticSearchTarget()
                         {
+                            Name = config.DefaultLoggerName,
                             Layout = config.DefaultLoggerLayout ?? NLoggerConfig.Layout
                         },
                         _ => new ColoredConsoleTarget

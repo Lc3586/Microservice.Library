@@ -1306,6 +1306,26 @@
             逻辑删除,即仅将Deleted字段置为true
             </summary>
         </member>
+        <member name="T:Model.Utils.Config.ESSecurityType">
+            <summary>
+            ElasticSearch安全验证类型
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Config.ESSecurityType.None">
+            <summary>
+            无
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Config.ESSecurityType.Basic">
+            <summary>
+            经典身份验证
+            </summary>
+        </member>
+        <member name="F:Model.Utils.Config.ESSecurityType.ApiKey">
+            <summary>
+            接口密钥
+            </summary>
+        </member>
         <member name="T:Model.Utils.Config.LoggerType">
             <summary>
             日志组件类型
@@ -1689,9 +1709,34 @@
             启用ElasticSearch
             </summary>
         </member>
-        <member name="P:Model.Utils.Config.SystemConfig.ElasticsearchNodes">
+        <member name="P:Model.Utils.Config.SystemConfig.ESNodes">
             <summary>
             ElasticSearch集群
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.ESSecurityType">
+            <summary>
+            ElasticSearch安全验证类型
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.ESUserName">
+            <summary>
+            ElasticSearch用户名
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.ESPassword">
+            <summary>
+            ElasticSearch密码
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.ESKeyId">
+            <summary>
+            ElasticSearch密钥标识
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SystemConfig.ESApiKey">
+            <summary>
+            ElasticSearch接口密钥
             </summary>
         </member>
         <member name="P:Model.Utils.Config.SystemConfig.EnableSoap">

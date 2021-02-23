@@ -228,6 +228,14 @@
             <param name="isThrow">抛出异常</param>
             <returns></returns>
         </member>
+        <member name="M:Library.Elasticsearch.ElasticsearchClient.AddAsync``1(``0,System.Boolean)">
+            <summary>
+            新增
+            </summary>
+            <param name="model">数据</param>
+            <param name="isThrow">抛出异常</param>
+            <returns></returns>
+        </member>
         <member name="M:Library.Elasticsearch.ElasticsearchClient.Add``1(System.Collections.Generic.List{``0},System.Boolean)">
             <summary>
             批量新增
@@ -265,6 +273,7 @@
         <member name="M:Library.Elasticsearch.ElasticsearchClient.AddOrUpdateBulk``1(System.Collections.Generic.List{``0},System.Boolean)">
             <summary>
             批量新增或更新
+            注意：此方法将使用默认索引
             </summary>
             <param name="models">数据集合</param>
             <param name="isThrow">抛出异常</param>
@@ -273,6 +282,7 @@
         <member name="M:Library.Elasticsearch.ElasticsearchClient.Delete``1(System.Object,System.Boolean)">
             <summary>
             删除
+            注意：此方法将使用默认索引
             </summary>
             <param name="id">Id</param>
             <param name="isThrow">抛出异常</param>
@@ -281,6 +291,7 @@
         <member name="M:Library.Elasticsearch.ElasticsearchClient.DeleteBulk``1(System.Collections.Generic.List{System.Int64},System.Boolean)">
             <summary>
             批量删除
+            注意：此方法将使用默认索引
             </summary>
             <param name="ids">Id集合</param>
             <param name="isThrow">抛出异常</param>
@@ -289,6 +300,7 @@
         <member name="M:Library.Elasticsearch.ElasticsearchClient.DeleteBulk``1(System.Collections.Generic.List{System.String},System.Boolean)">
             <summary>
             批量删除
+            注意：此方法将使用默认索引
             </summary>
             <param name="ids">Id集合</param>
             <param name="isThrow">抛出异常</param>
@@ -297,6 +309,7 @@
         <member name="M:Library.Elasticsearch.ElasticsearchClient.DeleteBulk``1(System.Collections.Generic.List{``0},System.Boolean)">
             <summary>
             批量删除
+            注意：此方法将使用默认索引
             </summary>
             <param name="models">数据集合</param>
             <param name="isThrow">抛出异常</param>
@@ -305,6 +318,7 @@
         <member name="M:Library.Elasticsearch.ElasticsearchClient.Update``1(System.Object,System.Object,System.Boolean)">
             <summary>
             局部更新
+            注意：此方法将使用默认索引
             </summary>
             <param name="id">Id</param>
             <param name="partial">局部数据</param>
@@ -314,6 +328,7 @@
         <member name="M:Library.Elasticsearch.ElasticsearchClient.UpdateBulk``1(System.Collections.Generic.List{System.Object},System.Object,System.Boolean)">
             <summary>
             批量局部更新
+            注意：此方法将使用默认索引
             </summary>
             <param name="ids">Id集合</param>
             <param name="partial">局部数据</param>
@@ -323,6 +338,7 @@
         <member name="M:Library.Elasticsearch.ElasticsearchClient.UpdateBulk``1(System.Collections.Generic.List{System.Object},System.Collections.Generic.List{System.Object},System.Boolean)">
             <summary>
             批量局部更新
+            注意：此方法将使用默认索引
             </summary>
             <param name="ids">Id集合</param>
             <param name="partials">局部数据集合</param>
@@ -332,6 +348,7 @@
         <member name="M:Library.Elasticsearch.ElasticsearchClient.UpdateBulk``1(System.Collections.Generic.List{``0},System.Object,System.Boolean)">
             <summary>
             批量局部更新
+            注意：此方法将使用默认索引
             </summary>
             <param name="models">数据集合</param>
             <param name="partial">局部数据</param>
@@ -341,6 +358,7 @@
         <member name="M:Library.Elasticsearch.ElasticsearchClient.UpdateBulk``1(System.Collections.Generic.List{``0},System.Collections.Generic.List{System.Object},System.Boolean)">
             <summary>
             批量局部更新
+            注意：此方法将使用默认索引
             </summary>
             <param name="models">数据集合</param>
             <param name="partial">局部数据集合</param>
@@ -350,6 +368,7 @@
         <member name="M:Library.Elasticsearch.ElasticsearchClient.Update``1(``0,System.Boolean)">
             <summary>
             整体更新
+            注意：此方法将使用默认索引
             </summary>
             <param name="model">数据</param>
             <param name="isThrow">抛出异常</param>
@@ -358,6 +377,7 @@
         <member name="M:Library.Elasticsearch.ElasticsearchClient.UpdateBulk``1(System.Collections.Generic.List{``0},System.Boolean)">
             <summary>
             批量整体更新
+            注意：此方法将使用默认索引
             </summary>
             <param name="models">数据集合</param>
             <param name="isThrow">抛出异常</param>
@@ -366,6 +386,7 @@
         <member name="M:Library.Elasticsearch.ElasticsearchClient.Get``1(System.String,System.Object,System.Boolean)">
             <summary>
             获取数据
+            注意：此方法将使用默认索引
             </summary>
             <param name="indice">索引</param>
             <param name="id">ID</param>
@@ -375,6 +396,7 @@
         <member name="M:Library.Elasticsearch.ElasticsearchClient.Get``1(System.Object,System.Boolean)">
             <summary>
             获取数据
+            注意：此方法将使用默认索引
             </summary>
             <param name="id">ID</param>
             <param name="isThrow">抛出异常</param>
@@ -383,6 +405,7 @@
         <member name="M:Library.Elasticsearch.ElasticsearchClient.Get``2(System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Object,System.Boolean)">
             <summary>
             获取数据
+            注意：此方法将使用默认索引
             </summary>
             <param name="field">字段</param>
             <param name="value">值</param>
@@ -401,7 +424,7 @@
             <summary>
             查询数据量
             </summary>
-            <param name="Indices">指定索引(null:默认，[]:全部,["i_0","i_1","i_2"]:指定)</param>
+            <param name="indices">指定索引(null:默认，[]:全部,["i_0","i_1","i_2"]:指定)</param>
             <param name="query">查询条件</param>
             <param name="isThrow">抛出异常</param>
             <returns></returns>
@@ -410,7 +433,7 @@
             <summary>
             获取查询
             </summary>
-            <param name="Indices">指定索引(null:默认，[]:全部,["i_0","i_1","i_2"]:指定)</param>
+            <param name="indices">指定索引(null:默认，[]:全部,["i_0","i_1","i_2"]:指定)</param>
             <param name="query">查询条件</param>
             <param name="sort">排序(key:字段名,mode:方式(默认desc))</param>
             <param name="time">快照保存时间(秒,默认60)</param>
@@ -430,7 +453,7 @@
             <summary>
             查询(大数据量)
             </summary>
-            <param name="Indices">指定索引(null:默认，[]:全部,["i_0","i_1","i_2"]:指定)</param>
+            <param name="indices">指定索引(null:默认，[]:全部,["i_0","i_1","i_2"]:指定)</param>
             <param name="query">查询条件</param>
             <param name="max">最大数据量</param>
             <param name="sort">排序(key:字段名,mode:方式(默认desc))</param>
@@ -442,24 +465,23 @@
             查询(分页)
             </summary>
             <param name="recordCount">总数据量(不分页)</param>
-            <param name="Indices">指定索引(null:默认，[]:全部,["i_0","i_1","i_2"]:指定)</param>
+            <param name="indices">指定索引(null:默认，[]:全部,["i_0","i_1","i_2"]:指定)</param>
             <param name="query"></param>
             <param name="sort">排序</param>
-            <param name="pageIndex">指定页码(仅支持在数据量小于等于10000时进行分页)</param>
+            <param name="pageIndex">指定页码</param>//(仅支持在数据量小于等于10000时进行分页)
             <param name="pageRows">每页数据量</param>
             <param name="time">快照保存时间(秒,默认60)</param>
             <param name="isThrow">抛出异常</param>
             <returns></returns>
         </member>
-        <member name="M:Library.Elasticsearch.ElasticsearchClient.SearchPagingWithSql``1(System.Int64@,System.String[],System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Int32,System.Boolean)">
+        <member name="M:Library.Elasticsearch.ElasticsearchClient.SearchWithSql``1(System.Int64@,System.String[],System.String,System.Nullable{System.Int32},System.Int32,System.Boolean)">
             <summary>
-            查询(分页)(sql)
+            查询(sql)
             </summary>
             <param name="recordCount">总数据量(不分页)</param>
-            <param name="Indices">指定索引(null:默认，[]:全部,["i_0","i_1","i_2"]:指定)</param>
+            <param name="indices">指定索引(null:默认，[]:全部,["i_0","i_1","i_2"]:指定)</param>
             <param name="query">sql查询语句</param>
-            <param name="pageIndex">指定页码(仅支持在数据量小于等于10000时进行分页)</param>
-            <param name="pageRows">每页数据量</param>
+            <param name="size">数据量</param>
             <param name="time">快照保存时间(秒,默认60)</param>
             <param name="isThrow">抛出异常</param>
             <returns></returns>
@@ -468,7 +490,7 @@
             <summary>
             查询(游标)
             </summary>
-            <param name="Indices">指定索引(null:默认，[]:全部,["i_0","i_1","i_2"]:指定)</param>
+            <param name="indices">指定索引(null:默认，[]:全部,["i_0","i_1","i_2"]:指定)</param>
             <param name="query"></param>
             <param name="scrollId">滚动ID</param>
             <param name="time">快照保存时间(秒,默认60)</param>
@@ -478,16 +500,47 @@
             <param name="isThrow">抛出异常</param>
             <returns></returns>
         </member>
-        <member name="M:Library.Elasticsearch.ElasticsearchClient.Total``1">
+        <member name="M:Library.Elasticsearch.ElasticsearchClient.Total``1(Nest.QueryContainer)">
             <summary>
-            总数据量
+            默认索引的总数据量
+            </summary>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Elasticsearch.ElasticsearchClient.Total(System.String[],Nest.QueryContainer)">
+            <summary>
+            指定索引的总数据量
             </summary>
             <returns></returns>
         </member>
         <member name="M:Library.Elasticsearch.ElasticsearchClient.Total(Nest.Indices,Nest.QueryContainer)">
             <summary>
-            总数据量
+            指定索引的总数据量
             </summary>
+            <param name="indices"></param>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Elasticsearch.ElasticsearchClient.TotalWithSql(System.String[],System.String)">
+            <summary>
+            指定索引的总数据量
+            </summary>
+            <param name="indices"></param>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Elasticsearch.ElasticsearchClient.GetIndices(System.String[])">
+            <summary>
+            获取索引
+            </summary>
+            <param name="indices">指定索引(null:默认，[]:全部(拥有相同别名的索引),["i_0","i_1","i_2"]:指定索引)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Elasticsearch.ElasticsearchClient.GetIndex(System.String[])">
+            <summary>
+            获取索引
+            </summary>
+            <param name="indices">指定索引(null:默认，[]:全部(拥有相同别名的索引),["i_0","i_1","i_2"]:指定索引)</param>
             <returns></returns>
         </member>
         <member name="M:Library.Elasticsearch.ElasticsearchClient.ConvertTime(System.Int32)">
@@ -501,7 +554,7 @@
             <summary>
             获取查询
             </summary>
-            <param name="Indices"></param>
+            <param name="indices"></param>
             <param name="query"></param>
             <param name="sort"></param>
             <param name="Transfinite"></param>
