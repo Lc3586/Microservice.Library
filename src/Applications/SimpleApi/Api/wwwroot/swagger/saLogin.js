@@ -78,11 +78,11 @@ $(function () {
                                                     ['label', '未登录', '浏览器重定向至指定地址'],
                                                     ['label', '注销后', '浏览器重定向至指定地址']
                                                 ]);
-                                        }, 100, 'logout', false);
+                                        }, 0, 'logout', false);
                                     }
                                 }]
                             });
-                    }, 100, 'loginInfo', false);
+                    }, 0, 'loginInfo', false);
                 });
                 btns.push(btn);
             } else {
@@ -98,7 +98,7 @@ $(function () {
                                 ['label', '未登录', '接口返回状态码401, 此时应该跳转至登录页面, 之后请求/sa/login接口，并附带参数, 返回成功后跳转至指定页面'],
                                 ['label', '已登录', '接口返回状态码200, 以及身份信息']
                             ]);
-                    }, 100, 'login', false);
+                    }, 0, 'login', false);
                 });
                 btns.push(btn_1_0);
             }
