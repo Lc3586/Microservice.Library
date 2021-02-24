@@ -43,9 +43,9 @@ namespace Business.Utils.Log
             };
         }
 
-        protected override void Write(LogEventInfo logEvent)
+        protected override async void Write(LogEventInfo logEvent)
         {
-            GetRepository().Insert(GetBase_SysLogInfo(logEvent).InitEntityWithoutOP());
+            await GetRepository().InsertAsync(GetBase_SysLogInfo(logEvent).InitEntityWithoutOP());
         }
 
         private IBaseRepository<System_Log, string> GetRepository()
