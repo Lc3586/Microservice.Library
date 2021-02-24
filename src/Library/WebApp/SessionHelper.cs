@@ -1,6 +1,6 @@
-﻿using Library.Cache;
-using Library.Configuration;
-using Library.Extension;
+﻿using Library.Cache.Gen;
+using Library.Cache.Services;
+using Library.Container;
 
 namespace Library.WebApp
 {
@@ -17,6 +17,8 @@ namespace Library.WebApp
         {
             return $"{CacheModuleName}_{_sessionId}_{sessionKey}";
         }
+
+        private static ICache Cache = AutofacHelper.GetService<ICacheProvider>().GetCache();
 
         #endregion
 
@@ -42,15 +44,15 @@ namespace Library.WebApp
                 get
                 {
                     string cacheKey = BuildCacheKey(index);
-                    return CacheHelper.Cache.GetCache(cacheKey);
+                    return Cache.GetCache(cacheKey);
                 }
                 set
                 {
                     string cacheKey = BuildCacheKey(index);
-                    if (value.IsNullOrEmpty())
-                        CacheHelper.Cache.RemoveCache(cacheKey);
+                    if (value == null || value.ToString() == string.Empty)
+                        Cache.RemoveCache(cacheKey);
                     else
-                        CacheHelper.Cache.SetCache(cacheKey, value);
+                        Cache.SetCache(cacheKey, value);
                 }
             }
         }

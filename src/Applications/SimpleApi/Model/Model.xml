@@ -1261,6 +1261,51 @@
             登出后跳转地址
             </summary>
         </member>
+        <member name="T:Model.Utils.Config.CASSetting">
+            <summary>
+            CAS配置
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.CASSetting.ProtocolVersion">
+            <summary>
+            协议版本号
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.CASSetting.CorsUrl">
+            <summary>
+            跨域地址
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.CASSetting.BaseUrl">
+            <summary>
+            地址
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.CASSetting.EnableSingleSignOut">
+            <summary>
+            启用单点注销
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.CASSetting.TGTUrl">
+            <summary>
+            获取TGT票据地址
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.CASSetting.STUrl">
+            <summary>
+            生成ST票据地址
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.CASSetting.UserInfoUrl">
+            <summary>
+            获取用户信息地址
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.CASSetting.DeleteSTUrl">
+            <summary>
+            删除TGT地址
+            </summary>
+        </member>
         <member name="T:Model.Utils.Config.DatabaseSetting">
             <summary>
             数据库配置
@@ -1283,7 +1328,7 @@
         </member>
         <member name="P:Model.Utils.Config.DatabaseSetting.ConnectString">
             <summary>
-            默认数据库连接字符串
+            数据库连接字符串
             </summary>
         </member>
         <member name="P:Model.Utils.Config.DatabaseSetting.EntityAssembly">
@@ -1306,6 +1351,41 @@
             逻辑删除,即仅将Deleted字段置为true
             </summary>
         </member>
+        <member name="T:Model.Utils.Config.ElasticsearchSetting">
+            <summary>
+            ElasticSearch配置
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.ElasticsearchSetting.Nodes">
+            <summary>
+            集群
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.ElasticsearchSetting.SecurityType">
+            <summary>
+            安全验证类型
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.ElasticsearchSetting.UserName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.ElasticsearchSetting.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.ElasticsearchSetting.KeyId">
+            <summary>
+            密钥标识
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.ElasticsearchSetting.ApiKey">
+            <summary>
+            接口密钥
+            </summary>
+        </member>
         <member name="T:Model.Utils.Config.ESSecurityType">
             <summary>
             ElasticSearch安全验证类型
@@ -1324,6 +1404,87 @@
         <member name="F:Model.Utils.Config.ESSecurityType.ApiKey">
             <summary>
             接口密钥
+            </summary>
+        </member>
+        <member name="T:Model.Utils.Config.FreeSqlSetting">
+            <summary>
+            FreeSql配置
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.FreeSqlSetting.DbCacheFilter">
+            <summary>
+            数据库缓存过滤（不将相同的变更提交数据库）
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.FreeSqlSetting.AutoSyncStructure">
+            <summary>
+            自动同步实体结构到数据库，程序运行中检查实体表是否存在，然后创建或修改
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.FreeSqlSetting.SyncStructureNameConvert">
+            <summary>
+            实体类名 -> 数据库表名，命名转换（类名、属性名都生效）
+            优先级小于 [Table(Name = "xxx")]、[Column(Name = "xxx")]
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.FreeSqlSetting.SyncStructureOnStartup">
+            <summary>
+            启动时同步实体类型集合到数据库
+            </summary>
+        </member>
+        <member name="T:Model.Utils.Config.KafkaSetting">
+            <summary>
+            kafka中间件配置
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.KafkaSetting.EnableProducer">
+            <summary>
+            启用生产者
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.KafkaSetting.ProducerGroupId">
+            <summary>
+            生产者组标识
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.KafkaSetting.ProducerServers">
+            <summary>
+            生产者服务器
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.KafkaSetting.ProducerReset">
+            <summary>
+            生产者自动偏移复位
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.KafkaSetting.ProducerTopics">
+            <summary>
+            生产者订阅集合
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.KafkaSetting.EnableConsume">
+            <summary>
+            启用消费者
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.KafkaSetting.ConsumeGroupId">
+            <summary>
+            消费者组标识
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.KafkaSetting.ConsumeServers">
+            <summary>
+            消费者服务器
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.KafkaSetting.ConsumeReset">
+            <summary>
+            消费者自动偏移复位
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.KafkaSetting.ConsumeTopics">
+            <summary>
+            消费者订阅集合
             </summary>
         </member>
         <member name="T:Model.Utils.Config.LoggerType">
@@ -1354,6 +1515,47 @@
         <member name="T:Model.Utils.Config.NLoggerConfig">
             <summary>
             日志组件配置
+            </summary>
+        </member>
+        <member name="T:Model.Utils.Config.RedisSetting">
+            <summary>
+            Redis配置
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.RedisSetting.ConnectionString">
+            <summary>
+            连接字符串
+            </summary>
+            <remarks>使用读写分离、集群等功能时请配置<see cref="P:Model.Utils.Config.RedisSetting.ConnectionStrings"/>选项</remarks>
+        </member>
+        <member name="P:Model.Utils.Config.RedisSetting.ConnectionStrings">
+            <summary>
+            连接字符串
+            </summary>
+            <remarks>
+            <para>使用读写分离、集群等功能时请配置此选项</para>
+            <para>集合中的第一个连接将作为写入连接</para>
+            </remarks>
+        </member>
+        <member name="P:Model.Utils.Config.RedisSetting.Sentinels">
+            <summary>
+            哨兵
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.RedisSetting.RW_Splitting">
+            <summary>
+            是否设置读写分离
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.RedisSetting.ClientSideCachingCapacity">
+            <summary>
+            本地缓存容量
+            </summary>
+            <remarks>服务端要求 6.0 及以上版本</remarks>
+        </member>
+        <member name="P:Model.Utils.Config.RedisSetting.Subscribe">
+            <summary>
+            订阅集合
             </summary>
         </member>
         <member name="T:Model.Utils.Config.RunMode">
@@ -1516,6 +1718,31 @@
             说明
             </summary>
         </member>
+        <member name="T:Model.Utils.Config.SwaggerSetting">
+            <summary>
+            Swagger配置
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SwaggerSetting.XmlComments">
+            <summary>
+            说明文档相对路径
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SwaggerSetting.ApiVersion">
+            <summary>
+            接口版本说明
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SwaggerSetting.EnableApiMultiVersion">
+            <summary>
+            启用接口多版本说明
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Config.SwaggerSetting.ApiMultiVersion">
+            <summary>
+            接口多版本说明
+            </summary>
+        </member>
         <member name="T:Model.Utils.Config.SystemConfig">
             <summary>
             系统配置
@@ -1617,19 +1844,14 @@
             启用Swagger
             </summary>
         </member>
-        <member name="P:Model.Utils.Config.SystemConfig.SwaggerXmlComments">
+        <member name="P:Model.Utils.Config.SystemConfig.Swagger">
             <summary>
-            swagger说明文档
+            Swagger配置
             </summary>
         </member>
-        <member name="P:Model.Utils.Config.SystemConfig.SwaggerApiVersion">
+        <member name="P:Model.Utils.Config.SystemConfig.EnableCache">
             <summary>
-            swagger接口版本说明
-            </summary>
-        </member>
-        <member name="P:Model.Utils.Config.SystemConfig.SwaggerApiMultiVersion">
-            <summary>
-            swagger接口多版本说明
+            启用缓存
             </summary>
         </member>
         <member name="P:Model.Utils.Config.SystemConfig.DefaultCacheType">
@@ -1637,7 +1859,7 @@
             默认缓存类型
             </summary>
         </member>
-        <member name="P:Model.Utils.Config.SystemConfig.RedisConfig">
+        <member name="P:Model.Utils.Config.SystemConfig.Redis">
             <summary>
             Redis配置
             </summary>
@@ -1653,24 +1875,14 @@
             <para>支持通配符</para>
             </summary>
         </member>
-        <member name="P:Model.Utils.Config.SystemConfig.DefaultDatabaseType">
+        <member name="P:Model.Utils.Config.SystemConfig.EnableMultiDatabases">
             <summary>
-            默认数据库类型
+            启用多数据库
             </summary>
         </member>
-        <member name="P:Model.Utils.Config.SystemConfig.DefaultDatabaseConnectString">
+        <member name="P:Model.Utils.Config.SystemConfig.Database">
             <summary>
-            默认数据库连接字符串
-            </summary>
-        </member>
-        <member name="P:Model.Utils.Config.SystemConfig.EntityAssembly">
-            <summary>
-            实体类命名空间
-            </summary>
-        </member>
-        <member name="P:Model.Utils.Config.SystemConfig.MultiDatabases">
-            <summary>
-            是否多数据库
+            单数据库配置
             </summary>
         </member>
         <member name="P:Model.Utils.Config.SystemConfig.Databases">
@@ -1683,25 +1895,9 @@
             启用FreeSql
             </summary>
         </member>
-        <member name="P:Model.Utils.Config.SystemConfig.DbCacheFilter">
+        <member name="P:Model.Utils.Config.SystemConfig.FreeSql">
             <summary>
-            数据库缓存过滤（不将相同的变更提交数据库）
-            </summary>
-        </member>
-        <member name="P:Model.Utils.Config.SystemConfig.FreeSqlAutoSyncStructure">
-            <summary>
-            自动同步实体结构到数据库，程序运行中检查实体表是否存在，然后创建或修改
-            </summary>
-        </member>
-        <member name="P:Model.Utils.Config.SystemConfig.FreeSqlSyncStructureNameConvert">
-            <summary>
-            实体类名 -> 数据库表名，命名转换（类名、属性名都生效）
-            优先级小于 [Table(Name = "xxx")]、[Column(Name = "xxx")]
-            </summary>
-        </member>
-        <member name="P:Model.Utils.Config.SystemConfig.FreeSqlSyncStructureOnStartup">
-            <summary>
-            启动时同步实体类型集合到数据库
+            FreeSql配置
             </summary>
         </member>
         <member name="P:Model.Utils.Config.SystemConfig.EnableElasticsearch">
@@ -1709,34 +1905,19 @@
             启用ElasticSearch
             </summary>
         </member>
-        <member name="P:Model.Utils.Config.SystemConfig.ESNodes">
+        <member name="P:Model.Utils.Config.SystemConfig.Elasticsearch">
             <summary>
-            ElasticSearch集群
+            ElasticSearch配置
             </summary>
         </member>
-        <member name="P:Model.Utils.Config.SystemConfig.ESSecurityType">
+        <member name="P:Model.Utils.Config.SystemConfig.EnableKafka">
             <summary>
-            ElasticSearch安全验证类型
+            启用Kafka中间件
             </summary>
         </member>
-        <member name="P:Model.Utils.Config.SystemConfig.ESUserName">
+        <member name="P:Model.Utils.Config.SystemConfig.Kafka">
             <summary>
-            ElasticSearch用户名
-            </summary>
-        </member>
-        <member name="P:Model.Utils.Config.SystemConfig.ESPassword">
-            <summary>
-            ElasticSearch密码
-            </summary>
-        </member>
-        <member name="P:Model.Utils.Config.SystemConfig.ESKeyId">
-            <summary>
-            ElasticSearch密钥标识
-            </summary>
-        </member>
-        <member name="P:Model.Utils.Config.SystemConfig.ESApiKey">
-            <summary>
-            ElasticSearch接口密钥
+            kafka中间件配置
             </summary>
         </member>
         <member name="P:Model.Utils.Config.SystemConfig.EnableSoap">
@@ -1754,44 +1935,9 @@
             启用CAS
             </summary>
         </member>
-        <member name="P:Model.Utils.Config.SystemConfig.CASProtocolVersion">
+        <member name="P:Model.Utils.Config.SystemConfig.CAS">
             <summary>
-            协议版本号
-            </summary>
-        </member>
-        <member name="P:Model.Utils.Config.SystemConfig.CASCorsUrl">
-            <summary>
-            CAS跨域地址
-            </summary>
-        </member>
-        <member name="P:Model.Utils.Config.SystemConfig.CASBaseUrl">
-            <summary>
-            CAS地址
-            </summary>
-        </member>
-        <member name="P:Model.Utils.Config.SystemConfig.EnableCasSingleSignOut">
-            <summary>
-            启用单点注销
-            </summary>
-        </member>
-        <member name="P:Model.Utils.Config.SystemConfig.CASTGTUrl">
-            <summary>
-            CAS获取TGT票据地址
-            </summary>
-        </member>
-        <member name="P:Model.Utils.Config.SystemConfig.CASSTUrl">
-            <summary>
-            CAS生成ST票据地址
-            </summary>
-        </member>
-        <member name="P:Model.Utils.Config.SystemConfig.CASUserInfoUrl">
-            <summary>
-            CAS获取用户信息地址
-            </summary>
-        </member>
-        <member name="P:Model.Utils.Config.SystemConfig.CASDeleteSTUrl">
-            <summary>
-            CAS删除TGT地址
+            ElasticSearch配置
             </summary>
         </member>
         <member name="P:Model.Utils.Config.SystemConfig.EnableWeChatService">

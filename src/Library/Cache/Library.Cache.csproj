@@ -29,14 +29,11 @@ Redis缓存</Description>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FreeRedis" Version="0.3.0" />
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
-    <PackageReference Include="StackExchange.Redis" Version="2.2.4" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Configuration\Library.Configuration.csproj" />
-    <ProjectReference Include="..\Extension\Library.Extension.csproj" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="NodaTime" Version="3.0.5" />
   </ItemGroup>
 
 </Project>

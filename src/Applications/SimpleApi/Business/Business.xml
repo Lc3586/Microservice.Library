@@ -1539,6 +1539,88 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Business.Utils.Kafka.KafkaConsume`2">
+            <summary>
+            kafka消费者类
+            </summary>
+            <typeparam name="TKey">标识</typeparam>
+            <typeparam name="TValue">消息值</typeparam>
+        </member>
+        <member name="M:Business.Utils.Kafka.KafkaConsume`2.#ctor(Confluent.Kafka.ConsumerConfig)">
+            <summary>
+            
+            </summary>
+            <param name="config">配置</param>
+        </member>
+        <member name="F:Business.Utils.Kafka.KafkaConsume`2.Consumer">
+            <summary>
+            消费者
+            </summary>
+        </member>
+        <member name="F:Business.Utils.Kafka.KafkaConsume`2.CTS">
+            <summary>
+            取消订阅令牌集合
+            </summary>
+        </member>
+        <member name="F:Business.Utils.Kafka.KafkaConsume`2.ReceiveMessage">
+            <summary>
+            接收消息
+            </summary>
+            <remarks>
+            <para>参数1: 订阅</para>
+            <para>参数2: 消息</para>
+            </remarks>
+        </member>
+        <member name="M:Business.Utils.Kafka.KafkaConsume`2.Subscribe(System.String[])">
+            <summary>
+            订阅
+            </summary>
+            <param name="topics">订阅</param>
+        </member>
+        <member name="M:Business.Utils.Kafka.KafkaConsume`2.Cancle(System.String[])">
+            <summary>
+            取消订阅
+            </summary>
+            <param name="topics">订阅</param>
+        </member>
+        <member name="M:Business.Utils.Kafka.KafkaConsume`2.Consume(System.String)">
+            <summary>
+            消费
+            </summary>
+            <param name="topic">订阅</param>
+        </member>
+        <member name="T:Business.Utils.Kafka.KafkaProducer`2">
+            <summary>
+            kafka生产者类
+            </summary>
+            <typeparam name="TKey">标识</typeparam>
+            <typeparam name="TValue">消息值</typeparam>
+        </member>
+        <member name="M:Business.Utils.Kafka.KafkaProducer`2.#ctor(Confluent.Kafka.ProducerConfig)">
+            <summary>
+            
+            </summary>
+            <param name="config">配置</param>
+        </member>
+        <member name="F:Business.Utils.Kafka.KafkaProducer`2.Producer">
+            <summary>
+            生产者
+            </summary>
+        </member>
+        <member name="F:Business.Utils.Kafka.KafkaProducer`2.CTS">
+            <summary>
+            取消生产令牌集合
+            </summary>
+        </member>
+        <member name="M:Business.Utils.Kafka.KafkaProducer`2.Produce(System.String,System.Object,`1,System.TimeSpan)">
+            <summary>
+            生产
+            </summary>
+            <param name="topic">订阅</param>
+            <param name="key">标识</param>
+            <param name="messageValue">消息值</param>
+            <param name="timeout">超时时间（默认10秒）</param>
+        </member>
         <member name="T:Business.Utils.Log.ILogBusiness">
             <summary>
             日志业务接口类

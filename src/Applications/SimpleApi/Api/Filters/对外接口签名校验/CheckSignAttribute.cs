@@ -1,5 +1,6 @@
 ﻿using Business.Utils.Log;
-using Library.Cache;
+using Library.Cache.Gen;
+using Library.Cache.Services;
 using Library.Container;
 using Library.Extension;
 using Library.Http;
@@ -55,6 +56,8 @@ HttpHelper.SafeSignRequest
     {
         readonly SystemConfig Config = AutofacHelper.GetScopeService<SystemConfig>();
 
+        readonly ICache Cache = AutofacHelper.GetScopeService<ICacheProvider>().GetCache();
+
         /// <summary>
         /// Action执行之前执行
         /// </summary>
@@ -100,8 +103,8 @@ HttpHelper.SafeSignRequest
             }
 
             string guidKey = $"{Config.ProjectName}_apiGuid_{guid}";
-            if (CacheHelper.Cache.GetCache(guidKey).IsNullOrEmpty())
-                CacheHelper.Cache.SetCache(guidKey, "1", new TimeSpan(0, 10, 0));
+            if (Cache.GetCache(guidKey).IsNullOrEmpty())
+                Cache.SetCache(guidKey, "1", new TimeSpan(0, 10, 0));
             else
             {
                 ReturnError("禁止重复调用!");

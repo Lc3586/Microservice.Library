@@ -13,6 +13,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Confluent.Kafka" Version="1.5.3" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.3" />
   </ItemGroup>
 

@@ -21,7 +21,6 @@
     <ProjectReference Include="..\..\..\Library\NLogger\Library.NLogger.csproj" />
     <ProjectReference Include="..\..\..\Library\SelectOption\Library.SelectOption.csproj" />
     <ProjectReference Include="..\..\..\Library\TypeTool\Library.TypeTool.csproj" />
-    <ProjectReference Include="..\..\..\Library\WebApp\Library.WebApp.csproj" />
     <ProjectReference Include="..\Model\Model.csproj" />
   </ItemGroup>
 
@@ -36,6 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Confluent.Kafka" Version="1.5.3" />
     <PackageReference Include="NewId" Version="3.0.3" />
     <PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.8" />
   </ItemGroup>

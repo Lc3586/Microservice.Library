@@ -16,6 +16,18 @@
             <param name="services"></param>
             <param name="config"></param>
         </member>
+        <member name="T:Api.Configures.CacheConfigura">
+            <summary>
+            缓存配置类
+            </summary>
+        </member>
+        <member name="M:Api.Configures.CacheConfigura.RegisterCache(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.Utils.Config.SystemConfig)">
+            <summary>
+            注册缓存
+            </summary>
+            <param name="services"></param>
+            <param name="config"></param>
+        </member>
         <member name="T:Api.Configures.CASConfigura">
             <summary>
             CAS配置类
@@ -101,6 +113,25 @@
         <member name="M:Api.Configures.FreeSqlMultiDatabaseConfigura.ConfiguraFreeSqlMultiDatabase(Microsoft.AspNetCore.Builder.IApplicationBuilder,Model.Utils.Config.SystemConfig)">
             <summary>
             配置FreeSql多数据库服务
+            </summary>
+            <param name="app"></param>
+            <param name="config"></param>
+        </member>
+        <member name="T:Api.Configures.KafkaConfigura">
+            <summary>
+            Kafka中间件配置类
+            </summary>
+        </member>
+        <member name="M:Api.Configures.KafkaConfigura.RegisterKafka(Microsoft.Extensions.DependencyInjection.IServiceCollection,Model.Utils.Config.SystemConfig)">
+            <summary>
+            注册Kafka中间件
+            </summary>
+            <param name="services"></param>
+            <param name="config"></param>
+        </member>
+        <member name="M:Api.Configures.KafkaConfigura.ConfiguraKafka(Microsoft.AspNetCore.Builder.IApplicationBuilder,Model.Utils.Config.SystemConfig)">
+            <summary>
+            配置Kafka中间件
             </summary>
             <param name="app"></param>
             <param name="config"></param>
@@ -194,12 +225,11 @@
             <param name="services"></param>
             <param name="config"></param>
         </member>
-        <member name="M:Api.Configures.SwaggerMultiVersionConfigura.ConfiguraSwaggerMultiVersion(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Mvc.ApiExplorer.IApiVersionDescriptionProvider,Model.Utils.Config.SystemConfig)">
+        <member name="M:Api.Configures.SwaggerMultiVersionConfigura.ConfiguraSwaggerMultiVersion(Microsoft.AspNetCore.Builder.IApplicationBuilder,Model.Utils.Config.SystemConfig)">
             <summary>
             配置Swagger多版本文档
             </summary>
             <param name="app"></param>
-            <param name="apiVersionDescription"></param>
             <param name="config"></param>
         </member>
         <member name="T:Api.Configures.WeChatServiceConfigura">

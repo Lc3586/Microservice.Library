@@ -15,7 +15,9 @@ namespace Library.Container
         /// <returns></returns>
         public static T GetService<T>() where T : class
         {
+#if DEBUG
             var type = typeof(T);
+#endif
             return Container.Resolve<T>();
         }
 
@@ -47,7 +49,9 @@ namespace Library.Container
         /// <returns></returns>
         public static T GetScopeService<T>() where T : class
         {
+#if DEBUG
             var type = typeof(T);
+#endif
             return (T)GetService<IHttpContextAccessor>().HttpContext.RequestServices.GetService(typeof(T));
         }
 

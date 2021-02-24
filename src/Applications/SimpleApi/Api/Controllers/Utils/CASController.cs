@@ -139,7 +139,7 @@ namespace Api.Controllers.Utils
             await LogOut(tgt);
 
             if (logoutCAS)
-                Context.Response.Redirect($"{Config.CASBaseUrl}/logout?service={returnUrl}");
+                Context.Response.Redirect($"{Config.CAS.BaseUrl}/logout?service={returnUrl}");
             else
                 Context.Response.Redirect(returnUrl);
         }

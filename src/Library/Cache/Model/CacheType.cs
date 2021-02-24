@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library.Cache
+namespace Library.Cache.Model
 {
     /// <summary>
     /// 缓存类型

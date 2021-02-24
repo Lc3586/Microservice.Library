@@ -4,7 +4,6 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Autofac.Extras.DynamicProxy;
 using IocServiceDemo;
-using Library.Cache;
 using Library.Configuration;
 using Library.Container;
 using Library.TypeTool;
@@ -91,7 +90,15 @@ namespace Api
 
             //不是发布模式时，开放swagger接口文档
             if (Config.EnableSwagger && Config.RunMode != RunMode.Publish)
-                services.RegisterSwagger(Config);
+            {
+                if (Config.Swagger.EnableApiMultiVersion)
+                    services.RegisterSwaggerMultiVersion(Config);
+                else
+                    services.RegisterSwagger(Config);
+            }
+
+            if (Config.EnableCache)
+                services.RegisterCache(Config);
 
             if (Config.EnableSampleAuthentication)
                 services.RegisterSampleAuthentication(Config);
@@ -102,8 +109,16 @@ namespace Api
             if (Config.EnableElasticsearch)
                 services.RegisterElasticsearch(Config);
 
+            if (Config.EnableKafka)
+                services.RegisterKafka(Config);
+
             if (Config.EnableFreeSql)
-                services.RegisterFreeSql(Config);
+            {
+                if (Config.EnableMultiDatabases)
+                    services.RegisterFreeSqlMultiDatabase(Config);
+                else
+                    services.RegisterFreeSql(Config);
+            }
 
             if (Config.EnableAutoMapper)
                 services.RegisterAutoMapper(Config);
@@ -170,15 +185,14 @@ namespace Api
             })
             .UseRouting();
 
-            //配置缓存
-            CacheOption.Configure(option =>
-            {
-                option.CacheType = Config.DefaultCacheType;
-                option.RedisConfig = Config.RedisConfig;
-            });
-
+            //不是发布模式时，开放swagger接口文档
             if (Config.EnableSwagger && Config.RunMode != RunMode.Publish)
-                app.ConfiguraSwagger(Config);
+            {
+                if (Config.Swagger.EnableApiMultiVersion)
+                    app.ConfiguraSwaggerMultiVersion(Config);
+                else
+                    app.ConfiguraSwagger(Config);
+            }
 
             if (Config.EnableSampleAuthentication)
                 app.ConfiguraSampleAuthentication(Config);
@@ -189,8 +203,19 @@ namespace Api
             if (Config.EnableFreeSql)
                 app.ConfiguraFreeSql(Config);
 
+            if (Config.EnableFreeSql)
+            {
+                if (Config.EnableMultiDatabases)
+                    app.ConfiguraFreeSqlMultiDatabase(Config);
+                else
+                    app.ConfiguraFreeSql(Config);
+            }
+
             if (Config.EnableWeChatService)
                 app.ConfiguraWeChat(Config);
+
+            if (Config.EnableKafka)
+                app.ConfiguraKafka(Config);
 
             app.UseEndpoints(endpoints =>
             {

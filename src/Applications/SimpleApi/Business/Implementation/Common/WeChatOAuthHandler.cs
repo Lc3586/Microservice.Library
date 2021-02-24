@@ -7,7 +7,9 @@ using Entity.Common;
 using Entity.Public;
 using Entity.System;
 using FreeSql;
-using Library.Cache;
+using Library.Cache.Gen;
+using Library.Cache.Model;
+using Library.Cache.Services;
 using Library.Container;
 using Library.DataMapping.Gen;
 using Library.FreeSql.Extention;
@@ -38,6 +40,7 @@ namespace Business.Implementation.Common
         public WeChatOAuthHandler(
             IFreeSqlProvider freeSqlProvider,
             IAutoMapperProvider autoMapperProvider,
+            ICacheProvider cacheProvider,
             IOperationRecordBusiness operationRecordBusiness,
             IMemberBusiness memberBusiness,
             IUserBusiness userBusiness,
@@ -50,6 +53,7 @@ namespace Business.Implementation.Common
             Repository_Member = Orm.GetRepository<Public_Member, string>();
             Repository_MemberWeChatUserInfo = Orm.GetRepository<Public_MemberWeChatUserInfo, string>();
             Mapper = autoMapperProvider.GetMapper();
+            Cache = cacheProvider.GetCache();
             OperationRecordBusiness = operationRecordBusiness;
             MemberBusiness = memberBusiness;
             UserBusiness = userBusiness;
@@ -73,6 +77,8 @@ namespace Business.Implementation.Common
         IBaseRepository<Public_MemberWeChatUserInfo, string> Repository_MemberWeChatUserInfo { get; set; }
 
         IMapper Mapper { get; set; }
+
+        ICache Cache { get; set; }
 
         IOperationRecordBusiness OperationRecordBusiness { get; set; }
 
@@ -406,7 +412,7 @@ namespace Business.Implementation.Common
         public string GetState(StateInfo data)
         {
             var state = IdHelper.NextIdString().Replace("-", "");
-            CacheHelper.Cache.SetCache(state, data, TimeSpan.FromMinutes(20), ExpireType.Absolute);
+            Cache.SetCache(state, data, TimeSpan.FromMinutes(20), ExpireType.Absolute);
             return state;
         }
 
@@ -415,10 +421,10 @@ namespace Business.Implementation.Common
             if (string.IsNullOrWhiteSpace(state))
                 throw new ApplicationException("state参数不可为空.");
 
-            if (!CacheHelper.Cache.ContainsKey(state))
+            if (!Cache.ContainsKey(state))
                 throw new ApplicationException("state参数已过期.");
 
-            var stateInfo = CacheHelper.Cache.GetCache<StateInfo>(state);
+            var stateInfo = Cache.GetCache<StateInfo>(state);
 
             if (!Repository.Where(o => o.AppId == appId && o.OpenId == openId).Any())
             {
@@ -465,7 +471,7 @@ namespace Business.Implementation.Common
                 }
                 else if (stateInfo.Type == WeChatStateType.系统用户登录)
                 {
-                    Console.WriteLine("输出未绑定提示.");
+                    //Console.WriteLine("输出未绑定提示.");
                     context.Response.StatusCode = StatusCodes.Status403Forbidden;
                     context.Response.ContentType = "text/plain;charset=UTF-8";
                     await context.Response.WriteAsync("请先绑定微信.");
@@ -486,12 +492,12 @@ namespace Business.Implementation.Common
             if (string.IsNullOrWhiteSpace(state))
                 throw new ApplicationException("state参数不可为空.");
 
-            if (!CacheHelper.Cache.ContainsKey(state))
+            if (!Cache.ContainsKey(state))
                 throw new ApplicationException("state参数已过期.");
 
             UpdateWeChatUserInfo(appId, userinfo);
 
-            var stateInfo = CacheHelper.Cache.GetCache<StateInfo>(state);
+            var stateInfo = Cache.GetCache<StateInfo>(state);
 
             switch (stateInfo.Type)
             {

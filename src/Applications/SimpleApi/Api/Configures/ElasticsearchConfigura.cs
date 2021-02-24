@@ -20,19 +20,19 @@ namespace Api.Configures
         {
             services.AddElasticsearch(s =>
             {
-                if (config.ESNodes != null)
-                    if (config.ESNodes.Count() == 1)
-                        s.ElasticsearchGeneratorOptions.ConnectionSettings = new ConnectionSettings(config.ESNodes[0]);
+                if (config.Elasticsearch.Nodes != null)
+                    if (config.Elasticsearch.Nodes.Count() == 1)
+                        s.ElasticsearchGeneratorOptions.ConnectionSettings = new ConnectionSettings(config.Elasticsearch.Nodes[0]);
                     else
-                        s.ElasticsearchGeneratorOptions.ConnectionSettings = new ConnectionSettings(new StaticConnectionPool(config.ESNodes));
+                        s.ElasticsearchGeneratorOptions.ConnectionSettings = new ConnectionSettings(new StaticConnectionPool(config.Elasticsearch.Nodes));
 
-                switch (config.ESSecurityType)
+                switch (config.Elasticsearch.SecurityType)
                 {
                     case ESSecurityType.Basic:
-                        s.ElasticsearchGeneratorOptions.ConnectionSettings.BasicAuthentication(config.ESUserName, config.ESPassword);
+                        s.ElasticsearchGeneratorOptions.ConnectionSettings.BasicAuthentication(config.Elasticsearch.UserName, config.Elasticsearch.Password);
                         break;
                     case ESSecurityType.ApiKey:
-                        s.ElasticsearchGeneratorOptions.ConnectionSettings.ApiKeyAuthentication(config.ESKeyId, config.ESApiKey);
+                        s.ElasticsearchGeneratorOptions.ConnectionSettings.ApiKeyAuthentication(config.Elasticsearch.KeyId, config.Elasticsearch.ApiKey);
                         break;
                     case ESSecurityType.None:
                     default:

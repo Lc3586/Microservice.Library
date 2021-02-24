@@ -24,7 +24,7 @@ namespace Model.Utils.Config
         public DataType DatabaseType { get; set; }
 
         /// <summary>
-        /// 默认数据库连接字符串
+        /// 数据库连接字符串
         /// </summary>
         public string ConnectString { get; set; }
 

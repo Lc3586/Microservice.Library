@@ -50,7 +50,9 @@ namespace Api.Configures
                 {
                     OnRedirectToLogin = context =>
                     {
+#if DEBUG
                         Console.WriteLine("输出未登录提示.");
+#endif
                         context.Response.StatusCode = StatusCodes.Status401Unauthorized;
                         context.Response.ContentType = "text/plain;charset=UTF-8";
                         context.Response.WriteAsync("未登录.");
@@ -58,13 +60,15 @@ namespace Api.Configures
                     },
                     //OnRedirectToAccessDenied = context =>
                     //{
-                    //    Console.WriteLine("输出禁止访问提示.");
-                    //    context.Response.StatusCode = StatusCodes.Status403Forbidden;
-                    //    context.Response.ContentType = "text/plain;charset=UTF-8";
-                    //    context.Response.WriteAsync("拒绝访问.");
-                    //    return context.Response.CompleteAsync();
-                    //}
-                };
+//#if DEBUG
+//                    Console.WriteLine("输出禁止访问提示.");
+//#endif
+                //    context.Response.StatusCode = StatusCodes.Status403Forbidden;
+                //    context.Response.ContentType = "text/plain;charset=UTF-8";
+                //    context.Response.WriteAsync("拒绝访问.");
+                //    return context.Response.CompleteAsync();
+                //}
+            };
             });
 
             return services;

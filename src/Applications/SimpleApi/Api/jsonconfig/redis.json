@@ -1,0 +1,10 @@
+﻿{
+  "FreeRedis": {
+    "ConnectionString": "127.0.0.1:6379,password=123456,defaultDatabase=1",
+    "ConnectionStrings": null,
+    "Sentinels": null,
+    "RW_Splitting": false,
+    "ClientSideCachingCapacity": 3,
+    "Subscribe": []
+  }
+}

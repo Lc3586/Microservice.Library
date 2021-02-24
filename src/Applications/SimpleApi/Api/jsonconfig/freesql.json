@@ -1,0 +1,9 @@
+﻿{
+  "FreeSql": {
+    //开发选项，生产环境注释
+    "FreeSqlAutoSyncStructure": true,
+    "FreeSqlSyncStructureToLower": false,
+    "FreeSqlSyncStructureToUpper": false,
+    "FreeSqlSyncStructureOnStartup": true
+  }
+}

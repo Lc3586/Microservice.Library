@@ -1,7 +1,9 @@
-﻿using Library.Extension;
+﻿using Business.Utils.Log;
+using Library.Extension;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Model.Utils.Config;
+using Model.Utils.Log;
 using System;
 using System.Linq;
 
@@ -34,11 +36,11 @@ namespace Api.Configures
                         var text = $"Type : \"{arg.NoticeType}\", Key : \"{arg.Key}\", Exception : \"{arg.Exception?.GetExceptionAllMsg()}\", Log : \"{arg.Log}\"";
                         Console.WriteLine(text);
 
-                        NLog.LogManager.GetLogger("sysLogger").Trace(
-                            new NLog.LogEventInfo(
-                                NLog.LogLevel.Trace,
-                                "dbLogger",
-                                text));
+                        Logger.Log(
+                            NLog.LogLevel.Trace,
+                            LogType.系统跟踪,
+                            "FreeSql-IdleBus-Notice",
+                            text);
                     });
 
                 //设置生成配置
@@ -61,32 +63,32 @@ namespace Api.Configures
 
                             options.FreeSqlGeneratorOptions.MonitorCommandExecuting = (cmd) =>
                             {
-                                NLog.LogManager.GetLogger("sysLogger").Trace(
-                                    new NLog.LogEventInfo(
-                                        NLog.LogLevel.Trace,
-                                        "dbLogger",
-                                        cmd.CommandText));
+                                Logger.Log(
+                                    NLog.LogLevel.Trace,
+                                    LogType.系统跟踪,
+                                    "FreeSql-MonitorCommandExecuting",
+                                    cmd.CommandText);
                             };
                             options.FreeSqlGeneratorOptions.MonitorCommandExecuted = (cmd, log) =>
                             {
-                                NLog.LogManager.GetLogger("sysLogger").Trace(
-                                    new NLog.LogEventInfo(
-                                        NLog.LogLevel.Trace,
-                                        "dbLogger",
-                                        $"命令 {cmd},日志 {log}."));
+                                Logger.Log(
+                                    NLog.LogLevel.Trace,
+                                    LogType.系统跟踪,
+                                    "FreeSql-MonitorCommandExecuted",
+                                     $"命令: {cmd.CommandText},\r\n日志: {log}.");
                             };
                             options.FreeSqlGeneratorOptions.HandleCommandLog = (content) =>
                             {
-                                NLog.LogManager.GetLogger("sysLogger").Trace(
-                                    new NLog.LogEventInfo(
-                                        NLog.LogLevel.Trace,
-                                        "dbLogger",
-                                        content));
+                                Logger.Log(
+                                    NLog.LogLevel.Trace,
+                                    LogType.系统跟踪,
+                                    "FreeSql-MonitorCommandExecuting",
+                                    content);
                             };
 
-                            options.FreeSqlDevOptions.AutoSyncStructure = config.FreeSqlAutoSyncStructure;
-                            options.FreeSqlDevOptions.SyncStructureNameConvert = config.FreeSqlSyncStructureNameConvert;
-                            options.FreeSqlDevOptions.SyncStructureOnStartup = config.FreeSqlSyncStructureOnStartup;
+                            options.FreeSqlDevOptions.AutoSyncStructure = config.FreeSql.AutoSyncStructure;
+                            options.FreeSqlDevOptions.SyncStructureNameConvert = config.FreeSql.SyncStructureNameConvert;
+                            options.FreeSqlDevOptions.SyncStructureOnStartup = config.FreeSql.SyncStructureOnStartup;
 
                             options.FreeSqlDbContextOptions.EnableAddOrUpdateNavigateList = true;
                             options.FreeSqlDbContextOptions.EntityAssembly = d.EntityAssembly;

@@ -1,0 +1,25 @@
+﻿{
+  "Kafka": {
+    //生产者
+    "EnableProducer": false,
+    "ProducerGroupId": "",
+    "ProducerServers": "",
+    "ProducerTopics": [],
+    "ProducerAuthServer": "",
+    "ProducerAuthCode": "",
+    "ProducerAuthClientId": "",
+    "ProducerAuthClientSecret": "",
+    "ProducerAuthProvisionKey": "",
+
+    //消费者
+    "EnableConsume": false,
+    "ConsumeGroupId": "test-consumer-group",
+    "ConsumeServers": "127.0.0.1:2161",
+    "ConsumeTopics": [ "debug", "test" ],
+    "ConsumeAuthServer": "",
+    "ConsumeAuthCode": "",
+    "ConsumeAuthClientId": "",
+    "ConsumeAuthClientSecret": "",
+    "ConsumeAuthProvisionKey": ""
+  }
+}

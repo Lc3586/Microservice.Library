@@ -31,11 +31,11 @@ namespace Api.Configures
             {
                 #region 配置文档
 
-                s.SwaggerDoc(config.SwaggerApiVersion.Version, new OpenApiInfo
+                s.SwaggerDoc(config.Swagger.ApiVersion.Version, new OpenApiInfo
                 {
-                    Title = config.SwaggerApiVersion.Title,
-                    Version = config.SwaggerApiVersion.Version,
-                    Description = config.SwaggerApiVersion.Description
+                    Title = config.Swagger.ApiVersion.Title,
+                    Version = config.Swagger.ApiVersion.Version,
+                    Description = config.Swagger.ApiVersion.Description
                 });
 
                 #endregion
@@ -65,7 +65,7 @@ namespace Api.Configures
 
                 //获取应用程序所在目录（绝对，不受工作目录影响，建议采用此方法获取路径）
                 var basePath = Path.GetDirectoryName(typeof(Program).Assembly.Location);
-                foreach (var item in config.SwaggerXmlComments)
+                foreach (var item in config.Swagger.XmlComments)
                 {
                     var xmlPath = Path.Combine(basePath, item);
 
@@ -128,11 +128,11 @@ namespace Api.Configures
             });
             app.UseSwaggerUI(s =>
             {
-                s.SwaggerEndpoint($"/swagger/{config.SwaggerApiVersion.Version}/swagger.json", config.SwaggerApiVersion.Name);
+                s.SwaggerEndpoint($"/swagger/{config.Swagger.ApiVersion.Version}/swagger.json", config.Swagger.ApiVersion.Name);
 
                 #region 页面自定义选项
 
-                s.DocumentTitle = config.SwaggerApiVersion.Title;//页面标题
+                s.DocumentTitle = config.Swagger.ApiVersion.Title;//页面标题
                 s.DisplayOperationId();//显示操作Id
                 s.DisplayRequestDuration();//显示请求持续时间
                 s.EnableFilter();//启用顶部筛选框

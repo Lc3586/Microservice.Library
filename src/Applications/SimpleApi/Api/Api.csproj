@@ -356,6 +356,6 @@
     <Folder Include="wwwroot\upload\" />
   </ItemGroup>
 
-  <ProjectExtensions><VisualStudio><UserProperties jsonconfig_4database_1json__JsonSchema="https://json.schemastore.org/appsettings" /></VisualStudio></ProjectExtensions>
+  <ProjectExtensions><VisualStudio><UserProperties jsonconfig_4database_1json__JsonSchema="https://json.schemastore.org/appsettings" jsonconfig_4swagger_1json__JsonSchema="https://json.schemastore.org/appsettings" /></VisualStudio></ProjectExtensions>
 
 </Project>

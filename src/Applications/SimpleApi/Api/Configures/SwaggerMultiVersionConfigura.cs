@@ -43,7 +43,7 @@ namespace Api.Configures
                 services.AddTransient(s => s.GetRequiredService<IOptions<SwaggerApiMultiVersionDescriptionOptions>>().Value);
                 services.Configure<SwaggerApiMultiVersionDescriptionOptions>(options =>
                 {
-                    options.ApiMultiVersionDescription = config.SwaggerApiMultiVersion;
+                    options.ApiMultiVersionDescription = config.Swagger.ApiMultiVersion;
                 });
 
                 #endregion
@@ -70,7 +70,7 @@ namespace Api.Configures
                 #region 为JSON文件和UI设置xml文档路径
 
                 var basePath = Path.GetDirectoryName(typeof(Program).Assembly.Location);//获取应用程序所在目录（绝对，不受工作目录影响，建议采用此方法获取路径）
-                foreach (var item in config.SwaggerXmlComments)
+                foreach (var item in config.Swagger.XmlComments)
                 {
                     var xmlPath = Path.Combine(basePath, item);
 
@@ -94,10 +94,11 @@ namespace Api.Configures
         /// 配置Swagger多版本文档
         /// </summary>
         /// <param name="app"></param>
-        /// <param name="apiVersionDescription"></param>
         /// <param name="config"></param>
-        public static IApplicationBuilder ConfiguraSwaggerMultiVersion(this IApplicationBuilder app, IApiVersionDescriptionProvider apiVersionDescription, SystemConfig config)
+        public static IApplicationBuilder ConfiguraSwaggerMultiVersion(this IApplicationBuilder app, SystemConfig config)
         {
+            var apiVersionDescription = app.ApplicationServices.GetService<IApiVersionDescriptionProvider>();
+
             #region 方言配置（展示用，普通项目无需添加此内容）
 
             var supportedCultures = new[]

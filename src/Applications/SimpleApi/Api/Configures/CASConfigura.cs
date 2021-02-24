@@ -68,7 +68,9 @@ namespace Api.Configures
                         }
                         else
                         {
-                            Console.WriteLine("输出未登录提示");
+#if DEBUG
+                            Console.WriteLine("输出未登录提示.");
+#endif
                             context.Response.StatusCode = StatusCodes.Status401Unauthorized;
                             context.Response.WriteAsync("未登录");
                             return context.Response.CompleteAsync();
@@ -90,7 +92,7 @@ namespace Api.Configures
                         }
 
                         // Single Sign-Out
-                        var casUrl = new Uri(config.CASBaseUrl);
+                        var casUrl = new Uri(config.CAS.BaseUrl);
                         var redirectUri = UriHelper.BuildAbsolute(
                             casUrl.Scheme,
                             new HostString(casUrl.Host, casUrl.Port),
@@ -112,11 +114,11 @@ namespace Api.Configures
             })
             .AddCAS(options =>
             {
-                options.CasServerUrlBase = config.CASBaseUrl;
+                options.CasServerUrlBase = config.CAS.BaseUrl;
                 options.AccessDeniedPath = new PathString("/cas/access-denied");
                 // required for CasSingleSignOutMiddleware
                 options.SaveTokens = true;
-                var protocolVersion = config.CASProtocolVersion;
+                var protocolVersion = config.CAS.ProtocolVersion;
                 if (protocolVersion != "3")
                 {
                     switch (protocolVersion)
@@ -184,7 +186,7 @@ namespace Api.Configures
         public static IApplicationBuilder ConfiguraCAS(this IApplicationBuilder app, SystemConfig config)
         {
             //启用单点注销
-            if (config.EnableCasSingleSignOut)
+            if (config.CAS.EnableSingleSignOut)
                 app.UseMiddleware<Middleware.CasSingleSignOutMiddleware>();
 
             app.UseAuthentication();

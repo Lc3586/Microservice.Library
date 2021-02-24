@@ -1,5 +1,5 @@
-{
-  //SoapÅäÖÃ
+ï»¿{
+  //Soapé…ç½®
   "Soaps": [
     {
       "Name": "SampleService",
@@ -25,7 +25,7 @@
       "ImplementationType": "Api.Services.Example.SampleService",
       "Serializer": "Xml",
       "Path": "/SampleService.asmx",
-      //×Ô¶¨Òå·µ»Ø±¨ÎÄ
+      //è‡ªå®šä¹‰è¿”å›æŠ¥æ–‡
       "CustomResponse": "<?xml version=\"1.0\" encoding=\"utf-8\"?><body><response>{{result}}</response></body>"
     }
   ]

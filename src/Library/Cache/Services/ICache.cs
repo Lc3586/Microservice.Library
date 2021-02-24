@@ -1,6 +1,7 @@
-﻿using System;
+﻿using Library.Cache.Model;
+using System;
 
-namespace Library.Cache
+namespace Library.Cache.Services
 {
     /// <summary>
     /// 缓存操作接口类
@@ -18,8 +19,8 @@ namespace Library.Cache
 
         /// <summary>
         /// 设置缓存
-        /// 注：默认过期类型为绝对过期
         /// </summary>
+        /// <remarks>默认过期类型为绝对过期</remarks>
         /// <param name="key">主键</param>
         /// <param name="value">值</param>
         /// <param name="timeout">过期时间间隔</param>
@@ -27,13 +28,12 @@ namespace Library.Cache
 
         /// <summary>
         /// 设置缓存
-        /// 注：默认过期类型为绝对过期
         /// </summary>
         /// <param name="key">主键</param>
         /// <param name="value">值</param>
         /// <param name="timeout">过期时间间隔</param>
         /// <param name="expireType">过期类型</param>
-        void SetCache(string key, object value, TimeSpan timeout, ExpireType expireType);
+        void SetCache(string key, object value, TimeSpan timeout, ExpireType expireType = ExpireType.Absolute);
 
         /// <summary>
         /// 设置键失效时间
@@ -78,57 +78,4 @@ namespace Library.Cache
 
         #endregion
     }
-
-    #region 类型定义
-
-    /// <summary>
-    /// 值信息
-    /// </summary>
-    public struct ValueInfoEntry
-    {
-        public string Value { get; set; }
-        public string TypeName { get; set; }
-        public TimeSpan? ExpireTime { get; set; }
-        public ExpireType? ExpireType { get; set; }
-
-        public override bool Equals(object obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override int GetHashCode()
-        {
-            throw new NotImplementedException();
-        }
-
-        public static bool operator ==(ValueInfoEntry left, ValueInfoEntry right)
-        {
-            return left.Equals(right);
-        }
-
-        public static bool operator !=(ValueInfoEntry left, ValueInfoEntry right)
-        {
-            return !(left == right);
-        }
-    }
-
-    /// <summary>
-    /// 过期类型
-    /// </summary>
-    public enum ExpireType
-    {
-        /// <summary>
-        /// 绝对过期
-        /// 注：即自创建一段时间后就过期
-        /// </summary>
-        Absolute,
-
-        /// <summary>
-        /// 相对过期
-        /// 注：即该键未被访问后一段时间后过期，若此键一直被访问则过期时间自动延长
-        /// </summary>
-        Relative,
-    }
-
-    #endregion
 }

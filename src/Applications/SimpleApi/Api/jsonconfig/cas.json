@@ -1,0 +1,8 @@
+﻿{
+  "CAS": {
+    "ProtocolVersion": "custom",
+    "CorsUrl": null,
+    "BaseUrl": null,
+    "EnableSingleSignOut": true
+  }
+}

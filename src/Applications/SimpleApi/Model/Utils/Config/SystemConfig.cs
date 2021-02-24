@@ -1,8 +1,6 @@
-﻿using FreeSql;
-using FreeSql.Internal;
-using Library.Cache;
+﻿using Library.Cache.Application;
+using Library.Cache.Model;
 using Library.Configuration.Annotations;
-using System;
 using System.Collections.Generic;
 
 namespace Model.Utils.Config
@@ -137,23 +135,19 @@ namespace Model.Utils.Config
         public bool EnableSwagger { get; set; }
 
         /// <summary>
-        /// swagger说明文档
+        /// Swagger配置
         /// </summary>
-        public List<string> SwaggerXmlComments { get; set; }
-
-        /// <summary>
-        /// swagger接口版本说明
-        /// </summary>
-        public SwaggerApiVersionDescription SwaggerApiVersion { get; set; }
-
-        /// <summary>
-        /// swagger接口多版本说明
-        /// </summary>
-        public List<SwaggerApiMultiVersionDescription> SwaggerApiMultiVersion { get; set; }
+        [JsonConfig("jsonconfig/swagger.json")]
+        public SwaggerSetting Swagger { get; set; }
 
         #endregion
 
         #region 缓存
+
+        /// <summary>
+        /// 启用缓存
+        /// </summary>
+        public bool EnableCache { get; set; }
 
         /// <summary>
         /// 默认缓存类型
@@ -163,7 +157,8 @@ namespace Model.Utils.Config
         /// <summary>
         /// Redis配置
         /// </summary>
-        public string RedisConfig { get; set; }
+        [JsonConfig("jsonconfig/redis.json")]
+        public RedisSetting Redis { get; set; }
 
         #endregion
 
@@ -185,29 +180,20 @@ namespace Model.Utils.Config
         #region 数据库
 
         /// <summary>
-        /// 默认数据库类型
+        /// 启用多数据库
         /// </summary>
-        public DataType DefaultDatabaseType { get; set; }
+        public bool EnableMultiDatabases { get; set; }
 
         /// <summary>
-        /// 默认数据库连接字符串
+        /// 单数据库配置
         /// </summary>
-        public string DefaultDatabaseConnectString { get; set; }
-
-        /// <summary>
-        /// 实体类命名空间
-        /// </summary>
-        public List<string> EntityAssembly { get; set; }
-
-        /// <summary>
-        /// 是否多数据库
-        /// </summary>
-        public bool MultiDatabases { get; set; }
+        [JsonConfig("jsonconfig/database.json", "Single")]
+        public DatabaseSetting Database { get; set; }
 
         /// <summary>
         /// 多数据库配置
         /// </summary>
-        [JsonConfig("jsonconfig/database.json")]//独立的配置文件
+        [JsonConfig("jsonconfig/database.json", "Multi")]
         public List<DatabaseSetting> Databases { get; set; }
 
         #endregion
@@ -220,25 +206,10 @@ namespace Model.Utils.Config
         public bool EnableFreeSql { get; set; }
 
         /// <summary>
-        /// 数据库缓存过滤（不将相同的变更提交数据库）
+        /// FreeSql配置
         /// </summary>
-        public bool DbCacheFilter { get; set; }
-
-        /// <summary>
-        /// 自动同步实体结构到数据库，程序运行中检查实体表是否存在，然后创建或修改
-        /// </summary>
-        public bool FreeSqlAutoSyncStructure { get; set; }
-
-        /// <summary>
-        /// 实体类名 -> 数据库表名，命名转换（类名、属性名都生效）
-        /// 优先级小于 [Table(Name = "xxx")]、[Column(Name = "xxx")]
-        /// </summary>
-        public NameConvertType? FreeSqlSyncStructureNameConvert { get; set; }
-
-        /// <summary>
-        /// 启动时同步实体类型集合到数据库
-        /// </summary>
-        public bool FreeSqlSyncStructureOnStartup { get; set; }
+        [JsonConfig("jsonconfig/freesql.json")]
+        public FreeSqlSetting FreeSql { get; set; }
 
         #endregion
 
@@ -250,34 +221,25 @@ namespace Model.Utils.Config
         public bool EnableElasticsearch { get; set; }
 
         /// <summary>
-        /// ElasticSearch集群
+        /// ElasticSearch配置
         /// </summary>
-        public List<Uri> ESNodes { get; set; }
+        [JsonConfig("jsonconfig/elasticsearch.json")]
+        public ElasticsearchSetting Elasticsearch { get; set; }
+
+        #endregion
+
+        #region Kafka中间件
 
         /// <summary>
-        /// ElasticSearch安全验证类型
+        /// 启用Kafka中间件
         /// </summary>
-        public ESSecurityType ESSecurityType { get; set; }
+        public bool EnableKafka { get; set; }
 
         /// <summary>
-        /// ElasticSearch用户名
+        /// kafka中间件配置
         /// </summary>
-        public string ESUserName { get; set; }
-
-        /// <summary>
-        /// ElasticSearch密码
-        /// </summary>
-        public string ESPassword { get; set; }
-
-        /// <summary>
-        /// ElasticSearch密钥标识
-        /// </summary>
-        public string ESKeyId { get; set; }
-
-        /// <summary>
-        /// ElasticSearch接口密钥
-        /// </summary>
-        public string ESApiKey { get; set; }
+        [JsonConfig("jsonconfig/kafka.json")]
+        public KafkaSetting Kafka { get; set; }
 
         #endregion
 
@@ -304,44 +266,10 @@ namespace Model.Utils.Config
         public bool EnableCAS { get; set; }
 
         /// <summary>
-        /// 协议版本号
+        /// ElasticSearch配置
         /// </summary>
-        public string CASProtocolVersion { get; set; }
-
-        /// <summary>
-        /// CAS跨域地址
-        /// </summary>
-        public List<string> CASCorsUrl { get; set; }
-
-        /// <summary>
-        /// CAS地址
-        /// </summary>
-        public string CASBaseUrl { get; set; }
-
-        /// <summary>
-        /// 启用单点注销
-        /// </summary>
-        public bool EnableCasSingleSignOut { get; set; }
-
-        /// <summary>
-        /// CAS获取TGT票据地址
-        /// </summary>
-        public string CASTGTUrl { get; set; }
-
-        /// <summary>
-        /// CAS生成ST票据地址
-        /// </summary>
-        public string CASSTUrl { get; set; }
-
-        /// <summary>
-        /// CAS获取用户信息地址
-        /// </summary>
-        public string CASUserInfoUrl { get; set; }
-
-        /// <summary>
-        /// CAS删除TGT地址
-        /// </summary>
-        public string CASDeleteSTUrl { get; set; }
+        [JsonConfig("jsonconfig/cas.json")]
+        public CASSetting CAS { get; set; }
 
         #endregion
 

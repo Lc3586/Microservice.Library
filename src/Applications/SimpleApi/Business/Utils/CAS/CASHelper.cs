@@ -27,7 +27,7 @@ namespace Business.Utils.CAS
         /// <returns></returns>
         public static async Task<string> GetTGT(GetTGT getTGT)
         {
-            (HttpStatusCode, string) response = HttpHelper.PostDataWithState(Config.CASTGTUrl, new Dictionary<string, object>() { { "username", getTGT.Username }, { "password", getTGT.Password } });
+            (HttpStatusCode, string) response = HttpHelper.PostDataWithState(Config.CAS.TGTUrl, new Dictionary<string, object>() { { "username", getTGT.Username }, { "password", getTGT.Password } });
             if (response.Item1 != HttpStatusCode.Created)
                 throw new MessageException("用户名或密码有误");
             if (!GetTGT(response.Item2, out string tgt))
@@ -42,7 +42,7 @@ namespace Business.Utils.CAS
         /// <returns></returns>
         public static async Task<string> DeleteTGT(LogOut logOut)
         {
-            (HttpStatusCode, string) response = HttpHelper.RequestData(HttpMethod.Delete, string.Format(Config.CASDeleteSTUrl, logOut.TGT));
+            (HttpStatusCode, string) response = HttpHelper.RequestData(HttpMethod.Delete, string.Format(Config.CAS.DeleteSTUrl, logOut.TGT));
             if (response.Item1 != HttpStatusCode.OK)
                 throw new MessageException("注销失败");
             return await Task.FromResult(response.Item2);
@@ -55,7 +55,7 @@ namespace Business.Utils.CAS
         /// <returns></returns>
         public static async Task<string> GetST(GetST getST)
         {
-            (HttpStatusCode, string) response = HttpHelper.PostDataWithState(string.Format(Config.CASSTUrl + "?service={1}", getST.TGT, getST.Service ?? Config.WebRootUrl));
+            (HttpStatusCode, string) response = HttpHelper.PostDataWithState(string.Format(Config.CAS.STUrl + "?service={1}", getST.TGT, getST.Service ?? Config.WebRootUrl));
             if (response.Item1 != HttpStatusCode.OK)
                 throw new MessageException(response.Item2);
             return await Task.FromResult(response.Item2);
@@ -68,7 +68,7 @@ namespace Business.Utils.CAS
         /// <returns></returns>
         public static async Task<UserInfo> GetUserInfo(GetUserInfo getUserInfo)
         {
-            (HttpStatusCode, string) response = HttpHelper.GetDataWithState(Config.CASUserInfoUrl, new Dictionary<string, object>() { { "service", getUserInfo.Service ?? Config.WebRootUrl }, { "ticket", getUserInfo.ST } });
+            (HttpStatusCode, string) response = HttpHelper.GetDataWithState(Config.CAS.UserInfoUrl, new Dictionary<string, object>() { { "service", getUserInfo.Service ?? Config.WebRootUrl }, { "ticket", getUserInfo.ST } });
             if (response.Item1 != HttpStatusCode.OK)
                 throw new MessageException("验证失败", ErrorCode.validation);
             if (!GetUserInfo(response.Item2, out UserInfo userInfo))

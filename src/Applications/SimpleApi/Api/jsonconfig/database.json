@@ -1,22 +1,28 @@
-{
-  //¶àÊı¾İ¿âÅäÖÃ
-  "Databases": [
+ï»¿{
+  //å•æ•°æ®åº“é…ç½®
+  "Single": {
+    "ConnectString": "Server=;Database=;User Id=;Password=;",
+    "DatabaseType": "SqlServer",
+    "EntityAssembly": [ "Entity" ]
+  },
+  //å¤šæ•°æ®åº“é…ç½®
+  "Multi": [
     {
-      "Name": "Î¢Èí",
+      "Name": "å¾®è½¯",
       "Enable": false,
       "ConnectString": "Server=url;Database=database;User Id=uid;Password=pwd;",
       "DatabaseType": "SqlServer",
       "EntityAssembly": "Entity"
     },
     {
-      "Name": "´ïÃÎ",
+      "Name": "è¾¾æ¢¦",
       "Enable": false,
       "ConnectString": "server=url;port=port;user id=uid;password=pwd;database=databse;poolsize=1",
       "DatabaseType": "Dameng",
       "EntityAssembly": "Entity"
     },
     {
-      "Name": "¼×¹ÇÎÄ",
+      "Name": "Oracle",
       "Enable": false,
       "ConnectString": "user id=uid;password=pwd;data source=//ip:port/ORCL;Pooling=true;Min Pool Size=1;",
       "DatabaseType": "Oracle",

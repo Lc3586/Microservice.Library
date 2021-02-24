@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Business.Utils.Log;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Model.Utils.Config;
+using Model.Utils.Log;
 
 namespace Api.Configures
 {
@@ -18,41 +20,41 @@ namespace Api.Configures
         {
             services.AddFreeSql(s =>
             {
-                s.FreeSqlGeneratorOptions.ConnectionString = config.DefaultDatabaseConnectString;
-                s.FreeSqlGeneratorOptions.DatabaseType = config.DefaultDatabaseType;
+                s.FreeSqlGeneratorOptions.ConnectionString = config.Database.ConnectString;
+                s.FreeSqlGeneratorOptions.DatabaseType = config.Database.DatabaseType;
                 s.FreeSqlGeneratorOptions.LazyLoading = true;
                 s.FreeSqlGeneratorOptions.MonitorCommandExecuting = (cmd) =>
                 {
-                    NLog.LogManager.GetLogger("sysLogger").Log(
-                        new NLog.LogEventInfo(
-                            NLog.LogLevel.Trace,
-                            "dbLogger-Executing",
-                            cmd.CommandText));
+                    Logger.Log(
+                        NLog.LogLevel.Trace,
+                        LogType.系统跟踪,
+                        "FreeSql-MonitorCommandExecuting",
+                        cmd.CommandText);
                 };
                 s.FreeSqlGeneratorOptions.MonitorCommandExecuted = (cmd, log) =>
                 {
-                    NLog.LogManager.GetLogger("sysLogger").Log(
-                        new NLog.LogEventInfo(
-                            NLog.LogLevel.Trace,
-                            "dbLogger-Executed",
-                            log));
+                    Logger.Log(
+                        NLog.LogLevel.Trace,
+                        LogType.系统跟踪,
+                        "FreeSql-MonitorCommandExecuted",
+                         $"命令: {cmd.CommandText},\r\n日志: {log}.");
                 };
                 s.FreeSqlGeneratorOptions.HandleCommandLog = (content) =>
                 {
-                    NLog.LogManager.GetLogger("sysLogger").Trace(
-                        new NLog.LogEventInfo(
-                            NLog.LogLevel.Trace,
-                            "dbLogger",
-                            content));
+                    Logger.Log(
+                        NLog.LogLevel.Trace,
+                        LogType.系统跟踪,
+                        "FreeSql-HandleCommandLog",
+                        content);
                 };
                 s.FreeSqlDevOptions.SyncStructureNameConvert = FreeSql.Internal.NameConvertType.PascalCaseToUnderscoreWithLower;
 
-                s.FreeSqlDevOptions.AutoSyncStructure = config.FreeSqlAutoSyncStructure;
-                s.FreeSqlDevOptions.SyncStructureNameConvert = config.FreeSqlSyncStructureNameConvert;
-                s.FreeSqlDevOptions.SyncStructureOnStartup = config.FreeSqlSyncStructureOnStartup;
+                s.FreeSqlDevOptions.AutoSyncStructure = config.FreeSql.AutoSyncStructure;
+                s.FreeSqlDevOptions.SyncStructureNameConvert = config.FreeSql.SyncStructureNameConvert;
+                s.FreeSqlDevOptions.SyncStructureOnStartup = config.FreeSql.SyncStructureOnStartup;
 
                 s.FreeSqlDbContextOptions.EnableAddOrUpdateNavigateList = true;
-                s.FreeSqlDbContextOptions.EntityAssembly = config.EntityAssembly;
+                s.FreeSqlDbContextOptions.EntityAssembly = config.Database.EntityAssembly;
             });
 
             return services;
