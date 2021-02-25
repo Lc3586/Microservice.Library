@@ -882,6 +882,20 @@
             <param name="roleId">角色Id</param>
             <returns></returns>
         </member>
+        <member name="M:Api.Controllers.AuthoritiesController.IsSuperAdminUser(System.String)">
+            <summary>
+            是否为超级管理员
+            </summary>
+            <param name="userId">用户Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.AuthoritiesController.IsSuperAdminRole(System.String)">
+            <summary>
+            是否为超级管理角色
+            </summary>
+            <param name="roleId">角色Id</param>
+            <returns></returns>
+        </member>
         <member name="M:Api.Controllers.AuthoritiesController.IsAdminUser(System.String)">
             <summary>
             是否为管理员
@@ -1273,23 +1287,7 @@
             基控制器
             </summary>
         </member>
-        <member name="M:Api.Controllers.Utils.BaseController.JsonContent``1(Model.Utils.Result.AjaxResult{System.Collections.Generic.List{``0}})">
-            <summary>
-            返回JSON
-            </summary>
-            <typeparam name="TOpenApiSchema">接口架构类型</typeparam>
-            <param name="result"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Api.Controllers.Utils.BaseController.JsonContent``1(Model.Utils.Result.AjaxResult{``0})">
-            <summary>
-            返回JSON
-            </summary>
-            <typeparam name="TOpenApiSchema">接口架构类型</typeparam>
-            <param name="result"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Api.Controllers.Utils.BaseController.JsonContent``1(``0)">
+        <member name="M:Api.Controllers.Utils.BaseController.OpenApiJsonContent``1(``0)">
             <summary>
             返回JSON
             </summary>
@@ -1297,7 +1295,22 @@
             <param name="obj"></param>
             <returns></returns>
         </member>
-        <member name="M:Api.Controllers.Utils.BaseController.JsonContent``1(System.Collections.Generic.List{``0},Model.Utils.Pagination.PaginationDTO,System.Boolean,System.String)">
+        <member name="M:Api.Controllers.Utils.BaseController.OpenApiJsonContent``1(System.Object)">
+            <summary>
+            返回JSON
+            </summary>
+            <typeparam name="TOpenApiSchema">接口架构类型</typeparam>
+            <param name="result"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.Utils.BaseController.JsonContent(System.Object)">
+            <summary>
+            返回JSON
+            </summary>
+            <param name="result"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.Utils.BaseController.OpenApiJsonContent``1(System.Collections.Generic.List{``0},Model.Utils.Pagination.PaginationDTO,System.Boolean,System.String)">
             <summary>
             返回JSON
             </summary>
@@ -1308,7 +1321,18 @@
             <param name="error"></param>
             <returns></returns>
         </member>
-        <member name="M:Api.Controllers.Utils.BaseController.JsonContent(System.Object,Model.Utils.Pagination.PaginationDTO,System.Boolean,System.String)">
+        <member name="M:Api.Controllers.Utils.BaseController.OpenApiJsonContent``1(System.Collections.Generic.List{System.Object},Model.Utils.Pagination.PaginationDTO,System.Boolean,System.String)">
+            <summary>
+            返回JSON
+            </summary>
+            <typeparam name="TOpenApiSchema">接口架构类型</typeparam>
+            <param name="obj"></param>
+            <param name="pagination"></param>
+            <param name="success"></param>
+            <param name="error"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Api.Controllers.Utils.BaseController.JsonContent(System.Collections.Generic.List{System.Object},Model.Utils.Pagination.PaginationDTO,System.Boolean,System.String)">
             <summary>
             返回JSON
             </summary>

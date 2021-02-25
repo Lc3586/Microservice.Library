@@ -4,6 +4,7 @@ using Library.Extension;
 using Microsoft.AspNetCore.Mvc;
 using Model.System.ResourcesDTO;
 using Model.Utils.Pagination;
+using Model.Utils.Result;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,7 +44,7 @@ namespace Api.Controllers
         [SwaggerResponse((int)HttpStatusCode.OK, "列表数据", typeof(List))]
         public async Task<object> GetList([FromBody] PaginationDTO pagination)
         {
-            return JsonContent(await Task.FromResult(ResourcesBusiness.GetList(pagination)), pagination);
+            return await Task.FromResult(OpenApiJsonContent(ResourcesBusiness.GetList(pagination), pagination));
         }
 
         /// <summary>
@@ -55,7 +56,7 @@ namespace Api.Controllers
         [SwaggerResponse((int)HttpStatusCode.OK, "详情数据", typeof(Detail))]
         public async Task<object> GetDetail(string id)
         {
-            return JsonContent(await Task.FromResult(ResourcesBusiness.GetDetail(id)));
+            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(ResourcesBusiness.GetDetail(id))));
         }
 
         /// <summary>
@@ -79,7 +80,7 @@ namespace Api.Controllers
         [SwaggerResponse((int)HttpStatusCode.OK, "编辑数据", typeof(Edit))]
         public async Task<object> GetEdit(string id)
         {
-            return JsonContent(await Task.FromResult(ResourcesBusiness.GetEdit(id)));
+            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(ResourcesBusiness.GetEdit(id))));
         }
 
         /// <summary>

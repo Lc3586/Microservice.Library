@@ -18,7 +18,7 @@ namespace Business.Utils.Log
 
         static readonly IOperator @operator = AutofacHelper.GetScopeService<IOperator>();
 
-        public static void Log(LogLevel logLevel, byte logType, string message, string data, Exception exception = null)
+        public static void Log(LogLevel logLevel, byte logType, string message, string data, Exception exception = null, bool withOP = true)
         {
             LogEventInfo log = new LogEventInfo(
                 LogLevel.FromString(logLevel.ToString()),
@@ -30,8 +30,12 @@ namespace Business.Utils.Log
 
             log.Properties[NLoggerConfig.LogType] = LogType.GetName(logType);
             log.Properties[NLoggerConfig.Data] = data;
-            log.Properties[NLoggerConfig.CreatorName] = @operator?.UserInfo?.Name;
-            log.Properties[NLoggerConfig.CreatorId] = @operator?.AuthenticationInfo?.Id;
+
+            if (withOP)
+            {
+                log.Properties[NLoggerConfig.CreatorName] = @operator?.UserInfo?.Name;
+                log.Properties[NLoggerConfig.CreatorId] = @operator?.AuthenticationInfo?.Id;
+            }
 
             nLogger.Log(log);
         }

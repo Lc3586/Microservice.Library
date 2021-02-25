@@ -41,11 +41,6 @@
             存储路径根目录相对路径
             </summary>
         </member>
-        <member name="P:Business.Implementation.Common.FileBusiness.BaseDirPath">
-            <summary>
-            存储路径根目录绝对路径
-            </summary>
-        </member>
         <member name="M:Business.Implementation.Common.FileBusiness.Save(System.Drawing.Image,System.String)">
             <summary>
             保存
@@ -238,6 +233,12 @@
             <summary>
             用户信息
             </summary>
+        </member>
+        <member name="P:Business.Implementation.System.Operator.IsSuperAdmin">
+            <summary>
+            判断是否为超级管理员
+            </summary>
+            <returns></returns>
         </member>
         <member name="P:Business.Implementation.System.Operator.IsAdmin">
             <summary>
@@ -863,6 +864,20 @@
             <para>资源授权信息</para>
             </returns>
         </member>
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.IsSuperAdminUser(System.String)">
+            <summary>
+            是否为超级管理员
+            </summary>
+            <param name="userId">用户Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.IsSuperAdminRole(System.String)">
+            <summary>
+            是否为超级管理角色
+            </summary>
+            <param name="roleId">角色Id</param>
+            <returns></returns>
+        </member>
         <member name="M:Business.Interface.System.IAuthoritiesBusiness.IsAdminUser(System.String)">
             <summary>
             是否为管理员
@@ -1053,6 +1068,12 @@
             <summary>
             用户信息
             </summary>
+        </member>
+        <member name="P:Business.Interface.System.IOperator.IsSuperAdmin">
+            <summary>
+            判断是否为超级管理员
+            </summary>
+            <returns></returns>
         </member>
         <member name="P:Business.Interface.System.IOperator.IsAdmin">
             <summary>

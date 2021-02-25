@@ -103,6 +103,7 @@ namespace Model.System.UserDTO
         /// <summary>
         /// 原密码
         /// </summary>
+        /// <remarks>超级管理员无需原密码即可修改任意用户的密码</remarks>
         [Required(ErrorMessage = "原密码不可为空")]
         [Description("原密码")]
         public string OldPassword { get; set; }

@@ -24,7 +24,7 @@ namespace Entity.Common
         /// <summary>
         /// Id
         /// </summary>
-        [OpenApiSubTag("List")]
+        [OpenApiSubTag("List", "Detail", "FileInfo")]
         [Column(IsPrimary = true, StringLength = 36)]
         public string Id { get; set; }
 

@@ -866,14 +866,14 @@
         </member>
         <member name="M:Library.OpenApi.Extention.SchemaExtention.GetGenericType(System.Type)">
             <summary>
-            获取数组和泛型元素类型
+            获取数组和泛型集合元素类型
             </summary>
             <param name="type"></param>
             <returns></returns>
         </member>
         <member name="M:Library.OpenApi.Extention.SchemaExtention.GetGenericType(System.Type,System.Type@)">
             <summary>
-            获取数组和泛型元素类型
+            获取数组和泛型集合元素类型
             </summary>
             <param name="type"></param>
             <param name="genericType">泛型元素类型</param>
@@ -900,7 +900,6 @@
         <member name="M:Library.OpenApi.Extention.SchemaExtention.GetMainTag(System.Type)">
             <summary>
             获取主标签名称
-            <para>默认为类型名称</para>
             </summary>
             <param name="type">目标对象</param>
             <returns></returns>

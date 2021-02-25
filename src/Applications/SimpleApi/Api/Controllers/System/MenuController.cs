@@ -4,6 +4,7 @@ using Library.Extension;
 using Microsoft.AspNetCore.Mvc;
 using Model.System.MenuDTO;
 using Model.Utils.Pagination;
+using Model.Utils.Result;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,7 +44,7 @@ namespace Api.Controllers
         [SwaggerResponse((int)HttpStatusCode.OK, "列表数据", typeof(List))]
         public async Task<object> GetList([FromBody] PaginationDTO pagination)
         {
-            return JsonContent(await Task.FromResult(MenuBusiness.GetList(pagination)), pagination);
+            return await Task.FromResult(OpenApiJsonContent(MenuBusiness.GetList(pagination), pagination));
         }
 
         /// <summary>
@@ -55,7 +56,7 @@ namespace Api.Controllers
         [SwaggerResponse((int)HttpStatusCode.OK, "树状列表数据", typeof(TreeList))]
         public async Task<object> GetTreeList(TreeListParamter paramter)
         {
-            return JsonContent(await Task.FromResult(MenuBusiness.GetTreeList(paramter)));
+            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(MenuBusiness.GetTreeList(paramter))));
         }
 
         /// <summary>
@@ -67,7 +68,7 @@ namespace Api.Controllers
         [SwaggerResponse((int)HttpStatusCode.OK, "详情数据", typeof(Detail))]
         public async Task<object> GetDetail(string id)
         {
-            return JsonContent(await Task.FromResult(MenuBusiness.GetDetail(id)));
+            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(MenuBusiness.GetDetail(id))));
         }
 
         /// <summary>
@@ -91,7 +92,7 @@ namespace Api.Controllers
         [SwaggerResponse((int)HttpStatusCode.OK, "编辑数据", typeof(Edit))]
         public async Task<object> GetEdit(string id)
         {
-            return JsonContent(await Task.FromResult(MenuBusiness.GetEdit(id)));
+            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(MenuBusiness.GetEdit(id))));
         }
 
         /// <summary>

@@ -24,6 +24,12 @@ namespace Business.Interface.System
         OperatorUserInfo UserInfo { get; }
 
         /// <summary>
+        /// 判断是否为超级管理员
+        /// </summary>
+        /// <returns></returns>
+        bool IsSuperAdmin { get; }
+
+        /// <summary>
         /// 判断是否为管理员
         /// </summary>
         /// <returns></returns>

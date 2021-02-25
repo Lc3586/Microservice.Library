@@ -1,14 +1,11 @@
 ﻿using Library.OpenApi.Annotations;
-using Microsoft.OpenApi.Any;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Dynamic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 
 namespace Library.OpenApi.Extention
 {
@@ -20,17 +17,21 @@ namespace Library.OpenApi.Extention
         #region 内部成员
 
         /// <summary>
-        /// 获取数组和泛型元素类型
+        /// 获取数组和泛型集合元素类型
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
         internal static Type GetGenericType(this Type type)
         {
-            return type.IsArray ? type.Assembly.GetType(type.FullName.Replace("[]", string.Empty)) : (type.IsGenericType ? type.GenericTypeArguments[0] : type);
+            return type.IsArray
+                ? type.Assembly.GetType(type.FullName.Replace("[]", string.Empty))
+                : (type.IsGenericType && type.GenericTypeArguments.Length == 1 && typeof(IEnumerable).IsAssignableFrom(type)
+                    ? type.GenericTypeArguments[0]
+                    : type);
         }
 
         /// <summary>
-        /// 获取数组和泛型元素类型
+        /// 获取数组和泛型集合元素类型
         /// </summary>
         /// <param name="type"></param>
         /// <param name="genericType">泛型元素类型</param>
@@ -111,14 +112,13 @@ namespace Library.OpenApi.Extention
 
         /// <summary>
         /// 获取主标签名称
-        /// <para>默认为类型名称</para>
         /// </summary>
         /// <param name="type">目标对象</param>
         /// <returns></returns>
         public static string GetMainTag(this Type type)
         {
             var attribute = type.GetCustomAttribute<OpenApiMainTagAttribute>();
-            return attribute == null ? type.Name : attribute.Name;
+            return attribute == null ? null : attribute.Name;
         }
 
         /// <summary>

@@ -3,6 +3,7 @@ using Business.Interface.Common;
 using Microsoft.AspNetCore.Mvc;
 using Model.Common.EntryLogDTO;
 using Model.Utils.Pagination;
+using Model.Utils.Result;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Net;
 using System.Threading.Tasks;
@@ -40,7 +41,7 @@ namespace Api.Controllers
         [SwaggerResponse((int)HttpStatusCode.OK, "列表数据", typeof(List))]
         public async Task<object> GetList([FromBody] PaginationDTO pagination)
         {
-            return JsonContent(await Task.FromResult(WeChatUserInfoBusiness.GetList(pagination)), pagination);
+            return await Task.FromResult(OpenApiJsonContent(WeChatUserInfoBusiness.GetList(pagination), pagination));
         }
 
         /// <summary>
@@ -52,7 +53,7 @@ namespace Api.Controllers
         [SwaggerResponse((int)HttpStatusCode.OK, "详情数据", typeof(Detail))]
         public async Task<object> GetDetail(string id)
         {
-            return JsonContent(await Task.FromResult(WeChatUserInfoBusiness.GetDetail(id)));
+            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(WeChatUserInfoBusiness.GetDetail(id))));
         }
 
         #endregion

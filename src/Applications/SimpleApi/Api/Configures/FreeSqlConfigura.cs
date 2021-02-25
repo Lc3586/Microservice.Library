@@ -29,7 +29,9 @@ namespace Api.Configures
                         NLog.LogLevel.Trace,
                         LogType.系统跟踪,
                         "FreeSql-MonitorCommandExecuting",
-                        cmd.CommandText);
+                        cmd.CommandText,
+                        null,
+                        false);
                 };
                 s.FreeSqlGeneratorOptions.MonitorCommandExecuted = (cmd, log) =>
                 {
@@ -37,7 +39,9 @@ namespace Api.Configures
                         NLog.LogLevel.Trace,
                         LogType.系统跟踪,
                         "FreeSql-MonitorCommandExecuted",
-                         $"命令: {cmd.CommandText},\r\n日志: {log}.");
+                         $"命令: {cmd.CommandText},\r\n日志: {log}.",
+                        null,
+                        false);
                 };
                 s.FreeSqlGeneratorOptions.HandleCommandLog = (content) =>
                 {
@@ -45,7 +49,9 @@ namespace Api.Configures
                         NLog.LogLevel.Trace,
                         LogType.系统跟踪,
                         "FreeSql-HandleCommandLog",
-                        content);
+                        content,
+                        null,
+                        false);
                 };
                 s.FreeSqlDevOptions.SyncStructureNameConvert = FreeSql.Internal.NameConvertType.PascalCaseToUnderscoreWithLower;
 

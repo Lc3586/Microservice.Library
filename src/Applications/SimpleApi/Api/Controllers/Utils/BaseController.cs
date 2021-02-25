@@ -1,8 +1,8 @@
 ﻿using Library.Extension;
 using Library.OpenApi.Extention;
 using Microsoft.AspNetCore.Mvc;
-using Model.Utils.Result;
 using Model.Utils.Pagination;
+using Model.Utils.Result;
 using System.Collections.Generic;
 using System.Text;
 
@@ -18,43 +18,9 @@ namespace Api.Controllers.Utils
         /// 返回JSON
         /// </summary>
         /// <typeparam name="TOpenApiSchema">接口架构类型</typeparam>
-        /// <param name="result"></param>
-        /// <returns></returns>
-        protected ContentResult JsonContent<TOpenApiSchema>(AjaxResult<List<TOpenApiSchema>> result)
-        {
-            return base.Content(new AjaxResult<object>
-            {
-                Success = result.Success,
-                ErrorCode = result.ErrorCode,
-                Msg = result.Msg,
-                Data = result.Data.ToOpenApiJson<TOpenApiSchema>().ToObject<object>()
-            }.ToJson(), "application/json", Encoding.UTF8);
-        }
-
-        /// <summary>
-        /// 返回JSON
-        /// </summary>
-        /// <typeparam name="TOpenApiSchema">接口架构类型</typeparam>
-        /// <param name="result"></param>
-        /// <returns></returns>
-        protected ContentResult JsonContent<TOpenApiSchema>(AjaxResult<TOpenApiSchema> result)
-        {
-            return base.Content(new AjaxResult<object>
-            {
-                Success = result.Success,
-                ErrorCode = result.ErrorCode,
-                Msg = result.Msg,
-                Data = result.Data.ToOpenApiJson().ToObject<object>()
-            }.ToJson(), "application/json", Encoding.UTF8);
-        }
-
-        /// <summary>
-        /// 返回JSON
-        /// </summary>
-        /// <typeparam name="TOpenApiSchema">接口架构类型</typeparam>
         /// <param name="obj"></param>
         /// <returns></returns>
-        protected ContentResult JsonContent<TOpenApiSchema>(TOpenApiSchema obj)
+        protected ContentResult OpenApiJsonContent<TOpenApiSchema>(TOpenApiSchema obj)
         {
             return base.Content(obj.ToOpenApiJson(), "application/json", Encoding.UTF8);
         }
@@ -63,14 +29,51 @@ namespace Api.Controllers.Utils
         /// 返回JSON
         /// </summary>
         /// <typeparam name="TOpenApiSchema">接口架构类型</typeparam>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        protected ContentResult OpenApiJsonContent<TOpenApiSchema>(object result)
+        {
+            return base.Content(result.ToOpenApiJson<TOpenApiSchema>(), "application/json", Encoding.UTF8);
+        }
+
+        /// <summary>
+        /// 返回JSON
+        /// </summary>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        protected ContentResult JsonContent(object result)
+        {
+            return base.Content(result.ToJson(), "application/json", Encoding.UTF8);
+        }
+
+        /// <summary>
+        /// 返回JSON
+        /// </summary>
+        /// <typeparam name="TOpenApiSchema">接口架构类型</typeparam>
         /// <param name="obj"></param>
         /// <param name="pagination"></param>
         /// <param name="success"></param>
         /// <param name="error"></param>
         /// <returns></returns>
-        protected ContentResult JsonContent<TOpenApiSchema>(List<TOpenApiSchema> obj, PaginationDTO pagination, bool success = true, string error = null)
+        protected ContentResult OpenApiJsonContent<TOpenApiSchema>(List<TOpenApiSchema> obj, PaginationDTO pagination, bool success = true, string error = null)
         {
-            return base.Content(pagination.BuildResult(obj.ToOpenApiJson().ToObject<object>(), success, error).ToJson(), "application/json", Encoding.UTF8);
+            var type = pagination.GetSchemaResultType<TOpenApiSchema>();
+            return base.Content(pagination.BuildResult(obj, success, error).ToOpenApiJson(type), "application/json", Encoding.UTF8);
+        }
+
+        /// <summary>
+        /// 返回JSON
+        /// </summary>
+        /// <typeparam name="TOpenApiSchema">接口架构类型</typeparam>
+        /// <param name="obj"></param>
+        /// <param name="pagination"></param>
+        /// <param name="success"></param>
+        /// <param name="error"></param>
+        /// <returns></returns>
+        protected ContentResult OpenApiJsonContent<TOpenApiSchema>(List<object> obj, PaginationDTO pagination, bool success = true, string error = null)
+        {
+            var type = pagination.GetSchemaResultType<TOpenApiSchema>();
+            return base.Content(pagination.BuildResult(obj, success, error).ToOpenApiJson(type), "application/json", Encoding.UTF8);
         }
 
         /// <summary>
@@ -81,7 +84,7 @@ namespace Api.Controllers.Utils
         /// <param name="success"></param>
         /// <param name="error"></param>
         /// <returns></returns>
-        protected ContentResult JsonContent(object obj, PaginationDTO pagination, bool success = true, string error = null)
+        protected ContentResult JsonContent(List<object> obj, PaginationDTO pagination, bool success = true, string error = null)
         {
             return base.Content(pagination.BuildResult(obj, success, error).ToJson(), "application/json", Encoding.UTF8);
         }

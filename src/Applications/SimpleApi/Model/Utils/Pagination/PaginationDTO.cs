@@ -241,33 +241,34 @@ namespace Model.Utils.Pagination
         /// <summary>
         /// 输出
         /// </summary>
+        /// <typeparam name="T">数据元素类型</typeparam>
         /// <param name="data">数据</param>
         /// <param name="success">成功与否</param>
         /// <param name="error">异常信息</param>
         /// <returns></returns>
-        public object BuildResult(object data, bool success = true, string error = null)
+        public object BuildResult<T>(List<T> data, bool success = true, string error = null)
         {
             _watch.Stop();
             switch (_schema)
             {
                 case Schema.defaul:
                 case Schema.elementVue:
-                    return new
+                    return new ElementVueResult<T>()
                     {
                         Success = success,
                         ErrorCode = (int)(success ? ErrorCode.none : ErrorCode.error),
                         Msg = error,
-                        Data = new
+                        Data = new ElementVueResultData<T>()
                         {
                             PageTotal = PageCount,
                             Total = RecordCount,
-                            PageIndex,
+                            PageIndex = PageIndex,
                             PageSize = PageRows,
                             List = data
                         }
                     };
                 case Schema.antdVue:
-                    return new
+                    return new AntdVueResult<T>()
                     {
                         Success = success,
                         Msg = error,
@@ -275,7 +276,7 @@ namespace Model.Utils.Pagination
                         Data = data
                     };
                 case Schema.jqGrid:
-                    return new Result.JqGrid()
+                    return new JqGridResult<T>()
                     {
                         rows = data,
                         total = PageCount,
@@ -285,7 +286,7 @@ namespace Model.Utils.Pagination
                     };
                 case Schema.easyui:
                 case Schema.bootstrapTable:
-                    return new Result.Easyui()
+                    return new EasyuiResult<T>()
                     {
                         rows = data,
                         total = RecordCount,
@@ -295,7 +296,7 @@ namespace Model.Utils.Pagination
                     };
                 case Schema.layui:
                 default:
-                    return new Result.Layui()
+                    return new LayuiResult<T>()
                     {
                         data = data,
                         code = success ? 0 : -1,
@@ -307,103 +308,23 @@ namespace Model.Utils.Pagination
         }
 
         /// <summary>
-        /// 返回信息
+        /// 获取方案的返回数据类型
         /// </summary>
-        public class Result
+        /// <typeparam name="T">数据元素类型</typeparam>
+        /// <returns></returns>
+        public Type GetSchemaResultType<T>()
         {
-            /// <summary>
-            /// Layui方案
-            /// </summary>
-            public class Layui
+            return _schema switch
             {
-                /// <summary>
-                /// 数据
-                /// </summary>
-                public object data { get; set; }
-
-                /// <summary>
-                /// 状态码
-                /// <para>成功0，失败-1</para>
-                /// </summary>
-                public int code { get; set; }
-
-                /// <summary>
-                /// 信息
-                /// </summary>
-                public string msg { get; set; }
-
-                /// <summary>
-                /// 总记录数
-                /// </summary>
-                public long count { get; set; }
-
-                /// <summary>
-                /// 耗时（毫秒）
-                /// </summary>
-                public long costtime { get; set; }
-            }
-
-            /// <summary>
-            /// JqGrid方案
-            /// </summary>
-            public class JqGrid
-            {
-                /// <summary>
-                /// 数据
-                /// </summary>
-                public object rows { get; set; }
-
-                /// <summary>
-                /// 总页数
-                /// </summary>
-                public long total { get; set; }
-
-                /// <summary>
-                /// 当前页码
-                /// </summary>
-                public int page { get; set; }
-
-                /// <summary>
-                /// 总记录数
-                /// </summary>
-                public long records { get; set; }
-
-                /// <summary>
-                /// 耗时（毫秒）
-                /// </summary>
-                public long costtime { get; set; }
-            }
-
-            /// <summary>
-            /// Easyui DataGrid方案
-            /// </summary>
-            public class Easyui
-            {
-                /// <summary>
-                /// 数据
-                /// </summary>
-                public object rows { get; set; }
-
-                /// <summary>
-                /// 总记录数
-                /// </summary>
-                public long total { get; set; }
-
-                /// <summary>
-                /// 当前页码
-                /// </summary>
-                public int currentPage { get; set; }
-
-                /// <summary>
-                /// 每页数据量
-                /// </summary>
-                public int pageSize { get; set; }
-
-                /// <summary>
-                /// 耗时（毫秒）
-                /// </summary>
-                public long costtime { get; set; }
-            }
+                Schema.defaul => typeof(ElementVueResult<T>),
+                Schema.elementVue => typeof(ElementVueResult<T>),
+                Schema.antdVue => typeof(AntdVueResult<T>),
+                Schema.jqGrid => typeof(JqGridResult<T>),
+                Schema.easyui => typeof(EasyuiResult<T>),
+                Schema.bootstrapTable => typeof(EasyuiResult<T>),
+                Schema.layui => typeof(LayuiResult<T>),
+                _ => typeof(LayuiResult<T>)
+            };
         }
 
         #endregion

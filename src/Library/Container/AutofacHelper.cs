@@ -18,6 +18,9 @@ namespace Library.Container
 #if DEBUG
             var type = typeof(T);
 #endif
+            if (!Container.IsRegistered<T>())
+                return null;
+
             return Container.Resolve<T>();
         }
 
@@ -52,7 +55,11 @@ namespace Library.Container
 #if DEBUG
             var type = typeof(T);
 #endif
-            return (T)GetService<IHttpContextAccessor>().HttpContext.RequestServices.GetService(typeof(T));
+            var httpContextAccessor = GetService<IHttpContextAccessor>();
+            if (httpContextAccessor == null)
+                return GetService<T>();
+            else
+                return (T)httpContextAccessor.HttpContext.RequestServices.GetService(typeof(T));
         }
 
         /// <summary>

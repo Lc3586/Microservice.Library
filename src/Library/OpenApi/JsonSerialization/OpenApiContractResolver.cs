@@ -1,12 +1,7 @@
-﻿using Library.OpenApi.Annotations;
-using Library.OpenApi.Extention;
-using Newtonsoft.Json;
+﻿using Library.OpenApi.Extention;
 using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
 
 namespace Library.OpenApi.JsonSerialization
 {
@@ -101,6 +96,9 @@ namespace Library.OpenApi.JsonSerialization
             //}
             foreach (var property in contract.Properties)
             {
+                if (!PropertyDic.ContainsKey(contract.UnderlyingType.FullName))
+                    continue;
+
                 if (!PropertyDic[contract.UnderlyingType.FullName].Contains(property.PropertyName))
                 {
                     property.Ignored = true;

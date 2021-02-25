@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Model.System.LogDTO;
 using Model.Utils.Log.LogDTO;
 using Model.Utils.Pagination;
+using Model.Utils.Result;
 using Swashbuckle.AspNetCore.Annotations;
 using System;
 using System.Net;
@@ -74,7 +75,7 @@ namespace Api.Controllers.Utils
         [SwaggerResponse((int)HttpStatusCode.OK, "列表数据", typeof(List))]
         public async Task<object> GetESList([FromBody] PaginationDTO pagination)
         {
-            return JsonContent(await Task.FromResult(LogBusiness.GetESList(pagination)), pagination);
+            return await Task.FromResult(OpenApiJsonContent(LogBusiness.GetESList(pagination), pagination));
         }
 
         /// <summary>
@@ -86,7 +87,7 @@ namespace Api.Controllers.Utils
         [SwaggerResponse((int)HttpStatusCode.OK, "详情数据", typeof(Detail))]
         public async Task<object> GetESDetail(string id)
         {
-            return JsonContent(await Task.FromResult(LogBusiness.GetESDetail(id)));
+            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(LogBusiness.GetESDetail(id))));
         }
 
         /// <summary>
@@ -98,7 +99,7 @@ namespace Api.Controllers.Utils
         [SwaggerResponse((int)HttpStatusCode.OK, "列表数据", typeof(List))]
         public async Task<object> GetDBList([FromBody] PaginationDTO pagination)
         {
-            return JsonContent(await Task.FromResult(LogBusiness.GetDBList(pagination)), pagination);
+            return await Task.FromResult(OpenApiJsonContent(LogBusiness.GetDBList(pagination), pagination));
         }
 
         /// <summary>
@@ -110,7 +111,7 @@ namespace Api.Controllers.Utils
         [SwaggerResponse((int)HttpStatusCode.OK, "详情数据", typeof(Detail))]
         public async Task<object> GetDBDetail(string id)
         {
-            return JsonContent(await Task.FromResult(LogBusiness.GetDBDetail(id)));
+            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(LogBusiness.GetDBDetail(id))));
         }
     }
 }

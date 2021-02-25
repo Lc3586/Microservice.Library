@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Model.Common.FileDTO;
 using Model.Utils.Pagination;
+using Model.Utils.Result;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,7 +49,7 @@ namespace Api.Controllers
         [SwaggerResponse((int)HttpStatusCode.OK, "列表数据", typeof(FileInfo))]
         public async Task<object> GetList([FromBody] PaginationDTO pagination)
         {
-            return JsonContent(await Task.FromResult(FileBusiness.GetList(pagination)), pagination);
+            return await Task.FromResult(OpenApiJsonContent(FileBusiness.GetList(pagination), pagination));
         }
 
         /// <summary>
@@ -62,7 +63,7 @@ namespace Api.Controllers
         [SwaggerResponse((int)HttpStatusCode.OK, "详情数据", typeof(FileInfo))]
         public async Task<object> GetDetail(string id)
         {
-            return JsonContent(await Task.FromResult(FileBusiness.GetDetail(id)));
+            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(FileBusiness.GetDetail(id))));
         }
 
         /// <summary>
@@ -76,7 +77,7 @@ namespace Api.Controllers
         [SwaggerResponse((int)HttpStatusCode.OK, "详情数据", typeof(FileInfo))]
         public async Task<object> GetDetails(string ids)
         {
-            return JsonContent(await Task.FromResult(FileBusiness.GetDetails(ids)));
+            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(FileBusiness.GetDetails(ids))));
         }
 
         /// <summary>
@@ -90,7 +91,7 @@ namespace Api.Controllers
         [SwaggerResponse((int)HttpStatusCode.OK, "详情数据", typeof(FileInfo))]
         public async Task<object> GetDetails(List<string> ids)
         {
-            return JsonContent(await Task.FromResult(FileBusiness.GetDetails(ids)));
+            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(FileBusiness.GetDetails(ids))));
         }
 
         #endregion
@@ -106,7 +107,7 @@ namespace Api.Controllers
         [SwaggerResponse((int)HttpStatusCode.OK, "校验结果", typeof(CheckMD5Response))]
         public async Task<object> CheckMD5(string md5)
         {
-            return JsonContent(await Task.FromResult(FileBusiness.CheckMD5(md5)));
+            return await Task.FromResult(AjaxResultFactory.Success(OpenApiJsonContent(FileBusiness.CheckMD5(md5))));
         }
 
         /// <summary>
@@ -118,7 +119,7 @@ namespace Api.Controllers
         [SwaggerResponse((int)HttpStatusCode.OK, "文件信息", typeof(FileInfo))]
         public async Task<object> UploadSingleImage(ImageUploadParams option)
         {
-            return JsonContent(await Task.FromResult(FileBusiness.SingleImage(option)));
+            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(FileBusiness.SingleImage(option))));
         }
 
         /// <summary>
@@ -130,7 +131,7 @@ namespace Api.Controllers
         [SwaggerResponse((int)HttpStatusCode.OK, "文件信息", typeof(FileInfo))]
         public async Task<object> UploadSingleFile(FileUploadParams option)
         {
-            return JsonContent(await Task.FromResult(FileBusiness.SingleFile(option)));
+            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(FileBusiness.SingleFile(option))));
         }
 
         /// <summary>

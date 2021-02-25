@@ -5,6 +5,7 @@ using Library.SelectOption;
 using Microsoft.AspNetCore.Mvc;
 using Model.System.UserDTO;
 using Model.Utils.Pagination;
+using Model.Utils.Result;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,7 +45,7 @@ namespace Api.Controllers
         [SwaggerResponse((int)HttpStatusCode.OK, "列表数据", typeof(List))]
         public async Task<object> GetList([FromBody] PaginationDTO pagination)
         {
-            return JsonContent(await Task.FromResult(UserBusiness.GetList(pagination)), pagination);
+            return await Task.FromResult(OpenApiJsonContent(UserBusiness.GetList(pagination), pagination));
         }
 
         /// <summary>
@@ -57,7 +58,7 @@ namespace Api.Controllers
         [SwaggerResponse((int)HttpStatusCode.OK, "下拉列表选项数据", typeof(SelectOption))]
         public async Task<object> DropdownList(string condition, PaginationDTO pagination)
         {
-            return JsonContent(await Task.FromResult(UserBusiness.DropdownList(condition, pagination)), pagination);
+            return await Task.FromResult(OpenApiJsonContent(UserBusiness.DropdownList(condition, pagination), pagination));
         }
 
         /// <summary>
@@ -69,7 +70,7 @@ namespace Api.Controllers
         [SwaggerResponse((int)HttpStatusCode.OK, "详情数据", typeof(Detail))]
         public async Task<object> GetDetail(string id)
         {
-            return JsonContent(await Task.FromResult(UserBusiness.GetDetail(id)));
+            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(new List<Detail> { UserBusiness.GetDetail(id) })));
         }
 
         /// <summary>
@@ -93,7 +94,7 @@ namespace Api.Controllers
         [SwaggerResponse((int)HttpStatusCode.OK, "编辑数据", typeof(Edit))]
         public async Task<object> GetEdit(string id)
         {
-            return JsonContent(await Task.FromResult(UserBusiness.GetEdit(id)));
+            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(UserBusiness.GetEdit(id))));
         }
 
         /// <summary>

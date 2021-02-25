@@ -40,7 +40,9 @@ namespace Api.Configures
                             NLog.LogLevel.Trace,
                             LogType.系统跟踪,
                             "FreeSql-IdleBus-Notice",
-                            text);
+                            text,
+                            null,
+                            false);
                     });
 
                 //设置生成配置
@@ -67,7 +69,9 @@ namespace Api.Configures
                                     NLog.LogLevel.Trace,
                                     LogType.系统跟踪,
                                     "FreeSql-MonitorCommandExecuting",
-                                    cmd.CommandText);
+                                    cmd.CommandText,
+                                    null,
+                                    false);
                             };
                             options.FreeSqlGeneratorOptions.MonitorCommandExecuted = (cmd, log) =>
                             {
@@ -75,7 +79,9 @@ namespace Api.Configures
                                     NLog.LogLevel.Trace,
                                     LogType.系统跟踪,
                                     "FreeSql-MonitorCommandExecuted",
-                                     $"命令: {cmd.CommandText},\r\n日志: {log}.");
+                                    $"命令: {cmd.CommandText},\r\n日志: {log}.",
+                                    null,
+                                    false);
                             };
                             options.FreeSqlGeneratorOptions.HandleCommandLog = (content) =>
                             {
@@ -83,7 +89,9 @@ namespace Api.Configures
                                     NLog.LogLevel.Trace,
                                     LogType.系统跟踪,
                                     "FreeSql-MonitorCommandExecuting",
-                                    content);
+                                    content,
+                                    null,
+                                    false);
                             };
 
                             options.FreeSqlDevOptions.AutoSyncStructure = config.FreeSql.AutoSyncStructure;

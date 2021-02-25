@@ -71,11 +71,6 @@ namespace Business.Implementation.Common
         string BaseDir => Path.GetDirectoryName($"\\upload\\{Operator.AuthenticationInfo.Id}\\{DateTime.Now.ToUnixTimestamp()}\\");
 
         /// <summary>
-        /// 存储路径根目录绝对路径
-        /// </summary>
-        string BaseDirPath => PathHelper.GetAbsolutePath($"~{BaseDir}\\");
-
-        /// <summary>
         /// 保存
         /// </summary>
         /// <param name="image">图像</param>
@@ -225,6 +220,8 @@ namespace Business.Implementation.Common
         {
             FileInfo result;
             Image image = null;
+            var baseDir = BaseDir;
+            var baseDirPath = PathHelper.GetAbsolutePath($"~{baseDir}\\");
 
             if (!option.UrlOrBase64.IsNullOrEmpty())
             {
@@ -343,7 +340,7 @@ namespace Business.Implementation.Common
                 }
                 else
                 {
-                    var thumbnailDir = Path.GetDirectoryName($"{BaseDir}\\Thumbnail\\");
+                    var thumbnailDir = Path.GetDirectoryName($"{baseDir}\\Thumbnail\\");
                     var thumbnailDirPath = PathHelper.GetAbsolutePath($"~{thumbnailDir}\\");
                     var thumbnailPath = Path.Combine(thumbnailDir, result.FullName);
 
@@ -365,18 +362,16 @@ namespace Business.Implementation.Common
             if (!result.Path.IsNullOrEmpty())
                 goto success;
 
-            var originalPath = Path.Combine(BaseDir, result.FullName);
-
-            result.Path = originalPath;
-            //result.Path = $"{SystemConfig.systemConfig.WebRootUrl}{originalPath}";
+            result.Path = Path.Combine(baseDir, result.FullName);
+            //result.Path = $"{SystemConfig.systemConfig.WebRootUrl}{Path.Combine(baseDir, result.FullName)}";
 
             if (result.ThumbnailPath.IsNullOrEmpty())
                 result.ThumbnailPath = result.Path;
 
-            if (!Directory.Exists(BaseDirPath))
-                Directory.CreateDirectory(BaseDirPath);
+            if (!Directory.Exists(baseDirPath))
+                Directory.CreateDirectory(baseDirPath);
 
-            Save(image, Path.Combine(BaseDirPath, result.FullName));
+            Save(image, Path.Combine(baseDirPath, result.FullName));
 
             result.ServerKey = Config.ServerKey;
             result.Path = result.Path?.Replace('\\', '/');
@@ -387,7 +382,7 @@ namespace Business.Implementation.Common
 
             if (result.StorageType == StorageType.Path)
             {
-                result.Bytes = FileHelper.GetFileBytes(result.Path);
+                result.Bytes = FileHelper.GetFileBytes(Path.Combine(baseDirPath, result.FullName));
             }
             else if (result.StorageType == StorageType.Base64)
             {
@@ -405,6 +400,7 @@ namespace Business.Implementation.Common
             {
                 var entity = Mapper.Map<Common_File>(result).InitEntity();
                 Repository.Insert(entity);
+                result = Mapper.Map<FileInfo>(entity);
             }
 
             return result;
@@ -413,6 +409,8 @@ namespace Business.Implementation.Common
         public async Task<FileInfo> SingleFile(FileUploadParams option)
         {
             FileInfo result;
+            var baseDir = BaseDir;
+            var baseDirPath = PathHelper.GetAbsolutePath($"~{baseDir}\\");
 
             byte[] bytes = null;
 
@@ -468,14 +466,12 @@ namespace Business.Implementation.Common
             if (!result.Path.IsNullOrEmpty())
                 goto success;
 
-            var originalPath = Path.Combine(BaseDir, result.FullName);
+            result.Path = Path.Combine(baseDir, result.FullName);
 
-            result.Path = originalPath;
+            if (!Directory.Exists(baseDirPath))
+                Directory.CreateDirectory(baseDirPath);
 
-            if (!Directory.Exists(BaseDirPath))
-                Directory.CreateDirectory(BaseDirPath);
-
-            await Save(bytes, Path.Combine(BaseDirPath, result.FullName));
+            await Save(bytes, Path.Combine(baseDirPath, result.FullName));
 
             result.ServerKey = Config.ServerKey;
             result.Path = result.Path?.Replace('\\', '/');
@@ -487,7 +483,7 @@ namespace Business.Implementation.Common
 
             if (result.StorageType == StorageType.Path)
             {
-                result.Bytes = FileHelper.GetFileBytes(result.Path);
+                result.Bytes = FileHelper.GetFileBytes(Path.Combine(baseDirPath, result.FullName));
             }
 
             if (result.Bytes.HasValue)
@@ -497,6 +493,7 @@ namespace Business.Implementation.Common
             {
                 var entity = Mapper.Map<Common_File>(result).InitEntity();
                 Repository.Insert(entity);
+                result = Mapper.Map<FileInfo>(entity);
             }
 
             return result;

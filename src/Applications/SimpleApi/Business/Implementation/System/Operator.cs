@@ -76,6 +76,12 @@ namespace Business.Implementation.System
         }
 
         /// <summary>
+        /// 判断是否为超级管理员
+        /// </summary>
+        /// <returns></returns>
+        public bool IsSuperAdmin => AuthenticationInfo.UserType == Model.System.UserType.系统用户 && AuthoritiesBusiness.IsSuperAdminUser(AuthenticationInfo.Id);
+
+        /// <summary>
         /// 判断是否为管理员
         /// </summary>
         /// <returns></returns>

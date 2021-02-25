@@ -1150,6 +1150,7 @@
             <summary>
             原密码
             </summary>
+            <remarks>超级管理员无需原密码即可修改任意用户的密码</remarks>
         </member>
         <member name="P:Model.System.UserDTO.UpdatePassword.NewPassword">
             <summary>
@@ -2463,110 +2464,22 @@
             排序类型
             </summary>
         </member>
-        <member name="M:Model.Utils.Pagination.PaginationDTO.BuildResult(System.Object,System.Boolean,System.String)">
+        <member name="M:Model.Utils.Pagination.PaginationDTO.BuildResult``1(System.Collections.Generic.List{``0},System.Boolean,System.String)">
             <summary>
             输出
             </summary>
+            <typeparam name="T">数据元素类型</typeparam>
             <param name="data">数据</param>
             <param name="success">成功与否</param>
             <param name="error">异常信息</param>
             <returns></returns>
         </member>
-        <member name="T:Model.Utils.Pagination.PaginationDTO.Result">
+        <member name="M:Model.Utils.Pagination.PaginationDTO.GetSchemaResultType``1">
             <summary>
-            返回信息
+            获取方案的返回数据类型
             </summary>
-        </member>
-        <member name="T:Model.Utils.Pagination.PaginationDTO.Result.Layui">
-            <summary>
-            Layui方案
-            </summary>
-        </member>
-        <member name="P:Model.Utils.Pagination.PaginationDTO.Result.Layui.data">
-            <summary>
-            数据
-            </summary>
-        </member>
-        <member name="P:Model.Utils.Pagination.PaginationDTO.Result.Layui.code">
-            <summary>
-            状态码
-            <para>成功0，失败-1</para>
-            </summary>
-        </member>
-        <member name="P:Model.Utils.Pagination.PaginationDTO.Result.Layui.msg">
-            <summary>
-            信息
-            </summary>
-        </member>
-        <member name="P:Model.Utils.Pagination.PaginationDTO.Result.Layui.count">
-            <summary>
-            总记录数
-            </summary>
-        </member>
-        <member name="P:Model.Utils.Pagination.PaginationDTO.Result.Layui.costtime">
-            <summary>
-            耗时（毫秒）
-            </summary>
-        </member>
-        <member name="T:Model.Utils.Pagination.PaginationDTO.Result.JqGrid">
-            <summary>
-            JqGrid方案
-            </summary>
-        </member>
-        <member name="P:Model.Utils.Pagination.PaginationDTO.Result.JqGrid.rows">
-            <summary>
-            数据
-            </summary>
-        </member>
-        <member name="P:Model.Utils.Pagination.PaginationDTO.Result.JqGrid.total">
-            <summary>
-            总页数
-            </summary>
-        </member>
-        <member name="P:Model.Utils.Pagination.PaginationDTO.Result.JqGrid.page">
-            <summary>
-            当前页码
-            </summary>
-        </member>
-        <member name="P:Model.Utils.Pagination.PaginationDTO.Result.JqGrid.records">
-            <summary>
-            总记录数
-            </summary>
-        </member>
-        <member name="P:Model.Utils.Pagination.PaginationDTO.Result.JqGrid.costtime">
-            <summary>
-            耗时（毫秒）
-            </summary>
-        </member>
-        <member name="T:Model.Utils.Pagination.PaginationDTO.Result.Easyui">
-            <summary>
-            Easyui DataGrid方案
-            </summary>
-        </member>
-        <member name="P:Model.Utils.Pagination.PaginationDTO.Result.Easyui.rows">
-            <summary>
-            数据
-            </summary>
-        </member>
-        <member name="P:Model.Utils.Pagination.PaginationDTO.Result.Easyui.total">
-            <summary>
-            总记录数
-            </summary>
-        </member>
-        <member name="P:Model.Utils.Pagination.PaginationDTO.Result.Easyui.currentPage">
-            <summary>
-            当前页码
-            </summary>
-        </member>
-        <member name="P:Model.Utils.Pagination.PaginationDTO.Result.Easyui.pageSize">
-            <summary>
-            每页数据量
-            </summary>
-        </member>
-        <member name="P:Model.Utils.Pagination.PaginationDTO.Result.Easyui.costtime">
-            <summary>
-            耗时（毫秒）
-            </summary>
+            <typeparam name="T">数据元素类型</typeparam>
+            <returns></returns>
         </member>
         <member name="T:Model.Utils.Pagination.PaginationDynamicFilterInfo">
             <summary>
@@ -2849,6 +2762,117 @@
             <param name="errorCode">错误代码<see cref="T:Model.Utils.Result.ErrorCode"/></param>
             <returns></returns>
         </member>
+        <member name="T:Model.Utils.Result.AntdVueResult`1">
+            <summary>
+            AntdVue方案
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Result.AntdVueResult`1.Success">
+            <summary>
+            成功与否
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Result.AntdVueResult`1.Msg">
+            <summary>
+            信息
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Result.AntdVueResult`1.Total">
+            <summary>
+            总记录数
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Result.AntdVueResult`1.Data">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="T:Model.Utils.Result.EasyuiResult`1">
+            <summary>
+            Easyui DataGrid方案
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Result.EasyuiResult`1.rows">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Result.EasyuiResult`1.total">
+            <summary>
+            总记录数
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Result.EasyuiResult`1.currentPage">
+            <summary>
+            当前页码
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Result.EasyuiResult`1.pageSize">
+            <summary>
+            每页数据量
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Result.EasyuiResult`1.costtime">
+            <summary>
+            耗时（毫秒）
+            </summary>
+        </member>
+        <member name="T:Model.Utils.Result.ElementVueResult`1">
+            <summary>
+            ElementVue方案
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Result.ElementVueResult`1.Success">
+            <summary>
+            成功与否
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Result.ElementVueResult`1.ErrorCode">
+            <summary>
+            异常代码
+            </summary>
+            <remarks><see cref="T:Model.Utils.Result.ErrorCode"/></remarks>
+        </member>
+        <member name="P:Model.Utils.Result.ElementVueResult`1.Msg">
+            <summary>
+            信息
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Result.ElementVueResult`1.Data">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="T:Model.Utils.Result.ElementVueResultData`1">
+            <summary>
+            ElementVue方案数据信息
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Result.ElementVueResultData`1.PageTotal">
+            <summary>
+            总页数
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Result.ElementVueResultData`1.Total">
+            <summary>
+            总记录数
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Result.ElementVueResultData`1.PageIndex">
+            <summary>
+            当前页码
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Result.ElementVueResultData`1.PageSize">
+            <summary>
+            每页数据量
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Result.ElementVueResultData`1.List">
+            <summary>
+            数据
+            </summary>
+        </member>
         <member name="T:Model.Utils.Result.ErrorCode">
             <summary>
             异常代码
@@ -2887,6 +2911,67 @@
         <member name="F:Model.Utils.Result.ErrorCode.error">
             <summary>
             系统错误
+            </summary>
+        </member>
+        <member name="T:Model.Utils.Result.JqGridResult`1">
+            <summary>
+            JqGrid方案
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Result.JqGridResult`1.rows">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Result.JqGridResult`1.total">
+            <summary>
+            总页数
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Result.JqGridResult`1.page">
+            <summary>
+            当前页码
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Result.JqGridResult`1.records">
+            <summary>
+            总记录数
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Result.JqGridResult`1.costtime">
+            <summary>
+            耗时（毫秒）
+            </summary>
+        </member>
+        <member name="T:Model.Utils.Result.LayuiResult`1">
+            <summary>
+            Layui方案
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Result.LayuiResult`1.data">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Result.LayuiResult`1.code">
+            <summary>
+            状态码
+            <para>成功0，失败-1</para>
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Result.LayuiResult`1.msg">
+            <summary>
+            信息
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Result.LayuiResult`1.count">
+            <summary>
+            总记录数
+            </summary>
+        </member>
+        <member name="P:Model.Utils.Result.LayuiResult`1.costtime">
+            <summary>
+            耗时（毫秒）
             </summary>
         </member>
         <member name="T:Model.Utils.SampleAuthentication.SampleAuthenticationDTO.LoginRequest">

@@ -313,6 +313,20 @@ namespace Business.Interface.System
         #region 验证授权
 
         /// <summary>
+        /// 是否为超级管理员
+        /// </summary>
+        /// <param name="userId">用户Id</param>
+        /// <returns></returns>
+        bool IsSuperAdminUser(string userId);
+
+        /// <summary>
+        /// 是否为超级管理角色
+        /// </summary>
+        /// <param name="roleId">角色Id</param>
+        /// <returns></returns>
+        bool IsSuperAdminRole(string roleId);
+
+        /// <summary>
         /// 是否为管理员
         /// </summary>
         /// <param name="userId">用户Id</param>

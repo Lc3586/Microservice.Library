@@ -382,6 +382,13 @@ namespace Business.Implementation.System
 
             var entity = Repository.GetAndCheckNull(editData.Id);
 
+            editData.Password = $"{entity.Account}{data.OldPassword}".ToMD5String();
+
+            if (!Operator.IsSuperAdmin && !entity.Password.Equals(editData.Password))
+                throw new ApplicationException("原密码有误.");
+
+            editData.Password = $"{entity.Account}{data.NewPassword}".ToMD5String();
+
             (bool success, Exception ex) = Orm.RunTransaction(() =>
             {
                 var orId = OperationRecordBusiness.Create(new Common_OperationRecord

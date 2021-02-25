@@ -6,7 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace Entity.System
@@ -46,7 +45,7 @@ namespace Entity.System
         /// <summary>
         /// 密码
         /// </summary>
-        [OpenApiSubTag("List", "Create", "Edit", "Detail", "Login")]
+        [OpenApiSubTag("Create", "UpdatePassword", "Login")]
         [Required(ErrorMessage = "密码不可为空")]
         [Description("密码")]
         [Column(StringLength = 50)]

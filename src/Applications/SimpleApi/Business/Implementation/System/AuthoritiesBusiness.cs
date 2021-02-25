@@ -1103,6 +1103,16 @@ namespace Business.Implementation.System
 
         #region 验证授权
 
+        public bool IsSuperAdminUser(string userId)
+        {
+            return Repository_UserRole.Where(o => o.UserId == userId && (o.Role.Type == RoleType.超级管理员)).Any();
+        }
+
+        public bool IsSuperAdminRole(string roleId)
+        {
+            return Repository_Role.Where(o => o.Id == roleId && (o.Type == RoleType.超级管理员)).Any();
+        }
+
         public bool IsAdminUser(string userId)
         {
             return Repository_UserRole.Where(o => o.UserId == userId && (o.Role.Type == RoleType.超级管理员 || o.Role.Type == RoleType.管理员)).Any();
