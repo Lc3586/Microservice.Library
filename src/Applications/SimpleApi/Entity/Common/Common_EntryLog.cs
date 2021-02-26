@@ -4,10 +4,7 @@ using FreeSql.DataAnnotations;
 using Library.OpenApi.Annotations;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace Entity.Common
@@ -85,6 +82,8 @@ namespace Entity.Common
         /// <summary>
         /// 登录人
         /// </summary>
+        [OpenApiSubTag("List", "Detail")]
+        [Description("登录人")]
         [Column(StringLength = 36)]
         public string CreatorId { get; set; }
 

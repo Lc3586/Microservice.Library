@@ -33,10 +33,10 @@ namespace Model.Common.EntryLogDTO
         public System.UserDTO.Detail _User { get; set; }
 
         /// <summary>
-        /// 角色
+        /// 会员
         /// </summary>
         [OpenApiSchema(OpenApiSchemaType.model)]
-        [Description("角色详情")]
-        public System.RoleDTO.Detail _Role { get; set; }
+        [Description("会员详情")]
+        public Public.MemberDTO.Detail _Member { get; set; }
     }
 }

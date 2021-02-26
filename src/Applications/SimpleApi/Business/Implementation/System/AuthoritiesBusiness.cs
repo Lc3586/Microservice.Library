@@ -530,7 +530,7 @@ namespace Business.Implementation.System
         {
             var users = data.UserIds.Select(o => GetUserWithCheck(o));
 
-            var roles = Repository_UserRole.Where(o => data.UserIds.Contains(o.UserId) && (data.All || data.RoleIds.Contains(o.RoleId))).ToList(o => new
+            var roles = Repository_UserRole.Where(o => data.UserIds.Contains(o.UserId) && (data.All == true || data.RoleIds.Contains(o.RoleId))).ToList(o => new
             {
                 o.RoleId,
                 o.Role.Type,
@@ -963,7 +963,7 @@ namespace Business.Implementation.System
             var menus = Repository_Menu.Where(o => (o.Users.AsSelect()
                                                             .Where(p => p.Id == userId)
                                                             .Any()
-                                                    || (mergeRoleMenu
+                                                    || (mergeRoleMenu == true
                                                         && o.Roles.AsSelect()
                                                                 .Where(p => p.Users.AsSelect()
                                                                                 .Where(q => q.Id == userId)
@@ -1007,7 +1007,7 @@ namespace Business.Implementation.System
             var resources = Repository_Resources.Where(o => (o.Users.AsSelect()
                                                             .Where(p => p.Id == userId)
                                                             .Any()
-                                                    || (mergeRoleResources
+                                                    || (mergeRoleResources == true
                                                         && o.Roles.AsSelect()
                                                                 .Where(p => p.Users.AsSelect()
                                                                                 .Where(q => q.Id == userId)
@@ -1105,92 +1105,92 @@ namespace Business.Implementation.System
 
         #region 验证授权
 
-        public bool IsSuperAdminUser(string userId)
+        public bool IsSuperAdminUser(string userId, bool checkEnable = true)
         {
-            return Repository_UserRole.Where(o => o.UserId == userId && (o.Role.Type == RoleType.超级管理员)).Any();
+            return Repository_UserRole.Where(o => o.UserId == userId && o.Role.Type == RoleType.超级管理员 && (checkEnable == false || o.Role.Enable == true)).Any();
         }
 
-        public bool IsSuperAdminRole(string roleId)
+        public bool IsSuperAdminRole(string roleId, bool checkEnable = true)
         {
-            return Repository_Role.Where(o => o.Id == roleId && (o.Type == RoleType.超级管理员)).Any();
+            return Repository_Role.Where(o => o.Id == roleId && o.Type == RoleType.超级管理员 && (checkEnable == false || o.Enable == true)).Any();
         }
 
-        public bool IsAdminUser(string userId)
+        public bool IsAdminUser(string userId, bool checkEnable = true)
         {
-            return Repository_UserRole.Where(o => o.UserId == userId && (o.Role.Type == RoleType.超级管理员 || o.Role.Type == RoleType.管理员)).Any();
+            return Repository_UserRole.Where(o => o.UserId == userId && (o.Role.Type == RoleType.超级管理员 || o.Role.Type == RoleType.管理员) && (checkEnable == false || o.Role.Enable == true)).Any();
         }
 
-        public bool IsAdminRole(string roleId)
+        public bool IsAdminRole(string roleId, bool checkEnable = true)
         {
-            return Repository_Role.Where(o => o.Id == roleId && (o.Type == RoleType.超级管理员 || o.Type == RoleType.管理员)).Any();
+            return Repository_Role.Where(o => o.Id == roleId && (o.Type == RoleType.超级管理员 || o.Type == RoleType.管理员) && (checkEnable == false || o.Enable == true)).Any();
         }
 
-        public bool UserHasRole(string userId, string roleId)
+        public bool UserHasRole(string userId, string roleId, bool checkEnable = true)
         {
-            return Repository_UserRole.Where(o => o.UserId == userId && o.RoleId == roleId).Any();
+            return Repository_UserRole.Where(o => o.UserId == userId && o.RoleId == roleId && (checkEnable == false || o.Role.Enable == true)).Any();
         }
 
-        public bool MemberHasRole(string memberId, string roleId)
+        public bool MemberHasRole(string memberId, string roleId, bool checkEnable = true)
         {
-            return Repository_MemberRole.Where(o => o.MemberId == memberId && o.RoleId == roleId).Any();
+            return Repository_MemberRole.Where(o => o.MemberId == memberId && o.RoleId == roleId && (checkEnable == false || o.Role.Enable == true)).Any();
         }
 
-        public bool UserHasMenu(string userId, string menuId)
+        public bool UserHasMenu(string userId, string menuId, bool checkEnable = true)
         {
-            return Repository_Menu.Where(o => o.Id == menuId
+            return Repository_Menu.Where(o => o.Id == menuId && (checkEnable == false || o.Enable == true)
                                             && (o.Users.AsSelect().Where(p => p.Id == userId).Any()
                                                 || o.Roles.AsSelect().Where(p => p.Users.AsSelect().Where(q => q.Id == userId).Any()).Any()))
                                 .Any();
         }
 
-        public bool UserHasMenuUri(string userId, string menuUri)
+        public bool UserHasMenuUri(string userId, string menuUri, bool checkEnable = true)
         {
-            return Repository_Menu.Where(o => o.Uri == menuUri
+            return Repository_Menu.Where(o => o.Uri == menuUri && (checkEnable == false || o.Enable == true)
                                             && (o.Users.AsSelect().Where(p => p.Id == userId).Any()
                                                 || o.Roles.AsSelect().Where(p => p.Users.AsSelect().Where(q => q.Id == userId).Any()).Any()))
                                 .Any();
         }
 
-        public bool MemberHasMenu(string userId, string menuId)
+        public bool MemberHasMenu(string userId, string menuId, bool checkEnable = true)
         {
-            return Repository_Menu.Where(o => o.Id == menuId
+            return Repository_Menu.Where(o => o.Id == menuId && (checkEnable == false || o.Enable == true)
                                             && o.Roles.AsSelect().Where(p => p.Users.AsSelect().Where(q => q.Id == userId).Any()).Any())
                                 .Any();
         }
 
-        public bool MemberHasMenuUri(string userId, string menuUri)
+        public bool MemberHasMenuUri(string userId, string menuUri, bool checkEnable = true)
         {
-            return Repository_Menu.Where(o => o.Uri == menuUri
+            return Repository_Menu.Where(o => o.Uri == menuUri && (checkEnable == false || o.Enable == true)
                                             && o.Roles.AsSelect().Where(p => p.Users.AsSelect().Where(q => q.Id == userId).Any()).Any())
                                 .Any();
         }
 
-        public bool UserHasResources(string userId, string resourcesId)
+        public bool UserHasResources(string userId, string resourcesId, bool checkEnable = true)
         {
-            return Repository_Resources.Where(o => o.Id == resourcesId
+            return Repository_Resources.Where(o => o.Id == resourcesId && (checkEnable == false || o.Enable == true)
                                             && (o.Users.AsSelect().Where(p => p.Id == userId).Any()
                                                 || o.Roles.AsSelect().Where(p => p.Users.AsSelect().Where(q => q.Id == userId).Any()).Any()))
                                 .Any();
         }
 
-        public bool UserHasResourcesUri(string userId, string resourcesUri)
+        public bool UserHasResourcesUri(string userId, string resourcesUri, bool checkEnable = true)
         {
-            return Repository_Resources.Where(o => o.Uri == resourcesUri
+            return Repository_Resources.Where(o => o.Uri == resourcesUri && (checkEnable == false || o.Enable == true)
                                             && (o.Users.AsSelect().Where(p => p.Id == userId).Any()
                                                 || o.Roles.AsSelect().Where(p => p.Users.AsSelect().Where(q => q.Id == userId).Any()).Any()))
                                 .Any();
         }
 
-        public bool MemberHasResources(string userId, string resourcesId)
+        public bool MemberHasResources(string userId, string resourcesId, bool checkEnable = true)
         {
-            return Repository_Resources.Where(o => o.Id == resourcesId
+            return Repository_Resources.Where(o => o.Id == resourcesId && (checkEnable == false || o.Enable == true)
                                             && o.Roles.AsSelect().Where(p => p.Users.AsSelect().Where(q => q.Id == userId).Any()).Any())
                                 .Any();
         }
 
-        public bool MemberHasResourcesUri(string userId, string resourcesUri)
+        public bool MemberHasResourcesUri(string userId, string resourcesUri, bool checkEnable = true)
         {
-            return Repository_Resources.Where(o => o.Uri == resourcesUri
+            return Repository_Resources.Where(o => o.Uri == resourcesUri && (checkEnable == false || o.Enable == true)
                                             && o.Roles.AsSelect().Where(p => p.Users.AsSelect().Where(q => q.Id == userId).Any()).Any())
                                 .Any();
         }

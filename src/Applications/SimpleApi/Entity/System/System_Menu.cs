@@ -45,7 +45,7 @@ namespace Entity.System
         /// <summary>
         /// 父级菜单Id
         /// </summary>
-        [OpenApiSubTag("List", "TreeList", "Edit", "Sort")]
+        [OpenApiSubTag("List", "TreeList", "Create", "Edit", "Sort")]
         [Column(StringLength = 36)]
         public string ParentId { get; set; }
 
@@ -222,7 +222,7 @@ namespace Entity.System
         /// <summary>
         /// 被授权此菜单的角色
         /// </summary>
-        [Navigate(ManyToMany = typeof(System_UserRole))]
+        [Navigate(ManyToMany = typeof(System_RoleMenu))]
         [OpenApiIgnore]
         [JsonIgnore]
         [XmlIgnore]

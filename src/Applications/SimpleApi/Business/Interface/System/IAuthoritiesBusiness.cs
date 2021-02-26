@@ -316,109 +316,123 @@ namespace Business.Interface.System
         /// 是否为超级管理员
         /// </summary>
         /// <param name="userId">用户Id</param>
+        /// <param name="checkEnable">检查是否已启用</param>
         /// <returns></returns>
-        bool IsSuperAdminUser(string userId);
+        bool IsSuperAdminUser(string userId, bool checkEnable = true);
 
         /// <summary>
         /// 是否为超级管理角色
         /// </summary>
         /// <param name="roleId">角色Id</param>
+        /// <param name="checkEnable">检查是否已启用</param>
         /// <returns></returns>
-        bool IsSuperAdminRole(string roleId);
+        bool IsSuperAdminRole(string roleId, bool checkEnable = true);
 
         /// <summary>
         /// 是否为管理员
         /// </summary>
         /// <param name="userId">用户Id</param>
+        /// <param name="checkEnable">检查是否已启用</param>
         /// <returns></returns>
-        bool IsAdminUser(string userId);
+        bool IsAdminUser(string userId, bool checkEnable = true);
 
         /// <summary>
         /// 是否为管理角色
         /// </summary>
         /// <param name="roleId">角色Id</param>
+        /// <param name="checkEnable">检查是否已启用</param>
         /// <returns></returns>
-        bool IsAdminRole(string roleId);
+        bool IsAdminRole(string roleId, bool checkEnable = true);
 
         /// <summary>
         /// 用户是否拥有角色授权
         /// </summary>
         /// <param name="userId">用户Id</param>
         /// <param name="roleId">角色Id</param>
+        /// <param name="checkEnable">检查是否已启用</param>
         /// <returns></returns>
-        bool UserHasRole(string userId, string roleId);
+        bool UserHasRole(string userId, string roleId, bool checkEnable = true);
 
         /// <summary>
         /// 会员是否拥有角色授权
         /// </summary>
         /// <param name="memberId">会员Id</param>
         /// <param name="roleId">角色Id</param>
+        /// <param name="checkEnable">检查是否已启用</param>
         /// <returns></returns>
-        bool MemberHasRole(string memberId, string roleId);
+        bool MemberHasRole(string memberId, string roleId, bool checkEnable = true);
 
         /// <summary>
         /// 用户是否拥有菜单授权
         /// </summary>
         /// <param name="userId">用户Id</param>
         /// <param name="menuId">菜单Id</param>
+        /// <param name="checkEnable">检查是否已启用</param>
         /// <returns></returns>
-        bool UserHasMenu(string userId, string menuId);
+        bool UserHasMenu(string userId, string menuId, bool checkEnable = true);
 
         /// <summary>
         /// 用户是否拥有菜单授权
         /// </summary>
         /// <param name="userId">用户Id</param>
         /// <param name="menuUri">菜单链接</param>
+        /// <param name="checkEnable">检查是否已启用</param>
         /// <returns></returns>
-        bool UserHasMenuUri(string userId, string menuUri);
+        bool UserHasMenuUri(string userId, string menuUri, bool checkEnable = true);
 
         /// <summary>
         /// 会员是否拥有菜单授权
         /// </summary>
         /// <param name="memberId">会员Id</param>
         /// <param name="menuId">菜单Id</param>
+        /// <param name="checkEnable">检查是否已启用</param>
         /// <returns></returns>
-        bool MemberHasMenu(string memberId, string menuId);
+        bool MemberHasMenu(string memberId, string menuId, bool checkEnable = true);
 
         /// <summary>
         /// 会员是否拥有菜单授权
         /// </summary>
         /// <param name="memberId">会员Id</param>
         /// <param name="menuUri">菜单链接</param>
+        /// <param name="checkEnable">检查是否已启用</param>
         /// <returns></returns>
-        bool MemberHasMenuUri(string memberId, string menuUri);
+        bool MemberHasMenuUri(string memberId, string menuUri, bool checkEnable = true);
 
         /// <summary>
         /// 用户是否拥有资源授权
         /// </summary>
         /// <param name="userId">用户Id</param>
         /// <param name="resourcesId">资源Id</param>
+        /// <param name="checkEnable">检查是否已启用</param>
         /// <returns></returns>
-        bool UserHasResources(string userId, string resourcesId);
+        bool UserHasResources(string userId, string resourcesId, bool checkEnable = true);
 
         /// <summary>
         /// 用户是否拥有资源授权
         /// </summary>
         /// <param name="userId">用户Id</param>
         /// <param name="resourcesUri">资源链接</param>
+        /// <param name="checkEnable">检查是否已启用</param>
         /// <returns></returns>
-        bool UserHasResourcesUri(string userId, string resourcesUri);
+        bool UserHasResourcesUri(string userId, string resourcesUri, bool checkEnable = true);
 
         /// <summary>
         /// 会员是否拥有资源授权
         /// </summary>
         /// <param name="memberId">会员Id</param>
         /// <param name="resourcesId">资源Id</param>
+        /// <param name="checkEnable">检查是否已启用</param>
         /// <returns></returns>
-        bool MemberHasResources(string memberId, string resourcesId);
+        bool MemberHasResources(string memberId, string resourcesId, bool checkEnable = true);
 
         /// <summary>
         /// 会员是否拥有资源授权
         /// </summary>
         /// <param name="memberId">会员Id</param>
         /// <param name="resourcesUri">资源链接</param>
+        /// <param name="checkEnable">检查是否已启用</param>
         /// <returns></returns>
-        bool MemberHasResourcesUri(string memberId, string resourcesUri);
+        bool MemberHasResourcesUri(string memberId, string resourcesUri, bool checkEnable = true);
 
         #endregion
 

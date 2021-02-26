@@ -24,9 +24,9 @@
             用户
             </summary>
         </member>
-        <member name="P:Model.Common.EntryLogDTO.Detail._Role">
+        <member name="P:Model.Common.EntryLogDTO.Detail._Member">
             <summary>
-            角色
+            会员
             </summary>
         </member>
         <member name="T:Model.Common.FileDTO.CheckMD5Response">

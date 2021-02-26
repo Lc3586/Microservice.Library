@@ -336,7 +336,8 @@ namespace Business.Implementation.Public
                 Name = member.Nickname,
                 HeadimgUrl = member.HeadimgUrl,
                 IsAdmin = false,
-                Remark = "使用微信信息登录系统."
+                Remark = "使用微信信息登录系统.",
+                CreatorId = member.Id
             });
 
             return new AuthenticationInfo

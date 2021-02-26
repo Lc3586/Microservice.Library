@@ -442,7 +442,8 @@ namespace Business.Implementation.System
                 Name = user.Name ?? user.Nickname,
                 HeadimgUrl = user.HeadimgUrl,
                 IsAdmin = AuthoritiesBusiness.IsAdminUser(user.Id),
-                Remark = "使用账号密码信息登录系统."
+                Remark = "使用账号密码信息登录系统.",
+                CreatorId = user.Id
             });
 
             return new AuthenticationInfo
@@ -474,7 +475,8 @@ namespace Business.Implementation.System
                 Name = user.Name,
                 HeadimgUrl = user.HeadimgUrl,
                 IsAdmin = AuthoritiesBusiness.IsAdminUser(user.Id),
-                Remark = "使用微信信息登录系统."
+                Remark = "使用微信信息登录系统.",
+                CreatorId = user.Id
             });
 
             return new AuthenticationInfo

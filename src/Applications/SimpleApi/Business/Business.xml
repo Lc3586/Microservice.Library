@@ -864,112 +864,126 @@
             <para>资源授权信息</para>
             </returns>
         </member>
-        <member name="M:Business.Interface.System.IAuthoritiesBusiness.IsSuperAdminUser(System.String)">
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.IsSuperAdminUser(System.String,System.Boolean)">
             <summary>
             是否为超级管理员
             </summary>
             <param name="userId">用户Id</param>
+            <param name="checkEnable">检查是否已启用</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Interface.System.IAuthoritiesBusiness.IsSuperAdminRole(System.String)">
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.IsSuperAdminRole(System.String,System.Boolean)">
             <summary>
             是否为超级管理角色
             </summary>
             <param name="roleId">角色Id</param>
+            <param name="checkEnable">检查是否已启用</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Interface.System.IAuthoritiesBusiness.IsAdminUser(System.String)">
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.IsAdminUser(System.String,System.Boolean)">
             <summary>
             是否为管理员
             </summary>
             <param name="userId">用户Id</param>
+            <param name="checkEnable">检查是否已启用</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Interface.System.IAuthoritiesBusiness.IsAdminRole(System.String)">
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.IsAdminRole(System.String,System.Boolean)">
             <summary>
             是否为管理角色
             </summary>
             <param name="roleId">角色Id</param>
+            <param name="checkEnable">检查是否已启用</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Interface.System.IAuthoritiesBusiness.UserHasRole(System.String,System.String)">
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.UserHasRole(System.String,System.String,System.Boolean)">
             <summary>
             用户是否拥有角色授权
             </summary>
             <param name="userId">用户Id</param>
             <param name="roleId">角色Id</param>
+            <param name="checkEnable">检查是否已启用</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Interface.System.IAuthoritiesBusiness.MemberHasRole(System.String,System.String)">
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.MemberHasRole(System.String,System.String,System.Boolean)">
             <summary>
             会员是否拥有角色授权
             </summary>
             <param name="memberId">会员Id</param>
             <param name="roleId">角色Id</param>
+            <param name="checkEnable">检查是否已启用</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Interface.System.IAuthoritiesBusiness.UserHasMenu(System.String,System.String)">
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.UserHasMenu(System.String,System.String,System.Boolean)">
             <summary>
             用户是否拥有菜单授权
             </summary>
             <param name="userId">用户Id</param>
             <param name="menuId">菜单Id</param>
+            <param name="checkEnable">检查是否已启用</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Interface.System.IAuthoritiesBusiness.UserHasMenuUri(System.String,System.String)">
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.UserHasMenuUri(System.String,System.String,System.Boolean)">
             <summary>
             用户是否拥有菜单授权
             </summary>
             <param name="userId">用户Id</param>
             <param name="menuUri">菜单链接</param>
+            <param name="checkEnable">检查是否已启用</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Interface.System.IAuthoritiesBusiness.MemberHasMenu(System.String,System.String)">
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.MemberHasMenu(System.String,System.String,System.Boolean)">
             <summary>
             会员是否拥有菜单授权
             </summary>
             <param name="memberId">会员Id</param>
             <param name="menuId">菜单Id</param>
+            <param name="checkEnable">检查是否已启用</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Interface.System.IAuthoritiesBusiness.MemberHasMenuUri(System.String,System.String)">
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.MemberHasMenuUri(System.String,System.String,System.Boolean)">
             <summary>
             会员是否拥有菜单授权
             </summary>
             <param name="memberId">会员Id</param>
             <param name="menuUri">菜单链接</param>
+            <param name="checkEnable">检查是否已启用</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Interface.System.IAuthoritiesBusiness.UserHasResources(System.String,System.String)">
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.UserHasResources(System.String,System.String,System.Boolean)">
             <summary>
             用户是否拥有资源授权
             </summary>
             <param name="userId">用户Id</param>
             <param name="resourcesId">资源Id</param>
+            <param name="checkEnable">检查是否已启用</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Interface.System.IAuthoritiesBusiness.UserHasResourcesUri(System.String,System.String)">
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.UserHasResourcesUri(System.String,System.String,System.Boolean)">
             <summary>
             用户是否拥有资源授权
             </summary>
             <param name="userId">用户Id</param>
             <param name="resourcesUri">资源链接</param>
+            <param name="checkEnable">检查是否已启用</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Interface.System.IAuthoritiesBusiness.MemberHasResources(System.String,System.String)">
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.MemberHasResources(System.String,System.String,System.Boolean)">
             <summary>
             会员是否拥有资源授权
             </summary>
             <param name="memberId">会员Id</param>
             <param name="resourcesId">资源Id</param>
+            <param name="checkEnable">检查是否已启用</param>
             <returns></returns>
         </member>
-        <member name="M:Business.Interface.System.IAuthoritiesBusiness.MemberHasResourcesUri(System.String,System.String)">
+        <member name="M:Business.Interface.System.IAuthoritiesBusiness.MemberHasResourcesUri(System.String,System.String,System.Boolean)">
             <summary>
             会员是否拥有资源授权
             </summary>
             <param name="memberId">会员Id</param>
             <param name="resourcesUri">资源链接</param>
+            <param name="checkEnable">检查是否已启用</param>
             <returns></returns>
         </member>
         <member name="T:Business.Interface.System.IMenuBusiness">
