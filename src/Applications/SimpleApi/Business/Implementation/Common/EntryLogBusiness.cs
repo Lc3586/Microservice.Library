@@ -33,8 +33,6 @@ namespace Business.Implementation.Common
             Mapper = autoMapperProvider.GetMapper();
             Orm = freeSqlProvider.GetFreeSql();
             Repository = Orm.GetRepository<Common_EntryLog, string>();
-            Repository_User = Orm.GetRepository<System_User, string>();
-            Repository_Member = Orm.GetRepository<Public_Member, string>();
         }
 
         #endregion
@@ -46,10 +44,6 @@ namespace Business.Implementation.Common
         IFreeSql Orm { get; set; }
 
         IBaseRepository<Common_EntryLog, string> Repository { get; set; }
-
-        IBaseRepository<System_User, string> Repository_User { get; set; }
-
-        IBaseRepository<Public_Member, string> Repository_Member { get; set; }
 
         #endregion
 
