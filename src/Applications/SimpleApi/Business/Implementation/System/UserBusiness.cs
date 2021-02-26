@@ -237,6 +237,9 @@ namespace Business.Implementation.System
 
             newData.Password = $"{newData.Account}{newData.Password}".ToMD5String();
 
+            if (newData.HeadimgUrl.IsNullOrWhiteSpace())
+                newData.HeadimgUrl = null;
+
             void handler()
             {
                 var orId = OperationRecordBusiness.Create(new Common_OperationRecord

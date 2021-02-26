@@ -145,21 +145,23 @@ namespace Business.Implementation.System
         {
             if (data.UserIds.Any_Ex())
             {
-                var roleIds = Repository_Role.Where(o => o.AutoAuthorizeRoleForUser && o.Enable).ToList(o => o.Id);
-                AuthorizeRoleForUser(new RoleForUser
-                {
-                    UserIds = data.UserIds,
-                    RoleIds = roleIds
-                }, runTransaction);
+                var roleIds = Repository_Role.Where(o => o.AutoAuthorizeRoleForUser == true && o.Enable == true).ToList(o => o.Id);
+                if (roleIds.Any())
+                    AuthorizeRoleForUser(new RoleForUser
+                    {
+                        UserIds = data.UserIds,
+                        RoleIds = roleIds
+                    }, runTransaction);
             }
             else if (data.RoleIds.Any_Ex())
             {
                 var userIds = Repository_User.Select.ToList(o => o.Id);
-                AuthorizeRoleForUser(new RoleForUser
-                {
-                    UserIds = userIds,
-                    RoleIds = data.RoleIds
-                }, runTransaction);
+                if (userIds.Any())
+                    AuthorizeRoleForUser(new RoleForUser
+                    {
+                        UserIds = userIds,
+                        RoleIds = data.RoleIds
+                    }, runTransaction);
             }
             else
                 throw new ApplicationException("参数不可为空.");
@@ -169,7 +171,7 @@ namespace Business.Implementation.System
         {
             if (data.MemberIds.Any_Ex())
             {
-                var roleIds = Repository_Role.Where(o => o.AutoAuthorizeRoleForUser && o.Enable).ToList(o => o.Id);
+                var roleIds = Repository_Role.Where(o => o.AutoAuthorizeRoleForUser == true && o.Enable == true).ToList(o => o.Id);
                 AuthorizeRoleForMember(new RoleForMember
                 {
                     MemberIds = data.MemberIds,
@@ -193,7 +195,7 @@ namespace Business.Implementation.System
         {
             var users = data.UserIds.Select(o => GetUserWithCheck(o));
 
-            var roles = Repository_Role.Where(o => (data.All == true || data.RoleIds.Contains(o.Id)) && o.Enable).ToList(o => new
+            var roles = Repository_Role.Where(o => (data.All == true || data.RoleIds.Contains(o.Id)) && o.Enable == true).ToList(o => new
             {
                 o.Id,
                 o.Type,
@@ -247,7 +249,7 @@ namespace Business.Implementation.System
         {
             var members = data.MemberIds.Select(o => GetMemberWithCheck(o));
 
-            var roles = Repository_Role.Where(o => (data.All == true || data.RoleIds.Contains(o.Id)) && o.Enable).ToList(o => new
+            var roles = Repository_Role.Where(o => (data.All == true || data.RoleIds.Contains(o.Id)) && o.Enable == true).ToList(o => new
             {
                 o.Id,
                 o.Type,
@@ -304,7 +306,7 @@ namespace Business.Implementation.System
         {
             var users = data.UserIds.Select(o => GetUserWithCheck(o));
 
-            var menus = Repository_Menu.Where(o => (data.All == true || data.MenuIds.Contains(o.Id)) && o.Enable).ToList(o => new
+            var menus = Repository_Menu.Where(o => (data.All == true || data.MenuIds.Contains(o.Id)) && o.Enable == true).ToList(o => new
             {
                 o.Id,
                 o.Type,
@@ -340,7 +342,7 @@ namespace Business.Implementation.System
         {
             var users = data.UserIds.Select(o => GetUserWithCheck(o));
 
-            var resources = Repository_Resources.Where(o => (data.All == true || data.ResourcesIds.Contains(o.Id)) && o.Enable).ToList(o => new
+            var resources = Repository_Resources.Where(o => (data.All == true || data.ResourcesIds.Contains(o.Id)) && o.Enable == true).ToList(o => new
             {
                 o.Id,
                 o.Type,
@@ -376,7 +378,7 @@ namespace Business.Implementation.System
         {
             var roles = data.RoleIds.Select(o => GetRoleWithCheck(o));
 
-            var menus = Repository_Menu.Where(o => (data.All == true || data.MenuIds.Contains(o.Id)) && o.Enable).ToList(o => new
+            var menus = Repository_Menu.Where(o => (data.All == true || data.MenuIds.Contains(o.Id)) && o.Enable == true).ToList(o => new
             {
                 o.Id,
                 o.Type,
@@ -412,7 +414,7 @@ namespace Business.Implementation.System
         {
             var roles = data.RoleIds.Select(o => GetRoleWithCheck(o));
 
-            var resources = Repository_Resources.Where(o => (data.All == true || data.ResourcesIds.Contains(o.Id)) && o.Enable).ToList(o => new
+            var resources = Repository_Resources.Where(o => (data.All == true || data.ResourcesIds.Contains(o.Id)) && o.Enable == true).ToList(o => new
             {
                 o.Id,
                 o.Type,
@@ -910,7 +912,7 @@ namespace Business.Implementation.System
 
         public List<Model.System.RoleDTO.Authorities> GetUserRole(string userId, bool includeMenu, bool includeResources)
         {
-            var roles = Repository_Role.Where(o => o.Users.AsSelect().Where(p => p.Id == userId).Any() && o.Enable)
+            var roles = Repository_Role.Where(o => o.Users.AsSelect().Where(p => p.Id == userId).Any() && o.Enable == true)
                                          .ToList(o => new Model.System.RoleDTO.Authorities
                                          {
                                              Id = o.Id,
@@ -934,7 +936,7 @@ namespace Business.Implementation.System
 
         public List<Model.System.RoleDTO.Authorities> GetMemberRole(string memberId, bool includeMenu, bool includeResources)
         {
-            var roles = Repository_Role.Where(o => o.Members.AsSelect().Where(p => p.Id == memberId).Any() && o.Enable)
+            var roles = Repository_Role.Where(o => o.Members.AsSelect().Where(p => p.Id == memberId).Any() && o.Enable == true)
                                          .ToList(o => new Model.System.RoleDTO.Authorities
                                          {
                                              Id = o.Id,
@@ -965,8 +967,8 @@ namespace Business.Implementation.System
                                                         && o.Roles.AsSelect()
                                                                 .Where(p => p.Users.AsSelect()
                                                                                 .Where(q => q.Id == userId)
-                                                                                .Any() && p.Enable)
-                                                                .Any())) && o.Enable)
+                                                                                .Any() && p.Enable == true)
+                                                                .Any())) && o.Enable == true)
                                     .ToList(o => new Model.System.MenuDTO.Authorities
                                     {
                                         Id = o.Id,
@@ -985,8 +987,8 @@ namespace Business.Implementation.System
             var menus = Repository_Menu.Where(o => o.Roles.AsSelect()
                                                         .Where(p => p.Members.AsSelect()
                                                                             .Where(q => q.Id == memberId)
-                                                                            .Any() && p.Enable)
-                                                        .Any() && o.Enable)
+                                                                            .Any() && p.Enable == true)
+                                                        .Any() && o.Enable == true)
                                     .ToList(o => new Model.System.MenuDTO.Authorities
                                     {
                                         Id = o.Id,
@@ -1009,8 +1011,8 @@ namespace Business.Implementation.System
                                                         && o.Roles.AsSelect()
                                                                 .Where(p => p.Users.AsSelect()
                                                                                 .Where(q => q.Id == userId)
-                                                                                .Any() && p.Enable)
-                                                                .Any())) && o.Enable)
+                                                                                .Any() && p.Enable == true)
+                                                                .Any())) && o.Enable == true)
                                     .ToList(o => new Model.System.ResourcesDTO.Authorities
                                     {
                                         Id = o.Id,
@@ -1028,8 +1030,8 @@ namespace Business.Implementation.System
             var resources = Repository_Resources.Where(o => o.Roles.AsSelect()
                                                         .Where(p => p.Members.AsSelect()
                                                                             .Where(q => q.Id == memberId)
-                                                                            .Any() && p.Enable)
-                                                        .Any() && o.Enable)
+                                                                            .Any() && p.Enable == true)
+                                                        .Any() && o.Enable == true)
                                     .ToList(o => new Model.System.ResourcesDTO.Authorities
                                     {
                                         Id = o.Id,
@@ -1072,7 +1074,7 @@ namespace Business.Implementation.System
         {
             return Repository_Menu.Where(o => o.Roles.AsSelect()
                                             .Where(p => p.Id == roleId)
-                                            .Any() && o.Enable)
+                                            .Any() && o.Enable == true)
                                 .ToList(o => new Model.System.MenuDTO.Authorities
                                 {
                                     Id = o.Id,
@@ -1088,7 +1090,7 @@ namespace Business.Implementation.System
         {
             return Repository_Resources.Where(o => o.Roles.AsSelect()
                                             .Where(p => p.Id == roleId)
-                                            .Any() && o.Enable)
+                                            .Any() && o.Enable == true)
                                 .ToList(o => new Model.System.ResourcesDTO.Authorities
                                 {
                                     Id = o.Id,
