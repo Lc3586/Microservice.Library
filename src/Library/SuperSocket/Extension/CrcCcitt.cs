@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library.SuperSocket.Extension
+namespace Microservice.Library.SuperSocket.Extension
 {
     /// <summary>
     /// 初始CRC值

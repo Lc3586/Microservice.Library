@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 
-namespace Library.OfficeDocuments
+namespace Microservice.Library.OfficeDocuments
 {
     /// <summary>
     /// 使用Aspose组件的Office文件操作帮助类

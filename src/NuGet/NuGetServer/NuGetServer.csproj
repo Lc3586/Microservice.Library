@@ -2,7 +2,26 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net46</TargetFramework>
+    <PackageProjectUrl>https://github.com/Lc3586/Microservice.Library</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Product>Microservice.Library</Product>
+    <Company>LCTR</Company>
+    <Authors>LCTR</Authors>
+    <PackageId>Microservice.Library.NuGetServer</PackageId>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <Version>1.0.0-alpha</Version>
+    <AssemblyName>Microservice.Library.NuGetServer</AssemblyName>
+    <RootNamespace>Microservice.Library.NuGetServer</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>Microservice.Library.NuGetServer.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>Microservice.Library.NuGetServer.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

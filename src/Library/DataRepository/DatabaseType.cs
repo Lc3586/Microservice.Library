@@ -1,4 +1,4 @@
-﻿namespace Library.DataRepository
+﻿namespace Microservice.Library.DataRepository
 {
     /// <summary>
     /// 数据库类型

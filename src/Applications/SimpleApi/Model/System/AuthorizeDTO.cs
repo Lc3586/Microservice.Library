@@ -1,4 +1,4 @@
-﻿using Library.OpenApi.Annotations;
+﻿using Microservice.Library.OpenApi.Annotations;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

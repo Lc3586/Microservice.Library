@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library.WeChat.Application
+namespace Microservice.Library.WeChat.Application
 {
     internal class ConfigureWeChatDevOptions : IConfigureOptions<WeChatDevOptions>
     {

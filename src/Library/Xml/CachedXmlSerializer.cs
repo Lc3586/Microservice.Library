@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace Library.Xml
+namespace Microservice.Library.Xml
 {
     public static class CachedXmlSerializer
     {

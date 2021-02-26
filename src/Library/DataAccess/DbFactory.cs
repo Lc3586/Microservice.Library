@@ -1,10 +1,9 @@
-﻿using Library.Extension;
-using Library.DataRepository;
-using Library.Models;
+﻿using Microservice.Library.DataRepository;
+using Microservice.Library.Extension;
 using System;
 using System.Reflection;
 
-namespace Library.DataAccess
+namespace Microservice.Library.DataAccess
 {
     /// <summary>
     /// 数据库工厂
@@ -78,7 +77,7 @@ namespace Library.DataAccess
         /// <summary>
         /// 将数据库类型转换为对应的数据库类型字符串
         /// </summary>
-        /// <param name="dbTypeStr">数据库类型字符串</param>
+        /// <param name="dbType">数据库类型</param>
         /// <returns></returns>
         public static string DbTypeToDbTypeStr(DatabaseType dbType)
         {

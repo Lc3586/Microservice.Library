@@ -1,9 +1,9 @@
 ﻿using Business.Utils.Log;
-using Library.Cache.Gen;
-using Library.Cache.Services;
-using Library.Container;
-using Library.Extension;
-using Library.Http;
+using Microservice.Library.Cache.Gen;
+using Microservice.Library.Cache.Services;
+using Microservice.Library.Container;
+using Microservice.Library.Extension;
+using Microservice.Library.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Model.Utils.Config;

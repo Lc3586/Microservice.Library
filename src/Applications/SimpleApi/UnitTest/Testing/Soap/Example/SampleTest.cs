@@ -1,5 +1,5 @@
-﻿using Library.Container;
-using Library.Soap.Gen;
+﻿using Microservice.Library.Container;
+using Microservice.Library.Soap.Gen;
 using Model.Example.SoapDTO;
 using NUnit.Framework;
 using SoapServices.Example;

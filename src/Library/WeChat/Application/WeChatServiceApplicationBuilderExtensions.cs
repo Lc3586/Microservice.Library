@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Library.WeChat.Application;
-using Library.WeChat.Extension;
+using Microservice.Library.WeChat.Application;
+using Microservice.Library.WeChat.Extension;
 
 namespace Microsoft.AspNetCore.Builder
 {

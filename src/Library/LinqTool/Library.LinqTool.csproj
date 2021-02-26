@@ -6,9 +6,24 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>Library.LinqTool</RootNamespace>
+    <RootNamespace>Microservice.Library.LinqTool</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.0-alpha</Version>
+    <Version>0.0.0.1-alpha</Version>
+    <PackageProjectUrl>https://github.com/Lc3586/Microservice.Library</PackageProjectUrl>
+    <PackageId>Microservice.Library.LinqTool</PackageId>
+    <Product>Microservice.Library</Product>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Authors>LCTR</Authors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <AssemblyName>Microservice.Library.LinqTool</AssemblyName>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>Microservice.Library.LinqTool.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>Microservice.Library.LinqTool.xml</DocumentationFile>
   </PropertyGroup>
 
 </Project>

@@ -1,5 +1,5 @@
-﻿using Library.Extension;
-using Library.Models;
+﻿using Microservice.Library.DataRepository;
+using Microservice.Library.Extension;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Infrastructure;
@@ -14,9 +14,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Common;
 using System.Linq;
 using System.Reflection;
-using static Library.DataRepository_MySql.EFCoreSqlLogeerProvider;
 
-namespace Library.DataRepository_MySql
+namespace Microservice.Library.DataRepository_MySql
 {
     /// <summary>
     /// DbContext容器
@@ -210,7 +209,7 @@ namespace Library.DataRepository_MySql
             ModelTypeMap.Values.ForEach(x =>
                 {
                     modelBuilder.Model.AddEntityType(x);
-                });            
+                });
             return modelBuilder.FinalizeModel();
         }
 

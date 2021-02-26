@@ -1,25 +1,29 @@
-﻿using Library.Cache;
-using Library.Extension;
+﻿using Microservice.Library.Cache.Model;
+using Microservice.Library.Cache.Services;
+using Microservice.Library.Extension;
 using SuperSocket;
-using SuperSocket.WebSocket.Server;
 using System;
-using System.Collections.Generic;
-using System.Security.Cryptography;
-using System.Text;
 
-namespace Library.SuperSocket.Server
+namespace Microservice.Library.SuperSocket.Server
 {
     /// <summary>
     /// 黑名单扩展类
-    /// 默认使用缓存(<see cref="Library.Cache.CacheHelper"/>)存储数据
     /// </summary>
     public class Blacklist
     {
-        public Blacklist()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cache"></param>
+        public Blacklist(ICache cache)
         {
-            _storage = new CacheStorage();
+            _storage = new CacheStorage(cache);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="storage"></param>
         public Blacklist(IStorage storage)
         {
             _storage = storage;
@@ -34,7 +38,7 @@ namespace Library.SuperSocket.Server
         public static bool Verification(IAppSession session, out BlackInfo info)
         {
             info = _storage.Get(GetId(session));
-            return info == null ? true : info.UnfreezeTime > DateTime.Now;
+            return info == null || info.UnfreezeTime > DateTime.Now;
         }
 
         /// <summary>
@@ -149,21 +153,48 @@ namespace Library.SuperSocket.Server
         public void Remove(string id);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class CacheStorage : IStorage
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cache"></param>
+        public CacheStorage(ICache cache)
+        {
+            Cache = cache;
+        }
+
+        readonly ICache Cache;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public BlackInfo Get(string id)
         {
-            return CacheHelper.Cache.GetCache<BlackInfo>(id);
+            return Cache.GetCache<BlackInfo>(id);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="data"></param>
         public void Add(BlackInfo data)
         {
-            CacheHelper.Cache.SetCache(data.Id, data, data.UnfreezeTime - DateTime.Now, ExpireType.Absolute);
+            Cache.SetCache(data.Id, data, data.UnfreezeTime - DateTime.Now, ExpireType.Absolute);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
         public void Remove(string id)
         {
-            CacheHelper.Cache.RemoveCache(id);
+            Cache.RemoveCache(id);
         }
     }
 }

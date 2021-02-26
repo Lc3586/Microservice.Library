@@ -1,4 +1,4 @@
-﻿using Library.OpenApi.Annotations;
+﻿using Microservice.Library.OpenApi.Annotations;
 using Newtonsoft.Json;
 using System;
 
@@ -33,14 +33,14 @@ namespace Model.Utils.Log.LogDTO
         /// 创建时间
         /// </summary>
         [OpenApiSchema(OpenApiSchemaType.@string, OpenApiSchemaFormat.string_datetime)]
-        [JsonConverter(typeof(Library.Json.Converters.DateTimeConverter), "yyyy-MM-dd HH:mm:ss")]
+        [JsonConverter(typeof(Microservice.Library.Json.Converters.DateTimeConverter), "yyyy-MM-dd HH:mm:ss")]
         public DateTime CreateTime { get; set; }
 
         /// <summary>
         /// 上次写入时间
         /// </summary>
         [OpenApiSchema(OpenApiSchemaType.@string, OpenApiSchemaFormat.string_datetime)]
-        [JsonConverter(typeof(Library.Json.Converters.DateTimeConverter), "yyyy-MM-dd HH:mm:ss")]
+        [JsonConverter(typeof(Microservice.Library.Json.Converters.DateTimeConverter), "yyyy-MM-dd HH:mm:ss")]
         public DateTime LastWriteTime { get; set; }
     }
 }

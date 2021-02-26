@@ -7,7 +7,7 @@ using System.Data;
 using System.IO;
 using System.Text;
 
-namespace Library.OfficeDocuments
+namespace Microservice.Library.OfficeDocuments
 {
     /// <summary>
     /// 使用NPOI组件的Office文件操作帮助类

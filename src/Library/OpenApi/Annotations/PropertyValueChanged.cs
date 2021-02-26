@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library.OpenApi.Annotations
+namespace Microservice.Library.OpenApi.Annotations
 {
     /// <summary>
     /// 属性值更改信息

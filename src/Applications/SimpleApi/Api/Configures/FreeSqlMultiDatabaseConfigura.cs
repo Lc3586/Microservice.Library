@@ -1,5 +1,5 @@
 ﻿using Business.Utils.Log;
-using Library.Extension;
+using Microservice.Library.Extension;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Model.Utils.Config;

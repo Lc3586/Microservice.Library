@@ -1,9 +1,9 @@
-﻿using Library.Extension.Model;
+﻿using Microservice.Library.Extension.Model;
 using System;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace Library.Extension
+namespace Microservice.Library.Extension
 {
     /// <summary>
     /// 筛选扩展方法

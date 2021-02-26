@@ -1,5 +1,5 @@
-﻿using Library.Extension;
-using Library.Models;
+﻿using Microservice.Library.DataRepository;
+using Microservice.Library.Extension;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Infrastructure;
@@ -15,9 +15,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Common;
 using System.Linq;
 using System.Reflection;
-using static Library.DataRepository_PostgreSql.EFCoreSqlLogeerProvider;
 
-namespace Library.DataRepository_PostgreSql
+namespace Microservice.Library.DataRepository_PostgreSql
 {
     /// <summary>
     /// DbContext容器
@@ -206,12 +205,14 @@ namespace Library.DataRepository_PostgreSql
         {
             if (ModelTypeMap.Count == 0)
                 InitModelType();
+#pragma warning disable EF1001 // Internal EF Core API usage.
             ConventionSet conventionSet = NpgsqlConventionSetBuilder.Build();
+#pragma warning restore EF1001 // Internal EF Core API usage.
             ModelBuilder modelBuilder = new ModelBuilder(conventionSet);
             ModelTypeMap.Values.ForEach(x =>
                 {
                     modelBuilder.Model.AddEntityType(x);
-                });            
+                });
             return modelBuilder.FinalizeModel();
         }
 

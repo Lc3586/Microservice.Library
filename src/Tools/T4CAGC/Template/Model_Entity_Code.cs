@@ -1,8 +1,4 @@
-﻿using Library.Models;
-using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microservice.Library.DataRepository;
 using T4CAGC.Models;
 
 namespace T4CAGC.Template

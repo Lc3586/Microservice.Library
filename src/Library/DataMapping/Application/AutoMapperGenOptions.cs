@@ -1,7 +1,7 @@
-﻿using Library.DataMapping;
+﻿using Microservice.Library.DataMapping;
 using System;
 
-namespace Library.DataMapping.Application
+namespace Microservice.Library.DataMapping.Application
 {
     public class AutoMapperGenOptions
     {

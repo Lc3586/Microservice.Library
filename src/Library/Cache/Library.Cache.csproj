@@ -6,26 +6,31 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>Library.Cache</RootNamespace>
+    <RootNamespace>Microservice.Library.Cache</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.1.1-alpha</Version>
+    <Version>0.0.0.1-alpha</Version>
     <Authors>LCTR</Authors>
     <Company>LCTR</Company>
-    <Product>LCTR</Product>
+    <Product>Microservice.Library</Product>
     <Description>提供缓存功能
 系统缓存
 Redis缓存</Description>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/Lc3586/Microservice/tree/master/src/Library/Cache</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/Lc3586/Microservice.Library</PackageProjectUrl>
+    <AssemblyName>Microservice.Library.Cache</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>Library.Cache.xml</DocumentationFile>
+    <DocumentationFile>Microservice.Library.Cache.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <DocumentationFile>Library.Cache.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>Microservice.Library.Cache.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

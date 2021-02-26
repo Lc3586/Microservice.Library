@@ -1,4 +1,4 @@
-﻿using Library.WeChat.Application;
+﻿using Microservice.Library.WeChat.Application;
 using Org.BouncyCastle.Crypto.Engines;
 using Org.BouncyCastle.Crypto.Modes;
 using Org.BouncyCastle.Crypto.Parameters;
@@ -10,7 +10,7 @@ using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
-namespace Library.WeChat.Extension
+namespace Microservice.Library.WeChat.Extension
 {
     /// <summary>
     /// 安全措施帮助类

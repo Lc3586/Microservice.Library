@@ -1,5 +1,5 @@
-﻿using Library.NLogger.Application;
-using Library.NLogger.Gen;
+﻿using Microservice.Library.NLogger.Application;
+using Microservice.Library.NLogger.Gen;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System;

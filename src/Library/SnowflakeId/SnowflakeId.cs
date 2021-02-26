@@ -1,8 +1,8 @@
-﻿using Library.Extension;
+﻿using Microservice.Library.Extension;
 using System;
 using System.Linq;
 
-namespace Library.Snowflake
+namespace Microservice.Library.Snowflake
 {
     /// <summary>
     /// 雪花Id,全局唯一,性能高,取代GUID

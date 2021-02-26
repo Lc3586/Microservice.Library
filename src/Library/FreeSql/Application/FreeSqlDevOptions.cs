@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Data.Common;
 using System.Text;
 
-namespace Library.FreeSql.Application
+namespace Microservice.Library.FreeSql.Application
 {
     /// <summary>
     /// 开发配置

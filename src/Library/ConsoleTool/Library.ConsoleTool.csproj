@@ -6,23 +6,25 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>Library.ConsoleTool</RootNamespace>
+    <RootNamespace>Microservice.Library.ConsoleTool</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.28-alpha</Version>
+    <Version>0.0.0.1-alpha</Version>
     <Authors>LCTR</Authors>
     <Company>LCTR</Company>
-    <Product>LCTR</Product>
+    <Product>Microservice.Library</Product>
     <Description>控制台工具
 显示进度条
 信息的输出
 信息、密码的输入</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageProjectUrl>https://github.com/Lc3586/Microservice/tree/master/src/Library/ConsoleTool</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/Lc3586/Microservice.Library</PackageProjectUrl>
+    <PackageId>Microservice.Library.ConsoleTool</PackageId>
+    <AssemblyName>Microservice.Library.ConsoleTool</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>Library.ConsoleTool.xml</DocumentationFile>
+    <DocumentationFile>Microservice.Library.ConsoleTool.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -30,7 +32,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>Library.ConsoleTool.xml</DocumentationFile>
+    <DocumentationFile>Microservice.Library.ConsoleTool.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

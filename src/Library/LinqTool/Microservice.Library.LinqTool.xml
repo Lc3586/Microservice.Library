@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microservice.Library.LinqTool</name>
+    </assembly>
+    <members>
+        <member name="T:Microservice.Library.LinqTool.Where">
+            <summary>
+            创建条件
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.LinqTool.Where.True``1">
+            <summary>
+            创建初始条件为True的表达式
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.LinqTool.Where.TrueFunc``1">
+            <summary>
+            创建初始条件为True的表达式
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.LinqTool.Where.False``1">
+            <summary>
+            创建初始条件为False的表达式
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.LinqTool.Where.FalseFunc``1">
+            <summary>
+            创建初始条件为False的表达式
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

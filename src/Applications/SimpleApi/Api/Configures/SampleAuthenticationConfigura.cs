@@ -1,4 +1,4 @@
-﻿using Library.Container;
+﻿using Microservice.Library.Container;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;

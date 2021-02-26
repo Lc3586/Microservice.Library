@@ -1,5 +1,5 @@
-﻿using Library.OpenApi.Annotations;
-using Library.OpenApi.Extention;
+﻿using Microservice.Library.OpenApi.Annotations;
+using Microservice.Library.OpenApi.Extention;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
@@ -11,7 +11,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace Library.OpenApi.JsonSerialization
+namespace Microservice.Library.OpenApi.JsonSerialization
 {
     /// <summary>
     /// 自定义动态类型转换器

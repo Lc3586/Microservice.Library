@@ -6,7 +6,7 @@ using System;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 
-namespace Library.SampleAuthentication.Application
+namespace Microservice.Library.SampleAuthentication.Application
 {
     /// <summary>
     /// 建议身份验证处理类

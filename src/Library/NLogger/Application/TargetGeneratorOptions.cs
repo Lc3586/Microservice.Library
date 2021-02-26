@@ -1,6 +1,6 @@
 ﻿using NLog;
 
-namespace Library.NLogger.Application
+namespace Microservice.Library.NLogger.Application
 {
     /// <summary>
     /// 日志组件目标生成配置

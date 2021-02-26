@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library.DataRepository
+namespace Microservice.Library.DataRepository
 {
     /// <summary>
     /// 数据库数据类型转C#数据类型

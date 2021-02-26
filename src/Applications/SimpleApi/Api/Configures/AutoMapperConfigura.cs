@@ -1,4 +1,4 @@
-﻿using Library.TypeTool;
+﻿using Microservice.Library.TypeTool;
 using Microsoft.Extensions.DependencyInjection;
 using Model.Utils.Config;
 

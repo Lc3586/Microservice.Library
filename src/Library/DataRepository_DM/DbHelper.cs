@@ -1,17 +1,11 @@
 ﻿using Dm;
-using Library.Extension;
-using Library.DataRepository;
-using Library.Models;
-using NetTaste;
+using Microservice.Library.DataRepository;
+using Microservice.Library.Extension;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Common;
 using System.Linq;
-using System.Threading;
-using DbColumn = Library.Models.DbColumn;
 
-namespace Library.DataRepository_DM
+namespace Microservice.Library.DataRepository_DM
 {
     /// <summary>
     /// SqlServer数据库操作帮助类

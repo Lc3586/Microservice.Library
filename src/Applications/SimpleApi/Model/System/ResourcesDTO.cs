@@ -1,6 +1,6 @@
 ﻿using Entity.System;
-using Library.DataMapping.Annotations;
-using Library.OpenApi.Annotations;
+using Microservice.Library.DataMapping.Annotations;
+using Microservice.Library.OpenApi.Annotations;
 
 /* 
  * 资源业务模型

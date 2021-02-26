@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microservice.Library.TypeTool</name>
+    </assembly>
+    <members>
+        <member name="T:Microservice.Library.TypeTool.BuilderHelper">
+            <summary>
+            运行时创建类型
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.TypeTool.BuilderHelper.BuildType(Microservice.Library.TypeTool.TypeConfig)">
+            <summary>
+            创建类型
+            </summary>
+            <param name="typeConfig"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.TypeTool.BuilderHelper.GetConfig(System.Type)">
+            <summary>
+            获取配置
+            </summary>
+            <param name="type">原类型</param>
+            <returns></returns>
+        </member>
+        <member name="T:Microservice.Library.TypeTool.TypeConfig">
+            <summary>
+            类型配置
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.TypeTool.TypeConfig.FullName">
+            <summary>
+            类型名
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.TypeTool.TypeConfig.AssemblyName">
+            <summary>
+            程序集名
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.TypeTool.TypeConfig.Properties">
+            <summary>
+            拥有的属性
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.TypeTool.TypeConfig.Attributes">
+            <summary>
+            拥有的特性
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.TypeTool.PropertyConfig">
+            <summary>
+            属性配置
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.TypeTool.PropertyConfig.PropertyName">
+            <summary>
+            属性名
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.TypeTool.PropertyConfig.PropertyType">
+            <summary>
+            属性类型
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.TypeTool.PropertyConfig.Attributes">
+            <summary>
+            属性包含的自定义特性
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.TypeTool.AttributeConfig">
+            <summary>
+            特性配置
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.TypeTool.AttributeConfig.Attribute">
+            <summary>
+            特性类型
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.TypeTool.AttributeConfig.ConstructorArgs">
+            <summary>
+            构造函数参数
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.TypeTool.AttributeConfig.Properties">
+            <summary>
+            初始化属性
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.TypeTool.TypeHelper">
+            <summary>
+            Type帮助类
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.TypeTool.TypeHelper.GetTypes(System.String[])">
+            <summary>
+            获取指定命名空间下都类型集合
+            </summary>
+            <param name="assembly">命名空间<para>支持通配符</para></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -4,7 +4,7 @@ using System.IO;
 using System.Text;
 using System.Xml;
 
-namespace Library.Xml
+namespace Microservice.Library.Xml
 {
     public static class XmlReaderHelper
     {
@@ -48,6 +48,7 @@ namespace Library.Xml
         /// <param name="parameterType">参数数据类型</param>
         /// <param name="parameterName">参数名称</param>
         /// <param name="parameterNs">命名空间</param>
+        /// <param name="innerXml"></param>
         /// <returns></returns>
         public static object GetXmlElementValue(this XmlDictionaryReader xmlReader, Type parameterType, string parameterName, string parameterNs = "", bool innerXml = false)
         {

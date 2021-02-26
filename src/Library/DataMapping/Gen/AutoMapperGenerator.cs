@@ -1,25 +1,26 @@
 ﻿using AutoMapper;
-using Library.DataMapping.Annotations;
-using Library.DataMapping.Application;
-using Library.DataMapping.Extention;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
+using Microservice.Library.DataMapping.Application;
+using Microservice.Library.DataMapping.Extention;
 
-namespace Library.DataMapping.Gen
+namespace Microservice.Library.DataMapping.Gen
 {
+    /// <summary>
+    /// 生成器
+    /// </summary>
     public class AutoMapperGenerator : IAutoMapperProvider
     {
-        private readonly AutoMapperGenOptions _options;
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="options"></param>
         public AutoMapperGenerator(AutoMapperGenOptions options)
         {
-            _options = options ?? new AutoMapperGenOptions();
+            Options = options ?? new AutoMapperGenOptions();
         }
 
-        private IMapper mapper;
+        readonly AutoMapperGenOptions Options;
+
+        IMapper mapper;
 
         /// <summary>
         /// 获取映射器
@@ -32,12 +33,13 @@ namespace Library.DataMapping.Gen
 
             var config = new MapperConfiguration(cfg =>
             {
-                _options.AutoMapperGeneratorOptions.Types.ForEach(x =>
+                Options.AutoMapperGeneratorOptions.Types.ForEach(x =>
                 {
-                    if (_options.AutoMapperGeneratorOptions.EnableMapFrom)
-                        cfg.CreateMap<MapFromAttribute>(x);
-                    if (_options.AutoMapperGeneratorOptions.EnableMapTo)
-                        cfg.CreateMap<MapToAttribute>(x);
+                    if (Options.AutoMapperGeneratorOptions.EnableMapFrom)
+                        cfg.CreateMapFrom(x);
+
+                    if (Options.AutoMapperGeneratorOptions.EnableMapTo)
+                        cfg.CreateMapTo(x);
                 });
             });
 

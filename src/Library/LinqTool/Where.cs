@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 
-namespace Library.LinqTool
+namespace Microservice.Library.LinqTool
 {
     /// <summary>
     /// 创建条件

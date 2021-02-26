@@ -7,7 +7,7 @@ using BenchmarkDotNet.Environments;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Running;
 using Net5TC.Test;
-using Library.ConsoleTool;
+using Microservice.Library.ConsoleTool;
 using System.Runtime.InteropServices;
 using BenchmarkDotNet.Reports;
 

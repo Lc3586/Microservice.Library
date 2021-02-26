@@ -6,17 +6,24 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>Library.SelectOption</RootNamespace>
+    <RootNamespace>Microservice.Library.SelectOption</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.0-alpha</Version>
+    <Version>0.0.0.1-alpha</Version>
+    <PackageProjectUrl>https://github.com/Lc3586/Microservice.Library</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageId>Microservice.Library.SelectOption</PackageId>
+    <Product>Microservice.Library</Product>
+    <Authors>LCTR</Authors>
+    <AssemblyName>Microservice.Library.SelectOption</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>Library.SelectOption.xml</DocumentationFile>
+    <DocumentationFile>Microservice.Library.SelectOption.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>Library.SelectOption.xml</DocumentationFile>
+    <DocumentationFile>Microservice.Library.SelectOption.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

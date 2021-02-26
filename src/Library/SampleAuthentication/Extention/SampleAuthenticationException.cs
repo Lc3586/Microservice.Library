@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Library.SampleAuthentication.Extension
+namespace Microservice.Library.SampleAuthentication.Extension
 {
     /// <summary>
     /// 简易身份验证服务中间件异常

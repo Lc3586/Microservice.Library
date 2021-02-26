@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Library.Configuration.Annotations
+namespace Microservice.Library.Configuration.Annotations
 {
     /// <summary>
     /// Json配置属性

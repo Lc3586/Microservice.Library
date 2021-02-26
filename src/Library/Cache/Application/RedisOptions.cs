@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Library.Cache.Application
+namespace Microservice.Library.Cache.Application
 {
     /// <summary>
     /// Redis配置

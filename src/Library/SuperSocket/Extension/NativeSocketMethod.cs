@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace Library.SuperSocket.Extension
+namespace Microservice.Library.SuperSocket.Extension
 {
     public static class NativeSocketMethod
     {

@@ -6,20 +6,22 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>Library.Elasticsearch</RootNamespace>
+    <RootNamespace>Microservice.Library.Elasticsearch</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.20-alpha</Version>
+    <Version>0.0.0.1-alpha</Version>
     <Authors>LCTR</Authors>
     <Company>LCTR</Company>
-    <Product>LCTR</Product>
+    <Product>Microservice.Library</Product>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Description>通过依赖注入的方式使用Elasticsearch</Description>
-    <PackageProjectUrl>https://github.com/Lc3586/Microservice/tree/master/src/Library/Elasticsearch</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/Lc3586/Microservice.Library</PackageProjectUrl>
+    <PackageId>Microservice.Library.Elasticsearch</PackageId>
+    <AssemblyName>Microservice.Library.Elasticsearch</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>Library.Elasticsearch.xml</DocumentationFile>
+    <DocumentationFile>Microservice.Library.Elasticsearch.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -27,7 +29,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>Library.Elasticsearch.xml</DocumentationFile>
+    <DocumentationFile>Microservice.Library.Elasticsearch.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

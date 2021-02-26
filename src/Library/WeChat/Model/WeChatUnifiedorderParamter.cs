@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library.WeChat.Model
+namespace Microservice.Library.WeChat.Model
 {
     /// <summary>
     /// 统一下单参数

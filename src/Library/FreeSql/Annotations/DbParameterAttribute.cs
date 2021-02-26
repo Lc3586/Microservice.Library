@@ -7,7 +7,7 @@ using System.Data.Common;
 using System.Data.SqlClient;
 using System.Text;
 
-namespace Library.FreeSql.Annotations
+namespace Microservice.Library.FreeSql.Annotations
 {
     /// <summary>
     /// 数据库参数特性

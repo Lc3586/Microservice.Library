@@ -1,6 +1,6 @@
 ﻿using Entity.System;
-using Library.DataMapping.Annotations;
-using Library.OpenApi.Annotations;
+using Microservice.Library.DataMapping.Annotations;
+using Microservice.Library.OpenApi.Annotations;
 
 /* 
  * 系统日志模型

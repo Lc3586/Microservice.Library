@@ -1,10 +1,10 @@
-﻿using Library.WeChat.Model;
+﻿using Microservice.Library.WeChat.Model;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Library.WeChat.Extension
+namespace Microservice.Library.WeChat.Extension
 {
     /// <summary>
     /// 微信财付通通知处理接口

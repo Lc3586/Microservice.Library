@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 
-namespace Library.SampleAuthentication.Extension
+namespace Microservice.Library.SampleAuthentication.Extension
 {
     /// <summary>
     /// 简易身份验证服务处理接口

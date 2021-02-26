@@ -1,5 +1,5 @@
 ﻿using FreeSql.DataAnnotations;
-using Library.OpenApi.Annotations;
+using Microservice.Library.OpenApi.Annotations;
 using Newtonsoft.Json;
 using System;
 using System.ComponentModel;
@@ -75,7 +75,7 @@ namespace Net5TC.Entity
         /// </summary>
         [OpenApiSubTag("List", "Detail")]
         [OpenApiSchema(OpenApiSchemaType.@string, OpenApiSchemaFormat.string_datetime)]
-        [JsonConverter(typeof(Library.Json.Converters.DateTimeConverter), "yyyy-MM-dd HH:mm:ss")]
+        [JsonConverter(typeof(Microservice.Library.Json.Converters.DateTimeConverter), "yyyy-MM-dd HH:mm:ss")]
         [Description("创建时间")]
         public DateTime CreateTime { get; set; }
 
@@ -84,7 +84,7 @@ namespace Net5TC.Entity
         /// </summary>
         [OpenApiSubTag("List", "Detail")]
         [OpenApiSchema(OpenApiSchemaType.@string, OpenApiSchemaFormat.string_datetime)]
-        [JsonConverter(typeof(Library.Json.Converters.DateTimeConverter), "yyyy-MM-dd HH:mm:ss")]
+        [JsonConverter(typeof(Microservice.Library.Json.Converters.DateTimeConverter), "yyyy-MM-dd HH:mm:ss")]
         [Description("最近修改时间")]
         public DateTime ModifyTime { get; set; }
     }

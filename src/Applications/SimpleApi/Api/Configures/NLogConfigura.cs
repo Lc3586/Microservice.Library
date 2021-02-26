@@ -1,5 +1,5 @@
 ﻿using Business.Utils.Log;
-using Library.NLogger.Application;
+using Microservice.Library.NLogger.Application;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Model.Utils.Config;

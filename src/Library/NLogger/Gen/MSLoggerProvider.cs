@@ -2,7 +2,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace Library.NLogger.Gen
+namespace Microservice.Library.NLogger.Gen
 {
     /// <summary>
     /// MS日志组件构造器

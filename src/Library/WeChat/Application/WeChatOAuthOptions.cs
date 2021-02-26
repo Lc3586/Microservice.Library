@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library.WeChat.Application
+namespace Microservice.Library.WeChat.Application
 {
     /// <summary>
     /// 微信授权配置

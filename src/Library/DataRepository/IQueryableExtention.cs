@@ -1,4 +1,4 @@
-﻿using Library.Extension;
+﻿using Microservice.Library.Extension;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,10 +6,10 @@ using System.Linq.Dynamic.Core;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace Library.DataRepository
+namespace Microservice.Library.DataRepository
 {
     /// <summary>
-    /// IQueryable<T>的拓展操作
+    /// IQueryable{T}的拓展操作
     /// 作者：Coldairarrow
     /// </summary>
     public static class IQueryableExtention
@@ -24,10 +24,10 @@ namespace Library.DataRepository
         public static IQueryable<T> GetPagination<T>(this IQueryable<T> source, IDataRepositoryPagination pagination)
         {
             pagination.DataRepositoryFilter(source);
-            pagination.DataRepositoryRecordCount = source.Count();
+            pagination.RecordCount = source.Count();
             pagination.DataRepositoryOrderBy(source);
             //source = source.OrderBy(pagination.SortField, pagination.SortType);
-            return source.Skip((pagination.DataRepositoryPageIndex - 1) * pagination.DataRepositoryPageRows).Take(pagination.DataRepositoryPageRows);
+            return source.Skip((pagination.PageIndex - 1) * pagination.PageRows).Take(pagination.PageRows);
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace Library.DataRepository
         }
 
         /// <summary>
-        /// 拓展IQueryable<T>方法操作
+        /// 拓展IQueryable{T}方法操作
         /// </summary>
         /// <typeparam name="T">数据类型</typeparam>
         /// <param name="source">数据源</param>

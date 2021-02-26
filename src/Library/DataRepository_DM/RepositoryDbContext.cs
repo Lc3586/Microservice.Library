@@ -1,13 +1,11 @@
 ﻿using Dm;
-using Library.Extension;
-using Library.Models;
+using Microservice.Library.DataRepository;
+using Microservice.Library.Extension;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Microsoft.EntityFrameworkCore.Dm.Infrastructure.Internal;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
-using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Concurrent;
@@ -16,9 +14,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Common;
 using System.Linq;
 using System.Reflection;
-using static Library.DataRepository_DM.EFCoreSqlLogeerProvider;
 
-namespace Library.DataRepository_DM
+namespace Microservice.Library.DataRepository_DM
 {
     /// <summary>
     /// DbContext容器

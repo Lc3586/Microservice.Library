@@ -1,10 +1,16 @@
 ﻿using Autofac;
 using Microsoft.AspNetCore.Http;
 
-namespace Library.Container
+namespace Microservice.Library.Container
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class AutofacHelper
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public static ILifetimeScope Container { get; set; }
 
         /// <summary>

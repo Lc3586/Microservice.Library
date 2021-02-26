@@ -1,4 +1,4 @@
-﻿namespace Library.DataRepository
+﻿namespace Microservice.Library.DataRepository
 {
     public interface IShardingRepository : IBaseRepository
     {

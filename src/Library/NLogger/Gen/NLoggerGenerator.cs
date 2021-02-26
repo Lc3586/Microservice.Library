@@ -1,6 +1,6 @@
-﻿using Library.NLogger.Application;
+﻿using Microservice.Library.NLogger.Application;
 
-namespace Library.NLogger.Gen
+namespace Microservice.Library.NLogger.Gen
 {
     /// <summary>
     /// 日志组件生成器

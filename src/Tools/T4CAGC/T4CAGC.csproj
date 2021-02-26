@@ -6,7 +6,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
 
@@ -23,29 +23,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="IdentityModel" Version="4.0.0" />
-    <PackageReference Include="McMaster.Extensions.CommandLineUtils" Version="2.4.2" />
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="3.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.0.0" />
-    <PackageReference Include="System.CodeDom" Version="4.6.0" />
+    <PackageReference Include="IdentityModel" Version="5.0.1" />
+    <PackageReference Include="McMaster.Extensions.CommandLineUtils" Version="3.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
+    <PackageReference Include="System.CodeDom" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\Library\ConsoleTool\Library.ConsoleTool.csproj" />
+    <ProjectReference Include="..\..\Library\DataAccess\Library.DataAccess.csproj" />
     <ProjectReference Include="..\..\Library\Extension\Library.Extension.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="mscorlib">
-      <HintPath>mscorlib</HintPath>
-    </Reference>
-    <Reference Include="System">
-      <HintPath>System</HintPath>
-    </Reference>
-    <Reference Include="System.Core">
-      <HintPath>System.Core</HintPath>
-    </Reference>
   </ItemGroup>
 
   <ItemGroup>
@@ -87,5 +76,7 @@
       <LastGenOutput>Model_Expand.cs</LastGenOutput>
     </None>
   </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>

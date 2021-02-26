@@ -1,17 +1,21 @@
-﻿using AutoMapper;
-using Library.DataMapping.Application;
-using Library.DataMapping.Gen;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
+﻿using Microservice.Library.DataMapping.Application;
+using Microservice.Library.DataMapping.Gen;
 using Microsoft.Extensions.Options;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class AutoMapperServiceCollectionExtensions
     {
+        /// <summary>
+        /// 注册数据映射组件
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="setupAction"></param>
+        /// <returns></returns>
         public static IServiceCollection AddAutoMapper(
             this IServiceCollection services,
             Action<AutoMapperGenOptions> setupAction = null)
@@ -29,6 +33,11 @@ namespace Microsoft.Extensions.DependencyInjection
             return services;
         }
 
+        /// <summary>
+        /// 配置数据映射组件
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="setupAction"></param>
         public static void ConfigureAutoMapper(
             this IServiceCollection services,
             Action<AutoMapperGenOptions> setupAction)

@@ -7,16 +7,20 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Description>简易身份验证服务</Description>
     <Authors>LCTR</Authors>
-    <Product>LCTR</Product>
-    <Version>1.0.0-alpha</Version>
+    <Product>Microservice.Library</Product>
+    <Version>0.0.0.1-alpha</Version>
+    <PackageProjectUrl>https://github.com/Lc3586/Microservice.Library</PackageProjectUrl>
+    <PackageId>Microservice.Library.SampleAuthentication</PackageId>
+    <AssemblyName>Microservice.Library.SampleAuthentication</AssemblyName>
+    <RootNamespace>Microservice.Library.SampleAuthentication</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>Library.SampleAuthentication.xml</DocumentationFile>
+    <DocumentationFile>Microservice.Library.SampleAuthentication.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>Library.SampleAuthentication.xml</DocumentationFile>
+    <DocumentationFile>Microservice.Library.SampleAuthentication.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

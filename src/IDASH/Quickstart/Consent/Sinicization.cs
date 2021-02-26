@@ -1,6 +1,6 @@
 ﻿using IDASH.Models;
 using IdentityServer4.Models;
-using Library.Extension;
+using Microservice.Library.Extension;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using System;
@@ -38,7 +38,7 @@ namespace IDASH.Quickstart.Consent
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
             }

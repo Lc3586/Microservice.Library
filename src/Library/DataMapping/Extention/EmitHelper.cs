@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection.Emit;
 
-namespace Library.DataMapping.Helper
+namespace Microservice.Library.DataMapping.Extention
 {
     /// <summary>
     /// Emit反射帮助类

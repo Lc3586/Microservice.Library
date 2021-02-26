@@ -1,10 +1,10 @@
-﻿using Library.Extension;
+﻿using Microservice.Library.Extension;
 using Nest;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library.Elasticsearch.Annotations
+namespace Microservice.Library.Elasticsearch.Annotations
 {
     /// <summary>
     ///Elasticsearch索引拓展属性

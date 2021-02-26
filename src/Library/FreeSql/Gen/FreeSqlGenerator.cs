@@ -1,14 +1,14 @@
 ﻿using FreeSql;
 using FreeSql.Internal;
-using Library.FreeSql.Application;
-using Library.FreeSql.Extention;
-using Library.FreeSql.Repository;
+using Microservice.Library.FreeSql.Application;
+using Microservice.Library.FreeSql.Extention;
+using Microservice.Library.FreeSql.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Library.FreeSql.Gen
+namespace Microservice.Library.FreeSql.Gen
 {
     /// <summary>
     /// 单库生成器

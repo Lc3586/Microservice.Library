@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Library.SuperSocket.JTProtocol
+namespace Microservice.Library.SuperSocket.JTProtocol
 {
     /// <summary>
     /// 消息包信息

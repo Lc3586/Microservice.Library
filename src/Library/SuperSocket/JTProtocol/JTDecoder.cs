@@ -1,18 +1,15 @@
 ﻿using Flee.PublicTypes;
-using Library.Extension;
-using Library.SuperSocket.Extension;
+using Microservice.Library.Extension;
+using Microservice.Library.SuperSocket.Extension;
 using SuperSocket.ProtoBase;
 using System;
 using System.Buffers;
-using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Text.RegularExpressions;
 
-namespace Library.SuperSocket.JTProtocol
+namespace Microservice.Library.SuperSocket.JTProtocol
 {
     /// <summary>
     /// JT协议解码器
@@ -58,6 +55,7 @@ namespace Library.SuperSocket.JTProtocol
         /// 流数据解码
         /// </summary>
         /// <param name="buffer">流数据</param>
+        /// <param name="context"></param>
         /// <returns>消息包</returns>
         public MessagePackageInfo Decode(ref ReadOnlySequence<byte> buffer, object context)
         {
@@ -124,7 +122,6 @@ namespace Library.SuperSocket.JTProtocol
         /// <summary>
         /// 分析普通结构
         /// </summary>
-        /// <param name="pack">消息包</param>
         /// <param name="structure">结构</param>
         /// <param name="offset">偏移量</param>
         /// <returns>获得的数据</returns>

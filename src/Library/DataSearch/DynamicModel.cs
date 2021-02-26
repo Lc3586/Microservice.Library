@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Library.DataSearch
+namespace Microservice.Library.DataSearch
 {
     /// <summary>
     /// 动态数据模型类

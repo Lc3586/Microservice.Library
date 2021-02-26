@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library.WeChat.Application
+namespace Microservice.Library.WeChat.Application
 {
     /// <summary>
     /// 微信基础配置

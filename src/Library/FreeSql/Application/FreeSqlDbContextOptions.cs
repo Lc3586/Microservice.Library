@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library.FreeSql.Application
+namespace Microservice.Library.FreeSql.Application
 {
     /// <summary>
     /// 数据库上下文配置

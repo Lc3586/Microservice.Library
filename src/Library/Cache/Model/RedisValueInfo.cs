@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Library.Cache.Model
+namespace Microservice.Library.Cache.Model
 {
     /// <summary>
     /// Redis值信息

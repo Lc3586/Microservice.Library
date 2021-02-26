@@ -1,11 +1,11 @@
-﻿using Library.Collection;
-using Library.Extension;
-using Library.Models;
+﻿using Microservice.Library.Collection;
+using Microservice.Library.DataRepository;
+using Microservice.Library.Extension;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Library.DataAccess
+namespace Microservice.Library.DataAccess
 {
     /// <summary>
     /// 分库分表读写分离配置
@@ -89,7 +89,7 @@ namespace Library.DataAccess
         /// <summary>
         /// 获取读表
         /// </summary>
-        /// <typeparam name="T">实体泛型</typeparam>
+        /// <param name="absTableName"></param>
         /// <param name="absDbName">抽象数据库名</param>
         /// <returns></returns>
         public List<(string tableName, string conString, DatabaseType dbType)> GetReadTables(string absTableName, string absDbName = null)

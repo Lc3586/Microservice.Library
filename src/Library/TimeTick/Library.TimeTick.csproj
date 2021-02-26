@@ -6,20 +6,28 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>Library.TimeTick</RootNamespace>
+    <RootNamespace>Microservice.Library.TimeTick</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.3-alpha</Version>
+    <Version>0.0.0.1-alpha</Version>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/Lc3586/Microservice/blob/master/src/Library/TimeTick</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/Lc3586/Microservice.Library</PackageProjectUrl>
+    <PackageId>Microservice.Library.TimeTick</PackageId>
+    <Product>Microservice.Library</Product>
+    <Authors>LCTR</Authors>
+    <AssemblyName>Microservice.Library.TimeTick</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>Library.TimeTick.xml</DocumentationFile>
+    <DocumentationFile>Microservice.Library.TimeTick.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <DocumentationFile>Library.TimeTick.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>Microservice.Library.TimeTick.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

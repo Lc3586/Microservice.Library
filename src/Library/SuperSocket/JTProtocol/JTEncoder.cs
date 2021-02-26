@@ -1,6 +1,6 @@
 ﻿using Flee.PublicTypes;
-using Library.Extension;
-using Library.SuperSocket.Extension;
+using Microservice.Library.Extension;
+using Microservice.Library.SuperSocket.Extension;
 using SuperSocket.ProtoBase;
 using System;
 using System.Buffers;
@@ -8,7 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Library.SuperSocket.JTProtocol
+namespace Microservice.Library.SuperSocket.JTProtocol
 {
     /// <summary>
     /// JT协议编码器
@@ -331,7 +331,6 @@ namespace Library.SuperSocket.JTProtocol
         /// 加密
         /// </summary>
         /// <param name="buffer">数据</param>
-        /// <param name="obj">当前实例</param>
         /// <param name="structure">结构</param>
         /// <returns></returns>
         private void Encrypt(byte[] buffer, JTProtocol.Structure structure)

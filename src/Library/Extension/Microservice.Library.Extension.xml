@@ -1,0 +1,1490 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microservice.Library.Extension</name>
+    </assembly>
+    <members>
+        <member name="T:Microservice.Library.Extension.Extension">
+            <summary>
+            拓展类
+            </summary>
+            <summary>
+            拓展类
+            </summary>
+            <summary>
+            筛选扩展方法
+            </summary>
+            <summary>
+            拓展类
+            </summary>
+            <summary>
+            拓展类
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.Loop(System.Action,System.Int32)">
+            <summary>
+            循环指定次数
+            </summary>
+            <param name="count">循环次数</param>
+            <param name="method">执行的方法</param>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.Loop(System.Action{System.Int32},System.Int32)">
+            <summary>
+            循环指定次数
+            </summary>
+            <param name="count">循环次数</param>
+            <param name="method">执行的方法</param>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.IsJsonIgnore(System.Reflection.MemberInfo)">
+            <summary>
+            是否为json不输出的成员
+            </summary>
+            <param name="element">目标成员</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.GetDisplayName(System.Reflection.MemberInfo)">
+            <summary>
+            获取成员的UI显示名称
+            </summary>
+            <param name="element">目标成员</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToString(System.Byte[])">
+            <summary>
+            byte[]转string
+            注：默认使用UTF8编码
+            </summary>
+            <param name="bytes">byte[]数组</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToString(System.Byte[],System.Text.Encoding)">
+            <summary>
+            byte[]转string
+            </summary>
+            <param name="bytes">byte[]数组</param>
+            <param name="encoding">指定编码</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToBase64String(System.Byte[])">
+            <summary>
+            将byte[]转为Base64字符串
+            </summary>
+            <param name="bytes">字节数组</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToBinString(System.Byte)">
+            <summary>
+            转为二进制字符串
+            </summary>
+            <param name="aByte">字节</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToBinString(System.Byte[])">
+            <summary>
+            转为二进制字符串
+            注:一个字节转为8位二进制
+            </summary>
+            <param name="bytes">字节数组</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.To0XString(System.Byte[])">
+            <summary>
+            Byte数组转为对应的16进制字符串
+            </summary>
+            <param name="bytes">Byte数组</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.To0XString(System.Byte)">
+            <summary>
+            Byte数组转为对应的16进制字符串
+            </summary>
+            <param name="aByte">一个Byte</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToASCIIString(System.Byte[])">
+            <summary>
+            转为ASCII字符串（一个字节对应一个字符）
+            </summary>
+            <param name="bytes">字节数组</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToASCIIString(System.Byte)">
+            <summary>
+            转为ASCII字符串（一个字节对应一个字符）
+            </summary>
+            <param name="aByte">字节数组</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.GetXOR(System.Byte[])">
+            <summary>
+            获取异或值
+            注：每个字节异或
+            </summary>
+            <param name="bytes">字节数组</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToInt(System.Byte[])">
+            <summary>
+            将字节数组转为Int类型
+            </summary>
+            <param name="bytes">字节数组</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToObject(System.Byte[])">
+            <summary> 
+            将一个序列化后的byte[]数组还原
+            </summary>
+            <param name="bytes"></param>         
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToObject``1(System.Byte[])">
+            <summary>
+            将一个序列化后的byte[]数组还原
+            </summary>
+            <typeparam name="T">返回类型</typeparam>
+            <param name="bytes">字节数组</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToList``1(System.Data.DataTable)">
+            <summary>
+            DataTable转List
+            </summary>
+            <typeparam name="T">转换类型</typeparam>
+            <param name="dt">数据源</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToCsvStr(System.Data.DataTable)">
+             <summary>
+            将DataTable转换为标准的CSV字符串
+             </summary>
+             <param name="dt">数据表</param>
+             <returns>返回标准的CSV</returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.GetWeekOfYear(System.DateTime)">
+              <summary> 
+             获取某一日期是该年中的第几周
+              </summary> 
+              <param name="dateTime"> 日期 </param> 
+              <returns> 该日期在该年中的周数 </returns> 
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToJsTimestamp(System.DateTime)">
+            <summary>
+            获取Js格式的timestamp
+            </summary>
+            <param name="dateTime">日期</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.JsGetTime(System.DateTime)">
+            <summary>
+            获取js中的getTime()
+            </summary>
+            <param name="dt">日期</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToUnixTimestamp(System.DateTime)">
+            <summary>
+            获取Unix时间戳
+            </summary>
+            <param name="dt">日期</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.Default(System.DateTime)">
+            <summary>
+            返回默认时间1970-01-01
+            </summary>
+            <param name="dt">时间日期</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.LocalDefault(System.DateTime)">
+            <summary>
+            返回默认时间1970-01-01
+            </summary>
+            <param name="dt">时间日期</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToCstTime(System.DateTime)">
+            <summary>
+            转为标准时间（北京时间，解决Linux时区问题）
+            </summary>
+            <param name="dt">当前时间</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToBool(System.Decimal)">
+            <summary>
+            decimal转bool
+            </summary>
+            <param name="value">值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToMultipleText(System.Type,System.Collections.Generic.List{System.Int32})">
+            <summary>
+            多选枚举转为对应文本,逗号隔开
+            </summary>
+            <param name="values">多个值</param>
+            <param name="enumType">枚举类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToMultipleText(System.Type,System.String)">
+            <summary>
+            多选枚举转为对应文本,逗号隔开
+            </summary>
+            <param name="values">多个值逗号隔开</param>
+            <param name="enumType">枚举类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.GetExceptionAddr(System.Exception)">
+            <summary>
+            获取异常位置
+            </summary>
+            <param name="e">异常</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.GetExceptionAllMsg(System.Exception,System.Int32)">
+            <summary>
+            获取异常消息
+            </summary>
+            <param name="ex">捕捉的异常</param>
+            <param name="level">内部异常层级</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.GetExceptionAllMsg(System.Exception)">
+            <summary>
+            获取异常消息
+            </summary>
+            <param name="ex">捕捉的异常</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.AddProperty(System.Dynamic.ExpandoObject,System.String,System.Object)">
+            <summary>
+            添加属性
+            </summary>
+            <param name="expandoObj">动态对象</param>
+            <param name="propertyName">属性名</param>
+            <param name="value">属性值</param>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.SetProperty(System.Dynamic.ExpandoObject,System.String,System.Object)">
+            <summary>
+            设置属性
+            </summary>
+            <param name="expandoObj">动态对象</param>
+            <param name="propertyName">属性名</param>
+            <param name="value">属性值</param>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.GetProperty(System.Dynamic.ExpandoObject,System.String)">
+            <summary>
+            获取属性
+            </summary>
+            <param name="expandoObj">动态对象</param>
+            <param name="propertyName">属性名</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.GetProperties(System.Dynamic.ExpandoObject)">
+            <summary>
+            获取所有属性
+            </summary>
+            <param name="expandoObj">动态对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.RemoveProperty(System.Dynamic.ExpandoObject,System.String)">
+            <summary>
+            删除属性
+            </summary>
+            <param name="expandoObj">动态对象</param>
+            <param name="propertyName">属性名</param>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToDataTable(System.Collections.Generic.IEnumerable{System.Dynamic.ExpandoObject})">
+            <summary>
+            将动态属性对象ExpandoObject列表转为DataTable
+            </summary>
+            <param name="dataList">数据源</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToExpandoObjectList(System.Data.DataSet)">
+            <summary>
+            将DataSet转为动态属性对象ExpandoObject列表(第一张表)
+            </summary>
+            <param name="dataSet"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToExpandoObjectList(System.Data.DataTable)">
+            <summary>
+            将DataTable转为动态属性对象ExpandoObject列表
+            </summary>
+            <param name="dataTable"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToExpandoObject(System.Data.DataSet)">
+            <summary>
+            将DataSet转为动态属性对象ExpandoObject
+            </summary>
+            <param name="dataSet"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToExpandoObject(System.Data.DataTable)">
+            <summary>
+            将DataTable转为动态属性对象ExpandoObject
+            </summary>
+            <param name="dataTable"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToExpandoObject(System.Data.DataRow,System.Data.DataColumnCollection)">
+            <summary>
+            将DataRow转为动态属性对象ExpandoObject
+            </summary>
+            <param name="row"></param>
+            <param name="columns"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.BuildExtendSelectExpre``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            组合继承属性选择表达式树,无拓展参数
+            TResult将继承TBase的所有属性
+            </summary>
+            <typeparam name="TBase">原数据类型</typeparam>
+            <typeparam name="TResult">返回类型</typeparam>
+            <param name="expression">拓展表达式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.BuildExtendSelectExpre``3(System.Linq.Expressions.Expression{System.Func{``0,``1,``2}})">
+            <summary>
+            组合继承属性选择表达式树,1个拓展参数
+            TResult将继承TBase的所有属性
+            </summary>
+            <typeparam name="TBase">原数据类型</typeparam>
+            <typeparam name="T1">拓展类型1</typeparam>
+            <typeparam name="TResult">返回类型</typeparam>
+            <param name="expression">拓展表达式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.BuildExtendSelectExpre``4(System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3}})">
+            <summary>
+            组合继承属性选择表达式树,2个拓展参数
+            TResult将继承TBase的所有属性
+            </summary>
+            <typeparam name="TBase">原数据类型</typeparam>
+            <typeparam name="T1">拓展类型1</typeparam>
+            <typeparam name="T2">拓展类型2</typeparam>
+            <typeparam name="TResult">返回类型</typeparam>
+            <param name="expression">拓展表达式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.BuildExtendSelectExpre``5(System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4}})">
+            <summary>
+            组合继承属性选择表达式树,3个拓展参数
+            TResult将继承TBase的所有属性
+            </summary>
+            <typeparam name="TBase">原数据类型</typeparam>
+            <typeparam name="T1">拓展类型1</typeparam>
+            <typeparam name="T2">拓展类型2</typeparam>
+            <typeparam name="T3">拓展类型3</typeparam>
+            <typeparam name="TResult">返回类型</typeparam>
+            <param name="expression">拓展表达式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.BuildExtendSelectExpre``6(System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4,``5}})">
+            <summary>
+            组合继承属性选择表达式树,4个拓展参数
+            TResult将继承TBase的所有属性
+            </summary>
+            <typeparam name="TBase">原数据类型</typeparam>
+            <typeparam name="T1">拓展类型1</typeparam>
+            <typeparam name="T2">拓展类型2</typeparam>
+            <typeparam name="T3">拓展类型3</typeparam>
+            <typeparam name="T4">拓展类型4</typeparam>
+            <typeparam name="TResult">返回类型</typeparam>
+            <param name="expression">拓展表达式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.BuildExtendSelectExpre``7(System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4,``5,``6}})">
+            <summary>
+            组合继承属性选择表达式树,5个拓展参数
+            TResult将继承TBase的所有属性
+            </summary>
+            <typeparam name="TBase">原数据类型</typeparam>
+            <typeparam name="T1">拓展类型1</typeparam>
+            <typeparam name="T2">拓展类型2</typeparam>
+            <typeparam name="T3">拓展类型3</typeparam>
+            <typeparam name="T4">拓展类型4</typeparam>
+            <typeparam name="T5">拓展类型5</typeparam>
+            <typeparam name="TResult">返回类型</typeparam>
+            <param name="expression">拓展表达式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.BuildExtendSelectExpre``8(System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4,``5,``6,``7}})">
+            <summary>
+            组合继承属性选择表达式树,6个拓展参数
+            TResult将继承TBase的所有属性
+            </summary>
+            <typeparam name="TBase">原数据类型</typeparam>
+            <typeparam name="T1">拓展类型1</typeparam>
+            <typeparam name="T2">拓展类型2</typeparam>
+            <typeparam name="T3">拓展类型3</typeparam>
+            <typeparam name="T4">拓展类型4</typeparam>
+            <typeparam name="T5">拓展类型5</typeparam>
+            <typeparam name="T6">拓展类型6</typeparam>
+            <typeparam name="TResult">返回类型</typeparam>
+            <param name="expression">拓展表达式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.BuildExtendSelectExpre``9(System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8}})">
+            <summary>
+            组合继承属性选择表达式树,7个拓展参数
+            TResult将继承TBase的所有属性
+            </summary>
+            <typeparam name="TBase">原数据类型</typeparam>
+            <typeparam name="T1">拓展类型1</typeparam>
+            <typeparam name="T2">拓展类型2</typeparam>
+            <typeparam name="T3">拓展类型3</typeparam>
+            <typeparam name="T4">拓展类型4</typeparam>
+            <typeparam name="T5">拓展类型5</typeparam>
+            <typeparam name="T6">拓展类型6</typeparam>
+            <typeparam name="T7">拓展类型7</typeparam>
+            <typeparam name="TResult">返回类型</typeparam>
+            <param name="expression">拓展表达式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.BuildExtendSelectExpre``10(System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9}})">
+            <summary>
+            组合继承属性选择表达式树,8个拓展参数
+            TResult将继承TBase的所有属性
+            </summary>
+            <typeparam name="TBase">原数据类型</typeparam>
+            <typeparam name="T1">拓展类型1</typeparam>
+            <typeparam name="T2">拓展类型2</typeparam>
+            <typeparam name="T3">拓展类型3</typeparam>
+            <typeparam name="T4">拓展类型4</typeparam>
+            <typeparam name="T5">拓展类型5</typeparam>
+            <typeparam name="T6">拓展类型6</typeparam>
+            <typeparam name="T7">拓展类型7</typeparam>
+            <typeparam name="T8">拓展类型8</typeparam>
+            <typeparam name="TResult">返回类型</typeparam>
+            <param name="expression">拓展表达式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.BuildExtendSelectExpre``11(System.Linq.Expressions.Expression{System.Func{``0,``1,``2,``3,``4,``5,``6,``7,``8,``9,``10}})">
+            <summary>
+            组合继承属性选择表达式树,9个拓展参数
+            TResult将继承TBase的所有属性
+            </summary>
+            <typeparam name="TBase">原数据类型</typeparam>
+            <typeparam name="T1">拓展类型1</typeparam>
+            <typeparam name="T2">拓展类型2</typeparam>
+            <typeparam name="T3">拓展类型3</typeparam>
+            <typeparam name="T4">拓展类型4</typeparam>
+            <typeparam name="T5">拓展类型5</typeparam>
+            <typeparam name="T6">拓展类型6</typeparam>
+            <typeparam name="T7">拓展类型7</typeparam>
+            <typeparam name="T8">拓展类型8</typeparam>
+            <typeparam name="T9">拓展类型9</typeparam>
+            <typeparam name="TResult">返回类型</typeparam>
+            <param name="expression">拓展表达式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.Concat``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},Microservice.Library.Extension.ConcatType)">
+            <summary>
+            连接表达式与运算
+            </summary>
+            <typeparam name="T">参数</typeparam>
+            <param name="one">原表达式</param>
+            <param name="another">新的表达式</param>
+            <param name="type">连接类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.And``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            连接表达式与运算
+            </summary>
+            <typeparam name="T">参数</typeparam>
+            <param name="one">原表达式</param>
+            <param name="another">新的表达式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.AndAlso``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            连接表达式与运算
+            </summary>
+            <typeparam name="T">参数</typeparam>
+            <param name="one">原表达式</param>
+            <param name="another">新的表达式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.Or``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            连接表达式或运算
+            </summary>
+            <typeparam name="T">参数</typeparam>
+            <param name="one">原表达式</param>
+            <param name="another">新表达式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.OrElse``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            连接表达式或运算
+            </summary>
+            <typeparam name="T">参数</typeparam>
+            <param name="one">原表达式</param>
+            <param name="another">新表达式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.GetConstantValue(System.Linq.Expressions.Expression)">
+            <summary>
+            获取表达式中的固定值
+            </summary>
+            <param name="expression">表达式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.GetLinqWhere``1(Microservice.Library.Extension.Model.Filter)">
+            <summary>
+            获取linq表达式
+            </summary>
+            <typeparam name="T">数据类型</typeparam>
+            <param name="filter">筛选</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToSequentialGuid(System.Guid)">
+            <summary>
+            转为有序的GUID
+            注：长度为50字符
+            </summary>
+            <param name="guid">新的GUID</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.GenerateKey(System.Guid)">
+            <summary>
+            生成主键
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.Copy``1(System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32)">
+            <summary>
+            复制序列中的数据
+            </summary>
+            <typeparam name="T">泛型</typeparam>
+            <param name="iEnumberable">原数据</param>
+            <param name="startIndex">原数据开始复制的起始位置</param>
+            <param name="length">需要复制的数据长度</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})">
+            <summary>
+            给IEnumerable拓展ForEach方法
+            </summary>
+            <typeparam name="T">模型类</typeparam>
+            <param name="iEnumberable">数据源</param>
+            <param name="func">方法</param>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0,System.Int32})">
+            <summary>
+            给IEnumerable拓展ForEach方法
+            </summary>
+            <typeparam name="T">模型类</typeparam>
+            <param name="iEnumberable">数据源</param>
+            <param name="func">方法</param>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.Any_Ex``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            集合是否有存在元素
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="iEnumberable"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.Any_Ex``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            集合是否有存在元素
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="iEnumberable"></param>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.CastToList``1(System.Collections.IEnumerable)">
+            <summary>
+            IEnumerable转换为List'T'
+            </summary>
+            <typeparam name="T">参数</typeparam>
+            <param name="source">数据源</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToDataTable``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            将IEnumerable'T'转为对应的DataTable
+            </summary>
+            <typeparam name="T">数据模型</typeparam>
+            <param name="iEnumberable">数据源</param>
+            <returns>DataTable</returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.GetPagination``1(System.Collections.Generic.IEnumerable{``0},System.Int32@,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.String)">
+            <summary>
+            获取分页数据
+            </summary>
+            <typeparam name="T">泛型</typeparam>
+            <param name="iEnumberable">数据源</param>
+            <param name="recordCount">总数据量(不分页)</param>
+            <param name="pageIndex">指定页码</param>
+            <param name="pageRows">每页数据量</param>
+            <param name="sortField">排序字段</param>
+            <param name="sortType">排序类型(desc,asc)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.Next``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            下一个随机值
+            </summary>
+            <typeparam name="T">值类型</typeparam>
+            <param name="source">值的集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.BuildTree``1(System.Collections.Generic.List{``0})">
+            <summary>
+            建造树结构
+            </summary>
+            <param name="allNodes">所有的节点</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.GetChildren``1(System.Collections.Generic.List{``0},``0,System.Boolean)">
+            <summary>
+            获取所有子节点
+            注：包括自己
+            </summary>
+            <typeparam name="T">节点类型</typeparam>
+            <param name="allNodes">所有节点</param>
+            <param name="parentNode">父节点</param>
+            <param name="includeSelf">是否包括自己</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.GetChildren``1(System.Collections.Generic.List{``0},``0)">
+            <summary>
+            获取所有子节点
+            </summary>
+            <typeparam name="T">树模型（TreeModel或继承它的模型）</typeparam>
+            <param name="nodes">所有节点列表</param>
+            <param name="parentNode">父节点Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.HaveChildren``1(System.Collections.Generic.List{``0},System.String)">
+            <summary>
+            判断当前节点是否有子节点
+            </summary>
+            <typeparam name="T">树模型</typeparam>
+            <param name="nodes">所有节点</param>
+            <param name="nodeId">当前节点Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToAscllStr(System.Int32)">
+            <summary>
+            int转Ascll字符
+            </summary>
+            <param name="ascllCode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToDateTime_From_JsGetTime(System.Int64)">
+            <summary>
+            jsGetTime转为DateTime
+            </summary>
+            <param name="jsGetTime">js中Date.getTime()</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.OrderBy(System.Int32[0:,0:],System.Int32,System.Boolean)">
+            <summary>
+            二维数组排序
+            </summary>
+            <param name="data">二维数据</param>
+            <param name="sortIndex">用作排序依据的维度(可能的值：0,1)</param>
+            <param name="asc">true:升序,false:降序</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToBool(System.Int32)">
+            <summary>
+            int转bool
+            </summary>
+            <param name="value">值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.JSTimestampToDatetime(System.Int64)">
+            <summary>
+            JavaScript时间戳转换为C# DateTime
+            </summary>
+            <param name="jsTimestamp">JavaScript时间戳</param>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.UnixTimestampToDatetime(System.Int64)">
+            <summary>
+            Unix时间戳转换为C# DateTime
+            </summary>
+            <param name="unixTimestamp">Unix时间戳</param>
+        </member>
+        <member name="P:Microservice.Library.Extension.Extension.BindingFlags">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToBytes(System.Object)">
+            <summary>
+            将一个object对象序列化，返回一个byte[]         
+            </summary> 
+            <param name="obj">能序列化的对象</param>
+            <returns></returns> 
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.IsNullOrEmpty(System.Object)">
+            <summary>
+            判断是否为Null或者空
+            </summary>
+            <param name="obj">对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToJson(System.Object,Newtonsoft.Json.Serialization.DefaultContractResolver)">
+            <summary>
+            将对象序列化成Json字符串
+            </summary>
+            <param name="obj">需要序列化的对象</param>
+            <param name="contractResolver"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.EntityToJson(System.Object)">
+            <summary>
+            实体类转json数据，速度快
+            </summary>
+            <param name="t">实体类</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.DeepClone``1(``0)">
+            <summary>
+            深复制
+            </summary>
+            <typeparam name="T">类型</typeparam>
+            <param name="obj">对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToXmlStr``1(``0,System.String)">
+            <summary>
+            将对象序列化为XML字符串
+            </summary>
+            <remarks>先转为json字符串再转为xml文档</remarks>
+            <typeparam name="T">对象类型</typeparam>
+            <param name="obj">对象</param>
+            <param name="rootNodeName">根节点名(建议设为xml)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ContainsProperty(System.Object,System.String)">
+            <summary>
+            是否拥有某属性
+            </summary>
+            <param name="obj">对象</param>
+            <param name="propertyName">属性名</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.GetPropertyValue(System.Object,System.String)">
+            <summary>
+            获取某属性值
+            </summary>
+            <param name="obj">对象</param>
+            <param name="propertyName">属性名</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.SetPropertyValue(System.Object,System.String,System.Object)">
+            <summary>
+            设置某属性值
+            </summary>
+            <param name="obj">对象</param>
+            <param name="propertyName">属性名</param>
+            <param name="value">值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ContainsField(System.Object,System.String)">
+            <summary>
+            是否拥有某字段
+            </summary>
+            <param name="obj">对象</param>
+            <param name="fieldName">字段名</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.GetGetFieldValue(System.Object,System.String)">
+            <summary>
+            获取某字段值
+            </summary>
+            <param name="obj">对象</param>
+            <param name="fieldName">字段名</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.SetFieldValue(System.Object,System.String,System.Object)">
+            <summary>
+            设置某字段值
+            </summary>
+            <param name="obj">对象</param>
+            <param name="fieldName">字段名</param>
+            <param name="value">值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ChangeType(System.Object,System.Type)">
+            <summary>
+            改变实体类型
+            </summary>
+            <param name="obj">对象</param>
+            <param name="targetType">目标类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ChangeType``1(System.Object)">
+            <summary>
+            改变实体类型
+            </summary>
+            <typeparam name="T">目标泛型</typeparam>
+            <param name="obj">对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ChangeType_ByConvert(System.Object,System.Type)">
+            <summary>
+            改变类型
+            </summary>
+            <param name="obj">原对象</param>
+            <param name="targetType">目标类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.TryChangeType(System.Object,System.Type)">
+            <summary>
+            更改数据类型
+            <para>有错误时，使用其他策略（特殊转换，使用默认值）</para>
+            </summary>
+            <param name="obj"></param>
+            <param name="targetType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ObjectToBytes(System.Object)">
+            <summary> 
+            将一个object对象序列化，返回一个byte[]
+            </summary> 
+            <param name="obj">能序列化的对象</param>
+            <returns></returns> 
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.BytesToObject(System.Byte[])">
+            <summary> 
+            将一个序列化后的byte[]数组还原
+            </summary>
+            <param name="Bytes"></param>
+            <returns></returns> 
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.OrderBy(System.Object[0:,0:],System.Int32,System.Boolean)">
+            <summary>
+            二维数组排序
+            </summary>
+            <param name="data">二维数据</param>
+            <param name="sortIndex">用作排序依据的维度(可能的值：0,1)</param>
+            <param name="asc">true:升序,false:降序</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.GetDescription(System.Type,System.String)">
+            <summary>
+            获取说明
+            </summary>
+            <param name="type">目标对象</param>
+            <param name="property">指定属性（为空时取当前类型上的Description属性）</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.Next``1(System.Random,System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            下一个随机值
+            </summary>
+            <typeparam name="T">值类型</typeparam>
+            <param name="random"></param>
+            <param name="source">值的集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ReadToBytes(System.IO.Stream)">
+            <summary>
+            将流Stream转为byte数组
+            </summary>
+            <param name="stream"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ReadToString(System.IO.Stream)">
+            <summary>
+            将流读为字符串
+            注：使用默认编码
+            </summary>
+            <param name="stream">流</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ReadToString(System.IO.Stream,System.Text.Encoding)">
+            <summary>
+            将流读为字符串
+            注：使用指定编码
+            </summary>
+            <param name="stream">流</param>
+            <param name="encoding">指定编码</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToBytes_FromBase64Str(System.String)">
+            <summary>
+            转为字节数组
+            </summary>
+            <param name="base64Str">base64字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToMD5String(System.String)">
+            <summary>
+            转换为MD5加密后的字符串（默认加密为32位）
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.Base64Encode(System.String)">
+            <summary>
+            Base64加密
+            注:默认采用UTF8编码
+            </summary>
+            <param name="source">待加密的明文</param>
+            <returns>加密后的字符串</returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.Base64Encode(System.String,System.Text.Encoding)">
+            <summary>
+            Base64加密
+            </summary>
+            <param name="source">待加密的明文</param>
+            <param name="encoding">加密采用的编码方式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.Base64Decode(System.String)">
+            <summary>
+            Base64解密
+            注:默认使用UTF8编码
+            </summary>
+            <param name="result">待解密的密文</param>
+            <returns>解密后的字符串</returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.Base64Decode(System.String,System.Text.Encoding)">
+            <summary>
+            Base64解密
+            </summary>
+            <param name="result">待解密的密文</param>
+            <param name="encoding">解密采用的编码方式，注意和加密时采用的方式一致</param>
+            <returns>解密后的字符串</returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.Base64UrlEncode(System.String)">
+            <summary>
+            Base64Url编码
+            </summary>
+            <param name="text">待编码的文本字符串</param>
+            <returns>编码的文本字符串</returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.Base64UrlDecode(System.String)">
+            <summary>
+            Base64Url解码
+            </summary>
+            <param name="base64UrlStr">使用Base64Url编码后的字符串</param>
+            <returns>解码后的内容</returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToSHA1Bytes(System.String)">
+            <summary>
+            计算SHA1摘要
+            注：默认使用UTF8编码
+            </summary>
+            <param name="str">字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToSHA1Bytes(System.String,System.Text.Encoding)">
+            <summary>
+            计算SHA1摘要
+            </summary>
+            <param name="str">字符串</param>
+            <param name="encoding">编码</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToSHA1String(System.String)">
+            <summary>
+            转为SHA1哈希加密字符串
+            注：默认使用UTF8编码
+            </summary>
+            <param name="str">字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToSHA1String(System.String,System.Text.Encoding)">
+            <summary>
+            转为SHA1哈希
+            </summary>
+            <param name="str">字符串</param>
+            <param name="encoding">编码</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToSHA256String(System.String)">
+            <summary>
+            SHA256加密
+            </summary>
+            <param name="str">字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToHMACSHA256String(System.String,System.String)">
+            <summary>
+            HMACSHA256算法
+            </summary>
+            <param name="text">内容</param>
+            <param name="secret">密钥</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToBool(System.String)">
+            <summary>
+            string转bool
+            </summary>
+            <param name="str">字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToInt(System.String)">
+            <summary>
+            string转int
+            </summary>
+            <param name="str">字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToInt_FromBinString(System.String)">
+            <summary>
+            二进制字符串转为Int
+            </summary>
+            <param name="str">二进制字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToInt0X(System.String)">
+            <summary>
+            将16进制字符串转为Int
+            </summary>
+            <param name="str">数值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToLong(System.String)">
+            <summary>
+            string转long
+            </summary>
+            <param name="str">字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToDouble(System.String)">
+            <summary>
+            转换为double
+            </summary>
+            <param name="str">字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToDecimal(System.String)">
+            <summary>
+            转换为decimal
+            </summary>
+            <param name="str">字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToBytes(System.String)">
+            <summary>
+            string转byte[]
+            </summary>
+            <param name="str">字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToBytes(System.String,System.Text.Encoding)">
+            <summary>
+            string转byte[]
+            </summary>
+            <param name="str">字符串</param>
+            <param name="theEncoding">需要的编码</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.To0XBytes(System.String)">
+            <summary>
+            将16进制字符串转为Byte数组
+            </summary>
+            <param name="str">16进制字符串(2个16进制字符表示一个Byte)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToASCIIBytes(System.String)">
+            <summary>
+            将ASCII码形式的字符串转为对应字节数组
+            注：一个字节一个ASCII码字符
+            </summary>
+            <param name="str">字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToDateTime(System.String)">
+            <summary>
+            转换为日期格式
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToObject``1(System.String)">
+            <summary>
+            将Json字符串反序列化为对象
+            </summary>
+            <typeparam name="T">对象类型</typeparam>
+            <param name="jsonStr">Json字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.RemoveAt(System.String)">
+            <summary>
+            删除Json字符串中键中的@符号
+            </summary>
+            <param name="jsonStr">json字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToObject(System.String,System.Type)">
+            <summary>
+            将Json字符串反序列化为对象
+            </summary>
+            <param name="jsonStr">json字符串</param>
+            <param name="type">对象类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.XmlStrToObject``1(System.String,Newtonsoft.Json.JsonSerializerSettings,System.Boolean,System.Boolean)">
+            <summary>
+            将XML字符串反序列化为对象
+            </summary>
+            <typeparam name="T">对象类型</typeparam>
+            <param name="xmlStr">XML字符串</param>
+            <param name="settings">序列化设置</param>
+            <param name="emptyToNull">空字符转为Null</param>
+            <param name="removeRootNode">移除根节点</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.XmlStrToObject(System.String,System.Type,Newtonsoft.Json.JsonSerializerSettings,System.Boolean,System.Boolean)">
+            <summary>
+            将XML字符串反序列化为对象
+            </summary>
+            <param name="xmlStr">XML字符串</param>
+            <param name="type">对象类型</param>
+            <param name="settings">序列化设置</param>
+            <param name="emptyToNull">空字符转为Null</param>
+            <param name="removeRootNode">移除根节点</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.XmlStrToJObject(System.String,Newtonsoft.Json.JsonSerializerSettings,System.Boolean,System.Boolean)">
+            <summary>
+            将XML字符串反序列化为对象
+            </summary>
+            <param name="xmlStr">XML字符串</param>
+            <param name="settings">序列化设置</param>
+            <param name="emptyToNull">空字符转为Null</param>
+            <param name="removeRootNode">移除根节点</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToList``1(System.String)">
+            <summary>
+            将Json字符串转为List'T'
+            </summary>
+            <typeparam name="T">对象类型</typeparam>
+            <param name="jsonStr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToDictionary``2(System.String)">
+            <summary>
+            将Json字符串转为Dictionary《'TK','TV'》
+            </summary>
+            <typeparam name="TK">键类型</typeparam>
+            <typeparam name="TV">值类型</typeparam>
+            <param name="jsonStr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToDataTable(System.String)">
+            <summary>
+            将Json字符串转为DataTable
+            </summary>
+            <param name="jsonStr">Json字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToJObject(System.String)">
+            <summary>
+            将Json字符串转为JObject
+            </summary>
+            <param name="jsonStr">Json字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToJArray(System.String)">
+            <summary>
+            将Json字符串转为JArray
+            </summary>
+            <param name="jsonStr">Json字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToEntity``1(System.String)">
+            <summary>
+            json数据转实体类,仅仅应用于单个实体类，速度非常快
+            </summary>
+            <typeparam name="T">泛型参数</typeparam>
+            <param name="json">json字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToFirstUpperStr(System.String)">
+            <summary>
+            转为首字母大写
+            </summary>
+            <param name="str">字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToFirstLowerStr(System.String)">
+            <summary>
+            转为首字母小写
+            </summary>
+            <param name="str">字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToIPEndPoint(System.String)">
+            <summary>
+            转为网络终结点IPEndPoint
+            </summary>=
+            <param name="str">字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ToEnum``1(System.String)">
+            <summary>
+            将枚举类型的文本转为枚举类型
+            </summary>
+            <typeparam name="T">枚举类型</typeparam>
+            <param name="enumText">枚举文本</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.IsNullOrWhiteSpace(System.String)">
+            <summary>
+            判断是否为Null或者空
+            </summary>
+            <param name="str">字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.IndexOfN2L(System.String,System.String)">
+            <summary>
+            匹配字符串，如果没有匹配的，则返回完整长度
+            </summary>
+            <param name="str"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.Replace(System.String,System.Char,System.Int32,System.Nullable{System.Int32})">
+            <summary>
+            替换字符串中指定的内容
+            将索引后指定长度的内容替换为对应的字符，字符数量和长度相等
+            长度为null时会全部替换
+            </summary>
+            <param name="str"></param>
+            <param name="index">索引</param>
+            <param name="length">长度</param>
+            <param name="value">替换的字符</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.Replace(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            替换字符串中指定的内容
+            将索引后指定长度的内容完整替换为对应的字符串
+            </summary>
+            <param name="str"></param>
+            <param name="index">索引</param>
+            <param name="length">长度</param>
+            <param name="value">替换的值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.Replace(System.String,System.Int32[0:,0:],System.Char)">
+            <summary>
+            替换字符串中指定的内容
+            将索引后指定长度的内容替换为对应的字符，字符数量和长度相等
+            </summary>
+            <param name="str"></param>
+            <param name="indexes">索引集合（二维数组[索引,长度]）</param>
+            <param name="value">替换的字符</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.Replace(System.String,System.Int32[0:,0:],System.String)">
+            <summary>
+            替换字符串中指定的内容
+            将索引后指定长度的内容完整替换为对应的字符串
+            </summary>
+            <param name="str"></param>
+            <param name="indexes">索引集合（二维数组[索引,长度]）</param>
+            <param name="value">替换的值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.Replace_core(System.String,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Char},System.String)">
+            <summary>
+            替换字符串中指定的内容
+            </summary>
+            <param name="str"></param>
+            <param name="index">索引</param>
+            <param name="length">长度</param>
+            <param name="value_c">替换的字符</param>
+            <param name="value_s">替换的值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.Replace_core(System.String,System.Int32[0:,0:],System.Nullable{System.Char},System.String)">
+            <summary>
+            替换字符串中指定的内容
+            </summary>
+            <param name="str"></param>
+            <param name="indexes">索引集合（二维数组[索引,长度]）</param>
+            <param name="value_c">替换的字符</param>
+            <param name="value_s">替换的值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.ConvertToAny``1(System.String,``0,System.Type)">
+            <summary>
+            格式转换
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="str"></param>
+            <param name="defaultValue">默认值</param>
+            <param name="type">数据类型（未指定时使用默认值的数据类型）</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.TrySetResult``1(System.Threading.Tasks.TaskCompletionSource{``0},``0)">
+            <summary>
+            设置返回值
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="tcs"></param>
+            <param name="result">返回值</param>
+            <returns></returns>
+        </member>
+        <member name="T:Microservice.Library.Extension.ParameterReplaceVisitor">
+            <summary>
+            继承ExpressionVisitor类，实现参数替换统一
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.Extension.ConcatType">
+            <summary>
+            连接类型
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.Extension.Model.Filter">
+            <summary>
+            筛选
+            <para>LCTR 2019-06-04</para>
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.Extension.Model.Filter.Group">
+            <summary>
+            分组
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.Extension.Model.Filter.Param">
+            <summary>
+            条件
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.Extension.Model.GroupFilter">
+            <summary>
+            分组
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.Extension.Model.GroupFilter.AndOr">
+            <summary>
+            true:AND,false:OR
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.Extension.Model.GroupFilter.Filter">
+            <summary>
+            筛选
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.Extension.Model.FilterParam">
+            <summary>
+            条件
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.Extension.Model.FilterParam.Field">
+            <summary>
+            字段
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.Extension.Model.FilterParam.Compare">
+            <summary>
+            比较方式
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.Extension.Model.FilterParam.Value">
+            <summary>
+            值
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.Extension.Model.CompareType">
+            <summary>
+            比较类型
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.Extension.Model.CompareType.IN">
+            <summary>
+            包含
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.Extension.Model.CompareType.BIN">
+            <summary>
+            被包含
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.Extension.Model.CompareType.SIN">
+            <summary>
+            包含
+            <para>集合</para>
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.Extension.Model.CompareType.NSIN">
+            <summary>
+            不包含
+            <para>集合</para>
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.Extension.Model.CompareType.EQ">
+            <summary>
+            相等
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.Extension.Model.CompareType.NE">
+            <summary>
+            不相等
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.Extension.Model.CompareType.LE">
+            <summary>
+            小于等于
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.Extension.Model.CompareType.LT">
+            <summary>
+            小于
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.Extension.Model.CompareType.GE">
+            <summary>
+            大于等于
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.Extension.Model.CompareType.GT">
+            <summary>
+            大于
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.Extension.Model.TreeModel">
+            <summary>
+            树模型（可以作为父类）
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.Extension.Model.TreeModel.Id">
+            <summary>
+            唯一标识Id
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.Extension.Model.TreeModel.Value">
+            <summary>
+            数据值
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.Extension.Model.TreeModel.ParentId">
+            <summary>
+            父Id
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.Extension.Model.TreeModel.Level">
+            <summary>
+            节点深度
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.Extension.Model.TreeModel.Text">
+            <summary>
+            显示的内容
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.Extension.Model.TreeModel.Children">
+            <summary>
+            孩子节点
+            </summary>
+        </member>
+    </members>
+</doc>

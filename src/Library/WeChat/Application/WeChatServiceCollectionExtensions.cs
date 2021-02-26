@@ -1,5 +1,5 @@
-﻿using Library.WeChat.Application;
-using Library.WeChat.Gen;
+﻿using Microservice.Library.WeChat.Application;
+using Microservice.Library.WeChat.Gen;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;

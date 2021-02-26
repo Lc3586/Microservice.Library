@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microservice.Library.TimeTick</name>
+    </assembly>
+    <members>
+        <member name="T:Microservice.Library.TimeTick.Interval">
+            <summary>
+            定时器
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.TimeTick.Interval.Cache">
+            <summary>
+            默认缓存
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.TimeTick.Interval.SetInterval(System.Action,System.TimeSpan)">
+            <summary>
+            设置一个时间间隔的循环操作
+            </summary>
+            <param name="action">执行的操作</param>
+            <param name="timeSpan">时间间隔</param>
+        </member>
+        <member name="M:Microservice.Library.TimeTick.Interval.SetInterval(System.Action,System.TimeSpan,System.TimeSpan)">
+            <summary>
+            设置一个时间间隔的循环操作
+            </summary>
+            <param name="action">执行的操作</param>
+            <param name="timeSpan">时间间隔</param>
+            <param name="dely">延迟一段时间后再开始循环</param>
+        </member>
+        <member name="T:Microservice.Library.TimerTick.TimeTick">
+            <summary>
+            定时器
+            LCTR 2019-08-27
+            </summary>
+        </member>
+    </members>
+</doc>

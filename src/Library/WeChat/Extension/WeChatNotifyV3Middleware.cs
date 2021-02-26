@@ -1,6 +1,6 @@
-﻿using Library.Extension;
-using Library.WeChat.Application;
-using Library.WeChat.Model;
+﻿using Microservice.Library.Extension;
+using Microservice.Library.WeChat.Application;
+using Microservice.Library.WeChat.Model;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Senparc.NeuChar.Helpers;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace Library.WeChat.Extension
+namespace Microservice.Library.WeChat.Extension
 {
     /// <summary>
     /// 微信服务财付通通知中间件

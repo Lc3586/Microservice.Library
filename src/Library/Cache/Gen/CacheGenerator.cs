@@ -1,10 +1,10 @@
-﻿using Library.Cache.Application;
-using Library.Cache.Services;
+﻿using Microservice.Library.Cache.Application;
+using Microservice.Library.Cache.Services;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
-namespace Library.Cache.Gen
+namespace Microservice.Library.Cache.Gen
 {
     /// <summary>
     /// 微信服务生成器
@@ -15,6 +15,7 @@ namespace Library.Cache.Gen
         /// 
         /// </summary>
         /// <param name="options"></param>
+        /// <param name="serviceProvider"></param>
         public CacheGenerator(CacheGenOptions options, IServiceProvider serviceProvider)
         {
             Options = options ?? new CacheGenOptions();

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Library.NLogger.Application
+namespace Microservice.Library.NLogger.Application
 {
     /// <summary>
     /// 生成配置

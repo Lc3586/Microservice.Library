@@ -6,9 +6,25 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>Library.Xml</RootNamespace>
+    <RootNamespace>Microservice.Library.Xml</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.4-alpha</Version>
+    <Version>0.0.0.1-alpha</Version>
+    <PackageProjectUrl>https://github.com/Lc3586/Microservice.Library</PackageProjectUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Product>Microservice.Library</Product>
+    <Company>LCTR</Company>
+    <Authors>LCTR</Authors>
+    <PackageId>Microservice.Library.Xml</PackageId>
+    <AssemblyName>Microservice.Library.Xml</AssemblyName>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>Microservice.Library.Xml.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>Microservice.Library.Xml.xml</DocumentationFile>
   </PropertyGroup>
 
 </Project>

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 
-namespace Library.WeChat.Model
+namespace Microservice.Library.WeChat.Model
 {
     /// <summary>
     /// 微信通知原始回调类型

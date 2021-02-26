@@ -6,24 +6,26 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>Library.OfficeDocuments</RootNamespace>
+    <RootNamespace>Microservice.Library.OfficeDocuments</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.4-alpha</Version>
+    <Version>0.0.0.1-alpha</Version>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Description>生成/读取Excel</Description>
-    <PackageProjectUrl>https://github.com/Lc3586/Microservice/tree/master/src/Library/OfficeDocuments</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/Lc3586/Microservice.Library</PackageProjectUrl>
     <Authors>LCTR</Authors>
     <Company>LCTR</Company>
-    <Product>LCTR</Product>
+    <Product>Microservice.Library</Product>
+    <PackageId>Microservice.Library.OfficeDocuments</PackageId>
+    <AssemblyName>Microservice.Library.OfficeDocuments</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>Library.OfficeDocuments.xml</DocumentationFile>
+    <DocumentationFile>Microservice.Library.OfficeDocuments.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>Library.OfficeDocuments.xml</DocumentationFile>
+    <DocumentationFile>Microservice.Library.OfficeDocuments.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

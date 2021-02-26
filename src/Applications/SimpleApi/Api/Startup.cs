@@ -4,9 +4,9 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Autofac.Extras.DynamicProxy;
 using IocServiceDemo;
-using Library.Configuration;
-using Library.Container;
-using Library.TypeTool;
+using Microservice.Library.Configuration;
+using Microservice.Library.Container;
+using Microservice.Library.TypeTool;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -167,7 +167,9 @@ namespace Api
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+#pragma warning disable IDE0060 // 删除未使用的参数
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+#pragma warning restore IDE0060 // 删除未使用的参数
         {
             //Request.Body重用
             app.Use(next => context =>

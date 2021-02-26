@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microservice.Library.HardwareInfo</name>
+    </assembly>
+    <members>
+        <member name="T:Microservice.Library.HardwareInfo.CPU">
+            <summary>
+            https://blog.csdn.net/weixin_43145361/article/details/90939154
+            </summary>
+        </member>
+    </members>
+</doc>

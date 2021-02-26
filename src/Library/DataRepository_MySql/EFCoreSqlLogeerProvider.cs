@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Logging;
 using System;
 
-namespace Library.DataRepository_MySql
+namespace Microservice.Library.DataRepository_MySql
 {
     public class EFCoreSqlLogeerProvider : ILoggerProvider
     {

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 
-namespace Library.Extension
+namespace Microservice.Library.Extension
 {
     public static partial class Extension
     {

@@ -1,25 +1,31 @@
 ﻿using System;
-namespace Library.DataMapping.Annotations
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Microservice.Library.DataMapping.Annotations
 {
     /// <summary>
-    /// 映射目标
+    /// 映射目标配置
     /// </summary>
+    /// <remarks>
+    /// <para>可使用 <see cref="Application.IMapTo{TSource, TDestination}"/>接口类添加成员映射配置</para>
+    /// </remarks>
     public class MapToAttribute : Attribute, IMapAttribute
     {
         /// <summary>
         /// 映射目标
         /// </summary>
-        /// <param name="type">类型</param>
-        public MapToAttribute(params Type[] type)
+        /// <param name="types">目标类型集合</param>
+        public MapToAttribute(params Type[] types)
         {
-            Type = type;
+            Types = types?.ToList();
         }
 
-        public bool IsFrom => false;
+        public bool FromOrTo => false;
 
         /// <summary>
-        /// 类型
+        /// 目标类型集合
         /// </summary>
-        public Type[] Type { get; }
+        public List<Type> Types { get; }
     }
 }

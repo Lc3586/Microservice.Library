@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Library.Cache.Application
+namespace Microservice.Library.Cache.Application
 {
     /// <summary>
     /// 缓存异常

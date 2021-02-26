@@ -6,11 +6,24 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>Library.TypeTool</RootNamespace>
+    <RootNamespace>Microservice.Library.TypeTool</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.1-alpha</Version>
+    <Version>0.0.0.1-alpha</Version>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/Lc3586/Microservice/tree/master/src/Library/TypeTool</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/Lc3586/Microservice.Library</PackageProjectUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageId>Microservice.Library.TypeTool</PackageId>
+    <Product>Microservice.Library</Product>
+    <Authors>LCTR</Authors>
+    <AssemblyName>Microservice.Library.TypeTool</AssemblyName>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>Microservice.Library.TypeTool.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>Microservice.Library.TypeTool.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

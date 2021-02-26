@@ -3,7 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Library.DataMapping.Extention
+namespace Microservice.Library.DataMapping.Extention
 {
     /// <summary>
     /// 父子数据相互映射类

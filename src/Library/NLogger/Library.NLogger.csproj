@@ -6,26 +6,28 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>Library.NLogger</RootNamespace>
+    <RootNamespace>Microservice.Library.NLogger</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.0-alpha</Version>
+    <Version>0.0.0.1-alpha</Version>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Authors>LCTR</Authors>
     <Company>LCTR</Company>
-    <Product>LCTR</Product>
+    <Product>Microservice.Library</Product>
     <Description>NLog日志功能拓展
 
 参考项目：https://github.com/Coldairarrow</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/Lc3586/Microservice/tree/master/src/Library/Log</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/Lc3586/Microservice.Library</PackageProjectUrl>
+    <PackageId>Microservice.Library.NLogger</PackageId>
+    <AssemblyName>Microservice.Library.NLogger</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>Library.NLogger.xml</DocumentationFile>
+    <DocumentationFile>Microservice.Library.NLogger.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>Library.NLogger.xml</DocumentationFile>
+    <DocumentationFile>Microservice.Library.NLogger.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

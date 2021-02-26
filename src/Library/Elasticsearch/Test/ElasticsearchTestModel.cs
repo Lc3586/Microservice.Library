@@ -1,10 +1,10 @@
-﻿using Library.Elasticsearch.Annotations;
+﻿using Microservice.Library.Elasticsearch.Annotations;
 using Nest;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library.Elasticsearch
+namespace Microservice.Library.Elasticsearch
 {
     [ElasticsearchType(RelationName = "ElasticsearchTestModel_v1", IdProperty = nameof(Id))]
     [ElasticsearchIndiceExtension(IndicesSubType = NestIndexSubType.Week)]

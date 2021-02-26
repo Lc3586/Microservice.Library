@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library.Elasticsearch.Annotations
+namespace Microservice.Library.Elasticsearch.Annotations
 {
     /// <summary>
     /// 索引分库类型

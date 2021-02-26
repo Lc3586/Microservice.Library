@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library.ConsoleTool
+namespace Microservice.Library.ConsoleTool
 {
     /// <summary>
     /// 锁

@@ -1,11 +1,11 @@
 ﻿using FreeRedis;
-using Library.Cache.Application;
-using Library.Cache.Model;
+using Microservice.Library.Cache.Application;
+using Microservice.Library.Cache.Model;
 using Newtonsoft.Json;
 using System;
 using System.Linq;
 
-namespace Library.Cache.Services
+namespace Microservice.Library.Cache.Services
 {
     /// <summary>
     /// Redis缓存

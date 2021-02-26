@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Library.Json.Serialization
+namespace Microservice.Library.Json.Serialization
 {
     /// <summary>
     /// 自定义分解器

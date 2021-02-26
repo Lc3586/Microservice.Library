@@ -1,10 +1,10 @@
-﻿using Library.OpenApi.JsonSerialization;
+﻿using Microservice.Library.OpenApi.JsonSerialization;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Library.OpenApi.Extention
+namespace Microservice.Library.OpenApi.Extention
 {
     /// <summary>
     /// Json相关拓展方法

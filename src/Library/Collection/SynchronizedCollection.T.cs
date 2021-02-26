@@ -1,9 +1,9 @@
-﻿using Library.UsingLock;
+﻿using Microservice.Library.UsingLock;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Library.Collection
+namespace Microservice.Library.Collection
 {
     public class SynchronizedCollection<T> : IEnumerable<T>, IDisposable
     {

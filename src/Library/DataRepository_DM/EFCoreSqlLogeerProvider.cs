@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Logging;
 using System;
 
-namespace Library.DataRepository_DM
+namespace Microservice.Library.DataRepository_DM
 {
     public class EFCoreSqlLogeerProvider : ILoggerProvider
     {

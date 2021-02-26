@@ -1,4 +1,4 @@
-﻿namespace Library.Cache.Model
+﻿namespace Microservice.Library.Cache.Model
 {
     /// <summary>
     /// 过期类型

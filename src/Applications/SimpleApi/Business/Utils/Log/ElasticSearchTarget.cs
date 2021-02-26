@@ -1,7 +1,7 @@
 ﻿using Entity.System;
-using Library.Container;
-using Library.Elasticsearch;
-using Library.Elasticsearch.Gen;
+using Microservice.Library.Container;
+using Microservice.Library.Elasticsearch;
+using Microservice.Library.Elasticsearch.Gen;
 using Model.Utils.Config;
 using NLog;
 using NLog.Targets;

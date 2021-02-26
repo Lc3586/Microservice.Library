@@ -6,16 +6,26 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>Library.Delegate</RootNamespace>
+    <RootNamespace>Microservice.Library.Delegate</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.1-alpha</Version>
+    <Version>0.0.0.1-alpha</Version>
     <Authors>LCTR</Authors>
-    <Product>LCTR</Product>
+    <Product>Microservice.Library</Product>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/Lc3586/Microservice/tree/master/src/Library/Delegate</PackageProjectUrl>
-    <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/Lc3586/Microservice/tree/master/src/Library/Delegate</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/Lc3586/Microservice.Library</PackageProjectUrl>
+    <RepositoryType></RepositoryType>
+    <RepositoryUrl></RepositoryUrl>
+    <PackageId>Microservice.Library.Delegate</PackageId>
+    <AssemblyName>Microservice.Library.Delegate</AssemblyName>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>Microservice.Library.Delegate.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>Microservice.Library.Delegate.xml</DocumentationFile>
   </PropertyGroup>
 
 </Project>

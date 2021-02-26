@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microservice.Library.Configuration</name>
+    </assembly>
+    <members>
+        <member name="T:Microservice.Library.Configuration.Annotations.JsonConfigAttribute">
+            <summary>
+            Json配置属性
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.Configuration.Annotations.JsonConfigAttribute.#ctor(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="jsonFile">Json文件</param>
+            <param name="key">键</param>
+        </member>
+        <member name="P:Microservice.Library.Configuration.Annotations.JsonConfigAttribute.JsonFile">
+            <summary>
+            Json文件
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.Configuration.Annotations.JsonConfigAttribute.Key">
+            <summary>
+            键
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.Configuration.Annotations.JsonConfigAttribute.DisableCache">
+            <summary>
+            禁用缓存
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.Configuration.Annotations.PropertyConfigAttribute">
+            <summary>
+            属性配置
+            </summary>
+            <remarks>检查类型下所有设置了<see cref="T:Microservice.Library.Configuration.Annotations.JsonConfigAttribute"/>特性的属性</remarks>
+        </member>
+        <member name="T:Microservice.Library.Configuration.ConfigHelper">
+            <summary>
+            配置帮助类
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.Configuration.ConfigHelper.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="configuration">配置</param>
+        </member>
+        <member name="M:Microservice.Library.Configuration.ConfigHelper.#ctor(System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="jsonFile">Json配置文件</param>
+            <param name="disableCache">禁用缓存</param>
+        </member>
+        <member name="M:Microservice.Library.Configuration.ConfigHelper.Init(System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="jsonFile">Json配置文件</param>
+            <param name="disableCache">禁用缓存</param>
+        </member>
+        <member name="M:Microservice.Library.Configuration.ConfigHelper.GetConfigFormFile(System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="jsonFile">Json配置文件</param>
+            <param name="disableCache">禁用缓存</param>
+            <returns></returns>
+        </member>
+        <member name="P:Microservice.Library.Configuration.ConfigHelper.Config">
+            <summary>
+            配置
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.Configuration.ConfigHelper.GetValue(System.String)">
+            <summary>
+            从AppSettings获取key的值
+            </summary>
+            <param name="key">key</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Configuration.ConfigHelper.GetValue``1(System.String)">
+            <summary>
+            从AppSettings获取key的值
+            </summary>
+            <param name="key">key</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Configuration.ConfigHelper.GetValue``1(System.String,``0)">
+            <summary>
+            从AppSettings获取key的值
+            </summary>
+            <param name="key">key</param>
+            <param name="Default">默认值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Configuration.ConfigHelper.GetConnectionString(System.String)">
+            <summary>
+            获取连接字符串
+            </summary>
+            <param name="nameOfCon">连接字符串名</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Configuration.ConfigHelper.GetModel``1(System.String)">
+            <summary>
+            获取模型
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="section">板块</param>
+            <returns></returns>
+        </member>
+        <member name="T:Microservice.Library.Configuration.Extention.CacheExtention">
+            <summary>
+            缓存
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.Configuration.Extention.CacheExtention.ConfigDic">
+            <summary>
+            类型对应的架构信息
+            </summary>
+        </member>
+    </members>
+</doc>

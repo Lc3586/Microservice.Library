@@ -1,8 +1,8 @@
-﻿using Library.ConsistentHash;
-using Library.Extension;
+﻿using Microservice.Library.ConsistentHash;
+using Microservice.Library.Extension;
 using System.Collections.Generic;
 
-namespace Library.DataAccess
+namespace Microservice.Library.DataAccess
 {
     /// <summary>
     /// 一致性HASH分片规则
@@ -10,7 +10,6 @@ namespace Library.DataAccess
     /// 缺点:扩容时需要进行数据迁移,比较复杂
     /// 建议:若雪花分片不满足则采用本方案,此方案为分片规则中的"核弹"
     /// </summary>
-    /// <seealso cref="DataRepository.IShardingRule" />
     public class ConsistentHashShardingRule : IShardingRule
     {
         public ConsistentHashShardingRule(List<string> tables)

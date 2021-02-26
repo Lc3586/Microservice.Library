@@ -6,13 +6,13 @@ using System.Dynamic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using Library.OpenApi.Annotations;
-using Library.OpenApi.JsonSerialization;
+using Microservice.Library.OpenApi.Annotations;
+using Microservice.Library.OpenApi.JsonSerialization;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 
-namespace Library.OpenApi.Extention
+namespace Microservice.Library.OpenApi.Extention
 {
     /// <summary>
     /// 接口文档相关扩展方法

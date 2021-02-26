@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library.OpenApi.Annotations
+namespace Microservice.Library.OpenApi.Annotations
 {
     public static class OpenApiSchemaDefaultValue
     {

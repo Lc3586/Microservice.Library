@@ -1,9 +1,9 @@
-﻿using Library.Extension;
+﻿using Microservice.Library.Extension;
 using System;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace Library.NLogger.Extention
+namespace Microservice.Library.NLogger.Extention
 {
     /// <summary>
     /// 日志帮助类

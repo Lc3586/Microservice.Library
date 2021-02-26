@@ -1,8 +1,6 @@
 ﻿using Api;
-using Library.Container;
-using Library.Extension;
-using Library.FreeSql.Annotations;
-using Model;
+using Microservice.Library.Container;
+using Model.Utils.Config;
 using NUnit.Framework;
 using System;
 using System.Threading.Tasks;

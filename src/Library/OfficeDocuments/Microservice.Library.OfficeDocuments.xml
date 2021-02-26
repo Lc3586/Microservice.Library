@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microservice.Library.OfficeDocuments</name>
+    </assembly>
+    <members>
+        <member name="T:Microservice.Library.OfficeDocuments.AsposeOfficeHelper">
+            <summary>
+            使用Aspose组件的Office文件操作帮助类
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.OfficeDocuments.AsposeOfficeHelper.DataTableToExcelBytes(System.Data.DataTable)">
+            <summary>
+            将DataTable输出为字节数组
+            </summary>
+            <param name="dt">表格数据</param>
+            <returns>Byte数组</returns>
+        </member>
+        <member name="M:Microservice.Library.OfficeDocuments.AsposeOfficeHelper.ReadExcel(System.String)">
+            <summary>
+            从excel文件导入数据
+            注：默认将第一行当作标题行，即不当作数据
+            </summary>
+            <param name="fileNmae">文件名</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OfficeDocuments.AsposeOfficeHelper.ReadExcel(System.String,System.Boolean)">
+            <summary>
+            从excel文件导入数据
+            </summary>
+            <param name="fileNmae">文件名</param>
+            <param name="exportColumnName">是否将第一行当作标题行</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OfficeDocuments.AsposeOfficeHelper.ReadExcel(System.Byte[])">
+            <summary>
+            从excel文件字节源导入
+            注：默认将第一行当作标题行，即不当作数据
+            </summary>
+            <param name="fileBytes">文件字节源</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OfficeDocuments.AsposeOfficeHelper.ReadExcel(System.Byte[],System.Boolean)">
+            <summary>
+            从excel文件字节源导入
+            </summary>
+            <param name="fileBytes">文件字节源</param>
+            <param name="exportColumnName">是否将第一行当作标题行</param>
+            <returns></returns>
+        </member>
+        <member name="T:Microservice.Library.OfficeDocuments.NPOIOfficeHelper">
+            <summary>
+            使用NPOI组件的Office文件操作帮助类
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.OfficeDocuments.NPOIOfficeHelper.DataTableToExcelBytes(System.Data.DataTable,System.Boolean,System.Boolean)">
+            <summary>
+            将DataTable输出为字节数组
+            </summary>
+            <param name="dt">表格数据</param>
+            <param name="firstRowIsTitle">第一行是否为标题</param>
+            <param name="xslx">
+            <para>true .xlsx</para>
+            <para>false .xls</para>
+            <para>默认 true</para>
+            </param>
+            <returns>Byte数组</returns>
+        </member>
+        <member name="M:Microservice.Library.OfficeDocuments.NPOIOfficeHelper.ReadSheet(NPOI.SS.UserModel.ISheet,System.Boolean)">
+            <summary>
+            读取工作簿
+            </summary>
+            <param name="sheet">工作簿</param>
+            <param name="firstRowIsTitle">第一行是否为标题</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OfficeDocuments.NPOIOfficeHelper.ReadExcel(System.String,System.Boolean)">
+            <summary>
+            从excel文件导入数据
+            </summary>
+            <param name="fileNmae">文件</param>
+            <param name="firstRowIsTitle">第一行是否为标题</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OfficeDocuments.NPOIOfficeHelper.ReadExcel(System.Byte[],System.Boolean,System.Boolean)">
+            <summary>
+            从excel文件字节源导入
+            </summary>
+            <param name="fileBytes">文件字节源</param>
+            <param name="firstRowIsTitle">第一行是否为标题</param>
+            <param name="xslx">是否为xslx文件</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OfficeDocuments.NPOIOfficeHelper.ReadExcel(System.IO.Stream,System.Boolean,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="stream">流</param>
+            <param name="firstRowIsTitle">第一行是否为标题</param>
+            <param name="xslx">是否为xslx文件</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

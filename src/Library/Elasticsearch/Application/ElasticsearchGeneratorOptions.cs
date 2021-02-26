@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library.Elasticsearch
+namespace Microservice.Library.Elasticsearch
 {
     /// <summary>
     /// 生成选项

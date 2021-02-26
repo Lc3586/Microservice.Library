@@ -3,7 +3,7 @@ using System;
 using System.Buffers;
 using System.Collections.Generic;
 
-namespace Library.SuperSocket.JTProtocol
+namespace Microservice.Library.SuperSocket.JTProtocol
 {
     /// <summary>
     /// JT808协议流数据拦截器

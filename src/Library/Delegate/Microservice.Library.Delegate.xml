@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microservice.Library.Delegate</name>
+    </assembly>
+    <members>
+        <member name="T:Microservice.Library.Delegate.AsyncAction">
+            <summary>
+            异步方法
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.Delegate.AsyncAction.RunAsync(System.Action,System.Action)">
+            <summary>
+            异步执行方法
+            </summary>
+            <param name="firstFunc">首先执行的方法</param>
+            <param name="next">接下来执行的方法</param>
+        </member>
+        <member name="M:Microservice.Library.Delegate.AsyncAction.RunAsync(System.Func{System.Object},System.Action{System.Object})">
+            <summary>
+            异步执行方法
+            </summary>
+            <param name="firstFunc">首先执行的方法</param>
+            <param name="next">接下来执行的方法</param>
+        </member>
+    </members>
+</doc>

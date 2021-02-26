@@ -1,5 +1,5 @@
-﻿using Library.WeChat.Application;
-using Library.WeChat.Model;
+﻿using Microservice.Library.WeChat.Application;
+using Microservice.Library.WeChat.Model;
 using Senparc.Weixin.MP.AdvancedAPIs.OAuth;
 using Senparc.Weixin.MP.AdvancedAPIs.TemplateMessage;
 using Senparc.Weixin.TenPay.V3;
@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace Library.WeChat.Services
+namespace Microservice.Library.WeChat.Services
 {
     /// <summary>
     /// 微信服务

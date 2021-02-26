@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 
-namespace Library.UsingLock
+namespace Microservice.Library.UsingLock
 {
     /// <summary>
     /// 使用using代替lock操作的对象,可指定写入和读取锁定模式

@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using System;
 
-namespace Library.Cache.Application
+namespace Microservice.Library.Cache.Application
 {
     internal class ConfigureRedisOptions : IConfigureOptions<RedisOptions>
     {

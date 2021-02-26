@@ -4,7 +4,7 @@ using System.Data;
 using System.Dynamic;
 using System.Linq;
 
-namespace Library.Extension
+namespace Microservice.Library.Extension
 {
     public static partial class Extension
     {

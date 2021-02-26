@@ -1,19 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace Library.DataMapping.Annotations
+namespace Microservice.Library.DataMapping.Annotations
 {
-    public interface IMapAttribute
+    /// <summary>
+    /// 数据映射配置
+    /// </summary>
+    internal interface IMapAttribute
     {
         /// <summary>
-        /// 是否来源
+        /// 
         /// </summary>
-        bool IsFrom { get; }
+        /// <remarks>
+        /// <para>true <see cref="MapFromAttribute"/></para>
+        /// <para>false <see cref="MapToAttribute"/></para>
+        /// </remarks>
+        bool FromOrTo { get; }
 
         /// <summary>
-        /// 类型
+        /// 类型集合
         /// </summary>
-        Type[] Type { get; }
+        List<Type> Types { get; }
     }
 }

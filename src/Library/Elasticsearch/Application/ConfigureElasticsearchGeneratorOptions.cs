@@ -1,10 +1,10 @@
-﻿using Library.Extension;
+﻿using Microservice.Library.Extension;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library.Elasticsearch
+namespace Microservice.Library.Elasticsearch
 {
     internal class ConfigureElasticsearchGeneratorOptions : IConfigureOptions<ElasticsearchGeneratorOptions>
     {

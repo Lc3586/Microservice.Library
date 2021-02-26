@@ -1,6 +1,6 @@
-﻿using Library.Container;
-using Library.Http;
-using Library.Http.Model;
+﻿using Microservice.Library.Container;
+using Microservice.Library.Http;
+using Microservice.Library.Http.Model;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Model.Utils.Result;
 using Model.Utils.Config;

@@ -7,10 +7,10 @@ using System.Linq;
 using System.Reflection;
 using FreeSql;
 using JetBrains.Annotations;
-using Library.FreeSql.Application;
-using Library.FreeSql.Gen;
+using Microservice.Library.FreeSql.Application;
+using Microservice.Library.FreeSql.Gen;
 
-namespace Library.FreeSql.Repository
+namespace Microservice.Library.FreeSql.Repository
 {
     /// <summary>
     /// DbContext容器

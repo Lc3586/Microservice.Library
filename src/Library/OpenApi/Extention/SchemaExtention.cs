@@ -1,4 +1,4 @@
-﻿using Library.OpenApi.Annotations;
+﻿using Microservice.Library.OpenApi.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Dynamic;
 using System.Linq;
 using System.Reflection;
 
-namespace Library.OpenApi.Extention
+namespace Microservice.Library.OpenApi.Extention
 {
     /// <summary>
     /// 架构相关拓展方法

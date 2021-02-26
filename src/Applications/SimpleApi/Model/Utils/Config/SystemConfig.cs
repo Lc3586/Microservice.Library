@@ -1,6 +1,6 @@
-﻿using Library.Cache.Application;
-using Library.Cache.Model;
-using Library.Configuration.Annotations;
+﻿using Microservice.Library.Cache.Application;
+using Microservice.Library.Cache.Model;
+using Microservice.Library.Configuration.Annotations;
 using System.Collections.Generic;
 
 namespace Model.Utils.Config

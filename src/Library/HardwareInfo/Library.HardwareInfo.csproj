@@ -6,24 +6,30 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>Library.HardwareInfo</RootNamespace>
+    <RootNamespace>Microservice.Library.HardwareInfo</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.5-alpha</Version>
+    <Version>0.0.0.1-alpha</Version>
     <Authors>LCTR</Authors>
     <Company>LCTR</Company>
-    <Product>LCTR</Product>
+    <Product>Microservice.Library</Product>
     <Description>获取硬件信息</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageProjectUrl>https://github.com/Lc3586/Microservice/tree/master/src/Library/HardwareInfo</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/Lc3586/Microservice.Library</PackageProjectUrl>
+    <PackageId>Microservice.Library.HardwareInfo</PackageId>
+    <AssemblyName>Microservice.Library.HardwareInfo</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>Library.HardwareInfo.xml</DocumentationFile>
+    <DocumentationFile>Microservice.Library.HardwareInfo.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <DocumentationFile>Library.HardwareInfo.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>Microservice.Library.HardwareInfo.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

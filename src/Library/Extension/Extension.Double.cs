@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library.Extension
+namespace Microservice.Library.Extension
 {
     public static partial class Extension
     {

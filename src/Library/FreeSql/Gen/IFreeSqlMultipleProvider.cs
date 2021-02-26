@@ -1,10 +1,10 @@
 ﻿using FreeSql;
-using Library.FreeSql.Repository;
+using Microservice.Library.FreeSql.Repository;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library.FreeSql.Gen
+namespace Microservice.Library.FreeSql.Gen
 {
     /// <summary>
     /// 多库构造器

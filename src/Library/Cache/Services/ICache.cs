@@ -1,7 +1,7 @@
-﻿using Library.Cache.Model;
+﻿using Microservice.Library.Cache.Model;
 using System;
 
-namespace Library.Cache.Services
+namespace Microservice.Library.Cache.Services
 {
     /// <summary>
     /// 缓存操作接口类

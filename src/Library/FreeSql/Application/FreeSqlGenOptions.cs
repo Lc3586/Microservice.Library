@@ -1,8 +1,8 @@
 ﻿using FreeSql;
-using Library.FreeSql;
+using Microservice.Library.FreeSql;
 using System;
 
-namespace Library.FreeSql.Application
+namespace Microservice.Library.FreeSql.Application
 {
     /// <summary>
     /// 生成配置

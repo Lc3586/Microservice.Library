@@ -1,0 +1,1288 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microservice.Library.SuperSocket</name>
+    </assembly>
+    <members>
+        <member name="T:Microservice.Library.SuperSocket.Extension.InitialCrcValue">
+            <summary>
+            初始CRC值
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.SuperSocket.Extension.CrcLength">
+            <summary>
+            初始CRC值
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.SuperSocket.Extension.CrcCcitt">
+            <summary>
+            CRC16-CCITT 的校验值
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.Extension.CrcCcitt.#ctor(Microservice.Library.SuperSocket.Extension.CrcLength,Microservice.Library.SuperSocket.Extension.InitialCrcValue)">
+            <summary>
+            
+            </summary>
+            <param name="length">位数</param>
+            <param name="initialValue">初始值</param>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.Extension.CrcCcitt.ComputeChecksum_16(System.Byte[])">
+            <summary>
+            计算分片数
+            </summary>
+            <param name="bytes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.Extension.CrcCcitt.ComputeChecksum_8(System.Byte[])">
+            <summary>
+            计算分片数
+            </summary>
+            <param name="bytes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.Extension.CrcCcitt.ComputeChecksumBytes(System.Byte[])">
+            <summary>
+            计算分片数
+            </summary>
+            <param name="bytes"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Microservice.Library.SuperSocket.JTProtocol.CodeInfo">
+            <summary>
+            编码信息
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.CodeInfo.CodeType">
+            <summary>
+            编码类型
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.CodeInfo.Assembly">
+            <summary>
+            命名空间
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.CodeInfo.TypeName">
+            <summary>
+            实体
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.SuperSocket.JTProtocol.CodeType">
+            <summary>
+            编码类型
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.SuperSocket.JTProtocol.CodeType.binary">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.SuperSocket.JTProtocol.CodeType.boolean">
+            <summary>
+            BitConverter.ToBoolean(bytes);
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.SuperSocket.JTProtocol.CodeType.uint16">
+            <summary>
+            NativeSocketMethod.htonl(BitConverter.ToUInt16(data, 0))
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.SuperSocket.JTProtocol.CodeType.uint32">
+            <summary>
+            NativeSocketMethod.htonl(BitConverter.ToUInt32(data, 0))
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.SuperSocket.JTProtocol.CodeType.int16">
+            <summary>
+            NativeSocketMethod.htonl(BitConverter.ToInt16(data, 0))
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.SuperSocket.JTProtocol.CodeType.int32">
+            <summary>
+            NativeSocketMethod.htonl(BitConverter.ToInt32(data, 0))
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.SuperSocket.JTProtocol.CodeType.enum">
+            <summary>
+            Enum.Parse(type, Encoding.GetEncoding("gbk").GetString(data).Replace("\0", ""))
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.SuperSocket.JTProtocol.CodeType.string">
+            <summary>
+            Encoding.GetEncoding("gbk").GetString(data).Replace("\0", "");
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.SuperSocket.JTProtocol.CodeType.string_x_0">
+            <summary>
+            string.Join('\0', data.ToList().ForEach(o => o.ToString("x").PadLeft(2, '0')));
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.SuperSocket.JTProtocol.CodeType.string_x2">
+            <summary>
+            data.ToString("x2");
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.SuperSocket.JTProtocol.CodeType.string_x4">
+            <summary>
+            $"0x{data.ToString("x2")}";
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.SuperSocket.JTProtocol.CodeType.date">
+            <summary>
+            UTC日期时间
+            new DateTime(
+            年：NativeSocketMethod.htons(BitConverter.ToUInt16(bytes, 0)),
+            月：bytes[2],
+            日：bytes[3],
+            时：bytes[4],
+            分：bytes[5],
+            秒：bytes[6])
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.SuperSocket.JTProtocol.CodeType.data">
+            <summary>
+            string.Join(' ', data);
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.SuperSocket.JTProtocol.CodeType.data_split">
+            <summary>
+            使用空格分隔
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.SuperSocket.JTProtocol.CodeType.json">
+            <summary>
+            Encoding.GetEncoding(jT.Encoding).GetBytes(value.ToJson())
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.SuperSocket.JTProtocol.IMessageBody">
+            <summary>
+            数据体
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.IMessageBody.Buffer">
+            <summary>
+            元数据
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.JTProtocol.IMessageBody.ToString">
+            <summary>
+            转字符串（使用换行符）
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Microservice.Library.SuperSocket.JTProtocol.JT808Filter`1">
+            <summary>
+            JT808协议流数据拦截器
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JT808Filter`1.Subpackage">
+            <summary>
+            分包
+            key:消息ID
+            value:消息体buffer数组
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.SuperSocket.JTProtocol.JTDecoder">
+            <summary>
+            JT协议解码器
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTDecoder.JTProtocol">
+            <summary>
+            JT协议
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTDecoder.Encoding">
+            <summary>
+            编码
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTDecoder.Pack">
+            <summary>
+            消息包
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.SuperSocket.JTProtocol.JTDecoder.ExpressionContext">
+            <summary>
+            计算表达式上下文
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.SuperSocket.JTProtocol.JTDecoder.Crc16Ccitt">
+            <summary>
+            CRC数据校验
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.JTProtocol.JTDecoder.Decode(System.Buffers.ReadOnlySequence{System.Byte}@,System.Object)">
+            <summary>
+            流数据解码
+            </summary>
+            <param name="buffer">流数据</param>
+            <param name="context"></param>
+            <returns>消息包</returns>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.JTProtocol.JTDecoder.AnalysisStructure(System.Object,Microservice.Library.SuperSocket.JTProtocol.JTProtocol.Structure,System.Int32@)">
+            <summary>
+            分析结构
+            </summary>
+            <param name="obj">当前实例</param>
+            <param name="structure">结构</param>
+            <param name="offset">偏移量</param>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.JTProtocol.JTDecoder.AnalysisNormalStructure(Microservice.Library.SuperSocket.JTProtocol.JTProtocol.Structure,System.Int32@)">
+            <summary>
+            分析普通结构
+            </summary>
+            <param name="structure">结构</param>
+            <param name="offset">偏移量</param>
+            <returns>获得的数据</returns>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.JTProtocol.JTDecoder.AnalysisInternalStructure(Microservice.Library.SuperSocket.JTProtocol.JTProtocol.Structure,System.Int32@)">
+            <summary>
+            分析内部结构
+            </summary>
+            <param name="structure">结构</param>
+            <param name="offset">偏移量</param>
+            <returns>内部结构映射的实例</returns>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.JTProtocol.JTDecoder.AnalysisAdditionalStructure(System.Object,Microservice.Library.SuperSocket.JTProtocol.JTProtocol.Structure,System.Int32@)">
+            <summary>
+            分析附加信息
+            </summary>
+            <param name="obj">当前实例</param>
+            <param name="structure">结构</param>
+            <param name="offset">偏移量</param>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.JTProtocol.JTDecoder.CompileDynamic(Microservice.Library.SuperSocket.JTProtocol.JTProtocol.Structure,System.Object,System.Type,System.Type)">
+            <summary>
+            计算动态表达式
+            </summary>
+            <param name="structure"></param>
+            <param name="value"></param>
+            <param name="valueType"></param>
+            <param name="resultType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.JTProtocol.JTDecoder.Decrypt(System.Byte[],Microservice.Library.SuperSocket.JTProtocol.JTProtocol.Structure,System.Int32)">
+            <summary>
+            解密
+            </summary>
+            <param name="buffer">数据</param>
+            <param name="structure">结构</param>
+            <param name="offset">偏移量</param>
+            <returns></returns>
+        </member>
+        <member name="T:Microservice.Library.SuperSocket.JTProtocol.JTEncoder">
+            <summary>
+            JT协议编码器
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTEncoder.JTProtocol">
+            <summary>
+            JT协议
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTEncoder.Encoding">
+            <summary>
+            编码
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTEncoder.Pack">
+            <summary>
+            消息包
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.SuperSocket.JTProtocol.JTEncoder.ExpressionContext">
+            <summary>
+            计算表达式上下文
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.SuperSocket.JTProtocol.JTEncoder.CrcCcitt">
+            <summary>
+            CRC数据校验
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTEncoder.Msg_SN">
+            <summary>
+            报文序列号
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.JTProtocol.JTEncoder.Encode(System.Buffers.IBufferWriter{System.Byte},Microservice.Library.SuperSocket.JTProtocol.MessagePackageInfo)">
+            <summary>
+            消息包编码
+            </summary>
+            <param name="writer">流数据写入器</param>
+            <param name="pack">消息包</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.JTProtocol.JTEncoder.MessagePackageToBuffer">
+            <summary>
+            消息包转流数据
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.JTProtocol.JTEncoder.MessageHeaderToBuffer">
+            <summary>
+            消息头转流数据
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.JTProtocol.JTEncoder.GetMsgSN">
+            <summary>
+            获取报文序列号
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.JTProtocol.JTEncoder.InitMessageHeader">
+            <summary>
+            初始化消息头
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.JTProtocol.JTEncoder.MessageBodyToBuffer">
+            <summary>
+            消息体转流数据
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.JTProtocol.JTEncoder.AnalysisStructure(System.Object,Microservice.Library.SuperSocket.JTProtocol.JTProtocol.Structure)">
+            <summary>
+            分析结构
+            </summary>
+            <param name="obj">当前实例</param>
+            <param name="structure">结构</param>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.JTProtocol.JTEncoder.AnalysisNormalStructure(System.Object,Microservice.Library.SuperSocket.JTProtocol.JTProtocol.Structure)">
+            <summary>
+            分析普通结构
+            </summary>
+            <param name="obj">当前实例</param>
+            <param name="structure">结构</param>
+            <returns>获得的数据</returns>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.JTProtocol.JTEncoder.AnalysisInternalStructure(System.Object,Microservice.Library.SuperSocket.JTProtocol.JTProtocol.Structure)">
+            <summary>
+            分析内部结构
+            </summary>
+            <param name="obj">当前实例</param>
+            <param name="structure">结构</param>
+            <returns>内部结构映射的实例</returns>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.JTProtocol.JTEncoder.AnalysisAdditionalStructure(System.Object,Microservice.Library.SuperSocket.JTProtocol.JTProtocol.Structure)">
+            <summary>
+            分析附加信息
+            </summary>
+            <param name="obj">当前实例</param>
+            <param name="structure">结构</param>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.JTProtocol.JTEncoder.Encrypt(System.Byte[],Microservice.Library.SuperSocket.JTProtocol.JTProtocol.Structure)">
+            <summary>
+            加密
+            </summary>
+            <param name="buffer">数据</param>
+            <param name="structure">结构</param>
+            <returns></returns>
+        </member>
+        <member name="T:Microservice.Library.SuperSocket.JTProtocol.JTFilter">
+            <summary>
+            JT协议流数据拦截器
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTFilter.JT">
+            <summary>
+            JT协议
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.SuperSocket.JTProtocol.JTProtocol">
+            <summary>
+            JT协议
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.Get(System.String,Microservice.Library.SuperSocket.JTProtocol.JTProtocolName)">
+            <summary>
+            获取JT协议
+            </summary>
+            <param name="path">配置文件路径</param>
+            <param name="name">协议名称</param>
+            <returns></returns>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.Name">
+            <summary>
+            协议名称
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.BigEndian">
+            <summary>
+            数据流是否遵循大端
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.Encoding">
+            <summary>
+            编码
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.HeadFlag">
+            <summary>
+            帧头
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.HeadFlagValue">
+            <summary>
+            帧头
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.EndFlag">
+            <summary>
+            帧尾
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.EndFlagValue">
+            <summary>
+            帧尾
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.Escapes">
+            <summary>
+            转义集合
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.DataMappings">
+            <summary>
+            数据映射集合
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.InternalEntitysMappings">
+            <summary>
+            内部结构实体映射集合
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.CrcCcitt">
+            <summary>
+            CRC数据校验配置
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.Encrypt">
+            <summary>
+            加密配置
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.Structures">
+            <summary>
+            结构集合
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.Structure">
+            <summary>
+            结构信息
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.Structure.Order">
+            <summary>
+            排序值
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.Structure.Property">
+            <summary>
+            属性
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.Structure.Explain">
+            <summary>
+            说明
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.Structure.Length">
+            <summary>
+            长度
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.Structure.StructureType">
+            <summary>
+            结构类型
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.Structure.CodeInfo">
+            <summary>
+            解码类型
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.Structure.CompileExpression">
+            <summary>
+            动态计算表达式
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.Structure.DataMapping">
+            <summary>
+            数据映射
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.Structure.InternalPropertyForKey">
+            <summary>
+            内部结构的Key来自于哪个属性
+            为null时默认取第一个
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.Structure.Internal">
+            <summary>
+            内部结构
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.Structure.Additional">
+            <summary>
+            附加信息
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.Structure.NeedCompile">
+            <summary>
+            是否需要计算
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.Structure.NeedMapping">
+            <summary>
+            是否需要映射
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.FlagValue">
+            <summary>
+            帧值
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.FlagValue.CodeInfo">
+            <summary>
+            解码类型
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.FlagValue.Value">
+            <summary>
+            值
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.FlagValue.Bytes">
+            <summary>
+            值
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.FlagValue.GetBytes(Microservice.Library.SuperSocket.JTProtocol.JTProtocol)">
+            <summary>
+            获取Byte值数组
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.InternalProperty">
+            <summary>
+            内部结构的Key所属的属性信息
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.InternalProperty.Property">
+            <summary>
+            属性
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.InternalProperty.Encode">
+            <summary>
+            编码
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.InternalProperty.Decode">
+            <summary>
+            解码
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.Additional">
+            <summary>
+            转换
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.Additional.Length">
+            <summary>
+            长度
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.Additional.CodeInfo">
+            <summary>
+            解码类型
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.Additional.Switch">
+            <summary>
+            转换
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.CrcCcittConfig">
+            <summary>
+            CRC数据校验配置
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.CrcCcittConfig.CrcLength">
+            <summary>
+            初始值
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.CrcCcittConfig.InitialCrcValue">
+            <summary>
+            初始值
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.CrcCcittConfig.Skip">
+            <summary>
+            需要跳过部分的长度[头，尾]
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.CrcCcittConfig.Take">
+            <summary>
+            取值长度(负数为从后往前取)
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.CrcCcittConfig.Property">
+            <summary>
+            属性
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.EncryptConfig">
+            <summary>
+            加密配置
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.EncryptConfig.M1">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.EncryptConfig.IA1">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.EncryptConfig.IC1">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.EncryptConfig.Targets">
+            <summary>
+            目标集合
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.EncryptProperty">
+            <summary>
+            加密标识和秘钥来自来自于哪些属性
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.EncryptProperty.Flag">
+            <summary>
+            加密标识
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.EncryptProperty.Key">
+            <summary>
+            秘钥
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.Matches">
+            <summary>
+            匹配项
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.Matches.Matching">
+            <summary>
+            匹配
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.Matches.Value">
+            <summary>
+            值
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.InternalEntitysMapping">
+            <summary>
+            内部结构实体映射
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.InternalEntitysMapping.Assembly">
+            <summary>
+            命名空间
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.JTProtocol.InternalEntitysMapping.TypeName">
+            <summary>
+            类名
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.JTProtocol.JTProtocolExtension.Escape(Microservice.Library.SuperSocket.JTProtocol.JTProtocol,System.Byte[])">
+            <summary>
+            转义
+            </summary>
+            <param name="jT"></param>
+            <param name="buffer">流数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.JTProtocol.JTProtocolExtension.UnEscape(Microservice.Library.SuperSocket.JTProtocol.JTProtocol,System.Byte[])">
+            <summary>
+            转义还原
+            </summary>
+            <param name="jT"></param>
+            <param name="buffer">流数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.JTProtocol.JTProtocolExtension.Decode(Microservice.Library.SuperSocket.JTProtocol.JTProtocol,System.Byte[],Microservice.Library.SuperSocket.JTProtocol.CodeInfo)">
+            <summary>
+            解码
+            </summary>
+            <param name="jT">协议</param>
+            <param name="bytes">数据</param>
+            <param name="codeInfo">编码信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.JTProtocol.JTProtocolExtension.Encode(Microservice.Library.SuperSocket.JTProtocol.JTProtocol,System.Object,Microservice.Library.SuperSocket.JTProtocol.CodeInfo)">
+            <summary>
+            编码
+            </summary>
+            <param name="jT">协议</param>
+            <param name="value">值</param>
+            <param name="codeInfo">编码信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.JTProtocol.JTProtocolExtension.CreateCrcCcitt(Microservice.Library.SuperSocket.JTProtocol.JTProtocol)">
+            <summary>
+            创建Crc16Ccitt
+            </summary>
+            <param name="jT"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.JTProtocol.JTProtocolExtension.CheckCRCCode(Microservice.Library.SuperSocket.JTProtocol.JTProtocol,Microservice.Library.SuperSocket.JTProtocol.MessagePackageInfo,Microservice.Library.SuperSocket.Extension.CrcCcitt)">
+            <summary>
+            CRC校验
+            </summary>
+            <param name="jT"></param>
+            <param name="packageInfo"></param>
+            <param name="crc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.JTProtocol.JTProtocolExtension.SetCRCCode(Microservice.Library.SuperSocket.JTProtocol.JTProtocol,Microservice.Library.SuperSocket.JTProtocol.MessagePackageInfo,Microservice.Library.SuperSocket.Extension.CrcCcitt)">
+            <summary>
+            设置CRC校验码
+            </summary>
+            <param name="jT"></param>
+            <param name="packageInfo"></param>
+            <param name="crc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.JTProtocol.JTProtocolExtension.GetValueFromProperty(System.Object,System.String)">
+            <summary>
+            获取属性值
+            </summary>
+            <param name="obj">实例</param>
+            <param name="field">字段，多级使用.分隔</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.JTProtocol.JTProtocolExtension.SetValueToProperty(System.Object,System.String,System.Object)">
+            <summary>
+            设置属性值
+            </summary>
+            <param name="obj">实例</param>
+            <param name="field">字段，多级使用.分隔</param>
+            <param name="value">值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.JTProtocol.JTProtocolExtension.PadRight(System.Byte[],System.Int32,System.Byte)">
+            <summary>
+            右侧补位
+            </summary>
+            <param name="buffer">原数据</param>
+            <param name="length">长度(为0时不做任何改动)</param>
+            <param name="paddingByte">补位字节</param>
+            <returns>补位后的数据</returns>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.JTProtocol.JTProtocolExtension.Get0xByte(System.String)">
+            <summary>
+            转为16进制byte数组
+            </summary>
+            <param name="x2String">十六进制字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.JTProtocol.JTProtocolExtension.Get0xBytes(System.String)">
+            <summary>
+            转为16进制byte数组
+            </summary>
+            <param name="x2String">十六进制字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.JTProtocol.JTProtocolExtension.Get0xBytes(System.String[])">
+            <summary>
+            转为16进制byte数组
+            </summary>
+            <param name="x2String">十六进制字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.JTProtocol.JTProtocolExtension.Get0xString(System.Byte)">
+            <summary>
+            转为16进制字符串
+            </summary>
+            <param name="x2Byte">十六进制byte</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.JTProtocol.JTProtocolExtension.Get0xString(System.Byte[])">
+            <summary>
+            转为16进制字符串
+            </summary>
+            <param name="x2Byte">十六进制byte</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.JTProtocol.JTProtocolExtension.Get0x4String(System.Byte)">
+            <summary>
+            转为16进制字符串
+            </summary>
+            <param name="x2Byte">十六进制byte</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.JTProtocol.JTProtocolExtension.Get0x4String(System.Byte[])">
+            <summary>
+            转为16进制字符串
+            </summary>
+            <param name="x2Byte">十六进制byte</param>
+            <returns></returns>
+        </member>
+        <member name="T:Microservice.Library.SuperSocket.JTProtocol.MessageHeader">
+            <summary>
+            消息头
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.MessageHeader.Buffer">
+            <summary>
+            元数据
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.MessageHeader.MsgLength">
+            <summary>
+            数据长度（包括头标识、数据头、数据体和尾标识）
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.MessageHeader.Msg_SN">
+            <summary>
+            报文序列号
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.MessageHeader.Msg_SN_32">
+            <summary>
+            报文序列号
+            <para>占用四个字节，为发送信息的序列号，用于接收方检测是否有信息的丢失。上级平台和下级平台按自己发送数据包的个数计数，互不影响。程序开始运行时等于零，发送第一帧数据时开始计数，到最大数后自动归零</para>
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.MessageHeader.Msg_SN_16">
+            <summary>
+            报文序列号
+            <para>占用二个字节，为发送信息的序列号，用于接收方检测是否有信息的丢失。上级平台和下级平台按自己发送数据包的个数计数，互不影响。程序开始运行时等于零，发送第一帧数据时开始计数，到最大数后自动归零</para>
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.MessageHeader.Msg_Attribute">
+            <summary>
+            消息体属性
+            <para>占用二个字节,解析为二进制字符串</para>
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.MessageHeader.Msg_ID">
+            <summary>
+            协议号/业务数据类型
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.MessageHeader.MsgGnsscenterID">
+            <summary>
+            下级平台接入码，上级平台给下级平台分配的唯一标识号
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.MessageHeader.VersionFlag">
+            <summary>
+            协议版本号标识，上下级平台之间采用的标准协议版本编号；
+            长度为 3 个字节来表示：0x01 0x02 0x0F 表示的版本号是 V1.2.15，依此类推
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.MessageHeader.EncryptFlag">
+            <summary>
+            报文加密标识位：0 表示报文不加密，1 表示报文加密
+            <para>用来区分报文是否进行加密，如果标识为 1，则说明对后续相应业务的数据体采用 ENCRYPT_KEY 对应的密钥进行加密处理。如果标识为 0，则说明不进行加密处理</para>
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.MessageHeader.EncrtptKey">
+            <summary>
+            数据加密的密钥，长度为 4 个字节
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.SuperSocket.JTProtocol.MessagePackageInfo">
+            <summary>
+            消息包信息
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.JTProtocol.MessagePackageInfo.#ctor(System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="buffer">十六进制数据</param>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.JTProtocol.MessagePackageInfo.#ctor(System.Byte[],System.UInt32,Microservice.Library.SuperSocket.JTProtocol.IMessageBody,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="versionFlag">协议版本号标识</param>
+            <param name="gnsscenterID">下级平台接入码</param>
+            <param name="body">消息体</param>
+            <param name="encryptFlag">是否加密</param>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.MessagePackageInfo.Buffer">
+            <summary>
+            元数据
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.MessagePackageInfo.HeadFlag">
+            <summary>
+            头标识
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.MessagePackageInfo.MessageHeader">
+            <summary>
+            数据头
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.MessagePackageInfo.MessageBody">
+            <summary>
+            数据体
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.MessagePackageInfo.CRCCode">
+            <summary>
+            数据CRC校验码
+            从数据头到校验码前的 CRC-CCITT 的校验值
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.MessagePackageInfo.EndFlag">
+            <summary>
+            尾标识
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.JTProtocol.MessagePackageInfo.Success">
+            <summary>
+            是否成功解析
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.JTProtocol.MessagePackageInfo.ToString">
+            <summary>
+            消息包转字符串
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Microservice.Library.SuperSocket.JTProtocol.StructureType">
+            <summary>
+            结构类型
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.SuperSocket.JTProtocol.StructureType.normal">
+            <summary>
+            普通
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.SuperSocket.JTProtocol.StructureType.internal">
+            <summary>
+            内部结构
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.SuperSocket.JTProtocol.StructureType.additional">
+            <summary>
+            附加信息
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.SuperSocket.Model.ClientType">
+            <summary>
+            会话客户端类型
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.SuperSocket.Model.ClientType.client">
+            <summary>
+            客户端
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.SuperSocket.Model.ClientType.server">
+            <summary>
+            服务器
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.SuperSocket.Model.ClientType.debugClient">
+            <summary>
+            调试客户端
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.SuperSocket.Model.EncryptionType">
+            <summary>
+            加密类型
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.SuperSocket.Model.EncryptionType.none">
+            <summary>
+            不加密
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.SuperSocket.Model.TerminalType">
+            <summary>
+            终端类型
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.SuperSocket.Model.TerminalType.none">
+            <summary>
+            无
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.SuperSocket.Model.TerminalType.android">
+            <summary>
+            安卓
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.SuperSocket.Model.TerminalType.ios">
+            <summary>
+            苹果
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.SuperSocket.Model.TerminalType.wechat">
+            <summary>
+            微信
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.SuperSocket.Model.TerminalType.web_admin">
+            <summary>
+            后台网页
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.SuperSocket.Model.TerminalType.web_web">
+            <summary>
+            前台网页
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.SuperSocket.Model.VerificationType">
+            <summary>
+            验证类型
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.SuperSocket.Model.VerificationType.none">
+            <summary>
+            不验证
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.SuperSocket.Model.WebSocketInfo">
+            <summary>
+            套接字信息
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.Model.WebSocketInfo.UserHostAddress">
+            <summary>
+            客户端的 IP 地址
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.Model.WebSocketInfo.UserHostName">
+            <summary>
+            客户端的 DNS 名称
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.Model.WebSocketInfo.ConnectedTime">
+            <summary>
+            连接时间
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.Model.WebSocketInfo.Verification">
+            <summary>
+            验证状态
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.Model.WebSocketInfo.VerificationfailureTime">
+            <summary>
+            验证失败次数
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.Model.WebSocketInfo.ID">
+            <summary>
+            用户ID
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.Model.WebSocketInfo.UID">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.Model.WebSocketInfo.PWD">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.Model.WebSocketInfo.Token">
+            <summary>
+            令牌
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.Model.WebSocketInfo.TerminalType">
+            <summary>
+            终端类型
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.Model.WebSocketInfo.AccountType">
+            <summary>
+            帐号类型
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.Model.WebSocketInfo.socket">
+            <summary>
+            连接对象
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.Model.WebSocketInfo.OnlineStateNotificationUIDList">
+            <summary>
+            在线状态通知对象UID集合
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.Model.WebSocketInfo.socketType">
+            <summary>
+            连接对象类型（0:默认,1:sharp）
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.Model.WebSocketInfo.IdentityName">
+            <summary>
+            当前登录用户名
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.Model.WebSocketInfo.IsAuthenticated">
+            <summary>
+            当前连接对象登录状态
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.SuperSocket.Server.Blacklist">
+            <summary>
+            黑名单扩展类
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.Server.Blacklist.#ctor(Microservice.Library.Cache.Services.ICache)">
+            <summary>
+            
+            </summary>
+            <param name="cache"></param>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.Server.Blacklist.#ctor(Microservice.Library.SuperSocket.Server.IStorage)">
+            <summary>
+            
+            </summary>
+            <param name="storage"></param>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.Server.Blacklist.Verification(SuperSocket.IAppSession,Microservice.Library.SuperSocket.Server.BlackInfo@)">
+            <summary>
+            验证
+            </summary>
+            <returns>是否处于冻结中</returns>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.Server.Blacklist.Freeze(SuperSocket.IAppSession)">
+            <summary>
+            新增
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.Server.Blacklist.Unfreeze(SuperSocket.IAppSession)">
+            <summary>
+            移除
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.Server.Blacklist.GetId(SuperSocket.IAppSession)">
+            <summary>
+            获取Id
+            </summary>
+            <param name="session"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Microservice.Library.SuperSocket.Server.BlackInfo">
+            <summary>
+            黑名单信息
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.Server.BlackInfo.Id">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.Server.BlackInfo.RemoteEndPoint">
+            <summary>
+            远程 IP 地址
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.Server.BlackInfo.LocalEndPoint">
+            <summary>
+            服务器 IP 地址
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.Server.BlackInfo.UnfreezeTime">
+            <summary>
+            解除限制的时间
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SuperSocket.Server.BlackInfo.FfreezeTimes">
+            <summary>
+            违规次数
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.SuperSocket.Server.StorageMode">
+            <summary>
+            数据存储方式
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.SuperSocket.Server.StorageMode.Cache">
+            <summary>
+            缓存
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.SuperSocket.Server.StorageMode.Custom">
+            <summary>
+            自定义
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.SuperSocket.Server.IStorage">
+            <summary>
+            存储器接口
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.Server.IStorage.Get(System.String)">
+            <summary>
+            获取
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.Server.IStorage.Add(Microservice.Library.SuperSocket.Server.BlackInfo)">
+            <summary>
+            添加
+            </summary>
+            <param name="data">会话黑名单信息</param>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.Server.IStorage.Remove(System.String)">
+            <summary>
+            移除
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="T:Microservice.Library.SuperSocket.Server.CacheStorage">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.Server.CacheStorage.#ctor(Microservice.Library.Cache.Services.ICache)">
+            <summary>
+            
+            </summary>
+            <param name="cache"></param>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.Server.CacheStorage.Get(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.Server.CacheStorage.Add(Microservice.Library.SuperSocket.Server.BlackInfo)">
+            <summary>
+            
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:Microservice.Library.SuperSocket.Server.CacheStorage.Remove(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+        </member>
+    </members>
+</doc>

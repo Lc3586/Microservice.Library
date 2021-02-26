@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 
-namespace Library.Configuration.Extention
+namespace Microservice.Library.Configuration.Extention
 {
     /// <summary>
     /// 缓存

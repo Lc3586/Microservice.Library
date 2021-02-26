@@ -1,7 +1,7 @@
-﻿using Library.Collection;
+﻿using Microservice.Library.Collection;
 using System;
 
-namespace Library.Container
+namespace Microservice.Library.Container
 {
     public class DisposableContainer : IDisposableContainer, IDisposable
     {

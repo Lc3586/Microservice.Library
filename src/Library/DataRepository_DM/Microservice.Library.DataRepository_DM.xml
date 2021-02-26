@@ -1,0 +1,386 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microservice.Library.DataRepository_DM</name>
+    </assembly>
+    <members>
+        <member name="T:Microservice.Library.DataRepository_DM.DbHelper">
+            <summary>
+            SqlServer数据库操作帮助类
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.DbHelper.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="connectionString">连接字符串</param>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.DbHelper.GetDbTableInfo(System.String,System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String},System.Boolean)">
+            <summary>
+            获取数据库中的所有表
+            </summary>
+            <param name="schemaName">模式（架构）</param>
+            <param name="table">指定表</param>
+            <param name="tableIgnore">忽略表</param>
+            <param name="getColumn">获取列信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.DbHelper.GetDbColumnInfo(System.String,System.String)">
+            <summary>
+            通过连接字符串和表名获取数据库表的信息
+            </summary>
+            <param name="schemaName">模式（架构）</param>
+            <param name="tableName">表名</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.DbHelper.DbTypeStr2CsharpType(System.String)">
+            <summary>
+            将数据库类型转为对应C#数据类型
+            </summary>
+            <param name="dbTypeStr">数据类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.DbRepository.#ctor(System.String,System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="connectionString">数据库连接字符串</param>
+            <param name="entityAssembly">数据库实体命名空间,注意,该命名空间应该包含所有需要的数据库实体</param>
+        </member>
+        <member name="P:Microservice.Library.DataRepository_DM.DbRepository.ConnectionString">
+            <summary>
+            连接字符串
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.DataRepository_DM.DbRepository.EntityAssembly">
+            <summary>
+            实体类命名空间
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.DataRepository_DM.DbRepository.DbType">
+            <summary>
+            数据库类型
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.DbRepository.CommitDb">
+            <summary>
+            提交到数据库
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.DbRepository.CommitTransaction">
+            <summary>
+            提交事物
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.DbRepository.RollbackTransaction">
+            <summary>
+            回滚事物
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.DbRepository.GetDbContext">
+            <summary>
+            获取DbContext
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Microservice.Library.DataRepository_DM.DbRepository.HandleSqlLog">
+            <summary>
+            SQL日志处理方法
+            </summary>
+            <value>
+            The handle SQL log.
+            </value>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.DbRepository.UseTransaction(System.Data.Common.DbTransaction)">
+            <summary>
+            使用已存在的事物
+            </summary>
+            <param name="transaction">事物对象</param>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.DbRepository.GetTransaction">
+            <summary>
+            获取事物对象
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.DbRepository.Insert``1(``0)">
+            <summary>
+            添加单条记录
+            </summary>
+            <typeparam name="T">实体泛型</typeparam>
+            <param name="entity">实体对象</param>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.DbRepository.Insert``1(System.Collections.Generic.List{``0})">
+            <summary>
+            添加多条记录
+            </summary>
+            <typeparam name="T">实体泛型</typeparam>
+            <param name="entities">实体对象集合</param>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.DbRepository.Insert(System.Collections.Generic.List{System.Object})">
+            <summary>
+            添加多条记录
+            </summary>
+            <param name="entities">对象集合</param>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.DbRepository.BulkInsert``1(System.Collections.Generic.List{``0})">
+            <summary>
+            使用Bulk批量导入,速度快
+            </summary>
+            <typeparam name="T">实体泛型</typeparam>
+            <param name="entities">实体集合</param>
+            <exception cref="T:System.NotImplementedException">不支持此操作!</exception>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.DbRepository.DeleteAll``1">
+            <summary>
+            删除所有记录
+            </summary>
+            <typeparam name="T">实体泛型</typeparam>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.DbRepository.DeleteAll(System.Type)">
+            <summary>
+            删除所有记录
+            </summary>
+            <param name="type">实体类型</param>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.DbRepository.Delete``1(``0)">
+            <summary>
+            删除单条记录
+            </summary>
+            <typeparam name="T">实体泛型</typeparam>
+            <param name="entity">实体对象</param>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.DbRepository.Delete``1(System.Collections.Generic.List{``0})">
+            <summary>
+            删除多条记录
+            </summary>
+            <typeparam name="T">实体泛型</typeparam>
+            <param name="entities">实体对象集合</param>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.DbRepository.Delete(System.Collections.Generic.List{System.Object})">
+            <summary>
+            删除多条记录
+            </summary>
+            <param name="entities">实体对象集合</param>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.DbRepository.Delete``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            按条件删除记录
+            </summary>
+            <typeparam name="T">实体泛型</typeparam>
+            <param name="condition">筛选条件</param>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.DbRepository.Delete``1(System.String)">
+            <summary>
+            删除单条记录
+            </summary>
+            <typeparam name="T">实体泛型</typeparam>
+            <param name="key">主键</param>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.DbRepository.Delete``1(System.Collections.Generic.List{System.String})">
+            <summary>
+            删除多条记录
+            </summary>
+            <typeparam name="T">实体泛型</typeparam>
+            <param name="keys">多条记录主键集合</param>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.DbRepository.Delete(System.Type,System.String)">
+            <summary>
+            删除单条记录
+            </summary>
+            <param name="type">实体类型</param>
+            <param name="key">主键</param>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.DbRepository.Delete(System.Type,System.Collections.Generic.List{System.String})">
+            <summary>
+            删除多条记录
+            </summary>
+            <param name="type">实体类型</param>
+            <param name="keys">多条记录主键集合</param>
+            <exception cref="T:System.Exception">该实体没有主键标识！请使用[Key]标识主键！</exception>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.DbRepository.Delete_Sql``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            使用SQL语句按照条件删除数据
+            用法:Delete_Sql"Base_User"(x=&gt;x.Id == "Admin")
+            注：生成的SQL类似于DELETE FROM [Base_User] WHERE [Name] = 'xxx' WHERE [Id] = 'Admin'
+            </summary>
+            <typeparam name="T">实体泛型</typeparam>
+            <param name="where">条件</param>
+            <returns>
+            影响条数
+            </returns>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.DbRepository.Update``1(``0)">
+            <summary>
+            更新单条记录
+            </summary>
+            <typeparam name="T">实体泛型</typeparam>
+            <param name="entity">实体对象</param>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.DbRepository.Update``1(System.Collections.Generic.List{``0})">
+            <summary>
+            更新多条记录
+            </summary>
+            <typeparam name="T">实体泛型</typeparam>
+            <param name="entities">实体对象集合</param>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.DbRepository.Update(System.Collections.Generic.List{System.Object})">
+            <summary>
+            更新多条记录
+            </summary>
+            <param name="entities">实体对象集合</param>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.DbRepository.UpdateAny``1(``0,System.Collections.Generic.List{System.String})">
+            <summary>
+            更新单条记录的某些属性
+            </summary>
+            <typeparam name="T">实体泛型</typeparam>
+            <param name="entity">实体对象</param>
+            <param name="properties">属性</param>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.DbRepository.UpdateAny``1(System.Collections.Generic.List{``0},System.Collections.Generic.List{System.String})">
+            <summary>
+            更新多条记录的某些属性
+            </summary>
+            <typeparam name="T">实体泛型</typeparam>
+            <param name="entities">实体对象集合</param>
+            <param name="properties">属性</param>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.DbRepository.UpdateAny(System.Collections.Generic.List{System.Object},System.Collections.Generic.List{System.String})">
+            <summary>
+            更新多条记录的某些属性
+            </summary>
+            <param name="entities">实体对象集合</param>
+            <param name="properties">属性</param>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.DbRepository.UpdateWhere``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Action{``0})">
+            <summary>
+            按照条件更新记录
+            </summary>
+            <typeparam name="T">实体泛型</typeparam>
+            <param name="whereExpre">筛选条件</param>
+            <param name="set">更新操作</param>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.DbRepository.UpdateWhere_Sql``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.ValueTuple{System.String,System.Object}[])">
+            <summary>
+            使用SQL语句按照条件更新
+            用法:UpdateWhere_Sql"Base_User"(x=&gt;x.Id == "Admin",("Name","小明"))
+            注：生成的SQL类似于UPDATE [TABLE] SET [Name] = 'xxx' WHERE [Id] = 'Admin'
+            </summary>
+            <typeparam name="T">实体类型</typeparam>
+            <param name="where">筛选条件</param>
+            <param name="values">字段值设置</param>
+            <returns>
+            影响条数
+            </returns>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.DbRepository.GetEntity``1(System.Object[])">
+            <summary>
+            获取单条记录
+            </summary>
+            <typeparam name="T">实体泛型</typeparam>
+            <param name="keyValue">主键</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.DbRepository.GetList``1">
+            <summary>
+            获取所有数据
+            </summary>
+            <typeparam name="T">实体泛型</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.DbRepository.GetList(System.Type)">
+            <summary>
+            获取列表
+            </summary>
+            <param name="type">实体类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.DbRepository.GetIQueryable``1">
+            <summary>
+            获取IQueryable
+            注:默认取消实体追踪
+            </summary>
+            <typeparam name="T">实体泛型</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.DbRepository.GetIQueryable(System.Type)">
+            <summary>
+            获取IQueryable
+            注:默认取消实体追踪
+            </summary>
+            <param name="type">实体泛型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.DbRepository.GetDataTableWithSql(System.String)">
+            <summary>
+            通过SQL获取DataTable
+            </summary>
+            <param name="sql">SQL语句(确保语句是安全的)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.DbRepository.GetDataTableWithSql(System.String,System.Collections.Generic.List{System.Data.Common.DbParameter})">
+            <summary>
+            通过SQL获取DataTable
+            </summary>
+            <param name="sql">SQL语句(确保语句是安全的)</param>
+            <param name="parameters">SQL参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.DbRepository.GetListBySql``1(System.String)">
+            <summary>
+            通过SQL获取List
+            </summary>
+            <typeparam name="T">实体泛型</typeparam>
+            <param name="sqlStr">SQL语句</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.DbRepository.GetListBySql``1(System.String,System.Collections.Generic.List{System.Data.Common.DbParameter})">
+            <summary>
+            通过SQL获取List
+            </summary>
+            <typeparam name="T">实体泛型</typeparam>
+            <param name="sqlStr">SQL语句</param>
+            <param name="parameters">SQL参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.DbRepository.ExecuteSql(System.String)">
+            <summary>
+            执行SQL语句
+            </summary>
+            <param name="sql">SQL语句</param>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.DbRepository.ExecuteSql(System.String,System.Collections.Generic.List{System.Data.Common.DbParameter})">
+            <summary>
+            执行SQL语句
+            </summary>
+            <param name="sql">SQL语句</param>
+            <param name="parameters">SQL参数</param>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.DbRepository.Dispose">
+            <summary>
+            执行与释放或重置非托管资源关联的应用程序定义的任务。
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.DataRepository_DM.RepositoryDbContext">
+            <summary>
+            DbContext容器
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.RepositoryDbContext.#ctor(System.String,System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="connectionString">数据库连接字符串或连接字符串</param>
+            <param name="entityAssembly">数据库实体命名空间,注意,该命名空间应该包含所有需要的数据库实体</param>
+        </member>
+        <member name="M:Microservice.Library.DataRepository_DM.RepositoryDbContext.GetModel(System.Type)">
+            <summary>
+            获取模型
+            </summary>
+            <param name="type">原类型</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

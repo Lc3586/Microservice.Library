@@ -2,26 +2,32 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
-    <RootNamespace>Library.SuperSocket</RootNamespace>
+    <RootNamespace>Microservice.Library.SuperSocket</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.4-alpha</Version>
+    <Version>0.0.0.1-alpha</Version>
     <Authors>LCTR</Authors>
-    <Product>LCTR</Product>
+    <Product>Microservice.Library</Product>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Description>Supersocket推展
 黑名单
 JT协议</Description>
-    <PackageProjectUrl>https://github.com/Lc3586/Microservice/tree/master/src/Library/SuperSocket</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/Lc3586/Microservice.Library</PackageProjectUrl>
     <Platforms>AnyCPU;x64</Platforms>
+    <PackageId>Microservice.Library.SuperSocket</PackageId>
+    <AssemblyName>Microservice.Library.SuperSocket</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>Library.SuperSocket.xml</DocumentationFile>
+    <DocumentationFile>Microservice.Library.SuperSocket.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <DocumentationFile>Library.SuperSocket.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>Microservice.Library.SuperSocket.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -48,7 +54,9 @@ JT协议</Description>
 
   <ItemGroup>
     <ProjectReference Include="..\Cache\Library.Cache.csproj" />
+    <ProjectReference Include="..\Configuration\Library.Configuration.csproj" />
     <ProjectReference Include="..\Container\Library.Container.csproj" />
+    <ProjectReference Include="..\Extension\Library.Extension.csproj" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>

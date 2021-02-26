@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Library.Extension
+namespace Microservice.Library.Extension
 {
     public static partial class Extension
     {

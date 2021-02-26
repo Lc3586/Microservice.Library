@@ -1,6 +1,6 @@
-﻿using Library.Elasticsearch.Annotations;
-using Library.Json.Converters;
-using Library.OpenApi.Annotations;
+﻿using Microservice.Library.Elasticsearch.Annotations;
+using Microservice.Library.Json.Converters;
+using Microservice.Library.OpenApi.Annotations;
 using Nest;
 using Newtonsoft.Json;
 using System;

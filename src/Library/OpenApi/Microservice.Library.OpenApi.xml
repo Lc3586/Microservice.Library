@@ -1,0 +1,1159 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microservice.Library.OpenApi</name>
+    </assembly>
+    <members>
+        <member name="T:Microservice.Library.OpenApi.Annotations.OpenApiIgnoreAttribute">
+            <summary>
+            处理接口架构时忽略带有此特性的对象
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.OpenApi.Annotations.OpenApiSchemaAttribute">
+            <summary>
+            接口架构属性
+            </summary>
+            <remarks>LCTR 2020-03-10</remarks>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Annotations.OpenApiSchemaAttribute.#ctor(System.String,System.String,System.Object)">
+            <summary>
+            
+            <para><paramref name="type" cref="T:Microservice.Library.OpenApi.Annotations.OpenApiSchemaType"/></para>
+            <para><paramref name="format" cref="T:Microservice.Library.OpenApi.Annotations.OpenApiSchemaFormat"/></para>
+            </summary>
+            <param name="type" >类型</param>
+            <param name="format">格式</param>
+            <param name="value">示例值</param>
+        </member>
+        <member name="P:Microservice.Library.OpenApi.Annotations.OpenApiSchemaAttribute.Type">
+            <summary>
+            类型
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.OpenApi.Annotations.OpenApiSchemaAttribute.Format">
+            <summary>
+            格式
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.OpenApi.Annotations.OpenApiSchemaAttribute.Value">
+            <summary>
+            示例值
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.OpenApi.Annotations.OpenApiSchemaFormat">
+            <summary>
+            接口架构格式
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.OpenApi.Annotations.OpenApiSchemaFormat.integer_byte">
+            <summary>
+            字节
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.OpenApi.Annotations.OpenApiSchemaFormat.integer_byte_array">
+            <summary>
+            字节数组
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.OpenApi.Annotations.OpenApiSchemaFormat.integer_binary">
+            <summary>
+            二进制数组
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.OpenApi.Annotations.OpenApiSchemaFormat.integer_int32">
+            <summary>
+            32位整数
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.OpenApi.Annotations.OpenApiSchemaFormat.integer_int64">
+            <summary>
+            64位整数
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.OpenApi.Annotations.OpenApiSchemaFormat.number_float">
+            <summary>
+            单精度浮点数
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.OpenApi.Annotations.OpenApiSchemaFormat.number_double">
+            <summary>
+            双精度浮点数
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.OpenApi.Annotations.OpenApiSchemaFormat.number_decimal">
+            <summary>
+            高精度浮点数
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.OpenApi.Annotations.OpenApiSchemaFormat.string_date">
+            <summary>
+            日期
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.OpenApi.Annotations.OpenApiSchemaFormat.string_datetime">
+            <summary>
+            日期和时间
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.OpenApi.Annotations.OpenApiSchemaFormat.string_date_original">
+            <summary>
+            原始时间
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.OpenApi.Annotations.OpenApiSchemaFormat.string_password">
+            <summary>
+            密文
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.OpenApi.Annotations.OpenApiSchemaFormat.enum_description">
+            <summary>
+            包含注释
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.OpenApi.Annotations.OpenApiSchemaFormat.model_once">
+            <summary>
+            只解析一次
+            <para>防止无限递归</para>
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.OpenApi.Annotations.OpenApiSchemaStrictModeAttribute">
+            <summary>
+            接口架构严格模式
+            <para>1：未指定OpenApiSchemaAttribute特性的属性将不会输出</para>
+            <para>2：当存在MainTag时，未指定SubTag的属性将不会处理</para>
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.OpenApi.Annotations.OpenApiSchemaType">
+            <summary>
+            接口架构类型
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.OpenApi.Annotations.OpenApiSchemaType.boolean">
+            <summary>
+            布尔
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.OpenApi.Annotations.OpenApiSchemaType.integer">
+            <summary>
+            整数
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.OpenApi.Annotations.OpenApiSchemaType.number">
+            <summary>
+            数值
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.OpenApi.Annotations.OpenApiSchemaType.string">
+            <summary>
+            字符串
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.OpenApi.Annotations.OpenApiSchemaType.enum">
+            <summary>
+            枚举
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.OpenApi.Annotations.OpenApiSchemaType.model">
+            <summary>
+            嵌套模型
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.OpenApi.Annotations.OpenApiMainTagAttribute">
+            <summary>
+            主标签
+            <para>主要的，用于类</para>
+            <para>和附属标签搭配使用</para>
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Annotations.OpenApiMainTagAttribute.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="name">名称</param>
+        </member>
+        <member name="P:Microservice.Library.OpenApi.Annotations.OpenApiMainTagAttribute.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.OpenApi.Annotations.OpenApiSubTagAttribute">
+            <summary>
+            附属标签
+            <para>标明所属，用于属性和字段</para>
+            <para>和主标签搭配使用</para>
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Annotations.OpenApiSubTagAttribute.#ctor(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="name">名称</param>
+        </member>
+        <member name="P:Microservice.Library.OpenApi.Annotations.OpenApiSubTagAttribute.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.OpenApi.Annotations.PropertyValueChanged">
+            <summary>
+            属性值更改信息
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.OpenApi.Annotations.PropertyValueChanged.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.OpenApi.Annotations.PropertyValueChanged.Description">
+            <summary>
+            说明
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.OpenApi.Annotations.PropertyValueChanged.FormerValue">
+            <summary>
+            以前的值
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.OpenApi.Annotations.PropertyValueChanged.CurrentValue">
+            <summary>
+            现在的值
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.OpenApi.ExampleModel.AInfo">
+            <summary>
+            A信息
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.OpenApi.ExampleModel.AInfo.B">
+            <summary>
+            所属B
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.OpenApi.ExampleModel.AInfo.Cs">
+            <summary>
+            相关C集合
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.OpenApi.ExampleModel.AInfo.Ds">
+            <summary>
+            相关D集合
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.OpenApi.ExampleModel.BInfo">
+            <summary>
+            B信息
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.OpenApi.ExampleModel.CInfo">
+            <summary>
+            C信息
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.OpenApi.ExampleModel.DInfo">
+            <summary>
+            D信息
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.OpenApi.ExampleModel.Example_A">
+            <summary>
+            A
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.OpenApi.ExampleModel.Example_A.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.OpenApi.ExampleModel.Example_A.ParentId">
+            <summary>
+            父AId
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.OpenApi.ExampleModel.Example_A.BId">
+            <summary>
+            所属B
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.OpenApi.ExampleModel.Example_A.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.OpenApi.ExampleModel.Example_A.Content">
+            <summary>
+            内容
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.OpenApi.ExampleModel.Example_A.CreatorId">
+            <summary>
+            创建者
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.OpenApi.ExampleModel.Example_A.CreatorName">
+            <summary>
+            创建者名称
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.OpenApi.ExampleModel.Example_A.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.OpenApi.ExampleModel.Example_A.ModifyTime">
+            <summary>
+            最近修改时间
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.OpenApi.ExampleModel.Example_B">
+            <summary>
+            B
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.OpenApi.ExampleModel.Example_B.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.OpenApi.ExampleModel.Example_B.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.OpenApi.ExampleModel.Example_B.CreatorId">
+            <summary>
+            创建者
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.OpenApi.ExampleModel.Example_B.CreatorName">
+            <summary>
+            创建者名称
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.OpenApi.ExampleModel.Example_B.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.OpenApi.ExampleModel.Example_B.ModifyTime">
+            <summary>
+            最近修改时间
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.OpenApi.ExampleModel.Example_C">
+            <summary>
+            C
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.OpenApi.ExampleModel.Example_C.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.OpenApi.ExampleModel.Example_C.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.OpenApi.ExampleModel.Example_C.CreatorId">
+            <summary>
+            创建者
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.OpenApi.ExampleModel.Example_C.CreatorName">
+            <summary>
+            创建者名称
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.OpenApi.ExampleModel.Example_C.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.OpenApi.ExampleModel.Example_C.ModifyTime">
+            <summary>
+            最近修改时间
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.OpenApi.ExampleModel.Example_D">
+            <summary>
+            D
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.OpenApi.ExampleModel.Example_D.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.OpenApi.ExampleModel.Example_D.AId">
+            <summary>
+            所属A
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.OpenApi.ExampleModel.Example_D.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.OpenApi.ExampleModel.Example_D.CreatorId">
+            <summary>
+            创建者
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.OpenApi.ExampleModel.Example_D.CreatorName">
+            <summary>
+            创建者名称
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.OpenApi.ExampleModel.Example_D.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.OpenApi.ExampleModel.Example_D.ModifyTime">
+            <summary>
+            最近修改时间
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.OpenApi.Extention.CacheExtention">
+            <summary>
+            缓存
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.OpenApi.Extention.CacheExtention.OpenApiObjectDic">
+            <summary>
+            类型的Api架构
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.OpenApi.Extention.CacheExtention.AssemblyOfTypeDic">
+            <summary>
+            类型的命名空间
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.OpenApi.Extention.CacheExtention.TypesOfTypeDic">
+            <summary>
+            类型的架构类型集合
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.OpenApi.Extention.CacheExtention.PropertysOfTypeDic">
+            <summary>
+            类型的架构属性集合
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.OpenApi.Extention.CacheExtention.EnumNameAndDescriptionDic">
+            <summary>
+            枚举的字段说明集合
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.CacheExtention.GetPropertysOfTypeDic(System.Type,System.Boolean)">
+            <summary>
+            获取类型的架构属性集合
+            </summary>
+            <param name="type"></param>
+            <param name="deepClone">深度复制</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.CacheExtention.GetPropertysOfTypeDic(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.String,System.Boolean)">
+            <summary>
+            获取类型的架构属性集合
+            </summary>
+            <param name="dic"></param>
+            <param name="typeFullName"></param>
+            <param name="deepClone">深度复制</param>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.CacheExtention.SetPropertysOfTypeDic(System.Type,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+            <summary>
+            设置类型的架构属性集合
+            </summary>
+            <param name="type"></param>
+            <param name="dic"></param>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.CacheExtention.Dispose">
+            <summary>
+            销毁
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.OpenApi.Extention.JsonExtension">
+            <summary>
+            Json相关拓展方法
+            </summary>
+            <remarks>
+            <![CDATA[
+            // * 测试信息 *
+            
+            // * 数据量：100条 *
+            
+            // * 数据结构：
+            {
+                "DB_B":{
+                    "Id":"1343405244365029377",
+                    "Name":"名称",
+                    "CreatorId":"800728e2-5997-42d6-b1d7-dd3ce6a51562",
+                    "CreatorName":"管理员",
+                    "CreateTime":"2020-12-28 11:55:44",
+                    "ModifyTime":"2020-12-28 11:55:44"
+                },
+                "DB_Cs":[   //集合内数据量 10条
+                    {
+                        "Id":"1343405244365029378",
+                        "Name":"名称",
+                        "CreatorId":"f2f0d3e0-f81b-4631-ac33-41729bf36d49",
+                        "CreatorName":"管理员",
+                        "CreateTime":"2020-12-28 11:55:44",
+                        "ModifyTime":"2020-12-28 11:55:44"
+                    }
+                ],
+                "DB_Ds":[   //集合内数据量 10条
+                    {
+                        "Id":"1343405244365029388",
+                        "AId":"1343405244365029376",
+                        "Name":"名称",
+                        "CreatorId":"29b52d6e-15b6-4c83-b849-8169e168718c",
+                        "CreatorName":"管理员",
+                        "CreateTime":"2020-12-28 11:55:44",
+                        "ModifyTime":"2020-12-28 11:55:44"
+                    }
+                ],
+                "Id":"1343405244365029376",
+                "ParentId":null,
+                "BId":"1343405244365029377",
+                "Name":"名称",
+                "Content":"内容",
+                "CreatorId":"3ad97ec8-57ca-4088-a620-b36c50566748",
+                "CreatorName":"管理员",
+                "CreateTime":"2020-12-28 11:55:44",
+                "ModifyTime":"2020-12-28 11:55:44"
+            } *
+            
+            
+            
+            // * 序列化 *
+            // * Summary *
+            BenchmarkDotNet=v0.12.1, OS=Windows 10.0.18362.53 (1903/May2019Update/19H1)
+            Intel Core i5-9400 CPU 2.90GHz (Coffee Lake), 1 CPU, 6 logical and 6 physical cores
+            .NET Core SDK=5.0.101
+            [Host]        : .NET Core 5.0.1 (CoreCLR 5.0.120.57516, CoreFX 5.0.120.57516), X64 RyuJIT
+            .NET 4.6.1    : .NET Framework 4.8 (4.8.4250.0), X64 RyuJIT
+            .NET Core 3.1 : .NET Core 3.1.10 (CoreCLR 4.700.20.51601, CoreFX 4.700.20.51901), X64 RyuJIT
+            .NET Core 5.0 : .NET Core 5.0.1 (CoreCLR 5.0.120.57516, CoreFX 5.0.120.57516), X64 RyuJIT
+            |   Method |           Job |       Runtime |      Mean |     Error |    StdDev | Ratio |
+            |--------- |-------------- |-------------- |----------:|----------:|----------:|------:|
+            | 基础序列化··· |    .NET 4.6.1 |    .NET 4.6.1 |  7.072 ms | 0.0200 ms | 0.0187 ms |  1.00 |
+            | 序列化时过滤属性 |    .NET 4.6.1 |    .NET 4.6.1 | 18.209 ms | 0.0720 ms | 0.0638 ms |  2.57 |
+            | 基础序列化··· | .NET Core 3.1 | .NET Core 3.1 |  6.324 ms | 0.0263 ms | 0.0246 ms |  0.89 |                
+            | 序列化时过滤属性 | .NET Core 3.1 | .NET Core 3.1 | 14.582 ms | 0.0422 ms | 0.0394 ms |  2.06 |
+            | 基础序列化··· | .NET Core 5.0 | .NET Core 5.0 |  6.004 ms | 0.0199 ms | 0.0186 ms |  0.85 |
+            | 序列化时过滤属性 | .NET Core 5.0 | .NET Core 5.0 | 14.130 ms | 0.0500 ms | 0.0467 ms |  2.00 |
+            // * Hints *
+            Outliers
+            SerializeTest.序列化时过滤属性: .NET 4.6.1 -> 1 outlier  was  removed (18.40 ms)
+            
+            
+            // * 反序列化 *
+            // * Summary *
+            BenchmarkDotNet=v0.12.1, OS=Windows 10.0.18362.53 (1903/May2019Update/19H1)
+            Intel Core i5-9400 CPU 2.90GHz (Coffee Lake), 1 CPU, 6 logical and 6 physical cores
+            .NET Core SDK=5.0.101
+            [Host]        : .NET Core 5.0.1 (CoreCLR 5.0.120.57516, CoreFX 5.0.120.57516), X64 RyuJIT
+            .NET 4.6.1    : .NET Framework 4.8 (4.8.4250.0), X64 RyuJIT
+            .NET Core 3.1 : .NET Core 3.1.10 (CoreCLR 4.700.20.51601, CoreFX 4.700.20.51901), X64 RyuJIT
+            .NET Core 5.0 : .NET Core 5.0.1 (CoreCLR 5.0.120.57516, CoreFX 5.0.120.57516), X64 RyuJIT
+            |     Method |           Job |       Runtime |     Mean |    Error |   StdDev | Ratio | RatioSD |
+            |----------- |-------------- |-------------- |---------:|---------:|---------:|------:|--------:|
+            | 基础反序列化···· |    .NET 4.6.1 |    .NET 4.6.1 | 13.67 ms | 0.096 ms | 0.090 ms |  1.00 |    0.00 |
+            | 反序列化时过滤属性· |    .NET 4.6.1 |    .NET 4.6.1 | 26.54 ms | 0.127 ms | 0.119 ms |  1.94 |    0.02 |
+            | 基础反序列化···· | .NET Core 3.1 | .NET Core 3.1 | 12.82 ms | 0.240 ms | 0.224 ms |  0.94 |    0.02 |
+            | 反序列化时过滤属性· | .NET Core 3.1 | .NET Core 3.1 | 22.97 ms | 0.136 ms | 0.127 ms |  1.68 |    0.01 |
+            | 基础反序列化···· | .NET Core 5.0 | .NET Core 5.0 | 11.53 ms | 0.111 ms | 0.104 ms |  0.84 |    0.01 |
+            | 反序列化时过滤属性· | .NET Core 5.0 | .NET Core 5.0 | 21.35 ms | 0.187 ms | 0.175 ms |  1.56 |    0.02 |
+            // * Legends *
+            Mean    : Arithmetic mean of all measurements
+            Error   : Half of 99.9% confidence interval
+            StdDev  : Standard deviation of all measurements
+            Ratio   : Mean of the ratio distribution ([Current]/[Baseline])
+            RatioSD : Standard deviation of the ratio distribution ([Current]/[Baseline])
+            1 ms    : 1 Millisecond (0.001 sec)
+            // ***** BenchmarkRunner: End *****
+            // ** Remained 0 benchmark(s) to run **
+            Run time: 00:02:35 (155.22 sec), executed benchmarks: 6
+            Global total time: 00:02:44 (164.31 sec), executed benchmarks: 6
+            ]]>
+            </remarks>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.JsonExtension.ToOpenApiJson(System.Object,System.Type,System.String[])">
+            <summary>
+            将对象序列化成Json字符串
+            </summary>
+            <param name="obj">需要序列化的对象</param>
+            <param name="openApiSchemaType">指定接口架构类型</param>
+            <param name="exceptionProperties">要例外输出的属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.JsonExtension.ToOpenApiJsonIgnore(System.Object,System.Type,System.String[])">
+            <summary>
+            将对象序列化成Json字符串
+            </summary>
+            <param name="obj">需要序列化的对象</param>
+            <param name="openApiSchemaType">指定接口架构类型</param>
+            <param name="ignoreProperties">忽略的属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.JsonExtension.ToOpenApiJson(System.Object,System.Type,System.String[],System.String[])">
+            <summary>
+            将对象序列化成Json字符串
+            </summary>
+            <param name="obj">需要序列化的对象</param>
+            <param name="openApiSchemaType">指定接口架构类型</param>
+            <param name="exceptionProperties">要例外输出的属性</param>
+            <param name="ignoreProperties">忽略的属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.JsonExtension.ToOpenApiJsonSpecifyType(System.Object,System.Type,System.ValueTuple{System.String,System.Collections.Generic.List{System.String}}[])">
+            <summary>
+            将对象序列化成Json字符串
+            </summary>
+            <param name="obj">需要序列化的对象</param>
+            <param name="openApiSchemaType">指定接口架构类型</param>
+            <param name="exceptionProperties">要例外输出的属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.JsonExtension.ToOpenApiJsonIgnoreSpecifyType(System.Object,System.Type,System.ValueTuple{System.String,System.Collections.Generic.List{System.String}}[])">
+            <summary>
+            将对象序列化成Json字符串
+            </summary>
+            <param name="obj">需要序列化的对象</param>
+            <param name="openApiSchemaType">指定接口架构类型</param>
+            <param name="ignoreProperties">忽略的属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.JsonExtension.ToOpenApiJsonSpecifyType(System.Object,System.Type,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+            <summary>
+            将对象序列化成Json字符串
+            </summary>
+            <param name="obj">需要序列化的对象</param>
+            <param name="openApiSchemaType">指定接口架构类型</param>
+            <param name="exceptionProperties">要例外输出的属性</param>
+            <param name="ignoreProperties">忽略的属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.JsonExtension.ToOpenApiJson``1(``0,System.String[])">
+            <summary>
+            将对象序列化成Json字符串
+            </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <param name="obj">需要序列化的对象</param>
+            <param name="exceptionProperties">要例外输出的属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.JsonExtension.ToOpenApiJson``1(System.Object,System.String[])">
+            <summary>
+            将对象序列化成Json字符串
+            </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <param name="obj">需要序列化的对象</param>
+            <param name="exceptionProperties">要例外输出的属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.JsonExtension.ToOpenApiJsonIgnore``1(``0,System.String[])">
+            <summary>
+            将对象序列化成Json字符串
+            </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <param name="obj">需要序列化的对象</param>
+            <param name="ignoreProperties">忽略的属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.JsonExtension.ToOpenApiJsonIgnore``1(System.Object,System.String[])">
+            <summary>
+            将对象序列化成Json字符串
+            </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <param name="obj">需要序列化的对象</param>
+            <param name="ignoreProperties">忽略的属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.JsonExtension.ToOpenApiJson``1(System.Object,System.String[],System.String[])">
+            <summary>
+            将对象序列化成Json字符串
+            </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <param name="obj">需要序列化的对象</param>
+            <param name="exceptionProperties">要例外输出的属性</param>
+            <param name="ignoreProperties">忽略的属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.JsonExtension.ToOpenApiJsonSpecifyType``1(System.Object,System.ValueTuple{System.String,System.Collections.Generic.List{System.String}}[])">
+            <summary>
+            将对象序列化成Json字符串
+            </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <param name="obj">需要序列化的对象</param>
+            <param name="exceptionProperties">要例外输出的属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.JsonExtension.ToOpenApiJsonIgnoreSpecifyType``1(System.Object,System.ValueTuple{System.String,System.Collections.Generic.List{System.String}}[])">
+            <summary>
+            将对象序列化成Json字符串
+            </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <param name="obj">需要序列化的对象</param>
+            <param name="ignoreProperties">忽略的属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.JsonExtension.ToOpenApiJsonSpecifyType``1(System.Object,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+            <summary>
+            将对象序列化成Json字符串
+            </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <param name="obj">需要序列化的对象</param>
+            <param name="exceptionProperties">要例外输出的属性</param>
+            <param name="ignoreProperties">忽略的属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.JsonExtension.ToOpenApiObject(System.String,System.Type,System.String[])">
+            <summary>
+            将Json字符串反序列化成对象
+            </summary>
+            <param name="json">需要反序列化的Json字符串</param>
+            <param name="openApiSchemaType">指定接口架构类型</param>
+            <param name="exceptionProperties">要例外输出的属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.JsonExtension.ToOpenApiObjectIgnore(System.String,System.Type,System.String[])">
+            <summary>
+            将Json字符串反序列化成对象
+            </summary>
+            <param name="json">需要反序列化的Json字符串</param>
+            <param name="openApiSchemaType">指定接口架构类型</param>
+            <param name="ignoreProperties">忽略的属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.JsonExtension.ToOpenApiObject(System.String,System.Type,System.String[],System.String[])">
+            <summary>
+            将Json字符串反序列化成对象
+            </summary>
+            <param name="json">需要反序列化的Json字符串</param>
+            <param name="openApiSchemaType">指定接口架构类型</param>
+            <param name="exceptionProperties">要例外输出的属性</param>
+            <param name="ignoreProperties">忽略的属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.JsonExtension.ToOpenApiObjectSpecifyType(System.String,System.Type,System.ValueTuple{System.String,System.Collections.Generic.List{System.String}}[])">
+            <summary>
+            将Json字符串反序列化成对象
+            </summary>
+            <param name="json">需要反序列化的Json字符串</param>
+            <param name="openApiSchemaType">指定接口架构类型</param>
+            <param name="exceptionProperties">要例外输出的属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.JsonExtension.ToOpenApiObjectIgnoreSpecifyType(System.String,System.Type,System.ValueTuple{System.String,System.Collections.Generic.List{System.String}}[])">
+            <summary>
+            将Json字符串反序列化成对象
+            </summary>
+            <param name="json">需要反序列化的Json字符串</param>
+            <param name="openApiSchemaType">指定接口架构类型</param>
+            <param name="ignoreProperties">忽略的属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.JsonExtension.ToOpenApiObject(System.String,System.Type,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+            <summary>
+            将Json字符串反序列化成对象
+            </summary>
+            <param name="json">需要反序列化的Json字符串</param>
+            <param name="openApiSchemaType">指定接口架构类型</param>
+            <param name="exceptionProperties">特别输出的属性</param>
+            <param name="ignoreProperties">特别忽略的属性</param>
+            <remarks>如果在特别输出参数和特别忽略参数中同时指定了同一个属性，那么最终不会输出该属性</remarks>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.JsonExtension.ToOpenApiObject``1(System.String,System.String[])">
+            <summary>
+            将Json字符串反序列化成对象
+            </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <param name="json">需要反序列化的Json字符串</param>
+            <param name="exceptionProperties">要例外输出的属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.JsonExtension.ToOpenApiObjectIgnore``1(System.String,System.String[])">
+            <summary>
+            将Json字符串反序列化成对象
+            </summary>
+            <param name="json">需要反序列化的Json字符串</param>
+            <param name="ignoreProperties">忽略的属性</param>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.JsonExtension.ToOpenApiObject``1(System.String,System.String[],System.String[])">
+            <summary>
+            将Json字符串反序列化成对象
+            </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <param name="json">需要反序列化的Json字符串</param>
+            <param name="exceptionProperties">要例外输出的属性</param>
+            <param name="ignoreProperties">忽略的属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.JsonExtension.ToOpenApiObjectSpecifyType``1(System.String,System.ValueTuple{System.String,System.Collections.Generic.List{System.String}}[])">
+            <summary>
+            将Json字符串反序列化成对象
+            </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <param name="json">需要反序列化的Json字符串</param>
+            <param name="exceptionProperties">要例外输出的属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.JsonExtension.ToOpenApiObjectIgnoreSpecifyType``1(System.String,System.ValueTuple{System.String,System.Collections.Generic.List{System.String}}[])">
+            <summary>
+            将Json字符串反序列化成对象
+            </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <param name="json">需要反序列化的Json字符串</param>
+            <param name="ignoreProperties">忽略的属性</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.JsonExtension.ToOpenApiObject``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+            <summary>
+            将Json字符串反序列化成对象
+            </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <param name="json">需要反序列化的Json字符串</param>
+            <param name="exceptionProperties">特别输出的属性</param>
+            <param name="ignoreProperties">特别忽略的属性</param>
+            <remarks>如果在特别输出参数和特别忽略参数中同时指定了同一个属性，那么最终不会输出该属性</remarks>
+            <returns></returns>
+        </member>
+        <member name="T:Microservice.Library.OpenApi.Extention.OpenApiExtention">
+            <summary>
+            接口文档相关扩展方法
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.OpenApiExtention.CreateDefaultSchema(System.Reflection.PropertyInfo)">
+            <summary>
+            获取默认架构
+            </summary>
+            <param name="property"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.OpenApiExtention.GetOrNullFor(System.Type,System.Boolean)">
+            <summary>
+            获取或创建接口初始类
+            </summary>
+            <param name="type"></param>
+            <param name="innerModel">处理内部模型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.OpenApiExtention.CreateFor(System.Reflection.PropertyInfo,System.Boolean)">
+            <summary>
+            创建接口初始类
+            </summary>
+            <param name="property"></param>
+            <param name="innerModel">处理内部模型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.OpenApiExtention.GetEnumOpenApiAny(System.Type,System.Object)">
+            <summary>
+            获取枚举的描述信息
+            </summary>
+            <param name="type">枚举类型</param>
+            <param name="default">默认值</param>
+            <returns></returns>
+        </member>
+        <member name="T:Microservice.Library.OpenApi.Extention.SchemaExtention">
+            <summary>
+            架构相关拓展方法
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.SchemaExtention.GetGenericType(System.Type)">
+            <summary>
+            获取数组和泛型集合元素类型
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.SchemaExtention.GetGenericType(System.Type,System.Type@)">
+            <summary>
+            获取数组和泛型集合元素类型
+            </summary>
+            <param name="type"></param>
+            <param name="genericType">泛型元素类型</param>
+            <returns>是否为数组或泛型集合</returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.SchemaExtention.TryCast``1(System.Object,``0@)">
+            <summary>
+            转换类型
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="value"></param>
+            <param name="typedValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.SchemaExtention.FilterModel(System.Type,System.Action{System.Type,System.Reflection.PropertyInfo},System.Func{System.Type,System.Reflection.PropertyInfo,System.Boolean},System.Boolean)">
+            <summary>
+            过滤模型
+            </summary>
+            <param name="type">类型</param>
+            <param name="after">处理成员之后</param>
+            <param name="befor">处理成员之前(返回false,跳过该成员)</param>
+            <param name="innerModel">处理内部模型</param>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.SchemaExtention.GetMainTag(System.Type)">
+            <summary>
+            获取主标签名称
+            </summary>
+            <param name="type">目标对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.SchemaExtention.HasTag(System.Reflection.MemberInfo)">
+            <summary>
+            是否包含标签
+            </summary>
+            <param name="element">目标成员</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.SchemaExtention.HasTag(System.Reflection.MemberInfo,System.String)">
+            <summary>
+            是否包含标签
+            </summary>
+            <param name="element">目标成员</param>
+            <param name="name">标签名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.SchemaExtention.CreateDynamicObjectWithTag``1(``0)">
+            <summary>
+            获取动态类型
+            </summary>
+            <typeparam name="TOpenApiSchema"></typeparam>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.SchemaExtention.GetPropertysWithTagAndOther(System.Type,System.Boolean,System.String[])">
+            <summary>
+            获取属性集合
+            </summary>
+            <param name="type"></param>
+            <param name="inherit">仅继承成员</param>
+            <param name="otherTags">需要额外匹配的标签</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.SchemaExtention.GetPropertysWithTag(System.Type,System.String[])">
+            <summary>
+            获取属性集合
+            </summary>
+            <param name="type"></param>
+            <param name="tags">标签集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.SchemaExtention.GetPropertysWithTag(System.Type,System.Boolean)">
+            <summary>
+            获取属性集合
+            </summary>
+            <param name="type"></param>
+            <param name="inherit">仅继承成员</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.SchemaExtention.GetPropertysWithTags(System.Type,System.Boolean,System.String[])">
+            <summary>
+            获取属性集合
+            </summary>
+            <param name="type"></param>
+            <param name="inherit">仅继承成员</param>
+            <param name="tags">需要匹配的标签</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.SchemaExtention.GetNamesWithTag(System.Type,System.String[])">
+            <summary>
+            获取字段名称集合
+            </summary>
+            <param name="type"></param>
+            <param name="tags">标签集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.SchemaExtention.GetNamesWithTag(System.Type,System.Boolean)">
+            <summary>
+            获取字段名称集合
+            </summary>
+            <param name="type"></param>
+            <param name="inherit">仅继承成员</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.SchemaExtention.GetNamesWithTagAndOther(System.Type,System.Boolean,System.String[])">
+            <summary>
+            获取字段名称集合
+            </summary>
+            <param name="type"></param>
+            <param name="inherit">仅继承成员</param>
+            <param name="otherTags">需要额外匹配的标签</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.SchemaExtention.GetNamesWithTag(System.Type,System.String,System.Boolean)">
+            <summary>
+            获取字段名称集合
+            </summary>
+            <param name="type"></param>
+            <param name="tag">标签</param>
+            <param name="inherit">仅继承成员</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.SchemaExtention.GetNameAndValueWithTag``1(``0,System.Boolean)">
+            <summary>
+            获取字段名称和值集合
+            </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <param name="obj"></param>
+            <param name="inherit">仅继承成员</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.SchemaExtention.GetOrNullForPropertyDic(System.Type,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+            <summary>
+            获取或创建架构属性信息
+            </summary>
+            <param name="type"></param>
+            <param name="innerModel">处理内部模型</param>
+            <param name="exceptionProperties">特别输出的属性</param>
+            <param name="ignoreProperties">特别忽略的属性</param>
+            <remarks>如果在特别输出参数和特别忽略参数中同时指定了同一个属性，那么最终不会输出该属性</remarks>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.Extention.SchemaExtention.GetPropertyValueChangeds``2(``0,``0)">
+            <summary>
+            获取数据更改信息
+            </summary>
+            <typeparam name="TComparison">比对数据的类型</typeparam>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+            <param name="former">以前的数据</param>
+            <param name="current">当前的数据</param>
+            <returns></returns>
+        </member>
+        <member name="T:Microservice.Library.OpenApi.JsonSerialization.OpenApiContractResolver">
+            <summary>
+            自定义解析器
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.OpenApi.JsonSerialization.OpenApiContractResolver.PropertyDic">
+            <summary>
+            输出的属性
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.JsonSerialization.OpenApiContractResolver.#ctor(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+            <summary>
+            
+            </summary>
+            <param name="propertyDic">输出的属性</param>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.JsonSerialization.OpenApiContractResolver.#ctor(System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="schemaType">架构类型</param>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.JsonSerialization.OpenApiContractResolver.#ctor(System.Type,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+            <summary>
+            
+            </summary>
+            <param name="schemaType">架构类型</param>
+            <param name="exceptionProperties">特别输出的属性</param>
+            <param name="ignoreProperties">特别忽略的属性</param>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.JsonSerialization.OpenApiContractResolver.ResolveContract(System.Type)">
+            <summary>
+            判定协议
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.JsonSerialization.OpenApiContractResolver.Filter(Newtonsoft.Json.Serialization.JsonObjectContract)">
+            <summary>
+            过滤属性
+            </summary>
+            <param name="contract">协议</param>
+        </member>
+        <member name="T:Microservice.Library.OpenApi.JsonSerialization.OpenApiContractResolver`1">
+            <summary>
+            自定义解析器
+            </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.JsonSerialization.OpenApiContractResolver`1.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.JsonSerialization.OpenApiContractResolver`1.#ctor(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+            <summary>
+            
+            </summary>
+            <param name="propertyDic">输出的属性</param>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.JsonSerialization.OpenApiContractResolver`1.#ctor(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+            <summary>
+            
+            </summary>
+            <param name="exceptionProperties">特别输出的属性</param>
+            <param name="ignoreProperties">特别忽略的属性</param>
+        </member>
+        <member name="T:Microservice.Library.OpenApi.JsonSerialization.OpenApiDynamicConverter">
+            <summary>
+            自定义动态类型转换器
+            </summary>
+            <remarks>未完工</remarks>
+        </member>
+        <member name="F:Microservice.Library.OpenApi.JsonSerialization.OpenApiDynamicConverter.SchemaType">
+            <summary>
+            输出的属性
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.JsonSerialization.OpenApiDynamicConverter.#ctor(System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="schemaType">架构类型</param>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.JsonSerialization.OpenApiDynamicConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            Reads the JSON representation of the object.
+            </summary>
+            <param name="reader">The <see cref="T:Newtonsoft.Json.JsonReader"/> to read from.</param>
+            <param name="objectType">Type of the object.</param>
+            <param name="existingValue">The existing value of object being read.</param>
+            <param name="serializer">The calling serializer.</param>
+            <returns>The object value.</returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.JsonSerialization.OpenApiDynamicConverter.DynamicToEntity(System.Dynamic.ExpandoObject,System.Type)">
+            <summary>
+            将动态类型转为指定类型实体
+            </summary>
+            <param name="data"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.JsonSerialization.OpenApiDynamicConverter.CanConvert(System.Type)">
+            <summary>
+            Determines whether this instance can convert the specified object type.
+            </summary>
+            <param name="objectType">Type of the object.</param>
+            <returns>
+            	<c>true</c> if this instance can convert the specified object type; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="P:Microservice.Library.OpenApi.JsonSerialization.OpenApiDynamicConverter.CanWrite">
+            <summary>
+            Gets a value indicating whether this <see cref="T:Newtonsoft.Json.JsonConverter"/> can write JSON.
+            </summary>
+            <value>
+            	<c>true</c> if this <see cref="T:Newtonsoft.Json.JsonConverter"/> can write JSON; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Microservice.Library.OpenApi.JsonSerialization.OpenApiDynamicConverter`1">
+            <summary>
+            自定义动态类型转换器
+            </summary>
+            <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.JsonSerialization.OpenApiDynamicConverter`1.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>

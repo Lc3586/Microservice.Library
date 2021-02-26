@@ -1,7 +1,7 @@
 ﻿using FreeSql;
-using Library.FreeSql.Application;
+using Microservice.Library.FreeSql.Application;
 
-namespace Library.FreeSql.Extention
+namespace Microservice.Library.FreeSql.Extention
 {
     /// <summary>
     /// Repository扩展类

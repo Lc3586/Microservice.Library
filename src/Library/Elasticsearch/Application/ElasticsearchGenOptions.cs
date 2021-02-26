@@ -2,7 +2,7 @@
 using Nest;
 using System;
 
-namespace Library.Elasticsearch
+namespace Microservice.Library.Elasticsearch
 {
     /// <summary>
     /// ES配置

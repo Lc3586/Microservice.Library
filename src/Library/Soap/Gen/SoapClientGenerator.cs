@@ -1,4 +1,4 @@
-﻿using Library.Soap.Application;
+﻿using Microservice.Library.Soap.Application;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.ServiceModel;
 
-namespace Library.Soap.Gen
+namespace Microservice.Library.Soap.Gen
 {
     /// <summary>
     /// Soap构造器

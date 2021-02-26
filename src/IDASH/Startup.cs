@@ -7,7 +7,7 @@ using IDASH.Models;
 using IDASH.Validator;
 using IdentityServer4;
 using IdentityServer4.Quickstart.UI;
-using Library.Extension;
+using Microservice.Library.Extension;
 using Microsoft.AspNetCore.Authentication.QQ;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,9 +29,9 @@ namespace IDASH
         /// </summary>
         public IdentityConfig IdentityConfig { get; }
 
-        public IHostingEnvironment Environment { get; }
+        public IWebHostEnvironment Environment { get; }
 
-        public Startup(IConfiguration configuration, IHostingEnvironment environment)
+        public Startup(IConfiguration configuration, IWebHostEnvironment environment)
         {
             Environment = environment;
             Configuration = configuration;
@@ -51,13 +51,11 @@ namespace IDASH
                       .AddInMemoryClients(InMemoryConfiguration.GetClients())
                       .AddTestUsers(TestUsers.Users);
 
-            if (Environment.IsDevelopment() || IdentityConfig.UseDevelopment == true)
-            {
-                //开发环境下使用临时证书
-                builder.AddDeveloperSigningCredential(true, $"{Directory.GetCurrentDirectory()}/tempkey.rsa");
-            }
-            else
-            {
+
+#if DEBUG
+            //开发环境下使用临时证书
+            builder.AddDeveloperSigningCredential(true, $"{Directory.GetCurrentDirectory()}/tempkey.rsa");
+#else
                 //正式环境下配置证书
                 if (IdentityConfig.SigningCredential.IsNullOrEmpty())
                     throw new Exception("未配置安全证书!");
@@ -65,7 +63,7 @@ namespace IDASH
                 if (!File.Exists(FileName))
                     throw new Exception("指定的安全证书不存在!");
                 builder.AddSigningCredential(FileName);
-            }
+#endif
 
             #region 外部认证
 
@@ -81,15 +79,15 @@ namespace IDASH
                             options.SaveTokens = IdentityConfig.QQ.SaveTokens.Value;
                     });
 
-                if (IdentityConfig.Google != null && IdentityConfig.Google.Valid)
-                    builder_Auth.AddGoogle("Google", options =>
-                    {
-                        options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
-                        options.ClientId = IdentityConfig.Google.ClientId;
-                        options.ClientSecret = IdentityConfig.Google.ClientSecret;
-                        if (IdentityConfig.Google.SaveTokens.HasValue)
-                            options.SaveTokens = IdentityConfig.Google.SaveTokens.Value;
-                    });
+                //if (IdentityConfig.Google != null && IdentityConfig.Google.Valid)
+                //    builder_Auth.AddGoogle("Google", options =>
+                //    {
+                //        options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
+                //        options.ClientId = IdentityConfig.Google.ClientId;
+                //        options.ClientSecret = IdentityConfig.Google.ClientSecret;
+                //        if (IdentityConfig.Google.SaveTokens.HasValue)
+                //            options.SaveTokens = IdentityConfig.Google.SaveTokens.Value;
+                //    });
 
                 if (IdentityConfig.OpenIDConnect != null && IdentityConfig.OpenIDConnect.Valid)
                     builder_Auth.AddOpenIdConnect(IdentityConfig.OpenIDConnect.Scheme, IdentityConfig.OpenIDConnect.SchemeDisplayName, options =>
@@ -119,16 +117,15 @@ namespace IDASH
             //初始化汉化配置
             SinicizationConfig.Init(Configuration);
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+#if DEBUG
+            app.UseDeveloperExceptionPage();
+#endif
 
             //app.Run(async (context) =>
             //{
@@ -139,11 +136,15 @@ namespace IDASH
             app.UseIdentityServer();
 
             app.UseHttpsRedirection();
+#pragma warning disable MVC1005 // Cannot use UseMvc with Endpoint Routing.
             app.UseMvc();
+#pragma warning restore MVC1005 // Cannot use UseMvc with Endpoint Routing.
 
             //Quickstart-UI
             app.UseStaticFiles();
+#pragma warning disable MVC1005 // Cannot use UseMvc with Endpoint Routing.
             app.UseMvcWithDefaultRoute();
+#pragma warning restore MVC1005 // Cannot use UseMvc with Endpoint Routing.
         }
     }
 }

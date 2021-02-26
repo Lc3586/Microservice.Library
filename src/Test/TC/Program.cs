@@ -2,8 +2,8 @@
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Threading.Tasks;
-using Library.Extension;
-using Library.ConsoleTool;
+using Microservice.Library.Extension;
+using Microservice.Library.ConsoleTool;
 using System.Linq;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
@@ -49,7 +49,7 @@ namespace TC
             if (args.Length > 0 && args[0] == "manual")
                 goto manual;
 
-            var app = new CommandLineApplication(true);
+            var app = new CommandLineApplication();
 
             app.VersionOption("--version|-v", _CommandConfig.Version);
             app.HelpOption("-h|--help");
@@ -130,7 +130,7 @@ namespace TC
         private static void GetParam(string input, out string modular, out string method, out List<Arg_internal> args)
         {
             modular = input.Substring(0, input.IndexOfN2L(" "));
-            input = input.Substring(modular.Length).TrimStart(' ');
+            input = input[modular.Length..].TrimStart(' ');
             if (input == "-h" || input == "--help")
             {
                 method = input;
@@ -138,7 +138,7 @@ namespace TC
                 return;
             }
             method = input.IndexOf('-') == 0 ? string.Empty : input.Substring(0, input.IndexOfN2L(" "));
-            var _args = input.Length > 0 ? (method == string.Empty ? input : input.Substring(method.Length)) : string.Empty;
+            var _args = input.Length > 0 ? (method == string.Empty ? input : input[method.Length..]) : string.Empty;
             args = Regex.Matches(_args + " ", @"-(.*?)[\s\:\=](.*?)\s").Where(o => o.Groups != null && o.Groups.Count >= 2).Select(o => new Arg_internal() { Name = o.Groups[1].Value, Value = o.Groups[2].Value }).ToList();
         }
 

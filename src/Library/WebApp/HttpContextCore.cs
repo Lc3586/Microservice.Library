@@ -1,7 +1,7 @@
-﻿using Library.Container;
+﻿using Microservice.Library.Container;
 using Microsoft.AspNetCore.Http;
 
-namespace Library.WebApp
+namespace Microservice.Library.WebApp
 {
     public static class HttpContextCore
     {

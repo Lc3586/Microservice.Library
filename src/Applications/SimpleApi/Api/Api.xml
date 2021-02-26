@@ -882,112 +882,126 @@
             <param name="roleId">角色Id</param>
             <returns></returns>
         </member>
-        <member name="M:Api.Controllers.AuthoritiesController.IsSuperAdminUser(System.String)">
+        <member name="M:Api.Controllers.AuthoritiesController.IsSuperAdminUser(System.String,System.Boolean)">
             <summary>
             是否为超级管理员
             </summary>
             <param name="userId">用户Id</param>
+            <param name="checkEnable">检查是否已启用（默认true）</param>
             <returns></returns>
         </member>
-        <member name="M:Api.Controllers.AuthoritiesController.IsSuperAdminRole(System.String)">
+        <member name="M:Api.Controllers.AuthoritiesController.IsSuperAdminRole(System.String,System.Boolean)">
             <summary>
             是否为超级管理角色
             </summary>
             <param name="roleId">角色Id</param>
+            <param name="checkEnable">检查是否已启用（默认true）</param>
             <returns></returns>
         </member>
-        <member name="M:Api.Controllers.AuthoritiesController.IsAdminUser(System.String)">
+        <member name="M:Api.Controllers.AuthoritiesController.IsAdminUser(System.String,System.Boolean)">
             <summary>
             是否为管理员
             </summary>
             <param name="userId">用户Id</param>
+            <param name="checkEnable">检查是否已启用（默认true）</param>
             <returns></returns>
         </member>
-        <member name="M:Api.Controllers.AuthoritiesController.IsAdminRole(System.String)">
+        <member name="M:Api.Controllers.AuthoritiesController.IsAdminRole(System.String,System.Boolean)">
             <summary>
             是否为管理角色
             </summary>
             <param name="roleId">角色Id</param>
+            <param name="checkEnable">检查是否已启用（默认true）</param>
             <returns></returns>
         </member>
-        <member name="M:Api.Controllers.AuthoritiesController.UserHasRole(System.String,System.String)">
+        <member name="M:Api.Controllers.AuthoritiesController.UserHasRole(System.String,System.String,System.Boolean)">
             <summary>
             用户是否拥有角色授权
             </summary>
             <param name="userId">用户Id</param>
             <param name="roleId">角色Id</param>
+            <param name="checkEnable">检查是否已启用（默认true）</param>
             <returns></returns>
         </member>
-        <member name="M:Api.Controllers.AuthoritiesController.MemberHasRole(System.String,System.String)">
+        <member name="M:Api.Controllers.AuthoritiesController.MemberHasRole(System.String,System.String,System.Boolean)">
             <summary>
             会员是否拥有角色授权
             </summary>
             <param name="memberId">会员Id</param>
             <param name="roleId">角色Id</param>
+            <param name="checkEnable">检查是否已启用（默认true）</param>
             <returns></returns>
         </member>
-        <member name="M:Api.Controllers.AuthoritiesController.UserHasMenu(System.String,System.String)">
+        <member name="M:Api.Controllers.AuthoritiesController.UserHasMenu(System.String,System.String,System.Boolean)">
             <summary>
             用户是否拥有菜单授权
             </summary>
             <param name="userId">用户Id</param>
             <param name="menuId">菜单Id</param>
+            <param name="checkEnable">检查是否已启用（默认true）</param>
             <returns></returns>
         </member>
-        <member name="M:Api.Controllers.AuthoritiesController.UserHasMenuUri(System.String,System.String)">
+        <member name="M:Api.Controllers.AuthoritiesController.UserHasMenuUri(System.String,System.String,System.Boolean)">
             <summary>
             用户是否拥有菜单授权
             </summary>
             <param name="userId">用户Id</param>
             <param name="menuUri">菜单链接</param>
+            <param name="checkEnable">检查是否已启用（默认true）</param>
             <returns></returns>
         </member>
-        <member name="M:Api.Controllers.AuthoritiesController.MemberHasMenu(System.String,System.String)">
+        <member name="M:Api.Controllers.AuthoritiesController.MemberHasMenu(System.String,System.String,System.Boolean)">
             <summary>
             会员是否拥有菜单授权
             </summary>
             <param name="userId">用户Id</param>
             <param name="menuId">菜单Id</param>
+            <param name="checkEnable">检查是否已启用（默认true）</param>
             <returns></returns>
         </member>
-        <member name="M:Api.Controllers.AuthoritiesController.MemberHasMenuUri(System.String,System.String)">
+        <member name="M:Api.Controllers.AuthoritiesController.MemberHasMenuUri(System.String,System.String,System.Boolean)">
             <summary>
             会员是否拥有菜单授权
             </summary>
             <param name="userId">用户Id</param>
             <param name="menuUri">菜单链接</param>
+            <param name="checkEnable">检查是否已启用（默认true）</param>
             <returns></returns>
         </member>
-        <member name="M:Api.Controllers.AuthoritiesController.UserHasResources(System.String,System.String)">
+        <member name="M:Api.Controllers.AuthoritiesController.UserHasResources(System.String,System.String,System.Boolean)">
             <summary>
             用户是否拥有资源授权
             </summary>
             <param name="userId">用户Id</param>
             <param name="resourcesId">资源Id</param>
+            <param name="checkEnable">检查是否已启用（默认true）</param>
             <returns></returns>
         </member>
-        <member name="M:Api.Controllers.AuthoritiesController.UserHasResourcesUri(System.String,System.String)">
+        <member name="M:Api.Controllers.AuthoritiesController.UserHasResourcesUri(System.String,System.String,System.Boolean)">
             <summary>
             用户是否拥有资源授权
             </summary>
             <param name="userId">用户Id</param>
             <param name="resourcesUri">资源链接</param>
+            <param name="checkEnable">检查是否已启用（默认true）</param>
             <returns></returns>
         </member>
-        <member name="M:Api.Controllers.AuthoritiesController.MemberHasResources(System.String,System.String)">
+        <member name="M:Api.Controllers.AuthoritiesController.MemberHasResources(System.String,System.String,System.Boolean)">
             <summary>
             会员是否拥有资源授权
             </summary>
             <param name="memberId">会员Id</param>
             <param name="resourcesId">资源Id</param>
+            <param name="checkEnable">检查是否已启用（默认true）</param>
             <returns></returns>
         </member>
-        <member name="M:Api.Controllers.AuthoritiesController.MemberHasResourcesUri(System.String,System.String)">
+        <member name="M:Api.Controllers.AuthoritiesController.MemberHasResourcesUri(System.String,System.String,System.Boolean)">
             <summary>
             会员是否拥有资源授权
             </summary>
             <param name="memberId">会员Id</param>
             <param name="resourcesUri">资源链接</param>
+            <param name="checkEnable">检查是否已启用（默认true）</param>
             <returns></returns>
         </member>
         <member name="T:Api.Controllers.MenuController">

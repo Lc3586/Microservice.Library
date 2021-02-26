@@ -1,8 +1,7 @@
-﻿using Library.Container;
-using Library.DataRepository;
-using Library.Models;
+﻿using Microservice.Library.Container;
+using Microservice.Library.DataRepository;
 
-namespace Library.DataAccess
+namespace Microservice.Library.DataAccess
 {
     /// <summary>
     /// 描述：数据库帮助类工厂

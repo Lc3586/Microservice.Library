@@ -1,10 +1,10 @@
-﻿using Library.OpenApi.Annotations;
+﻿using Microservice.Library.OpenApi.Annotations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 
-namespace Library.OpenApi.ExampleModel
+namespace Microservice.Library.OpenApi.ExampleModel
 {
     /// <summary>
     /// A信息

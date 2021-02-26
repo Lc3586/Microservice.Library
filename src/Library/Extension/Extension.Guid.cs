@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Library.Extension
+namespace Microservice.Library.Extension
 {
     public static partial class Extension
     {

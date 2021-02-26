@@ -1,10 +1,10 @@
-﻿using Library.Configuration.Annotations;
-using Library.Configuration.Extention;
+﻿using Microservice.Library.Configuration.Annotations;
+using Microservice.Library.Configuration.Extention;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Reflection;
 
-namespace Library.Configuration
+namespace Microservice.Library.Configuration
 {
     /// <summary>
     /// 配置帮助类

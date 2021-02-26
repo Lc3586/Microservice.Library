@@ -6,25 +6,33 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>Library.DataMapping</RootNamespace>
+    <RootNamespace>Microservice.Library.DataMapping</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.10-alpha</Version>
+    <Version>0.0.0.1-alpha</Version>
     <Authors>LCTR</Authors>
-    <Product>LCTR</Product>
+    <Product>Microservice.Library</Product>
     <Description>数据模型映射功能
 
 参考项目 : https://github.com/Coldairarrow/Colder.Admin.AntdVue</Description>
-    <PackageProjectUrl>https://github.com/Lc3586/Microservice/tree/master/src/Library/DataMapping</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/Lc3586/Microservice.Library</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageId>Microservice.Library.DataMapping</PackageId>
+    <AssemblyName>Microservice.Library.DataMapping</AssemblyName>
+    <RepositoryUrl></RepositoryUrl>
+    <RepositoryType></RepositoryType>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>Library.DataMapping.xml</DocumentationFile>
+    <DocumentationFile>Microservice.Library.DataMapping.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <DocumentationFile>Library.DataMapping.xml</DocumentationFile>
+    <DocumentationFile>Microservice.Library.DataMapping.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>Microservice.Library.DataMapping.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

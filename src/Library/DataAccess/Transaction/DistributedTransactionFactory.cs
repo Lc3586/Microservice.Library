@@ -1,9 +1,9 @@
-﻿using Library.DataRepository;
+﻿using Microservice.Library.DataRepository;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library.DataAccess
+namespace Microservice.Library.DataAccess
 {
     /// <summary>
     /// 分布式事务工厂

@@ -1,16 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Logging;
 using SSH.Models;
 
 namespace SSH
@@ -32,8 +23,7 @@ namespace SSH
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvcCore()
-                    .AddAuthorization()
-                    .AddJsonFormatters();
+                    .AddAuthorization();
 
             //IdentityServer
             services.AddAuthentication(IdentityConfig.Scheme)
@@ -74,19 +64,16 @@ namespace SSH
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                //显示隐藏信息（仅用于调试）
-                IdentityModelEventSource.ShowPII = true;
-            }
-            else
-            {
+#if DEBUG
+            app.UseDeveloperExceptionPage();
+            //显示隐藏信息（仅用于调试）
+            //IdentityModelEventSource.ShowPII = true;
+#else
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
-            }
+#endif
 
             if (ServiceConfig.Cors != null && ServiceConfig.Cors.Count > 0)
             {
@@ -103,7 +90,9 @@ namespace SSH
             app.UseAuthentication();
 
             app.UseHttpsRedirection();
+#pragma warning disable MVC1005 // Cannot use UseMvc with Endpoint Routing.
             app.UseMvc();
+#pragma warning restore MVC1005 // Cannot use UseMvc with Endpoint Routing.
 
         }
     }

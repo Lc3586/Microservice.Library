@@ -5,7 +5,7 @@ using System.Data.Common;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace Library.DataRepository
+namespace Microservice.Library.DataRepository
 {
     public interface IRepository<T> where T : class, new()
     {

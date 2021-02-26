@@ -1,21 +1,18 @@
-﻿using System;
+﻿using Business.Utils;
+using Business.Utils.Pagination;
+using Entity.Example;
+using Microservice.Library.Container;
+using Microservice.Library.Extension;
+using Microservice.Library.FreeSql.Extention;
+using Microservice.Library.FreeSql.Gen;
+using Microservice.Library.OpenApi.Extention;
+using Model.Utils.Config;
+using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Business.Util;
-using Entity.Example;
-using Library.Extension;
-using Library.FreeSql.Extention;
-using Library.FreeSql.Gen;
-using Library.OpenApi.Annotations;
-using Model;
-using Model.Example;
-using NUnit.Framework;
-using UnitTest.Extension;
-using Library.Container;
-using Model.System;
 using UnitTest.Config;
-using Library.OpenApi.Extention;
+using UnitTest.Extension;
 
 namespace UnitTest.Testing.Database
 {
@@ -219,10 +216,9 @@ namespace UnitTest.Testing.Database
                 var orm = Orms.GetFreeSql(db.Name);
 
                 var findListData = orm.Select<Sample_DB>()
+                                        .GetPagination(new Model.Utils.Pagination.PaginationDTO { PageRows = 10 })
                                         .Where(o => datas.Contains(o.Id))
                                         .ToList<Sample_DB, Model.Example.DBDTO.List>(
-                                            orm,
-                                            new Library.Models.Pagination { PageRows = 10 },
                                             typeof(Model.Example.DBDTO.List).GetNamesWithTagAndOther(true, "_List"));
 
                 Assert.Greater(

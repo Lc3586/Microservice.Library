@@ -1,6 +1,6 @@
 ﻿using Dm;
 using FreeSql;
-using Library.FreeSql.Application;
+using Microservice.Library.FreeSql.Application;
 using Microsoft.Data.SqlClient;
 using MySql.Data.MySqlClient;
 using Newtonsoft.Json;
@@ -17,7 +17,7 @@ using System.Data.SQLite;
 using System.Linq;
 using System.Reflection;
 
-namespace Library.FreeSql.Annotations
+namespace Microservice.Library.FreeSql.Annotations
 {
     public static class DbParameterExtention
     {

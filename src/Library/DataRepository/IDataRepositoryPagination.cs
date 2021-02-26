@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Library.DataRepository
+namespace Microservice.Library.DataRepository
 {
     /// <summary>
     /// 分页设置
@@ -13,17 +13,17 @@ namespace Library.DataRepository
         /// <summary>
         /// 当前页码
         /// </summary>
-        int DataRepositoryPageIndex { get; set; }
+        int PageIndex { get; set; }
 
         /// <summary>
         /// 每页数据量
         /// </summary>
-        int DataRepositoryPageRows { get; set; }
+        int PageRows { get; set; }
 
         /// <summary>
         /// 排序列
         /// </summary>
-        string DataRepositorySortField { get; set; }
+        string SortField { get; set; }
 
         /// <summary>
         /// 排序类型
@@ -32,12 +32,12 @@ namespace Library.DataRepository
         /// <para>asc</para>
         /// <para>desc</para>
         /// </remarks>
-        string DataRepositorySortType { get; set; }
+        string SortType { get; set; }
 
         /// <summary>
         /// 总记录数
         /// </summary>
-        long DataRepositoryRecordCount { get; set; }
+        long RecordCount { get; set; }
 
         /// <summary>
         /// 过滤

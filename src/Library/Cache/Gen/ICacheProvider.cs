@@ -1,6 +1,6 @@
-﻿using Library.Cache.Services;
+﻿using Microservice.Library.Cache.Services;
 
-namespace Library.Cache.Gen
+namespace Microservice.Library.Cache.Gen
 {
     /// <summary>
     /// 缓存构造器

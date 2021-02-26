@@ -1,8 +1,8 @@
-﻿using Library.Cache.Gen;
-using Library.Cache.Services;
-using Library.Container;
+﻿using Microservice.Library.Cache.Gen;
+using Microservice.Library.Cache.Services;
+using Microservice.Library.Container;
 
-namespace Library.WebApp
+namespace Microservice.Library.WebApp
 {
     /// <summary>
     /// Session帮助类,自定义Session,解决原Session并发问题

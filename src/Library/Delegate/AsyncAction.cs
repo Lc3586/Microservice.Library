@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace Library.Delegate
+namespace Microservice.Library.Delegate
 {
     /// <summary>
     /// 异步方法

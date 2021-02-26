@@ -1,7 +1,7 @@
 ﻿using Business.Interface.System;
-using Library.Container;
-using Library.Extension;
-using Library.NLogger.Gen;
+using Microservice.Library.Container;
+using Microservice.Library.Extension;
+using Microservice.Library.NLogger.Gen;
 using Model.Utils.Config;
 using Model.Utils.Log;
 using NLog;

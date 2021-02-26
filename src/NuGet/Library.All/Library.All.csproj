@@ -5,24 +5,26 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>LCTR</Authors>
     <Company>LCTR</Company>
-    <Product>LCTR</Product>
+    <Product>Microservice.Library</Product>
     <Description>全家桶，包含许多类库，并提供许多功能。
 
 部分源码参考开源框架Coldairarrow，项目地址：https://www.cnblogs.com/coldairarrow/p/11870993.html
 </Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <RepositoryType>git</RepositoryType>
-    <PackageProjectUrl>https://github.com/Lc3586/Microservice/tree/master/src/Library</PackageProjectUrl>
+    <RepositoryType></RepositoryType>
+    <PackageProjectUrl>https://github.com/Lc3586/Microservice.Library</PackageProjectUrl>
     <PackageId>MicroService.Library.All</PackageId>
-    <PackageTags>MicroService.Library.All</PackageTags>
+    <PackageTags></PackageTags>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <Version>1.0.10-alpha</Version>
+    <Version>0.0.0.1-alpha</Version>
     
     <Language>C#</Language>
     <Title>微服务类库</Title>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <RepositoryUrl>https://github.com/Lc3586/Microservice/tree/master/src/Library</RepositoryUrl>
+    <RepositoryUrl></RepositoryUrl>
     <Platforms>AnyCPU;x64</Platforms>
+    <AssemblyName>Microservice.Library.All</AssemblyName>
+    <RootNamespace>Microservice.Library.All</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
@@ -31,6 +33,14 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|x64'">
     <DocumentationFile>Library.All.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>Microservice.Library.All.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>Microservice.Library.All.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

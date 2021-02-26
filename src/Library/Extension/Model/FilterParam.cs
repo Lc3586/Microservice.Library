@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library.Extension.Model
+namespace Microservice.Library.Extension.Model
 {
     /// <summary>
     /// 筛选

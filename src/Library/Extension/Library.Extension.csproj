@@ -6,25 +6,31 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>Library.Extension</RootNamespace>
+    <RootNamespace>Microservice.Library.Extension</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.21-alpha</Version>
+    <Version>0.0.0.1-alpha</Version>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Copyright></Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Product>LCTR</Product>
+    <Product>Microservice.Library</Product>
     <Company>LCTR</Company>
     <Authors>LCTR</Authors>
     <Description>各种拓展功能</Description>
-    <PackageProjectUrl>https://github.com/Lc3586/Microservice/tree/master/src/Library/Extension</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/Lc3586/Microservice.Library</PackageProjectUrl>
+    <PackageId>Microservice.Library.Extension</PackageId>
+    <AssemblyName>Microservice.Library.Extension</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>Library.Extension.xml</DocumentationFile>
+    <DocumentationFile>Microservice.Library.Extension.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <DocumentationFile>Library.Extension.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>Microservice.Library.Extension.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

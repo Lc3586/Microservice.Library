@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Library.Soap.Gen
+namespace Microservice.Library.Soap.Gen
 {
     /// <summary>
     /// Soap构造器接口类

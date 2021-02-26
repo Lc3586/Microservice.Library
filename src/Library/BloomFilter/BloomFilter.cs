@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Library.BloomFilter
+namespace Microservice.Library.BloomFilter
 {
     /// <summary>
     /// 一个布隆过滤器
@@ -12,9 +12,10 @@ namespace Library.BloomFilter
     {
         Random _random;
         int _bitSize, _numberOfHashes, _setSize;
-        BitArray _bitArray;
+        readonly BitArray _bitArray;
 
         #region Constructors
+
         /// <summary>
         /// 初始化bloom滤波器并设置hash散列的最佳数目
         /// </summary>
@@ -28,7 +29,12 @@ namespace Library.BloomFilter
             _numberOfHashes = OptimalNumberOfHashes(_bitSize, _setSize);
         }
 
-        //<param name="numberOfHashes">hash散列函数的数量(k)</param>
+        /// <summary>
+        /// hash散列函数的数量(k)
+        /// </summary>
+        /// <param name="bitSize"></param>
+        /// <param name="setSize"></param>
+        /// <param name="numberOfHashes"></param>
         public BloomFilter(int bitSize, int setSize, int numberOfHashes)
         {
             _bitSize = bitSize;
@@ -36,9 +42,14 @@ namespace Library.BloomFilter
             _setSize = setSize;
             _numberOfHashes = numberOfHashes;
         }
+
         #endregion
 
         #region 属性
+
+        /// <summary>
+        /// 
+        /// </summary>
         public int NumberOfHashes
         {
             set
@@ -50,6 +61,10 @@ namespace Library.BloomFilter
                 return _numberOfHashes;
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public int SetSize
         {
             set
@@ -61,6 +76,10 @@ namespace Library.BloomFilter
                 return _setSize;
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public int BitSize
         {
             set
@@ -72,9 +91,15 @@ namespace Library.BloomFilter
                 return _bitSize;
             }
         }
+
         #endregion
 
         #region 公共方法
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="item"></param>
         public void Add(T item)
         {
             _random = new Random(Hash(item));
@@ -82,6 +107,12 @@ namespace Library.BloomFilter
             for (int i = 0; i < _numberOfHashes; i++)
                 _bitArray[_random.Next(_bitSize)] = true;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         public bool Contains(T item)
         {
             _random = new Random(Hash(item));
@@ -94,8 +125,11 @@ namespace Library.BloomFilter
             return true;
         }
 
-        //检查列表中的任何项是否可能是在集合。
-        //如果布隆过滤器包含列表中的任何一项，返回真
+        /// <summary>
+        /// 检查列表中的任何项是否可能是在集合。
+        /// 如果布隆过滤器包含列表中的任何一项，返回真</summary>
+        /// <param name="items"></param>
+        /// <returns></returns>
         public bool ContainsAny(List<T> items)
         {
             foreach (T item in items)
@@ -106,7 +140,11 @@ namespace Library.BloomFilter
             return false;
         }
 
-        //检查列表中的所有项目是否都在集合。
+        /// <summary>
+        /// 检查列表中的所有项目是否都在集合。
+        /// </summary>
+        /// <param name="items"></param>
+        /// <returns></returns>
         public bool ContainsAll(List<T> items)
         {
             foreach (T item in items)
@@ -141,6 +179,7 @@ namespace Library.BloomFilter
         }
         #endregion
     }
+
     /// <summary>
     /// 共享内存布隆过滤器
     /// </summary>
@@ -149,11 +188,14 @@ namespace Library.BloomFilter
     {
         Random _random;
         int _bitSize, _numberOfHashes, _setSize;
-        ShareMenmory sm;
+        readonly ShareMenmory sm;
+
         #region Constructors
+
         /// <summary>
         /// 初始化bloom滤波器并设置hash散列的最佳数目
         /// </summary>
+        /// <param name="bloomName"></param>
         /// <param name="bitSize">布隆过滤器的大小(m)默认为10E消耗100M内存</param>
         /// <param name="setSize">集合的大小 (n)默认为1000W</param>
         public BloomFilterWithShareMemory(string bloomName, int bitSize = 1000000000, int setSize = 10000000)
@@ -167,6 +209,10 @@ namespace Library.BloomFilter
         #endregion
 
         #region 属性
+
+        /// <summary>
+        /// 
+        /// </summary>
         public int NumberOfHashes
         {
             set
@@ -178,6 +224,10 @@ namespace Library.BloomFilter
                 return _numberOfHashes;
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public int SetSize
         {
             set
@@ -189,6 +239,10 @@ namespace Library.BloomFilter
                 return _setSize;
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public int BitSize
         {
             set
@@ -200,9 +254,15 @@ namespace Library.BloomFilter
                 return _bitSize;
             }
         }
+
         #endregion
 
         #region 公共方法
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="item"></param>
         public void Add(T item)
         {
             _random = new Random(Hash(item));
@@ -210,8 +270,8 @@ namespace Library.BloomFilter
             for (int i = 0; i < _numberOfHashes; i++)
             {
                 int index = _random.Next(_bitSize);
-                int j = 0;
                 int offSet = 0;
+                int j;
                 if ((index + 1) % 8 == 0)
                 {
                     j = (index + 1) / 8 - 1;
@@ -239,6 +299,12 @@ namespace Library.BloomFilter
                 sm.Write(setData, j);
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         public bool Contains(T item)
         {
             _random = new Random(Hash(item));
@@ -246,8 +312,8 @@ namespace Library.BloomFilter
             for (int i = 0; i < _numberOfHashes; i++)
             {
                 int index = _random.Next(_bitSize);
-                int j = 0;
                 int offSet = 0;
+                int j;
                 if ((index + 1) % 8 == 0)
                 {
                     j = (index + 1) / 8 - 1;
@@ -266,13 +332,20 @@ namespace Library.BloomFilter
             return true;
         }
 
-        public void close()
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Close()
         {
             sm.Close();
         }
 
-        //检查列表中的任何项是否可能是在集合。
-        //如果布隆过滤器包含列表中的任何一项，返回真
+        /// <summary>
+        /// 检查列表中的任何项是否可能是在集合。
+        /// 如果布隆过滤器包含列表中的任何一项，返回真
+        /// </summary>
+        /// <param name="items"></param>
+        /// <returns></returns>
         public bool ContainsAny(List<T> items)
         {
             foreach (T item in items)
@@ -283,7 +356,11 @@ namespace Library.BloomFilter
             return false;
         }
 
-        //检查列表中的所有项目是否都在集合。
+        /// <summary>
+        /// 检查列表中的所有项目是否都在集合。
+        /// </summary>
+        /// <param name="items"></param>
+        /// <returns></returns>
         public bool ContainsAll(List<T> items)
         {
             foreach (T item in items)
@@ -306,12 +383,23 @@ namespace Library.BloomFilter
         #endregion
 
         #region 私有方法
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         private int Hash(T item)
         {
             return item.GetHashCode();
         }
 
-        //计算基于布隆过滤器散列的最佳数量
+        /// <summary>
+        /// 计算基于布隆过滤器散列的最佳数量
+        /// </summary>
+        /// <param name="bitSize"></param>
+        /// <param name="setSize"></param>
+        /// <returns></returns>
         private int OptimalNumberOfHashes(int bitSize, int setSize)
         {
             return (int)Math.Ceiling((bitSize / setSize) * Math.Log(2.0));

@@ -1,8 +1,8 @@
 ﻿using FreeSql;
 using FreeSql.Internal;
-using Library.FreeSql.Application;
-using Library.FreeSql.Extention;
-using Library.FreeSql.Repository;
+using Microservice.Library.FreeSql.Application;
+using Microservice.Library.FreeSql.Extention;
+using Microservice.Library.FreeSql.Repository;
 using Org.BouncyCastle.Asn1.Cms;
 using Org.BouncyCastle.Utilities;
 using System;
@@ -11,7 +11,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
-namespace Library.FreeSql.Gen
+namespace Microservice.Library.FreeSql.Gen
 {
     /// <summary>
     /// 多库生成器

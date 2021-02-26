@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library.NLogger.Gen
+namespace Microservice.Library.NLogger.Gen
 {
     /// <summary>
     /// 日志组件构造器

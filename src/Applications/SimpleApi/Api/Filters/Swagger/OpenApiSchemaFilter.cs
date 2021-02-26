@@ -1,5 +1,5 @@
-﻿using Library.OpenApi.Annotations;
-using Library.OpenApi.Extention;
+﻿using Microservice.Library.OpenApi.Annotations;
+using Microservice.Library.OpenApi.Extention;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library.SuperSocket.Model
+namespace Microservice.Library.SuperSocket.Model
 {
     /// <summary>
     /// 会话客户端类型

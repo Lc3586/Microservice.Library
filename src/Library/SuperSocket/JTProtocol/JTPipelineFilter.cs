@@ -1,11 +1,9 @@
-﻿using Library.Container;
+﻿using Microservice.Library.Container;
 using SuperSocket.ProtoBase;
 using System;
 using System.Buffers;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Library.SuperSocket.JTProtocol
+namespace Microservice.Library.SuperSocket.JTProtocol
 {
     /// <summary>
     /// JT协议流数据拦截器
@@ -36,7 +34,7 @@ namespace Library.SuperSocket.JTProtocol
             {
                 var beginMark = _beginMark.Span;
 
-                tryAdvance:
+            tryAdvance:
                 if (!reader.TryAdvanceTo(beginMark[0]))
                     return null;
 

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microservice.Library.WebApp</name>
+    </assembly>
+    <members>
+        <member name="T:Microservice.Library.WebApp.SessionHelper">
+            <summary>
+            Session帮助类,自定义Session,解决原Session并发问题
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.WebApp.SessionHelper.SessionCookieName">
+            <summary>
+            存放Session标志的Cookie名
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.WebApp.SessionHelper.Session">
+            <summary>
+            当前Session
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.WebApp.SessionHelper._Session">
+            <summary>
+            自定义_Session类
+            </summary>
+        </member>
+    </members>
+</doc>

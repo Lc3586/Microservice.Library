@@ -6,9 +6,23 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>Library.DataAccess</RootNamespace>
+    <RootNamespace>Microservice.Library.DataAccess</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.1-alpha</Version>
+    <Version>0.0.0.1-alpha</Version>
+    <AssemblyName>Microservice.Library.DataAccess</AssemblyName>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Authors>LCTR</Authors>
+    <Product>Microservice.Library</Product>
+    <PackageProjectUrl>https://github.com/Lc3586/Microservice.Library</PackageProjectUrl>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>Microservice.Library.DataAccess.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>Microservice.Library.DataAccess.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

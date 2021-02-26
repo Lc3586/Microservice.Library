@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Library.Container
+namespace Microservice.Library.Container
 {
     public interface IDisposableContainer : IDisposable
     {

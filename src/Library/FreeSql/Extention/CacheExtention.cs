@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Library.FreeSql.Extention
+namespace Microservice.Library.FreeSql.Extention
 {
     /// <summary>
     /// 缓存

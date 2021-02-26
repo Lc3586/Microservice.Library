@@ -1,5 +1,5 @@
-﻿using Library.Extension;
-using Library.Models;
+﻿using Microservice.Library.DataRepository;
+using Microservice.Library.Extension;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -14,9 +14,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Common;
 using System.Linq;
 using System.Reflection;
-using static Library.DataRepository_SqlServer.EFCoreSqlLogeerProvider;
 
-namespace Library.DataRepository_SqlServer
+namespace Microservice.Library.DataRepository_SqlServer
 {
     /// <summary>
     /// DbContext容器
@@ -30,6 +29,7 @@ namespace Library.DataRepository_SqlServer
         /// </summary>
         /// <param name="connectionString">数据库连接字符串或连接字符串</param>
         /// <param name="entityAssembly">数据库实体命名空间,注意,该命名空间应该包含所有需要的数据库实体</param>
+        [Obsolete]
         public RepositoryDbContext(string connectionString, string entityAssembly)
         {
             ConnectionString = connectionString;
@@ -61,7 +61,9 @@ namespace Library.DataRepository_SqlServer
             }
 
             _db = new DbContext(new DbContextOptionsBuilder()
+#pragma warning disable CS0618 // 类型或成员已过时
                 .UseSqlServer(con, x => x.UseRowNumberForPaging())
+#pragma warning restore CS0618 // 类型或成员已过时
                 .EnableSensitiveDataLogging()
                 .UseModel(GetDbCompiledModel(ConnectionString))
                 .UseLoggerFactory(_loggerFactory).Options);

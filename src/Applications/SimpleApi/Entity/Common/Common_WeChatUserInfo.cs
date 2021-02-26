@@ -1,14 +1,13 @@
 ﻿using Entity.Public;
 using Entity.System;
 using FreeSql.DataAnnotations;
-using Library.Json.Converters;
-using Library.OpenApi.Annotations;
+using Microservice.Library.OpenApi.Annotations;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Xml.Serialization;
-using DateTimeConverter = Library.Json.Converters.DateTimeConverter;
+using DateTimeConverter = Microservice.Library.Json.Converters.DateTimeConverter;
 
 namespace Entity.Common
 {

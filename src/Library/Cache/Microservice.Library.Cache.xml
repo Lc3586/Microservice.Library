@@ -1,0 +1,365 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microservice.Library.Cache</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.AspNetCore.Builder.CacheApplicationBuilderExtensions">
+            <summary>
+            使用缓存的扩展方法
+            </summary>
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.CacheServiceCollectionExtensions">
+            <summary>
+            依赖注入扩展方法
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.CacheServiceCollectionExtensions.AddCache(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Microservice.Library.Cache.Application.CacheGenOptions})">
+            <summary>
+            添加缓存
+            <para>单例模式</para>
+            </summary>
+            <param name="services"></param>
+            <param name="setupAction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.CacheServiceCollectionExtensions.ConfigureCache(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Microservice.Library.Cache.Application.CacheGenOptions})">
+            <summary>
+            配置缓存
+            </summary>
+            <param name="services"></param>
+            <param name="setupAction"></param>
+        </member>
+        <member name="T:Microservice.Library.Cache.Application.CacheException">
+            <summary>
+            缓存异常
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.Cache.Application.CacheException.#ctor(System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="ex"></param>
+        </member>
+        <member name="M:Microservice.Library.Cache.Application.CacheException.#ctor(System.String,System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="title"></param>
+            <param name="message"></param>
+            <param name="ex"></param>
+        </member>
+        <member name="M:Microservice.Library.Cache.Application.CacheException.#ctor(System.String,System.Object,System.Type,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="data"></param>
+            <param name="dataType"></param>
+            <param name="ex"></param>
+        </member>
+        <member name="M:Microservice.Library.Cache.Application.CacheException.#ctor(System.String,System.String,System.Object,System.Type,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="title"></param>
+            <param name="message"></param>
+            <param name="data"></param>
+            '<param name="dataType"></param>
+            <param name="ex"></param>
+        </member>
+        <member name="P:Microservice.Library.Cache.Application.CacheException.ResultData">
+            <summary>
+            数据
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.Cache.Application.CacheException.DataType">
+            <summary>
+            数据类型
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.Cache.Application.CacheGenOptions">
+            <summary>
+            缓存配置
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.Cache.Application.CacheGenOptions.CacheType">
+            <summary>
+            缓存类型
+            </summary>
+            <remarks>默认 <see cref="F:Microservice.Library.Cache.Model.CacheType.SystemCache"/></remarks>
+        </member>
+        <member name="P:Microservice.Library.Cache.Application.CacheGenOptions.RedisOptions">
+            <summary>
+            Redis配置
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.Cache.Application.RedisOptions">
+            <summary>
+            Redis配置
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.Cache.Application.RedisOptions.ConnectionString">
+            <summary>
+            连接字符串
+            </summary>
+            <remarks>使用读写分离、集群等功能时请配置<see cref="P:Microservice.Library.Cache.Application.RedisOptions.ConnectionStrings"/>选项</remarks>
+        </member>
+        <member name="P:Microservice.Library.Cache.Application.RedisOptions.ConnectionStrings">
+            <summary>
+            连接字符串
+            </summary>
+            <remarks>
+            <para>使用读写分离、集群等功能时请配置此选项</para>
+            <para>集合中的第一个连接将作为写入连接</para>
+            </remarks>
+        </member>
+        <member name="P:Microservice.Library.Cache.Application.RedisOptions.Sentinels">
+            <summary>
+            哨兵
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.Cache.Application.RedisOptions.RW_Splitting">
+            <summary>
+            是否设置读写分离
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.Cache.Application.RedisOptions.ClientSideCachingOptions">
+            <summary>
+            本地缓存配置
+            </summary>
+            <remarks>服务端要求 6.0 及以上版本</remarks>
+        </member>
+        <member name="P:Microservice.Library.Cache.Application.RedisOptions.Subscribe">
+            <summary>
+            订阅集合
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.Cache.Application.RedisOptions.ReceiveData">
+            <summary>
+            接收数据
+            </summary>
+            <remarks>
+            <para>参数1: 订阅</para>
+            <para>参数2: 数据</para>
+            </remarks>
+        </member>
+        <member name="T:Microservice.Library.Cache.Extention.DateTimeExtention">
+            <summary>
+            日期拓展方法
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.Cache.Extention.DateTimeExtention.GetCstTime">
+            <summary>
+            获取标准时间（北京时间，解决Linux时区问题）
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Microservice.Library.Cache.Gen.CacheGenerator">
+            <summary>
+            微信服务生成器
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.Cache.Gen.CacheGenerator.#ctor(Microservice.Library.Cache.Application.CacheGenOptions,System.IServiceProvider)">
+            <summary>
+            
+            </summary>
+            <param name="options"></param>
+            <param name="serviceProvider"></param>
+        </member>
+        <member name="F:Microservice.Library.Cache.Gen.CacheGenerator.Options">
+            <summary>
+            配置
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.Cache.Gen.ICacheProvider">
+            <summary>
+            缓存构造器
+            </summary>
+            <exception cref="T:Microservice.Library.Cache.Application.CacheException"></exception>
+        </member>
+        <member name="M:Microservice.Library.Cache.Gen.ICacheProvider.GetCache">
+            <summary>
+            获取缓存
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Cache.Gen.ICacheProvider.GetRedis">
+            <summary>
+            获取Redis
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Microservice.Library.Cache.Model.CacheType">
+            <summary>
+            缓存类型
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.Cache.Model.CacheType.SystemCache">
+            <summary>
+            系统缓存
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.Cache.Model.CacheType.RedisCache">
+            <summary>
+            Redis缓存
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.Cache.Model.ExpireType">
+            <summary>
+            过期类型
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.Cache.Model.ExpireType.Absolute">
+            <summary>
+            绝对过期
+            </summary>
+            <remarks>即自创建一段时间后就过期</remarks>
+        </member>
+        <member name="F:Microservice.Library.Cache.Model.ExpireType.Relative">
+            <summary>
+            相对过期
+            </summary>
+            <remarks>
+            <para>即该键未被访问后一段时间后过期，</para>
+            <para>若此键一直被访问则过期时间自动延长</para>
+            </remarks>
+        </member>
+        <member name="T:Microservice.Library.Cache.Model.RedisValueInfo">
+            <summary>
+            Redis值信息
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.Cache.Model.RedisValueInfo.Value">
+            <summary>
+            值
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.Cache.Model.RedisValueInfo.TypeName">
+            <summary>
+            值类型
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.Cache.Model.RedisValueInfo.ExpireTime">
+            <summary>
+            过期时间
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.Cache.Model.RedisValueInfo.ExpireType">
+            <summary>
+            过期类型
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.Cache.Services.ICache">
+            <summary>
+            缓存操作接口类
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.Cache.Services.ICache.SetCache(System.String,System.Object)">
+            <summary>
+            设置缓存
+            </summary>
+            <param name="key">主键</param>
+            <param name="value">值</param>
+        </member>
+        <member name="M:Microservice.Library.Cache.Services.ICache.SetCache(System.String,System.Object,System.TimeSpan)">
+            <summary>
+            设置缓存
+            </summary>
+            <remarks>默认过期类型为绝对过期</remarks>
+            <param name="key">主键</param>
+            <param name="value">值</param>
+            <param name="timeout">过期时间间隔</param>
+        </member>
+        <member name="M:Microservice.Library.Cache.Services.ICache.SetCache(System.String,System.Object,System.TimeSpan,Microservice.Library.Cache.Model.ExpireType)">
+            <summary>
+            设置缓存
+            </summary>
+            <param name="key">主键</param>
+            <param name="value">值</param>
+            <param name="timeout">过期时间间隔</param>
+            <param name="expireType">过期类型</param>
+        </member>
+        <member name="M:Microservice.Library.Cache.Services.ICache.SetKeyExpire(System.String,System.TimeSpan)">
+            <summary>
+            设置键失效时间
+            </summary>
+            <param name="key">键值</param>
+            <param name="expire">从现在起时间间隔</param>
+        </member>
+        <member name="M:Microservice.Library.Cache.Services.ICache.GetCache(System.String)">
+            <summary>
+            获取缓存
+            </summary>
+            <param name="key">主键</param>
+        </member>
+        <member name="M:Microservice.Library.Cache.Services.ICache.GetCache``1(System.String)">
+            <summary>
+            获取缓存
+            </summary>
+            <param name="key">主键</param>
+            <typeparam name="T">数据类型</typeparam>
+        </member>
+        <member name="M:Microservice.Library.Cache.Services.ICache.ContainsKey(System.String)">
+            <summary>
+            是否存在键值
+            </summary>
+            <param name="key">主键</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Cache.Services.ICache.RemoveCache(System.String)">
+            <summary>
+            清除缓存
+            </summary>
+            <param name="key">主键</param>
+        </member>
+        <member name="T:Microservice.Library.Cache.Services.RedisCache">
+            <summary>
+            Redis缓存
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.Cache.Services.RedisCache.#ctor(Microservice.Library.Cache.Application.RedisOptions)">
+            <summary>
+            
+            </summary>
+            <param name="options">配置</param>
+        </member>
+        <member name="M:Microservice.Library.Cache.Services.RedisCache.GetRedisClient">
+            <summary>
+            获取Redis客户端
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Cache.Services.RedisCache.SetCacheToRedis(System.String,System.Object,System.Nullable{System.TimeSpan},System.Nullable{Microservice.Library.Cache.Model.ExpireType})">
+            <summary>
+            设置缓存
+            </summary>
+            <param name="key"></param>
+            <param name="value"></param>
+            <param name="timeout"></param>
+            <param name="expireType"></param>
+        </member>
+        <member name="P:Microservice.Library.Cache.Services.RedisCache.Client">
+            <summary>
+            Redis客户端
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.Cache.Services.SystemCache">
+            <summary>
+            系统缓存
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.Cache.Services.SystemCache.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.Cache.Services.SystemCache.#ctor(Microsoft.Extensions.Caching.Memory.IMemoryCache)">
+            <summary>
+            
+            </summary>
+            <param name="memoryCache"></param>
+        </member>
+    </members>
+</doc>

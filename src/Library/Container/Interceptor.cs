@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Reflection;
 
-namespace Library.Container
+namespace Microservice.Library.Container
 {
     public class Interceptor : IInterceptor
     {

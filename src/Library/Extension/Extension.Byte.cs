@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 
-namespace Library.Extension
+namespace Microservice.Library.Extension
 {
     /// <summary>
     /// 拓展类

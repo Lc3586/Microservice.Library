@@ -1,5 +1,5 @@
-﻿using Library.Elasticsearch;
-using Library.Elasticsearch.Gen;
+﻿using Microservice.Library.Elasticsearch;
+using Microservice.Library.Elasticsearch.Gen;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;

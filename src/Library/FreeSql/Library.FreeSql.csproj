@@ -3,20 +3,23 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.5.10-alpha</Version>
+    <Version>0.0.0.1-alpha</Version>
     <Authors>LCTR</Authors>
-    <Product>LCTR</Product>
+    <Product>Microservice.Library</Product>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Description>通过依赖注入的方式使用FreeSql
 支持单库和多库
 并且额外提供了一些拓展功能</Description>
-    <PackageProjectUrl>https://github.com/Lc3586/Microservice/tree/master/src/Library/FreeSql</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/Lc3586/Microservice.Library</PackageProjectUrl>
     <Platforms>AnyCPU;x64</Platforms>
+    <PackageId>Microservice.Library.FreeSql</PackageId>
+    <AssemblyName>Microservice.Library.FreeSql</AssemblyName>
+    <RootNamespace>Microservice.Library.FreeSql</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>Library.FreeSql.xml</DocumentationFile>
+    <DocumentationFile>Microservice.Library.FreeSql.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -24,7 +27,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>Library.FreeSql.xml</DocumentationFile>
+    <DocumentationFile>Microservice.Library.FreeSql.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

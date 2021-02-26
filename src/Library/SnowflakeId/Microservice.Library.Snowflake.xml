@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microservice.Library.Snowflake</name>
+    </assembly>
+    <members>
+        <member name="T:Microservice.Library.Snowflake.IdWorker">
+            <summary>
+            https://github.com/ccollie/snowflake-net
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.Snowflake.SnowflakeId">
+            <summary>
+            雪花Id,全局唯一,性能高,取代GUID
+            </summary>
+        </member>
+    </members>
+</doc>

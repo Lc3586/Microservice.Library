@@ -1,5 +1,5 @@
-﻿using Library.DataRepository;
-using Library.Extension;
+﻿using Microservice.Library.DataRepository;
+using Microservice.Library.Extension;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Linq.Dynamic.Core;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Library.DataAccess
+namespace Microservice.Library.DataAccess
 {
     public class ShardingQueryable<T> : IShardingQueryable<T> where T : class, new()
     {

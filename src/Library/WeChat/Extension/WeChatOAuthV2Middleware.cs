@@ -1,14 +1,14 @@
-﻿using Library.Extension;
-using Library.Http;
-using Library.WeChat.Application;
-using Library.WeChat.Model;
+﻿using Microservice.Library.Extension;
+using Microservice.Library.Http;
+using Microservice.Library.WeChat.Application;
+using Microservice.Library.WeChat.Model;
 using Microsoft.AspNetCore.Http;
 using Senparc.Weixin.MP.AdvancedAPIs.OAuth;
 using System;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace Library.WeChat.Extension
+namespace Microservice.Library.WeChat.Extension
 {
     /// <summary>
     /// 微信网页授权中间件

@@ -1,6 +1,6 @@
 ﻿using Elasticsearch.Net;
-using Library.Elasticsearch.Application;
-using Library.Extension;
+using Microservice.Library.Elasticsearch.Application;
+using Microservice.Library.Extension;
 using Nest;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Linq.Expressions;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace Library.Elasticsearch
+namespace Microservice.Library.Elasticsearch
 {
     /// <summary>
     /// Elasticsearch搜索服务

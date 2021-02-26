@@ -1,10 +1,10 @@
-﻿using Library.Extension;
+﻿using Microservice.Library.Extension;
 using System;
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Library.File
+namespace Microservice.Library.File
 {
     /// <summary>
     /// 文件操作帮助类

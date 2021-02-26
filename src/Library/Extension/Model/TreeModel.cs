@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Library.Extension.Model
+namespace Microservice.Library.Extension.Model
 {
     /// <summary>
     /// 树模型（可以作为父类）

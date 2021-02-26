@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library.WeChat.Model
+namespace Microservice.Library.WeChat.Model
 {
     /// <summary>
     /// 网页授权access_token接口返回数据

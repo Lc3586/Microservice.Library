@@ -1,8 +1,8 @@
-﻿using Library.TypeTool;
+﻿using Microservice.Library.TypeTool;
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Library.DataAccess
+namespace Microservice.Library.DataAccess
 {
     public static class ShardingHelper
     {

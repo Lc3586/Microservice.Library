@@ -1,4 +1,4 @@
-﻿using Library.OpenApi.Annotations;
+﻿using Microservice.Library.OpenApi.Annotations;
 
 namespace Model.Utils.Result
 {

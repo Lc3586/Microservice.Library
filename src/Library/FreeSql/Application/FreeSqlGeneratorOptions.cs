@@ -5,7 +5,7 @@ using FreeSql;
 using FreeSql.Internal;
 using System.Data.Common;
 
-namespace Library.FreeSql.Application
+namespace Microservice.Library.FreeSql.Application
 {
     /// <summary>
     /// 生成配置

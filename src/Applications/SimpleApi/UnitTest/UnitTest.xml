@@ -1,0 +1,252 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>UnitTest</name>
+    </assembly>
+    <members>
+        <member name="T:UnitTest.Config.ControllerConfig">
+            <summary>
+            控制器测试数据
+            </summary>
+        </member>
+        <member name="M:UnitTest.Config.ControllerConfig.GetData">
+            <summary>
+            获取数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:UnitTest.Config.ControllerConfig.Controllers">
+            <summary>
+            控制器设置集合
+            </summary>
+        </member>
+        <member name="T:UnitTest.Config.ControllerTestSetting">
+            <summary>
+            控制器设置
+            </summary>
+        </member>
+        <member name="P:UnitTest.Config.ControllerTestSetting.Server">
+            <summary>
+            服务器
+            </summary>
+        </member>
+        <member name="P:UnitTest.Config.ControllerTestSetting.EnableDatabaseCmd">
+            <summary>
+            启用数据库命令
+            </summary>
+        </member>
+        <member name="P:UnitTest.Config.ControllerTestSetting.Actions">
+            <summary>
+            操作设置集合
+            </summary>
+        </member>
+        <member name="T:UnitTest.Config.ActionTestSetting">
+            <summary>
+            操作设置
+            </summary>
+        </member>
+        <member name="P:UnitTest.Config.ActionTestSetting.Path">
+            <summary>
+            路径
+            </summary>
+        </member>
+        <member name="P:UnitTest.Config.ActionTestSetting.Method">
+            <summary>
+            方法
+            </summary>
+        </member>
+        <member name="P:UnitTest.Config.ActionTestSetting.Paramters">
+            <summary>
+            参数
+            </summary>
+        </member>
+        <member name="P:UnitTest.Config.ActionTestSetting.TestDataCount">
+            <summary>
+            测试数据量
+            </summary>
+        </member>
+        <member name="P:UnitTest.Config.ActionTestSetting.SetupTestDataCmd">
+            <summary>
+            设置测试数据语句(占位符含义 {0} => {i:000})
+            </summary>
+        </member>
+        <member name="P:UnitTest.Config.ActionTestSetting.ClearTestDataCmd">
+            <summary>
+            清除测试数据语句(占位符含义 {0} => {i:000})
+            </summary>
+        </member>
+        <member name="T:UnitTest.Config.DatabaseConfig">
+            <summary>
+            数据库测试数据
+            </summary>
+        </member>
+        <member name="M:UnitTest.Config.DatabaseConfig.GetData">
+            <summary>
+            获取数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:UnitTest.Config.DatabaseConfig.Insert">
+            <summary>
+            新增数据
+            </summary>
+        </member>
+        <member name="P:UnitTest.Config.DatabaseConfig.Update">
+            <summary>
+            修改数据
+            </summary>
+        </member>
+        <member name="T:UnitTest.Config.SoapConfig">
+            <summary>
+            Soap测试数据
+            </summary>
+        </member>
+        <member name="M:UnitTest.Config.SoapConfig.GetData">
+            <summary>
+            获取数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:UnitTest.Config.SoapConfig.WGV1_7">
+            <summary>
+            WGV1_7  区平台
+            </summary>
+        </member>
+        <member name="P:UnitTest.Config.SoapConfig.WGV3_2">
+            <summary>
+            WGV3_2  市平台
+            </summary>
+        </member>
+        <member name="T:UnitTest.Config.WGSoapTestSetting">
+            <summary>
+            WG测试设置
+            </summary>
+        </member>
+        <member name="P:UnitTest.Config.WGSoapTestSetting.Server">
+            <summary>
+            服务器
+            </summary>
+        </member>
+        <member name="P:UnitTest.Config.WGSoapTestSetting.RequestBody">
+            <summary>
+            请求主体
+            </summary>
+        </member>
+        <member name="P:UnitTest.Config.WGSoapTestSetting.XmlStringTemplate">
+            <summary>
+            模板
+            </summary>
+        </member>
+        <member name="P:UnitTest.Config.WGSoapTestSetting.Request">
+            <summary>
+            请求设置
+            </summary>
+        </member>
+        <member name="M:UnitTest.Config.WGSoapTestSetting.GetRequestListCount(System.String)">
+            <summary>
+            获取请求设置集合数量
+            </summary>
+            <param name="key">标识</param>
+        </member>
+        <member name="M:UnitTest.Config.WGSoapTestSetting.GetRequestXmlString(System.String,System.Int32)">
+            <summary>
+            获取用于请求的xml字符串
+            </summary>
+            <param name="key">标识</param>
+            <param name="index">索引</param>
+            <returns></returns>
+        </member>
+        <member name="M:UnitTest.Config.WGSoapTestSetting.CheckResponse(System.String,System.Int32,Newtonsoft.Json.Linq.JObject)">
+            <summary>
+            检查输出信息
+            </summary>
+            <param name="key"></param>
+            <param name="index">索引</param>
+            <param name="response"></param>
+        </member>
+        <member name="T:UnitTest.Config.WGSoapTestRequestSetting">
+            <summary>
+            WG请求设置
+            </summary>
+        </member>
+        <member name="P:UnitTest.Config.WGSoapTestRequestSetting.Userid">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:UnitTest.Config.WGSoapTestRequestSetting.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:UnitTest.Config.WGSoapTestRequestSetting.TransNo">
+            <summary>
+            业务号
+            </summary>
+        </member>
+        <member name="P:UnitTest.Config.WGSoapTestRequestSetting.Paramters">
+            <summary>
+            参数
+            </summary>
+        </member>
+        <member name="P:UnitTest.Config.WGSoapTestRequestSetting.SuccessResponse">
+            <summary>
+            应该返回的信息
+            </summary>
+        </member>
+        <member name="T:UnitTest.Extension.AssertExtension">
+            <summary>
+            断言拓展类
+            </summary>
+        </member>
+        <member name="M:UnitTest.Extension.AssertExtension.AreEqual(System.Object,System.Nullable{System.Reflection.BindingFlags},System.Object[])">
+            <summary>
+            是否相同
+            <para>比较对象的类型必须与参考对象相同</para>
+            </summary>
+            <param name="obj">参考对象</param>
+            <param name="bindingAttr">指定成员搜索方式</param>
+            <param name="objs">比较对象</param>
+        </member>
+        <member name="T:UnitTest.Extension.RequestExtension">
+            <summary>
+            请求拓展类
+            </summary>
+        </member>
+        <member name="M:UnitTest.Extension.RequestExtension.SetParamters2Path(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            将参数写入地址
+            </summary>
+            <param name="path">地址 /aaa/{id}</param>
+            <param name="paramters">参数</param>
+        </member>
+        <member name="T:UnitTest.Testing.Database.DatabaseTest">
+            <summary>
+            数据库测试
+            </summary>
+        </member>
+        <member name="T:UnitTest.Testing.Soap.Sample">
+            <summary>
+            Soap测试
+            </summary>
+        </member>
+        <member name="T:Tests.Testing.Controllers.Sample">
+            <summary>
+            接口测试
+            </summary>
+        </member>
+        <member name="M:Tests.Testing.Controllers.Sample.SetupTestData(System.Int32,System.Collections.Generic.List{System.String})">
+            <summary>
+            设置测试数据
+            </summary>
+            <param name="count">数量</param>
+            <param name="cmds">查询语句</param>
+        </member>
+        <member name="M:Tests.Testing.Controllers.Sample.DefaultTest(System.String)">
+            <summary>
+            默认测试方法
+            </summary>
+            <param name="key">标识</param>
+        </member>
+    </members>
+</doc>

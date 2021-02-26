@@ -1,4 +1,4 @@
-﻿using Library.Soap.Application;
+﻿using Microservice.Library.Soap.Application;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using SoapCore.Extensibility;
@@ -9,7 +9,7 @@ using System.ServiceModel.Channels;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Library.Soap.Filter
+namespace Microservice.Library.Soap.Filter
 {
     /// <summary>
     /// 消息拦截器

@@ -4,12 +4,12 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Library.Snowflake;
-using Library.Extension;
-using Library.ConsoleTool;
-using Library.HardwareInfo;
+using Microservice.Library.Snowflake;
+using Microservice.Library.Extension;
+using Microservice.Library.ConsoleTool;
+using Microservice.Library.HardwareInfo;
 
-namespace Library.Elasticsearch
+namespace Microservice.Library.Elasticsearch
 {
     /// <summary>
     /// 测试

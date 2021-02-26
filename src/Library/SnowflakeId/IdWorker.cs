@@ -9,7 +9,7 @@
  * per process
  * 
  */
-namespace Library.Snowflake
+namespace Microservice.Library.Snowflake
 {
     /// <summary>
     /// https://github.com/ccollie/snowflake-net

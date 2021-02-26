@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Data.Common;
 
-namespace Library.DataMapping.Application
+namespace Microservice.Library.DataMapping.Application
 {
     public class AutoMapperGeneratorOptions
     {

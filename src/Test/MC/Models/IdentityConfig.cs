@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Library.Extension;
 
 namespace MC.Models
 {
@@ -96,6 +92,6 @@ namespace MC.Models
         /// <summary>
         /// 权限集合
         /// </summary>
-        public List<string> ScopeList { get { var _ScopeList = Scope.Split(' ').ToList(); _ScopeList.RemoveAll(o => o.IsNullOrEmpty()); return _ScopeList; } set { } }
+        public List<string> ScopeList { get { var _ScopeList = Scope.Split(' ').ToList(); _ScopeList.RemoveAll(o => string.IsNullOrEmpty(o)); return _ScopeList; } set { } }
     }
 }

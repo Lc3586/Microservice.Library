@@ -1,6 +1,6 @@
 ﻿
 
-namespace Library.Container
+namespace Microservice.Library.Container
 {
     /// <summary>
     /// 注入标记

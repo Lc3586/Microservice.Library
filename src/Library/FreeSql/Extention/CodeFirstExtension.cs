@@ -1,4 +1,4 @@
-﻿namespace Library.FreeSql.Extention
+﻿namespace Microservice.Library.FreeSql.Extention
 {
     public static class CodeFirstExtension
     {

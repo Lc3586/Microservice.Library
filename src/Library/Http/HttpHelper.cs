@@ -1,4 +1,4 @@
-﻿using Library.Extension;
+﻿using Microservice.Library.Extension;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System;
@@ -13,7 +13,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 
-namespace Library.Http
+namespace Microservice.Library.Http
 {
     /// <summary>
     /// Http请求操作帮助类

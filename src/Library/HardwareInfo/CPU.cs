@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace Library.HardwareInfo
+namespace Microservice.Library.HardwareInfo
 {
     /// <summary>
     /// https://blog.csdn.net/weixin_43145361/article/details/90939154

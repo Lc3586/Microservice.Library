@@ -1,24 +1,22 @@
-﻿using Library.DataRepository;
-using Library.Extension;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Data.Common;
-using System.Reflection;
+﻿using Microservice.Library.DataRepository;
+using Microservice.Library.Extension;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query.Internal;
+using Microsoft.EntityFrameworkCore.Storage;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
-using System.Linq.Expressions;
-using Library.Models;
-using System.Text.RegularExpressions;
+using System.Data;
+using System.Data.Common;
+using System.Linq;
 using System.Linq.Dynamic.Core;
-using Microsoft.EntityFrameworkCore.Query.Internal;
-using Microsoft.EntityFrameworkCore.Query;
-using Microsoft.Data.SqlClient;
+using System.Linq.Expressions;
+using System.Reflection;
+using System.Text.RegularExpressions;
 
-namespace Library.DataRepository_SqlServer
+namespace Microservice.Library.DataRepository_SqlServer
 {
     public class DbRepository : IRepository
     {
@@ -45,7 +43,9 @@ namespace Library.DataRepository_SqlServer
             {
                 if (_disposed || _db == null)
                 {
+#pragma warning disable CS0612 // 类型或成员已过时
                     _db = new RepositoryDbContext(ConnectionString, EntityAssembly);
+#pragma warning restore CS0612 // 类型或成员已过时
                     _disposed = false;
                 }
 
@@ -140,6 +140,7 @@ namespace Library.DataRepository_SqlServer
 
         #region 事物相关
 
+        [Obsolete]
         public void BeginTransaction(IsolationLevel isolationLevel)
         {
             _openedTransaction = true;
@@ -148,6 +149,7 @@ namespace Library.DataRepository_SqlServer
             Db.UseTransaction(_transaction);
         }
 
+        [Obsolete]
         public (bool Success, Exception ex) RunTransaction(Action action, IsolationLevel isolationLevel = IsolationLevel.ReadCommitted)
         {
             bool success = true;
@@ -347,6 +349,7 @@ namespace Library.DataRepository_SqlServer
         /// 删除所有记录
         /// </summary>
         /// <param name="type">实体类型</param>
+        [Obsolete]
         public void DeleteAll(Type type)
         {
             string tableName = GetDbTableName(type);
@@ -741,6 +744,7 @@ namespace Library.DataRepository_SqlServer
         /// 执行SQL语句
         /// </summary>
         /// <param name="sql">SQL语句</param>
+        [Obsolete]
         public int ExecuteSql(string sql)
         {
             int count = Db.Database.ExecuteSqlCommand(sql);
@@ -756,6 +760,7 @@ namespace Library.DataRepository_SqlServer
         /// </summary>
         /// <param name="sql">SQL语句</param>
         /// <param name="parameters">SQL参数</param>
+        [Obsolete]
         public int ExecuteSql(string sql, List<DbParameter> parameters)
         {
             int count = Db.Database.ExecuteSqlCommand(sql, parameters.ToArray());

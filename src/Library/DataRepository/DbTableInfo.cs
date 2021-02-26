@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 
-namespace Library.DataRepository
+namespace Microservice.Library.DataRepository
 {
 
     /// <summary>
@@ -266,7 +266,7 @@ namespace Library.DataRepository
 
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 if (errorUseDefault)
                     Default();

@@ -1,7 +1,7 @@
 ﻿using Entity.Example;
-using Library.DataMapping.Annotations;
-using Library.DataMapping.Application;
-using Library.OpenApi.Annotations;
+using Microservice.Library.OpenApi.Annotations;
+using Microservice.Library.DataMapping.Annotations;
+using Microservice.Library.DataMapping.Application;
 using System;
 
 /*

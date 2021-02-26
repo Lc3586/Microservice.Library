@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using IocServiceDemo;
-using Library.DataMapping.Gen;
-using Library.Extension;
-using Library.FreeSql.Gen;
+using Microservice.Library.DataMapping.Gen;
+using Microservice.Library.Extension;
+using Microservice.Library.FreeSql.Gen;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Threading.Tasks;

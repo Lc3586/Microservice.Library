@@ -1,12 +1,11 @@
-﻿using Library.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace Library.DataRepository
+namespace Microservice.Library.DataRepository
 {
     public interface IRepository : IBaseRepository, ITransaction, IDisposable
     {

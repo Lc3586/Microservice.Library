@@ -1,6 +1,6 @@
 ﻿using Entity.Common;
 using FreeSql.DataAnnotations;
-using Library.OpenApi.Annotations;
+using Microservice.Library.OpenApi.Annotations;
 using Newtonsoft.Json;
 using System.Xml.Serialization;
 

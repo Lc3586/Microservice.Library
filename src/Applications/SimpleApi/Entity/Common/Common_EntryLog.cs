@@ -1,7 +1,7 @@
 ﻿using Entity.Public;
 using Entity.System;
 using FreeSql.DataAnnotations;
-using Library.OpenApi.Annotations;
+using Microservice.Library.OpenApi.Annotations;
 using Newtonsoft.Json;
 using System;
 using System.ComponentModel;
@@ -92,7 +92,7 @@ namespace Entity.Common
         /// </summary>
         [OpenApiSubTag("List", "Detail")]
         [OpenApiSchema(OpenApiSchemaType.@string, OpenApiSchemaFormat.string_datetime)]
-        [JsonConverter(typeof(Library.Json.Converters.DateTimeConverter), "yyyy-MM-dd HH:mm:ss")]
+        [JsonConverter(typeof(Microservice.Library.Json.Converters.DateTimeConverter), "yyyy-MM-dd HH:mm:ss")]
         [Description("登录时间")]
         public DateTime CreateTime { get; set; }
 

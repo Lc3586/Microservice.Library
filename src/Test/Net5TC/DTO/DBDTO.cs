@@ -1,7 +1,7 @@
 ﻿using Net5TC.Entity;
-using Library.DataMapping.Annotations;
-using Library.DataMapping.Application;
-using Library.OpenApi.Annotations;
+using Microservice.Library.DataMapping.Annotations;
+using Microservice.Library.DataMapping.Application;
+using Microservice.Library.OpenApi.Annotations;
 using System;
 
 /// <summary>

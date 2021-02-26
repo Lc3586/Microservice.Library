@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace Library.BloomFilter
+namespace Microservice.Library.BloomFilter
 {
     /// <summary>
     /// 共享内存

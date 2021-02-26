@@ -1,9 +1,9 @@
-﻿using Library.WeChat.Application;
-using Library.WeChat.Model;
-using Library.WeChat.Services;
+﻿using Microservice.Library.WeChat.Application;
+using Microservice.Library.WeChat.Model;
+using Microservice.Library.WeChat.Services;
 using System.Collections.Generic;
 
-namespace Library.WeChat.Gen
+namespace Microservice.Library.WeChat.Gen
 {
     /// <summary>
     /// 微信服务生成器

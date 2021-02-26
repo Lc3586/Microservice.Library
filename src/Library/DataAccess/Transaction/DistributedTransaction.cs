@@ -1,6 +1,6 @@
-﻿using Library.Collection;
-using Library.Extension;
-using Library.DataRepository;
+﻿using Microservice.Library.Collection;
+using Microservice.Library.Extension;
+using Microservice.Library.DataRepository;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Data.Common;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Library.DataAccess
+namespace Microservice.Library.DataAccess
 {
     /// <summary>
     /// 数据库分布式事务,跨库事务

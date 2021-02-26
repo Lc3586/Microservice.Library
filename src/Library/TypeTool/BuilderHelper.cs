@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 
-namespace Library.TypeTool
+namespace Microservice.Library.TypeTool
 {
     /// <summary>
     /// 运行时创建类型
@@ -16,9 +16,7 @@ namespace Library.TypeTool
         /// <summary>
         /// 创建类型
         /// </summary>
-        /// <param name="typeFullName">类型完全名,包括命名空间</param>
-        /// <param name="assemblyName">类型程序集名</param>
-        /// <param name="properties">类型属性配置</param>
+        /// <param name="typeConfig"></param>
         /// <returns></returns>
         public static Type BuildType(TypeConfig typeConfig)
         {

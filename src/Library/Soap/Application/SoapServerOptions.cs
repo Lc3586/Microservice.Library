@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.ServiceModel.Channels;
 using System.Text;
 
-namespace Library.Soap.Application
+namespace Microservice.Library.Soap.Application
 {
     /// <summary>
     /// Soap服务端配置

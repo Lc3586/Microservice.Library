@@ -6,9 +6,24 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>Library.DataRepository_DM</RootNamespace>
-    <Version>1.0.1-alpha</Version>
+    <RootNamespace>Microservice.Library.DataRepository_DM</RootNamespace>
+    <Version>0.0.0.1-alpha</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageProjectUrl>https://github.com/Lc3586/Microservice.Library</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageId>Microservice.Library.DataRepository_DM</PackageId>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Product>Microservice.Library</Product>
+    <Authors>LCTR</Authors>
+    <AssemblyName>Microservice.Library.DataRepository_DM</AssemblyName>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>Microservice.Library.DataRepository_DM.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>Microservice.Library.DataRepository_DM.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microservice.Library.Baidu</name>
+    </assembly>
+    <members>
+        <member name="T:Microservice.Library.Baidu.BaiduApiHelper">
+            <summary>
+            百度接口签名帮助类
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.Baidu.BaiduApiHelper.#ctor(System.String,System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="accessKeyId">百度AccessKeyId(AK)</param>
+            <param name="secretAccessKey">百度SecretAccessKey(SK)</param>
+        </member>
+        <member name="M:Microservice.Library.Baidu.BaiduApiHelper.RequestData(System.String,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            发送POST请求
+            </summary>
+            <param name="method">请求方法，需要大写，列如(POST)</param>
+            <param name="host">主机地址列如(http://sms.bj.baidubce.com)</param>
+            <param name="url">接口地址列如(/bce/v2/message)</param>
+            <param name="paramters">参数列表</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Baidu.BaiduApiHelper.SendMsg(System.String,System.String)">
+            <summary>
+            发送短信
+            </summary>
+            <param name="phoneNum">手机号码</param>
+            <param name="code">验证码</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

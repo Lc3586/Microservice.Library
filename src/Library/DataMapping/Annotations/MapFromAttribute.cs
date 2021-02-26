@@ -1,27 +1,31 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace Library.DataMapping.Annotations
+namespace Microservice.Library.DataMapping.Annotations
 {
     /// <summary>
-    /// 映射来源
+    /// 映射来源配置
     /// </summary>
+    /// <remarks>
+    /// <para>可使用 <see cref="Application.IMapFrom{TSource, TDestination}"/>接口类添加成员映射配置</para>
+    /// </remarks>
     public class MapFromAttribute : Attribute, IMapAttribute
     {
         /// <summary>
         /// 映射来源
-        /// <para>如要设置成员映射选项, 请在类中设置公共的静态字段或属性 MemberMapOptions《TSource, TDestination》 FromMemberMapOptions, 并调用Add方法赋值</para>
         /// </summary>
-        /// <param name="type">类型</param>
-        public MapFromAttribute(params Type[] type)
+        /// <param name="types">来源类型集合</param>
+        public MapFromAttribute(params Type[] types)
         {
-            Type = type;
+            Types = types?.ToList(); ;
         }
 
-        public bool IsFrom => true;
+        public bool FromOrTo => true;
 
         /// <summary>
-        /// 类型
+        /// 来源类型集合
         /// </summary>
-        public Type[] Type { get; }
+        public List<Type> Types { get; }
     }
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 
-namespace Library.TaskQeury
+namespace Microservice.Library.TaskQeury
 {
     /// <summary>
     /// 任务队列

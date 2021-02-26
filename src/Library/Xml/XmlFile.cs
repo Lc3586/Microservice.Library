@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Text;
 using System.Xml;
 
-namespace Library.Xml
+namespace Microservice.Library.Xml
 {
     /// <summary>
     /// Xml文件处理
@@ -46,7 +46,7 @@ namespace Library.Xml
                 }
                 return vml;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return IsReturnNUll ? default(T) : new T();
             }

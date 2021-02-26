@@ -1,7 +1,7 @@
 ﻿using NodaTime;
 using System;
 
-namespace Library.Cache.Extention
+namespace Microservice.Library.Cache.Extention
 {
     /// <summary>
     /// 日期拓展方法

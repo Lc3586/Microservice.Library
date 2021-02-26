@@ -4,7 +4,7 @@ using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 
-namespace Library.Http
+namespace Microservice.Library.Http
 {
     /// <summary>
     /// Ip地址帮助类

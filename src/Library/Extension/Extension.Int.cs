@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 
-namespace Library.Extension
+namespace Microservice.Library.Extension
 {
     public static partial class Extension
     {

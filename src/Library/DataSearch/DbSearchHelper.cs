@@ -1,5 +1,4 @@
-﻿using Library.Extension;
-using Library.Models;
+﻿using Microservice.Library.Extension;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +6,7 @@ using System.Linq.Dynamic.Core;
 using System.Reflection;
 using System.Text;
 
-namespace Library.DataSearch
+namespace Microservice.Library.DataSearch
 {
     /// <summary>
     /// 数据库查询帮助类
@@ -43,7 +42,6 @@ namespace Library.DataSearch
         /// <summary>
         /// 获取数据库统计数据
         /// </summary>
-        /// <typeparam name="T">实体类型</typeparam>
         /// <param name="dataSource">数据源</param>
         /// <param name="groupColumn">分组的列</param>
         /// <param name="searchEntris">查询的配置项</param>

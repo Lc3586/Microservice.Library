@@ -1,7 +1,7 @@
 ﻿using FreeSql.DataAnnotations;
 using JetBrains.Annotations;
-using Library.FreeSql.Application;
-using Library.FreeSql.Gen;
+using Microservice.Library.FreeSql.Application;
+using Microservice.Library.FreeSql.Gen;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace Library.FreeSql.Extention
+namespace Microservice.Library.FreeSql.Extention
 {
     public class EntityFactory
     {

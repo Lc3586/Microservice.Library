@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace Library.ConsistentHash
+namespace Microservice.Library.ConsistentHash
 {
     public class MurmurHash2
     {

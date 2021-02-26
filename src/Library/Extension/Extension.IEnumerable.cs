@@ -1,4 +1,4 @@
-﻿using Library.Extension.Model;
+﻿using Microservice.Library.Extension.Model;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Linq.Dynamic.Core;
 
-namespace Library.Extension
+namespace Microservice.Library.Extension
 {
     public static partial class Extension
     {

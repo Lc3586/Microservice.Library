@@ -1,0 +1,345 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microservice.Microservice.Library.DataMapping</name>
+    </assembly>
+    <members>
+        <member name="T:Microservice.Library.DataMapping.Annotations.IgnoreMapFromAttribute">
+            <summary>
+            忽略映射来源配置
+            </summary>
+            <remarks>不会注册配置到 <see cref="T:AutoMapper.MapperConfiguration"/>中</remarks>
+        </member>
+        <member name="T:Microservice.Library.DataMapping.Annotations.IgnoreMapToAttribute">
+            <summary>
+            忽略映射目标配置
+            </summary>
+            <remarks>不会注册配置到 <see cref="T:AutoMapper.MapperConfiguration"/>中</remarks>
+        </member>
+        <member name="T:Microservice.Library.DataMapping.Annotations.IMapAttribute">
+            <summary>
+            数据映射配置
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.DataMapping.Annotations.IMapAttribute.FromOrTo">
+            <summary>
+            
+            </summary>
+            <remarks>
+            <para>true <see cref="T:Microservice.Library.DataMapping.Annotations.MapFromAttribute"/></para>
+            <para>false <see cref="T:Microservice.Library.DataMapping.Annotations.MapToAttribute"/></para>
+            </remarks>
+        </member>
+        <member name="P:Microservice.Library.DataMapping.Annotations.IMapAttribute.Types">
+            <summary>
+            类型集合
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.DataMapping.Annotations.MapFromAttribute">
+            <summary>
+            映射来源配置
+            </summary>
+            <remarks>
+            <para>可使用 <see cref="T:Microservice.Library.DataMapping.Application.IMapFrom`2"/>接口类添加成员映射配置</para>
+            </remarks>
+        </member>
+        <member name="M:Microservice.Library.DataMapping.Annotations.MapFromAttribute.#ctor(System.Type[])">
+            <summary>
+            映射来源
+            </summary>
+            <param name="types">来源类型集合</param>
+        </member>
+        <member name="P:Microservice.Library.DataMapping.Annotations.MapFromAttribute.Types">
+            <summary>
+            来源类型集合
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.DataMapping.Annotations.MapToAttribute">
+            <summary>
+            映射目标配置
+            </summary>
+            <remarks>
+            <para>可使用 <see cref="T:Microservice.Library.DataMapping.Application.IMapTo`2"/>接口类添加成员映射配置</para>
+            </remarks>
+        </member>
+        <member name="M:Microservice.Library.DataMapping.Annotations.MapToAttribute.#ctor(System.Type[])">
+            <summary>
+            映射目标
+            </summary>
+            <param name="types">目标类型集合</param>
+        </member>
+        <member name="P:Microservice.Library.DataMapping.Annotations.MapToAttribute.Types">
+            <summary>
+            目标类型集合
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.DataMapping.Application.AutoMapperGeneratorOptions.Types">
+            <summary>
+            类型集合
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.DataMapping.Application.AutoMapperGeneratorOptions.EnableMapFrom">
+            <summary>
+            启用映射来源
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.DataMapping.Application.AutoMapperGeneratorOptions.EnableMapTo">
+            <summary>
+            启用映射目标
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.DataMapping.Application.IMap">
+            <summary>
+            数据映射标记
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.DataMapping.Application.IMapFrom`2">
+            <summary>
+            数据映射来源配置
+            </summary>
+            <typeparam name="TSource">来源数据类型</typeparam>
+            <typeparam name="TDestination">目标数据类型</typeparam>
+        </member>
+        <member name="P:Microservice.Library.DataMapping.Application.IMapFrom`2.FromMemberMapOptions">
+            <summary>
+            成员映射配置
+            </summary>
+            <remarks>
+            <para>必须设置为静态属性</para>
+            <para>可调用 <see cref="M:Microservice.Library.DataMapping.Application.MemberMapOptions`2.Add(System.String,System.Action{AutoMapper.IMemberConfigurationExpression})"/> 方法添加配置</para>
+            <para>可调用 <see cref="M:Microservice.Library.DataMapping.Application.MemberMapOptions`2.Add``1(System.String,System.Func{`0,``0})"/> 方法添加配置</para>
+            <para><![CDATA[public static MemberMapOptions<AEntity, AModel> FromMemberMapOptions = new MemberMapOptions<AEntity, AModel>()
+                                                                            .Add(nameof(AModel.A1),o=> o.A.ToString())
+                                                                            .Add(nameof(AModel.B1),o=> o.B.ToString());]]></para>
+            </remarks>
+        </member>
+        <member name="T:Microservice.Library.DataMapping.Application.IMapTo`2">
+            <summary>
+            数据映射目标配置
+            </summary>
+            <typeparam name="TSource">来源数据类型</typeparam>
+            <typeparam name="TDestination">目标数据类型</typeparam>
+        </member>
+        <member name="P:Microservice.Library.DataMapping.Application.IMapTo`2.ToMemberMapOptions">
+            <summary>
+            成员映射配置
+            </summary>
+            <remarks>
+            <para>必须设置为静态属性</para>
+            <para>可调用 <see cref="M:Microservice.Library.DataMapping.Application.MemberMapOptions`2.Add(System.String,System.Action{AutoMapper.IMemberConfigurationExpression})"/> 方法添加配置</para>
+            <para>可调用 <see cref="M:Microservice.Library.DataMapping.Application.MemberMapOptions`2.Add``1(System.String,System.Func{`0,``0})"/> 方法添加配置</para>
+            <para><![CDATA[public static MemberMapOptions<AModel, AEntity> ToMemberMapOptions = new MemberMapOptions<AModel, AEntity>()
+                                                                            .Add(nameof(AEntity.A),o=> o.A1.ToString())
+                                                                            .Add(nameof(AEntity.B),o=> o.B1.ToString());]]></para>
+            </remarks>
+        </member>
+        <member name="T:Microservice.Library.DataMapping.Application.MemberMapOptions`2">
+            <summary>
+            成员映射配置
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.DataMapping.Application.MemberMapOptions`2.Options">
+            <summary>
+            映射选项
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.DataMapping.Application.MemberMapOptions`2.Add(System.String,System.Action{AutoMapper.IMemberConfigurationExpression})">
+            <summary>
+            添加成员配置表达式
+            </summary>
+            <param name="name">名称</param>
+            <param name="option">选项</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.DataMapping.Application.MemberMapOptions`2.Add``1(System.String,System.Func{`0,``0})">
+            <summary>
+            添加成员映射表达式
+            </summary>
+            <param name="name">名称</param>
+            <param name="option">选项</param>
+            <returns></returns>
+        </member>
+        <member name="T:Microservice.Library.DataMapping.Extention.AutoMapperHelper`2">
+            <summary>
+            AutoMapper帮助类
+            </summary>
+            <typeparam name="TSouurce">来源数据类型</typeparam>
+            <typeparam name="TDestination">目标数据类型</typeparam>
+        </member>
+        <member name="M:Microservice.Library.DataMapping.Extention.AutoMapperHelper`2.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.DataMapping.Extention.AutoMapperHelper`2.GetMapper">
+            <summary>
+            获取映射器
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.DataMapping.Extention.AutoMapperHelper`2.Map(System.Object)">
+            <summary>
+            映射
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Microservice.Library.DataMapping.Extention.EmitHelper">
+            <summary>
+            Emit反射帮助类
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.DataMapping.Extention.EmitHelper.CreateBuilder(System.Type)">
+            <summary>
+            创建对象建造者
+            </summary>
+            <param name="type">对象类型</param>
+            <returns></returns>
+        </member>
+        <member name="T:Microservice.Library.DataMapping.Extention.MapExtention">
+            <summary>
+            数据映射拓展方法
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.DataMapping.Extention.MapExtention.CreateMapFrom(AutoMapper.IMapperConfigurationExpression,System.Type)">
+            <summary>
+            配置数据映射来源
+            </summary>
+            <param name="configure"></param>
+            <param name="type"></param>
+        </member>
+        <member name="M:Microservice.Library.DataMapping.Extention.MapExtention.CreateMapTo(AutoMapper.IMapperConfigurationExpression,System.Type)">
+            <summary>
+            配置数据映射来源
+            </summary>
+            <param name="configure"></param>
+            <param name="type"></param>
+        </member>
+        <member name="M:Microservice.Library.DataMapping.Extention.MapExtention.CreateMap(AutoMapper.IMapperConfigurationExpression,System.Type,System.Collections.Generic.List{System.Type},System.Boolean)">
+            <summary>
+            配置数据映射
+            </summary>
+            <param name="configure"></param>
+            <param name="soureType"></param>
+            <param name="destinationTypes"></param>
+            <param name="fromOrTo"></param>
+        </member>
+        <member name="M:Microservice.Library.DataMapping.Extention.MapExtention.GetMemberMapOptions(System.Type,System.Boolean)">
+            <summary>
+            获取成员映射选项
+            <para>默认为类型名称</para>
+            </summary>
+            <param name="type">目标对象</param>
+            <param name="fromOrTo"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Microservice.Library.DataMapping.Extention.ParentChildrenMapping">
+            <summary>
+            父子数据相互映射类
+            注：父子数据都必须唯一,即所有父键唯一,所有子键唯一,唯一的子键能确定对应的父键,唯一的父键能确定其拥有的子键集合,
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.DataMapping.Extention.ParentChildrenMapping.AddChild(System.String,System.String)">
+            <summary>
+            添加子键
+            </summary>
+            <param name="parentId">所属父键</param>
+            <param name="childId">子键</param>
+        </member>
+        <member name="M:Microservice.Library.DataMapping.Extention.ParentChildrenMapping.RemoveChild(System.String,System.String)">
+            <summary>
+            删除子键
+            </summary>
+            <param name="parentId">所属父键</param>
+            <param name="childId">子键</param>
+        </member>
+        <member name="M:Microservice.Library.DataMapping.Extention.ParentChildrenMapping.RemoveParent(System.String)">
+            <summary>
+            删除父键
+            注:会删除该父键以及该父键下面的所有子键
+            </summary>
+            <param name="parentId"></param>
+        </member>
+        <member name="M:Microservice.Library.DataMapping.Extention.ParentChildrenMapping.ExistsParent(System.String)">
+            <summary>
+            父键是否存在
+            </summary>
+            <param name="parentId">父键</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.DataMapping.Extention.ParentChildrenMapping.ExistsChild(System.String)">
+            <summary>
+            子键是否存在
+            </summary>
+            <param name="childId">子键</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.DataMapping.Extention.ParentChildrenMapping.GetChildren(System.String)">
+            <summary>
+            获取父键拥有的所有子键
+            </summary>
+            <param name="parentId">父键</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.DataMapping.Extention.ParentChildrenMapping.GetAllParents">
+            <summary>
+            获取所有父键
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.DataMapping.Extention.ParentChildrenMapping.GetAllChildren">
+            <summary>
+            获取所有子键
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.DataMapping.Extention.ParentChildrenMapping.GetParent(System.String)">
+            <summary>
+            获取父键
+            </summary>
+            <param name="childId">子键</param>
+            <returns></returns>
+        </member>
+        <member name="T:Microservice.Library.DataMapping.Gen.AutoMapperGenerator">
+            <summary>
+            生成器
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.DataMapping.Gen.AutoMapperGenerator.#ctor(Microservice.Library.DataMapping.Application.AutoMapperGenOptions)">
+            <summary>
+            
+            </summary>
+            <param name="options"></param>
+        </member>
+        <member name="M:Microservice.Library.DataMapping.Gen.AutoMapperGenerator.GetMapper">
+            <summary>
+            获取映射器
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Microservice.Library.DataMapping.Gen.IAutoMapperProvider">
+            <summary>
+            构造器
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.DataMapping.Gen.IAutoMapperProvider.GetMapper">
+            <summary>
+            获取映射器
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Microservice.Microservice.Library.DataMapping.Application.DataMappingException">
+            <summary>
+            异常
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Microservice.Library.DataMapping.Application.DataMappingException.#ctor(System.String,System.String)">
+            <summary>
+            异常
+            </summary>
+            <param name="title">标题</param>
+            <param name="message">内容</param>
+        </member>
+    </members>
+</doc>

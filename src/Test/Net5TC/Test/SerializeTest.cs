@@ -3,12 +3,12 @@ using BenchmarkDotNet.Jobs;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using Library.OpenApi.Extention;
-using Library.OpenApi.JsonSerialization;
-using Library.ConsoleTool;
+using Microservice.Library.OpenApi.Extention;
+using Microservice.Library.OpenApi.JsonSerialization;
+using Microservice.Library.ConsoleTool;
 using System.Diagnostics;
 using System.Dynamic;
-using Library.OpenApi.Annotations;
+using Microservice.Library.OpenApi.Annotations;
 using System.Reflection;
 
 namespace Net5TC.Test

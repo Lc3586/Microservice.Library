@@ -1,10 +1,10 @@
-﻿using Library.Extension;
+﻿using Microservice.Library.Extension;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library.Http
+namespace Microservice.Library.Http
 {
     public static class JWTHelper
     {

@@ -1,4 +1,4 @@
-﻿namespace Library.DataAccess
+﻿namespace Microservice.Library.DataAccess
 {
     /// <summary>
     /// 分片规则接口

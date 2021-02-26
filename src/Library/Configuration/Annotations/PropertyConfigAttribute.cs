@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Library.Configuration.Annotations
+namespace Microservice.Library.Configuration.Annotations
 {
     /// <summary>
     /// 属性配置

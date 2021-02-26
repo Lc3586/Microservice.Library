@@ -2,7 +2,7 @@
 using System;
 using System.Data;
 
-namespace Library.FreeSql.Extention
+namespace Microservice.Library.FreeSql.Extention
 {
     public static class OrmExtension
     {

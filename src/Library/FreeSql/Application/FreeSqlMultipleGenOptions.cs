@@ -1,8 +1,8 @@
-﻿using Library.FreeSql;
+﻿using Microservice.Library.FreeSql;
 using System;
 using System.Collections.Generic;
 
-namespace Library.FreeSql.Application
+namespace Microservice.Library.FreeSql.Application
 {
     /// <summary>
     /// 多库生成配置

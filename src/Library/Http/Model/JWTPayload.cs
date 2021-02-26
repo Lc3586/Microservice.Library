@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library.Http.Model
+namespace Microservice.Library.Http.Model
 {
     public class JWTPayload
     {

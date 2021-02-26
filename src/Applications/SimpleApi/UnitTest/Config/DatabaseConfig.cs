@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Entity.Example;
-using Library.Configuration;
+using Microservice.Library.Configuration;
 
 namespace UnitTest.Config
 {

@@ -1,6 +1,6 @@
-﻿using Library.Cache.Model;
+﻿using Microservice.Library.Cache.Model;
 
-namespace Library.Cache.Application
+namespace Microservice.Library.Cache.Application
 {
     /// <summary>
     /// 缓存配置

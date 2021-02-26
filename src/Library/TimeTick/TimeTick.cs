@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 
-namespace Library.TimerTick
+namespace Microservice.Library.TimerTick
 {
     /// <summary>
     /// 定时器

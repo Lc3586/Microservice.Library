@@ -1,5 +1,5 @@
-﻿using Library.Configuration;
-using Library.Http;
+﻿using Microservice.Library.Configuration;
+using Microservice.Library.Http;
 using System;
 using System.Collections.Generic;
 using System.Text;

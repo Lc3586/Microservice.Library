@@ -1,0 +1,250 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microservice.Library.BloomFilter</name>
+    </assembly>
+    <members>
+        <member name="T:Microservice.Library.BloomFilter.BloomFilter`1">
+            <summary>
+            一个布隆过滤器
+            </summary>
+            <typeparam name="T">泛型数据类型</typeparam>
+        </member>
+        <member name="M:Microservice.Library.BloomFilter.BloomFilter`1.#ctor(System.Int32,System.Int32)">
+            <summary>
+            初始化bloom滤波器并设置hash散列的最佳数目
+            </summary>
+            <param name="bitSize">布隆过滤器的大小(m)默认为10E消耗100M内存</param>
+            <param name="setSize">集合的大小 (n)默认为1000W</param>
+        </member>
+        <member name="M:Microservice.Library.BloomFilter.BloomFilter`1.#ctor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            hash散列函数的数量(k)
+            </summary>
+            <param name="bitSize"></param>
+            <param name="setSize"></param>
+            <param name="numberOfHashes"></param>
+        </member>
+        <member name="P:Microservice.Library.BloomFilter.BloomFilter`1.NumberOfHashes">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.BloomFilter.BloomFilter`1.SetSize">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.BloomFilter.BloomFilter`1.BitSize">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.BloomFilter.BloomFilter`1.Add(`0)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:Microservice.Library.BloomFilter.BloomFilter`1.Contains(`0)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.BloomFilter.BloomFilter`1.ContainsAny(System.Collections.Generic.List{`0})">
+            <summary>
+            检查列表中的任何项是否可能是在集合。
+            如果布隆过滤器包含列表中的任何一项，返回真</summary>
+            <param name="items"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.BloomFilter.BloomFilter`1.ContainsAll(System.Collections.Generic.List{`0})">
+            <summary>
+            检查列表中的所有项目是否都在集合。
+            </summary>
+            <param name="items"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.BloomFilter.BloomFilter`1.FalsePositiveProbability">
+            <summary>
+            计算遇到误检率的概率。
+            </summary>
+            <returns>Probability of a false positive</returns>
+        </member>
+        <member name="T:Microservice.Library.BloomFilter.BloomFilterWithShareMemory`1">
+            <summary>
+            共享内存布隆过滤器
+            </summary>
+            <typeparam name="T">泛型数据类型</typeparam>
+        </member>
+        <member name="M:Microservice.Library.BloomFilter.BloomFilterWithShareMemory`1.#ctor(System.String,System.Int32,System.Int32)">
+            <summary>
+            初始化bloom滤波器并设置hash散列的最佳数目
+            </summary>
+            <param name="bloomName"></param>
+            <param name="bitSize">布隆过滤器的大小(m)默认为10E消耗100M内存</param>
+            <param name="setSize">集合的大小 (n)默认为1000W</param>
+        </member>
+        <member name="P:Microservice.Library.BloomFilter.BloomFilterWithShareMemory`1.NumberOfHashes">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.BloomFilter.BloomFilterWithShareMemory`1.SetSize">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.BloomFilter.BloomFilterWithShareMemory`1.BitSize">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.BloomFilter.BloomFilterWithShareMemory`1.Add(`0)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:Microservice.Library.BloomFilter.BloomFilterWithShareMemory`1.Contains(`0)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.BloomFilter.BloomFilterWithShareMemory`1.Close">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.BloomFilter.BloomFilterWithShareMemory`1.ContainsAny(System.Collections.Generic.List{`0})">
+            <summary>
+            检查列表中的任何项是否可能是在集合。
+            如果布隆过滤器包含列表中的任何一项，返回真
+            </summary>
+            <param name="items"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.BloomFilter.BloomFilterWithShareMemory`1.ContainsAll(System.Collections.Generic.List{`0})">
+            <summary>
+            检查列表中的所有项目是否都在集合。
+            </summary>
+            <param name="items"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.BloomFilter.BloomFilterWithShareMemory`1.FalsePositiveProbability">
+            <summary>
+            计算遇到误检率的概率。
+            </summary>
+            <returns>Probability of a false positive</returns>
+        </member>
+        <member name="M:Microservice.Library.BloomFilter.BloomFilterWithShareMemory`1.Hash(`0)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.BloomFilter.BloomFilterWithShareMemory`1.OptimalNumberOfHashes(System.Int32,System.Int32)">
+            <summary>
+            计算基于布隆过滤器散列的最佳数量
+            </summary>
+            <param name="bitSize"></param>
+            <param name="setSize"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Microservice.Library.BloomFilter.ShareMenmory">
+            <summary>
+            共享内存
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.BloomFilter.ShareMenmory.OpenExists(System.String,System.Int64)">
+            <summary>
+            获取共享内存
+            </summary>
+            <param name="mapName">内存名</param>
+            <param name="Size">大小</param>
+        </member>
+        <member name="M:Microservice.Library.BloomFilter.ShareMenmory.Read(System.Int32,System.Int32)">
+            <summary>
+            从共享内存读数据
+            </summary>
+            <param name="lngSize">数据长度</param>
+            <param name="ofset">指针偏移量</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.BloomFilter.ShareMenmory.Write(System.Byte[],System.Int32)">
+            <summary>
+            将数据写入内存中
+            </summary>
+            <param name="bytData">需要写入的数据</param>
+            <param name="offset">目的内存地址偏移量</param>
+        </member>
+        <member name="T:Microservice.Library.BloomFilter.ShareMenmory`1">
+            <summary>
+            共享内存之操作泛型实体类
+            </summary>
+            <typeparam name="T">泛型参数</typeparam>
+        </member>
+        <member name="M:Microservice.Library.BloomFilter.ShareMenmory`1.OpenExists(System.String,System.Int64)">
+            <summary>
+            获取共享内存
+            </summary>
+            <param name="mapName">内存名</param>
+            <param name="Size">大小</param>
+        </member>
+        <member name="M:Microservice.Library.BloomFilter.ShareMenmory`1.Read(System.Int32,System.Int32)">
+            <summary>
+            从共享内存读数据
+            </summary>
+            <param name="lngSize">数据长度</param>
+            <param name="ofset">指针偏移量</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.BloomFilter.ShareMenmory`1.Write(System.Byte[],System.Int32)">
+            <summary>
+            将数据写入内存中
+            </summary>
+            <param name="bytData">需要写入的数据</param>
+            <param name="offset">目的内存地址偏移量</param>
+        </member>
+        <member name="M:Microservice.Library.BloomFilter.ShareMenmory`1.GetUrl(System.Int32)">
+            <summary>
+            获取URL
+            </summary>
+            <param name="index">所需要获取URL的索引序号</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.BloomFilter.ShareMenmory`1.SetUrl(System.Int32,System.String)">
+            <summary>
+            保存URL
+            </summary>
+            <param name="index">保存的位置（索引序号）</param>
+            <param name="url">URL</param>
+        </member>
+        <member name="M:Microservice.Library.BloomFilter.ShareMenmory`1.GetState(System.Int32)">
+            <summary>
+            获取状态
+            </summary>
+            <param name="index">索引序号</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.BloomFilter.ShareMenmory`1.SetState(System.Int32,System.Int32)">
+            <summary>
+            设置状态
+            </summary>
+            <param name="index">索引序号</param>
+            <param name="state">状态（0为未爬取，1为已经爬取）</param>
+        </member>
+        <member name="M:Microservice.Library.BloomFilter.ShareMenmory`1.SetEntity(System.Int32,`0)">
+            <summary>
+            保存实体类
+            </summary>
+            <param name="index">索引序号</param>
+            <param name="t">实体类型</param>
+        </member>
+    </members>
+</doc>

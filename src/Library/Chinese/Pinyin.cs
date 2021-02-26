@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Library.Chinese
+namespace Microservice.Library.Chinese
 {
     /// <summary>
     /// 中文拼音帮助类

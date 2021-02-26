@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microservice.Library.SampleAuthentication</name>
+    </assembly>
+    <members>
+        <member name="T:Microservice.Library.SampleAuthentication.Application.SampleAuthenticationHandler`1">
+            <summary>
+            建议身份验证处理类
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.SampleAuthentication.Application.SampleAuthenticationOptions">
+            <summary>
+            建议身份验证服务配置选项
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.SampleAuthentication.Application.SampleAuthenticationOptions.ConfigureCookieAuthenticationOptions">
+            <summary>
+            配置Cookie身份验证方案
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.SampleAuthentication.Extension.IAuthenticationHandler">
+            <summary>
+            简易身份验证服务处理接口
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.SampleAuthentication.Extension.IAuthenticationHandler.Login(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            登录
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.SampleAuthentication.Extension.IAuthenticationHandler.Logout(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            注销
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.SampleAuthentication.Extension.IAuthenticationHandler.AccessDenied(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            禁止访问
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.SampleAuthentication.Extension.SampleAuthenticationException">
+            <summary>
+            简易身份验证服务中间件异常
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.SampleAuthentication.Extension.SampleAuthenticationException.#ctor(System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="ex"></param>
+        </member>
+        <member name="M:Microservice.Library.SampleAuthentication.Extension.SampleAuthenticationException.#ctor(System.String,System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="title"></param>
+            <param name="message"></param>
+            <param name="ex"></param>
+        </member>
+        <member name="T:Microservice.Library.SampleAuthentication.Extension.SampleAuthenticationMiddleware">
+            <summary>
+            简易身份验证服务中间件
+            </summary>
+            <exception cref="T:Microservice.Library.SampleAuthentication.Extension.SampleAuthenticationException"></exception>
+        </member>
+        <member name="M:Microservice.Library.SampleAuthentication.Extension.SampleAuthenticationMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions,Microservice.Library.SampleAuthentication.Extension.IAuthenticationHandler)">
+            <summary>
+            
+            </summary>
+            <param name="next"></param>
+            <param name="options"></param>
+            <param name="handler"></param>
+        </member>
+        <member name="M:Microservice.Library.SampleAuthentication.Extension.SampleAuthenticationMiddleware.Invoke(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.SampleAuthenticationServiceCollectionExtensions">
+            <summary>
+            简易身份验证服务依赖注入扩展类
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.SampleAuthenticationServiceCollectionExtensions.AddSampleAuthentication(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationOptions})">
+            <summary>
+            注册简易身份验证服务
+            </summary>
+            <param name="services"></param>
+            <param name="configureOptions"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.SampleAuthenticationServiceCollectionExtensions.UseSampleAuthentication(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            配置简易身份验证服务中间件
+            </summary>
+            <param name="app"></param>
+            <exception cref="T:Microservice.Library.SampleAuthentication.Extension.SampleAuthenticationException"></exception>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

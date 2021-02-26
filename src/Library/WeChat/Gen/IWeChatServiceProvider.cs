@@ -1,10 +1,10 @@
-﻿using Library.WeChat.Application;
-using Library.WeChat.Services;
+﻿using Microservice.Library.WeChat.Application;
+using Microservice.Library.WeChat.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library.WeChat.Gen
+namespace Microservice.Library.WeChat.Gen
 {
     /// <summary>
     /// 微信服务构造器

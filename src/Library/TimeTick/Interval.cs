@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Threading;
 
-namespace Library.TimeTick
+namespace Microservice.Library.TimeTick
 {
     /// <summary>
     /// 定时器

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace Library.DataRepository
+namespace Microservice.Library.DataRepository
 {
     /// <summary>
     /// 基数据仓储

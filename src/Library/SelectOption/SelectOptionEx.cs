@@ -1,10 +1,10 @@
-﻿using Library.Extension;
+﻿using Microservice.Library.Extension;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace Library.SelectOption
+namespace Microservice.Library.SelectOption
 {
     /// <summary>
     /// 选项扩展方法

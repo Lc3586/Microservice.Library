@@ -1980,13 +1980,13 @@
             <summary>
             接收财付通通知的URL
             </summary>
-            <remarks>使用<see cref="T:Library.WeChat.Extension.WeChatNotifyV3Middleware"/>中间件时可不配置此属性</remarks>
+            <remarks>使用<see cref="T:Microservice.Library.WeChat.Extension.WeChatNotifyV3Middleware"/>中间件时可不配置此属性</remarks>
         </member>
         <member name="P:Model.Utils.Config.WeChatServiceSetting.RefundNotifyUrl">
             <summary>
             异步接收微信支付退款结果通知的回调地址，通知URL必须为外网可访问的url，不允许带参数。
             </summary>
-            <remarks>使用<see cref="T:Library.WeChat.Extension.WeChatNotifyV3Middleware"/>中间件时可不配置此属性</remarks>
+            <remarks>使用<see cref="T:Microservice.Library.WeChat.Extension.WeChatNotifyV3Middleware"/>中间件时可不配置此属性</remarks>
         </member>
         <member name="P:Model.Utils.Config.WeChatServiceSetting.UserHostAddress">
             <summary>
@@ -2013,13 +2013,13 @@
             <summary>
             开发令牌
             </summary>
-            <remarks>不使用<see cref="T:Library.WeChat.Extension.WeChatTokenVerificationMiddleware"/>中间件时可不配置此属性</remarks>
+            <remarks>不使用<see cref="T:Microservice.Library.WeChat.Extension.WeChatTokenVerificationMiddleware"/>中间件时可不配置此属性</remarks>
         </member>
         <member name="P:Model.Utils.Config.WeChatServiceSetting.TokenVerificationUrl">
             <summary>
             开发令牌验证接口
             </summary>
-            <remarks>不使用<see cref="T:Library.WeChat.Extension.WeChatTokenVerificationMiddleware"/>中间件时可不配置此属性</remarks>
+            <remarks>不使用<see cref="T:Microservice.Library.WeChat.Extension.WeChatTokenVerificationMiddleware"/>中间件时可不配置此属性</remarks>
         </member>
         <member name="P:Model.Utils.Config.WeChatServiceSetting.AuthorizeUrl">
             <summary>
@@ -2042,7 +2042,7 @@
             </summary>
             <remarks>
             <para>scope为snsapi_base</para>
-            <para>使用<see cref="T:Library.WeChat.Extension.WeChatOAuthV2Middleware"/>中间件时，中间件监听的接口。</para>
+            <para>使用<see cref="T:Microservice.Library.WeChat.Extension.WeChatOAuthV2Middleware"/>中间件时，中间件监听的接口。</para>
             </remarks>
         </member>
         <member name="P:Model.Utils.Config.WeChatServiceSetting.OAuthUserInfoUrl">
@@ -2051,7 +2051,7 @@
             </summary>
             <remarks>
             <para>scope为snsapi_userinfo</para>
-            <para>使用<see cref="T:Library.WeChat.Extension.WeChatOAuthV2Middleware"/>中间件时，中间件监听的接口。</para>
+            <para>使用<see cref="T:Microservice.Library.WeChat.Extension.WeChatOAuthV2Middleware"/>中间件时，中间件监听的接口。</para>
             </remarks>
         </member>
         <member name="T:Model.Utils.Log.LogDTO.FileInfo">

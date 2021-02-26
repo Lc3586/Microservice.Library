@@ -1,7 +1,7 @@
-﻿using Library.Soap;
-using Library.Soap.Application;
-using Library.Soap.Filter;
-using Library.Soap.Gen;
+﻿using Microservice.Library.Soap;
+using Microservice.Library.Soap.Application;
+using Microservice.Library.Soap.Filter;
+using Microservice.Library.Soap.Gen;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;

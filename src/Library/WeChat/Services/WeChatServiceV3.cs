@@ -1,6 +1,6 @@
-﻿using Library.WeChat.Application;
-using Library.WeChat.Extension;
-using Library.WeChat.Model;
+﻿using Microservice.Library.WeChat.Application;
+using Microservice.Library.WeChat.Extension;
+using Microservice.Library.WeChat.Model;
 using Newtonsoft.Json;
 using Senparc.CO2NET;
 using Senparc.CO2NET.RegisterServices;
@@ -15,7 +15,7 @@ using Senparc.Weixin.TenPay.V3;
 using System;
 using System.IO;
 
-namespace Library.WeChat.Services
+namespace Microservice.Library.WeChat.Services
 {
     /// <summary>
     /// 微信服务

@@ -1,6 +1,6 @@
 ﻿using FreeSql;
 using FreeSql.Internal.CommonProvider;
-using Library.FreeSql.Application;
+using Microservice.Library.FreeSql.Application;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace Library.FreeSql.Extention
+namespace Microservice.Library.FreeSql.Extention
 {
     /// <summary>
     /// 查询扩展功能

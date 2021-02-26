@@ -1,14 +1,12 @@
-﻿using Library.Extension;
-using Library.DataRepository;
-using Library.Models;
+﻿using Microservice.Library.DataRepository;
+using Microservice.Library.Extension;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
 
-namespace Library.DataAccess
+namespace Microservice.Library.DataAccess
 {
     public class ShardingRepository : IShardingRepository
     {

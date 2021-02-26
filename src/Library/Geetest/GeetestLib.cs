@@ -7,7 +7,7 @@ using System.Security.Cryptography;
 using System.Net;
 using System.IO;
 
-namespace Library.Geetest
+namespace Microservice.Library.Geetest
 {
     /// <summary>
     /// GeetestLib 极验验证C# SDK基本库
@@ -79,6 +79,8 @@ namespace Library.Geetest
         /// </summary>
         /// <param name="publicKey">极验验证公钥</param>
         /// <param name="privateKey">极验验证私钥</param>
+        /// <param name="timeout"></param>
+        /// <param name="proxy"></param>
         public GeetestLib(String publicKey, String privateKey, int timeout = 20000, string proxy = null)
         {
             this.privateKey = privateKey;

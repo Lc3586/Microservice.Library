@@ -1,7 +1,7 @@
 ﻿using IdentityModel.Client;
-using Library.Cache;
-using Library.Extension;
-using Library.ConsoleTool;
+using Microservice.Library.Cache;
+using Microservice.Library.Extension;
+using Microservice.Library.ConsoleTool;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -120,7 +120,7 @@ namespace TC.Handler
             var client = new HttpClient();
             var disco = await client.GetDiscoveryDocumentAsync(_IdentityConfig.URI);
 
-            disco.StatusCode.ConsoleWrite(disco.IsError ? ConsoleColor.Red : ConsoleColor.Green, null, false);
+            disco.HttpStatusCode.ConsoleWrite(disco.IsError ? ConsoleColor.Red : ConsoleColor.Green, null, false);
 
             if (disco.IsError)
             {
@@ -129,7 +129,7 @@ namespace TC.Handler
             }
 
             if (clientSecret.IsNullOrEmpty())
-                clientSecret = Library.ConsoleTool.Extension.ReadPassword("请输入客户端密钥：");
+                clientSecret = Microservice.Library.ConsoleTool.Extension.ReadPassword("请输入客户端密钥：");
 
             ("call " + disco.TokenEndpoint + " ... ").ConsoleWrite(ConsoleColor.White, "info");
             $" {{ ClientId = {clientId}, ClientSecret = {clientSecret.Replace('*', 0)}, Scope = {scope} }} ... ".ConsoleWrite(ConsoleColor.White, "params", false);
@@ -184,7 +184,7 @@ namespace TC.Handler
             var client = new HttpClient();
             var disco = await client.GetDiscoveryDocumentAsync(_IdentityConfig.URI);
 
-            disco.StatusCode.ConsoleWrite(disco.IsError ? ConsoleColor.Red : ConsoleColor.Green, null, false);
+            disco.HttpStatusCode.ConsoleWrite(disco.IsError ? ConsoleColor.Red : ConsoleColor.Green, null, false);
 
             if (disco.IsError)
             {
@@ -193,10 +193,10 @@ namespace TC.Handler
             }
 
             if (clientSecret.IsNullOrEmpty())
-                clientSecret = Library.ConsoleTool.Extension.ReadPassword("请输入客户端密钥：");
+                clientSecret = Microservice.Library.ConsoleTool.Extension.ReadPassword("请输入客户端密钥：");
 
             if (password.IsNullOrEmpty())
-                password = Library.ConsoleTool.Extension.ReadPassword("请输入用户密钥：");
+                password = Microservice.Library.ConsoleTool.Extension.ReadPassword("请输入用户密钥：");
 
             ("call " + disco.TokenEndpoint + " ... ").ConsoleWrite(ConsoleColor.White, "info");
             $" {{ ClientId = {clientId}, ClientSecret = {clientSecret.Replace('*', 0)}, Scope = {scope}, UserName = {userName}, Password = {password.Replace('*', 0)} }} ... ".ConsoleWrite(ConsoleColor.White, "params", false);
@@ -247,7 +247,7 @@ namespace TC.Handler
         /// <returns></returns>
         public static async Task AuthorizationCode(string clientId, string clientSecret, string scope, string userName, string password, bool? ssl)
         {
-
+            await Task.CompletedTask;
         }
 
         /// <summary>
@@ -262,7 +262,7 @@ namespace TC.Handler
         /// <returns></returns>
         public static async Task Implicit(string clientId, string clientSecret, string scope, string userName, string password, bool? ssl)
         {
-
+            await Task.CompletedTask;
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 
-namespace Library.DataRepository
+namespace Microservice.Library.DataRepository
 {
     public interface ITransaction : IDisposable
     {

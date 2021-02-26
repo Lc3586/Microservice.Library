@@ -1,6 +1,6 @@
 ﻿using Api.Controllers.Utils;
 using Business.Interface.Example;
-using Library.Extension;
+using Microservice.Library.Extension;
 using Microsoft.AspNetCore.Mvc;
 using Model.Example.DBDTO;
 using Model.Utils.Pagination;

@@ -6,11 +6,23 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>Library.DataRepository</RootNamespace>
-    <Version>1.0.1-alpha</Version>
+    <RootNamespace>Microservice.Library.DataRepository</RootNamespace>
+    <Version>0.0.0.1-alpha</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <AssemblyName>Microservice.Library.DataRepository</AssemblyName>
+    <Authors>LCTR</Authors>
+    <Product>Microservice.Library</Product>
+    <PackageProjectUrl>https://github.com/Lc3586/Microservice.Library</PackageProjectUrl>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>Microservice.Library.DataRepository.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>Microservice.Library.DataRepository.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

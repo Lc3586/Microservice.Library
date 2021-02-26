@@ -1,9 +1,9 @@
-﻿using Library.NLogger.Gen;
+﻿using Microservice.Library.NLogger.Gen;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
 
-namespace Library.NLogger
+namespace Microservice.Library.NLogger
 {
     /// <summary>
     /// MS日志

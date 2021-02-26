@@ -1,9 +1,9 @@
-﻿using Library.OpenApi.Extention;
+﻿using Microservice.Library.OpenApi.Extention;
 using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 
-namespace Library.OpenApi.JsonSerialization
+namespace Microservice.Library.OpenApi.JsonSerialization
 {
     /// <summary>
     /// 自定义解析器

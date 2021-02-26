@@ -1,15 +1,13 @@
-﻿using Library.Extension;
-using Library.DataRepository;
-using Library.Models;
+﻿using Microservice.Library.DataRepository;
+using Microservice.Library.Extension;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Common;
 using System.Linq;
-using DbColumn = Library.Models.DbColumn;
+using DbColumn = Microservice.Library.DataRepository.DbColumn;
 
-namespace Library.DataRepository_MySql
+namespace Microservice.Library.DataRepository_MySql
 {
     /// <summary>
     /// SqlServer数据库操作帮助类

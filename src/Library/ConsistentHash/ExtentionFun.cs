@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library.ConsistentHash
+namespace Microservice.Library.ConsistentHash
 {
     public static class ExtentionFun
     {

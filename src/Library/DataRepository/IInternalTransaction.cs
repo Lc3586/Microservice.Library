@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Text;
 
-namespace Library.DataRepository
+namespace Microservice.Library.DataRepository
 {
     public interface IInternalTransaction : ITransaction
     {

@@ -1,5 +1,5 @@
-﻿using Library.ConsoleTool;
-using Library.Extension;
+﻿using Microservice.Library.ConsoleTool;
+using Microservice.Library.Extension;
 using McMaster.Extensions.CommandLineUtils;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -49,7 +49,7 @@ namespace T4CAGC
             if (args.Length > 0 && args[0] == "manual")
                 goto manual;
 
-            var app = new CommandLineApplication(true);
+            var app = new CommandLineApplication();
 
             app.VersionOption("--version|-v", _CommandConfig.Version);
             app.HelpOption("-h|--help");

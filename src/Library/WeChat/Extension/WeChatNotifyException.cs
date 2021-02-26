@@ -1,7 +1,7 @@
-﻿using Library.WeChat.Model;
+﻿using Microservice.Library.WeChat.Model;
 using System;
 
-namespace Library.WeChat.Extension
+namespace Microservice.Library.WeChat.Extension
 {
     /// <summary>
     /// 微信服务财付通通知中间件异常

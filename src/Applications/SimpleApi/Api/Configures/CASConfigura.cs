@@ -2,8 +2,8 @@
 using GSS.Authentication.CAS;
 using GSS.Authentication.CAS.AspNetCore;
 using GSS.Authentication.CAS.Validation;
-using Library.Container;
-using Library.NLogger.Gen;
+using Microservice.Library.Container;
+using Microservice.Library.NLogger.Gen;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;

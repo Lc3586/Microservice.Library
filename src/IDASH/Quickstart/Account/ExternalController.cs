@@ -155,16 +155,28 @@ namespace IdentityServer4.Quickstart.UI
                 };
 
                 var id = new ClaimsIdentity(AccountOptions.WindowsAuthenticationSchemeName);
+#pragma warning disable CA1416 // 验证平台兼容性
                 id.AddClaim(new Claim(JwtClaimTypes.Subject, wp.Identity.Name));
+#pragma warning restore CA1416 // 验证平台兼容性
+#pragma warning disable CA1416 // 验证平台兼容性
                 id.AddClaim(new Claim(JwtClaimTypes.Name, wp.Identity.Name));
+#pragma warning restore CA1416 // 验证平台兼容性
 
                 // add the groups as claims -- be careful if the number of groups is too large
                 if (AccountOptions.IncludeWindowsGroups)
                 {
-                    var wi = wp.Identity as WindowsIdentity;
-                    var groups = wi.Groups.Translate(typeof(NTAccount));
-                    var roles = groups.Select(x => new Claim(JwtClaimTypes.Role, x.Value));
-                    id.AddClaims(roles);
+#pragma warning disable CA1416 // 验证平台兼容性
+                    using (var wi = wp.Identity as WindowsIdentity)
+#pragma warning restore CA1416 // 验证平台兼容性
+                    {
+#pragma warning disable CA1416 // 验证平台兼容性
+                        var groups = wi.Groups.Translate(typeof(NTAccount));
+#pragma warning restore CA1416 // 验证平台兼容性
+#pragma warning disable CA1416 // 验证平台兼容性
+                        var roles = groups.Select(x => new Claim(JwtClaimTypes.Role, x.Value));
+#pragma warning restore CA1416 // 验证平台兼容性
+                        id.AddClaims(roles);
+                    }
                 }
 
                 await HttpContext.SignInAsync(

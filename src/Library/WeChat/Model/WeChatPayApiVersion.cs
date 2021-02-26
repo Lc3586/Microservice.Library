@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library.WeChat.Model
+namespace Microservice.Library.WeChat.Model
 {
     /// <summary>
     /// 微信支付接口版本

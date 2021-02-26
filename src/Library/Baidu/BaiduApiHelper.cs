@@ -1,4 +1,4 @@
-﻿using Library.Extension;
+﻿using Microservice.Library.Extension;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -9,7 +9,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 
-namespace Library.Baidu
+namespace Microservice.Library.Baidu
 {
     /// <summary>
     /// 百度接口签名帮助类

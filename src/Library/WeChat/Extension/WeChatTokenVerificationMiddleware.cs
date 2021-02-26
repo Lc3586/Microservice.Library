@@ -1,4 +1,4 @@
-﻿using Library.WeChat.Application;
+﻿using Microservice.Library.WeChat.Application;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Library.WeChat.Extension
+namespace Microservice.Library.WeChat.Extension
 {
     /// <summary>
     /// 微信开发令牌验证中间件

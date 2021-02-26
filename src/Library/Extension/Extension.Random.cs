@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Library.Extension
+namespace Microservice.Library.Extension
 {
     /// <summary>
     /// 拓展类

@@ -1,7 +1,7 @@
 ﻿using Api.Filter.Soap;
-using Library.Container;
-using Library.Extension;
-using Library.Soap.Application;
+using Microservice.Library.Container;
+using Microservice.Library.Extension;
+using Microservice.Library.Soap.Application;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;

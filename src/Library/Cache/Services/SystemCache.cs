@@ -1,10 +1,10 @@
-﻿using Library.Cache.Extention;
-using Library.Cache.Model;
+﻿using Microservice.Library.Cache.Extention;
+using Microservice.Library.Cache.Model;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
-namespace Library.Cache.Services
+namespace Microservice.Library.Cache.Services
 {
     /// <summary>
     /// 系统缓存

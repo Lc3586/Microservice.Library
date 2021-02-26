@@ -6,9 +6,9 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>Library.Container</RootNamespace>
+    <RootNamespace>Microservice.Library.Container</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.6-alpha</Version>
+    <Version>0.0.0.1-alpha</Version>
     <Authors>LCTR</Authors>
     <Product>LCTR</Product>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -16,15 +16,21 @@
     <Description>IOC容器
 
 原作者：https://github.com/Coldairarrow</Description>
-    <PackageProjectUrl>https://github.com/Lc3586/Microservice/tree/master/src/Library/Container</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/Lc3586/Microservice.Library</PackageProjectUrl>
+    <PackageId>Microservice.Library.Container</PackageId>
+    <AssemblyName>Microservice.Library.Container</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>Library.Container.xml</DocumentationFile>
+    <DocumentationFile>Microservice.Library.Container.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <DocumentationFile>Library.Container.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>Microservice.Library.Container.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

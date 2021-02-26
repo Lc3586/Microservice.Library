@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 
-namespace Library.Container
+namespace Microservice.Library.Container
 {
     /// <summary>
     /// Ioc容器帮助类

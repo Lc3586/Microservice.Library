@@ -1,15 +1,13 @@
-﻿using Library.Container;
-using Library.Extension;
-using Library.FreeSql.Extention;
-using Library.FreeSql.Gen;
-using Library.Http;
-using Library.Models;
-using Library.Soap.Gen;
+﻿using Microservice.Library.Container;
+using Microservice.Library.Extension;
+using Microservice.Library.FreeSql.Extention;
+using Microservice.Library.FreeSql.Gen;
+using Microservice.Library.Http;
+using Model.Utils.Result;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Net;
-using System.Text;
 using UnitTest.Config;
 using UnitTest.Extension;
 

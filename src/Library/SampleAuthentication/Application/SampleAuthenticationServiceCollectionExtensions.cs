@@ -1,4 +1,4 @@
-﻿using Library.SampleAuthentication.Extension;
+﻿using Microservice.Library.SampleAuthentication.Extension;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;

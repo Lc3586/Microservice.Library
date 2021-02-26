@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace Library.TypeTool
+namespace Microservice.Library.TypeTool
 {
     /// <summary>
     /// Type帮助类

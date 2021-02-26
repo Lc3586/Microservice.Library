@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Library.Snowflake
+namespace Microservice.Library.Snowflake
 {
     class InvalidSystemClock : Exception
     {      

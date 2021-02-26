@@ -1,7 +1,7 @@
 ﻿using Entity.System;
 using FreeSql;
-using Library.Container;
-using Library.FreeSql.Gen;
+using Microservice.Library.Container;
+using Microservice.Library.FreeSql.Gen;
 using Model.Utils.Config;
 using NLog;
 using NLog.Targets;

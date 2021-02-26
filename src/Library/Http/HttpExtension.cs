@@ -1,4 +1,4 @@
-﻿using Library.Http.Model;
+﻿using Microservice.Library.Http.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 
-namespace Library.Http
+namespace Microservice.Library.Http
 {
     public static class HttpExtension
     {

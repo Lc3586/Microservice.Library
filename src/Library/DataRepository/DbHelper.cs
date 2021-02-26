@@ -1,4 +1,4 @@
-﻿using Library.Extension;
+﻿using Microservice.Library.Extension;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -6,7 +6,7 @@ using System.Data.Common;
 using System.Linq;
 using System.Threading;
 
-namespace Library.DataRepository
+namespace Microservice.Library.DataRepository
 {
     /// <summary>
     /// 数据库帮助类
@@ -20,6 +20,7 @@ namespace Library.DataRepository
         /// 构造函数
         /// </summary>
         /// <param name="connectionString">连接字符串</param>
+        /// <param name="providerFactory"></param>
         public DbHelper(string connectionString, DbProviderFactory providerFactory)
         {
             ConnectionString = connectionString;
@@ -244,8 +245,6 @@ namespace Library.DataRepository
         /// 执行sql语句并返回DataSet
         /// </summary>
         /// <param name="sql">Sql语句(确保语句是安全的)</param>
-        /// <param name="parameters">参数</param>
-        /// <param name="type">命令类型</param>
         /// <param name="tran">是否开启事务</param>
         /// <param name="transId">事务标识(为null时使用当前线程id)</param>
         /// <returns></returns>
@@ -258,7 +257,6 @@ namespace Library.DataRepository
         /// 执行sql语句并返回DataSet
         /// </summary>
         /// <param name="sql">Sql语句(确保语句是安全的)</param>
-        /// <param name="parameters">参数</param>
         /// <param name="type">命令类型</param>
         /// <param name="tran">是否开启事务</param>
         /// <param name="transId">事务标识(为null时使用当前线程id)</param>
@@ -273,7 +271,6 @@ namespace Library.DataRepository
         /// </summary>
         /// <param name="sql">Sql语句(确保语句是安全的)</param>
         /// <param name="parameters">参数</param>
-        /// <param name="type">命令类型</param>
         /// <param name="tran">是否开启事务</param>
         /// <param name="transId">事务标识(为null时使用当前线程id)</param>
         /// <returns></returns>

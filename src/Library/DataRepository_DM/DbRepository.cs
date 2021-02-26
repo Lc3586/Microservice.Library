@@ -1,22 +1,21 @@
 ﻿using Dm;
-using Library.DataRepository;
-using Library.Extension;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Data.Common;
-using System.Reflection;
-using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using Microservice.Library.DataRepository;
+using Microservice.Library.Extension;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
-using System.Linq.Expressions;
-using Library.Models;
-using System.Text.RegularExpressions;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data;
+using System.Data.Common;
+using System.Linq;
 using System.Linq.Dynamic.Core;
+using System.Linq.Expressions;
+using System.Reflection;
+using System.Text.RegularExpressions;
 
-namespace Library.DataRepository_DM
+namespace Microservice.Library.DataRepository_DM
 {
     public class DbRepository : IRepository
     {

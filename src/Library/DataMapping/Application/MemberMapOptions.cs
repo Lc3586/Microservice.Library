@@ -1,16 +1,12 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
 
-namespace Library.DataMapping.Application
+namespace Microservice.Library.DataMapping.Application
 {
     /// <summary>
-    /// 成员映射
+    /// 成员映射配置
     /// </summary>
-    /// <remarks>必须设置为静态属性或字段</remarks>
     public class MemberMapOptions<TSource, TDestination> where TSource : class where TDestination : class
     {
         /// <summary>

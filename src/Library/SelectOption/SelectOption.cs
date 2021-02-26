@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library.SelectOption
+namespace Microservice.Library.SelectOption
 {
     /// <summary>
     /// 选项集合

@@ -1,9 +1,9 @@
-﻿using Library.Extension;
-using Library.Models;
+﻿using Microservice.Library.DataRepository;
+using Microservice.Library.Extension;
 using System;
 using System.Collections.Generic;
 
-namespace Library.DataAccess
+namespace Microservice.Library.DataAccess
 {
     /// <summary>
     /// 分库分表配置生成器

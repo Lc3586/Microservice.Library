@@ -1,9 +1,9 @@
-﻿using Library.WeChat.Model;
+﻿using Microservice.Library.WeChat.Model;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library.WeChat.Extension
+namespace Microservice.Library.WeChat.Extension
 {
     /// <summary>
     /// 微信网页授权中间件异常

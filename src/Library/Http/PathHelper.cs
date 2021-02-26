@@ -1,11 +1,11 @@
-﻿using Library.Container;
-using Library.Extension;
+﻿using Microservice.Library.Container;
+using Microservice.Library.Extension;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Routing;
 using System.IO;
 
-namespace Library.Http
+namespace Microservice.Library.Http
 {
     public static class PathHelper
     {

@@ -1,6 +1,6 @@
 ﻿using Net5TC.Entity;
-using Library.DataMapping.Annotations;
-using Library.OpenApi.Annotations;
+using Microservice.Library.DataMapping.Annotations;
+using Microservice.Library.OpenApi.Annotations;
 using System.Collections.Generic;
 
 /// <summary>

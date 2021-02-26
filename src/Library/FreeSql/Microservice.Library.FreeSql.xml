@@ -1,0 +1,816 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microservice.Library.FreeSql</name>
+    </assembly>
+    <members>
+        <member name="T:Microservice.Library.FreeSql.Annotations.DbParameterAttribute">
+            <summary>
+            数据库参数特性
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.FreeSql.Annotations.DbParameterAttribute.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.FreeSql.Annotations.DbParameterAttribute.Order">
+            <summary>
+            排序值
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.FreeSql.Annotations.DbParameterAttribute.DataType">
+            <summary>
+            数据库类型
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.FreeSql.Annotations.DbParameterAttribute.DbType">
+            <summary>
+            数据库数据类型
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.FreeSql.Annotations.DbParameterAttribute.Direction">
+            <summary>
+            参数说明
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.FreeSql.Annotations.DbParameterAttribute.Size">
+            <summary>
+            长度
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.FreeSql.Annotations.DbParameterAttribute.Scale">
+            <summary>
+            小数位
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.FreeSql.Annotations.DbParameterAttribute.Precision">
+            <summary>
+            精度
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.FreeSql.Annotations.DbParameterAttribute.IsNullable">
+            <summary>
+            是否可为空
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Annotations.DbParameterExtention.GetDbParameters``1(``0)">
+            <summary>
+            获取模型数据库参数集合
+            <para>默认为类型名称</para>
+            </summary>
+            <typeparam name="TModel">模型类型</typeparam>
+            <param name="model">模型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Annotations.DbParameterExtention.GetDbParameter(Microservice.Library.FreeSql.Annotations.DbParameterAttribute,System.Reflection.PropertyInfo,System.Object)">
+            <summary>
+            获取属性数据库参数
+            </summary>
+            <param name="attribute">特性</param>
+            <param name="property">属性</param>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Annotations.DbParameterExtention.GetParametersFromModels(System.Object[])">
+            <summary>
+            从模型获取数据库参数
+            </summary>
+            <param name="models">模型</param>
+            <returns>(AllParameters : 全部参数,OutputParameters : 输出参数)</returns>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Annotations.DbParameterExtention.SetOutputParametersValueToModels(System.Object[],System.Collections.Generic.Dictionary{System.Reflection.PropertyInfo,System.Data.Common.DbParameter})">
+            <summary>
+            将数据库输出参数的值写入模型
+            </summary>
+            <param name="models"></param>
+            <param name="outputParameters"></param>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Annotations.DbParameterExtention.SetPropertyValue(System.Object,System.String,System.Object)">
+            <summary>
+            设置属性值
+            </summary>
+            <param name="obj"></param>
+            <param name="name">名称</param>
+            <param name="value">值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Annotations.DbParameterExtention.GetPropertyValue(System.Object,System.String)">
+            <summary>
+            获取属性值
+            </summary>
+            <param name="obj"></param>
+            <param name="name">名称</param>
+            <returns></returns>
+        </member>
+        <member name="T:Microservice.Library.FreeSql.Application.FreeSqlDbContextOptions">
+            <summary>
+            数据库上下文配置
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.FreeSql.Application.FreeSqlDbContextOptions.EntityAssembly">
+            <summary>
+            实体类命名空间
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.FreeSql.Application.FreeSqlDbContextOptions.EntityKey">
+            <summary>
+            实体标识
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.FreeSql.Application.FreeSqlDbContextOptions.EnableAddOrUpdateNavigateList">
+            <summary>
+            是否开启一对多，多对多级联保存功能
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.FreeSql.Application.FreeSqlDbContextOptions.OnEntityChange">
+            <summary>
+            实体变化事件
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.FreeSql.Application.FreeSqlDevOptions">
+            <summary>
+            开发配置
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.FreeSql.Application.FreeSqlDevOptions.SyncStructureOnStartup">
+            <summary>
+            启动时同步实体类型集合到数据库
+            </summary>
+            <remarks>默认false</remarks>
+        </member>
+        <member name="P:Microservice.Library.FreeSql.Application.FreeSqlDevOptions.AutoSyncStructure">
+            <summary>
+            自动同步实体结构到数据库，程序运行中检查实体表是否存在，然后创建或修改
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.FreeSql.Application.FreeSqlDevOptions.SyncStructureNameConvert">
+            <summary>
+            实体类名 -> 数据库表名，命名转换（类名、属性名都生效）
+            优先级小于 [Table(Name = "xxx")]、[Column(Name = "xxx")]
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.FreeSql.Application.FreeSqlDevOptions.ConfigEntityFromDbFirst">
+            <summary>
+            将数据库的主键、自增、索引设置导入，适用 DbFirst 模式，
+            无须在实体类型上设置 [Column(IsPrimary)] 或者 ConfigEntity。
+            此功能目前可用于 mysql/sqlserver/postgresql/oracle。
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.FreeSql.Application.FreeSqlException">
+            <summary>
+            FreeSql异常
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.FreeSql.Application.FreeSqlGeneratorOptions">
+            <summary>
+            生成配置
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.FreeSql.Application.FreeSqlGeneratorOptions.DatabaseType">
+            <summary>
+            数据库类型
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.FreeSql.Application.FreeSqlGeneratorOptions.ConnectionString">
+            <summary>
+            连接设置
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.FreeSql.Application.FreeSqlGeneratorOptions.HandleCommandLog">
+            <summary>
+            处理命令日志
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.FreeSql.Application.FreeSqlGeneratorOptions.MonitorCommandExecuting">
+            <summary>
+            监视数据库命令对象执行前
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.FreeSql.Application.FreeSqlGeneratorOptions.MonitorCommandExecuted">
+            <summary>
+            监视数据库命令对象执行后，可监视执行性能
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.FreeSql.Application.FreeSqlGeneratorOptions.LazyLoading">
+            <summary>
+            延时加载导航属性对象，导航属性需要声明 virtual
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.FreeSql.Application.FreeSqlGeneratorOptions.NoneCommandParameter">
+            <summary>
+            不使用命令参数化执行，针对 Insert/Update，
+            也可临时使用 IInsert/IUpdate.NoneParameter()
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.FreeSql.Application.FreeSqlGeneratorOptions.GenerateCommandParameterWithLambda">
+            <summary>
+            是否生成命令参数化执行，针对 lambda 表达式解析
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.FreeSql.Application.FreeSqlGenOptions">
+            <summary>
+            生成配置
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.FreeSql.Application.FreeSqlGenOptions.FreeSqlGeneratorOptions">
+            <summary>
+            生成配置
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.FreeSql.Application.FreeSqlGenOptions.FreeSqlDevOptions">
+            <summary>
+            开发配置
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.FreeSql.Application.FreeSqlGenOptions.FreeSqlDbContextOptions">
+            <summary>
+            数据库上下文配置
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.FreeSql.Application.FreeSqlGenOptions.SetupBuilder">
+            <summary>
+            设置Builder
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.FreeSql.Application.FreeSqlMultipleGenOptions`1">
+            <summary>
+            多库生成配置
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.FreeSql.Application.FreeSqlMultipleGenOptions`1.UseIdleBus">
+            <summary>
+            使用IdleBus管理库对象
+            <para>默认开启</para>
+            <para>必须每次使用时都Get</para>
+            <para>如果留着引用，对象空闲或超时会被回收，导致报错（对象已释放，无法访问）</para>
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.FreeSql.Application.FreeSqlMultipleGenOptions`1.Idle">
+            <summary>
+            指定IdleBus空闲时间
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.FreeSql.Application.FreeSqlMultipleGenOptions`1.Notice">
+            <summary>
+            通知事件处理方法
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.FreeSql.Application.FreeSqlMultipleGenOptions`1.KeyOptionsCollection">
+            <summary>
+            键:库标识
+            值:生成配置
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Application.FreeSqlMultipleGenOptions`1.SetUpIdle(System.TimeSpan)">
+            <summary>
+            指定IdleBus空闲时间
+            </summary>
+            <remarks>默认一分钟</remarks>
+            <param name="idle">空闲时间</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Application.FreeSqlMultipleGenOptions`1.DisableIdleBus">
+            <summary>
+            禁用IdleBus管理库对象
+            <para>默认启用</para>
+            <para>启用时必须每次使用时都Get</para>
+            <para>如果留着引用，库对象空闲或超时会被回收，导致报错（对象已释放，无法访问）</para>
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Application.FreeSqlMultipleGenOptions`1.SetUpNotice(System.Action{IdleBus{`0,IFreeSql}.NoticeEventArgs})">
+            <summary>
+            设置通知事件处理方法
+            </summary>
+            <param name="notice">通知事件处理方法</param>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Application.FreeSqlMultipleGenOptions`1.Add(`0,System.Action{Microservice.Library.FreeSql.Application.FreeSqlGenOptions})">
+            <summary>
+            添加库配置
+            </summary>
+            <param name="key">库标识</param>
+            <param name="setupAction">设置</param>
+            <returns></returns>
+        </member>
+        <member name="T:Microservice.Library.FreeSql.Repository.BaseDbContext">
+            <summary>
+            DbContext容器
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Repository.BaseDbContext.RunTransaction(System.Action)">
+            <summary>
+            运行事务
+            </summary>
+            <param name="handler"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Microservice.Library.FreeSql.Extention.AdoExtension">
+            <summary>
+            Ado拓展方法
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Extention.AdoExtension.ExecuteStoredProcedureWithModels(FreeSql.IAdo,System.String,System.Object[])">
+            <summary>
+            执行存储过程
+            </summary>
+            <param name="ado">数据库访问对象</param>
+            <param name="name">存储过程名称</param>
+            <param name="models">模型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Extention.AdoExtension.ExecuteStoredProcedureWithModelsAsync(FreeSql.IAdo,System.String,System.Object[])">
+            <summary>
+            执行存储过程
+            </summary>
+            <param name="ado">数据库访问对象</param>
+            <param name="name">存储过程名称</param>
+            <param name="models">模型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Extention.AdoExtension.ExecuteStoredProcedure(FreeSql.IAdo,System.String,System.Data.Common.DbParameter[])">
+            <summary>
+            执行存储过程
+            </summary>
+            <param name="ado">数据库访问对象</param>
+            <param name="name">存储过程名称</param>
+            <param name="parameters">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Extention.AdoExtension.ExecuteStoredProcedureAsync(FreeSql.IAdo,System.String,System.Data.Common.DbParameter[])">
+            <summary>
+            执行存储过程
+            </summary>
+            <param name="ado">数据库访问对象</param>
+            <param name="name">存储过程名称</param>
+            <param name="parameters">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Extention.AdoExtension.ExecuteNonQueryWithModels(FreeSql.IAdo,System.Data.CommandType,System.String,System.Object[])">
+            <summary>
+            执行语句
+            </summary>
+            <param name="ado">数据库访问对象</param>
+            <param name="cmdType">命令类型</param>
+            <param name="cmdText">命令</param>
+            <param name="models">模型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Extention.AdoExtension.ExecuteNonQueryWithModelsAsync(FreeSql.IAdo,System.Data.CommandType,System.String,System.Object[])">
+            <summary>
+            执行语句
+            </summary>
+            <param name="ado">数据库访问对象</param>
+            <param name="cmdType">命令类型</param>
+            <param name="cmdText">命令</param>
+            <param name="models">模型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Extention.AdoExtension.ExecuteNonQuery(FreeSql.IAdo,System.String,System.Data.Common.DbParameter[])">
+            <summary>
+            执行语句
+            </summary>
+            <param name="ado">数据库访问对象</param>
+            <param name="name">存储过程名称</param>
+            <param name="parameters">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Extention.AdoExtension.ExecuteNonQueryAsync(FreeSql.IAdo,System.Data.CommandType,System.String,System.Data.Common.DbParameter[])">
+            <summary>
+            执行语句
+            </summary>
+            <param name="ado">数据库访问对象</param>
+            <param name="cmdType">命令类型</param>
+            <param name="cmdText">命令</param>
+            <param name="parameters">参数</param>
+            <returns></returns>
+        </member>
+        <member name="T:Microservice.Library.FreeSql.Extention.CacheExtention">
+            <summary>
+            缓存
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.FreeSql.Extention.CacheExtention.TableInfoDic">
+            <summary>
+            模型对应的表字段信息
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Extention.EntityFactory.GetEntitys(System.String)">
+            <summary>
+            获取实体集合
+            </summary>
+            <param name="key">标识</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Extention.OrmExtension.RunTransaction(IFreeSql,System.Action,System.Nullable{System.Data.IsolationLevel})">
+            <summary>
+            运行事务
+            </summary>
+            <param name="orm"></param>
+            <param name="handler"></param>
+            <param name="isolationLevel">事务隔离级别</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Extention.OrmExtension.GetTableInfo``1(IFreeSql)">
+            <summary>
+            获取实体表信息
+            </summary>
+            <typeparam name="TSource"></typeparam>
+            <param name="orm"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Microservice.Library.FreeSql.Extention.RepositoryExtension">
+            <summary>
+            Repository扩展类
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Extention.RepositoryExtension.GetAndCheckNull``2(FreeSql.IBaseRepository{``0,``1},``1,System.String)">
+            <summary>
+            获取数据并验证非空
+            </summary>
+            <typeparam name="TSource"></typeparam>
+            <typeparam name="TKey"></typeparam>
+            <param name="repository"></param>
+            <param name="id"></param>
+            <param name="error"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Microservice.Library.FreeSql.Extention.SelectExtension">
+            <summary>
+            查询扩展功能
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Extention.SelectExtension.Select``2(System.Func{``0,``1})">
+            <summary>
+            指定返回数据
+            </summary>
+            <typeparam name="TEntity">实体类型</typeparam>
+            <typeparam name="TReturn">返回类型</typeparam>
+            <param name="func">处理并返回数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Extention.SelectExtension.SelectDynamic``1(System.Func{``0,``0})">
+            <summary>
+            指定返回数据
+            </summary>
+            <typeparam name="TReturn">返回类型</typeparam>
+            <param name="func">处理并返回数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Extention.SelectExtension.SelectExpandoObject``1(System.Func{``0,``0})">
+            <summary>
+            指定返回数据
+            </summary>
+            <typeparam name="TReturn">返回类型</typeparam>
+            <param name="func">处理并返回数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Extention.SelectExtension.SelectDynamic``1(System.Func{System.Object,``0,``0})">
+            <summary>
+            指定返回数据
+            </summary>
+            <typeparam name="TReturn">返回类型</typeparam>
+            <param name="func">处理并返回数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Extention.SelectExtension.SelectExpandoObject``1(System.Func{System.Dynamic.ExpandoObject,``0,``0})">
+            <summary>
+            指定返回数据
+            </summary>
+            <typeparam name="TReturn">返回类型</typeparam>
+            <param name="func">处理并返回数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Extention.SelectExtension.SelectDynamic``1(System.Action{System.Object,``0})">
+            <summary>
+            指定返回数据
+            </summary>
+            <typeparam name="TReturn">返回类型</typeparam>
+            <param name="action">处理数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Extention.SelectExtension.SelectExpandoObject``1(System.Action{System.Dynamic.ExpandoObject,``0})">
+            <summary>
+            指定返回数据
+            </summary>
+            <typeparam name="TReturn">返回类型</typeparam>
+            <param name="action">处理数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Extention.SelectExtension.SelectDynamic``2(System.Action{System.Object,``0,``1})">
+            <summary>
+            指定返回数据
+            </summary>
+            <typeparam name="TReturn">返回类型</typeparam>
+            <typeparam name="T0">联表类型</typeparam>
+            <param name="action">处理数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Extention.SelectExtension.SelectDynamic``3(System.Action{System.Object,``0,``1,``2})">
+            <summary>
+            指定返回数据
+            </summary>
+            <typeparam name="TReturn">返回类型</typeparam>
+            <typeparam name="T0">联表类型</typeparam>
+            <typeparam name="T1">联表类型</typeparam>
+            <param name="action">处理数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Extention.SelectExtension.ExpandoObjectToEntity(System.Dynamic.ExpandoObject,System.Type)">
+            <summary>
+            将动态类型转为指定类型实体
+            </summary>
+            <param name="data"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Extention.SelectExtension.DynamicToEntity(System.Object,System.Type)">
+            <summary>
+            将动态类型转为指定类型实体
+            </summary>
+            <param name="data"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Extention.SelectExtension.DynamicToEntity(System.Collections.Generic.IDictionary{System.String,System.Object},System.Type)">
+            <summary>
+            将动态类型转为指定类型实体
+            </summary>
+            <param name="dic"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Extention.SelectExtension.ToList``2(FreeSql.ISelect{``0},System.Collections.Generic.IEnumerable{System.String},System.String)">
+            <summary>
+            返回数据
+            </summary>
+            <remarks>
+            <para>TSource别名 a</para>
+            </remarks>
+            <typeparam name="TSource">实体类型</typeparam>
+            <typeparam name="TDto">业务模型类型</typeparam>
+            <param name="source"></param>
+            <param name="fields">指定字段</param>
+            <param name="alias">指定别名</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Extention.SelectExtension.ToDtoList``2(FreeSql.ISelect{``0},System.Collections.Generic.IEnumerable{System.String},System.String)">
+            <summary>
+            返回数据
+            </summary>
+            <remarks>
+            <para>TSource别名 a</para>
+            </remarks>
+            <typeparam name="TSource">实体类型</typeparam>
+            <typeparam name="TDto">业务模型类型</typeparam>
+            <param name="source"></param>
+            <param name="fields">指定字段</param>
+            <param name="alias">指定别名</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Extention.SelectExtension.ToList``3(FreeSql.ISelect{``0},System.Collections.Generic.IEnumerable{System.String},System.String)">
+            <summary>
+            返回数据
+            </summary>
+            <remarks>
+            <para>TSource别名 a</para>
+            </remarks>
+            <typeparam name="TSource">实体类型</typeparam>
+            <typeparam name="TReturn">返回类型</typeparam>
+            <typeparam name="TDto">业务模型类型</typeparam>
+            <param name="source"></param>
+            <param name="fields">指定字段</param>
+            <param name="alias">指定别名</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Extention.SelectExtension.ToDynamic``2(FreeSql.ISelect{``0},IFreeSql,System.Collections.Generic.IEnumerable{System.String},System.String)">
+            <summary>
+            返回动态类型的数据
+            </summary>
+            <remarks>
+            <para>不支持参数化!</para>
+            <para>TSource别名 a</para>
+            </remarks>
+            <typeparam name="TSource">实体类型</typeparam>
+            <typeparam name="TDto">业务模型类型</typeparam>
+            <param name="source"></param>
+            <param name="orm"></param>
+            <param name="fields">指定字段</param>
+            <param name="alias">指定别名</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Extention.SelectExtension.ToDynamic``3(FreeSql.ISelect{``0},IFreeSql,System.Collections.Generic.IEnumerable{System.String},System.String)">
+            <summary>
+            返回动态类型的数据
+            </summary>
+            <remarks>
+            <para>不支持参数化!</para>
+            </remarks>
+            <typeparam name="TSource">实体类型</typeparam>
+            <typeparam name="TJoin0"></typeparam>
+            <typeparam name="TDto">业务模型类型</typeparam>
+            <param name="source"></param>
+            <param name="orm"></param>
+            <param name="fields">指定字段</param>
+            <param name="alias">指定别名</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Extention.SelectExtension.GetAndCheckNull``1(FreeSql.ISelect{``0},System.String)">
+            <summary>
+            获取并检查是否为null
+            </summary>
+            <typeparam name="TSource">实体类型</typeparam>
+            <param name="select"></param>
+            <param name="error">异常信息</param>
+            <returns></returns>
+        </member>
+        <member name="T:Microservice.Library.FreeSql.Gen.FreeSqlGenerator">
+            <summary>
+            单库生成器
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.FreeSql.Gen.FreeSqlMultipleGenerator`1">
+            <summary>
+            多库生成器
+            </summary>
+            <typeparam name="TKey">库标识类型</typeparam>
+        </member>
+        <member name="F:Microservice.Library.FreeSql.Gen.FreeSqlMultipleGenerator`1.getTimes">
+            <summary>
+            实例获取次数
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Gen.FreeSqlMultipleGenerator`1.GetTimes(`0)">
+            <summary>
+            实例获取次数
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Gen.FreeSqlMultipleGenerator`1.Notice(System.Object,IdleBus{`0,IFreeSql}.NoticeEventArgs)">
+            <summary>
+            接收通知
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Gen.FreeSqlMultipleGenerator`1.Register(`0)">
+            <summary>
+            注册库
+            </summary>
+            <param name="key">库标识</param>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Gen.FreeSqlMultipleGenerator`1.Check(`0)">
+            <summary>
+            检查库
+            </summary>
+            <param name="key">库标识</param>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Gen.FreeSqlMultipleGenerator`1.Get(`0)">
+            <summary>
+            获取库
+            </summary>
+            <param name="key">库标识</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Gen.FreeSqlMultipleGenerator`1.SyncStructure(`0,IFreeSql)">
+            <summary>
+            同步库结构
+            </summary>
+            <param name="key">库标识</param>
+            <param name="orm">orm</param>
+        </member>
+        <member name="T:Microservice.Library.FreeSql.Gen.IFreeSqlMultipleProvider`1">
+            <summary>
+            多库构造器
+            </summary>
+            <typeparam name="TKey">库标识类型</typeparam>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Gen.IFreeSqlMultipleProvider`1.Exists(`0)">
+            <summary>
+            库是否存在
+            </summary>
+            <param name="key">库标识</param>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Gen.IFreeSqlMultipleProvider`1.ExistsAndRegistered(`0)">
+            <summary>
+            库是否存在并已注册
+            </summary>
+            <param name="key">库标识</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Gen.IFreeSqlMultipleProvider`1.GetFreeSql(`0)">
+            <summary>
+            获取ORM
+            </summary>
+            <param name="key">库标识</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Gen.IFreeSqlMultipleProvider`1.GetAllFreeSql">
+            <summary>
+            获取所有库的ORM
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Gen.IFreeSqlMultipleProvider`1.GetAllFreeSqlWithKey">
+            <summary>
+            获取所有库的ORM
+            包括库标识
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Gen.IFreeSqlMultipleProvider`1.SyncStructure(`0)">
+            <summary>
+            同步结构
+            </summary>
+            <param name="key">库标识</param>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Gen.IFreeSqlMultipleProvider`1.SyncAllStructure">
+            <summary>
+            同步所有库的结构
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Gen.IFreeSqlMultipleProvider`1.GetDbContext(`0)">
+            <summary>
+            获取数据库上下文
+            </summary>
+            <param name="key">库标识</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Gen.IFreeSqlMultipleProvider`1.GetAllDbContext">
+            <summary>
+            获取所有库的数据库上下文
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Gen.IFreeSqlMultipleProvider`1.GetAllDbContextWithKey">
+            <summary>
+            获取所有库的数据库上下文
+            包括库标识
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Microservice.Library.FreeSql.Gen.IFreeSqlProvider">
+            <summary>
+            单库构造器
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Gen.IFreeSqlProvider.GetFreeSqlBuilder">
+            <summary>
+            获取ORM构建器
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Gen.IFreeSqlProvider.GetFreeSql">
+            <summary>
+            获取ORM
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Gen.IFreeSqlProvider.SyncStructure">
+            <summary>
+            同步结构
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Gen.IFreeSqlProvider.GetDbContext">
+            <summary>
+            获取数据库上下文
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.FreeSqlServiceCollectionExtensions">
+            <summary>
+            FreeSql依赖注入扩展类
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.FreeSqlServiceCollectionExtensions.AddFreeSql(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Microservice.Library.FreeSql.Application.FreeSqlGenOptions})">
+            <summary>
+            注册单库
+            </summary>
+            <param name="services"></param>
+            <param name="setupAction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.FreeSqlServiceCollectionExtensions.AddFreeSql``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Microservice.Library.FreeSql.Application.FreeSqlMultipleGenOptions{``0}})">
+            <summary>
+            注册多库
+            </summary>
+            <typeparam name="TKey">库标识类型</typeparam>
+            <param name="services"></param>
+            <param name="setupAction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.FreeSqlServiceCollectionExtensions.ConfigureFreeSql(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Microservice.Library.FreeSql.Application.FreeSqlGenOptions})">
+            <summary>
+            配置单库
+            </summary>
+            <param name="services"></param>
+            <param name="setupAction"></param>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.FreeSqlServiceCollectionExtensions.ConfigureFreeSql``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Microservice.Library.FreeSql.Application.FreeSqlMultipleGenOptions{``0}})">
+            <summary>
+            配置多库
+            </summary>
+            <typeparam name="TKey">库标识类型</typeparam>
+            <param name="services"></param>
+            <param name="setupAction"></param>
+        </member>
+    </members>
+</doc>

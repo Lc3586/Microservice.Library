@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microservice.Library.TaskQeury</name>
+    </assembly>
+    <members>
+        <member name="T:Microservice.Library.TaskQeury.TaskQeury">
+            <summary>
+            任务队列
+            LCTR 2019-08-27
+            </summary>
+        </member>
+    </members>
+</doc>

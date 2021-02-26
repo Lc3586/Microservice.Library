@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System;
 
-namespace Library.SampleAuthentication.Application
+namespace Microservice.Library.SampleAuthentication.Application
 {
     /// <summary>
     /// 建议身份验证服务配置选项

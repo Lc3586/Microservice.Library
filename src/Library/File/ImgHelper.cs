@@ -1,11 +1,11 @@
-﻿using Library.Extension;
+﻿using Microservice.Library.Extension;
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Text.RegularExpressions;
 
-namespace Library.File
+namespace Microservice.Library.File
 {
     /// <summary>
     /// 图片操作帮助类

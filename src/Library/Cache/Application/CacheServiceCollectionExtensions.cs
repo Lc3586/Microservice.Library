@@ -1,5 +1,5 @@
-﻿using Library.Cache.Application;
-using Library.Cache.Gen;
+﻿using Microservice.Library.Cache.Application;
+using Microservice.Library.Cache.Gen;
 using Microsoft.Extensions.Options;
 using System;
 

@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Logging;
 using System;
 
-namespace Library.DataRepository_PostgreSql
+namespace Microservice.Library.DataRepository_PostgreSql
 {
     public class EFCoreSqlLogeerProvider : ILoggerProvider
     {

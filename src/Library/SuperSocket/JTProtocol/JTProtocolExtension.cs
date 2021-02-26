@@ -1,5 +1,5 @@
-﻿using Library.Extension;
-using Library.SuperSocket.Extension;
+﻿using Microservice.Library.Extension;
+using Microservice.Library.SuperSocket.Extension;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace Library.SuperSocket.JTProtocol
+namespace Microservice.Library.SuperSocket.JTProtocol
 {
     public static class JTProtocolExtension
     {
@@ -22,6 +22,7 @@ namespace Library.SuperSocket.JTProtocol
         /// <summary>
         /// 转义
         /// </summary>
+        /// <param name="jT"></param>
         /// <param name="buffer">流数据</param>
         /// <returns></returns>
         public static byte[] Escape(this JTProtocol jT, byte[] buffer)
@@ -50,6 +51,7 @@ namespace Library.SuperSocket.JTProtocol
         /// <summary>
         /// 转义还原
         /// </summary>
+        /// <param name="jT"></param>
         /// <param name="buffer">流数据</param>
         /// <returns></returns>
         public static byte[] UnEscape(this JTProtocol jT, byte[] buffer)
@@ -251,7 +253,9 @@ namespace Library.SuperSocket.JTProtocol
         /// <summary>
         /// CRC校验
         /// </summary>
-        /// <param name="buffer"></param>
+        /// <param name="jT"></param>
+        /// <param name="packageInfo"></param>
+        /// <param name="crc"></param>
         /// <returns></returns>
         public static bool CheckCRCCode(this JTProtocol jT, MessagePackageInfo packageInfo, CrcCcitt crc = null)
         {
@@ -274,7 +278,9 @@ namespace Library.SuperSocket.JTProtocol
         /// <summary>
         /// 设置CRC校验码
         /// </summary>
-        /// <param name="buffer"></param>
+        /// <param name="jT"></param>
+        /// <param name="packageInfo"></param>
+        /// <param name="crc"></param>
         /// <returns></returns>
         public static void SetCRCCode(this JTProtocol jT, MessagePackageInfo packageInfo, CrcCcitt crc = null)
         {

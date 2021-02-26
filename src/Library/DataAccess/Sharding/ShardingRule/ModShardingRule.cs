@@ -1,7 +1,7 @@
-﻿using Library.ConsistentHash;
-using Library.Extension;
+﻿using Microservice.Library.ConsistentHash;
+using Microservice.Library.Extension;
 
-namespace Library.DataAccess
+namespace Microservice.Library.DataAccess
 {
     /// <summary>
     /// 取模分片规则
@@ -9,7 +9,6 @@ namespace Library.DataAccess
     /// 举例:Base_User_0,Base_User为抽象表名,_0为后缀
     /// 警告:使用简单,但是扩容后需要大量数据迁移,不推荐使用
     /// </summary>
-    /// <seealso cref="DataRepository.IShardingRule" />
     public class ModShardingRule : IShardingRule
     {
         public ModShardingRule(string absTableName, string keyField, int mod)

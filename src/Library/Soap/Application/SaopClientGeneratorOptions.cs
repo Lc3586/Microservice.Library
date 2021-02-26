@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library.Soap.Application
+namespace Microservice.Library.Soap.Application
 {
     /// <summary>
     /// 生成选项

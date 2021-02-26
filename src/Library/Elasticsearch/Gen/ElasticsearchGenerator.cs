@@ -1,10 +1,10 @@
-﻿using Library.Elasticsearch.Annotations;
-using Library.Elasticsearch.Application;
-using Library.Extension;
+﻿using Microservice.Library.Elasticsearch.Annotations;
+using Microservice.Library.Elasticsearch.Application;
+using Microservice.Library.Extension;
 using Nest;
 using System;
 
-namespace Library.Elasticsearch.Gen
+namespace Microservice.Library.Elasticsearch.Gen
 {
     public class ElasticsearchGenerator : IElasticsearchProvider
     {

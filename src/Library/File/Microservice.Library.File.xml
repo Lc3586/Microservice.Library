@@ -1,0 +1,213 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microservice.Library.File</name>
+    </assembly>
+    <members>
+        <member name="T:Microservice.Library.File.FileHelper">
+            <summary>
+            文件操作帮助类
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.File.FileHelper.Exists(System.String)">
+            <summary>
+            判断文件是否存在
+            </summary>
+            <param name="path">文件目录</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.File.FileHelper.GetCurrentDir">
+            <summary>
+            获取当前程序根目录
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.File.FileHelper.WriteTxt(System.String,System.String)">
+            <summary>
+            输出字符串到文件
+            注：使用系统默认编码;若文件不存在则创建新的,若存在则覆盖
+            </summary>
+            <param name="content">内容</param>
+            <param name="path">文件路径</param>
+        </member>
+        <member name="M:Microservice.Library.File.FileHelper.WriteTxt(System.String,System.String,System.Text.Encoding)">
+            <summary>
+            输出字符串到文件
+            注：使用自定义编码;若文件不存在则创建新的,若存在则覆盖
+            </summary>
+            <param name="content">内容</param>
+            <param name="path">文件路径</param>
+            <param name="encoding">编码</param>
+        </member>
+        <member name="M:Microservice.Library.File.FileHelper.WriteTxt(System.String,System.String,System.IO.FileMode)">
+            <summary>
+            输出字符串到文件
+            注：使用自定义模式,使用默认编码
+            </summary>
+            <param name="content">内容</param>
+            <param name="path">文件路径</param>
+            <param name="fileModel">输出方法</param>
+        </member>
+        <member name="M:Microservice.Library.File.FileHelper.WriteTxt(System.String,System.String,System.Text.Encoding,System.IO.FileMode)">
+            <summary>
+            输出字符串到文件
+            注：使用自定义编码以及写入模式
+            </summary>
+            <param name="content">内容</param>
+            <param name="path">文件路径</param>
+            <param name="encoding">字符编码</param>
+            <param name="fileModel">写入模式</param>
+        </member>
+        <member name="M:Microservice.Library.File.FileHelper.WriteTxt(System.String,System.String,System.Text.Encoding,System.Nullable{System.IO.FileMode})">
+            <summary>
+            输出字符串到文件
+            注：使用自定义编码以及写入模式
+            </summary>
+            <param name="content">内容</param>
+            <param name="path">文件路径</param>
+            <param name="encoding">字符编码</param>
+            <param name="fileModel">写入模式</param>
+        </member>
+        <member name="M:Microservice.Library.File.FileHelper.CheckDirectory(System.String)">
+            <summary>
+            检验目录，若目录已存在则不变
+            </summary>
+            <param name="path">目录位置</param>
+        </member>
+        <member name="M:Microservice.Library.File.FileHelper.WriteLog(System.String,System.String)">
+            <summary>
+            输出日志到指定文件
+            </summary>
+            <param name="msg">日志消息</param>
+            <param name="path">日志文件位置（默认为 log.txt）</param>
+        </member>
+        <member name="M:Microservice.Library.File.FileHelper.GetPathDirectory(System.String)">
+            <summary>
+            获取文件位置中的目录位置（不包括文件名）
+            </summary>
+            <param name="path">文件位置</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.File.FileHelper.GetFileBytes(System.String)">
+            <summary>
+            获取文件字节数
+            </summary>
+            <param name="path">绝对路径</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.File.FileHelper.GetFileSize(System.String,System.Int32,System.Int32)">
+            <summary>
+            获取文件大小
+            </summary>
+            <param name="path">绝对路径</param>
+            <param name="unit">单位</param>
+            <param name="precision">精度</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.File.FileHelper.GetFileSize(System.Int64,System.Int32,System.Int32)">
+            <summary>
+            获取文件大小
+            </summary>
+            <param name="length">字节数</param>
+            <param name="unit">单位</param>
+            <param name="precision">精度</param>
+            <returns></returns>
+        </member>
+        <member name="T:Microservice.Library.File.ImgHelper">
+            <summary>
+            图片操作帮助类
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.File.ImgHelper.GetImgFromFile(System.String)">
+            <summary>
+            从文件获取图片
+            </summary>
+            <param name="fileName">文件名</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.File.ImgHelper.GetImgFromBase64(System.String)">
+            <summary>
+            从base64字符串读入图片
+            </summary>
+            <param name="base64">base64字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.File.ImgHelper.GetImgFromBase64Url(System.String)">
+            <summary>
+            从URL格式的Base64图片获取真正的图片
+            即去掉data:image/jpg;base64,这样的格式
+            </summary>
+            <param name="base64Url">图片Base64的URL形式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.File.ImgHelper.CompressImg(System.Drawing.Image,System.Int32)">
+            <summary>
+            压缩图片
+            注:等比压缩
+            </summary>
+            <param name="img">原图片</param>
+            <param name="width">压缩后宽度</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.File.ImgHelper.CompressImg(System.Drawing.Image,System.Int32,System.Int32)">
+            <summary>
+            压缩图片
+            </summary>
+            <param name="img">原图片</param>
+            <param name="width">压缩后宽度</param>
+            <param name="height">压缩后高度</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.File.ImgHelper.ToBase64String(System.Drawing.Image)">
+            <summary>
+            将图片转为base64字符串
+            默认使用jpg格式
+            </summary>
+            <param name="img">图片对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.File.ImgHelper.ToBase64String(System.Drawing.Image,System.Drawing.Imaging.ImageFormat)">
+            <summary>
+            将图片转为base64字符串
+            使用指定格式
+            </summary>
+            <param name="img">图片对象</param>
+            <param name="imageFormat">指定格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.File.ImgHelper.ToBase64StringUrl(System.Drawing.Image)">
+            <summary>
+            将图片转为base64字符串
+            默认使用jpg格式,并添加data:image/jpg;base64,前缀
+            </summary>
+            <param name="img">图片对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.File.ImgHelper.ToBase64StringUrl(System.Drawing.Image,System.Drawing.Imaging.ImageFormat)">
+            <summary>
+            将图片转为base64字符串
+            使用指定格式,并添加data:image/jpg;base64,前缀
+            </summary>
+            <param name="img">图片对象</param>
+            <param name="imageFormat">指定格式</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.File.ImgHelper.GetBase64String(System.String)">
+            <summary>
+            获取真正的图片base64数据
+            即去掉data:image/jpg;base64,这样的格式
+            </summary>
+            <param name="base64UrlStr">带前缀的base64图片字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.File.ImgHelper.GetImgUrl(System.String,System.String,System.String)">
+            <summary>
+            将图片的URL或者Base64字符串转为图片并上传到服务器，返回上传后的完整图片URL
+            </summary>
+            <param name="imgBase64OrUrl">URL地址或者Base64字符串</param>
+            <param name="dir">存储目录</param>
+            <param name="key">标识（为空时默认使用GUID）</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

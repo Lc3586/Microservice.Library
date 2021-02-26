@@ -30,13 +30,13 @@
         /// <summary>
         /// 接收财付通通知的URL
         /// </summary>
-        /// <remarks>使用<see cref="Library.WeChat.Extension.WeChatNotifyV3Middleware"/>中间件时可不配置此属性</remarks>
+        /// <remarks>使用<see cref="Microservice.Library.WeChat.Extension.WeChatNotifyV3Middleware"/>中间件时可不配置此属性</remarks>
         public string PayNotifyUrl { get; set; }
 
         /// <summary>
         /// 异步接收微信支付退款结果通知的回调地址，通知URL必须为外网可访问的url，不允许带参数。
         /// </summary>
-        /// <remarks>使用<see cref="Library.WeChat.Extension.WeChatNotifyV3Middleware"/>中间件时可不配置此属性</remarks>
+        /// <remarks>使用<see cref="Microservice.Library.WeChat.Extension.WeChatNotifyV3Middleware"/>中间件时可不配置此属性</remarks>
         public string RefundNotifyUrl { get; set; }
 
         /// <summary>
@@ -67,13 +67,13 @@
         /// <summary>
         /// 开发令牌
         /// </summary>
-        /// <remarks>不使用<see cref="Library.WeChat.Extension.WeChatTokenVerificationMiddleware"/>中间件时可不配置此属性</remarks>
+        /// <remarks>不使用<see cref="Microservice.Library.WeChat.Extension.WeChatTokenVerificationMiddleware"/>中间件时可不配置此属性</remarks>
         public string Token { get; set; }
 
         /// <summary>
         /// 开发令牌验证接口
         /// </summary>
-        /// <remarks>不使用<see cref="Library.WeChat.Extension.WeChatTokenVerificationMiddleware"/>中间件时可不配置此属性</remarks>
+        /// <remarks>不使用<see cref="Microservice.Library.WeChat.Extension.WeChatTokenVerificationMiddleware"/>中间件时可不配置此属性</remarks>
         public string TokenVerificationUrl { get; set; }
 
         #endregion
@@ -100,7 +100,7 @@
         /// </summary>
         /// <remarks>
         /// <para>scope为snsapi_base</para>
-        /// <para>使用<see cref="Library.WeChat.Extension.WeChatOAuthV2Middleware"/>中间件时，中间件监听的接口。</para>
+        /// <para>使用<see cref="Microservice.Library.WeChat.Extension.WeChatOAuthV2Middleware"/>中间件时，中间件监听的接口。</para>
         /// </remarks>
         public string OAuthBaseUrl { get; set; }
 
@@ -109,7 +109,7 @@
         /// </summary>
         /// <remarks>
         /// <para>scope为snsapi_userinfo</para>
-        /// <para>使用<see cref="Library.WeChat.Extension.WeChatOAuthV2Middleware"/>中间件时，中间件监听的接口。</para>
+        /// <para>使用<see cref="Microservice.Library.WeChat.Extension.WeChatOAuthV2Middleware"/>中间件时，中间件监听的接口。</para>
         /// </remarks>
         public string OAuthUserInfoUrl { get; set; }
 

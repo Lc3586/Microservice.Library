@@ -1,7 +1,7 @@
-﻿using Library.DataRepository;
+﻿using Microservice.Library.DataRepository;
 using System.Linq;
 
-namespace Library.DataAccess
+namespace Microservice.Library.DataAccess
 {
     /// <summary>
     /// 拓展

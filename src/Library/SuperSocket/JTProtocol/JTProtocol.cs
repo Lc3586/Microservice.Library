@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Library.Configuration;
-using Library.Extension;
-using Library.SuperSocket.Extension;
+using Microservice.Library.Configuration;
+using Microservice.Library.Extension;
+using Microservice.Library.SuperSocket.Extension;
 
-namespace Library.SuperSocket.JTProtocol
+namespace Microservice.Library.SuperSocket.JTProtocol
 {
     /// <summary>
     /// JT协议

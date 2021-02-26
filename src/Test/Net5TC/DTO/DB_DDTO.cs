@@ -1,6 +1,6 @@
 ﻿using Net5TC.Entity;
-using Library.DataMapping.Annotations;
-using Library.OpenApi.Annotations;
+using Microservice.Library.DataMapping.Annotations;
+using Microservice.Library.OpenApi.Annotations;
 
 /// <summary>
 /// 示例实体类业务模型（数据库）

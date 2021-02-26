@@ -6,9 +6,24 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>Library.DataRepository_MySql</RootNamespace>
-    <Version>1.0.0-alpha</Version>
+    <RootNamespace>Microservice.Library.DataRepository_MySql</RootNamespace>
+    <Version>0.0.0.1-alpha</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageProjectUrl>https://github.com/Lc3586/Microservice.Library</PackageProjectUrl>
+    <PackageId>Microservice.Library.DataRepository_MySql</PackageId>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Authors>LCTR</Authors>
+    <Product>Microservice.Library</Product>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <AssemblyName>Microservice.Library.DataRepository_MySql</AssemblyName>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>Microservice.Library.DataRepository_MySql.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>Microservice.Library.DataRepository_MySql.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

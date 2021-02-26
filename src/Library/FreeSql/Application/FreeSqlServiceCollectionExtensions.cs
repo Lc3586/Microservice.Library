@@ -1,5 +1,5 @@
-﻿using Library.FreeSql.Application;
-using Library.FreeSql.Gen;
+﻿using Microservice.Library.FreeSql.Application;
+using Microservice.Library.FreeSql.Gen;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;

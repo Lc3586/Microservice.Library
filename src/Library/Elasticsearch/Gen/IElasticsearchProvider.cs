@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library.Elasticsearch.Gen
+namespace Microservice.Library.Elasticsearch.Gen
 {
     public interface IElasticsearchProvider
     {

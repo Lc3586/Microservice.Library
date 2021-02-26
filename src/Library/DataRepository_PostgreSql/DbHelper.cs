@@ -1,15 +1,13 @@
-﻿using Library.Extension;
-using Library.DataRepository;
-using Library.Models;
+﻿using Microservice.Library.DataRepository;
+using Microservice.Library.Extension;
 using Npgsql;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Common;
 using System.Linq;
-using DbColumn = Library.Models.DbColumn;
+using DbColumn = Microservice.Library.DataRepository.DbColumn;
 
-namespace Library.DataRepository_PostgreSql
+namespace Microservice.Library.DataRepository_PostgreSql
 {
     /// <summary>
     /// SqlServer数据库操作帮助类
@@ -38,7 +36,9 @@ namespace Library.DataRepository_PostgreSql
         #region 外部接口
 
         [Obsolete("还未完工的方法", true)]
+#pragma warning disable CS0809 // 过时成员重写未过时成员
         public override List<DbTableInfo> GetDbTableInfo(string schemaName = null, List<string> table = null, List<string> tableIgnore = null, bool getColumn = false)
+#pragma warning restore CS0809 // 过时成员重写未过时成员
         {
             if (schemaName.IsNullOrEmpty())
                 return null;
@@ -86,7 +86,9 @@ namespace Library.DataRepository_PostgreSql
         }
 
         [Obsolete("还未完工的方法", true)]
+#pragma warning disable CS0809 // 过时成员重写未过时成员
         public override List<DbColumn> GetDbColumnInfo(string schemaName, string tableName)
+#pragma warning restore CS0809 // 过时成员重写未过时成员
         {
             string sql = string.Format(@"SELECT 
 	                                        a.attname as ""Name"",

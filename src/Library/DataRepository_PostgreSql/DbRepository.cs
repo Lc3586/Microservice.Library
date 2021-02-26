@@ -1,22 +1,21 @@
-﻿using Library.DataRepository;
-using Library.Extension;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Data.Common;
-using System.Reflection;
-using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using Microservice.Library.DataRepository;
+using Microservice.Library.Extension;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
-using System.Linq.Expressions;
 using Npgsql;
-using Library.Models;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data;
+using System.Data.Common;
+using System.Linq;
 using System.Linq.Dynamic.Core;
+using System.Linq.Expressions;
+using System.Reflection;
 using System.Text.RegularExpressions;
 
-namespace Library.DataRepository_PostgreSql
+namespace Microservice.Library.DataRepository_PostgreSql
 {
     public class DbRepository : IRepository
     {
@@ -320,6 +319,7 @@ namespace Library.DataRepository_PostgreSql
         /// 删除所有记录
         /// </summary>
         /// <param name="type">实体类型</param>
+        [Obsolete]
         public void DeleteAll(Type type)
         {
             string tableName = GetDbTableName(type);
@@ -714,6 +714,7 @@ namespace Library.DataRepository_PostgreSql
         /// 执行SQL语句
         /// </summary>
         /// <param name="sql">SQL语句</param>
+        [Obsolete]
         public int ExecuteSql(string sql)
         {
             int count = Db.Database.ExecuteSqlCommand(sql);
@@ -729,6 +730,7 @@ namespace Library.DataRepository_PostgreSql
         /// </summary>
         /// <param name="sql">SQL语句</param>
         /// <param name="parameters">SQL参数</param>
+        [Obsolete]
         public int ExecuteSql(string sql, List<DbParameter> parameters)
         {
             int count = Db.Database.ExecuteSqlCommand(sql, parameters.ToArray());

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library.NLogger.Application
+namespace Microservice.Library.NLogger.Application
 {
     /// <summary>
     /// NLogger异常

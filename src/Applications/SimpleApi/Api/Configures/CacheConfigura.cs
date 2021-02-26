@@ -1,5 +1,5 @@
 ﻿using Business.Utils.Log;
-using Library.Extension;
+using Microservice.Library.Extension;
 using Microsoft.Extensions.DependencyInjection;
 using Model.Utils.Config;
 using Model.Utils.Log;
@@ -21,7 +21,7 @@ namespace Api.Configures
             services.AddCache(options =>
             {
                 options.CacheType = config.DefaultCacheType;
-                options.RedisOptions = new Library.Cache.Application.RedisOptions
+                options.RedisOptions = new Microservice.Library.Cache.Application.RedisOptions
                 {
                     ConnectionString = config.Redis.ConnectionString,
                     ConnectionStrings = config.Redis.ConnectionStrings,
@@ -43,7 +43,7 @@ namespace Api.Configures
                 };
             });
 
-            if (config.DefaultCacheType == Library.Cache.Model.CacheType.SystemCache)
+            if (config.DefaultCacheType == Microservice.Library.Cache.Model.CacheType.SystemCache)
                 services.AddMemoryCache();
 
             return services;

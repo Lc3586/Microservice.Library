@@ -2,23 +2,26 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>Library.Soap</AssemblyName>
-    <RootNamespace>Library.Soap</RootNamespace>
+    <AssemblyName>Microservice.Library.Soap</AssemblyName>
+    <RootNamespace>Microservice.Library.Soap</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Copyright></Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/Lc3586/Microservice/tree/master/src/Library/Soap</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/Lc3586/Microservice.Library</PackageProjectUrl>
     <Description>通过依赖注入的方式使用Soap</Description>
-    <Version>1.0.8-alpha</Version>
+    <Version>0.0.0.1-alpha</Version>
+    <PackageId>Microservice.Library.Soap</PackageId>
+    <Authors>LCTR</Authors>
+    <Product>Microservice.Library</Product>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>Library.Soap.xml</DocumentationFile>
+    <DocumentationFile>Microservice.Library.Soap.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>Library.Soap.xml</DocumentationFile>
+    <DocumentationFile>Microservice.Library.Soap.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

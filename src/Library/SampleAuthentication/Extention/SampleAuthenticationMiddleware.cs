@@ -4,7 +4,7 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace Library.SampleAuthentication.Extension
+namespace Microservice.Library.SampleAuthentication.Extension
 {
     /// <summary>
     /// 简易身份验证服务中间件

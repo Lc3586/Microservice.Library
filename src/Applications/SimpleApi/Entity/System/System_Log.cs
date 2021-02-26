@@ -1,6 +1,6 @@
 ﻿using FreeSql.DataAnnotations;
-using Library.Elasticsearch.Annotations;
-using Library.OpenApi.Annotations;
+using Microservice.Library.Elasticsearch.Annotations;
+using Microservice.Library.OpenApi.Annotations;
 using Nest;
 using Newtonsoft.Json;
 using System;
@@ -86,7 +86,7 @@ namespace Entity.System
         /// </summary>
         [OpenApiSubTag("List", "Detail")]
         [OpenApiSchema(OpenApiSchemaType.@string, OpenApiSchemaFormat.string_datetime)]
-        [JsonConverter(typeof(Library.Json.Converters.DateTimeConverter), "yyyy-MM-dd HH:mm:ss.ffff")]
+        [JsonConverter(typeof(Microservice.Library.Json.Converters.DateTimeConverter), "yyyy-MM-dd HH:mm:ss.ffff")]
         [Description("操作时间")]
         [Date(Format = "dateOptionalTime")]
         public DateTime CreateTime { get; set; }

@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microservice.Library.Xml</name>
+    </assembly>
+    <members>
+        <member name="T:Microservice.Library.Xml.XmlFile">
+            <summary>
+            Xml文件处理
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.Xml.XmlFile.GetXMLConfig``1(System.String,System.String,System.Boolean)">
+            <summary>
+            将XML配置映射至VML属性
+            LCTR 2017-11-30
+            </summary>
+            <typeparam name="T">指定的model类型</typeparam>
+            <param name="NodeName">节点名称</param>
+            <param name="Path">XML文件绝对路径</param>
+            <param name="IsReturnNUll">当异常时，是否返回NULL</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Xml.XmlReaderHelper.GetXmlElementValue``1(System.Xml.XmlDictionaryReader,System.String,System.String,System.Boolean)">
+            <summary>
+            获取xml元素的值
+            </summary>
+            <typeparam name="T">参数数据类型</typeparam>
+            <param name="xmlReader"></param>
+            <param name="parameterName">参数名称</param>
+            <param name="parameterNs">命名空间</param>
+            <param name="modelBound">是否模型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Xml.XmlReaderHelper.GetXmlElementValue(System.Xml.XmlDictionaryReader,System.Type,System.String,System.String,System.Boolean)">
+            <summary>
+            获取xml元素的值
+            </summary>
+            <param name="xmlReader"></param>
+            <param name="parameterType">参数数据类型</param>
+            <param name="parameterName">参数名称</param>
+            <param name="parameterNs">命名空间</param>
+            <param name="innerXml"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Microservice.Library.Xml.XmlString">
+            <summary>
+            Xml字符串处理
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.Xml.XmlString.Serialize(System.Object)">
+            <summary>
+            对象序列化为Xml字符串
+            </summary>
+            <param name="obj">对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Xml.XmlString.XMLToHashtable(System.String)">
+            <summary>
+            Xml字符串转Hashtable
+            </summary>
+            <param name="xmlData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Xml.XmlString.XMLToDataTable(System.String)">
+            <summary>
+            Xml字符串转DataTable
+            </summary>
+            <param name="xmlData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Xml.XmlString.XMLToDataSet(System.String)">
+            <summary>
+            Xml字符串转DataSet
+            </summary>
+            <param name="xmlData"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -1,9 +1,9 @@
 ﻿using FreeSql;
-using Library.FreeSql.Annotations;
+using Microservice.Library.FreeSql.Annotations;
 using System.Data.Common;
 using System.Threading.Tasks;
 
-namespace Library.FreeSql.Extention
+namespace Microservice.Library.FreeSql.Extention
 {
     /// <summary>
     /// Ado拓展方法
