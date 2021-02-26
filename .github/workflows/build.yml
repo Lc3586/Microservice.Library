@@ -24,7 +24,7 @@ jobs:
               run: echo "DOTNET_CLI_TELEMETRY_OPTOUT=1" >> $GITHUB_ENV
             - name: Clean
               run: |
-                dotnet clean ./Micro Service.sln --configuration Release
+                dotnet clean "./Micro Service.sln" --configuration Release
                 dotnet nuget locals all --clear
             - name: Build
               run: dotnet build -c Release
