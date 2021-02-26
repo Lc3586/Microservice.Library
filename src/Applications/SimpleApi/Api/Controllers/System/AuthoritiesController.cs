@@ -462,48 +462,52 @@ namespace Api.Controllers
         /// 是否为超级管理员
         /// </summary>
         /// <param name="userId">用户Id</param>
+        /// <param name="checkEnable">检查是否已启用（默认true）</param>
         /// <returns></returns>
         [HttpPost("is-super-admin-user")]
         [SwaggerResponse((int)HttpStatusCode.OK, "验证结果", typeof(bool))]
-        public async Task<object> IsSuperAdminUser(string userId)
+        public async Task<object> IsSuperAdminUser(string userId, bool checkEnable = true)
         {
-            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(AuthoritiesBusiness.IsSuperAdminUser(userId))));
+            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(AuthoritiesBusiness.IsSuperAdminUser(userId, checkEnable))));
         }
 
         /// <summary>
         /// 是否为超级管理角色
         /// </summary>
         /// <param name="roleId">角色Id</param>
+        /// <param name="checkEnable">检查是否已启用（默认true）</param>
         /// <returns></returns>
         [HttpPost("is-super-admin-role")]
         [SwaggerResponse((int)HttpStatusCode.OK, "验证结果", typeof(bool))]
-        public async Task<object> IsSuperAdminRole(string roleId)
+        public async Task<object> IsSuperAdminRole(string roleId, bool checkEnable = true)
         {
-            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(AuthoritiesBusiness.IsSuperAdminRole(roleId))));
+            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(AuthoritiesBusiness.IsSuperAdminRole(roleId, checkEnable))));
         }
 
         /// <summary>
         /// 是否为管理员
         /// </summary>
         /// <param name="userId">用户Id</param>
+        /// <param name="checkEnable">检查是否已启用（默认true）</param>
         /// <returns></returns>
         [HttpPost("is-admin-user")]
         [SwaggerResponse((int)HttpStatusCode.OK, "验证结果", typeof(bool))]
-        public async Task<object> IsAdminUser(string userId)
+        public async Task<object> IsAdminUser(string userId, bool checkEnable = true)
         {
-            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(AuthoritiesBusiness.IsAdminUser(userId))));
+            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(AuthoritiesBusiness.IsAdminUser(userId, checkEnable))));
         }
 
         /// <summary>
         /// 是否为管理角色
         /// </summary>
         /// <param name="roleId">角色Id</param>
+        /// <param name="checkEnable">检查是否已启用（默认true）</param>
         /// <returns></returns>
         [HttpPost("is-admin-role")]
         [SwaggerResponse((int)HttpStatusCode.OK, "验证结果", typeof(bool))]
-        public async Task<object> IsAdminRole(string roleId)
+        public async Task<object> IsAdminRole(string roleId, bool checkEnable = true)
         {
-            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(AuthoritiesBusiness.IsAdminRole(roleId))));
+            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(AuthoritiesBusiness.IsAdminRole(roleId, checkEnable))));
         }
 
         /// <summary>
@@ -511,12 +515,13 @@ namespace Api.Controllers
         /// </summary>
         /// <param name="userId">用户Id</param>
         /// <param name="roleId">角色Id</param>
+        /// <param name="checkEnable">检查是否已启用（默认true）</param>
         /// <returns></returns>
         [HttpPost("user-has-role")]
         [SwaggerResponse((int)HttpStatusCode.OK, "验证结果", typeof(bool))]
-        public async Task<object> UserHasRole(string userId, string roleId)
+        public async Task<object> UserHasRole(string userId, string roleId, bool checkEnable = true)
         {
-            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(AuthoritiesBusiness.UserHasRole(userId, roleId))));
+            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(AuthoritiesBusiness.UserHasRole(userId, roleId, checkEnable))));
         }
 
         /// <summary>
@@ -524,12 +529,13 @@ namespace Api.Controllers
         /// </summary>
         /// <param name="memberId">会员Id</param>
         /// <param name="roleId">角色Id</param>
+        /// <param name="checkEnable">检查是否已启用（默认true）</param>
         /// <returns></returns>
         [HttpPost("member-has-role")]
         [SwaggerResponse((int)HttpStatusCode.OK, "验证结果", typeof(bool))]
-        public async Task<object> MemberHasRole(string memberId, string roleId)
+        public async Task<object> MemberHasRole(string memberId, string roleId, bool checkEnable = true)
         {
-            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(AuthoritiesBusiness.MemberHasRole(memberId, roleId))));
+            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(AuthoritiesBusiness.MemberHasRole(memberId, roleId, checkEnable))));
         }
 
         /// <summary>
@@ -537,12 +543,13 @@ namespace Api.Controllers
         /// </summary>
         /// <param name="userId">用户Id</param>
         /// <param name="menuId">菜单Id</param>
+        /// <param name="checkEnable">检查是否已启用（默认true）</param>
         /// <returns></returns>
         [HttpPost("user-has-menu")]
         [SwaggerResponse((int)HttpStatusCode.OK, "验证结果", typeof(bool))]
-        public async Task<object> UserHasMenu(string userId, string menuId)
+        public async Task<object> UserHasMenu(string userId, string menuId, bool checkEnable = true)
         {
-            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(AuthoritiesBusiness.UserHasMenu(userId, menuId))));
+            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(AuthoritiesBusiness.UserHasMenu(userId, menuId, checkEnable))));
         }
 
         /// <summary>
@@ -550,12 +557,13 @@ namespace Api.Controllers
         /// </summary>
         /// <param name="userId">用户Id</param>
         /// <param name="menuUri">菜单链接</param>
+        /// <param name="checkEnable">检查是否已启用（默认true）</param>
         /// <returns></returns>
         [HttpPost("user-has-menu-uri")]
         [SwaggerResponse((int)HttpStatusCode.OK, "验证结果", typeof(bool))]
-        public async Task<object> UserHasMenuUri(string userId, string menuUri)
+        public async Task<object> UserHasMenuUri(string userId, string menuUri, bool checkEnable = true)
         {
-            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(AuthoritiesBusiness.UserHasMenuUri(userId, menuUri))));
+            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(AuthoritiesBusiness.UserHasMenuUri(userId, menuUri, checkEnable))));
         }
 
         /// <summary>
@@ -563,12 +571,13 @@ namespace Api.Controllers
         /// </summary>
         /// <param name="userId">用户Id</param>
         /// <param name="menuId">菜单Id</param>
+        /// <param name="checkEnable">检查是否已启用（默认true）</param>
         /// <returns></returns>
         [HttpPost("member-has-menu")]
         [SwaggerResponse((int)HttpStatusCode.OK, "验证结果", typeof(bool))]
-        public async Task<object> MemberHasMenu(string userId, string menuId)
+        public async Task<object> MemberHasMenu(string userId, string menuId, bool checkEnable = true)
         {
-            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(AuthoritiesBusiness.MemberHasMenu(userId, menuId))));
+            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(AuthoritiesBusiness.MemberHasMenu(userId, menuId, checkEnable))));
         }
 
         /// <summary>
@@ -576,12 +585,13 @@ namespace Api.Controllers
         /// </summary>
         /// <param name="userId">用户Id</param>
         /// <param name="menuUri">菜单链接</param>
+        /// <param name="checkEnable">检查是否已启用（默认true）</param>
         /// <returns></returns>
         [HttpPost("member-has-menu-uri")]
         [SwaggerResponse((int)HttpStatusCode.OK, "验证结果", typeof(bool))]
-        public async Task<object> MemberHasMenuUri(string userId, string menuUri)
+        public async Task<object> MemberHasMenuUri(string userId, string menuUri, bool checkEnable = true)
         {
-            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(AuthoritiesBusiness.MemberHasMenuUri(userId, menuUri))));
+            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(AuthoritiesBusiness.MemberHasMenuUri(userId, menuUri, checkEnable))));
         }
 
         /// <summary>
@@ -589,12 +599,13 @@ namespace Api.Controllers
         /// </summary>
         /// <param name="userId">用户Id</param>
         /// <param name="resourcesId">资源Id</param>
+        /// <param name="checkEnable">检查是否已启用（默认true）</param>
         /// <returns></returns>
         [HttpPost("user-has-resources")]
         [SwaggerResponse((int)HttpStatusCode.OK, "验证结果", typeof(bool))]
-        public async Task<object> UserHasResources(string userId, string resourcesId)
+        public async Task<object> UserHasResources(string userId, string resourcesId, bool checkEnable = true)
         {
-            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(AuthoritiesBusiness.UserHasResources(userId, resourcesId))));
+            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(AuthoritiesBusiness.UserHasResources(userId, resourcesId, checkEnable))));
         }
 
         /// <summary>
@@ -602,12 +613,13 @@ namespace Api.Controllers
         /// </summary>
         /// <param name="userId">用户Id</param>
         /// <param name="resourcesUri">资源链接</param>
+        /// <param name="checkEnable">检查是否已启用（默认true）</param>
         /// <returns></returns>
         [HttpPost("user-has-resources-uri")]
         [SwaggerResponse((int)HttpStatusCode.OK, "验证结果", typeof(bool))]
-        public async Task<object> UserHasResourcesUri(string userId, string resourcesUri)
+        public async Task<object> UserHasResourcesUri(string userId, string resourcesUri, bool checkEnable = true)
         {
-            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(AuthoritiesBusiness.UserHasResourcesUri(userId, resourcesUri))));
+            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(AuthoritiesBusiness.UserHasResourcesUri(userId, resourcesUri, checkEnable))));
         }
 
         /// <summary>
@@ -615,12 +627,13 @@ namespace Api.Controllers
         /// </summary>
         /// <param name="memberId">会员Id</param>
         /// <param name="resourcesId">资源Id</param>
+        /// <param name="checkEnable">检查是否已启用（默认true）</param>
         /// <returns></returns>
         [HttpPost("member-has-resources")]
         [SwaggerResponse((int)HttpStatusCode.OK, "验证结果", typeof(bool))]
-        public async Task<object> MemberHasResources(string memberId, string resourcesId)
+        public async Task<object> MemberHasResources(string memberId, string resourcesId, bool checkEnable = true)
         {
-            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(AuthoritiesBusiness.MemberHasResources(memberId, resourcesId))));
+            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(AuthoritiesBusiness.MemberHasResources(memberId, resourcesId, checkEnable))));
         }
 
         /// <summary>
@@ -628,12 +641,13 @@ namespace Api.Controllers
         /// </summary>
         /// <param name="memberId">会员Id</param>
         /// <param name="resourcesUri">资源链接</param>
+        /// <param name="checkEnable">检查是否已启用（默认true）</param>
         /// <returns></returns>
         [HttpPost("member-has-resources-uri")]
         [SwaggerResponse((int)HttpStatusCode.OK, "验证结果", typeof(bool))]
-        public async Task<object> MemberHasResourcesUri(string memberId, string resourcesUri)
+        public async Task<object> MemberHasResourcesUri(string memberId, string resourcesUri, bool checkEnable = true)
         {
-            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(AuthoritiesBusiness.MemberHasResourcesUri(memberId, resourcesUri))));
+            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(AuthoritiesBusiness.MemberHasResourcesUri(memberId, resourcesUri, checkEnable))));
         }
 
         #endregion    
