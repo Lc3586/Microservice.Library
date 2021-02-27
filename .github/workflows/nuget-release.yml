@@ -36,7 +36,7 @@ jobs:
               
             - name: Pack all-in-one-packages
               run:  |
-                dotnet pack -c Release -p:NuspecProperties="version=${{ steps.nbgv.outputs.NuGetPackageVersion }}" src/NuGet/Library.All.csproj
+                dotnet pack ./src/NuGet/Library.All.csproj -c Release -p:NuspecProperties="version=${{ steps.nbgv.outputs.NuGetPackageVersion }}" 
                 
             - name: Install Nuget
               run: |
