@@ -1,0 +1,54 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Platforms>AnyCPU;x64</Platforms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="appsettings.json" />
+    <None Remove="jsonconfig\jtt809-protocol-datamappings.json" />
+    <None Remove="jsonconfig\jtt809-protocol-internalentitysmappings.json" />
+    <None Remove="jsonconfig\jtt809-protocol-structures.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="jsonconfig\jtt809-protocol-datamappings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="jsonconfig\jtt809-protocol-internalentitysmappings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="jsonconfig\jtt809-protocol-structures.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Management" Version="4.7.0" />
+    <PackageReference Include="System.ServiceProcess.ServiceController" Version="4.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Library\Configuration\Library.Configuration.csproj" />
+    <ProjectReference Include="..\..\Library\ConsoleTool\Library.ConsoleTool.csproj" />
+    <ProjectReference Include="..\..\Library\DataMapping\Library.DataMapping.csproj" />
+    <ProjectReference Include="..\..\Library\Extension\Library.Extension.csproj" />
+    <ProjectReference Include="..\..\Library\FreeSql\Library.FreeSql.csproj" />
+    <ProjectReference Include="..\..\Library\HardwareInfo\Library.HardwareInfo.csproj" />
+    <ProjectReference Include="..\..\Library\Http\Library.Http.csproj" />
+    <ProjectReference Include="..\..\Library\Json\Library.Json.csproj" />
+    <ProjectReference Include="..\..\Library\LinqTool\Library.LinqTool.csproj" />
+    <ProjectReference Include="..\..\Library\OpenApi\Library.OpenApi.csproj" />
+    <ProjectReference Include="..\..\Library\Soap\Library.Soap.csproj" />
+    <ProjectReference Include="..\..\Library\WeChat\Library.WeChat.csproj" />
+    <ProjectReference Include="..\..\Library\Xml\Library.Xml.csproj" />
+  </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties jsonconfig_4jtt809-protocol-structures_1json__JsonSchema="https://json.schemastore.org/appsettings" /></VisualStudio></ProjectExtensions>
+
+</Project>
