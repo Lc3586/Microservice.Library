@@ -1,6 +1,8 @@
 # Microservice.Library
 [![Join the chat at https://gitter.im/Microservice-Library/community](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Microservice-Library/community)
-[![Build](https://github.com/Lc3586/Microservice/workflows/build/badge.svg)](https://github.com/Lc3586/Microservice/actions?query=workflow%3Abuild)
+[![Build](https://github.com/Lc3586/Microservice.Library/workflows/build/badge.svg)](https://github.com/Lc3586/Microservice.Library/actions?query=workflow%3Abuild)
+
+[![Build](https://github.com/Lc3586/Microservice.Library/workflows/nuget-release/badge.svg)](https://github.com/Lc3586/Microservice.Library/actions?query=workflow%3Anuget-release)
 [![NuGet Version](https://img.shields.io/nuget/v/MicroService.Library.All.svg?style=flat)](https://www.nuget.org/packages/MicroService.Library.All/)
 [![NuGet](https://img.shields.io/nuget/dt/MicroService.Library.All.svg)](https://www.nuget.org/packages/MicroService.Library.All)
 [![Badge](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu/#/zh_CN)
