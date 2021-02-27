@@ -20,14 +20,24 @@ jobs:
                 
             - name: Set env
               run: echo "DOTNET_CLI_TELEMETRY_OPTOUT=1" >> $GITHUB_ENV
-
+              
+            - name: Clean
+              run: |
+                dotnet clean ./src/Microservice.Library.sln --configuration Release
+                dotnet nuget locals all --clear
+                
+            - name: Build
+              run: dotnet build ./src/Microservice.Library.sln -c Release
+              
             - name: Pack
               run: dotnet pack ./src/Microservice.Library.sln -c Release
             - uses: dotnet/nbgv@master
               id: nbgv
+              
             - name: Pack all-in-one-packages
               run:  |
                 dotnet pack -c Release -p:NuspecProperties="version=${{ steps.nbgv.outputs.NuGetPackageVersion }}" src/NuGet/Library.All.csproj
+                
             - name: Install Nuget
               run: |
                 $sourceNugetExe = "https://dist.nuget.org/win-x86-commandline/latest/nuget.exe"
