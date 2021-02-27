@@ -6,9 +6,6 @@ on:
     - '*'
       
 jobs:
-  build:
-      
-jobs:
     build:
     
         runs-on: windows-latest
