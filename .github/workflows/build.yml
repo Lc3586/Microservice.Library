@@ -28,7 +28,3 @@ jobs:
                 dotnet nuget locals all --clear
             - name: Build
               run: dotnet build -c Release
-            - name: Test
-              run: |
-                cd src\Applications\SimpleApi\UnitTest
-                dotnet test
