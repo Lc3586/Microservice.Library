@@ -22,7 +22,7 @@ jobs:
               run: echo "DOTNET_CLI_TELEMETRY_OPTOUT=1" >> $GITHUB_ENV
 
             - name: Pack
-              run: dotnet ./src/Microservice.Library.sln pack -c Release
+              run: dotnet pack ./src/Microservice.Library.sln -c Release
             - uses: dotnet/nbgv@master
               id: nbgv
             - name: Pack all-in-one-packages
