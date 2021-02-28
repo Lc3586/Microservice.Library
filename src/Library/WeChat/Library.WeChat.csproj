@@ -51,10 +51,4 @@
     <ProjectReference Include="..\Http\Library.Http.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="Library.WeChat.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>

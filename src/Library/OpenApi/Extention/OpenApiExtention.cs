@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.Dynamic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using Microservice.Library.OpenApi.Annotations;
-using Microservice.Library.OpenApi.JsonSerialization;
+﻿using Microservice.Library.OpenApi.Annotations;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
-using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Reflection;
 
 namespace Microservice.Library.OpenApi.Extention
 {

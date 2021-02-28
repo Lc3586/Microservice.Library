@@ -1,5 +1,5 @@
 ﻿using FreeSql.DataAnnotations;
-using Microservice.Library.Json.Converters;
+using Microservice.Library.OpenApi.JsonExtension;
 using Microservice.Library.OpenApi.Annotations;
 using Newtonsoft.Json;
 using System;

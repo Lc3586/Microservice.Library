@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Xml.Serialization;
-using DateTimeConverter = Microservice.Library.Json.Converters.DateTimeConverter;
+using DateTimeConverter = Microservice.Library.OpenApi.JsonExtension.DateTimeConverter;
 
 namespace Entity.Common
 {

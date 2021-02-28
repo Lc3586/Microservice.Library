@@ -20,7 +20,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\Library\Elasticsearch\Library.Elasticsearch.csproj" />
     <ProjectReference Include="..\..\..\Library\FreeSql\Library.FreeSql.csproj" />
-    <ProjectReference Include="..\..\..\Library\Json\Library.Json.csproj" />
     <ProjectReference Include="..\..\..\Library\OpenApi\Library.OpenApi.csproj" />
     <ProjectReference Include="..\..\..\Library\Soap\Library.Soap.csproj" />
   </ItemGroup>

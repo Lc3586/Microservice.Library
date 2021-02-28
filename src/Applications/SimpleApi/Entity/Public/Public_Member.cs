@@ -134,7 +134,7 @@ namespace Entity.Public
         /// </summary>
         [OpenApiSubTag("List", "Detail")]
         [OpenApiSchema(OpenApiSchemaType.@string, OpenApiSchemaFormat.string_datetime)]
-        [JsonConverter(typeof(Microservice.Library.Json.Converters.DateTimeConverter), "yyyy-MM-dd HH:mm:ss")]
+        [JsonConverter(typeof(Microservice.Library.OpenApi.JsonExtension.DateTimeConverter), "yyyy-MM-dd HH:mm:ss")]
         [Description("创建时间")]
         public DateTime CreateTime { get; set; }
 
@@ -158,7 +158,7 @@ namespace Entity.Public
         /// </summary>
         [OpenApiSubTag("List", "Detail", "_Edit")]
         [OpenApiSchema(OpenApiSchemaType.@string, OpenApiSchemaFormat.string_datetime)]
-        [JsonConverter(typeof(Microservice.Library.Json.Converters.DateTimeConverter), "yyyy-MM-dd HH:mm:ss")]
+        [JsonConverter(typeof(Microservice.Library.OpenApi.JsonExtension.DateTimeConverter), "yyyy-MM-dd HH:mm:ss")]
         [Description("最近编辑时间")]
         [Column(IsNullable = true)]
         public DateTime? ModifyTime { get; set; }

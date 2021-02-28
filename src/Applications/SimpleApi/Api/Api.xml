@@ -1943,16 +1943,52 @@
             <param name="context"></param>
             <returns></returns>
         </member>
+        <member name="T:Api.Startup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Api.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="P:Api.Startup.Configuration">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="P:Api.Startup.Config">
             <summary>
             系统配置
             </summary>
+        </member>
+        <member name="M:Api.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+            <remarks>
+            <para>This method gets called by the runtime. Use this method to add services to the container.</para>
+            <para>For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940</para>
+            </remarks>
         </member>
         <member name="M:Api.Startup.ConfigureContainer(Autofac.ContainerBuilder)">
             <summary>
             配置Autofac容器
             </summary>
             <param name="builder"></param>
+        </member>
+        <member name="M:Api.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+            <remarks>
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            </remarks>
         </member>
     </members>
 </doc>

@@ -26,8 +26,4 @@
     <DocumentationFile>Microservice.Library.Collection.xml</DocumentationFile>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\UsingLock\Library.UsingLock.csproj" />
-  </ItemGroup>
-
 </Project>

@@ -6,7 +6,7 @@ using Autofac.Extras.DynamicProxy;
 using IocServiceDemo;
 using Microservice.Library.Configuration;
 using Microservice.Library.Container;
-using Microservice.Library.TypeTool;
+using Microservice.Library.Extension;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -24,8 +24,15 @@ using System.Reflection;
 
 namespace Api
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Startup
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="configuration"></param>
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -33,6 +40,9 @@ namespace Api
             Console.Title = Config.ProjectName;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public IConfiguration Configuration { get; }
 
         /// <summary>
@@ -40,8 +50,14 @@ namespace Api
         /// </summary>
         public SystemConfig Config { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="services"></param>
+        /// <remarks>
+        /// <para>This method gets called by the runtime. Use this method to add services to the container.</para>
+        /// <para>For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940</para>
+        /// </remarks>
         public void ConfigureServices(IServiceCollection services)
         {
             #region 注册服务示例代码
@@ -142,7 +158,7 @@ namespace Api
             var baseType = typeof(IDependency);
 
             //自动注入IDependency接口,支持AOP,生命周期为InstancePerDependency
-            var diTypes = TypeHelper.GetTypes(Config.FxAssembly.ToArray())
+            var diTypes = Config.FxAssembly.GetTypes()
                 .Where(x => baseType.IsAssignableFrom(x) && x != baseType)
                 .ToArray();
             builder.RegisterTypes(diTypes)
@@ -166,7 +182,14 @@ namespace Api
                 .InstancePerLifetimeScope();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="env"></param>
+        /// <remarks>
+        /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// </remarks>
 #pragma warning disable IDE0060 // 删除未使用的参数
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 #pragma warning restore IDE0060 // 删除未使用的参数

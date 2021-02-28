@@ -1,5 +1,4 @@
-﻿using Microservice.Library.OpenApi.Annotations;
-using Microservice.Library.OpenApi.Extention;
+﻿using Microservice.Library.OpenApi.Extention;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
@@ -7,11 +6,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Dynamic;
 using System.Globalization;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 
-namespace Microservice.Library.OpenApi.JsonSerialization
+namespace Microservice.Library.OpenApi.JsonExtension
 {
     /// <summary>
     /// 自定义动态类型转换器
@@ -222,10 +219,12 @@ namespace Microservice.Library.OpenApi.JsonSerialization
                             else
                                 value = newNullableConverter.ConvertFrom(item.Value);
                         }
+#pragma warning disable CA1031 // Do not catch general exception types
                         catch
                         {
                             value = newNullableConverter.ConvertFromString(item.Value?.ToString());
                         }
+#pragma warning restore CA1031 // Do not catch general exception types
                     }
                     else
                     {

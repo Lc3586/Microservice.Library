@@ -8,7 +8,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Microservice.Library.DataRepository_MySql</RootNamespace>
     <Version>0.0.0.1-alpha</Version>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageProjectUrl>https://github.com/Lc3586/Microservice.Library</PackageProjectUrl>
     <PackageId>Microservice.Library.DataRepository_MySql</PackageId>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>

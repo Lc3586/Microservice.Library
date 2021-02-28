@@ -12,13 +12,28 @@
             拓展类
             </summary>
             <summary>
+            中文拼音帮助类
+            </summary>
+            <remarks>
+            LCTR 2019-01-28
+            </remarks>
+            <summary>
             筛选扩展方法
             </summary>
             <summary>
+            数据库查询拓展方法
+            </summary>
+            <summary>
             拓展类
             </summary>
             <summary>
             拓展类
+            </summary>
+            <summary>
+            
+            </summary>
+            <summary>
+            
             </summary>
         </member>
         <member name="M:Microservice.Library.Extension.Extension.Loop(System.Action,System.Int32)">
@@ -34,6 +49,37 @@
             </summary>
             <param name="count">循环次数</param>
             <param name="method">执行的方法</param>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.RunAsync(System.Action,System.Action)">
+            <summary>
+            异步执行方法
+            </summary>
+            <param name="firstFunc">首先执行的方法</param>
+            <param name="next">接下来执行的方法</param>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.RunAsync(System.Func{System.Object},System.Action{System.Object})">
+            <summary>
+            异步执行方法
+            </summary>
+            <param name="firstFunc">首先执行的方法</param>
+            <param name="next">接下来执行的方法</param>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.SetInterval(System.Action,System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            设置一个时间间隔的循环操作
+            </summary>
+            <param name="action">执行的操作</param>
+            <param name="timeSpan">时间间隔</param>
+            <param name="cancellationToken">请求取消循环</param>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.SetInterval(System.Action,System.TimeSpan,System.TimeSpan,System.Threading.CancellationToken)">
+            <summary>
+            设置一个时间间隔的循环操作
+            </summary>
+            <param name="action">执行的操作</param>
+            <param name="timeSpan">时间间隔</param>
+            <param name="dely">延迟一段时间后再开始循环</param>
+            <param name="cancellationToken">请求取消循环</param>
         </member>
         <member name="M:Microservice.Library.Extension.Extension.IsJsonIgnore(System.Reflection.MemberInfo)">
             <summary>
@@ -143,6 +189,25 @@
             </summary>
             <typeparam name="T">返回类型</typeparam>
             <param name="bytes">字节数组</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.GetPinyin(System.String,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <summary> 
+            汉字转化为拼音
+            </summary> 
+            <param name="str">汉字字符串</param> 
+            <param name="None">非中文字符的填充字符[默认使用其本身进行填充]</param>
+            <param name="RemovePS">是否去除音标</param>
+            <param name="JustFirst">是否只获取首字母</param>
+            <param name="Upper">是否转为大写</param>
+            <param name="Lower">是否转为小写</param>
+            <returns>全拼集合</returns> 
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.CheckStringChineseReg(System.String)">
+            <summary>
+            判断字符是否为汉字
+            </summary>
+            <param name="str">字符串</param>
             <returns></returns>
         </member>
         <member name="M:Microservice.Library.Extension.Extension.ToList``1(System.Data.DataTable)">
@@ -699,6 +764,35 @@
             int转bool
             </summary>
             <param name="value">值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.GetDbStatisData(System.Linq.IQueryable,System.String,System.String,System.String)">
+            <summary>
+            获取数据库统计数据
+            </summary>
+            <param name="dataSource">数据源</param>
+            <param name="groupColumn">分组的列</param>
+            <param name="statisColumn">统计的列</param>
+            <param name="funcName">统计方法名(Max,Min,Average,Count())</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.GetDbStatisData(System.Linq.IQueryable,System.String,Microservice.Library.Extension.Model.SearchEntry[])">
+            <summary>
+            获取数据库统计数据
+            </summary>
+            <param name="dataSource">数据源</param>
+            <param name="groupColumn">分组的列</param>
+            <param name="searchEntris">查询的配置项</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.GetIQueryable(System.Object,System.String,System.String,System.String)">
+            <summary>
+            获取IQueryable
+            </summary>
+            <param name="obj">包含获取IQueryable方法的对象</param>
+            <param name="funcName">获取IQueryable的方法名</param>
+            <param name="entityName">实体名</param>
+            <param name="nameSpace">命名空间</param>
             <returns></returns>
         </member>
         <member name="M:Microservice.Library.Extension.Extension.JSTimestampToDatetime(System.Int64)">
@@ -1333,6 +1427,88 @@
             <param name="result">返回值</param>
             <returns></returns>
         </member>
+        <member name="M:Microservice.Library.Extension.Extension.GetTypes(System.Collections.Generic.List{System.String})">
+            <summary>
+            获取指定命名空间下都类型集合
+            </summary>
+            <param name="assemblys">命名空间<para>支持通配符</para></param>
+            <returns></returns>
+        </member>
+        <member name="F:Microservice.Library.Extension.Extension.CachedSerializers">
+            <summary>
+            xml序列化器缓存
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.GetXmlSerializer(System.Type,System.String,System.String)">
+            <summary>
+            获取xml序列化器
+            </summary>
+            <param name="elementType"></param>
+            <param name="parameterName"></param>
+            <param name="parameterNs"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.GetXmlElementValue``1(System.Xml.XmlDictionaryReader,System.String,System.String,System.Boolean)">
+            <summary>
+            获取xml元素的值
+            </summary>
+            <typeparam name="T">参数数据类型</typeparam>
+            <param name="xmlReader"></param>
+            <param name="parameterName">参数名称</param>
+            <param name="parameterNs">命名空间</param>
+            <param name="modelBound">是否模型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.GetXmlElementValue(System.Xml.XmlDictionaryReader,System.Type,System.String,System.String,System.Boolean)">
+            <summary>
+            获取xml元素的值
+            </summary>
+            <param name="xmlReader"></param>
+            <param name="parameterType">参数数据类型</param>
+            <param name="parameterName">参数名称</param>
+            <param name="parameterNs">命名空间</param>
+            <param name="innerXml"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.Serialize(System.Object)">
+            <summary>
+            对象序列化为Xml字符串
+            </summary>
+            <param name="obj">对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.XMLToHashtable(System.String)">
+            <summary>
+            Xml字符串转Hashtable
+            </summary>
+            <param name="xmlData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.XMLToDataTable(System.String)">
+            <summary>
+            Xml字符串转DataTable
+            </summary>
+            <param name="xmlData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.XMLToDataSet(System.String)">
+            <summary>
+            Xml字符串转DataSet
+            </summary>
+            <param name="xmlData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Extension.GetXMLConfig``1(System.String,System.String,System.Boolean)">
+            <summary>
+            将XML配置映射至VML属性
+            LCTR 2017-11-30
+            </summary>
+            <typeparam name="T">指定的model类型</typeparam>
+            <param name="NodeName">节点名称</param>
+            <param name="Path">XML文件绝对路径</param>
+            <param name="IsReturnNUll">当异常时，是否返回NULL</param>
+            <returns></returns>
+        </member>
         <member name="T:Microservice.Library.Extension.ParameterReplaceVisitor">
             <summary>
             继承ExpressionVisitor类，实现参数替换统一
@@ -1342,6 +1518,180 @@
             <summary>
             连接类型
             </summary>
+        </member>
+        <member name="T:Microservice.Library.Extension.Helper.CPUHelper">
+            <summary>
+            https://blog.csdn.net/weixin_43145361/article/details/90939154
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.Extension.Helper.LinqHelper">
+            <summary>
+            创建条件
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.Extension.Helper.LinqHelper.True``1">
+            <summary>
+            创建初始条件为True的表达式
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Helper.LinqHelper.TrueFunc``1">
+            <summary>
+            创建初始条件为True的表达式
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Helper.LinqHelper.False``1">
+            <summary>
+            创建初始条件为False的表达式
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Helper.LinqHelper.FalseFunc``1">
+            <summary>
+            创建初始条件为False的表达式
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:Microservice.Library.Extension.Helper.TimeTickHelper">
+            <summary>
+            定时器
+            LCTR 2019-08-27
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.Extension.Helper.TypeBuilderHelper">
+            <summary>
+            运行时创建类型
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.Extension.Helper.TypeBuilderHelper.BuildType(Microservice.Library.Extension.Helper.TypeConfig)">
+            <summary>
+            创建类型
+            </summary>
+            <param name="typeConfig"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Helper.TypeBuilderHelper.GetConfig(System.Type)">
+            <summary>
+            获取配置
+            </summary>
+            <param name="type">原类型</param>
+            <returns></returns>
+        </member>
+        <member name="T:Microservice.Library.Extension.Helper.TypeConfig">
+            <summary>
+            类型配置
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.Extension.Helper.TypeConfig.FullName">
+            <summary>
+            类型名
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.Extension.Helper.TypeConfig.AssemblyName">
+            <summary>
+            程序集名
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.Extension.Helper.TypeConfig.Properties">
+            <summary>
+            拥有的属性
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.Extension.Helper.TypeConfig.Attributes">
+            <summary>
+            拥有的特性
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.Extension.Helper.PropertyConfig">
+            <summary>
+            属性配置
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.Extension.Helper.PropertyConfig.PropertyName">
+            <summary>
+            属性名
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.Extension.Helper.PropertyConfig.PropertyType">
+            <summary>
+            属性类型
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.Extension.Helper.PropertyConfig.Attributes">
+            <summary>
+            属性包含的自定义特性
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.Extension.Helper.AttributeConfig">
+            <summary>
+            特性配置
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.Extension.Helper.AttributeConfig.Attribute">
+            <summary>
+            特性类型
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.Extension.Helper.AttributeConfig.ConstructorArgs">
+            <summary>
+            构造函数参数
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.Extension.Helper.AttributeConfig.Properties">
+            <summary>
+            初始化属性
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.Extension.Model.DbStatisData">
+            <summary>
+            统计数据模型
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.Extension.Model.DbStatisData.Key">
+            <summary>
+            分组查询的列
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.Extension.Model.DbStatisData.Value">
+            <summary>
+            统计后的数值
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.Extension.Model.DynamicModel">
+            <summary>
+            动态数据模型类
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.Extension.Model.DynamicModel.Item(System.String)">
+            <summary>
+            索引器
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.Extension.Model.DynamicModel.AddProperty(System.String,System.Object)">
+            <summary>
+            添加属性
+            </summary>
+            <param name="key">属性名</param>
+            <param name="obj">属性值</param>
+        </member>
+        <member name="M:Microservice.Library.Extension.Model.DynamicModel.SetProperty(System.String,System.Object)">
+            <summary>
+            设置属性值
+            </summary>
+            <param name="key">属性名</param>
+            <param name="obj">属性值</param>
+        </member>
+        <member name="M:Microservice.Library.Extension.Model.DynamicModel.GetProperty(System.String)">
+            <summary>
+            获取属性值
+            </summary>
+            <param name="key">属性名</param>
+            <returns></returns>
         </member>
         <member name="T:Microservice.Library.Extension.Model.Filter">
             <summary>
@@ -1449,6 +1799,32 @@
         <member name="F:Microservice.Library.Extension.Model.CompareType.GT">
             <summary>
             大于
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.Extension.Model.SearchEntry">
+            <summary>
+            统计查询配置项
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.Extension.Model.SearchEntry.StatisColoum">
+            <summary>
+            统计的列
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.Extension.Model.SearchEntry.ResultName">
+            <summary>
+            返回数据列名
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.Extension.Model.SearchEntry.FuncName">
+            <summary>
+            统计方法名（Max,Min,Average,Count()等）
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.Extension.Model.TaskQeury">
+            <summary>
+            任务队列
+            LCTR 2019-08-27
             </summary>
         </member>
         <member name="T:Microservice.Library.Extension.Model.TreeModel">

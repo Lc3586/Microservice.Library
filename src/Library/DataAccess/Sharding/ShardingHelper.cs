@@ -1,4 +1,4 @@
-﻿using Microservice.Library.TypeTool;
+﻿using Microservice.Library.Extension.Helper;
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -14,14 +14,14 @@ namespace Microservice.Library.DataAccess
         /// <returns></returns>
         public static Type MapTable(Type absTable, string targetTableName)
         {
-            var config = BuilderHelper.GetConfig(absTable);
+            var config = TypeBuilderHelper.GetConfig(absTable);
 
             //实体必须放到Entity层中,不然会出现莫名调试BUG,原因未知
             config.AssemblyName = "Entity";
             config.Attributes.RemoveAll(x => x.Attribute == typeof(TableAttribute));
             config.FullName = $"Entity.{targetTableName}";
 
-            return BuilderHelper.BuildType(config);
+            return TypeBuilderHelper.BuildType(config);
         }
     }
 }

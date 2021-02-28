@@ -1025,29 +1025,51 @@
             <param name="current">当前的数据</param>
             <returns></returns>
         </member>
-        <member name="T:Microservice.Library.OpenApi.JsonSerialization.OpenApiContractResolver">
+        <member name="T:Microservice.Library.OpenApi.JsonExtension.DateTimeConverter">
+            <summary>
+            日期时间转换器
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.JsonExtension.DateTimeConverter.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="format">格式化字符串</param>
+        </member>
+        <member name="T:Microservice.Library.OpenApi.JsonExtension.JsonPropertyContractResolver">
+            <summary>
+            自定义分解器
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.OpenApi.JsonExtension.JsonPropertyContractResolver.#ctor(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            
+            </summary>
+            <param name="excludedProperties">要输出的属性</param>
+        </member>
+        <member name="T:Microservice.Library.OpenApi.JsonExtension.OpenApiContractResolver">
             <summary>
             自定义解析器
             </summary>
         </member>
-        <member name="F:Microservice.Library.OpenApi.JsonSerialization.OpenApiContractResolver.PropertyDic">
+        <member name="F:Microservice.Library.OpenApi.JsonExtension.OpenApiContractResolver.PropertyDic">
             <summary>
             输出的属性
             </summary>
         </member>
-        <member name="M:Microservice.Library.OpenApi.JsonSerialization.OpenApiContractResolver.#ctor(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+        <member name="M:Microservice.Library.OpenApi.JsonExtension.OpenApiContractResolver.#ctor(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
             <summary>
             
             </summary>
             <param name="propertyDic">输出的属性</param>
         </member>
-        <member name="M:Microservice.Library.OpenApi.JsonSerialization.OpenApiContractResolver.#ctor(System.Type)">
+        <member name="M:Microservice.Library.OpenApi.JsonExtension.OpenApiContractResolver.#ctor(System.Type)">
             <summary>
             
             </summary>
             <param name="schemaType">架构类型</param>
         </member>
-        <member name="M:Microservice.Library.OpenApi.JsonSerialization.OpenApiContractResolver.#ctor(System.Type,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+        <member name="M:Microservice.Library.OpenApi.JsonExtension.OpenApiContractResolver.#ctor(System.Type,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
             <summary>
             
             </summary>
@@ -1055,61 +1077,61 @@
             <param name="exceptionProperties">特别输出的属性</param>
             <param name="ignoreProperties">特别忽略的属性</param>
         </member>
-        <member name="M:Microservice.Library.OpenApi.JsonSerialization.OpenApiContractResolver.ResolveContract(System.Type)">
+        <member name="M:Microservice.Library.OpenApi.JsonExtension.OpenApiContractResolver.ResolveContract(System.Type)">
             <summary>
             判定协议
             </summary>
             <param name="type"></param>
             <returns></returns>
         </member>
-        <member name="M:Microservice.Library.OpenApi.JsonSerialization.OpenApiContractResolver.Filter(Newtonsoft.Json.Serialization.JsonObjectContract)">
+        <member name="M:Microservice.Library.OpenApi.JsonExtension.OpenApiContractResolver.Filter(Newtonsoft.Json.Serialization.JsonObjectContract)">
             <summary>
             过滤属性
             </summary>
             <param name="contract">协议</param>
         </member>
-        <member name="T:Microservice.Library.OpenApi.JsonSerialization.OpenApiContractResolver`1">
+        <member name="T:Microservice.Library.OpenApi.JsonExtension.OpenApiContractResolver`1">
             <summary>
             自定义解析器
             </summary>
             <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
         </member>
-        <member name="M:Microservice.Library.OpenApi.JsonSerialization.OpenApiContractResolver`1.#ctor">
+        <member name="M:Microservice.Library.OpenApi.JsonExtension.OpenApiContractResolver`1.#ctor">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Microservice.Library.OpenApi.JsonSerialization.OpenApiContractResolver`1.#ctor(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+        <member name="M:Microservice.Library.OpenApi.JsonExtension.OpenApiContractResolver`1.#ctor(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
             <summary>
             
             </summary>
             <param name="propertyDic">输出的属性</param>
         </member>
-        <member name="M:Microservice.Library.OpenApi.JsonSerialization.OpenApiContractResolver`1.#ctor(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+        <member name="M:Microservice.Library.OpenApi.JsonExtension.OpenApiContractResolver`1.#ctor(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}},System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
             <summary>
             
             </summary>
             <param name="exceptionProperties">特别输出的属性</param>
             <param name="ignoreProperties">特别忽略的属性</param>
         </member>
-        <member name="T:Microservice.Library.OpenApi.JsonSerialization.OpenApiDynamicConverter">
+        <member name="T:Microservice.Library.OpenApi.JsonExtension.OpenApiDynamicConverter">
             <summary>
             自定义动态类型转换器
             </summary>
             <remarks>未完工</remarks>
         </member>
-        <member name="F:Microservice.Library.OpenApi.JsonSerialization.OpenApiDynamicConverter.SchemaType">
+        <member name="F:Microservice.Library.OpenApi.JsonExtension.OpenApiDynamicConverter.SchemaType">
             <summary>
             输出的属性
             </summary>
         </member>
-        <member name="M:Microservice.Library.OpenApi.JsonSerialization.OpenApiDynamicConverter.#ctor(System.Type)">
+        <member name="M:Microservice.Library.OpenApi.JsonExtension.OpenApiDynamicConverter.#ctor(System.Type)">
             <summary>
             
             </summary>
             <param name="schemaType">架构类型</param>
         </member>
-        <member name="M:Microservice.Library.OpenApi.JsonSerialization.OpenApiDynamicConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)">
+        <member name="M:Microservice.Library.OpenApi.JsonExtension.OpenApiDynamicConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)">
             <summary>
             Reads the JSON representation of the object.
             </summary>
@@ -1119,7 +1141,7 @@
             <param name="serializer">The calling serializer.</param>
             <returns>The object value.</returns>
         </member>
-        <member name="M:Microservice.Library.OpenApi.JsonSerialization.OpenApiDynamicConverter.DynamicToEntity(System.Dynamic.ExpandoObject,System.Type)">
+        <member name="M:Microservice.Library.OpenApi.JsonExtension.OpenApiDynamicConverter.DynamicToEntity(System.Dynamic.ExpandoObject,System.Type)">
             <summary>
             将动态类型转为指定类型实体
             </summary>
@@ -1127,7 +1149,7 @@
             <param name="type"></param>
             <returns></returns>
         </member>
-        <member name="M:Microservice.Library.OpenApi.JsonSerialization.OpenApiDynamicConverter.CanConvert(System.Type)">
+        <member name="M:Microservice.Library.OpenApi.JsonExtension.OpenApiDynamicConverter.CanConvert(System.Type)">
             <summary>
             Determines whether this instance can convert the specified object type.
             </summary>
@@ -1136,7 +1158,7 @@
             	<c>true</c> if this instance can convert the specified object type; otherwise, <c>false</c>.
             </returns>
         </member>
-        <member name="P:Microservice.Library.OpenApi.JsonSerialization.OpenApiDynamicConverter.CanWrite">
+        <member name="P:Microservice.Library.OpenApi.JsonExtension.OpenApiDynamicConverter.CanWrite">
             <summary>
             Gets a value indicating whether this <see cref="T:Newtonsoft.Json.JsonConverter"/> can write JSON.
             </summary>
@@ -1144,13 +1166,13 @@
             	<c>true</c> if this <see cref="T:Newtonsoft.Json.JsonConverter"/> can write JSON; otherwise, <c>false</c>.
             </value>
         </member>
-        <member name="T:Microservice.Library.OpenApi.JsonSerialization.OpenApiDynamicConverter`1">
+        <member name="T:Microservice.Library.OpenApi.JsonExtension.OpenApiDynamicConverter`1">
             <summary>
             自定义动态类型转换器
             </summary>
             <typeparam name="TOpenApiSchema">指定接口架构类型</typeparam>
         </member>
-        <member name="M:Microservice.Library.OpenApi.JsonSerialization.OpenApiDynamicConverter`1.#ctor">
+        <member name="M:Microservice.Library.OpenApi.JsonExtension.OpenApiDynamicConverter`1.#ctor">
             <summary>
             
             </summary>

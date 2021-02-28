@@ -47,8 +47,6 @@
     <ProjectReference Include="..\..\Library\Baidu\Library.Baidu.csproj" />
     <ProjectReference Include="..\..\Library\BloomFilter\Library.BloomFilter.csproj" />
     <ProjectReference Include="..\..\Library\Cache\Library.Cache.csproj" />
-    <ProjectReference Include="..\..\Library\Chinese\Library.Chinese.csproj" />
-    <ProjectReference Include="..\..\Library\Collection\Library.Collection.csproj" />
     <ProjectReference Include="..\..\Library\Configuration\Library.Configuration.csproj" />
     <ProjectReference Include="..\..\Library\ConsistentHash\Library.ConsistentHash.csproj" />
     <ProjectReference Include="..\..\Library\ConsoleTool\Library.ConsoleTool.csproj" />
@@ -60,18 +58,11 @@
     <ProjectReference Include="..\..\Library\DataRepository_MySql\Library.DataRepository_MySql.csproj" />
     <ProjectReference Include="..\..\Library\DataRepository_PostgreSql\Library.DataRepository_PostgreSql.csproj" />
     <ProjectReference Include="..\..\Library\DataRepository_SqlServer\Library.DataRepository_SqlServer.csproj" />
-    <ProjectReference Include="..\..\Library\DataSearch\Library.DataSearch.csproj" />
-    <ProjectReference Include="..\..\Library\Delegate\Library.Delegate.csproj" />
     <ProjectReference Include="..\..\Library\Elasticsearch\Library.Elasticsearch.csproj" />
     <ProjectReference Include="..\..\Library\Extension\Library.Extension.csproj" />
     <ProjectReference Include="..\..\Library\File\Library.File.csproj" />
     <ProjectReference Include="..\..\Library\FreeSql\Library.FreeSql.csproj" />
-    <ProjectReference Include="..\..\Library\Geetest\Library.Geetest.csproj" />
-    <ProjectReference Include="..\..\Library\HardwareInfo\Library.HardwareInfo.csproj" />
-    <ProjectReference Include="..\..\Library\Html\Library.Html.csproj" />
     <ProjectReference Include="..\..\Library\Http\Library.Http.csproj" />
-    <ProjectReference Include="..\..\Library\Json\Library.Json.csproj" />
-    <ProjectReference Include="..\..\Library\LinqTool\Library.LinqTool.csproj" />
     <ProjectReference Include="..\..\Library\NLogger\Library.NLogger.csproj" />
     <ProjectReference Include="..\..\Library\OfficeDocuments\Library.OfficeDocuments.csproj" />
     <ProjectReference Include="..\..\Library\OpenApi\Library.OpenApi.csproj" />
@@ -79,13 +70,7 @@
     <ProjectReference Include="..\..\Library\SnowflakeId\Library.Snowflake.csproj" />
     <ProjectReference Include="..\..\Library\Soap\Library.Soap.csproj" />
     <ProjectReference Include="..\..\Library\SuperSocket\Library.SuperSocket.csproj" />
-    <ProjectReference Include="..\..\Library\TaskQeury\Library.TaskQeury.csproj" />
-    <ProjectReference Include="..\..\Library\TimeTick\Library.TimeTick.csproj" />
-    <ProjectReference Include="..\..\Library\TypeTool\Library.TypeTool.csproj" />
-    <ProjectReference Include="..\..\Library\UsingLock\Library.UsingLock.csproj" />
-    <ProjectReference Include="..\..\Library\WebApp\Library.WebApp.csproj" />
     <ProjectReference Include="..\..\Library\WeChat\Library.WeChat.csproj" />
-    <ProjectReference Include="..\..\Library\Xml\Library.Xml.csproj" />
   </ItemGroup>
 
 </Project>

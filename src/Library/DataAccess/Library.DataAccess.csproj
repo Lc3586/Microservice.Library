@@ -7,7 +7,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Microservice.Library.DataAccess</RootNamespace>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Version>0.0.0.1-alpha</Version>
     <AssemblyName>Microservice.Library.DataAccess</AssemblyName>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
@@ -26,7 +26,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Collection\Library.Collection.csproj" />
     <ProjectReference Include="..\ConsistentHash\Library.ConsistentHash.csproj" />
     <ProjectReference Include="..\Container\Library.Container.csproj" />
     <ProjectReference Include="..\DataRepository\Library.DataRepository.csproj" />
@@ -35,7 +34,6 @@
     <ProjectReference Include="..\DataRepository_PostgreSql\Library.DataRepository_PostgreSql.csproj" />
     <ProjectReference Include="..\DataRepository_SqlServer\Library.DataRepository_SqlServer.csproj" />
     <ProjectReference Include="..\SnowflakeId\Library.Snowflake.csproj" />
-    <ProjectReference Include="..\TypeTool\Library.TypeTool.csproj" />
   </ItemGroup>
 
   <ItemGroup>

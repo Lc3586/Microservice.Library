@@ -1,4 +1,4 @@
-﻿using Microservice.Library.TypeTool;
+﻿using Microservice.Library.Extension;
 using Microsoft.Extensions.DependencyInjection;
 using Model.Utils.Config;
 
@@ -18,7 +18,7 @@ namespace Api.Configures
         {
             services.AddAutoMapper(s =>
             {
-                s.AutoMapperGeneratorOptions.Types = TypeHelper.GetTypes(config.AutoMapperAssemblys.ToArray());
+                s.AutoMapperGeneratorOptions.Types = config.AutoMapperAssemblys.GetTypes();
             });
 
             return services;

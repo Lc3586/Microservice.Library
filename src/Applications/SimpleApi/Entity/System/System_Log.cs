@@ -86,7 +86,7 @@ namespace Entity.System
         /// </summary>
         [OpenApiSubTag("List", "Detail")]
         [OpenApiSchema(OpenApiSchemaType.@string, OpenApiSchemaFormat.string_datetime)]
-        [JsonConverter(typeof(Microservice.Library.Json.Converters.DateTimeConverter), "yyyy-MM-dd HH:mm:ss.ffff")]
+        [JsonConverter(typeof(Microservice.Library.OpenApi.JsonExtension.DateTimeConverter), "yyyy-MM-dd HH:mm:ss.ffff")]
         [Description("操作时间")]
         [Date(Format = "dateOptionalTime")]
         public DateTime CreateTime { get; set; }

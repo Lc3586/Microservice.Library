@@ -1,4 +1,4 @@
-﻿using Microservice.Library.OpenApi.JsonSerialization;
+﻿using Microservice.Library.OpenApi.JsonExtension;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

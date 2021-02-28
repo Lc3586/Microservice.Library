@@ -3,7 +3,7 @@ using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 
-namespace Microservice.Library.OpenApi.JsonSerialization
+namespace Microservice.Library.OpenApi.JsonExtension
 {
     /// <summary>
     /// 自定义解析器

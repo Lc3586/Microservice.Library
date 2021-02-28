@@ -1,13 +1,12 @@
-﻿using System;
+﻿using Microservice.Library.ConsoleTool;
+using Microservice.Library.Extension;
+using Microservice.Library.Extension.Helper;
+using Microservice.Library.Snowflake;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Microservice.Library.Snowflake;
-using Microservice.Library.Extension;
-using Microservice.Library.ConsoleTool;
-using Microservice.Library.HardwareInfo;
 
 namespace Microservice.Library.Elasticsearch
 {
@@ -17,7 +16,7 @@ namespace Microservice.Library.Elasticsearch
     /// </summary>
     public class ElasticsearchTest
     {
-        private Stopwatch Watch = new Stopwatch();
+        private readonly Stopwatch Watch = new Stopwatch();
 
         private static readonly ElasticsearchClient ESHelper = new ElasticsearchClient();
         private static readonly Random random = new Random();
@@ -85,7 +84,7 @@ namespace Microservice.Library.Elasticsearch
                  };
 
             ProgressBar progressBar = null;
-            var CPUUsage = CPU.CPUUsageInfo().ToList();
+            var CPUUsage = CPUHelper.CPUUsageInfo().ToList();
             int CPULowUsageCount = CPUUsage.Count(u => u < 30);
             if (CPULowUsageCount == 0)
                 CPULowUsageCount = 1;
@@ -110,8 +109,6 @@ namespace Microservice.Library.Elasticsearch
                 if (curr_i == CPULowUsageCount - 1)
                     bulk[curr_i, 0] += total - avg * CPULowUsageCount;
                 bulk[curr_i, 1] = bulk[curr_i, 0];
-
-#pragma warning disable CS4014 // 由于此调用不会等待，因此在调用完成前将继续执行当前方法
                 tasks[i] = Task.Run(() =>
                 {
                     while (bulk[curr_i, 1] != 0)
@@ -145,7 +142,6 @@ namespace Microservice.Library.Elasticsearch
 
                     IsOver();
                 });
-#pragma warning restore CS4014 // 由于此调用不会等待，因此在调用完成前将继续执行当前方法
             }
 
             Task.WaitAll(tasks);

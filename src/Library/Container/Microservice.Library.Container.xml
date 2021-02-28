@@ -63,6 +63,11 @@
             </summary>
             <param name="invocation"></param>
         </member>
+        <member name="T:Microservice.Library.Container.DisposableContainer">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:Microservice.Library.Container.IDependency">
             <summary>
             注入标记
@@ -153,6 +158,94 @@
             <param name="name">注册名</param>
             <param name="paramters">构造参数</param>
             <returns></returns>
+        </member>
+        <member name="T:Microservice.Library.Container.SynchronizedCollection`1">
+            <summary>
+            同步集合
+            </summary>
+            <typeparam name="T">元素类型</typeparam>
+        </member>
+        <member name="T:Microservice.Library.Container.UsingLock`1">
+            <summary>
+            使用using代替lock操作的对象,可指定写入和读取锁定模式
+            参考:https://www.cnblogs.com/blqw/p/3475734.html
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="T:Microservice.Library.Container.UsingLock`1.Lock">
+            <summary> 利用IDisposable的using语法糖方便的释放锁定操作
+            <para>内部类</para>
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.Container.UsingLock`1.Lock._Lock">
+            <summary> 读写锁对象
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.Container.UsingLock`1.Lock._IsWrite">
+            <summary> 是否为写入模式
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.Container.UsingLock`1.Lock.#ctor(System.Threading.ReaderWriterLockSlim,System.Boolean)">
+            <summary> 利用IDisposable的using语法糖方便的释放锁定操作
+            <para>构造函数</para>
+            </summary>
+            <param name="rwl">读写锁</param>
+            <param name="isWrite">写入模式为true,读取模式为false</param>
+        </member>
+        <member name="M:Microservice.Library.Container.UsingLock`1.Lock.Dispose">
+            <summary> 释放对象时退出指定锁定模式
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.Container.UsingLock`1.Disposable">
+            <summary> 空的可释放对象,免去了调用时需要判断是否为null的问题
+            <para>内部类</para>
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.Container.UsingLock`1.Disposable.Empty">
+            <summary> 空的可释放对象
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.Container.UsingLock`1.Disposable.Dispose">
+            <summary> 空的释放方法
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.Container.UsingLock`1._LockSlim">
+            <summary> 读写锁
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.Container.UsingLock`1._Data">
+            <summary> 保存数据
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.Container.UsingLock`1.#ctor">
+            <summary> 使用using代替lock操作的对象,可指定写入和读取锁定模式
+            <para>构造函数</para>
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.Container.UsingLock`1.Data">
+            <summary> 获取或设置当前对象中保存数据的值
+            </summary>
+            <exception cref="T:System.MemberAccessException">获取数据时未进入读取或写入锁定模式</exception>
+            <exception cref="T:System.MemberAccessException">设置数据时未进入写入锁定模式</exception>
+        </member>
+        <member name="P:Microservice.Library.Container.UsingLock`1.Enabled">
+            <summary> 是否启用,当该值为false时,Read()和Write()方法将返回 Disposable.Empty
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.Container.UsingLock`1.Read">
+            <summary> 进入读取锁定模式,该模式下允许多个读操作同时进行
+            <para>退出读锁请将返回对象释放,建议使用using语块</para>
+            <para>Enabled为false时,返回Disposable.Empty;</para>
+            <para>在读取或写入锁定模式下重复执行,返回Disposable.Empty;</para>
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.Container.UsingLock`1.Write">
+            <summary> 进入写入锁定模式,该模式下只允许同时执行一个读操作
+            <para>退出读锁请将返回对象释放,建议使用using语块</para>
+            <para>Enabled为false时,返回Disposable.Empty;</para>
+            <para>在写入锁定模式下重复执行,返回Disposable.Empty;</para>
+            </summary>
+            <exception cref="T:System.NotImplementedException">读取模式下不能进入写入锁定状态</exception>
         </member>
     </members>
 </doc>
