@@ -26,17 +26,15 @@ jobs:
                 dotnet clean ./src/Microservice.Library.sln --configuration Release
                 dotnet nuget locals all --clear
                 
-            - name: Build
+            - name: BuildWithPack
               run: dotnet build ./src/Microservice.Library.sln -c Release
               
-            - name: Pack
-              run: dotnet pack ./src/Microservice.Library.sln -c Release
             - uses: dotnet/nbgv@master
               id: nbgv
               
             - name: Pack all-in-one-packages
               run:  |
-                dotnet pack ./src/NuGet/Library.All.csproj -c Release -p:NuspecProperties="version=${{ steps.nbgv.outputs.NuGetPackageVersion }}" 
+                dotnet pack ./src/NuGet/Library.All/Library.All.csproj -c Release -p:NuspecProperties="version=${{ steps.nbgv.outputs.NuGetPackageVersion }}{{ steps.nbgv.outputs.PrereleaseVersion }}" 
                 
             - name: Install Nuget
               run: |
