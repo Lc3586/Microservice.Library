@@ -27,7 +27,7 @@ jobs:
                 dotnet nuget locals all --clear
                 
             - name: BuildWithPack
-              run: dotnet build ./src/Microservice.Library.sln -c Release
+              run: dotnet build ./src/NuGet/Library.All/Library.All.csproj -c Release
               
             - uses: dotnet/nbgv@master
               id: nbgv
