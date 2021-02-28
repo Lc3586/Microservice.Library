@@ -51,13 +51,7 @@
     <ProjectReference Include="..\..\Library\ConsistentHash\Library.ConsistentHash.csproj" />
     <ProjectReference Include="..\..\Library\ConsoleTool\Library.ConsoleTool.csproj" />
     <ProjectReference Include="..\..\Library\Container\Library.Container.csproj" />
-    <ProjectReference Include="..\..\Library\DataAccess\Library.DataAccess.csproj" />
     <ProjectReference Include="..\..\Library\DataMapping\Library.DataMapping.csproj" />
-    <ProjectReference Include="..\..\Library\DataRepository\Library.DataRepository.csproj" />
-    <ProjectReference Include="..\..\Library\DataRepository_DM\Library.DataRepository_DM.csproj" />
-    <ProjectReference Include="..\..\Library\DataRepository_MySql\Library.DataRepository_MySql.csproj" />
-    <ProjectReference Include="..\..\Library\DataRepository_PostgreSql\Library.DataRepository_PostgreSql.csproj" />
-    <ProjectReference Include="..\..\Library\DataRepository_SqlServer\Library.DataRepository_SqlServer.csproj" />
     <ProjectReference Include="..\..\Library\Elasticsearch\Library.Elasticsearch.csproj" />
     <ProjectReference Include="..\..\Library\Extension\Library.Extension.csproj" />
     <ProjectReference Include="..\..\Library\File\Library.File.csproj" />
@@ -69,7 +63,6 @@
     <ProjectReference Include="..\..\Library\SelectOption\Library.SelectOption.csproj" />
     <ProjectReference Include="..\..\Library\SnowflakeId\Library.Snowflake.csproj" />
     <ProjectReference Include="..\..\Library\Soap\Library.Soap.csproj" />
-    <ProjectReference Include="..\..\Library\SuperSocket\Library.SuperSocket.csproj" />
     <ProjectReference Include="..\..\Library\WeChat\Library.WeChat.csproj" />
   </ItemGroup>
 
