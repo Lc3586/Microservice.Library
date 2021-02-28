@@ -25,16 +25,16 @@ jobs:
               run: |
                 dotnet clean ./src/Microservice.Library.sln --configuration Release
                 dotnet nuget locals all --clear
-                
-            - name: BuildWithPack
-              run: dotnet build ./src/NuGet/Library.All/Library.All.csproj -c Release
               
             - uses: dotnet/nbgv@master
               id: nbgv
+                
+            - name: BuildWithPack
+              run: dotnet build ./src/NuGet/Library.All/Library.All.csproj -c Release -p:PackageVersion=${{ steps.nbgv.outputs.NuGetPackageVersion }}-alpha
               
             - name: Pack all-in-one-packages
               run:  |
-                dotnet pack ./src/NuGet/Library.All/Library.All.csproj -c Release -p:NuspecProperties="version=${{ steps.nbgv.outputs.NuGetPackageVersion }}-alpha"
+                dotnet pack ./src/NuGet/Library.All/Library.All.csproj -c Release --no-build -p:PackageVersion=${{ steps.nbgv.outputs.NuGetPackageVersion }}-alpha
                 
             - name: Install Nuget
               run: |
