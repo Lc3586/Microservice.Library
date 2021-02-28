@@ -6,6 +6,7 @@
     <TargetFramework>net5.0</TargetFramework>
     <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
     <UserSecretsId>4be146dc-3dc7-49fc-b525-5a296a2c7c19</UserSecretsId>
+    <AssemblyName>SimpleApi.Api</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net5.0|AnyCPU'">
