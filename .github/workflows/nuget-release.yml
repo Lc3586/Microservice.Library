@@ -49,5 +49,5 @@ jobs:
                 
             - name: Push generated package to GitHub registry
               run: |
-                .\nuget push **/*.nupkg -Source github -SkipDuplicate
-                .\nuget push **/*.nupkg -Source https://api.nuget.org/v3/index.json -SkipDuplicate -ApiKey ${{ secrets.NUGETAPIKEYS_MICROSERVICE_LIBRARY }} -NoSymbols
+                .\nuget push **/Microservice.Library.*.nupkg -Source github -SkipDuplicate
+                .\nuget push **/Microservice.Library.*.nupkg -Source https://api.nuget.org/v3/index.json -SkipDuplicate -ApiKey ${{ secrets.NUGETAPIKEYS_MICROSERVICE_LIBRARY }} -NoSymbols
