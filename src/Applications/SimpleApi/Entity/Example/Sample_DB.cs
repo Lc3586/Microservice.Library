@@ -59,6 +59,13 @@ namespace Entity.Example
         public long? Value1 { get; set; }
 
         /// <summary>
+        /// 启用
+        /// </summary>
+        [OpenApiSubTag("List", "Create", "Edit", "Detail")]
+        [Description("启用")]
+        public bool Enable { get; set; }
+
+        /// <summary>
         /// 创建者
         /// </summary>
         [Column(StringLength = 36)]

@@ -29,18 +29,18 @@ namespace Business.Implementation.Common
         {
             Mapper = autoMapperProvider.GetMapper();
             Orm = freeSqlProvider.GetFreeSql();
-            Repository = Orm.GetRepository<Common_OperationRecord, long>();
+            Repository = Orm.GetRepository<Common_OperationRecord, string>();
         }
 
         #endregion
 
         #region 私有成员
 
-        IMapper Mapper { get; set; }
+        readonly IMapper Mapper;
 
-        IFreeSql Orm { get; set; }
+        readonly IFreeSql Orm;
 
-        IBaseRepository<Common_OperationRecord, long> Repository { get; set; }
+        readonly IBaseRepository<Common_OperationRecord, string> Repository;
 
         #endregion
 

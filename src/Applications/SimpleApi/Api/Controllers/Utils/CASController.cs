@@ -20,12 +20,16 @@ namespace Api.Controllers.Utils
     [SwaggerTag("CAS认证接口")]
     public class CASController : BaseApiController
     {
-        HttpContext Context;
+        #region DI
 
         public CASController(IHttpContextAccessor accessor)
         {
             Context = accessor.HttpContext;
         }
+
+        readonly HttpContext Context;
+
+        #endregion
 
         /// <summary>
         /// 登录验证
@@ -128,15 +132,14 @@ namespace Api.Controllers.Utils
         /// </summary>
         /// <param name="returnUrl">注销后重定向地址</param>
         /// <param name="logoutCAS">单点注销（当前登录的所有应用都会注销）</param>
-        /// <param name="tgt"></param>
         /// <returns></returns>
         [HttpGet("logout")]
-        public async Task LogOut(string returnUrl, bool logoutCAS = false, string tgt = null)
+        public async Task LogOut(string returnUrl, bool logoutCAS = false)
         {
             if (string.IsNullOrEmpty(returnUrl))
                 returnUrl = $"{Config.WebRootUrl}/cas/login";
 
-            await LogOut(tgt);
+            await LogOut();
 
             if (logoutCAS)
                 Context.Response.Redirect($"{Config.CAS.BaseUrl}/logout?service={returnUrl}");
@@ -147,10 +150,9 @@ namespace Api.Controllers.Utils
         /// <summary>
         /// 注销
         /// </summary>
-        /// <param name="tgt"></param>
         /// <returns></returns>
         [HttpPost("logout")]
-        public async Task LogOut(string tgt = null)
+        public async Task LogOut()
         {
             await Context.SignOutAsync();
         }

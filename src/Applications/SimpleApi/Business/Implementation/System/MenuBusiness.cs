@@ -44,19 +44,19 @@ namespace Business.Implementation.System
 
         #region 私有成员
 
-        IFreeSql Orm { get; set; }
+        readonly IFreeSql Orm;
 
-        IBaseRepository<System_Menu, string> Repository { get; set; }
+        readonly IBaseRepository<System_Menu, string> Repository;
 
-        IMapper Mapper { get; set; }
+        readonly IMapper Mapper;
 
-        IOperationRecordBusiness OperationRecordBusiness { get; set; }
+        readonly IOperationRecordBusiness OperationRecordBusiness;
 
-        IAuthoritiesBusiness AuthoritiesBusiness { get; set; }
+        readonly IAuthoritiesBusiness AuthoritiesBusiness;
 
         #endregion
 
-        #region 公共
+        #region 外部接口
 
         #region 基础功能
 
@@ -113,6 +113,12 @@ namespace Business.Implementation.System
         {
             var newData = Mapper.Map<System_Menu>(data).InitEntity();
 
+            if (Repository.Where(o => o.ParentId == newData.ParentId && o.Code == newData.Code).Any())
+                throw new ApplicationException($"当前层级已存在编码为{newData.Code}的菜单.");
+
+            if (Repository.Where(o => o.ParentId == newData.ParentId && o.Type == newData.Type && o.Name == newData.Name).Any())
+                throw new ApplicationException($"当前层级已存在类型为{newData.Type},且名称为{newData.Name}的菜单.");
+
             newData.Uri = newData.Uri?.ToLower();
 
             (bool success, Exception ex) = Orm.RunTransaction(() =>
@@ -160,6 +166,12 @@ namespace Business.Implementation.System
         public void Edit(Edit data)
         {
             var editData = Mapper.Map<System_Menu>(data).ModifyEntity();
+
+            if (Repository.Where(o => o.ParentId == editData.ParentId && o.Code == editData.Code && o.Id != editData.Id).Any())
+                throw new ApplicationException($"当前层级已存在编码为{editData.Code}的菜单.");
+
+            if (Repository.Where(o => o.ParentId == editData.ParentId && o.Type == editData.Type && o.Name == editData.Name && o.Id != editData.Id).Any())
+                throw new ApplicationException($"当前层级已存在类型为{editData.Type},且名称为{editData.Name}的菜单.");
 
             editData.Uri = editData.Uri?.ToLower();
 

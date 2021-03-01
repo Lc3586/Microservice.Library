@@ -194,6 +194,11 @@
             <param name="returnUrl"></param>
             <returns></returns>
         </member>
+        <member name="T:Business.Implementation.Example.SampleBusiness">
+            <summary>
+            操作记录业务类
+            </summary>
+        </member>
         <member name="T:Business.Implementation.Public.MemberBusiness">
             <summary>
             会员业务类

@@ -11,12 +11,12 @@ namespace Business.Interface.System
         /// <summary>
         /// 是否已登录
         /// </summary>
-        public bool IsAuthenticated { get; }
+        bool IsAuthenticated { get; }
 
         /// <summary>
         /// 身份验证信息
         /// </summary>
-        public AuthenticationInfo AuthenticationInfo { get; }
+        AuthenticationInfo AuthenticationInfo { get; }
 
         /// <summary>
         /// 用户信息

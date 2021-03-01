@@ -38,12 +38,14 @@ namespace Business.Implementation.System
         }
 
         readonly IAuthoritiesBusiness AuthoritiesBusiness;
+
         readonly IUserBusiness UserBusiness;
+
         readonly IMemberBusiness MemberBusiness;
 
         #endregion
 
-        #region 公共
+        #region 外部接口
 
         /// <summary>
         /// 是否已登录
@@ -62,16 +64,12 @@ namespace Business.Implementation.System
         {
             get
             {
-                switch (AuthenticationInfo?.UserType)
+                return AuthenticationInfo?.UserType switch
                 {
-                    case Model.System.UserType.系统用户:
-                        return UserBusiness.GetOperatorDetail(AuthenticationInfo.Id);
-                    case Model.System.UserType.会员:
-                        return MemberBusiness.GetOperatorDetail(AuthenticationInfo.Id);
-                    default:
-                        //throw new ApplicationException("登录信息异常: 用户类型错误.");
-                        return null;
-                }
+                    Model.System.UserType.系统用户 => UserBusiness.GetOperatorDetail(AuthenticationInfo.Id),
+                    Model.System.UserType.会员 => MemberBusiness.GetOperatorDetail(AuthenticationInfo.Id),
+                    _ => null
+                };
             }
         }
 

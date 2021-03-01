@@ -57,7 +57,7 @@ namespace Business.Implementation.System
 
         #endregion
 
-        #region 公共
+        #region 外部接口
 
         #region 基础功能
 
@@ -155,6 +155,12 @@ namespace Business.Implementation.System
         {
             var newData = Mapper.Map<System_Resources>(data).InitEntity();
 
+            if (Repository.Where(o => o.Code == newData.Code).Any())
+                throw new ApplicationException($"已存在编码为{newData.Code}的资源.");
+
+            if (Repository.Where(o => o.Type == newData.Type && o.Name == newData.Name).Any())
+                throw new ApplicationException($"已存在类型为{newData.Type},且名称为{newData.Name}的资源.");
+
             newData.Uri = newData.Uri?.ToLower();
 
             (bool success, Exception ex) = Orm.RunTransaction(() =>
@@ -187,6 +193,12 @@ namespace Business.Implementation.System
         public void Edit(Edit data)
         {
             var editData = Mapper.Map<System_Resources>(data).ModifyEntity();
+
+            if (Repository.Where(o => o.Code == editData.Code && o.Id != editData.Id).Any())
+                throw new ApplicationException($"已存在编码为{editData.Code}的资源.");
+
+            if (Repository.Where(o => o.Type == editData.Type && o.Name == editData.Name && o.Id != editData.Id).Any())
+                throw new ApplicationException($"已存在类型为{editData.Type},且名称为{editData.Name}的资源.");
 
             editData.Uri = editData.Uri?.ToLower();
 

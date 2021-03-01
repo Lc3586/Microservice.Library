@@ -35,13 +35,13 @@ namespace Api.Controllers.Utils
             Mapper = autoMapperProvider.GetMapper();
         }
 
-        #endregion
-
         readonly IDemoService DemoService;
 
         readonly IMapper Mapper;
 
         readonly IFreeSql Orm;
+
+        #endregion
 
         /// <summary>
         /// 测试依赖注入

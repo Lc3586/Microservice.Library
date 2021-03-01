@@ -54,7 +54,7 @@ namespace Api.Controllers
         /// <returns></returns>
         [HttpPost("tree-list")]
         [SwaggerResponse((int)HttpStatusCode.OK, "树状列表数据", typeof(TreeList))]
-        public async Task<object> GetTreeList(TreeListParamter paramter)
+        public async Task<object> GetTreeList([FromBody] TreeListParamter paramter)
         {
             return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(RoleBusiness.GetTreeList(paramter))));
         }

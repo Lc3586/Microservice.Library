@@ -64,29 +64,29 @@ namespace Business.Implementation.Common
 
         #region 私有成员
 
-        IFreeSql Orm { get; set; }
+        readonly IFreeSql Orm;
 
-        IBaseRepository<Common_WeChatUserInfo, string> Repository { get; set; }
+        readonly IBaseRepository<Common_WeChatUserInfo, string> Repository;
 
-        IBaseRepository<System_User, string> Repository_User { get; set; }
+        readonly IBaseRepository<System_User, string> Repository_User;
 
-        IBaseRepository<System_UserWeChatUserInfo, string> Repository_UserWeChatUserInfo { get; set; }
+        readonly IBaseRepository<System_UserWeChatUserInfo, string> Repository_UserWeChatUserInfo;
 
-        IBaseRepository<Public_Member, string> Repository_Member { get; set; }
+        readonly IBaseRepository<Public_Member, string> Repository_Member;
 
-        IBaseRepository<Public_MemberWeChatUserInfo, string> Repository_MemberWeChatUserInfo { get; set; }
+        readonly IBaseRepository<Public_MemberWeChatUserInfo, string> Repository_MemberWeChatUserInfo;
 
-        IMapper Mapper { get; set; }
+        readonly IMapper Mapper;
 
-        ICache Cache { get; set; }
+        readonly ICache Cache;
 
-        IOperationRecordBusiness OperationRecordBusiness { get; set; }
+        readonly IOperationRecordBusiness OperationRecordBusiness;
 
-        IMemberBusiness MemberBusiness { get; set; }
+        readonly IMemberBusiness MemberBusiness;
 
-        IUserBusiness UserBusiness { get; set; }
+        readonly IUserBusiness UserBusiness;
 
-        IFileBusiness FileBusiness { get; set; }
+        readonly IFileBusiness FileBusiness;
 
         /// <summary>
         /// 创建微信用户信息
@@ -381,7 +381,7 @@ namespace Business.Implementation.Common
 
         #endregion
 
-        #region 公共
+        #region 外部接口
 
         public List<List> GetList(PaginationDTO pagination)
         {

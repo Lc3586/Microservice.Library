@@ -24,6 +24,8 @@ namespace Api.Controllers.Utils
     [SwaggerTag("简易身份验证接口")]
     public class SampleAuthenticationController : BaseApiController
     {
+        #region DI
+
         public SampleAuthenticationController(
             IHttpContextAccessor accessor,
             IUserBusiness userBusiness)
@@ -35,6 +37,8 @@ namespace Api.Controllers.Utils
         readonly HttpContext Context;
 
         readonly IUserBusiness UserBusiness;
+
+        #endregion
 
         /// <summary>
         /// 登录验证

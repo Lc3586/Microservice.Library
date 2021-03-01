@@ -126,7 +126,7 @@ namespace Business.Implementation.System
 
         #endregion
 
-        #region 公共
+        #region 外部接口
 
         #region 基础功能
 
@@ -235,6 +235,9 @@ namespace Business.Implementation.System
         {
             var newData = Mapper.Map<System_User>(data).InitEntity();
 
+            if (Repository.Select.Where(c => c.Account == newData.Account).Any())
+                throw new ApplicationException($"已存在账号为{newData.Account}的用户.");
+
             newData.Password = $"{newData.Account}{newData.Password}".ToMD5String();
 
             if (newData.HeadimgUrl.IsNullOrWhiteSpace())
@@ -319,6 +322,9 @@ namespace Business.Implementation.System
         [AdministratorOnly]
         public void Delete(List<string> ids)
         {
+            if (Repository.Select.Where(c => ids.Contains(c.Id) && c.Account == Config.AdminAccount).Any())
+                throw new ApplicationException($"禁止删除账号为{Config.AdminAccount}的用户.");
+
             var entityList = Repository.Select.Where(c => ids.Contains(c.Id)).ToList(c => new { c.Id, c.Account, c.Name });
 
             var orList = new List<Common_OperationRecord>();
@@ -359,6 +365,9 @@ namespace Business.Implementation.System
         public void Enable(string id, bool enable)
         {
             var entity = Repository.GetAndCheckNull(id);
+
+            if (entity.Account == Config.AdminAccount)
+                throw new ApplicationException($"禁止操作账号为{Config.AdminAccount}的用户.");
 
             entity.Enable = enable;
 

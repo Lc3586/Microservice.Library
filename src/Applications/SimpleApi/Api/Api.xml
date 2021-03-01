@@ -435,16 +435,16 @@
             示例接口
             </summary>
         </member>
-        <member name="F:Api.Controllers.SampleController.sampleBusiness">
-            <summary>
-            业务类
-            </summary>
-        </member>
         <member name="M:Api.Controllers.SampleController.#ctor(Business.Interface.Example.ISampleBusiness)">
             <summary>
             在构造函数中注入DI系统中注册的依赖
             </summary>
-            <param name="_exampleBusiness"></param>
+            <param name="sampleBusiness"></param>
+        </member>
+        <member name="F:Api.Controllers.SampleController.SampleBusiness">
+            <summary>
+            业务类
+            </summary>
         </member>
         <member name="M:Api.Controllers.SampleController.GetList(Model.Utils.Pagination.PaginationDTO)">
              <summary>
@@ -1494,20 +1494,18 @@
             <param name="returnUrl">登录后重定向地址</param>
             <returns></returns>
         </member>
-        <member name="M:Api.Controllers.Utils.CASController.LogOut(System.String,System.Boolean,System.String)">
+        <member name="M:Api.Controllers.Utils.CASController.LogOut(System.String,System.Boolean)">
             <summary>
             注销
             </summary>
             <param name="returnUrl">注销后重定向地址</param>
             <param name="logoutCAS">单点注销（当前登录的所有应用都会注销）</param>
-            <param name="tgt"></param>
             <returns></returns>
         </member>
-        <member name="M:Api.Controllers.Utils.CASController.LogOut(System.String)">
+        <member name="M:Api.Controllers.Utils.CASController.LogOut">
             <summary>
             注销
             </summary>
-            <param name="tgt"></param>
             <returns></returns>
         </member>
         <member name="M:Api.Controllers.Utils.CASController.GetToken">

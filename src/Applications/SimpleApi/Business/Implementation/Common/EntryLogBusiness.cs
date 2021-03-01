@@ -3,8 +3,6 @@ using Business.Interface.Common;
 using Business.Utils;
 using Business.Utils.Pagination;
 using Entity.Common;
-using Entity.Public;
-using Entity.System;
 using FreeSql;
 using Microservice.Library.DataMapping.Gen;
 using Microservice.Library.Extension;
@@ -39,11 +37,11 @@ namespace Business.Implementation.Common
 
         #region 私有成员
 
-        IMapper Mapper { get; set; }
+        readonly IMapper Mapper;
 
-        IFreeSql Orm { get; set; }
+        readonly IFreeSql Orm;
 
-        IBaseRepository<Common_EntryLog, string> Repository { get; set; }
+        readonly IBaseRepository<Common_EntryLog, string> Repository;
 
         #endregion
 

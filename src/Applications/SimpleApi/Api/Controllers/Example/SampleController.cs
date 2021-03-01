@@ -24,18 +24,18 @@ namespace Api.Controllers
         #region DI
 
         /// <summary>
-        /// 业务类
-        /// </summary>
-        ISampleBusiness sampleBusiness;
-
-        /// <summary>
         /// 在构造函数中注入DI系统中注册的依赖
         /// </summary>
-        /// <param name="_exampleBusiness"></param>
-        public SampleController(ISampleBusiness _exampleBusiness)
+        /// <param name="sampleBusiness"></param>
+        public SampleController(ISampleBusiness sampleBusiness)
         {
-            sampleBusiness = _exampleBusiness;
+            SampleBusiness = sampleBusiness;
         }
+
+        /// <summary>
+        /// 业务类
+        /// </summary>
+        readonly ISampleBusiness SampleBusiness;
 
         #endregion
 
@@ -134,7 +134,7 @@ namespace Api.Controllers
         [SwaggerResponse((int)HttpStatusCode.OK, "列表数据", typeof(List))]//指定输出架构
         public async Task<object> GetList([FromBody]/*指定参数来自请求正文*/PaginationDTO pagination)
         {
-            return await Task.FromResult(OpenApiJsonContent(sampleBusiness.GetList(pagination), pagination));
+            return await Task.FromResult(OpenApiJsonContent(SampleBusiness.GetList(pagination), pagination));
         }
 
         /// <summary>
@@ -146,7 +146,7 @@ namespace Api.Controllers
         [SwaggerResponse((int)HttpStatusCode.OK, "详情数据", typeof(Detail))]
         public async Task<object> GetDetail(string id)
         {
-            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(sampleBusiness.GetDetail(id))));
+            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(SampleBusiness.GetDetail(id))));
         }
 
         /// <summary>
@@ -157,7 +157,7 @@ namespace Api.Controllers
         [HttpPost("create")]
         public async Task<object> Create([FromBody]/*指定参数来自请求正文*/Create data)
         {
-            sampleBusiness.Create(data);
+            SampleBusiness.Create(data);
             return await Task.FromResult(Success());
         }
 
@@ -170,7 +170,7 @@ namespace Api.Controllers
         [SwaggerResponse((int)HttpStatusCode.OK, "编辑数据", typeof(Edit))]
         public async Task<object> GetEdit(string id)
         {
-            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(sampleBusiness.GetEdit(id))));
+            return await Task.FromResult(OpenApiJsonContent(AjaxResultFactory.Success(SampleBusiness.GetEdit(id))));
         }
 
         /// <summary>
@@ -182,7 +182,7 @@ namespace Api.Controllers
         [CheckModel]//表单模型校验
         public async Task<object> Edit([FromBody] Edit data)
         {
-            sampleBusiness.Edit(data);
+            SampleBusiness.Edit(data);
             return await Task.FromResult(Success());
         }
 
@@ -194,7 +194,7 @@ namespace Api.Controllers
         [HttpPost("delete")]
         public async Task<object> Delete(IEnumerable<string> ids)
         {
-            sampleBusiness.Delete(ids?.ToList());
+            SampleBusiness.Delete(ids?.ToList());
             return await Task.FromResult(Success());
         }
     }

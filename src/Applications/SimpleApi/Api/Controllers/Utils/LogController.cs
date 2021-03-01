@@ -27,9 +27,9 @@ namespace Api.Controllers.Utils
             LogBusiness = logBusiness;
         }
 
-        #endregion
-
         readonly ILogBusiness LogBusiness;
+
+        #endregion
 
         /// <summary>
         /// 获取默认的日志组件类型

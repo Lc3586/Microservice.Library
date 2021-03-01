@@ -36,7 +36,7 @@ namespace Entity.System
         /// <summary>
         /// 账号
         /// </summary>
-        [OpenApiSubTag("List", "Create", "Edit", "Detail", "Authorities", "Login")]
+        [OpenApiSubTag("List", "Create", "Detail", "Authorities", "Login")]
         [Required(ErrorMessage = "账号不可为空")]
         [Description("账号")]
         [Column(StringLength = 50)]

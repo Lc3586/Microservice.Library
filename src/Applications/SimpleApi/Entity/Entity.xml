@@ -473,6 +473,11 @@
             值1
             </summary>
         </member>
+        <member name="P:Entity.Example.Sample_DB.Enable">
+            <summary>
+            启用
+            </summary>
+        </member>
         <member name="P:Entity.Example.Sample_DB.CreatorId">
             <summary>
             创建者

@@ -17,13 +17,13 @@ namespace Model.System.AuthorizeDTO
         /// 用户Id
         /// </summary>
         [MinLength(1, ErrorMessage = "最少指定一个用户")]
-        public List<string> UserIds { get; set; }
+        public List<string> UserIds { get; set; } = new List<string>();
 
         /// <summary>
         /// 角色Id
         /// </summary>
         [MinLength(1, ErrorMessage = "最少指定一个角色")]
-        public List<string> RoleIds { get; set; }
+        public List<string> RoleIds { get; set; } = new List<string>();
 
         /// <summary>
         /// 撤销已授权给用户但未包含在RoleIds参数中的角色授权
@@ -47,13 +47,13 @@ namespace Model.System.AuthorizeDTO
         /// 会员Id
         /// </summary>
         [MinLength(1, ErrorMessage = "最少指定一个会员")]
-        public List<string> MemberIds { get; set; }
+        public List<string> MemberIds { get; set; } = new List<string>();
 
         /// <summary>
         /// 角色Id
         /// </summary>
         [MinLength(1, ErrorMessage = "最少指定一个角色")]
-        public List<string> RoleIds { get; set; }
+        public List<string> RoleIds { get; set; } = new List<string>();
 
         /// <summary>
         /// 撤销已授权给会员但未包含在RoleIds参数中的角色授权
@@ -77,13 +77,13 @@ namespace Model.System.AuthorizeDTO
         /// 用户Id
         /// </summary>
         [MinLength(1, ErrorMessage = "最少指定一个用户")]
-        public List<string> UserIds { get; set; }
+        public List<string> UserIds { get; set; } = new List<string>();
 
         /// <summary>
         /// 菜单Id
         /// </summary>
         [MinLength(1, ErrorMessage = "最少指定一个菜单")]
-        public List<string> MenuIds { get; set; }
+        public List<string> MenuIds { get; set; } = new List<string>();
 
         /// <summary>
         /// 全部菜单
@@ -102,13 +102,13 @@ namespace Model.System.AuthorizeDTO
         /// 用户Id
         /// </summary>
         [MinLength(1, ErrorMessage = "最少指定一个用户")]
-        public List<string> UserIds { get; set; }
+        public List<string> UserIds { get; set; } = new List<string>();
 
         /// <summary>
         /// 资源Id
         /// </summary>
         [MinLength(1, ErrorMessage = "最少指定一个资源")]
-        public List<string> ResourcesIds { get; set; }
+        public List<string> ResourcesIds { get; set; } = new List<string>();
 
         /// <summary>
         /// 全部资源
@@ -127,13 +127,13 @@ namespace Model.System.AuthorizeDTO
         /// 角色Id
         /// </summary>
         [MinLength(1, ErrorMessage = "最少指定一个角色")]
-        public List<string> RoleIds { get; set; }
+        public List<string> RoleIds { get; set; } = new List<string>();
 
         /// <summary>
         /// 菜单Id
         /// </summary>
         [MinLength(1, ErrorMessage = "最少指定一个菜单")]
-        public List<string> MenuIds { get; set; }
+        public List<string> MenuIds { get; set; } = new List<string>();
 
         /// <summary>
         /// 全部菜单
@@ -152,13 +152,13 @@ namespace Model.System.AuthorizeDTO
         /// 角色Id
         /// </summary>
         [MinLength(1, ErrorMessage = "最少指定一个角色")]
-        public List<string> RoleIds { get; set; }
+        public List<string> RoleIds { get; set; } = new List<string>();
 
         /// <summary>
         /// 资源Id
         /// </summary>
         [MinLength(1, ErrorMessage = "最少指定一个资源")]
-        public List<string> ResourcesIds { get; set; }
+        public List<string> ResourcesIds { get; set; } = new List<string>();
 
         /// <summary>
         /// 全部资源

@@ -25,9 +25,11 @@ namespace Api
         {
             if (context.ContainsFilter<NoApiPermissionAttribute>())
                 return;
+
             if (Config.RunMode == RunMode.LocalTest)
                 return;
-            if (Operator.IsAdmin)
+
+            if (Operator.IsSuperAdmin)
                 return;
 
             //验证权限

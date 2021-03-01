@@ -50,33 +50,33 @@ namespace Business.Implementation.System
 
         #region 私有成员
 
-        IFreeSql Orm { get; set; }
+        readonly IFreeSql Orm;
 
-        IBaseRepository<System_User, string> Repository_User { get; set; }
+        readonly IBaseRepository<System_User, string> Repository_User;
 
-        IBaseRepository<System_UserRole, string> Repository_UserRole { get; set; }
+        readonly IBaseRepository<System_UserRole, string> Repository_UserRole;
 
-        IBaseRepository<System_UserMenu, string> Repository_UserMenu { get; set; }
+        readonly IBaseRepository<System_UserMenu, string> Repository_UserMenu;
 
-        IBaseRepository<System_UserResources, string> Repository_UserResources { get; set; }
+        readonly IBaseRepository<System_UserResources, string> Repository_UserResources;
 
-        IBaseRepository<Public_Member, string> Repository_Member { get; set; }
+        readonly IBaseRepository<Public_Member, string> Repository_Member;
 
-        IBaseRepository<Public_MemberRole, string> Repository_MemberRole { get; set; }
+        readonly IBaseRepository<Public_MemberRole, string> Repository_MemberRole;
 
-        IBaseRepository<System_Role, string> Repository_Role { get; set; }
+        readonly IBaseRepository<System_Role, string> Repository_Role;
 
-        IBaseRepository<System_RoleMenu, string> Repository_RoleMenu { get; set; }
+        readonly IBaseRepository<System_RoleMenu, string> Repository_RoleMenu;
 
-        IBaseRepository<System_RoleResources, string> Repository_RoleResources { get; set; }
+        readonly IBaseRepository<System_RoleResources, string> Repository_RoleResources;
 
-        IBaseRepository<System_Menu, string> Repository_Menu { get; set; }
+        readonly IBaseRepository<System_Menu, string> Repository_Menu;
 
-        IBaseRepository<System_Resources, string> Repository_Resources { get; set; }
+        readonly IBaseRepository<System_Resources, string> Repository_Resources;
 
-        IMapper Mapper { get; set; }
+        readonly IMapper Mapper;
 
-        IOperationRecordBusiness OperationRecordBusiness { get; set; }
+        readonly IOperationRecordBusiness OperationRecordBusiness;
 
         private dynamic GetUserWithCheck(string userId)
         {
@@ -93,6 +93,9 @@ namespace Business.Implementation.System
 
             if (!user.Enable)
                 throw new ApplicationException("用户账号已禁用.");
+
+            if (Repository_UserRole.Where(o => o.UserId == userId && o.Role.Type == $"{RoleType.超级管理员}").Any())
+                throw new ApplicationException($"拥有{RoleType.超级管理员}角色的用户无需进行相关授权操作.");
 
             return user;
         }
@@ -129,6 +132,9 @@ namespace Business.Implementation.System
             if (role == null)
                 throw new ApplicationException("角色不存在或已被移除.");
 
+            if (role.Type == RoleType.超级管理员)
+                throw new ApplicationException($"{RoleType.超级管理员}角色无需进行相关授权操作.");
+
             if (!role.Enable)
                 throw new ApplicationException("角色账号已禁用.");
 
@@ -137,7 +143,7 @@ namespace Business.Implementation.System
 
         #endregion
 
-        #region 公共
+        #region 外部接口
 
         #region 授权
 
@@ -249,7 +255,10 @@ namespace Business.Implementation.System
         {
             var members = data.MemberIds.Select(o => GetMemberWithCheck(o));
 
-            var roles = Repository_Role.Where(o => (data.All == true || data.RoleIds.Contains(o.Id)) && o.Enable == true).ToList(o => new
+            if (Repository_Role.Where(o => data.RoleIds.Contains(o.Id) && o.Type != $"{RoleType.会员}").Any())
+                throw new ApplicationException($"只允许将类型为 {RoleType.会员}的角色授权给会员.");
+
+            var roles = Repository_Role.Where(o => data.RoleIds.Contains(o.Id) && o.Enable == true).ToList(o => new
             {
                 o.Id,
                 o.Type,
@@ -572,7 +581,7 @@ namespace Business.Implementation.System
         {
             var members = data.MemberIds.Select(o => GetMemberWithCheck(o));
 
-            var roles = Repository_MemberRole.Where(o => data.MemberIds.Contains(o.MemberId) && (data.All || data.RoleIds.Contains(o.RoleId))).ToList(o => new
+            var roles = Repository_MemberRole.Where(o => data.MemberIds.Contains(o.MemberId) && (data.All == true || data.RoleIds.Contains(o.RoleId))).ToList(o => new
             {
                 o.RoleId,
                 o.Role.Type,
@@ -614,7 +623,7 @@ namespace Business.Implementation.System
         {
             var users = data.UserIds.Select(o => GetUserWithCheck(o));
 
-            var menus = Repository_UserMenu.Where(o => data.UserIds.Contains(o.UserId) && (data.All || data.MenuIds.Contains(o.MenuId))).ToList(o => new
+            var menus = Repository_UserMenu.Where(o => data.UserIds.Contains(o.UserId) && (data.All == true || data.MenuIds.Contains(o.MenuId))).ToList(o => new
             {
                 o.MenuId,
                 o.Menu.Type,
@@ -656,7 +665,7 @@ namespace Business.Implementation.System
         {
             var users = data.UserIds.Select(o => GetUserWithCheck(o));
 
-            var resourcess = Repository_UserResources.Where(o => data.UserIds.Contains(o.UserId) && (data.All || data.ResourcesIds.Contains(o.ResourcesId))).ToList(o => new
+            var resourcess = Repository_UserResources.Where(o => data.UserIds.Contains(o.UserId) && (data.All == true || data.ResourcesIds.Contains(o.ResourcesId))).ToList(o => new
             {
                 o.ResourcesId,
                 o.Resources.Type,
@@ -698,7 +707,7 @@ namespace Business.Implementation.System
         {
             var roles = data.RoleIds.Select(o => GetRoleWithCheck(o));
 
-            var menus = Repository_RoleMenu.Where(o => data.RoleIds.Contains(o.RoleId) && (data.All || data.MenuIds.Contains(o.MenuId))).ToList(o => new
+            var menus = Repository_RoleMenu.Where(o => data.RoleIds.Contains(o.RoleId) && (data.All == true || data.MenuIds.Contains(o.MenuId))).ToList(o => new
             {
                 o.MenuId,
                 o.Menu.Type,
@@ -740,7 +749,7 @@ namespace Business.Implementation.System
         {
             var roles = data.RoleIds.Select(o => GetRoleWithCheck(o));
 
-            var resourcess = Repository_RoleResources.Where(o => data.RoleIds.Contains(o.RoleId) && (data.All || data.ResourcesIds.Contains(o.ResourcesId))).ToList(o => new
+            var resourcess = Repository_RoleResources.Where(o => data.RoleIds.Contains(o.RoleId) && (data.All == true || data.ResourcesIds.Contains(o.ResourcesId))).ToList(o => new
             {
                 o.ResourcesId,
                 o.Resources.Type,

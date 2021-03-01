@@ -3,7 +3,9 @@
     /// <summary>
     /// 日志类型
     /// </summary>
+#pragma warning disable CA1815 // Override equals and operator equals on value types
     public struct LogType
+#pragma warning restore CA1815 // Override equals and operator equals on value types
     {
         /// <summary>
         /// 获取名称
@@ -46,25 +48,5 @@
         public const byte 警告信息 = 0x02;
 
         public const byte 系统异常 = 0x03;
-
-        public override bool Equals(object obj)
-        {
-            return obj.GetType() == typeof(LogType);
-        }
-
-        public override int GetHashCode()
-        {
-            return typeof(LogType).FullName.GetHashCode();
-        }
-
-        public static bool operator ==(LogType left, LogType right)
-        {
-            return left.Equals(right);
-        }
-
-        public static bool operator !=(LogType left, LogType right)
-        {
-            return !(left == right);
-        }
     }
 }

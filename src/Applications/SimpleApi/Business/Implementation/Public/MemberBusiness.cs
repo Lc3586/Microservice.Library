@@ -51,23 +51,23 @@ namespace Business.Implementation.Public
 
         #region 私有成员
 
-        IFreeSql Orm { get; set; }
+        readonly IFreeSql Orm;
 
-        IBaseRepository<Public_Member, string> Repository { get; set; }
+        readonly IBaseRepository<Public_Member, string> Repository;
 
-        IBaseRepository<Public_MemberRole, string> Repository_MemberRole { get; set; }
+        readonly IBaseRepository<Public_MemberRole, string> Repository_MemberRole;
 
-        IMapper Mapper { get; set; }
+        readonly IMapper Mapper;
 
-        IOperationRecordBusiness OperationRecordBusiness { get; set; }
+        readonly IOperationRecordBusiness OperationRecordBusiness;
 
-        IAuthoritiesBusiness AuthoritiesBusiness { get; set; }
+        readonly IAuthoritiesBusiness AuthoritiesBusiness;
 
-        IEntryLogBusiness EntryLogBusiness { get; set; }
+        readonly IEntryLogBusiness EntryLogBusiness;
 
         #endregion
 
-        #region 公共
+        #region 外部接口
 
         #region 基础功能
 
