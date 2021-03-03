@@ -13,7 +13,7 @@
     <Company>LCTR</Company>
     <Product>Microservice.Library</Product>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <Description>通过依赖注入的方式使用Elasticsearch</Description>
     <PackageProjectUrl>https://github.com/Lc3586/Microservice.Library</PackageProjectUrl>
     <PackageId>Microservice.Library.Elasticsearch</PackageId>

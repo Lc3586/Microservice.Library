@@ -16,7 +16,7 @@
 显示进度条
 信息的输出
 信息、密码的输入</Description>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageProjectUrl>https://github.com/Lc3586/Microservice.Library</PackageProjectUrl>
     <PackageId>Microservice.Library.ConsoleTool</PackageId>

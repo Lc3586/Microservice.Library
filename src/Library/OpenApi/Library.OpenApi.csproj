@@ -7,7 +7,7 @@
     <Authors>LCTR</Authors>
     <Company>LCTR</Company>
     <Product>Microservice.Library</Product>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Description>接口架构拓展功能</Description>
     <PackageProjectUrl>https://github.com/Lc3586/Microservice.Library</PackageProjectUrl>

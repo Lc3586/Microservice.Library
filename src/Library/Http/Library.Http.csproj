@@ -12,7 +12,7 @@
     <Authors>LCTR</Authors>
     <Product>Microservice.Library</Product>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <Description>模拟Http请求的方法
 
 参考项目 : https://github.com/Coldairarrow/Colder.Admin.AntdVue</Description>

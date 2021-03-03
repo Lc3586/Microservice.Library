@@ -11,7 +11,7 @@
     <Version>0.0.0.1-alpha</Version>
     <AssemblyName>Microservice.Library.DataAccess</AssemblyName>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <Authors>LCTR</Authors>
     <Product>Microservice.Library</Product>
     <PackageProjectUrl>https://github.com/Lc3586/Microservice.Library</PackageProjectUrl>

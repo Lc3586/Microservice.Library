@@ -14,7 +14,7 @@
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Authors>LCTR</Authors>
     <Product>Microservice.Library</Product>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <AssemblyName>Microservice.Library.DataRepository_MySql</AssemblyName>
   </PropertyGroup>
 

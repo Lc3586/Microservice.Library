@@ -14,7 +14,7 @@
     <Company>LCTR</Company>
     <Product>Microservice.Library</Product>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <AssemblyName>Microservice.Library.BloomFilter</AssemblyName>
     <PackageProjectUrl>https://github.com/Lc3586/Microservice.Library</PackageProjectUrl>
   </PropertyGroup>

@@ -16,7 +16,7 @@
 系统缓存
 Redis缓存</Description>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/Lc3586/Microservice.Library</PackageProjectUrl>
     <AssemblyName>Microservice.Library.Cache</AssemblyName>
   </PropertyGroup>

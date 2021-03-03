@@ -1288,7 +1288,7 @@
         </member>
         <member name="P:Api.Controllers.Utils.BaseApiController.Config">
             <summary>
-            系统日志
+            系统配置
             </summary>
         </member>
         <member name="P:Api.Controllers.Utils.BaseApiController.Operator">

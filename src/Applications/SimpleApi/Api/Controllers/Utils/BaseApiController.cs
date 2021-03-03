@@ -19,7 +19,7 @@ namespace Api.Controllers.Utils
     public class BaseApiController : BaseController
     {
         /// <summary>
-        /// 系统日志
+        /// 系统配置
         /// </summary>
         protected SystemConfig Config => AutofacHelper.GetService<SystemConfig>();
 

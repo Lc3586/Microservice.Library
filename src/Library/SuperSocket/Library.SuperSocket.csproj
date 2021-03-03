@@ -7,7 +7,7 @@
     <Version>0.0.0.1-alpha</Version>
     <Authors>LCTR</Authors>
     <Product>Microservice.Library</Product>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Description>Supersocket推展
 黑名单

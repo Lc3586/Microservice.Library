@@ -10,7 +10,7 @@
 
 部分源码参考开源框架Coldairarrow，项目地址：https://www.cnblogs.com/coldairarrow/p/11870993.html
 </Description>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <RepositoryType></RepositoryType>
     <PackageProjectUrl>https://github.com/Lc3586/Microservice.Library</PackageProjectUrl>
     <PackageId>MicroService.Library.All</PackageId>

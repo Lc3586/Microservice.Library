@@ -16,7 +16,7 @@
     <Description>NLog日志功能拓展
 
 参考项目：https://github.com/Coldairarrow</Description>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/Lc3586/Microservice.Library</PackageProjectUrl>
     <PackageId>Microservice.Library.NLogger</PackageId>
     <AssemblyName>Microservice.Library.NLogger</AssemblyName>
