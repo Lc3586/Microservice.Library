@@ -512,7 +512,7 @@ namespace Business.Implementation.Common
                 type = "jpeg";
 
             response.ContentType = $"image/{type.TrimStart('.')}";
-            response.Headers.Add("Content-Disposition", $"attachment; filename=\"{file.FullName}\"");
+            //response.Headers.Add("Content-Disposition", $"attachment; filename=\"{file.FullName}\"");
             ResponseFile(response, path);
         }
 
@@ -524,7 +524,7 @@ namespace Business.Implementation.Common
             response.StatusCode = StatusCodes.Status200OK;
 
             response.ContentType = file.MimeType;
-            response.Headers.Add("Content-Disposition", $"attachment; filename=\"{file.FullName}\"");
+            //response.Headers.Add("Content-Disposition", $"attachment; filename=\"{file.FullName}\"");
 
             switch (file.StorageType)
             {
