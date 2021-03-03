@@ -17,6 +17,7 @@ using Microservice.Library.FreeSql.Gen;
 using Microservice.Library.OpenApi.Extention;
 using Microservice.Library.WeChat.Extension;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using Model.Common;
 using Model.Common.WeChatUserInfoDTO;
@@ -292,8 +293,8 @@ namespace Business.Implementation.Common
                     if (!autoCreate)
                         throw new ApplicationException("绑定微信失败, 会员不存在或已被移除.");
 
-                    CreateMember(appId, openId, false);
-                    member = GetMember(appId, openId);
+                    var memberId = CreateMember(appId, openId, false);
+                    member = GetMember(memberId);
                 }
 
                 var entity = new Public_MemberWeChatUserInfo
@@ -313,7 +314,7 @@ namespace Business.Implementation.Common
             });
 
             if (!success)
-                throw new ApplicationException("绑定微信失败.", ex);
+                throw new ApplicationException($"绑定微信失败, AppId[{appId}], OpenId[{openId}].", ex);
         }
 
         /// <summary>
@@ -322,12 +323,12 @@ namespace Business.Implementation.Common
         /// <param name="appId"></param>
         /// <param name="openId"></param>
         /// <param name="runTransaction">运行事务（默认运行）</param>
-        /// <returns>返回会员信息</returns>
-        void CreateMember(string appId, string openId, bool runTransaction = true)
+        /// <returns>返回会员Id</returns>
+        string CreateMember(string appId, string openId, bool runTransaction = true)
         {
             var info = GetWeChatUserInfo(appId, openId);
             SaveFile(info.HeadimgUrl, out string imgId);
-            MemberBusiness.Create(new Model.Public.MemberDTO.Create
+            return MemberBusiness.Create(new Model.Public.MemberDTO.Create
             {
                 Account = $"member_{Repository_User.Select.Count():000000000}",
                 Nickname = info.Nickname,
@@ -358,13 +359,12 @@ namespace Business.Implementation.Common
         }
 
         /// <summary>
-        /// 登录
+        /// 会员登录
         /// </summary>
         /// <param name="context"></param>
         /// <param name="authenticationInfo"></param>
-        /// <param name="returnUrl"></param>
         /// <returns></returns>
-        async Task Login(HttpContext context, AuthenticationInfo authenticationInfo, string returnUrl)
+        async Task MemberLogin(HttpContext context, AuthenticationInfo authenticationInfo)
         {
             var claims = new List<Claim>
             {
@@ -374,9 +374,7 @@ namespace Business.Implementation.Common
                 new Claim(nameof(AuthenticationInfo.HeadimgUrl), authenticationInfo.HeadimgUrl)
             };
 
-            var props = new AuthenticationProperties { RedirectUri = returnUrl };
-
-            await context.SignInAsync(new ClaimsPrincipal(new ClaimsIdentity(claims)), props);
+            await context.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme)));
         }
 
         #endregion
@@ -446,17 +444,16 @@ namespace Business.Implementation.Common
                 var checkUserOrMember = stateInfo.Type == WeChatStateType.系统用户登录 || stateInfo.Type == WeChatStateType.系统用户绑定微信;
 
                 if (Repository.Where(o => o.AppId == appId && o.OpenId == openId
-                                        && ((checkUserOrMember && o.Users.AsSelect().Any()) || (!checkUserOrMember && o.Members.AsSelect().Any())))
+                                        && ((checkUserOrMember == true && o.Users.AsSelect().Any()) || (!checkUserOrMember == true && o.Members.AsSelect().Any())))
                             .Any())
                 {
                     switch (stateInfo.Type)
                     {
                         case WeChatStateType.系统用户登录:
-                            await Login(context, UserBusiness.Login(openId), stateInfo.RedirectUrl);
-                            return;
+                            break;
                         case WeChatStateType.会员登录:
-                            await Login(context, MemberBusiness.Login(openId), stateInfo.RedirectUrl);
-                            return;
+                            await MemberLogin(context, MemberBusiness.Login(openId));
+                            break;
                         case WeChatStateType.系统用户绑定微信:
                         case WeChatStateType.微信信息同步至系统用户信息:
                         case WeChatStateType.微信信息同步至会员信息:
@@ -511,8 +508,8 @@ namespace Business.Implementation.Common
                     break;
                 case WeChatStateType.会员登录:
                     BindMember(appId, userinfo.openid, (bool)stateInfo.Data["AutoCreate"]);
-                    await Login(context, MemberBusiness.Login(userinfo.openid), stateInfo.RedirectUrl);
-                    return;
+                    await MemberLogin(context, MemberBusiness.Login(userinfo.openid));
+                    break;
                 case WeChatStateType.微信信息同步至会员信息:
                     UpdateMember(stateInfo.Data["MemberId"].ToString(), appId, userinfo.openid);
                     break;

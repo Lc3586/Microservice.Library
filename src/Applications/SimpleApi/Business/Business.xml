@@ -175,7 +175,7 @@
             <param name="appId"></param>
             <param name="openId"></param>
             <param name="runTransaction">运行事务（默认运行）</param>
-            <returns>返回会员信息</returns>
+            <returns>返回会员Id</returns>
         </member>
         <member name="M:Business.Implementation.Common.WeChatOAuthHandler.UpdateMember(System.String,System.String,System.String)">
             <summary>
@@ -185,13 +185,12 @@
             <param name="appId"></param>
             <param name="openId"></param>
         </member>
-        <member name="M:Business.Implementation.Common.WeChatOAuthHandler.Login(Microsoft.AspNetCore.Http.HttpContext,Model.Utils.SampleAuthentication.SampleAuthenticationDTO.AuthenticationInfo,System.String)">
+        <member name="M:Business.Implementation.Common.WeChatOAuthHandler.MemberLogin(Microsoft.AspNetCore.Http.HttpContext,Model.Utils.SampleAuthentication.SampleAuthenticationDTO.AuthenticationInfo)">
             <summary>
-            登录
+            会员登录
             </summary>
             <param name="context"></param>
             <param name="authenticationInfo"></param>
-            <param name="returnUrl"></param>
             <returns></returns>
         </member>
         <member name="T:Business.Implementation.Example.SampleBusiness">

@@ -1,6 +1,7 @@
 ﻿using Api.Controllers.Utils;
 using Business.Interface.Common;
 using Business.Interface.System;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
@@ -45,6 +46,7 @@ namespace Api.Controllers
         /// </summary>
         /// <param name="returnUrl">重定向地址</param>
         [HttpGet("member-login")]
+        [AllowAnonymous]
         public void MemberLogin(string returnUrl)
         {
             var state = WeChatUserInfoBusiness.GetState(new Model.Common.WeChatUserInfoDTO.StateInfo
@@ -71,6 +73,7 @@ namespace Api.Controllers
         /// <param name="memberId">会员Id</param>
         /// <param name="returnUrl">重定向地址</param>
         [HttpGet("member-update/{memberId}")]
+        [AllowAnonymous]
         public void UpdateMemberWeChatUserInfo(string memberId, string returnUrl)
         {
             var state = WeChatUserInfoBusiness.GetState(new Model.Common.WeChatUserInfoDTO.StateInfo
@@ -129,6 +132,7 @@ namespace Api.Controllers
         /// </summary>
         /// <param name="returnUrl">重定向地址</param>
         [HttpGet("user-login")]
+        [AllowAnonymous]
         public void UserLogin(string returnUrl)
         {
             var state = WeChatUserInfoBusiness.GetState(new Model.Common.WeChatUserInfoDTO.StateInfo
@@ -155,6 +159,7 @@ namespace Api.Controllers
         /// <param name="userId">用户Id</param>
         /// <param name="returnUrl">重定向地址</param>
         [HttpGet("user-update/{userId}")]
+        [AllowAnonymous]
         public void UpdateUserWeChatUserInfo(string userId, string returnUrl)
         {
             var state = WeChatUserInfoBusiness.GetState(new Model.Common.WeChatUserInfoDTO.StateInfo

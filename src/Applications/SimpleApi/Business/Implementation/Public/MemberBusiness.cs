@@ -181,7 +181,7 @@ namespace Business.Implementation.Public
             return result;
         }
 
-        public void Create(Create data, bool runTransaction = true)
+        public string Create(Create data, bool runTransaction = true)
         {
             var newData = Mapper.Map<Public_Member>(data).InitEntity();
 
@@ -211,6 +211,8 @@ namespace Business.Implementation.Public
             }
             else
                 handler();
+
+            return newData.Id;
         }
 
         public Edit GetEdit(string id)

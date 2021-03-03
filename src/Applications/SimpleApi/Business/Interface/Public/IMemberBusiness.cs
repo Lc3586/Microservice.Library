@@ -42,7 +42,7 @@ namespace Business.Interface.System
         /// <param name="data">数据</param>
         /// <param name="runTransaction">运行事务（默认运行）</param>
         /// <returns></returns>
-        void Create(Create data, bool runTransaction = true);
+        string Create(Create data, bool runTransaction = true);
 
         /// <summary>
         /// 获取编辑数据

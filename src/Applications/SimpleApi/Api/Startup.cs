@@ -201,8 +201,11 @@ namespace Api
 
                 return next(context);
             })
-            .UseMiddleware<CorsMiddleware>()//跨域
-            .UseDeveloperExceptionPage()
+            //处理异常
+            .UseMiddleware<ExceptionHandlerMiddleware>()
+            //跨域
+            .UseMiddleware<CorsMiddleware>()
+            //.UseDeveloperExceptionPage()
             .UseStaticFiles(new StaticFileOptions
             {
                 ServeUnknownFileTypes = true,

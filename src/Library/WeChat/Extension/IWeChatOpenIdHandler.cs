@@ -16,6 +16,7 @@ namespace Microservice.Library.WeChat.Extension
         /// <summary>
         /// 处理用户公众号唯一标识
         /// </summary>
+        /// <remarks>建议处理后进行重定向</remarks>
         /// <param name="context">当前请求上下文</param>
         /// <param name="appId">公众号标识</param>
         /// <param name="openId">用户公众号唯一标识</param>
@@ -26,6 +27,7 @@ namespace Microservice.Library.WeChat.Extension
         /// <summary>
         /// 处理用户基础信息
         /// </summary>
+        /// <remarks>建议处理后进行重定向</remarks>
         /// <param name="context">当前请求上下文</param>
         /// <param name="appId">公众号标识</param>
         /// <param name="userinfo">用户基础信息</param>

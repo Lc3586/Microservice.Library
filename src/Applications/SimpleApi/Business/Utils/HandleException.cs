@@ -81,7 +81,7 @@ namespace Business.Utils
                 if (base_exception != null)
                     return result;
 
-                if (Config.RunMode != RunMode.Publish)
+                if (Config.RunMode != RunMode.Publish && Config.RunMode != RunMode.Publish_Swagger)
                     result = AjaxResultFactory.Error(msg ?? "系统异常", exception.GetExceptionAllMsg(), data, code);
                 else
                     result = AjaxResultFactory.Error(msg ?? "系统繁忙，请稍后重试", data, code);

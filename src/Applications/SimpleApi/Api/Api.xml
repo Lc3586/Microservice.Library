@@ -1792,6 +1792,18 @@
             </summary>
             <remarks>LCTR 2020-03-10</remarks>
         </member>
+        <member name="T:Api.ExceptionHandlerMiddleware">
+            <summary>
+            异常处理中间件
+            </summary>
+        </member>
+        <member name="M:Api.ExceptionHandlerMiddleware.Invoke(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
         <member name="T:Api.GlobalExceptionFilter">
             <summary>
             全局错误拦截

@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Microservice.Library.WeChat.Extension
@@ -67,7 +66,9 @@ namespace Microservice.Library.WeChat.Extension
                         if (Security.ToSHA1String(str1).Equals(signature))
                             await context.Response.WriteAsync(echostr).ConfigureAwait(false);
                         else
-                            await context.Response.WriteAsync(null).ConfigureAwait(false);
+                            await context.Response.WriteAsync(string.Empty).ConfigureAwait(false);
+
+                        return;
                     }
                 }
 

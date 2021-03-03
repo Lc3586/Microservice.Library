@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Senparc.Weixin.MP.AdvancedAPIs.OAuth;
 using System;
 using System.Net;
+using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 
 namespace Microservice.Library.WeChat.Extension
@@ -43,7 +44,7 @@ namespace Microservice.Library.WeChat.Extension
         {
             context.Response.Redirect($"{Options.WeChatOAuthOptions.AuthorizeUrl}" +
                 $"?appid={Options.WeChatBaseOptions.AppId}" +
-                $"&redirect_uri={Options.WeChatOAuthOptions.WebRootUrl}{redirect_uri}" +
+                $"&redirect_uri={UrlEncoder.Default.Encode($"{Options.WeChatOAuthOptions.WebRootUrl}{redirect_uri}") }" +
                 $"&response_type=code" +
                 $"&scope={scope}" +
                 $"&state={(context.Request.Query.ContainsKey("state") ? context.Request.Query["state"].ToString() : Guid.NewGuid().ToString().Replace("-", ""))}" +
@@ -108,10 +109,12 @@ namespace Microservice.Library.WeChat.Extension
                     if (context.Request.Path.Equals(Options.WeChatOAuthOptions.OAuthBaseUrl))
                     {
                         RedirectToAuthorizeUrl(context, OAuthBaseRedirectUri, "snsapi_base");
+                        return;
                     }
                     else if (context.Request.Path.Equals(Options.WeChatOAuthOptions.OAuthUserInfoUrl))
                     {
                         RedirectToAuthorizeUrl(context, OAuthUserInfoRedirectUri, "snsapi_userinfo");
+                        return;
                     }
                     else if (context.Request.Path.Equals(OAuthBaseRedirectUri))
                     {
@@ -125,6 +128,8 @@ namespace Microservice.Library.WeChat.Extension
                                 result.scope,
                                 context.Request.Query.ContainsKey("state") ? context.Request.Query["state"].ToString() : null
                             ).ConfigureAwait(false);
+
+                        return;
                     }
                     else if (context.Request.Path.Equals(OAuthUserInfoRedirectUri))
                     {
@@ -139,6 +144,8 @@ namespace Microservice.Library.WeChat.Extension
                                 userinfo,
                                 context.Request.Query.ContainsKey("state") ? context.Request.Query["state"].ToString() : null
                             ).ConfigureAwait(false);
+
+                        return;
                     }
                 }
 

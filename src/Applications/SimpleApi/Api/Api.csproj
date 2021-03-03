@@ -348,7 +348,6 @@
   <ItemGroup>
     <PackageReference Include="GSS.Authentication.CAS.AspNetCore" Version="4.1.0" />
     <PackageReference Include="GSS.Authentication.CAS.DistributedCache" Version="4.1.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="5.0.1" />
@@ -356,6 +355,6 @@
     <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.0.7" />
   </ItemGroup>
 
-  <ProjectExtensions><VisualStudio><UserProperties jsonconfig_4database_1json__JsonSchema="https://json.schemastore.org/appsettings" jsonconfig_4swagger_1json__JsonSchema="https://json.schemastore.org/appsettings" /></VisualStudio></ProjectExtensions>
+  <ProjectExtensions><VisualStudio><UserProperties jsonconfig_4database_1json__JsonSchema="https://json.schemastore.org/appsettings" jsonconfig_4swagger_1json__JsonSchema="https://json.schemastore.org/appsettings" jsonconfig_4wechatservice_1json__JsonSchema="https://json.schemastore.org/appsettings" /></VisualStudio></ProjectExtensions>
 
 </Project>

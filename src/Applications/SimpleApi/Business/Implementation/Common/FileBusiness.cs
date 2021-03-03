@@ -68,7 +68,7 @@ namespace Business.Implementation.Common
         /// <summary>
         /// 存储路径根目录相对路径
         /// </summary>
-        string BaseDir => Path.GetDirectoryName($"\\upload\\{Operator.AuthenticationInfo.Id}\\{DateTime.Now.ToUnixTimestamp()}\\");
+        string BaseDir => Path.GetDirectoryName($"\\upload\\{Operator?.AuthenticationInfo?.Id ?? Guid.NewGuid().ToString()}\\{DateTime.Now.ToUnixTimestamp()}\\");
 
         /// <summary>
         /// 保存

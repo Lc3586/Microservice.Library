@@ -178,20 +178,22 @@ namespace Business.Implementation.System
             if (data.MemberIds.Any_Ex())
             {
                 var roleIds = Repository_Role.Where(o => o.AutoAuthorizeRoleForUser == true && o.Enable == true).ToList(o => o.Id);
-                AuthorizeRoleForMember(new RoleForMember
-                {
-                    MemberIds = data.MemberIds,
-                    RoleIds = roleIds
-                }, runTransaction);
+                if (roleIds.Any())
+                    AuthorizeRoleForMember(new RoleForMember
+                    {
+                        MemberIds = data.MemberIds,
+                        RoleIds = roleIds
+                    }, runTransaction);
             }
             else if (data.RoleIds.Any_Ex())
             {
                 var memberIds = Repository_Member.Select.ToList(o => o.Id);
-                AuthorizeRoleForMember(new RoleForMember
-                {
-                    MemberIds = memberIds,
-                    RoleIds = data.RoleIds
-                }, runTransaction);
+                if (memberIds.Any())
+                    AuthorizeRoleForMember(new RoleForMember
+                    {
+                        MemberIds = memberIds,
+                        RoleIds = data.RoleIds
+                    }, runTransaction);
             }
             else
                 throw new ApplicationException("参数不可为空.");

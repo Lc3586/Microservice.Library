@@ -1,10 +1,12 @@
 ﻿using Business.Interface.System;
 using Microservice.Library.Container;
 using Microservice.Library.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Model.System;
 using Model.Utils.Config;
 using Model.Utils.Result;
+using System.Linq;
 
 namespace Api
 {
@@ -23,11 +25,19 @@ namespace Api
         /// <param name="context">过滤器上下文</param>
         public void OnActionExecuting(ActionExecutingContext context)
         {
-            if (context.ContainsFilter<NoApiPermissionAttribute>())
+            if (context.ActionDescriptor.EndpointMetadata.Any(o =>
+                    o.GetType() == typeof(NoApiPermissionAttribute)
+                    || o.GetType() == typeof(AllowAnonymousAttribute)))
                 return;
 
             if (Config.RunMode == RunMode.LocalTest)
                 return;
+
+            if (!Operator.IsAuthenticated)
+            {
+                context.Result = Error("未登录!", ErrorCode.forbidden);
+                return;
+            }
 
             if (Operator.IsSuperAdmin)
                 return;

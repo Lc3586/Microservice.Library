@@ -31,6 +31,7 @@
   <ItemGroup>
     <PackageReference Include="Confluent.Kafka" Version="1.5.3" />
     <PackageReference Include="HtmlAgilityPack" Version="1.11.30" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.2.0" />
     <PackageReference Include="NewId" Version="3.0.3" />
     <PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.8" />
   </ItemGroup>

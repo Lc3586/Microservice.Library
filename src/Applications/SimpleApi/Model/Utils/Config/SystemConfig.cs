@@ -1,5 +1,4 @@
-﻿using Microservice.Library.Cache.Application;
-using Microservice.Library.Cache.Model;
+﻿using Microservice.Library.Cache.Model;
 using Microservice.Library.Configuration.Annotations;
 using System.Collections.Generic;
 
@@ -157,7 +156,7 @@ namespace Model.Utils.Config
         /// <summary>
         /// Redis配置
         /// </summary>
-        [JsonConfig("jsonconfig/redis.json")]
+        [JsonConfig("jsonconfig/redis.json", "FreeRedis")]
         public RedisSetting Redis { get; set; }
 
         #endregion
@@ -208,7 +207,7 @@ namespace Model.Utils.Config
         /// <summary>
         /// FreeSql配置
         /// </summary>
-        [JsonConfig("jsonconfig/freesql.json")]
+        [JsonConfig("jsonconfig/freesql.json", "FreeSql")]
         public FreeSqlSetting FreeSql { get; set; }
 
         #endregion
@@ -223,7 +222,7 @@ namespace Model.Utils.Config
         /// <summary>
         /// ElasticSearch配置
         /// </summary>
-        [JsonConfig("jsonconfig/elasticsearch.json")]
+        [JsonConfig("jsonconfig/elasticsearch.json", "ElasticSearch")]
         public ElasticsearchSetting Elasticsearch { get; set; }
 
         #endregion
@@ -238,7 +237,7 @@ namespace Model.Utils.Config
         /// <summary>
         /// kafka中间件配置
         /// </summary>
-        [JsonConfig("jsonconfig/kafka.json")]
+        [JsonConfig("jsonconfig/kafka.json", "Kafka")]
         public KafkaSetting Kafka { get; set; }
 
         #endregion
@@ -253,7 +252,7 @@ namespace Model.Utils.Config
         /// <summary>
         /// Soap配置
         /// </summary>
-        [JsonConfig("jsonconfig/soap.json")]
+        [JsonConfig("jsonconfig/soap.json", "Soaps")]
         public List<SoapSetting> Soaps { get; set; }
 
         #endregion
@@ -268,7 +267,7 @@ namespace Model.Utils.Config
         /// <summary>
         /// ElasticSearch配置
         /// </summary>
-        [JsonConfig("jsonconfig/cas.json")]
+        [JsonConfig("jsonconfig/cas.json", "CAS")]
         public CASSetting CAS { get; set; }
 
         #endregion
@@ -283,7 +282,7 @@ namespace Model.Utils.Config
         /// <summary>
         /// 微信服务配置
         /// </summary>
-        [JsonConfig("jsonconfig/wechatservice.json")]
+        [JsonConfig("jsonconfig/wechatservice.json", "WeChatService")]
         public WeChatServiceSetting WeChatService { get; set; }
 
         #endregion
