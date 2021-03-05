@@ -4,56 +4,57 @@
         <name>Microservice.Library.OfficeDocuments</name>
     </assembly>
     <members>
-        <member name="T:Microservice.Library.OfficeDocuments.AsposeOfficeHelper">
+        <member name="T:Microservice.Library.OfficeDocuments.CsvExtension">
             <summary>
-            使用Aspose组件的Office文件操作帮助类
+            CSV文件拓展方法
             </summary>
         </member>
-        <member name="M:Microservice.Library.OfficeDocuments.AsposeOfficeHelper.DataTableToExcelBytes(System.Data.DataTable)">
+        <member name="M:Microservice.Library.OfficeDocuments.CsvExtension.DataTableToCSVBytes(System.Data.DataTable,System.Boolean)">
             <summary>
             将DataTable输出为字节数组
             </summary>
             <param name="dt">表格数据</param>
+            <param name="firstRowIsTitle">第一行是否为标题</param>
             <returns>Byte数组</returns>
         </member>
-        <member name="M:Microservice.Library.OfficeDocuments.AsposeOfficeHelper.ReadExcel(System.String)">
+        <member name="M:Microservice.Library.OfficeDocuments.CsvExtension.ReadCSV(CsvHelper.CsvReader,System.Boolean)">
             <summary>
-            从excel文件导入数据
-            注：默认将第一行当作标题行，即不当作数据
+            读取工作簿
             </summary>
-            <param name="fileNmae">文件名</param>
+            <param name="csv">CSV文件读取器</param>
+            <param name="firstRowIsTitle">第一行是否为标题</param>
             <returns></returns>
         </member>
-        <member name="M:Microservice.Library.OfficeDocuments.AsposeOfficeHelper.ReadExcel(System.String,System.Boolean)">
+        <member name="M:Microservice.Library.OfficeDocuments.CsvExtension.ReadCSV(System.String,System.Boolean)">
             <summary>
-            从excel文件导入数据
+            从CSV文件导入数据
             </summary>
-            <param name="fileNmae">文件名</param>
-            <param name="exportColumnName">是否将第一行当作标题行</param>
+            <param name="fileNmae">文件</param>
+            <param name="firstRowIsTitle">第一行是否为标题</param>
             <returns></returns>
         </member>
-        <member name="M:Microservice.Library.OfficeDocuments.AsposeOfficeHelper.ReadExcel(System.Byte[])">
+        <member name="M:Microservice.Library.OfficeDocuments.CsvExtension.ReadCSV(System.Byte[],System.Boolean)">
             <summary>
-            从excel文件字节源导入
-            注：默认将第一行当作标题行，即不当作数据
+            从CSV文件字节源导入
             </summary>
             <param name="fileBytes">文件字节源</param>
+            <param name="firstRowIsTitle">第一行是否为标题</param>
             <returns></returns>
         </member>
-        <member name="M:Microservice.Library.OfficeDocuments.AsposeOfficeHelper.ReadExcel(System.Byte[],System.Boolean)">
+        <member name="M:Microservice.Library.OfficeDocuments.CsvExtension.ReadCSV(System.IO.Stream,System.Boolean)">
             <summary>
-            从excel文件字节源导入
+            
             </summary>
-            <param name="fileBytes">文件字节源</param>
-            <param name="exportColumnName">是否将第一行当作标题行</param>
+            <param name="stream">流</param>
+            <param name="firstRowIsTitle">第一行是否为标题</param>
             <returns></returns>
         </member>
-        <member name="T:Microservice.Library.OfficeDocuments.NPOIOfficeHelper">
+        <member name="T:Microservice.Library.OfficeDocuments.NPOIExtension">
             <summary>
-            使用NPOI组件的Office文件操作帮助类
+            NPOI拓展方法
             </summary>
         </member>
-        <member name="M:Microservice.Library.OfficeDocuments.NPOIOfficeHelper.DataTableToExcelBytes(System.Data.DataTable,System.Boolean,System.Boolean)">
+        <member name="M:Microservice.Library.OfficeDocuments.NPOIExtension.DataTableToExcelBytes(System.Data.DataTable,System.Boolean,System.Boolean)">
             <summary>
             将DataTable输出为字节数组
             </summary>
@@ -66,7 +67,7 @@
             </param>
             <returns>Byte数组</returns>
         </member>
-        <member name="M:Microservice.Library.OfficeDocuments.NPOIOfficeHelper.ReadSheet(NPOI.SS.UserModel.ISheet,System.Boolean)">
+        <member name="M:Microservice.Library.OfficeDocuments.NPOIExtension.ReadSheet(NPOI.SS.UserModel.ISheet,System.Boolean)">
             <summary>
             读取工作簿
             </summary>
@@ -74,7 +75,7 @@
             <param name="firstRowIsTitle">第一行是否为标题</param>
             <returns></returns>
         </member>
-        <member name="M:Microservice.Library.OfficeDocuments.NPOIOfficeHelper.ReadExcel(System.String,System.Boolean)">
+        <member name="M:Microservice.Library.OfficeDocuments.NPOIExtension.ReadExcel(System.String,System.Boolean)">
             <summary>
             从excel文件导入数据
             </summary>
@@ -82,7 +83,7 @@
             <param name="firstRowIsTitle">第一行是否为标题</param>
             <returns></returns>
         </member>
-        <member name="M:Microservice.Library.OfficeDocuments.NPOIOfficeHelper.ReadExcel(System.Byte[],System.Boolean,System.Boolean)">
+        <member name="M:Microservice.Library.OfficeDocuments.NPOIExtension.ReadExcel(System.Byte[],System.Boolean,System.Boolean)">
             <summary>
             从excel文件字节源导入
             </summary>
@@ -91,7 +92,7 @@
             <param name="xslx">是否为xslx文件</param>
             <returns></returns>
         </member>
-        <member name="M:Microservice.Library.OfficeDocuments.NPOIOfficeHelper.ReadExcel(System.IO.Stream,System.Boolean,System.Boolean)">
+        <member name="M:Microservice.Library.OfficeDocuments.NPOIExtension.ReadExcel(System.IO.Stream,System.Boolean,System.Boolean)">
             <summary>
             
             </summary>
