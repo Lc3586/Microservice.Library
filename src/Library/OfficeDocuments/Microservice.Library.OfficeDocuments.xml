@@ -9,12 +9,13 @@
             CSV文件拓展方法
             </summary>
         </member>
-        <member name="M:Microservice.Library.OfficeDocuments.CsvExtension.DataTableToCSVBytes(System.Data.DataTable,System.Boolean)">
+        <member name="M:Microservice.Library.OfficeDocuments.CsvExtension.DataTableToCSVBytes(System.Data.DataTable,System.Boolean,System.Text.Encoding)">
             <summary>
             将DataTable输出为字节数组
             </summary>
             <param name="dt">表格数据</param>
             <param name="firstRowIsTitle">第一行是否为标题</param>
+            <param name="encoding">编码</param>
             <returns>Byte数组</returns>
         </member>
         <member name="M:Microservice.Library.OfficeDocuments.CsvExtension.ReadCSV(CsvHelper.CsvReader,System.Boolean)">
@@ -25,28 +26,31 @@
             <param name="firstRowIsTitle">第一行是否为标题</param>
             <returns></returns>
         </member>
-        <member name="M:Microservice.Library.OfficeDocuments.CsvExtension.ReadCSV(System.String,System.Boolean)">
+        <member name="M:Microservice.Library.OfficeDocuments.CsvExtension.ReadCSV(System.String,System.Boolean,System.Text.Encoding)">
             <summary>
             从CSV文件导入数据
             </summary>
             <param name="fileNmae">文件</param>
             <param name="firstRowIsTitle">第一行是否为标题</param>
+            <param name="encoding">编码</param>
             <returns></returns>
         </member>
-        <member name="M:Microservice.Library.OfficeDocuments.CsvExtension.ReadCSV(System.Byte[],System.Boolean)">
+        <member name="M:Microservice.Library.OfficeDocuments.CsvExtension.ReadCSV(System.Byte[],System.Boolean,System.Text.Encoding)">
             <summary>
             从CSV文件字节源导入
             </summary>
             <param name="fileBytes">文件字节源</param>
             <param name="firstRowIsTitle">第一行是否为标题</param>
+            <param name="encoding">编码</param>
             <returns></returns>
         </member>
-        <member name="M:Microservice.Library.OfficeDocuments.CsvExtension.ReadCSV(System.IO.Stream,System.Boolean)">
+        <member name="M:Microservice.Library.OfficeDocuments.CsvExtension.ReadCSV(System.IO.Stream,System.Boolean,System.Text.Encoding)">
             <summary>
             
             </summary>
             <param name="stream">流</param>
             <param name="firstRowIsTitle">第一行是否为标题</param>
+            <param name="encoding">编码</param>
             <returns></returns>
         </member>
         <member name="T:Microservice.Library.OfficeDocuments.NPOIExtension">

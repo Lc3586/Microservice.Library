@@ -44,7 +44,7 @@ namespace Microservice.Library.OfficeDocuments
             //生成数据行 
             for (int i = 0; i < rownum; i++)
             {
-                var row = sheet.CreateRow(i += (firstRowIsTitle ? 1 : 0));
+                var row = sheet.CreateRow(i + (firstRowIsTitle ? 1 : 0));
                 for (int j = 0; j < colnum; j++)
                 {
                     row.CreateCell(j)
@@ -74,9 +74,15 @@ namespace Microservice.Library.OfficeDocuments
         {
             var table = new DataTable();
 
-            for (int i = 0; i < sheet.LastRowNum; i++)
+            for (int i = 0; i <= sheet.LastRowNum; i++)
             {
                 var row = sheet.GetRow(i);
+
+                if (row == null)
+                {
+                    table.Rows.Add(table.NewRow());
+                    continue;
+                }
 
                 for (int j = 0; j < row.Cells.Count; j++)
                 {
@@ -85,7 +91,7 @@ namespace Microservice.Library.OfficeDocuments
                     else
                     {
                         table.Rows.Add(table.NewRow());
-                        table.Rows[i -= (firstRowIsTitle ? 1 : 0)][j] = row.Cells[j].StringCellValue;
+                        table.Rows[i - (firstRowIsTitle ? 1 : 0)][j] = row.Cells[j].StringCellValue;
                     }
                 }
             }
