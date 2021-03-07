@@ -62,7 +62,7 @@ namespace Microservice.Library.Container
             var type = typeof(T);
 #endif
             var httpContextAccessor = GetService<IHttpContextAccessor>();
-            if (httpContextAccessor == null)
+            if (httpContextAccessor?.HttpContext == null)
                 return GetService<T>();
             else
                 return (T)httpContextAccessor.HttpContext.RequestServices.GetService(typeof(T));
