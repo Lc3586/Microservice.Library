@@ -8,6 +8,19 @@ namespace Microservice.Library.Extension
     public static partial class Extension
     {
         /// <summary>
+        /// 获取异常消息
+        /// </summary>
+        /// <param name="ex"></param>
+        /// <returns></returns>
+        public static string GetExceptionAllMsg(this Exception ex)
+        {
+            var message = ex?.Message;
+            if (ex.InnerException != null)
+                message += $" {ex.InnerException.GetExceptionAllMsg()}";
+            return message;
+        }
+
+        /// <summary>
         /// 获取异常位置
         /// </summary>
         /// <param name="e">异常</param>
@@ -32,7 +45,7 @@ namespace Microservice.Library.Extension
         /// <param name="ex">捕捉的异常</param>
         /// <param name="level">内部异常层级</param>
         /// <returns></returns>
-        public static string GetExceptionAllMsg(this Exception ex, int level)
+        public static string ExceptionToString(this Exception ex, int level)
         {
             StringBuilder builder = new StringBuilder();
             builder.Append($"\r\n{level}层错误:  " +
@@ -44,7 +57,7 @@ namespace Microservice.Library.Extension
                            $"\r\n\t\t{ex.GetExceptionAddr()}");
             if (ex.InnerException != null)
             {
-                builder.Append(ex.InnerException.GetExceptionAllMsg(level + 1));
+                builder.Append(ex.InnerException.ExceptionToString(level + 1));
             }
 
             return builder.ToString();
@@ -68,9 +81,9 @@ namespace Microservice.Library.Extension
         /// </summary>
         /// <param name="ex">捕捉的异常</param>
         /// <returns></returns>
-        public static string GetExceptionAllMsg(this Exception ex)
+        public static string ExceptionToString(this Exception ex)
         {
-            return ex.GetExceptionAllMsg(1);
+            return ex.ExceptionToString(1);
         }
     }
 }

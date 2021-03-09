@@ -1,6 +1,7 @@
 ﻿using Microservice.Library.OfficeDocuments;
 using System;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace TC
 {
@@ -8,6 +9,8 @@ namespace TC
     {
         static void Main(string[] args)
         {
+            var match = Regex.Match("123$Table[表]{说明}123", @$"[$]{"Table"}[[](.*?)[]]{{(.*?)}}");
+
             var dte = Console.ReadLine().ReadExcel();
             Console.WriteLine(dte.Columns.Count);
 
