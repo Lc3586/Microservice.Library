@@ -3,6 +3,7 @@ using Microservice.Library.WeChat.Gen;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
+using Senparc.CO2NET.Cache;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -34,6 +35,8 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddTransient(s => s.GetRequiredService<IOptions<WeChatGenOptions>>().Value);
 
             services.AddSingleton<IWeChatServiceProvider, WeChatServiceGenerator>();
+
+            services.AddMemoryCache();
 
             if (setupAction != null) services.ConfigureWeChatService(setupAction);
 
