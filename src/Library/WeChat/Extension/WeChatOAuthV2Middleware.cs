@@ -36,7 +36,7 @@ namespace Microservice.Library.WeChat.Extension
 
             //WeChatService = weChatServiceProvider.GetWeChatServicesV3();
 
-            //Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
         }
 
         #region 私有成员
