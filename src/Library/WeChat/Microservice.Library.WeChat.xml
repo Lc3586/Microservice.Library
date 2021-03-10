@@ -540,7 +540,7 @@
             </summary>
             <exception cref="T:Microservice.Library.WeChat.Extension.WeChatOAuthException"></exception>
         </member>
-        <member name="M:Microservice.Library.WeChat.Extension.WeChatOAuthV2Middleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Microservice.Library.WeChat.Application.WeChatGenOptions,Microservice.Library.WeChat.Extension.IWeChatOAuthHandler)">
+        <member name="M:Microservice.Library.WeChat.Extension.WeChatOAuthV2Middleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Microservice.Library.WeChat.Application.WeChatGenOptions,Microservice.Library.WeChat.Extension.IWeChatOAuthHandler,Microservice.Library.WeChat.Gen.IWeChatServiceProvider)">
             <summary>
             
             </summary>
@@ -2191,12 +2191,13 @@
             依赖注入扩展方法
             </summary>
         </member>
-        <member name="M:Microsoft.Extensions.DependencyInjection.WeChatServiceCollectionExtensions.AddWeChatService(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Microservice.Library.WeChat.Application.WeChatGenOptions})">
+        <member name="M:Microsoft.Extensions.DependencyInjection.WeChatServiceCollectionExtensions.AddWeChatService(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration,System.Action{Microservice.Library.WeChat.Application.WeChatGenOptions})">
             <summary>
             添加微信服务
             <para>单例模式</para>
             </summary>
             <param name="services"></param>
+            <param name="configuration"></param>
             <param name="setupAction"></param>
             <returns></returns>
         </member>
