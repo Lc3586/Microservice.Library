@@ -26,7 +26,7 @@ namespace Microservice.Library.WeChat.Extension
         /// <param name="next"></param>
         /// <param name="options"></param>
         /// <param name="handler"></param>
-        public WeChatOAuthV2Middleware(RequestDelegate next, WeChatGenOptions options, IWeChatOAuthHandler handler/*, IWeChatServiceProvider weChatServiceProvider*/)
+        public WeChatOAuthV2Middleware(RequestDelegate next, WeChatGenOptions options, IWeChatOAuthHandler handler, IWeChatServiceProvider weChatServiceProvider)
         {
             Next = next;
             Options = options;
@@ -34,16 +34,16 @@ namespace Microservice.Library.WeChat.Extension
             OAuthBaseRedirectUri = new PathString($"/{Guid.NewGuid().ToString().Replace("-", "")}");
             OAuthUserInfoRedirectUri = new PathString($"/{Guid.NewGuid().ToString().Replace("-", "")}");
 
-            //WeChatService = weChatServiceProvider.GetWeChatServicesV3();
+            WeChatService = weChatServiceProvider.GetWeChatServicesV3();
 
-            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            //Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
         }
 
         #region 私有成员
 
         readonly RequestDelegate Next;
         readonly WeChatGenOptions Options;
-        //readonly IWeChatService WeChatService;
+        readonly IWeChatService WeChatService;
         readonly IWeChatOAuthHandler Handler;
         readonly PathString OAuthBaseRedirectUri;
         readonly PathString OAuthUserInfoRedirectUri;
@@ -81,19 +81,19 @@ namespace Microservice.Library.WeChat.Extension
 
         OAuthUserInfo GetUserInfo(string access_token, string openid)
         {
-            //return WeChatService.GetUserInfo(openid);
+            return WeChatService.GetUserInfo(openid);
 
-            var url = $"{Options.WeChatOAuthOptions.UserInfoUrl}" +
-                      $"?access_token={access_token}" +
-                      $"&openid={openid}" +
-                      $"&lang={Options.WeChatOAuthOptions.Language}";
+            //var url = $"{Options.WeChatOAuthOptions.UserInfoUrl}" +
+            //          $"?access_token={access_token}" +
+            //          $"&openid={openid}" +
+            //          $"&lang={Options.WeChatOAuthOptions.Language}";
 
-            WebClient client = new WebClient
-            {
-                Encoding = Encoding.GetEncoding("ISO-8859-1")
-            };
+            //WebClient client = new WebClient
+            //{
+            //    Encoding = Encoding.GetEncoding("ISO-8859-1")
+            //};
 
-            string response = client.DownloadString(url);
+            //string response = client.DownloadString(url);
 
             //(HttpStatusCode status, string response) = HttpHelper.GetDataWithState(url);
 
@@ -108,12 +108,12 @@ namespace Microservice.Library.WeChat.Extension
             //Encoding.UTF8.GetChars(bytes, 0, bytes.Length, chars, 0);
             //var result = new string(chars).ToJObject();
 
-            var result = response.ToJObject();
+            //var result = response.ToJObject();
 
-            if (result.ContainsKey("errcode"))
-                throw new ApplicationException($"微信接口返回异常, \r\n\turl: {url}, \r\n\tResponse {response}.");
+            //if (result.ContainsKey("errcode"))
+            //    throw new ApplicationException($"微信接口返回异常, \r\n\turl: {url}, \r\n\tResponse {response}.");
 
-            return result.ToObject<OAuthUserInfo>();
+            //return result.ToObject<OAuthUserInfo>();
         }
 
         #endregion
