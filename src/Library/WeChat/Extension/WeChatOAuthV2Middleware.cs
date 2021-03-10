@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Senparc.Weixin.MP.AdvancedAPIs.OAuth;
 using System;
 using System.Net;
+using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 
@@ -30,6 +31,7 @@ namespace Microservice.Library.WeChat.Extension
             Handler = handler;
             OAuthBaseRedirectUri = new PathString($"/{Guid.NewGuid().ToString().Replace("-", "")}");
             OAuthUserInfoRedirectUri = new PathString($"/{Guid.NewGuid().ToString().Replace("-", "")}");
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
         }
 
         #region 私有成员
@@ -83,7 +85,14 @@ namespace Microservice.Library.WeChat.Extension
             if (status != HttpStatusCode.OK)
                 throw new ApplicationException($"微信接口请求失败, \r\n\turl: {url}, \r\n\tHttpStatusCode {status}.");
 
-            var result = response.ToJObject();
+            var bytes = Encoding.Convert(
+                Encoding.GetEncoding("GB2312"), 
+                Encoding.UTF8, 
+                response.ToBytes(Encoding.GetEncoding("ISO-8859-1")));
+            var chars = new char[Encoding.UTF8.GetCharCount(bytes, 0, bytes.Length)];
+            Encoding.UTF8.GetChars(bytes, 0, bytes.Length, chars, 0);
+            var result = new string(chars).ToJObject();
+
             if (result.ContainsKey("errcode"))
                 throw new ApplicationException($"微信接口返回异常, \r\n\turl: {url}, \r\n\tResponse {response}.");
 

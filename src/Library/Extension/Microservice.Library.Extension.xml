@@ -297,6 +297,13 @@
             <param name="enumType">枚举类型</param>
             <returns></returns>
         </member>
+        <member name="M:Microservice.Library.Extension.Extension.GetExceptionAllMsg(System.Exception)">
+            <summary>
+            获取异常消息
+            </summary>
+            <param name="ex"></param>
+            <returns></returns>
+        </member>
         <member name="M:Microservice.Library.Extension.Extension.GetExceptionAddr(System.Exception)">
             <summary>
             获取异常位置
@@ -304,7 +311,7 @@
             <param name="e">异常</param>
             <returns></returns>
         </member>
-        <member name="M:Microservice.Library.Extension.Extension.GetExceptionAllMsg(System.Exception,System.Int32)">
+        <member name="M:Microservice.Library.Extension.Extension.ExceptionToString(System.Exception,System.Int32)">
             <summary>
             获取异常消息
             </summary>
@@ -312,7 +319,7 @@
             <param name="level">内部异常层级</param>
             <returns></returns>
         </member>
-        <member name="M:Microservice.Library.Extension.Extension.GetExceptionAllMsg(System.Exception)">
+        <member name="M:Microservice.Library.Extension.Extension.ExceptionToString(System.Exception)">
             <summary>
             获取异常消息
             </summary>

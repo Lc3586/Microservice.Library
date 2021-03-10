@@ -6,7 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Library\Extension\Library.Extension.csproj" />
     <ProjectReference Include="..\..\Library\OfficeDocuments\Library.OfficeDocuments.csproj" />
+    <ProjectReference Include="..\..\Library\WeChat\Library.WeChat.csproj" />
   </ItemGroup>
 
 </Project>
