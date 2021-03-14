@@ -1,4 +1,5 @@
 ﻿using Microservice.Library.NLogger.Application;
+using Microservice.Library.NLogger.Extention;
 
 namespace Microservice.Library.NLogger.Gen
 {

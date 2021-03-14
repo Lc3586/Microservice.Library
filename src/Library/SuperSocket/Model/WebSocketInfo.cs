@@ -60,11 +60,6 @@ namespace Microservice.Library.SuperSocket.Model
         public TerminalType TerminalType { get; set; }
 
         /// <summary>
-        /// 帐号类型
-        /// </summary>
-        public AccountType AccountType { get; set; }
-
-        /// <summary>
         /// 连接对象
         /// </summary>
         public System.Net.WebSockets.WebSocket socket { get; set; }
