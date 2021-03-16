@@ -10,23 +10,16 @@ namespace Microservice.Library.NLogger.Gen
     /// <remarks>必须先注册<see cref="Library.NLogger.Gen.INLoggerProvider"/>, 使用<see cref="Microsoft.Extensions.DependencyInjection.NLoggerServiceCollectionExtensions"/>方法</remarks>
     public class MSLoggerProvider : ILoggerProvider
     {
-        public MSLoggerProvider(Func<INLoggerProvider> getNLoggerProvider)
-        {
-            GetNLoggerProvider = getNLoggerProvider;
-        }
-
         public MSLoggerProvider(INLoggerProvider nLoggerProvider)
         {
             NLoggerProvider = nLoggerProvider;
         }
 
-        readonly Func<INLoggerProvider> GetNLoggerProvider;
-
         readonly INLoggerProvider NLoggerProvider;
 
         public ILogger CreateLogger(string categoryName)
         {
-            return new MSLogger(NLoggerProvider ?? GetNLoggerProvider(), categoryName);
+            return new MSLogger(NLoggerProvider, categoryName);
         }
 
         bool isDisposed;
