@@ -540,13 +540,14 @@
             </summary>
             <exception cref="T:Microservice.Library.WeChat.Extension.WeChatOAuthException"></exception>
         </member>
-        <member name="M:Microservice.Library.WeChat.Extension.WeChatOAuthV2Middleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Microservice.Library.WeChat.Application.WeChatGenOptions,Microservice.Library.WeChat.Extension.IWeChatOAuthHandler,Microservice.Library.WeChat.Gen.IWeChatServiceProvider)">
+        <member name="M:Microservice.Library.WeChat.Extension.WeChatOAuthV2Middleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Microservice.Library.WeChat.Application.WeChatGenOptions,Microservice.Library.WeChat.Extension.IWeChatOAuthHandler,Microsoft.Extensions.Logging.ILoggerProvider)">
             <summary>
             
             </summary>
             <param name="next"></param>
             <param name="options"></param>
             <param name="handler"></param>
+            <param name="loggerProvider"></param>
         </member>
         <member name="M:Microservice.Library.WeChat.Extension.WeChatOAuthV2Middleware.Invoke(Microsoft.AspNetCore.Http.HttpContext)">
             <summary>

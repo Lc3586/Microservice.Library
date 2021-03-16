@@ -1,10 +1,9 @@
 ﻿using Microservice.Library.Extension;
 using Microservice.Library.Http;
 using Microservice.Library.WeChat.Application;
-using Microservice.Library.WeChat.Gen;
 using Microservice.Library.WeChat.Model;
-using Microservice.Library.WeChat.Services;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 using Senparc.Weixin.MP.AdvancedAPIs.OAuth;
 using System;
 using System.Net;
@@ -26,27 +25,26 @@ namespace Microservice.Library.WeChat.Extension
         /// <param name="next"></param>
         /// <param name="options"></param>
         /// <param name="handler"></param>
-        public WeChatOAuthV2Middleware(RequestDelegate next, WeChatGenOptions options, IWeChatOAuthHandler handler, IWeChatServiceProvider weChatServiceProvider)
+        /// <param name="loggerProvider"></param>
+        public WeChatOAuthV2Middleware(RequestDelegate next, WeChatGenOptions options, IWeChatOAuthHandler handler, ILoggerProvider loggerProvider)
         {
             Next = next;
             Options = options;
             Handler = handler;
             OAuthBaseRedirectUri = new PathString($"/{Guid.NewGuid().ToString().Replace("-", "")}");
             OAuthUserInfoRedirectUri = new PathString($"/{Guid.NewGuid().ToString().Replace("-", "")}");
-
-            WeChatService = weChatServiceProvider.GetWeChatServicesV3();
-
-            //Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            Logger = loggerProvider.CreateLogger(nameof(WeChatOAuthV2Middleware));
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
         }
 
         #region 私有成员
 
         readonly RequestDelegate Next;
         readonly WeChatGenOptions Options;
-        readonly IWeChatService WeChatService;
         readonly IWeChatOAuthHandler Handler;
         readonly PathString OAuthBaseRedirectUri;
         readonly PathString OAuthUserInfoRedirectUri;
+        readonly ILogger Logger;
 
         void RedirectToAuthorizeUrl(HttpContext context, string redirect_uri, string scope)
         {
@@ -69,6 +67,8 @@ namespace Microservice.Library.WeChat.Extension
 
             (HttpStatusCode status, string response) = HttpHelper.GetDataWithState(url);
 
+            Logger.LogDebug($"请求微信接口, \r\n\turl: {url}, \r\n\tHttpStatusCode: {status}, \r\n\tResponse: {response}");
+
             if (status != HttpStatusCode.OK)
                 throw new ApplicationException($"微信接口请求失败, \r\n\turl: {url}, \r\n\tHttpStatusCode {status}.");
 
@@ -81,39 +81,31 @@ namespace Microservice.Library.WeChat.Extension
 
         OAuthUserInfo GetUserInfo(string access_token, string openid)
         {
-            return WeChatService.GetUserInfo(openid);
+            var url = $"{Options.WeChatOAuthOptions.UserInfoUrl}" +
+                      $"?access_token={access_token}" +
+                      $"&openid={openid}" +
+                      $"&lang={Options.WeChatOAuthOptions.Language}";
 
-            //var url = $"{Options.WeChatOAuthOptions.UserInfoUrl}" +
-            //          $"?access_token={access_token}" +
-            //          $"&openid={openid}" +
-            //          $"&lang={Options.WeChatOAuthOptions.Language}";
+            (HttpStatusCode status, string response) = HttpHelper.GetDataWithState(url);
 
-            //WebClient client = new WebClient
-            //{
-            //    Encoding = Encoding.GetEncoding("ISO-8859-1")
-            //};
+            Logger.LogDebug($"微信接口返回数据, \r\n\turl: {url}, \r\n\tHttpStatusCode: {status}, \r\n\tResponse: {response}");
 
-            //string response = client.DownloadString(url);
+            if (status != HttpStatusCode.OK)
+                throw new ApplicationException($"微信接口请求失败, \r\n\turl: {url}, \r\n\tHttpStatusCode {status}.");
 
-            //(HttpStatusCode status, string response) = HttpHelper.GetDataWithState(url);
+            var bytes_iso_8859_1 = response.ToBytes(Encoding.GetEncoding("ISO-8859-1"));
+            var char_utf_8 = new char[Encoding.UTF8.GetCharCount(bytes_iso_8859_1, 0, bytes_iso_8859_1.Length)];
+            Encoding.UTF8.GetChars(bytes_iso_8859_1, 0, bytes_iso_8859_1.Length, char_utf_8, 0);
+            var string_utf_8 = new string(char_utf_8);
 
-            //if (status != HttpStatusCode.OK)
-            //    throw new ApplicationException($"微信接口请求失败, \r\n\turl: {url}, \r\n\tHttpStatusCode {status}.");
+            Logger.LogDebug($"微信接口返回数据解码, \r\n\tResponse: {string_utf_8}");
 
-            //var bytes = Encoding.Convert(
-            //    Encoding.GetEncoding("GB2312"),
-            //    Encoding.UTF8,
-            //    response.ToBytes(Encoding.GetEncoding("ISO-8859-1")));
-            //var chars = new char[Encoding.UTF8.GetCharCount(bytes, 0, bytes.Length)];
-            //Encoding.UTF8.GetChars(bytes, 0, bytes.Length, chars, 0);
-            //var result = new string(chars).ToJObject();
+            var result = string_utf_8.ToJObject();
 
-            //var result = response.ToJObject();
+            if (result.ContainsKey("errcode"))
+                throw new ApplicationException($"微信接口返回异常, \r\n\turl: {url}, \r\n\tResponse {string_utf_8}.");
 
-            //if (result.ContainsKey("errcode"))
-            //    throw new ApplicationException($"微信接口返回异常, \r\n\turl: {url}, \r\n\tResponse {response}.");
-
-            //return result.ToObject<OAuthUserInfo>();
+            return result.ToObject<OAuthUserInfo>();
         }
 
         #endregion
