@@ -12,7 +12,7 @@ namespace Microservice.Library.File
     /// <summary>
     /// 图片操作帮助类
     /// </summary>
-    public class ImgHelper
+    public static class ImgHelper
     {
         /// <summary>
         /// 从文件获取图片
