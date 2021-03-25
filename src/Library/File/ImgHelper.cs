@@ -1,7 +1,9 @@
-﻿using Microservice.Library.Extension;
+﻿//using System.Drawing;
+//using System.Drawing.Imaging;
+using ImageProcessorCore;
+using ImageProcessorCore.Formats;
+using Microservice.Library.Extension;
 using System;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Text.RegularExpressions;
 
@@ -19,7 +21,8 @@ namespace Microservice.Library.File
         /// <returns></returns>
         public static Image GetImgFromFile(string fileName)
         {
-            return Image.FromFile(fileName);
+            return new Image(new FileStream(fileName, FileMode.Open, FileAccess.Read));
+            //return Image.FromFile(fileName);
         }
 
         /// <summary>
@@ -31,7 +34,8 @@ namespace Microservice.Library.File
         {
             byte[] bytes = Convert.FromBase64String(base64);
             MemoryStream memStream = new MemoryStream(bytes);
-            Image img = Image.FromStream(memStream);
+            Image img = new Image(memStream);
+            //Image img = Image.FromStream(memStream);
 
             return img;
         }
@@ -70,20 +74,26 @@ namespace Microservice.Library.File
         /// <returns></returns>
         public static Image CompressImg(Image img, int width, int height)
         {
-            Bitmap bitmap = new Bitmap(img, width, height);
+            using (var ms = new MemoryStream())
+            {
+                img.Resize(width, height)
+                    .Save(ms);
+                return new Image(ms);
+            }
 
-            return bitmap;
+            //Bitmap bitmap = new Bitmap(img, width, height);
+
+            //return bitmap;
         }
 
         /// <summary>
         /// 将图片转为base64字符串
-        /// 默认使用jpg格式
         /// </summary>
         /// <param name="img">图片对象</param>
         /// <returns></returns>
         public static string ToBase64String(Image img)
         {
-            return ToBase64String(img, ImageFormat.Jpeg);
+            return img.ToBase64String();
         }
 
         /// <summary>
@@ -93,14 +103,15 @@ namespace Microservice.Library.File
         /// <param name="img">图片对象</param>
         /// <param name="imageFormat">指定格式</param>
         /// <returns></returns>
-        public static string ToBase64String(Image img, ImageFormat imageFormat)
+        public static string ToBase64String(Image img, IImageFormat imageFormat)
         {
             MemoryStream memStream = new MemoryStream();
             img.Save(memStream, imageFormat);
-            byte[] bytes = memStream.ToArray();
-            string base64 = Convert.ToBase64String(bytes);
+            return new Image(memStream).ToBase64String();
+            //byte[] bytes = memStream.ToArray();
+            //string base64 = Convert.ToBase64String(bytes);
 
-            return base64;
+            //return base64;
         }
 
         /// <summary>
@@ -111,7 +122,7 @@ namespace Microservice.Library.File
         /// <returns></returns>
         public static string ToBase64StringUrl(Image img)
         {
-            return "data:image/jpg;base64," + ToBase64String(img, ImageFormat.Jpeg);
+            return "data:image/jpg;base64," + ToBase64String(img);
         }
 
         /// <summary>
@@ -121,11 +132,26 @@ namespace Microservice.Library.File
         /// <param name="img">图片对象</param>
         /// <param name="imageFormat">指定格式</param>
         /// <returns></returns>
-        public static string ToBase64StringUrl(Image img, ImageFormat imageFormat)
+        public static string ToBase64StringUrl(Image img, IImageFormat imageFormat)
         {
             string base64 = ToBase64String(img, imageFormat);
 
-            return $"data:image/{imageFormat.ToString().ToLower()};base64,{base64}";
+            var type = imageFormat.GetType();
+
+            var formatName = "jpg";
+
+            if (type == typeof(JpegFormat))
+            {
+
+            }
+            else if (type == typeof(BmpFormat))
+                formatName = "bmp";
+            else if (type == typeof(PngFormat))
+                formatName = "png";
+            else if (type == typeof(GifFormat))
+                formatName = "gif";
+
+            return $"data:image/{formatName};base64,{base64}";
         }
 
         /// <summary>
@@ -156,11 +182,12 @@ namespace Microservice.Library.File
         {
             if (imgBase64OrUrl.Contains("data:image"))
             {
-                Image img = ImgHelper.GetImgFromBase64Url(imgBase64OrUrl);
+                Image img = GetImgFromBase64Url(imgBase64OrUrl);
                 string fileName = $"{(key.IsNullOrEmpty() ? Guid.NewGuid().ToString() : key)}.jpg";
                 if (!Directory.Exists(dir))
                     Directory.CreateDirectory(dir);
-                img.Save(Path.Combine(dir, fileName));
+                using (var fs = new FileStream(Path.Combine(dir, fileName), FileMode.Create, FileAccess.Write))
+                    img.Save(fs);
 
                 return $"{dir}/{fileName}";
             }

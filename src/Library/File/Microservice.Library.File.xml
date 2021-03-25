@@ -140,7 +140,7 @@
             <param name="base64Url">图片Base64的URL形式</param>
             <returns></returns>
         </member>
-        <member name="M:Microservice.Library.File.ImgHelper.CompressImg(System.Drawing.Image,System.Int32)">
+        <member name="M:Microservice.Library.File.ImgHelper.CompressImg(ImageProcessorCore.Image,System.Int32)">
             <summary>
             压缩图片
             注:等比压缩
@@ -149,7 +149,7 @@
             <param name="width">压缩后宽度</param>
             <returns></returns>
         </member>
-        <member name="M:Microservice.Library.File.ImgHelper.CompressImg(System.Drawing.Image,System.Int32,System.Int32)">
+        <member name="M:Microservice.Library.File.ImgHelper.CompressImg(ImageProcessorCore.Image,System.Int32,System.Int32)">
             <summary>
             压缩图片
             </summary>
@@ -158,15 +158,14 @@
             <param name="height">压缩后高度</param>
             <returns></returns>
         </member>
-        <member name="M:Microservice.Library.File.ImgHelper.ToBase64String(System.Drawing.Image)">
+        <member name="M:Microservice.Library.File.ImgHelper.ToBase64String(ImageProcessorCore.Image)">
             <summary>
             将图片转为base64字符串
-            默认使用jpg格式
             </summary>
             <param name="img">图片对象</param>
             <returns></returns>
         </member>
-        <member name="M:Microservice.Library.File.ImgHelper.ToBase64String(System.Drawing.Image,System.Drawing.Imaging.ImageFormat)">
+        <member name="M:Microservice.Library.File.ImgHelper.ToBase64String(ImageProcessorCore.Image,ImageProcessorCore.Formats.IImageFormat)">
             <summary>
             将图片转为base64字符串
             使用指定格式
@@ -175,7 +174,7 @@
             <param name="imageFormat">指定格式</param>
             <returns></returns>
         </member>
-        <member name="M:Microservice.Library.File.ImgHelper.ToBase64StringUrl(System.Drawing.Image)">
+        <member name="M:Microservice.Library.File.ImgHelper.ToBase64StringUrl(ImageProcessorCore.Image)">
             <summary>
             将图片转为base64字符串
             默认使用jpg格式,并添加data:image/jpg;base64,前缀
@@ -183,7 +182,7 @@
             <param name="img">图片对象</param>
             <returns></returns>
         </member>
-        <member name="M:Microservice.Library.File.ImgHelper.ToBase64StringUrl(System.Drawing.Image,System.Drawing.Imaging.ImageFormat)">
+        <member name="M:Microservice.Library.File.ImgHelper.ToBase64StringUrl(ImageProcessorCore.Image,ImageProcessorCore.Formats.IImageFormat)">
             <summary>
             将图片转为base64字符串
             使用指定格式,并添加data:image/jpg;base64,前缀
