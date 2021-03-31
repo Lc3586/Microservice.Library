@@ -37,8 +37,9 @@ namespace Microservice.Library.OfficeDocuments
             if (firstRowIsTitle)
                 for (int i = 0; i < colnum; i++)
                 {
-                    row_title.CreateCell(i)
-                        .SetCellValue(dt.Columns[i].ColumnName);
+                    var cell = row_title.CreateCell(i);
+                    cell.SetCellType(CellType.String);
+                    cell.SetCellValue(dt.Columns[i].ColumnName);
                 }
 
             //生成数据行 
@@ -47,8 +48,9 @@ namespace Microservice.Library.OfficeDocuments
                 var row = sheet.CreateRow(i + (firstRowIsTitle ? 1 : 0));
                 for (int j = 0; j < colnum; j++)
                 {
-                    row.CreateCell(j)
-                        .SetCellValue(dt.Rows[i][j].ToString());
+                    var cell = row.CreateCell(j);
+                    cell.SetCellType(CellType.String);
+                    cell.SetCellValue(dt.Rows[i][j].ToString());
                 }
             }
 
@@ -86,12 +88,15 @@ namespace Microservice.Library.OfficeDocuments
 
                 for (int j = 0; j < row.Cells.Count; j++)
                 {
+                    var cell = row.Cells[j];
+                    cell.SetCellType(CellType.String);
+
                     if (i == 0 && firstRowIsTitle)
-                        table.Columns.Add(row.Cells[j].StringCellValue);
+                        table.Columns.Add(cell.StringCellValue);
                     else
                     {
                         table.Rows.Add(table.NewRow());
-                        table.Rows[i - (firstRowIsTitle ? 1 : 0)][j] = row.Cells[j].StringCellValue;
+                        table.Rows[i - (firstRowIsTitle ? 1 : 0)][j] = cell.StringCellValue;
                     }
                 }
             }
