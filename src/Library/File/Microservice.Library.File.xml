@@ -208,6 +208,11 @@
             <param name="key">标识（为空时默认使用GUID）</param>
             <returns></returns>
         </member>
+        <member name="T:Microservice.Library.File.Model.ChapterInfo">
+            <summary>
+            章节信息
+            </summary>
+        </member>
         <member name="T:Microservice.Library.File.Model.DispositionInfo">
             <summary>
             配置信息
@@ -354,6 +359,71 @@
             </summary>
         </member>
         <member name="P:Microservice.Library.File.Model.FormatTagsInfo.Encoder">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.File.Model.LibraryVersionInfo">
+            <summary>
+            库版本信息
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.LibraryVersionInfo.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.LibraryVersionInfo.Major">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.LibraryVersionInfo.Minor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.LibraryVersionInfo.Micro">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.LibraryVersionInfo.Version">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.LibraryVersionInfo.Ident">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.File.Model.ProgramInfo">
+            <summary>
+            程序信息
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.File.Model.ProgramVersionInfo">
+            <summary>
+            程序版本信息
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.ProgramVersionInfo.Version">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.ProgramVersionInfo.Copyright">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.ProgramVersionInfo.Compiler_Ident">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.ProgramVersionInfo.Configuration">
             <summary>
             
             </summary>
@@ -588,6 +658,26 @@
             格式
             </summary>
         </member>
+        <member name="P:Microservice.Library.File.Model.VideoInfo.Chapters">
+            <summary>
+            章节
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.VideoInfo.Programs">
+            <summary>
+            程序
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.VideoInfo.Program_Version">
+            <summary>
+            程序版本
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.VideoInfo.Library_Versions">
+            <summary>
+            库版本
+            </summary>
+        </member>
         <member name="T:Microservice.Library.File.VideoHelper">
             <summary>
             视频文件帮助类
@@ -615,7 +705,7 @@
             <param name="width">图片宽度</param>
             <param name="height">图片高度</param>
         </member>
-        <member name="M:Microservice.Library.File.VideoHelper.GetVideoInfo(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+        <member name="M:Microservice.Library.File.VideoHelper.GetVideoInfo(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             获取视频信息
             </summary>
@@ -624,12 +714,11 @@
             <para>在linux系统下运行时，需要安装ffmpeg。</para>
             </remarks>
             <param name="videofile">视频文件绝对路径</param>
-            <param name="format">显示有关输入多媒体流的容器格式的信息</param>
-            <param name="streams">显示有关输入多媒体流中包含的每个媒体流的信息</param>
-            <param name="packets">显示有关输入多媒体流中包含的每个数据包的信息</param>
-            <param name="programs">显示有关程序及其输入多媒体流中包含的流的信息</param>
-            <param name="chapters">显示有关以该格式存储的章节的信息</param>
-            <param name="version">显示与程序版本有关的信息、显示与库版本有关的信息、显示与程序和库版本有关的信息</param>
+            <param name="format">获取有关输入多媒体流的容器格式的信息</param>
+            <param name="streams">获取有关输入多媒体流中包含的每个媒体流的信息</param>
+            <param name="chapters">获取有关以该格式存储的章节的信息</param>
+            <param name="programs">获取有关程序及其输入多媒体流中包含的流的信息</param>
+            <param name="version">获取与程序版本有关的信息、获取与库版本有关的信息、获取与程序和库版本有关的信息</param>
             <returns></returns>
         </member>
     </members>
