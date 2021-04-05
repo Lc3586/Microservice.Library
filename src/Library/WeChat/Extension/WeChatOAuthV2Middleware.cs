@@ -31,8 +31,8 @@ namespace Microservice.Library.WeChat.Extension
             Next = next;
             Options = options;
             Handler = handler;
-            OAuthBaseRedirectUri = new PathString($"/{Guid.NewGuid().ToString().Replace("-", "")}");
-            OAuthUserInfoRedirectUri = new PathString($"/{Guid.NewGuid().ToString().Replace("-", "")}");
+            OAuthBaseRedirectUri = new PathString($"/{Guid.NewGuid().ToString("N")}");
+            OAuthUserInfoRedirectUri = new PathString($"/{Guid.NewGuid().ToString("N")}");
             Logger = loggerProvider.CreateLogger(nameof(WeChatOAuthV2Middleware));
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
         }
@@ -53,7 +53,7 @@ namespace Microservice.Library.WeChat.Extension
                 $"&redirect_uri={UrlEncoder.Default.Encode($"{Options.WeChatOAuthOptions.WebRootUrl}{redirect_uri}") }" +
                 $"&response_type=code" +
                 $"&scope={scope}" +
-                $"&state={(context.Request.Query.ContainsKey("state") ? context.Request.Query["state"].ToString() : Guid.NewGuid().ToString().Replace("-", ""))}" +
+                $"&state={(context.Request.Query.ContainsKey("state") ? context.Request.Query["state"].ToString() : Guid.NewGuid().ToString("N"))}" +
                 $"#wechat_redirect");
         }
 

@@ -208,5 +208,429 @@
             <param name="key">标识（为空时默认使用GUID）</param>
             <returns></returns>
         </member>
+        <member name="T:Microservice.Library.File.Model.DispositionInfo">
+            <summary>
+            配置信息
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.DispositionInfo.Default">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.DispositionInfo.Dub">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.DispositionInfo.Original">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.DispositionInfo.Comment">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.DispositionInfo.Lyrics">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.DispositionInfo.Karaoke">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.DispositionInfo.Forced">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.DispositionInfo.Hearing_Impaired">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.DispositionInfo.Visual_Impaired">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.DispositionInfo.Clean_Effects">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.DispositionInfo.Attached_Pic">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.DispositionInfo.Timed_Thumbnails">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.File.Model.FormatInfo">
+            <summary>
+            格式信息
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.FormatInfo.Filename">
+            <summary>
+            文件绝对路径
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.FormatInfo.Nb_Streams">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.FormatInfo.Nb_Programs">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.FormatInfo.Format_Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.FormatInfo.Format_Long_Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.FormatInfo.Start_Time">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.FormatInfo.Duration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.FormatInfo.Size">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.FormatInfo.Bit_Rate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.FormatInfo.Probe_Score">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.FormatInfo.Tags">
+            <summary>
+            标签
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.File.Model.FormatTagsInfo">
+            <summary>
+            格式标签信息
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.FormatTagsInfo.Major_Brand">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.FormatTagsInfo.Minor_Version">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.FormatTagsInfo.Compatible_Brands">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.FormatTagsInfo.Encoder">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.File.Model.StreamInfo">
+            <summary>
+            媒体流信息
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.StreamInfo.Index">
+            <summary>
+            索引
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.StreamInfo.Codec_Name">
+            <summary>
+            编码名称
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.StreamInfo.Codec_Long_Name">
+            <summary>
+            编码全称
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.StreamInfo.Profile">
+            <summary>
+            简介
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.StreamInfo.Codec_Type">
+            <summary>
+            编码类型
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.StreamInfo.Codec_Time_Base">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.StreamInfo.Codec_Tag_String">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.StreamInfo.Codec_Tag">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.StreamInfo.Sample_Fmt">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.StreamInfo.Sample_Rate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.StreamInfo.Channels">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.StreamInfo.Channel_Layout">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.StreamInfo.Bits_Per_Sample">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.StreamInfo.Width">
+            <summary>
+            帧宽度
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.StreamInfo.Height">
+            <summary>
+            帧高度
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.StreamInfo.Coded_Width">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.StreamInfo.Coded_Height">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.StreamInfo.Closed_Captions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.StreamInfo.Has_B_Frames">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.StreamInfo.Pix_Fmt">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.StreamInfo.Level">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.StreamInfo.Chroma_Location">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.StreamInfo.Refs">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.StreamInfo.Is_Avc">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.StreamInfo.Nal_Length_Size">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.StreamInfo.R_Frame_Rate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.StreamInfo.Avg_Frame_Rate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.StreamInfo.Time_Base">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.StreamInfo.Start_Pts">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.StreamInfo.Start_Time">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.StreamInfo.Duration_Ts">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.StreamInfo.Duration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.StreamInfo.Bit_Rate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.StreamInfo.Max_Bit_Rate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.StreamInfo.Bits_Per_Raw_Sample">
+            <summary>
+            原生采样的比特数/位深
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.StreamInfo.Nb_Frames">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.StreamInfo.Extradata">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.StreamInfo.Disposition">
+            <summary>
+            配置
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.StreamInfo.Tags">
+            <summary>
+            标签
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.File.Model.StreamTagsInfo">
+            <summary>
+            流标签信息
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.StreamTagsInfo.Language">
+            <summary>
+            语言
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.StreamTagsInfo.Handler_Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.File.Model.VideoInfo">
+            <summary>
+            视频信息
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.VideoInfo.Streams">
+            <summary>
+            媒体流
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.VideoInfo.Format">
+            <summary>
+            格式
+            </summary>
+        </member>
+        <member name="T:Microservice.Library.File.VideoHelper">
+            <summary>
+            视频文件帮助类
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.File.VideoHelper.GetEXE(System.String)">
+            <summary>
+            获取程序
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.File.VideoHelper.Screenshot(System.String,System.String,System.TimeSpan,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            视频截图
+            </summary>
+            <remarks>
+            <para>在windows系统下运行时，需要将ffmpeg.exe文件放置于应用根目录下。</para>
+            <para>在linux系统下运行时，需要安装ffmpeg。</para>
+            </remarks>
+            <param name="videofile">视频文件绝对路径</param>
+            <param name="imagefile">截图文件存储路径</param>
+            <param name="time">指定时间</param>
+            <param name="quality">图片质量[2-31]</param>
+            <param name="width">图片宽度</param>
+            <param name="height">图片高度</param>
+        </member>
+        <member name="M:Microservice.Library.File.VideoHelper.GetVideoInfo(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            获取视频信息
+            </summary>
+            <remarks>
+            <para>在windows系统下运行时，需要将ffprobe.exe文件放置于应用根目录下。</para>
+            <para>在linux系统下运行时，需要安装ffmpeg。</para>
+            </remarks>
+            <param name="videofile">视频文件绝对路径</param>
+            <param name="format">显示有关输入多媒体流的容器格式的信息</param>
+            <param name="streams">显示有关输入多媒体流中包含的每个媒体流的信息</param>
+            <param name="packets">显示有关输入多媒体流中包含的每个数据包的信息</param>
+            <param name="programs">显示有关程序及其输入多媒体流中包含的流的信息</param>
+            <param name="chapters">显示有关以该格式存储的章节的信息</param>
+            <param name="version">显示与程序版本有关的信息、显示与库版本有关的信息、显示与程序和库版本有关的信息</param>
+            <returns></returns>
+        </member>
     </members>
 </doc>
