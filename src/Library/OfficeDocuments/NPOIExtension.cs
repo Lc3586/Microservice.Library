@@ -76,28 +76,32 @@ namespace Microservice.Library.OfficeDocuments
         {
             var table = new DataTable();
 
+            var cellCount = 0;
             for (int i = 0; i <= sheet.LastRowNum; i++)
             {
                 var row = sheet.GetRow(i);
 
-                if (row == null)
-                {
-                    table.Rows.Add(table.NewRow());
-                    continue;
-                }
+                if (i == 0)
+                    cellCount = row.LastCellNum;
 
-                for (int j = 0; j < row.Cells.Count; j++)
+                if (row == null)
+                    continue;
+
+                if (i != 0 || !firstRowIsTitle)
+                    table.Rows.Add(table.NewRow());
+
+                for (int j = 0; j < cellCount; j++)
                 {
-                    var cell = row.Cells[j];
+                    var cell = row.GetCell(j);
+                    if (cell == null)
+                        continue;
+
                     cell.SetCellType(CellType.String);
 
                     if (i == 0 && firstRowIsTitle)
                         table.Columns.Add(cell.StringCellValue);
                     else
-                    {
-                        table.Rows.Add(table.NewRow());
                         table.Rows[i - (firstRowIsTitle ? 1 : 0)][j] = cell.StringCellValue;
-                    }
                 }
             }
 
