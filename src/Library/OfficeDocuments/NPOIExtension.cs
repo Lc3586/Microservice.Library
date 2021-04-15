@@ -1,6 +1,7 @@
 ﻿using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
+using System;
 using System.Data;
 using System.IO;
 
@@ -32,6 +33,8 @@ namespace Microservice.Library.OfficeDocuments
             int colnum = dt.Columns.Count;//表格列数 
             int rownum = dt.Rows.Count;//表格行数
 
+            var cellTypes = new CellType[colnum];
+
             //生成行 列名行 
             var row_title = sheet.CreateRow(0);
             if (firstRowIsTitle)
@@ -49,8 +52,19 @@ namespace Microservice.Library.OfficeDocuments
                 for (int j = 0; j < colnum; j++)
                 {
                     var cell = row.CreateCell(j);
-                    cell.SetCellType(CellType.String);
-                    cell.SetCellValue(dt.Rows[i][j].ToString());
+
+                    var type = dt.Columns[i].DataType;
+                    if (type == typeof(bool))
+                        cell.SetCellValue((bool)dt.Rows[i][j]);
+                    else if (type == typeof(byte)
+                        || type == typeof(short)
+                        || type == typeof(int))
+                        cell.SetCellValue((int)dt.Rows[i][j]);
+                    else if (type == typeof(TimeSpan)
+                        || type == typeof(DateTime))
+                        cell.SetCellValue((DateTime)dt.Rows[i][j]);
+                    else
+                        cell.SetCellValue(dt.Rows[i][j].ToString());
                 }
             }
 
@@ -96,12 +110,10 @@ namespace Microservice.Library.OfficeDocuments
                     if (cell == null)
                         continue;
 
-                    cell.SetCellType(CellType.String);
-
                     if (i == 0 && firstRowIsTitle)
                         table.Columns.Add(cell.StringCellValue);
                     else
-                        table.Rows[i - (firstRowIsTitle ? 1 : 0)][j] = cell.StringCellValue;
+                        table.Rows[i - (firstRowIsTitle ? 1 : 0)][j] = cell.ToString();
                 }
             }
 
@@ -117,7 +129,7 @@ namespace Microservice.Library.OfficeDocuments
         public static DataTable ReadExcel(this string fileNmae, bool firstRowIsTitle = true)
         {
             using (var fs = new FileStream(fileNmae, FileMode.Open, FileAccess.Read))
-                return ReadExcel(fs, firstRowIsTitle, fileNmae.Substring(fileNmae.LastIndexOf('.')) == "xslx");
+                return ReadExcel(fs, firstRowIsTitle, fileNmae.Substring(fileNmae.LastIndexOf('.')) == ".xlsx");
         }
 
         /// <summary>
