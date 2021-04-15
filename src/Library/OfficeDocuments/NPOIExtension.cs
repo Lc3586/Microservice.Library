@@ -85,13 +85,15 @@ namespace Microservice.Library.OfficeDocuments
         /// </summary>
         /// <param name="sheet">工作簿</param>
         /// <param name="firstRowIsTitle">第一行是否为标题</param>
+        /// <param name="offsetRow">位移行数</param>
+        /// <param name="offsetCell">位移单元格数</param>
         /// <returns></returns>
-        public static DataTable ReadSheet(this ISheet sheet, bool firstRowIsTitle = true)
+        public static DataTable ReadSheet(this ISheet sheet, bool firstRowIsTitle = true, int offsetRow = 0, int offsetCell = 0)
         {
             var table = new DataTable();
 
             var cellCount = 0;
-            for (int i = 0; i <= sheet.LastRowNum; i++)
+            for (int i = offsetRow; i <= sheet.LastRowNum; i++)
             {
                 var row = sheet.GetRow(i);
 
@@ -104,7 +106,7 @@ namespace Microservice.Library.OfficeDocuments
                 if (i != 0 || !firstRowIsTitle)
                     table.Rows.Add(table.NewRow());
 
-                for (int j = 0; j < cellCount; j++)
+                for (int j = offsetCell; j < cellCount; j++)
                 {
                     var cell = row.GetCell(j);
                     if (cell == null)
@@ -125,11 +127,13 @@ namespace Microservice.Library.OfficeDocuments
         /// </summary>
         /// <param name="fileNmae">文件</param>
         /// <param name="firstRowIsTitle">第一行是否为标题</param>
+        /// <param name="offsetRow">位移行数</param>
+        /// <param name="offsetCell">位移单元格数</param>
         /// <returns></returns>
-        public static DataTable ReadExcel(this string fileNmae, bool firstRowIsTitle = true)
+        public static DataTable ReadExcel(this string fileNmae, bool firstRowIsTitle = true, int offsetRow = 0, int offsetCell = 0)
         {
             using (var fs = new FileStream(fileNmae, FileMode.Open, FileAccess.Read))
-                return ReadExcel(fs, firstRowIsTitle, fileNmae.Substring(fileNmae.LastIndexOf('.')) == ".xlsx");
+                return ReadExcel(fs, firstRowIsTitle, fileNmae.Substring(fileNmae.LastIndexOf('.')) == ".xlsx", offsetRow, offsetCell);
         }
 
         /// <summary>
@@ -138,11 +142,13 @@ namespace Microservice.Library.OfficeDocuments
         /// <param name="fileBytes">文件字节源</param>
         /// <param name="firstRowIsTitle">第一行是否为标题</param>
         /// <param name="xslx">是否为xslx文件</param>
+        /// <param name="offsetRow">位移行数</param>
+        /// <param name="offsetCell">位移单元格数</param>
         /// <returns></returns>
-        public static DataTable ReadExcel(this byte[] fileBytes, bool firstRowIsTitle = true, bool xslx = true)
+        public static DataTable ReadExcel(this byte[] fileBytes, bool firstRowIsTitle = true, bool xslx = true, int offsetRow = 0, int offsetCell = 0)
         {
             using (var ms = new MemoryStream(fileBytes))
-                return ReadExcel(ms, firstRowIsTitle, xslx);
+                return ReadExcel(ms, firstRowIsTitle, xslx, offsetRow, offsetCell);
         }
 
         /// <summary>
@@ -151,8 +157,10 @@ namespace Microservice.Library.OfficeDocuments
         /// <param name="stream">流</param>
         /// <param name="firstRowIsTitle">第一行是否为标题</param>
         /// <param name="xslx">是否为xslx文件</param>
+        /// <param name="offsetRow">位移行数</param>
+        /// <param name="offsetCell">位移单元格数</param>
         /// <returns></returns>
-        public static DataTable ReadExcel(this Stream stream, bool firstRowIsTitle = true, bool xslx = true)
+        public static DataTable ReadExcel(this Stream stream, bool firstRowIsTitle = true, bool xslx = true, int offsetRow = 0, int offsetCell = 0)
         {
             var workbook = xslx
                 ? (IWorkbook)new XSSFWorkbook(stream)
@@ -160,7 +168,7 @@ namespace Microservice.Library.OfficeDocuments
 
             var sheet = workbook.GetSheetAt(0);
 
-            return ReadSheet(sheet, firstRowIsTitle);
+            return ReadSheet(sheet, firstRowIsTitle, offsetRow, offsetCell);
         }
 
         #endregion

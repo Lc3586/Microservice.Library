@@ -56,15 +56,16 @@ namespace Microservice.Library.OfficeDocuments
         /// </summary>
         /// <param name="csv">CSV文件读取器</param>
         /// <param name="firstRowIsTitle">第一行是否为标题</param>
+        /// <param name="offsetRow">位移行数</param>
         /// <returns></returns>
-        public static DataTable ReadCSV(this CsvReader csv, bool firstRowIsTitle = true)
+        public static DataTable ReadCSV(this CsvReader csv, bool firstRowIsTitle = true, int offsetRow = 0)
         {
             using (var dr = new CsvDataReader(csv))
             {
                 var table = new DataTable();
                 if (firstRowIsTitle)
                 {
-                    for (int i = 0; i < dr.FieldCount; i++)
+                    for (int i = offsetRow; i < dr.FieldCount; i++)
                         table.Columns.Add(dr.GetName(i));
                 }
                 table.Load(dr);
@@ -78,11 +79,12 @@ namespace Microservice.Library.OfficeDocuments
         /// <param name="fileNmae">文件</param>
         /// <param name="firstRowIsTitle">第一行是否为标题</param>
         /// <param name="encoding">编码</param>
+        /// <param name="offsetRow">位移行数</param>
         /// <returns></returns>
-        public static DataTable ReadCSV(this string fileNmae, bool firstRowIsTitle = true, Encoding encoding = null)
+        public static DataTable ReadCSV(this string fileNmae, bool firstRowIsTitle = true, Encoding encoding = null, int offsetRow = 0)
         {
             using (var fs = new FileStream(fileNmae, FileMode.Open, FileAccess.Read))
-                return ReadCSV(fs, firstRowIsTitle, encoding);
+                return ReadCSV(fs, firstRowIsTitle, encoding, offsetRow);
         }
 
         /// <summary>
@@ -91,11 +93,12 @@ namespace Microservice.Library.OfficeDocuments
         /// <param name="fileBytes">文件字节源</param>
         /// <param name="firstRowIsTitle">第一行是否为标题</param>
         /// <param name="encoding">编码</param>
+        /// <param name="offsetRow">位移行数</param>
         /// <returns></returns>
-        public static DataTable ReadCSV(this byte[] fileBytes, bool firstRowIsTitle = true, Encoding encoding = null)
+        public static DataTable ReadCSV(this byte[] fileBytes, bool firstRowIsTitle = true, Encoding encoding = null, int offsetRow = 0)
         {
             using (var ms = new MemoryStream(fileBytes))
-                return ReadCSV(ms, firstRowIsTitle, encoding);
+                return ReadCSV(ms, firstRowIsTitle, encoding, offsetRow);
         }
 
         /// <summary>
@@ -104,12 +107,13 @@ namespace Microservice.Library.OfficeDocuments
         /// <param name="stream">流</param>
         /// <param name="firstRowIsTitle">第一行是否为标题</param>
         /// <param name="encoding">编码</param>
+        /// <param name="offsetRow">位移行数</param>
         /// <returns></returns>
-        public static DataTable ReadCSV(this Stream stream, bool firstRowIsTitle = true, Encoding encoding = null)
+        public static DataTable ReadCSV(this Stream stream, bool firstRowIsTitle = true, Encoding encoding = null, int offsetRow = 0)
         {
             using (var sr = new StreamReader(stream, encoding ?? Encoding.Default))
             using (var cr = new CsvReader(sr, CultureInfo.InvariantCulture))
-                return ReadCSV(cr, firstRowIsTitle);
+                return ReadCSV(cr, firstRowIsTitle, offsetRow);
         }
 
         #endregion
