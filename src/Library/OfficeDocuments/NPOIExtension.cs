@@ -33,8 +33,6 @@ namespace Microservice.Library.OfficeDocuments
             int colnum = dt.Columns.Count;//表格列数 
             int rownum = dt.Rows.Count;//表格行数
 
-            var cellTypes = new CellType[colnum];
-
             //生成行 列名行 
             var row_title = sheet.CreateRow(0);
             if (firstRowIsTitle)
@@ -53,7 +51,7 @@ namespace Microservice.Library.OfficeDocuments
                 {
                     var cell = row.CreateCell(j);
 
-                    var type = dt.Columns[i].DataType;
+                    var type = dt.Columns[j].DataType;
                     if (type == typeof(bool))
                         cell.SetCellValue((bool)dt.Rows[i][j]);
                     else if (type == typeof(byte)
