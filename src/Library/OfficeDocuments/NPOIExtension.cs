@@ -95,11 +95,11 @@ namespace Microservice.Library.OfficeDocuments
             {
                 var row = sheet.GetRow(i);
 
-                if (i == offsetRow)
-                    cellCount = row.LastCellNum;
-
                 if (row == null)
                     continue;
+
+                if (i == offsetRow)
+                    cellCount = row.LastCellNum;
 
                 if (i != offsetRow || !firstRowIsTitle)
                     table.Rows.Add(table.NewRow());
@@ -113,7 +113,7 @@ namespace Microservice.Library.OfficeDocuments
                     if (i == offsetRow && firstRowIsTitle)
                         table.Columns.Add(cell.StringCellValue);
                     else
-                        table.Rows[i - (firstRowIsTitle ? 1 : 0) - offsetRow][j] = cell.ToString();
+                        table.Rows[table.Rows.Count - 1][j] = cell.ToString();
                 }
             }
 
