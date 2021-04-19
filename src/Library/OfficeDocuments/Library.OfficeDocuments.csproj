@@ -31,7 +31,6 @@
   <ItemGroup>
     <PackageReference Include="CsvHelper" Version="26.0.1" />
     <PackageReference Include="DotNetCore.NPOI" Version="1.2.3" />
-    <PackageReference Include="NPOI" Version="2.5.2" />
     <PackageReference Include="System.Text.Encodings.Web" Version="5.0.0" />
   </ItemGroup>
 
