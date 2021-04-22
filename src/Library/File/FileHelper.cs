@@ -197,6 +197,40 @@ namespace Microservice.Library.File
             return $"{Math.Round(length / Math.Pow(unit, formats.Length), precision)} {formats[formats.Length - 1]}";
         }
 
+
+        /// <summary>
+        /// 复制文件
+        /// </summary>
+        /// <param name="source">源目录</param>
+        /// <param name="destination">目标目录</param>
+        /// <param name="overwrite">是否覆盖同名文件</param>
+        public static void CopyTo(this string source, string destination, bool overwrite = true)
+        {
+            var sourceDir = new DirectoryInfo(source);
+            if (!sourceDir.Exists)
+                return;
+
+            sourceDir.GetFiles().ForEach(file =>
+            {
+                var dir = file.DirectoryName.Replace(source, destination);
+
+                if (!Directory.Exists(dir))
+                    Directory.CreateDirectory(dir);
+
+                var dfile = file.FullName.Replace(source, destination);
+
+                if (!overwrite && System.IO.File.Exists(dfile))
+                    return;
+
+                System.IO.File.Copy(file.FullName, dfile, true);
+            });
+
+            sourceDir.GetDirectories().ForEach(dir =>
+            {
+                dir.FullName.CopyTo(dir.FullName.Replace(source, destination), overwrite);
+            });
+        }
+
         #endregion
     }
 }
