@@ -26,9 +26,9 @@ namespace Microservice.Library.File
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 return $"{name}.exe";
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-                return name;
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-                return name;
+                return $"/usr/bin/{name}";
+            //else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+            //    return name;
             else
                 throw new ApplicationException($"当前操作系统不支持使用{name}.");
         }
@@ -38,7 +38,7 @@ namespace Microservice.Library.File
         /// </summary>
         /// <remarks>
         /// <para>在windows系统下运行时，需要将ffmpeg.exe文件放置于应用根目录下。</para>
-        /// <para>在linux系统下运行时，需要安装ffmpeg。</para>
+        /// <para>在linux系统下运行时，需要安装ffmpeg，读取目录为(/usr/bin/ffmpeg)。</para>
         /// </remarks>
         /// <param name="videofile">视频文件绝对路径</param>
         /// <param name="imagefile">截图文件存储路径</param>
@@ -92,7 +92,7 @@ namespace Microservice.Library.File
         /// </summary>
         /// <remarks>
         /// <para>在windows系统下运行时，需要将ffprobe.exe文件放置于应用根目录下。</para>
-        /// <para>在linux系统下运行时，需要安装ffmpeg。</para>
+        /// <para>在linux系统下运行时，需要安装ffmpeg，读取目录为(/usr/bin/ffprobe)。</para>
         /// </remarks>
         /// <param name="videofile">视频文件绝对路径</param>
         /// <param name="format">获取有关输入多媒体流的容器格式的信息</param>
