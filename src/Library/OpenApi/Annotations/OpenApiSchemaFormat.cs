@@ -60,6 +60,16 @@ namespace Microservice.Library.OpenApi.Annotations
         public const string string_datetime = "date-time";
 
         /// <summary>
+        /// 时间
+        /// </summary>
+        public const string string_time = "time";
+
+        /// <summary>
+        /// 时间跨度
+        /// </summary>
+        public const string string_timespan = "timespan";
+
+        /// <summary>
         /// 原始时间
         /// </summary>
         public const string string_date_original = "date-original";

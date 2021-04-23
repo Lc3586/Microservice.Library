@@ -70,6 +70,11 @@ namespace Microservice.Library.OpenApi.Extention
                 type = OpenApiSchemaType.@string;
                 format = OpenApiSchemaFormat.string_datetime;
             }
+            else if (ReferenceEquals(type, typeof(TimeSpan)))
+            {
+                type = OpenApiSchemaType.@string;
+                format = OpenApiSchemaFormat.string_timespan;
+            }
             else if (ReferenceEquals(type, typeof(string)))
             {
                 type = OpenApiSchemaType.@string;
@@ -235,6 +240,16 @@ namespace Microservice.Library.OpenApi.Extention
                             any = specialValue && schemaAttribute.Value.TryCast(out DateTime value_datetime) ?
                                 new OpenApiString(value_datetime.ToString("yyyy-MM-dd HH:mm:ss")) :
                                 new OpenApiString(OpenApiSchemaDefaultValue._dateTime.ToString("yyyy-MM-dd HH:mm:ss"));
+                            break;
+                        case OpenApiSchemaFormat.string_time:
+                            any = specialValue && schemaAttribute.Value.TryCast(out DateTime value_time) ?
+                                new OpenApiString(value_time.ToString("HH:mm:ss")) :
+                                new OpenApiString(OpenApiSchemaDefaultValue._dateTime.ToString("HH:mm:ss"));
+                            break;
+                        case OpenApiSchemaFormat.string_timespan:
+                            any = specialValue && schemaAttribute.Value.TryCast(out TimeSpan value_timespan) ?
+                                new OpenApiString(value_timespan.ToString("c")) :
+                                new OpenApiString(OpenApiSchemaDefaultValue._dateTime.ToString("c"));
                             break;
                         default:
                             any = specialValue && schemaAttribute.Value.TryCast(out string value_string) ?

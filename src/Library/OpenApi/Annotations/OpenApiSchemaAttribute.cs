@@ -8,7 +8,7 @@ namespace Microservice.Library.OpenApi.Annotations
     /// 接口架构属性
     /// </summary>
     /// <remarks>LCTR 2020-03-10</remarks>
-    [AttributeUsage(AttributeTargets.Property)]
+    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter)]
     public class OpenApiSchemaAttribute : Attribute
     {
         /// <summary>
