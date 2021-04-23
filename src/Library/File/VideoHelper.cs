@@ -23,14 +23,20 @@ namespace Microservice.Library.File
         /// <returns></returns>
         private static string GetEXE(string name = "ffmpeg")
         {
+            string path;
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-                return Path.Combine(AppContext.BaseDirectory, $"{name}.exe");
+                path = Path.Combine(AppContext.BaseDirectory, $"{name}.exe");
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-                return $"/usr/bin/{name}";
+                path = $"/usr/bin/{name}";
             //else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
             //    return name;
             else
                 throw new ApplicationException($"当前操作系统不支持使用{name}.");
+
+            if (!System.IO.File.Exists(path))
+                throw new ApplicationException($"所需的文件不存在: {path}");
+
+            return path;
         }
 
         /// <summary>
