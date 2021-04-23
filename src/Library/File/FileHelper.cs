@@ -1,6 +1,7 @@
 ﻿using Microservice.Library.Extension;
 using System;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -204,7 +205,8 @@ namespace Microservice.Library.File
         /// <param name="source">源目录</param>
         /// <param name="destination">目标目录</param>
         /// <param name="overwrite">是否覆盖同名文件</param>
-        public static void CopyTo(this string source, string destination, bool overwrite = true)
+        /// <param name="remove">移除已复制了的源文件</param>
+        public static void CopyTo(this string source, string destination, bool overwrite = true, bool remove = false)
         {
             var sourceDir = new DirectoryInfo(source);
             if (!sourceDir.Exists)
@@ -223,12 +225,18 @@ namespace Microservice.Library.File
                     return;
 
                 System.IO.File.Copy(file.FullName, dfile, true);
+
+                if (remove)
+                    System.IO.File.Delete(file.FullName);
             });
 
             sourceDir.GetDirectories().ForEach(dir =>
             {
                 dir.FullName.CopyTo(dir.FullName.Replace(source, destination), overwrite);
             });
+
+            if (!sourceDir.GetFiles().Any())
+                sourceDir.Delete();
         }
 
         #endregion
