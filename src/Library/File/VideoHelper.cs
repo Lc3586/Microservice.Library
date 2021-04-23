@@ -63,10 +63,12 @@ namespace Microservice.Library.File
             if (!Directory.Exists(ifDir))
                 Directory.CreateDirectory(ifDir);
 
-            var arguments = $" -ss {time} -i {videofile} -q:v {quality} -frames:v 1 -an -y -f mjpeg {imagefile}";
+            var arguments = $" -ss {time} -i \"{videofile}\" -q:v {quality} -frames:v 1 -an -y -f mjpeg";
 
             if (width.HasValue && height.HasValue)
-                arguments += $" -s {width.Value}*{height.Value}";
+                arguments += $" -s {width.Value}x{height.Value} \"{imagefile}\"";
+            else
+                arguments += $" -s \"{imagefile}\"";
 
             using (var process = new Process())
             {
