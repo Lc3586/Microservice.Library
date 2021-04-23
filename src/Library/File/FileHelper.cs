@@ -232,10 +232,10 @@ namespace Microservice.Library.File
 
             sourceDir.GetDirectories().ForEach(dir =>
             {
-                dir.FullName.CopyTo(dir.FullName.Replace(source, destination), overwrite);
+                dir.FullName.CopyTo(dir.FullName.Replace(source, destination), overwrite, remove);
             });
 
-            if (!sourceDir.GetFiles().Any())
+            if (remove && !sourceDir.GetFiles().Any())
                 sourceDir.Delete();
         }
 
