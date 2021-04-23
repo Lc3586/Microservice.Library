@@ -51,6 +51,8 @@ namespace Microservice.Library.Extension
             builder.Append($"\r\n{level}层错误:  " +
                            $"\r\n\t消息:    " +
                            $"\r\n\t\t{ex?.Message}  " +
+                           $"\r\n\t数据:    " +
+                           $"\r\n\t\t{ex?.Data?.ToJson()}  " +
                            //$"\r\n\t实体验证错误:    " +
                            //$"\r\n\t\t{ex.GetEntityErrors()}  " +
                            $"\r\n\t位置:" +
