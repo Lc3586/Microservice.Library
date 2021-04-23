@@ -59,6 +59,10 @@ namespace Microservice.Library.File
 
             string path = GetEXE();
 
+            var ifDir = new FileInfo(imagefile).DirectoryName;
+            if (!Directory.Exists(ifDir))
+                Directory.CreateDirectory(ifDir);
+
             var arguments = $" -ss {time} -i {videofile} -q:v {quality} -frames:v 1 -an -y -f mjpeg {imagefile}";
 
             if (width.HasValue && height.HasValue)
