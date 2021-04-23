@@ -24,7 +24,7 @@ namespace Microservice.Library.File
         private static string GetEXE(string name = "ffmpeg")
         {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-                return $"{name}.exe";
+                return Path.Combine(AppContext.BaseDirectory, $"{name}.exe");
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
                 return $"/usr/bin/{name}";
             //else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
