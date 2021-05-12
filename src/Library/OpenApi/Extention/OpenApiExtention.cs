@@ -112,13 +112,13 @@ namespace Microservice.Library.OpenApi.Extention
                     propertyDic[_type.FullName].Add(prop.Name);
 
                 if (!CacheExtention.AssemblyOfTypeDic.ContainsKey(_type.FullName))
-                    CacheExtention.AssemblyOfTypeDic.Add(_type.FullName, _type.Assembly.FullName);
+                    CacheExtention.AssemblyOfTypeDic.AddOrUpdate(_type.FullName, _type.Assembly.FullName, (key, old) => _type.Assembly.FullName);
             });
 
             //type.SetPropertysOfTypeDic(propertyDic);
 
             if (!CacheExtention.OpenApiObjectDic.ContainsKey(type.FullName))
-                CacheExtention.OpenApiObjectDic.Add(type.FullName, example);
+                CacheExtention.OpenApiObjectDic.AddOrUpdate(type.FullName, example, (key, old) => example);
 
             return example;
         }
@@ -289,7 +289,7 @@ namespace Microservice.Library.OpenApi.Extention
 
                     NameAndDescriptionDic.Add(item.ToString(), description);
                 }
-                CacheExtention.EnumNameAndDescriptionDic.Add(type.FullName, NameAndDescriptionDic);
+                CacheExtention.EnumNameAndDescriptionDic.AddOrUpdate(type.FullName, NameAndDescriptionDic, (key, old) => NameAndDescriptionDic);
             }
 
             string value;

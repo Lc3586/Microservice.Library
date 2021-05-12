@@ -288,7 +288,7 @@ namespace Microservice.Library.OpenApi.Extention
                     propertyDic[_type.FullName].Add(prop.Name);
 
                 if (!CacheExtention.AssemblyOfTypeDic.ContainsKey(_type.FullName))
-                    CacheExtention.AssemblyOfTypeDic.Add(_type.FullName, _type.Assembly.FullName);
+                    CacheExtention.AssemblyOfTypeDic.AddOrUpdate(_type.FullName, _type.Assembly.FullName, (key, old) => _type.Assembly.FullName);
             },
             null,
             innerModel);

@@ -1,8 +1,8 @@
 ﻿using Microsoft.OpenApi.Any;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Microservice.Library.OpenApi.Extention
 {
@@ -14,27 +14,27 @@ namespace Microservice.Library.OpenApi.Extention
         /// <summary>
         /// 类型的Api架构
         /// </summary>
-        public static readonly Dictionary<string, OpenApiObject> OpenApiObjectDic = new Dictionary<string, OpenApiObject>();
+        public static readonly ConcurrentDictionary<string, OpenApiObject> OpenApiObjectDic = new ConcurrentDictionary<string, OpenApiObject>();
 
         /// <summary>
         /// 类型的命名空间
         /// </summary>
-        public static readonly Dictionary<string, string> AssemblyOfTypeDic = new Dictionary<string, string>();
+        public static readonly ConcurrentDictionary<string, string> AssemblyOfTypeDic = new ConcurrentDictionary<string, string>();
 
         /// <summary>
         /// 类型的架构类型集合
         /// </summary>
-        private static readonly Dictionary<string, List<string>> TypesOfTypeDic = new Dictionary<string, List<string>>();
+        private static readonly ConcurrentDictionary<string, List<string>> TypesOfTypeDic = new ConcurrentDictionary<string, List<string>>();
 
         /// <summary>
         /// 类型的架构属性集合
         /// </summary>
-        private static readonly Dictionary<string, List<string>> PropertysOfTypeDic = new Dictionary<string, List<string>>();
+        private static readonly ConcurrentDictionary<string, List<string>> PropertysOfTypeDic = new ConcurrentDictionary<string, List<string>>();
 
         /// <summary>
         /// 枚举的字段说明集合
         /// </summary>
-        public static readonly Dictionary<string, Dictionary<string, string>> EnumNameAndDescriptionDic = new Dictionary<string, Dictionary<string, string>>();
+        public static readonly ConcurrentDictionary<string, Dictionary<string, string>> EnumNameAndDescriptionDic = new ConcurrentDictionary<string, Dictionary<string, string>>();
 
         /// <summary>
         /// 获取类型的架构属性集合
@@ -74,14 +74,20 @@ namespace Microservice.Library.OpenApi.Extention
         public static void SetPropertysOfTypeDic(this Type type, Dictionary<string, List<string>> dic)
         {
             if (!TypesOfTypeDic.ContainsKey(type.FullName))
-                TypesOfTypeDic.Add(type.FullName, dic.Keys.Where(k => k != type.FullName).ToList());
+            {
+                var types = dic.Keys.Where(k => k != type.FullName).ToList();
+                TypesOfTypeDic.AddOrUpdate(type.FullName, types, (key, old) => types);
+            }
             else
                 TypesOfTypeDic[type.FullName] = TypesOfTypeDic[type.FullName].Union(dic.Keys.Where(k => k != type.FullName)).ToList();
 
             foreach (var item in dic)
             {
                 if (!PropertysOfTypeDic.ContainsKey(item.Key))
-                    PropertysOfTypeDic.Add(item.Key, item.Value.ToList());
+                {
+                    var propertys = item.Value.ToList();
+                    PropertysOfTypeDic.AddOrUpdate(item.Key, propertys, (key, old) => propertys);
+                }
             }
         }
 

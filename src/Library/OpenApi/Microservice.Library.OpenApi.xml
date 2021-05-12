@@ -95,6 +95,16 @@
             日期和时间
             </summary>
         </member>
+        <member name="F:Microservice.Library.OpenApi.Annotations.OpenApiSchemaFormat.string_time">
+            <summary>
+            时间
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.OpenApi.Annotations.OpenApiSchemaFormat.string_timespan">
+            <summary>
+            时间跨度
+            </summary>
+        </member>
         <member name="F:Microservice.Library.OpenApi.Annotations.OpenApiSchemaFormat.string_date_original">
             <summary>
             原始时间
