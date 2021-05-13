@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Runtime.InteropServices;
 
 namespace Microservice.Library.ConsoleTool
 {
@@ -93,7 +92,8 @@ namespace Microservice.Library.ConsoleTool
                     Top[i] = top.Value + i * 2;
             }
 
-            Console.SetBufferSize(Width < Console.BufferWidth ? Console.BufferWidth : Width, Console.BufferHeight);
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                Console.SetBufferSize(Width < Console.BufferWidth ? Console.BufferWidth : Width, Console.BufferHeight);
 
             if (init)
                 InitAll();
