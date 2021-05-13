@@ -754,6 +754,10 @@ namespace Microservice.Library.ConsoleTool
 
             lock (Lock.LockObject)
             {
+                //保存原始位置
+                var oLeft = Console.CursorLeft;
+                var oTop = Console.CursorTop;
+
                 var lastDrawIndex = reFill ? 0 : Array.IndexOf(Value[index], null);
 
                 if (lastDrawIndex != -1 || (length < 0 && lastDrawIndex > 0))
@@ -837,10 +841,11 @@ namespace Microservice.Library.ConsoleTool
                     Console.Write(Msg[index]);
                     if (progressBarType == ProgressBarType.Multicolor)
                         Console.ForegroundColor = colorFore;
-
                 }
 
-                ReSetCursor(index);
+                //恢复原始位置
+                Console.SetCursorPosition(oLeft, oTop);
+                //ReSetCursor(index);
             }
             return this;
         }

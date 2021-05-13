@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Library\ConsoleTool\Library.ConsoleTool.csproj" />
     <ProjectReference Include="..\..\Library\Extension\Library.Extension.csproj" />
     <ProjectReference Include="..\..\Library\File\Library.File.csproj" />
     <ProjectReference Include="..\..\Library\OfficeDocuments\Library.OfficeDocuments.csproj" />
