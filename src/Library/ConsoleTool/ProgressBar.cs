@@ -152,9 +152,9 @@ namespace Microservice.Library.ConsoleTool
                 {
                     // 绘制进度条背景；    
                     Console.SetCursorPosition(Left.Value, Top[index].Value);
-                    Console.Write("[");
-                    Console.SetCursorPosition(Left.Value + Width - 1, Top[index].Value);
-                    Console.Write("]");
+                    Console.Write($"[{new string(' ', Width)}]");
+                    //Console.SetCursorPosition(Left.Value + Width - 1, Top[index].Value);
+                    //Console.Write("]");
                 }
 
                 ReSetCursor(index);
@@ -783,17 +783,16 @@ namespace Microservice.Library.ConsoleTool
                     else
                         lastDrawIndex += length;
 
+                    var width = GetWidth(length);
+
                     // 保存背景色与前景色；
                     colorBack = Console.BackgroundColor;
                     colorFore = Console.ForegroundColor;
 
-                    char c;
-
                     switch (progressBarType)
                     {
                         case ProgressBarType.Multicolor:
-                            // 绘制进度条进度                
-                            Console.SetCursorPosition(Left.Value + GetWidth(lastDrawIndex), Top[index].Value);
+                            // 绘制进度条进度
                             switch (state)
                             {
                                 case 1:
@@ -810,17 +809,16 @@ namespace Microservice.Library.ConsoleTool
                                     Console.BackgroundColor = ConsoleColor.DarkGray;
                                     break;
                             }
-                            c = ' ';
+                            Console.SetCursorPosition(Left.Value + GetWidth(lastDrawIndex), Top[index].Value);
+                            Console.Write(new string(' ', width));
+                            Console.BackgroundColor = colorBack;
                             break;
                         default:
                         case ProgressBarType.Character:
-                            Console.SetCursorPosition(Left.Value + lastDrawIndex + 1, Top[index].Value);
-                            c = '*';
+                            Console.SetCursorPosition(Left.Value + lastDrawIndex, Top[index].Value);
+                            Console.Write($"[{new string('*', width)}{new string(' ', Width - width)}]");
                             break;
                     }
-
-                    Console.Write(new string(c, GetWidth(length)));
-                    Console.BackgroundColor = colorBack;
                 }
 
                 if (Msg[index] == null || (text != null && Msg[index] != text) || Msg[index].Last() == '%')
@@ -828,7 +826,7 @@ namespace Microservice.Library.ConsoleTool
                     if (Msg[index] != null)
                     {
                         //清空之前的内容
-                        Console.SetCursorPosition(Left.Value + Width + 1, Top[index].Value);
+                        Console.SetCursorPosition(Left.Value + Width + 2, Top[index].Value);
                         Console.Write(new string(' ', Msg[index].Length));
                     }
 
@@ -837,7 +835,7 @@ namespace Microservice.Library.ConsoleTool
                     // 显示信息                      
                     if (progressBarType == ProgressBarType.Multicolor)
                         Console.ForegroundColor = ConsoleColor.White;
-                    Console.SetCursorPosition(Left.Value + Width + 1, Top[index].Value);
+                    Console.SetCursorPosition(Left.Value + Width + 2, Top[index].Value);
                     Console.Write(Msg[index]);
                     if (progressBarType == ProgressBarType.Multicolor)
                         Console.ForegroundColor = colorFore;
