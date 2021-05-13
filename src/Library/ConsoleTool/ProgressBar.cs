@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mindmagma.Curses;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -62,6 +63,33 @@ namespace Microservice.Library.ConsoleTool
         private ConsoleColor colorBack;
         private ConsoleColor colorFore;
 
+        private void AutoResize()
+        {
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                NCurses.ResizeTerminal(Width < NCurses.Columns ? NCurses.Columns : Width, NCurses.Lines);
+            else
+                Console.SetBufferSize(Width < Console.BufferWidth ? Console.BufferWidth : Width, Console.BufferHeight);
+        }
+
+        private void Move(int x, int y)
+        {
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                NCurses.Move(y, x);
+            else
+                Console.SetCursorPosition(x, y);
+        }
+
+        //private int X()
+        //{
+        //    if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+        //    {
+        //        NCurses.GetMouse(out MouseEvent mouseEvent);
+        //        return mouseEvent.x;
+        //    }
+        //    else
+        //        return Console.CursorLeft;
+        //}
+
         /// <summary>
         /// 控制台进度条
         /// </summary>
@@ -92,8 +120,7 @@ namespace Microservice.Library.ConsoleTool
                     Top[i] = top.Value + i * 2;
             }
 
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-                Console.SetBufferSize(Width < Console.BufferWidth ? Console.BufferWidth : Width, Console.BufferHeight);
+            AutoResize();
 
             if (init)
                 InitAll();
@@ -137,23 +164,23 @@ namespace Microservice.Library.ConsoleTool
             lock (Lock.LockObject)
             {
                 // 清空显示区域；
-                Console.SetCursorPosition(Left.Value, Top[index].Value);
+                Move(Left.Value, Top[index].Value);
                 for (int j = Left.Value; ++j < Console.WindowWidth;) { Console.Write(" "); }
                 if (progressBarType == ProgressBarType.Multicolor)
                 {
                     // 绘制进度条背景； 
                     colorBack = Console.BackgroundColor;
-                    Console.SetCursorPosition(Left.Value, Top[index].Value);
+                    Move(Left.Value, Top[index].Value);
                     Console.BackgroundColor = ConsoleColor.DarkGray;
                     for (int j = 0; ++j <= Width;) { Console.Write(" "); }
                     Console.BackgroundColor = colorBack;
                 }
                 else
                 {
-                    // 绘制进度条背景；    
-                    Console.SetCursorPosition(Left.Value, Top[index].Value);
+                    // 绘制进度条背景；
+                    Move(Left.Value, Top[index].Value);
                     Console.Write($"[{new string(' ', Width)}]");
-                    //Console.SetCursorPosition(Left.Value + Width - 1, Top[index].Value);
+                    //Move(Left.Value + Width - 1, Top[index].Value);
                     //Console.Write("]");
                 }
 
@@ -809,13 +836,13 @@ namespace Microservice.Library.ConsoleTool
                                     Console.BackgroundColor = ConsoleColor.DarkGray;
                                     break;
                             }
-                            Console.SetCursorPosition(Left.Value + GetWidth(lastDrawIndex), Top[index].Value);
+                            Move(Left.Value + GetWidth(lastDrawIndex), Top[index].Value);
                             Console.Write(new string(' ', width));
                             Console.BackgroundColor = colorBack;
                             break;
                         default:
                         case ProgressBarType.Character:
-                            Console.SetCursorPosition(Left.Value + lastDrawIndex, Top[index].Value);
+                            Move(Left.Value + lastDrawIndex, Top[index].Value);
                             Console.Write($"[{new string('*', width)}{new string(' ', Width - width)}]");
                             break;
                     }
@@ -826,7 +853,7 @@ namespace Microservice.Library.ConsoleTool
                     if (Msg[index] != null)
                     {
                         //清空之前的内容
-                        Console.SetCursorPosition(Left.Value + Width + 2, Top[index].Value);
+                        Move(Left.Value + Width + 2, Top[index].Value);
                         Console.Write(new string(' ', Msg[index].Length));
                     }
 
@@ -835,14 +862,14 @@ namespace Microservice.Library.ConsoleTool
                     // 显示信息                      
                     if (progressBarType == ProgressBarType.Multicolor)
                         Console.ForegroundColor = ConsoleColor.White;
-                    Console.SetCursorPosition(Left.Value + Width + 2, Top[index].Value);
+                    Move(Left.Value + Width + 2, Top[index].Value);
                     Console.Write(Msg[index]);
                     if (progressBarType == ProgressBarType.Multicolor)
                         Console.ForegroundColor = colorFore;
                 }
 
                 //恢复原始位置
-                Console.SetCursorPosition(oLeft, oTop);
+                Move(oLeft, oTop);
                 //ReSetCursor(index);
             }
             return this;
@@ -854,7 +881,7 @@ namespace Microservice.Library.ConsoleTool
         /// <param name="index"></param>
         private void ReSetCursor(int index)
         {
-            Console.SetCursorPosition(0, Top[index].Value + (Count - index) * 2);
+            Move(0, Top[index].Value + (Count - index) * 2);
             Console.ForegroundColor = ConsoleColor.White;
         }
 
