@@ -9,7 +9,9 @@
     <ProjectReference Include="..\..\Library\ConsoleTool\Library.ConsoleTool.csproj" />
     <ProjectReference Include="..\..\Library\Extension\Library.Extension.csproj" />
     <ProjectReference Include="..\..\Library\File\Library.File.csproj" />
+    <ProjectReference Include="..\..\Library\FreeSql\Library.FreeSql.csproj" />
     <ProjectReference Include="..\..\Library\OfficeDocuments\Library.OfficeDocuments.csproj" />
+    <ProjectReference Include="..\..\Library\OpenApi\Library.OpenApi.csproj" />
     <ProjectReference Include="..\..\Library\WeChat\Library.WeChat.csproj" />
   </ItemGroup>
 
