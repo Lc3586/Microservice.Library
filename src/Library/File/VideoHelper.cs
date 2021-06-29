@@ -67,9 +67,6 @@ namespace Microservice.Library.File
         /// <summary>
         /// 视频截图
         /// </summary>
-        /// <remarks>
-        /// <para>在linux系统下运行时，需要安装ffmpeg，一般文件路径为(/usr/bin/ffmpeg)（注意，没有exe拓展名）。</para>
-        /// </remarks>
         /// <param name="videoFile">视频文件绝对路径</param>
         /// <param name="ffmpegFile">ffmpeg应用程序文件绝对路径</param>
         /// <param name="imageFile">截图文件存储路径</param>
@@ -115,10 +112,6 @@ namespace Microservice.Library.File
         /// <summary>
         /// 获取视频信息
         /// </summary>
-        /// <remarks>
-        /// <para>在windows系统下运行时，需要将ffprobe.exe文件放置于应用根目录下。</para>
-        /// <para>在linux系统下运行时，需要安装ffmpeg，读取目录为(/usr/bin/ffprobe)。</para>
-        /// </remarks>
         /// <param name="videoFile">视频文件绝对路径</param>
         /// <param name="ffprobeFile">fffprobe应用程序文件绝对路径</param>
         /// <param name="format">获取有关输入多媒体流的容器格式的信息</param>
