@@ -1564,6 +1564,144 @@
             <typeparam name="T"></typeparam>
             <returns></returns>
         </member>
+        <member name="T:Microservice.Library.Extension.Helper.RSAHelper">
+            <summary>
+            RSA帮助类
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.Extension.Helper.RSAHelper.#ctor(System.String,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="pemFile">pem公钥文件地址</param>
+            <param name="certFile">p12证书地址</param>
+            <param name="certPassword">证书密码</param>
+        </member>
+        <member name="M:Microservice.Library.Extension.Helper.RSAHelper.#ctor(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="publicKey">公钥</param>
+            <param name="privateKey">私钥</param>
+        </member>
+        <member name="F:Microservice.Library.Extension.Helper.RSAHelper.PrivateKeyProvider">
+            <summary>
+            私钥
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.Extension.Helper.RSAHelper.PublicKeyProvider">
+            <summary>
+            公钥
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.Extension.Helper.RSAHelper.PrivateKey">
+            <summary>
+            私钥
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.Extension.Helper.RSAHelper.PublicKey">
+            <summary>
+            公钥
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.Extension.Helper.RSAHelper.DefaultEncoding">
+            <summary>
+            默认编码（默认UTF8）
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.Extension.Helper.RSAHelper.DefaultHashAlgorithm">
+            <summary>
+            默认加密算法类型（默认SHA256）
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.Extension.Helper.RSAHelper.DefaultSignaturePadding">
+            <summary>
+            默认签名填充方案（默认Pkcs1）
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.Extension.Helper.RSAHelper.DefaultEncryptionPadding">
+            <summary>
+            默认加密填充方案（默认SHA256）
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.Extension.Helper.RSAHelper.ToSHA1Bytes(System.String,System.Text.Encoding)">
+            <summary>
+            计算SHA1摘要
+            </summary>
+            <param name="data">字符串</param>
+            <param name="encoding">编码</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Helper.RSAHelper.ToSHA1String(System.String,System.Boolean)">
+            <summary>
+            转为SHA1哈希
+            </summary>
+            <param name="data">字符串</param>
+            <param name="toLower">转为小写</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Helper.RSAHelper.GetSignByte(System.String,System.Nullable{System.Security.Cryptography.HashAlgorithmName},System.Security.Cryptography.RSASignaturePadding,System.Text.Encoding)">
+            <summary>
+            获取签名
+            <para>SHA256-RSA</para>
+            </summary>
+            <param name="data">验证签名字符串</param>
+            <param name="hashAlgorithm">加密算法类型</param>
+            <param name="padding">填充方案（默认Pkcs1）</param>
+            <param name="encoding">编码</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Helper.RSAHelper.GetSignBase64(System.String,System.Nullable{System.Security.Cryptography.HashAlgorithmName},System.Security.Cryptography.RSASignaturePadding,System.Text.Encoding)">
+            <summary>
+            获取签名
+            <para>SHA256-RSA</para>
+            </summary>
+            <param name="data">验证签名字符串</param>
+            <param name="hashAlgorithm">加密算法类型</param>
+            <param name="padding">填充方案（默认Pkcs1）</param>
+            <param name="encoding">编码</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Helper.RSAHelper.VerifySign(System.String,System.Byte[],System.Nullable{System.Security.Cryptography.HashAlgorithmName},System.Security.Cryptography.RSASignaturePadding,System.Text.Encoding)">
+            <summary>
+            验证签名
+            </summary>
+            <param name="data"></param>
+            <param name="sign"></param>
+            <param name="hashAlgorithm"></param>
+            <param name="padding">填充方案（默认Pkcs1）</param>
+            <param name="encoding"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Helper.RSAHelper.VerifySign(System.String,System.String,System.Nullable{System.Security.Cryptography.HashAlgorithmName},System.Security.Cryptography.RSASignaturePadding,System.Text.Encoding)">
+            <summary>
+            验证签名
+            </summary>
+            <param name="data"></param>
+            <param name="sign"></param>
+            <param name="hashAlgorithm"></param>
+            <param name="padding">填充方案（默认Pkcs1）</param>
+            <param name="encoding"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Helper.RSAHelper.Encrypt(System.String,System.Security.Cryptography.RSAEncryptionPadding,System.Text.Encoding)">
+            <summary>
+            加密
+            </summary>
+            <param name="data">明文</param>
+            <param name="padding">填充方案（默认SHA256）</param>
+            <param name="encoding">编码</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Helper.RSAHelper.Decrypt(System.String,System.Security.Cryptography.RSAEncryptionPadding,System.Text.Encoding)">
+            <summary>
+            解密
+            </summary>
+            <param name="data">密文</param>
+            <param name="padding">填充方案（默认SHA256）</param>
+            <param name="encoding">编码</param>
+            <returns></returns>
+        </member>
         <member name="T:Microservice.Library.Extension.Helper.TimeTickHelper">
             <summary>
             定时器

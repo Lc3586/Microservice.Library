@@ -223,9 +223,9 @@ namespace Microservice.Library.WeChat.Extension
         /// <returns></returns>
         public string DecryptWithRSA(string data)
         {
-            var bytes = PrivateKey.Decrypt(Encoding.UTF8.GetBytes(data), true);
+            var bytes = PrivateKey.Decrypt(Convert.FromBase64String(data), true);
 
-            return Convert.ToBase64String(bytes);
+            return Encoding.UTF8.GetString(bytes);
         }
     }
 }

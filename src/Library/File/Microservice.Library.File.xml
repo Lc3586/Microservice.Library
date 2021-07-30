@@ -699,30 +699,32 @@
             <param name="name"></param>
             <returns></returns>
         </member>
-        <member name="M:Microservice.Library.File.VideoHelper.Screenshot(System.String,System.String,System.TimeSpan,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32})">
+        <member name="M:Microservice.Library.File.VideoHelper.GetProcess(System.String,System.String)">
+            <summary>
+            获取进程
+            </summary>
+            <param name="filename">文件绝对路径</param>
+            <param name="arguments">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.File.VideoHelper.Screenshot(System.String,System.String,System.String,System.TimeSpan,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32})">
             <summary>
             视频截图
             </summary>
-            <remarks>
-            <para>在windows系统下运行时，需要将ffmpeg.exe文件放置于应用根目录下。</para>
-            <para>在linux系统下运行时，需要安装ffmpeg，读取目录为(/usr/bin/ffmpeg)。</para>
-            </remarks>
-            <param name="videofile">视频文件绝对路径</param>
-            <param name="imagefile">截图文件存储路径</param>
+            <param name="videoFile">视频文件绝对路径</param>
+            <param name="ffmpegFile">ffmpeg应用程序文件绝对路径</param>
+            <param name="imageFile">截图文件存储路径</param>
             <param name="time">指定时间</param>
             <param name="quality">图片质量[2-31]</param>
             <param name="width">图片宽度</param>
             <param name="height">图片高度</param>
         </member>
-        <member name="M:Microservice.Library.File.VideoHelper.GetVideoInfo(System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+        <member name="M:Microservice.Library.File.VideoHelper.GetVideoInfo(System.String,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             获取视频信息
             </summary>
-            <remarks>
-            <para>在windows系统下运行时，需要将ffprobe.exe文件放置于应用根目录下。</para>
-            <para>在linux系统下运行时，需要安装ffmpeg，读取目录为(/usr/bin/ffprobe)。</para>
-            </remarks>
-            <param name="videofile">视频文件绝对路径</param>
+            <param name="videoFile">视频文件绝对路径</param>
+            <param name="ffprobeFile">fffprobe应用程序文件绝对路径</param>
             <param name="format">获取有关输入多媒体流的容器格式的信息</param>
             <param name="streams">获取有关输入多媒体流中包含的每个媒体流的信息</param>
             <param name="chapters">获取有关以该格式存储的章节的信息</param>
