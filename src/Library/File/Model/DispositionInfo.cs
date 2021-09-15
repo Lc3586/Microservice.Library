@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Microservice.Library.File.Model
+﻿namespace Microservice.Library.File.Model
 {
     /// <summary>
     /// 配置信息

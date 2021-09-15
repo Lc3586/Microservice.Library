@@ -44,7 +44,7 @@ namespace Microservice.Library.File.Model
         public TimeSpan Start_Time_Convert { get { return TimeSpan.FromSeconds(Start_Time); } set { Start_Time = value.TotalSeconds; } }
 
         /// <summary>
-        /// 时长
+        /// 时长(秒)
         /// </summary>
         public double Duration { get; set; }
 

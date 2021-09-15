@@ -330,7 +330,7 @@
         </member>
         <member name="P:Microservice.Library.File.Model.FormatInfo.Duration">
             <summary>
-            时长
+            时长(秒)
             </summary>
         </member>
         <member name="P:Microservice.Library.File.Model.FormatInfo.Duration_Convert">
@@ -466,12 +466,12 @@
         </member>
         <member name="P:Microservice.Library.File.Model.StreamInfo.Codec_Name">
             <summary>
-            编码名称
+            编码器名
             </summary>
         </member>
         <member name="P:Microservice.Library.File.Model.StreamInfo.Codec_Long_Name">
             <summary>
-            编码全称
+            编码器名全称
             </summary>
         </member>
         <member name="P:Microservice.Library.File.Model.StreamInfo.Profile">
@@ -481,47 +481,47 @@
         </member>
         <member name="P:Microservice.Library.File.Model.StreamInfo.Codec_Type">
             <summary>
-            编码类型
+            编码器类型
             </summary>
         </member>
         <member name="P:Microservice.Library.File.Model.StreamInfo.Codec_Time_Base">
             <summary>
-            
+            编码器每帧时长
             </summary>
         </member>
         <member name="P:Microservice.Library.File.Model.StreamInfo.Codec_Tag_String">
             <summary>
-            
+            编码器标签名
             </summary>
         </member>
         <member name="P:Microservice.Library.File.Model.StreamInfo.Codec_Tag">
             <summary>
-            
+            编码器标签
             </summary>
         </member>
         <member name="P:Microservice.Library.File.Model.StreamInfo.Sample_Fmt">
             <summary>
-            
+            采样点格式
             </summary>
         </member>
         <member name="P:Microservice.Library.File.Model.StreamInfo.Sample_Rate">
             <summary>
-            
+            采样率
             </summary>
         </member>
         <member name="P:Microservice.Library.File.Model.StreamInfo.Channels">
             <summary>
-            
+            音频通道数
             </summary>
         </member>
         <member name="P:Microservice.Library.File.Model.StreamInfo.Channel_Layout">
             <summary>
-            
+            音频通道布局
             </summary>
         </member>
         <member name="P:Microservice.Library.File.Model.StreamInfo.Bits_Per_Sample">
             <summary>
-            
+            采样点bit数
             </summary>
         </member>
         <member name="P:Microservice.Library.File.Model.StreamInfo.Width">
@@ -536,12 +536,12 @@
         </member>
         <member name="P:Microservice.Library.File.Model.StreamInfo.Coded_Width">
             <summary>
-            
+            视频帧宽度
             </summary>
         </member>
         <member name="P:Microservice.Library.File.Model.StreamInfo.Coded_Height">
             <summary>
-            
+            视频帧高度
             </summary>
         </member>
         <member name="P:Microservice.Library.File.Model.StreamInfo.Closed_Captions">
@@ -551,27 +551,28 @@
         </member>
         <member name="P:Microservice.Library.File.Model.StreamInfo.Has_B_Frames">
             <summary>
-            
+            记录帧缓存大小
+            <para>视频的延迟帧数</para>
             </summary>
         </member>
         <member name="P:Microservice.Library.File.Model.StreamInfo.Pix_Fmt">
             <summary>
-            
+            像素格式
             </summary>
         </member>
         <member name="P:Microservice.Library.File.Model.StreamInfo.Level">
             <summary>
-            
+            级别
             </summary>
         </member>
         <member name="P:Microservice.Library.File.Model.StreamInfo.Chroma_Location">
             <summary>
-            
+            色度样品的位置
             </summary>
         </member>
         <member name="P:Microservice.Library.File.Model.StreamInfo.Refs">
             <summary>
-            
+            参考帧数量
             </summary>
         </member>
         <member name="P:Microservice.Library.File.Model.StreamInfo.Is_Avc">
@@ -581,52 +582,65 @@
         </member>
         <member name="P:Microservice.Library.File.Model.StreamInfo.Nal_Length_Size">
             <summary>
-            
+            表示用几个字节表示NALU的长度
             </summary>
         </member>
         <member name="P:Microservice.Library.File.Model.StreamInfo.R_Frame_Rate">
             <summary>
-            
+            真实基础帧率
             </summary>
         </member>
         <member name="P:Microservice.Library.File.Model.StreamInfo.Avg_Frame_Rate">
             <summary>
-            
+            平均帧率
             </summary>
         </member>
         <member name="P:Microservice.Library.File.Model.StreamInfo.Time_Base">
             <summary>
-            
+            每帧时长
             </summary>
         </member>
         <member name="P:Microservice.Library.File.Model.StreamInfo.Start_Pts">
             <summary>
-            
+            流开始时间
+            <para>基于<see cref="P:Microservice.Library.File.Model.StreamInfo.Time_Base"/></para>
             </summary>
         </member>
         <member name="P:Microservice.Library.File.Model.StreamInfo.Start_Time">
             <summary>
-            
+            首帧时间
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.StreamInfo.Start_Time_Convert">
+            <summary>
+            首帧时间
             </summary>
         </member>
         <member name="P:Microservice.Library.File.Model.StreamInfo.Duration_Ts">
             <summary>
-            
+            流时长
+            <para>基于<see cref="P:Microservice.Library.File.Model.StreamInfo.Time_Base"/></para>
             </summary>
         </member>
         <member name="P:Microservice.Library.File.Model.StreamInfo.Duration">
             <summary>
-            
+            时长(秒)
+            <para>转换（duration_ts * time_base）之后的时长，单位秒</para>
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.StreamInfo.Duration_Convert">
+            <summary>
+            时长
             </summary>
         </member>
         <member name="P:Microservice.Library.File.Model.StreamInfo.Bit_Rate">
             <summary>
-            
+            码率
             </summary>
         </member>
         <member name="P:Microservice.Library.File.Model.StreamInfo.Max_Bit_Rate">
             <summary>
-            
+            最大码率
             </summary>
         </member>
         <member name="P:Microservice.Library.File.Model.StreamInfo.Bits_Per_Raw_Sample">
@@ -636,7 +650,7 @@
         </member>
         <member name="P:Microservice.Library.File.Model.StreamInfo.Nb_Frames">
             <summary>
-            
+            视频流帧数
             </summary>
         </member>
         <member name="P:Microservice.Library.File.Model.StreamInfo.Extradata">
