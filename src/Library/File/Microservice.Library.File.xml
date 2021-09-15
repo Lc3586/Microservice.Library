@@ -299,7 +299,7 @@
         </member>
         <member name="P:Microservice.Library.File.Model.FormatInfo.Nb_Streams">
             <summary>
-            
+            输入视频的AVStream个数
             </summary>
         </member>
         <member name="P:Microservice.Library.File.Model.FormatInfo.Nb_Programs">
@@ -309,37 +309,49 @@
         </member>
         <member name="P:Microservice.Library.File.Model.FormatInfo.Format_Name">
             <summary>
-            
+            格式名
+            <para>半角逗号[,]分隔</para>
             </summary>
         </member>
         <member name="P:Microservice.Library.File.Model.FormatInfo.Format_Long_Name">
             <summary>
-            
+            格式名全称
             </summary>
         </member>
         <member name="P:Microservice.Library.File.Model.FormatInfo.Start_Time">
             <summary>
-            
+            首帧时间
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.FormatInfo.Start_Time_Convert">
+            <summary>
+            首帧时间
             </summary>
         </member>
         <member name="P:Microservice.Library.File.Model.FormatInfo.Duration">
             <summary>
-            
+            时长
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.FormatInfo.Duration_Convert">
+            <summary>
+            时长
             </summary>
         </member>
         <member name="P:Microservice.Library.File.Model.FormatInfo.Size">
             <summary>
-            
+            文件大小
             </summary>
         </member>
         <member name="P:Microservice.Library.File.Model.FormatInfo.Bit_Rate">
             <summary>
-            
+            码率
             </summary>
         </member>
         <member name="P:Microservice.Library.File.Model.FormatInfo.Probe_Score">
             <summary>
-            
+            文件内容与文件拓展名匹配程度
+            <para>100为最高分, 低于25分时文件拓展名可能被串改.</para>
             </summary>
         </member>
         <member name="P:Microservice.Library.File.Model.FormatInfo.Tags">
@@ -354,22 +366,27 @@
         </member>
         <member name="P:Microservice.Library.File.Model.FormatTagsInfo.Major_Brand">
             <summary>
-            
+            主品牌
             </summary>
         </member>
         <member name="P:Microservice.Library.File.Model.FormatTagsInfo.Minor_Version">
             <summary>
-            
+            次要版本
             </summary>
         </member>
         <member name="P:Microservice.Library.File.Model.FormatTagsInfo.Compatible_Brands">
             <summary>
-            
+            兼容性品牌
             </summary>
         </member>
         <member name="P:Microservice.Library.File.Model.FormatTagsInfo.Encoder">
             <summary>
-            
+            编码器
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.FormatTagsInfo.Creation_Time">
+            <summary>
+            创建时间
             </summary>
         </member>
         <member name="T:Microservice.Library.File.Model.LibraryVersionInfo">
@@ -691,13 +708,6 @@
             <summary>
             视频文件帮助类
             </summary>
-        </member>
-        <member name="M:Microservice.Library.File.VideoHelper.GetEXE(System.String)">
-            <summary>
-            获取程序
-            </summary>
-            <param name="name"></param>
-            <returns></returns>
         </member>
         <member name="M:Microservice.Library.File.VideoHelper.GetProcess(System.String,System.String)">
             <summary>
