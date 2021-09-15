@@ -31,7 +31,7 @@ jobs:
                 
             - name: BuildWithPack
               run: |
-                ${{$CI_COMMIT_TAG}}
+                $(git describe --abbrev=0)
                 #dotnet build ./src/NuGet/Library.All/Library.All.csproj -c Release -p:PackageVersion=${{ steps.nbgv.outputs.Version }}-alpha-g${{steps.nbgv.outputs.GitCommitIdShort}}
               
             #- name: Pack all-in-one-packages
