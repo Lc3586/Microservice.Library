@@ -33,10 +33,10 @@ jobs:
               run: |
                 set version=${{ steps.nbgv.outputs.BuildingRef }}-g${{steps.nbgv.outputs.GitCommitIdShort}}
                 set version=%version:~10%
-                dotnet build ./src/NuGet/Library.All/Library.All.csproj -c Release -p:PackageVersion=${version}
+                dotnet build ./src/NuGet/Library.All/Library.All.csproj -c Release -p:PackageVersion=%version%
               
             - name: Pack all-in-one-packages
               run:  |
                 set version=${{ steps.nbgv.outputs.BuildingRef }}-g${{steps.nbgv.outputs.GitCommitIdShort}}
                 set version=%version:~10%
-                dotnet pack ./src/NuGet/Library.All/Library.All.csproj -c Release --no-build -p:PackageVersion=${version}
+                dotnet pack ./src/NuGet/Library.All/Library.All.csproj -c Release --no-build -p:PackageVersion=%version%
