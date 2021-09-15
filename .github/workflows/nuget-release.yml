@@ -32,12 +32,12 @@ jobs:
             - name: BuildWithPack
               run: |
                 #dotnet build ./src/NuGet/Library.All/Library.All.csproj -c Release -p:PackageVersion=${{ steps.nbgv.outputs.Version }}-alpha-g_${{steps.nbgv.outputs.GitCommitIdShort}}
-                dotnet build ./src/NuGet/Library.All/Library.All.csproj -c Release -p:PackageVersion=$(git describe --tags --abbrev=0)-g_${{steps.nbgv.outputs.GitCommitIdShort}}
+                dotnet build ./src/NuGet/Library.All/Library.All.csproj -c Release -p:PackageVersion=${{$(git describe --tags --abbrev=0)}}-g_${{steps.nbgv.outputs.GitCommitIdShort}}
                               
             - name: Pack all-in-one-packages
               run:  |
                 #dotnet pack ./src/NuGet/Library.All/Library.All.csproj -c Release --no-build -p:PackageVersion=${{ steps.nbgv.outputs.Version }}-alpha-g_${{steps.nbgv.outputs.GitCommitIdShort}}
-                dotnet pack ./src/NuGet/Library.All/Library.All.csproj -c Release -p:PackageVersion=$(git describe --tags --abbrev=0)-g_${{steps.nbgv.outputs.GitCommitIdShort}}
+                dotnet pack ./src/NuGet/Library.All/Library.All.csproj -c Release -p:PackageVersion=${{$(git describe --tags --abbrev=0)}}-g_${{steps.nbgv.outputs.GitCommitIdShort}}
                 
             - name: Install Nuget
               run: |
