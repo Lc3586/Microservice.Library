@@ -31,26 +31,26 @@ jobs:
                 
             - name: BuildWithPack
               run: |
-                set version=${{ steps.nbgv.outputs.BuildingRef }}
+                $CI_COMMIT_TAG
+                ${{CI_COMMIT_TAG}}
                 dotnet build ./src/NuGet/Library.All/Library.All.csproj -c Release -p:PackageVersion=${{ steps.nbgv.outputs.Version }}-alpha-g${{steps.nbgv.outputs.GitCommitIdShort}}
               
-            - name: Pack all-in-one-packages
-              run:  |
-                set version=${{ steps.nbgv.outputs.BuildingRef }}
-                dotnet pack ./src/NuGet/Library.All/Library.All.csproj -c Release --no-build -p:PackageVersion=${{ steps.nbgv.outputs.Version }}-alpha-g${{steps.nbgv.outputs.GitCommitIdShort}}
+            #- name: Pack all-in-one-packages
+            #  run:  |
+            #    dotnet pack ./src/NuGet/Library.All/Library.All.csproj -c Release --no-build -p:PackageVersion=${{ steps.nbgv.outputs.Version }}-alpha-g${{steps.nbgv.outputs.GitCommitIdShort}}
                 
-            - name: Install Nuget
-              run: |
-                $sourceNugetExe = "https://dist.nuget.org/win-x86-commandline/latest/nuget.exe"
-                $targetNugetExe = "nuget.exe"
-                Invoke-WebRequest $sourceNugetExe -OutFile $targetNugetExe
-              shell: pwsh
+            #- name: Install Nuget
+            #  run: |
+            #    $sourceNugetExe = "https://dist.nuget.org/win-x86-commandline/latest/nuget.exe"
+            #    $targetNugetExe = "nuget.exe"
+            #    Invoke-WebRequest $sourceNugetExe -OutFile $targetNugetExe
+            #  shell: pwsh
               
-            - name: Add public GitHub registry to NuGet
-              run: |
-                .\nuget sources add -name github -Source https://nuget.pkg.github.com/Lc3586/index.json -Username Lc3586 -Password ${{ secrets.GIT_TOKEN }}
+            #- name: Add public GitHub registry to NuGet
+            #  run: |
+            #    .\nuget sources add -name github -Source https://nuget.pkg.github.com/Lc3586/index.json -Username Lc3586 -Password ${{ secrets.GIT_TOKEN }}
                 
-            - name: Push generated package to GitHub registry
-              run: |
-                .\nuget push **/Microservice.Library.*.nupkg -Source github -SkipDuplicate
-                .\nuget push **/Microservice.Library.*.nupkg -Source https://api.nuget.org/v3/index.json -SkipDuplicate -ApiKey ${{ secrets.NUGETAPIKEYS_MICROSERVICE_LIBRARY }} -NoSymbols
+            #- name: Push generated package to GitHub registry
+            #  run: |
+            #    .\nuget push **/Microservice.Library.*.nupkg -Source github -SkipDuplicate
+            #    .\nuget push **/Microservice.Library.*.nupkg -Source https://api.nuget.org/v3/index.json -SkipDuplicate -ApiKey ${{ secrets.NUGETAPIKEYS_MICROSERVICE_LIBRARY }} -NoSymbols
