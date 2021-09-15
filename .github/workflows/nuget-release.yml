@@ -30,11 +30,14 @@ jobs:
               id: nbgv
                 
             - name: BuildWithPack
-              run: dotnet build ./src/NuGet/Library.All/Library.All.csproj -c Release -p:PackageVersion=${{ steps.nbgv.outputs.Version }}-alpha-g${{steps.nbgv.outputs.GitCommitIdShort}}
+              run: |
+                set version=${{ steps.nbgv.outputs.BuildingRef }}
+                dotnet build ./src/NuGet/Library.All/Library.All.csproj -c Release -p:PackageVersion=%version:~10%-alpha-g${{steps.nbgv.outputs.GitCommitIdShort}}
               
             - name: Pack all-in-one-packages
               run:  |
-                dotnet pack ./src/NuGet/Library.All/Library.All.csproj -c Release --no-build -p:PackageVersion=${{ steps.nbgv.outputs.Version }}-alpha-g${{steps.nbgv.outputs.GitCommitIdShort}}
+                set version=${{ steps.nbgv.outputs.BuildingRef }}
+                dotnet pack ./src/NuGet/Library.All/Library.All.csproj -c Release --no-build -p:PackageVersion=%version:~10%-g${{steps.nbgv.outputs.GitCommitIdShort}}
                 
             - name: Install Nuget
               run: |
