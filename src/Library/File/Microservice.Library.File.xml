@@ -680,7 +680,12 @@
         </member>
         <member name="P:Microservice.Library.File.Model.StreamTagsInfo.Handler_Name">
             <summary>
-            
+            处理器名字
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.File.Model.StreamTagsInfo.Creation_Time">
+            <summary>
+            创建时间
             </summary>
         </member>
         <member name="T:Microservice.Library.File.Model.VideoInfo">
