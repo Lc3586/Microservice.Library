@@ -13,7 +13,7 @@ namespace Microservice.Library.WeChat.Application
         /// <summary>
         /// 站点根地址
         /// </summary>
-        public string WebRootUrl { get; set; }
+        public List<string> WebRootUrl { get; set; }
 
         /// <summary>
         /// 获取Code接口
