@@ -1,18 +1,13 @@
-﻿using Microservice.Library.Soap;
-using Microservice.Library.Soap.Application;
+﻿using Microservice.Library.Soap.Application;
 using Microservice.Library.Soap.Filter;
 using Microservice.Library.Soap.Gen;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
 using SoapCore;
 using SoapCore.Extensibility;
 using System;
-using System.Collections.Generic;
 using System.Reflection;
-using System.ServiceModel;
-using System.Text;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -20,8 +15,12 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         /// <summary>
         /// 添加Soap服务端
-        /// <para>还需要调用app.AddSoapServer()</para>
         /// </summary>
+        /// <remarks>
+        /// 示例：
+        /// services.AddSoapServer();
+        /// services.AddMvc();
+        /// </remarks>
         /// <param name="services"></param>
         /// <param name="options"></param>
         /// <returns></returns>
@@ -29,6 +28,8 @@ namespace Microsoft.Extensions.DependencyInjection
             this IServiceCollection services,
             params SoapServerOptions[] options)
         {
+            services.AddSoapCore();
+
             bool messageInspector2Added = false;
             foreach (var server in options)
             {
@@ -54,16 +55,17 @@ namespace Microsoft.Extensions.DependencyInjection
                 }
             }
 
-
-            services.AddMvc(x => x.EnableEndpointRouting = false);
-            services.AddSoapCore();
-
             return services;
         }
 
         /// <summary>
         /// 添加Soap服务端
         /// </summary>
+        /// <remarks>
+        /// 示例：
+        ///     app.AddSoapServer();
+        ///     app.UseMvc();
+        /// </remarks>
         /// <param name="app"></param>
         /// <param name="options"></param>
         /// <returns></returns>
@@ -77,13 +79,16 @@ namespace Microsoft.Extensions.DependencyInjection
                                         .Load(server.ServiceType.Assembly)
                                         .GetType(server.ServiceType.Type, true, true);
 
-                if (server.EncoderOptions == null)
-                    app.UseSoapEndpoint(channelType, server.Path, new BasicHttpBinding(), server.Serializer);
-                else
-                    app.UseSoapEndpoint(channelType, server.Path, server.EncoderOptions, server.Serializer);
-            }
+                app.UseSoapEndpoint(channelType, endpointOptions =>
+                {
+                    endpointOptions.Path = server.Path;
+                    if (server.EncoderOptions != null)
+                        endpointOptions.EncoderOptions = server.EncoderOptions;
+                    endpointOptions.SoapSerializer = server.Serializer;
 
-            app.UseMvc();
+                    server.SetupSoapEndpoint?.Invoke(endpointOptions);
+                });
+            }
 
             return app;
         }

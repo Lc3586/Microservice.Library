@@ -33,8 +33,9 @@ namespace Microservice.Library.Soap.Application
 
         /// <summary>
         /// 序列化类型
+        /// 默认值 XmlSerializer
         /// </summary>
-        public SoapSerializer Serializer { get; set; }
+        public SoapSerializer Serializer { get; set; } = SoapSerializer.XmlSerializer;
 
         /// <summary>
         /// 编码器选项
@@ -51,5 +52,10 @@ namespace Microservice.Library.Soap.Application
         /// Http获取器
         /// </summary>
         public Func<HttpContext> HttpContextGetter { get; set; }
+
+        /// <summary>
+        /// 设置SoapEndpoint
+        /// </summary>
+        public Action<SoapCoreOptions> SetupSoapEndpoint = (options) => { };
     }
 }

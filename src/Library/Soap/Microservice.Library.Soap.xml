@@ -68,6 +68,7 @@
         <member name="P:Microservice.Library.Soap.Application.SoapServerOptions.Serializer">
             <summary>
             序列化类型
+            默认值 XmlSerializer
             </summary>
         </member>
         <member name="P:Microservice.Library.Soap.Application.SoapServerOptions.EncoderOptions">
@@ -84,6 +85,11 @@
         <member name="P:Microservice.Library.Soap.Application.SoapServerOptions.HttpContextGetter">
             <summary>
             Http获取器
+            </summary>
+        </member>
+        <member name="F:Microservice.Library.Soap.Application.SoapServerOptions.SetupSoapEndpoint">
+            <summary>
+            设置SoapEndpoint
             </summary>
         </member>
         <member name="T:Microservice.Library.Soap.Filter.MessageInspector2">
@@ -160,8 +166,12 @@
         <member name="M:Microsoft.Extensions.DependencyInjection.SoapServiceCollectionExtensions.AddSoapServer(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microservice.Library.Soap.Application.SoapServerOptions[])">
             <summary>
             添加Soap服务端
-            <para>还需要调用app.AddSoapServer()</para>
             </summary>
+            <remarks>
+            示例：
+            services.AddSoapServer();
+            services.AddMvc();
+            </remarks>
             <param name="services"></param>
             <param name="options"></param>
             <returns></returns>
@@ -170,6 +180,11 @@
             <summary>
             添加Soap服务端
             </summary>
+            <remarks>
+            示例：
+                app.AddSoapServer();
+                app.UseMvc();
+            </remarks>
             <param name="app"></param>
             <param name="options"></param>
             <returns></returns>
