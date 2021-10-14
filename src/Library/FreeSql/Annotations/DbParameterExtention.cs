@@ -2,7 +2,7 @@
 using FreeSql;
 using Microservice.Library.FreeSql.Application;
 using Microsoft.Data.SqlClient;
-using MySql.Data.MySqlClient;
+using MySqlConnector;
 using Newtonsoft.Json;
 using Npgsql;
 using NpgsqlTypes;

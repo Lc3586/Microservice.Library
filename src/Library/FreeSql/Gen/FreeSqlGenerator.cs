@@ -1,12 +1,9 @@
 ﻿using FreeSql;
-using FreeSql.Internal;
 using Microservice.Library.FreeSql.Application;
 using Microservice.Library.FreeSql.Extention;
 using Microservice.Library.FreeSql.Repository;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Microservice.Library.FreeSql.Gen
 {
@@ -26,10 +23,15 @@ namespace Microservice.Library.FreeSql.Gen
 
         public FreeSqlBuilder GetFreeSqlBuilder()
         {
-            var freeSqlBuilder = new FreeSqlBuilder()
-                .UseConnectionString(Options.FreeSqlGeneratorOptions.DatabaseType, Options.FreeSqlGeneratorOptions.ConnectionString);
+            var freeSqlBuilder = new FreeSqlBuilder();
 
-            Options.FreeSqlDbContextOptions.EntityKey = Options.FreeSqlGeneratorOptions.ConnectionString;
+            if (!string.IsNullOrWhiteSpace(Options.FreeSqlGeneratorOptions.ConnectionString))
+            {
+                freeSqlBuilder.UseConnectionString(Options.FreeSqlGeneratorOptions.DatabaseType, Options.FreeSqlGeneratorOptions.ConnectionString);
+                Options.FreeSqlDbContextOptions.EntityKey = Options.FreeSqlGeneratorOptions.ConnectionString;
+            }
+            else
+                Options.FreeSqlDbContextOptions.EntityKey = Guid.NewGuid().ToString();
 
             //基础配置
             if (Options.FreeSqlGeneratorOptions.LazyLoading.HasValue)
