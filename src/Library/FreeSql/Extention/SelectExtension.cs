@@ -408,8 +408,8 @@ namespace Microservice.Library.FreeSql.Extention
             var _fields = string.Join(
                  ",",
                  fields == null ?
-                     columns.Select(o => $"{alias}.\"{o.Value.Attribute.Name}\"") :
-                     fields.Select(o => $"{alias}.\"{(columns.ContainsKey(o) ? columns[o].Attribute.Name : o)}\""));
+                     columns.Select(o => $"{alias}.`{o.Value.Attribute.Name}`") :
+                     fields.Select(o => $"{alias}.`{(columns.ContainsKey(o) ? columns[o].Attribute.Name : o)}`"));
 
             source = source.AsAlias((type, old) => type == typeof(TDto) ? alias : old);
 
@@ -438,10 +438,10 @@ namespace Microservice.Library.FreeSql.Extention
             var _fields = string.Join(
                  ",",
                  fields == null ?
-                     table.Columns.Concat(table_join0.Columns).Select(o => $"{alias}.\"{o.Value.Attribute.Name}\"") :
+                     table.Columns.Concat(table_join0.Columns).Select(o => $"{alias}.`{o.Value.Attribute.Name}`") :
                      fields.Select(o => table.Columns.ContainsKey(o) || table_join0.Columns.ContainsKey(o) ? (table.Columns.ContainsKey(o) ?
-                         $"{alias}.\"{table.Columns[o].Attribute.Name}\"" :
-                         $"a__{table_join0.DbName}.\"{table_join0.Columns[o].Attribute.Name}\"") : $"{alias}.\"{o}\""));
+                         $"{alias}.`{table.Columns[o].Attribute.Name}`" :
+                         $"a__{table_join0.DbName}.`{table_join0.Columns[o].Attribute.Name}`") : $"{alias}.`{o}`"));
 
             source = source.AsAlias((type, old) => type == typeof(TDto) ? alias : old);
 
