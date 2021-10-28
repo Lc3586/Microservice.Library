@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
-using System;
+using Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Microservice.Library.WeChat.Application
 {
@@ -13,7 +12,8 @@ namespace Microservice.Library.WeChat.Application
         /// <summary>
         /// 站点根地址
         /// </summary>
-        public List<string> WebRootUrl { get; set; }
+        /// <remarks>key: HttpScheme,value: url</remarks>
+        public Dictionary<string, string> WebRootUrl { get; set; }
 
         /// <summary>
         /// 获取Code接口

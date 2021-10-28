@@ -50,7 +50,7 @@ namespace Microservice.Library.WeChat.Extension
         {
             context.Response.Redirect($"{Options.WeChatOAuthOptions.AuthorizeUrl}" +
                 $"?appid={Options.WeChatBaseOptions.AppId}" +
-                $"&redirect_uri={UrlEncoder.Default.Encode($"{Options.WeChatOAuthOptions.WebRootUrl.Find(o => o.Contains($"{context.Request.Scheme}://"))}{redirect_uri}") }" +
+                $"&redirect_uri={UrlEncoder.Default.Encode($"{Options.WeChatOAuthOptions.WebRootUrl[context.Request.Scheme]}{redirect_uri}") }" +
                 $"&response_type=code" +
                 $"&scope={scope}" +
                 $"&state={(context.Request.Query.ContainsKey("state") ? context.Request.Query["state"].ToString() : Guid.NewGuid().ToString("N"))}" +
