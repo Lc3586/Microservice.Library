@@ -121,7 +121,7 @@ namespace Microservice.Library.FreeSql.Gen
                     IdleBus<TKey, IFreeSql>.NoticeType.Register,
                     key,
                     null,
-                    $"{key} 注册成功, 0/1."));
+                    $"{key} 开始注册, 0/1."));
 
                 try
                 {

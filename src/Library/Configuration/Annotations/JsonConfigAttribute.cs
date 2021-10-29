@@ -14,14 +14,25 @@ namespace Microservice.Library.Configuration.Annotations
         /// <param name="key">键</param>
         public JsonConfigAttribute(string jsonFile, string key = null)
         {
-            JsonFile = jsonFile;
+            JsonFiles = new string[] { jsonFile };
+            Key = key;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="jsonFiles">Json文件</param>
+        /// <param name="key">键</param>
+        public JsonConfigAttribute(string[] jsonFiles, string key = null)
+        {
+            JsonFiles = jsonFiles;
             Key = key;
         }
 
         /// <summary>
         /// Json文件
         /// </summary>
-        public string JsonFile { get; set; }
+        public string[] JsonFiles { get; set; }
 
         /// <summary>
         /// 键

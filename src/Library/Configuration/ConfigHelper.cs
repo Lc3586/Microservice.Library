@@ -1,6 +1,7 @@
 ﻿using Microservice.Library.Configuration.Annotations;
 using Microservice.Library.Configuration.Extention;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Primitives;
 using System;
 using System.Reflection;
 
@@ -27,57 +28,105 @@ namespace Microservice.Library.Configuration
         /// <param name="disableCache">禁用缓存</param>
         public ConfigHelper(string jsonFile = null, bool disableCache = false)
         {
-            Init(jsonFile, disableCache);
+            if (jsonFile != null)
+                JsonFiles = new string[] { jsonFile };
+            Init(disableCache);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="jsonFile">Json配置文件</param>
+        /// <param name="jsonFiles">Json配置文件</param>
         /// <param name="disableCache">禁用缓存</param>
-        void Init(string jsonFile = null, bool disableCache = false)
+        public ConfigHelper(string[] jsonFiles = null, bool disableCache = false)
         {
-            if (jsonFile == null)
-            {
-                if (Config != null)
-                    return;
-
-                Config = GetConfigFormFile("appsettings.json", disableCache);
-            }
-            else
-                Config = GetConfigFormFile(jsonFile, disableCache);
+            if (jsonFiles != null)
+                JsonFiles = jsonFiles;
+            Init(disableCache);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="disableCache">禁用缓存</param>
+        void Init(bool disableCache = false)
+        {
+            if ((JsonFiles == null || JsonFiles.Length == 0) && Config != null)
+                return;
+
+            Config = GetConfigFormFile(JsonFiles, disableCache);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         static BindingFlags _bindingFlags { get; }
             = BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public | BindingFlags.Static;
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="jsonFile">Json配置文件</param>
+        /// <param name="jsonFiles">Json配置文件</param>
         /// <param name="disableCache">禁用缓存</param>
         /// <returns></returns>
-        static IConfiguration GetConfigFormFile(string jsonFile, bool disableCache = false)
+        static IConfiguration GetConfigFormFile(string[] jsonFiles, bool disableCache = false)
         {
             if (!disableCache)
-                if (CacheExtention.ConfigDic.ContainsKey(jsonFile))
-                    return CacheExtention.ConfigDic[jsonFile];
+                foreach (var jsonFile in jsonFiles)
+                {
+                    if (CacheExtention.ConfigDic.ContainsKey(jsonFile))
+                        return CacheExtention.ConfigDic[jsonFile];
+                }
 
-            var config = new ConfigurationBuilder()
-                         .SetBasePath(AppContext.BaseDirectory)
-                         .AddJsonFile(jsonFile)
-                         .Build();
+            var builder = new ConfigurationBuilder()
+                         .SetBasePath(AppContext.BaseDirectory);
+
+            foreach (var jsonFile in jsonFiles)
+            {
+                builder.AddJsonFile(jsonFile, false, true);
+            }
+
+            var config = builder.Build();
 
             if (!disableCache)
-                if (!CacheExtention.ConfigDic.ContainsKey(jsonFile))
-                    CacheExtention.ConfigDic.Add(jsonFile, config);
+                foreach (var jsonFile in jsonFiles)
+                {
+                    if (!CacheExtention.ConfigDic.ContainsKey(jsonFile))
+                        CacheExtention.ConfigDic.Add(jsonFile, config);
+                }
 
             return config;
         }
 
         /// <summary>
+        /// 注册配置变更事件
+        /// </summary>
+        void RegisterChangeCallback<T>(IConfiguration config, T data, string[] jsonFiles, string section)
+        {
+            ChangeToken.OnChange(() => config.GetReloadToken(), state =>
+            {
+                ChangeCallback(state.data, state.jsonFiles, state.section);
+            }, (data, jsonFiles, section));
+        }
+
+        /// <summary>
+        /// 文件
+        /// </summary>
+        /// <remarks>默认 appsettings.json</remarks>
+        string[] JsonFiles { get; set; } = new string[] { "appsettings.json" };
+
+        /// <summary>
         /// 配置
         /// </summary>
-        static IConfiguration Config { get; set; }
+        IConfiguration Config { get; set; }
+
+        /// <summary>
+        /// 配置变更回调事件
+        /// </summary>
+        /// <remarks>
+        /// 参数: 数据, json文件, section
+        /// </remarks>
+        public Action<object, string[], string> ChangeCallback { get; set; }
 
         /// <summary>
         /// 从AppSettings获取key的值
@@ -132,9 +181,12 @@ namespace Microservice.Library.Configuration
             //防止无限递归
             Type firstType = null;
 
-            var result = Config.GetSection(section).Get<T>();
+            var config_section = Config.GetSection(section);
+            var result = config_section.Get<T>();
 
             getValue(result, typeof(T));
+
+            RegisterChangeCallback(config_section, result, JsonFiles, section);
 
             return result;
 
@@ -148,16 +200,18 @@ namespace Microservice.Library.Configuration
                     if (jsonConfig == null)
                         goto check;
 
-                    if (string.IsNullOrWhiteSpace(jsonConfig.JsonFile))
+                    if (jsonConfig.JsonFiles == null || jsonConfig.JsonFiles.Length == 0)
                         throw new ApplicationException($"{nameof(JsonConfigAttribute)}: {property.DeclaringType.FullName} + {property.Name}, Json文件不可为空.");
 
-                    var config = GetConfigFormFile(jsonConfig.JsonFile, jsonConfig.DisableCache);
+                    var inner_config = GetConfigFormFile(jsonConfig.JsonFiles, jsonConfig.DisableCache);
 
                     value = string.IsNullOrEmpty(jsonConfig.Key)
-                        ? config.Get(property.PropertyType)
-                        : config.GetSection(jsonConfig.Key).Get(property.PropertyType);
+                        ? inner_config.Get(property.PropertyType)
+                        : inner_config.GetSection(jsonConfig.Key).Get(property.PropertyType);
 
                     property.SetValue(obj, value);
+
+                    RegisterChangeCallback(inner_config, value, jsonConfig.JsonFiles, jsonConfig.Key);
 
                     check:
 
