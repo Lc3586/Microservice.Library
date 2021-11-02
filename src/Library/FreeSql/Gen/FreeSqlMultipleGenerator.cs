@@ -280,5 +280,24 @@ namespace Microservice.Library.FreeSql.Gen
             }
             return dbs;
         }
+
+        public void Test()
+        {
+            if (Options.UseIdleBus)
+                IdleBus<TKey, IFreeSql>.Test();
+            //else
+            //    foreach (var item in Dic)
+            //    {
+
+            //    }
+        }
+
+        public void Dispose()
+        {
+            if (Options.UseIdleBus)
+                IdleBus.Dispose();
+            else
+                Dic.Clear();
+        }
     }
 }

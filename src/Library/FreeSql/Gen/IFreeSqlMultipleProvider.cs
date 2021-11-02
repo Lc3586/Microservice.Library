@@ -75,5 +75,15 @@ namespace Microservice.Library.FreeSql.Gen
         /// </summary>
         /// <returns></returns>
         Dictionary<TKey, BaseDbContext> GetAllDbContextWithKey();
+
+        /// <summary>
+        /// 测试
+        /// </summary>
+        void Test();
+
+        /// <summary>
+        /// 销毁
+        /// </summary>
+        void Dispose();
     }
 }
