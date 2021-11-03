@@ -13,13 +13,19 @@ namespace Microservice.Library.FreeSql.Application
         public FreeSqlDbContextOptions()
         {
             EnableAddOrUpdateNavigateList = null;
-            EntityAssembly = new List<string>();
+            EntityAssemblys = new List<string>();
+            EntityAssemblyFiles = new List<string>();
         }
 
         /// <summary>
-        /// 实体类命名空间
+        /// 实体类命名空间集合
         /// </summary>
-        public List<string> EntityAssembly { get; set; }
+        public List<string> EntityAssemblys { get; set; }
+
+        /// <summary>
+        /// 实体类dll文件集合
+        /// </summary>
+        public List<string> EntityAssemblyFiles { get; set; }
 
         /// <summary>
         /// 实体标识

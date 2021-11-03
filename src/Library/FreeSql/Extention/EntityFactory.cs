@@ -52,10 +52,15 @@ namespace Microservice.Library.FreeSql.Extention
         {
             if (_freeSqlDbContextOptions == null)
                 throw new FreeSqlException("FreeSqlDbContextOptions不能为空");
-            var assembly = _freeSqlDbContextOptions.EntityAssembly.Select(o => Assembly.Load(o));
-            if (assembly == null)
-                throw new FreeSqlException($"命名空间{_freeSqlDbContextOptions.EntityAssembly}不存在");
-            return assembly.SelectMany(o => o.GetTypes())
+
+            var assemblys = new List<Assembly>();
+            assemblys.AddRange(_freeSqlDbContextOptions.EntityAssemblys.Select(o => Assembly.Load(o)));
+            assemblys.AddRange(_freeSqlDbContextOptions.EntityAssemblyFiles.Select(o => Assembly.LoadFile(o)));
+
+            if (assemblys.Count == 0)
+                throw new FreeSqlException($"命名空间{_freeSqlDbContextOptions.EntityAssemblys}, dll文件{_freeSqlDbContextOptions.EntityAssemblyFiles}不存在");
+
+            return assemblys.SelectMany(o => o.GetTypes())
                 .Where(x => x.GetCustomAttribute(typeof(TableAttribute), false) != null);
         }
 

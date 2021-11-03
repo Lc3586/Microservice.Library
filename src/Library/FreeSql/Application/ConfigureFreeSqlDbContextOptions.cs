@@ -25,7 +25,8 @@ namespace Microservice.Library.FreeSql.Application
 
         private void DeepCopy(FreeSqlDbContextOptions source, FreeSqlDbContextOptions target)
         {
-            target.EntityAssembly = source.EntityAssembly;
+            target.EntityAssemblys = source.EntityAssemblys;
+            target.EntityAssemblyFiles = source.EntityAssemblyFiles;
             target.EntityKey = source.EntityKey;
             target.EnableAddOrUpdateNavigateList = source.EnableAddOrUpdateNavigateList;
             target.OnEntityChange = source.OnEntityChange;
