@@ -203,10 +203,11 @@ namespace Microservice.Library.FreeSql.Gen
         /// </summary>
         /// <param name="key">库标识</param>
         /// <param name="orm">orm</param>
-        private void SyncStructure(TKey key, IFreeSql orm)
+        /// <param name="auto">自动调用时根据配置来决定是否同步</param>
+        private void SyncStructure(TKey key, IFreeSql orm, bool auto = true)
         {
             var options = Options.KeyOptionsCollection[key];
-            if (options.FreeSqlDevOptions?.AutoSyncStructure == true && options.FreeSqlDevOptions?.SyncStructureOnStartup == true)
+            if (!auto || (options.FreeSqlDevOptions?.AutoSyncStructure == true && options.FreeSqlDevOptions?.SyncStructureOnStartup == true))
                 orm.CodeFirst.SyncStructure(new EntityFactory(options.FreeSqlDbContextOptions).GetEntitys(options.FreeSqlDbContextOptions.EntityKey).ToArray());
         }
 
@@ -249,14 +250,14 @@ namespace Microservice.Library.FreeSql.Gen
 
         public void SyncStructure(TKey key)
         {
-            SyncStructure(key, Get(key));
+            SyncStructure(key, Get(key), false);
         }
 
         public void SyncAllStructure()
         {
             foreach (var key in Options.KeyOptionsCollection.Keys)
             {
-                SyncStructure(key, Get(key));
+                SyncStructure(key, Get(key), false);
             }
         }
 
