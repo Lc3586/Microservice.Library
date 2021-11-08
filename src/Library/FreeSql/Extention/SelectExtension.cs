@@ -405,11 +405,13 @@ namespace Microservice.Library.FreeSql.Extention
         {
             var columns = orm.GetTableInfo<TSource>().ColumnsByCs;
 
+            var character = orm.Ado.GetCharacter();
+
             var _fields = string.Join(
                  ",",
                  fields == null ?
-                     columns.Select(o => $"{alias}.`{o.Value.Attribute.Name}`") :
-                     fields.Select(o => $"{alias}.`{(columns.ContainsKey(o) ? columns[o].Attribute.Name : o)}`"));
+                     columns.Select(o => $"{character}{alias}{character}.{character}{o.Value.Attribute.Name}{character}") :
+                     fields.Select(o => $"{character}{alias}{character}.{character}{(columns.ContainsKey(o) ? columns[o].Attribute.Name : o)}{character}"));
 
             source = source.AsAlias((type, old) => type == typeof(TDto) ? alias : old);
 
@@ -435,13 +437,15 @@ namespace Microservice.Library.FreeSql.Extention
             var table = orm.GetTableInfo<TSource>();
             var table_join0 = orm.GetTableInfo<TJoin0>();
 
+            var character = orm.Ado.GetCharacter();
+
             var _fields = string.Join(
                  ",",
                  fields == null ?
-                     table.Columns.Concat(table_join0.Columns).Select(o => $"{alias}.`{o.Value.Attribute.Name}`") :
+                     table.Columns.Concat(table_join0.Columns).Select(o => $"{character}{alias}{character}.{character}{o.Value.Attribute.Name}{character}") :
                      fields.Select(o => table.Columns.ContainsKey(o) || table_join0.Columns.ContainsKey(o) ? (table.Columns.ContainsKey(o) ?
-                         $"{alias}.`{table.Columns[o].Attribute.Name}`" :
-                         $"a__{table_join0.DbName}.`{table_join0.Columns[o].Attribute.Name}`") : $"{alias}.`{o}`"));
+                         $"{character}{alias}{character}.{character}{table.Columns[o].Attribute.Name}{character}" :
+                         $"{character}a__{table_join0.DbName}{character}.{character}{table_join0.Columns[o].Attribute.Name}{character}") : $"{character}{alias}{character}.{character}{o}{character}"));
 
             source = source.AsAlias((type, old) => type == typeof(TDto) ? alias : old);
 

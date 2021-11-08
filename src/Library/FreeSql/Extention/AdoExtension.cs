@@ -120,5 +120,38 @@ namespace Microservice.Library.FreeSql.Extention
         {
             return await ado.ExecuteNonQueryAsync(cmdType, cmdText, parameters);
         }
+
+        /// <summary>
+        /// 获取数据库名称标识符
+        /// </summary>
+        /// <param name="ado"></param>
+        /// <returns></returns>
+        public static char GetCharacter(this IAdo ado)
+        {
+            switch (ado.DataType)
+            {
+                case DataType.MySql:
+                case DataType.OdbcMySql:
+                    return '`';
+                case DataType.SqlServer:
+                case DataType.PostgreSQL:
+                case DataType.Oracle:
+                case DataType.Sqlite:
+                case DataType.OdbcOracle:
+                case DataType.OdbcSqlServer:
+                case DataType.OdbcPostgreSQL:
+                case DataType.Odbc:
+                case DataType.OdbcDameng:
+                case DataType.MsAccess:
+                case DataType.Dameng:
+                case DataType.OdbcKingbaseES:
+                case DataType.ShenTong:
+                case DataType.KingbaseES:
+                case DataType.Firebird:
+                case DataType.Custom:
+                default:
+                    return '"';
+            }
+        }
     }
 }
