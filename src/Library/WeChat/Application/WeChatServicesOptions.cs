@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Microservice.Library.WeChat.Application
 {
@@ -61,5 +59,10 @@ namespace Microservice.Library.WeChat.Application
         /// pem公钥文件地址
         /// </summary>
         public string PemFilePath { get; set; }
+
+        /// <summary>
+        /// 消息加密秘钥
+        /// </summary>
+        public List<string> EncodingAESKeys { get; set; }
     }
 }

@@ -16,7 +16,14 @@
             <param name="jsonFile">Json文件</param>
             <param name="key">键</param>
         </member>
-        <member name="P:Microservice.Library.Configuration.Annotations.JsonConfigAttribute.JsonFile">
+        <member name="M:Microservice.Library.Configuration.Annotations.JsonConfigAttribute.#ctor(System.String[],System.String)">
+            <summary>
+            
+            </summary>
+            <param name="jsonFiles">Json文件</param>
+            <param name="key">键</param>
+        </member>
+        <member name="P:Microservice.Library.Configuration.Annotations.JsonConfigAttribute.JsonFiles">
             <summary>
             Json文件
             </summary>
@@ -55,25 +62,55 @@
             <param name="jsonFile">Json配置文件</param>
             <param name="disableCache">禁用缓存</param>
         </member>
-        <member name="M:Microservice.Library.Configuration.ConfigHelper.Init(System.String,System.Boolean)">
+        <member name="M:Microservice.Library.Configuration.ConfigHelper.#ctor(System.String[],System.Boolean)">
             <summary>
             
             </summary>
-            <param name="jsonFile">Json配置文件</param>
+            <param name="jsonFiles">Json配置文件</param>
             <param name="disableCache">禁用缓存</param>
         </member>
-        <member name="M:Microservice.Library.Configuration.ConfigHelper.GetConfigFormFile(System.String,System.Boolean)">
+        <member name="M:Microservice.Library.Configuration.ConfigHelper.Init(System.Boolean)">
             <summary>
             
             </summary>
-            <param name="jsonFile">Json配置文件</param>
+            <param name="disableCache">禁用缓存</param>
+        </member>
+        <member name="P:Microservice.Library.Configuration.ConfigHelper._bindingFlags">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.Configuration.ConfigHelper.GetConfigFormFile(System.String[],System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="jsonFiles">Json配置文件</param>
             <param name="disableCache">禁用缓存</param>
             <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Configuration.ConfigHelper.RegisterChangeCallback``1(Microsoft.Extensions.Configuration.IConfiguration,``0,System.String[],System.String)">
+            <summary>
+            注册配置变更事件
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.Configuration.ConfigHelper.JsonFiles">
+            <summary>
+            文件
+            </summary>
+            <remarks>默认 appsettings.json</remarks>
         </member>
         <member name="P:Microservice.Library.Configuration.ConfigHelper.Config">
             <summary>
             配置
             </summary>
+        </member>
+        <member name="P:Microservice.Library.Configuration.ConfigHelper.ChangeCallback">
+            <summary>
+            配置变更回调事件
+            </summary>
+            <remarks>
+            参数: 数据, json文件, section
+            </remarks>
         </member>
         <member name="M:Microservice.Library.Configuration.ConfigHelper.GetValue(System.String)">
             <summary>

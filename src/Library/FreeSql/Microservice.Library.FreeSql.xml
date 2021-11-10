@@ -108,9 +108,14 @@
             数据库上下文配置
             </summary>
         </member>
-        <member name="P:Microservice.Library.FreeSql.Application.FreeSqlDbContextOptions.EntityAssembly">
+        <member name="P:Microservice.Library.FreeSql.Application.FreeSqlDbContextOptions.EntityAssemblys">
             <summary>
-            实体类命名空间
+            实体类命名空间集合
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.FreeSql.Application.FreeSqlDbContextOptions.EntityAssemblyFiles">
+            <summary>
+            实体类dll文件集合
             </summary>
         </member>
         <member name="P:Microservice.Library.FreeSql.Application.FreeSqlDbContextOptions.EntityKey">
@@ -384,6 +389,13 @@
             <param name="parameters">参数</param>
             <returns></returns>
         </member>
+        <member name="M:Microservice.Library.FreeSql.Extention.AdoExtension.GetCharacter(FreeSql.IAdo)">
+            <summary>
+            获取数据库名称标识符
+            </summary>
+            <param name="ado"></param>
+            <returns></returns>
+        </member>
         <member name="T:Microservice.Library.FreeSql.Extention.CacheExtention">
             <summary>
             缓存
@@ -393,6 +405,16 @@
             <summary>
             模型对应的表字段信息
             </summary>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Extention.CodeFirstExtension.GetAbbreviation(System.String,System.Int32,System.Int32)">
+            <summary>
+            获取指定字符串的缩写形式
+            </summary>
+            <remarks>如果数据长度没有超过指定的长度限制, 则返回原始数据</remarks>
+            <param name="value">数据</param>
+            <param name="maxLength">最大长度</param>
+            <param name="maxBlockLength">最大的块长度</param>
+            <returns></returns>
         </member>
         <member name="M:Microservice.Library.FreeSql.Extention.EntityFactory.GetEntitys(System.String)">
             <summary>
@@ -670,12 +692,13 @@
             <param name="key">库标识</param>
             <returns></returns>
         </member>
-        <member name="M:Microservice.Library.FreeSql.Gen.FreeSqlMultipleGenerator`1.SyncStructure(`0,IFreeSql)">
+        <member name="M:Microservice.Library.FreeSql.Gen.FreeSqlMultipleGenerator`1.SyncStructure(`0,IFreeSql,System.Boolean)">
             <summary>
             同步库结构
             </summary>
             <param name="key">库标识</param>
             <param name="orm">orm</param>
+            <param name="auto">自动调用时根据配置来决定是否同步</param>
         </member>
         <member name="T:Microservice.Library.FreeSql.Gen.IFreeSqlMultipleProvider`1">
             <summary>
@@ -746,6 +769,16 @@
             包括库标识
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Gen.IFreeSqlMultipleProvider`1.Test">
+            <summary>
+            测试
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.FreeSql.Gen.IFreeSqlMultipleProvider`1.Dispose">
+            <summary>
+            销毁
+            </summary>
         </member>
         <member name="T:Microservice.Library.FreeSql.Gen.IFreeSqlProvider">
             <summary>
