@@ -1,6 +1,8 @@
 ﻿using FreeSql;
+using FreeSql.DatabaseModel;
 using Microservice.Library.FreeSql.Annotations;
 using System.Data.Common;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Microservice.Library.FreeSql.Extention
@@ -152,6 +154,19 @@ namespace Microservice.Library.FreeSql.Extention
                 default:
                     return '"';
             }
+        }
+
+        /// <summary>
+        /// 获取数据库表名
+        /// </summary>
+        /// <param name="ado"></param>
+        /// <param name="table">表</param>
+        /// <param name="withCharacter">包含标识符（true: `DBA`.`TableA`, false: DBA.TableA）</param>
+        /// <returns></returns>
+        public static string GetDatabaseTableName(this IAdo ado, DbTableInfo table, bool withCharacter = true)
+        {
+            var character = withCharacter ? ado.GetCharacter() : char.MinValue;
+            return $"{character}{(new[] { "public", "dbo" }.Contains(table.Schema) ? "" : table.Schema)}{character}.{character}{table.Name}{character}".Replace($"{character}{character}.", "");
         }
     }
 }
