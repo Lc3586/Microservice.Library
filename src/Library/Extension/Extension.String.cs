@@ -233,7 +233,7 @@ namespace Microservice.Library.Extension
             using (var hmacsha256 = new HMACSHA256(keyByte))
             {
                 byte[] hashmessage = hmacsha256.ComputeHash(messageBytes);
-                return Convert.ToBase64String(hashmessage).Replace('+', '-').Replace('/', '_').TrimEnd('=');
+                return string.Join("", hashmessage.Select(o => o.ToString("x2")));
             }
         }
 

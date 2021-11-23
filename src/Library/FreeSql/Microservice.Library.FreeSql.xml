@@ -396,6 +396,15 @@
             <param name="ado"></param>
             <returns></returns>
         </member>
+        <member name="M:Microservice.Library.FreeSql.Extention.AdoExtension.GetDatabaseTableName(FreeSql.IAdo,FreeSql.DatabaseModel.DbTableInfo,System.Boolean)">
+            <summary>
+            获取数据库表名
+            </summary>
+            <param name="ado"></param>
+            <param name="table">表</param>
+            <param name="withCharacter">包含标识符（true: `DBA`.`TableA`, false: DBA.TableA）</param>
+            <returns></returns>
+        </member>
         <member name="T:Microservice.Library.FreeSql.Extention.CacheExtention">
             <summary>
             缓存
