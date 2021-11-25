@@ -28,6 +28,7 @@ namespace Microservice.Library.WeChat.Extension
         /// </summary>
         /// <param name="Input">密文</param>
         /// <param name="EncodingAESKey"></param>
+        /// <param name="appid"></param>
         /// <returns></returns>
         /// 
         public static string AES_decrypt(String Input, string EncodingAESKey, ref string appid)
@@ -74,6 +75,7 @@ namespace Microservice.Library.WeChat.Extension
             return AES_encrypt(bMsg, Iv, Key);
 
         }
+
         private static string CreateRandCode(int codeLen)
         {
             string codeSerial = "2,3,4,5,6,7,a,c,d,e,f,h,i,j,k,m,n,p,r,s,t,A,C,D,E,F,G,H,J,K,M,N,P,Q,R,S,U,V,W,X,Y,Z";
@@ -83,28 +85,29 @@ namespace Microservice.Library.WeChat.Extension
             }
             string[] arr = codeSerial.Split(',');
             string code = "";
-            int randValue = -1;
             Random rand = new Random(unchecked((int)DateTime.Now.Ticks));
             for (int i = 0; i < codeLen; i++)
             {
-                randValue = rand.Next(0, arr.Length - 1);
+                int randValue = rand.Next(0, arr.Length - 1);
                 code += arr[randValue];
             }
             return code;
         }
 
-        private static String AES_encrypt(String Input, byte[] Iv, byte[] Key)
+        public static String AES_encrypt(String Input, byte[] Iv, byte[] Key)
         {
-            var aes = new RijndaelManaged();
-            //秘钥的大小，以位为单位
-            aes.KeySize = 256;
-            //支持的块大小
-            aes.BlockSize = 128;
-            //填充模式
-            aes.Padding = PaddingMode.PKCS7;
-            aes.Mode = CipherMode.CBC;
-            aes.Key = Key;
-            aes.IV = Iv;
+            var aes = new RijndaelManaged
+            {
+                //秘钥的大小，以位为单位
+                KeySize = 256,
+                //支持的块大小
+                BlockSize = 128,
+                //填充模式
+                Padding = PaddingMode.PKCS7,
+                Mode = CipherMode.CBC,
+                Key = Key,
+                IV = Iv
+            };
             var encrypt = aes.CreateEncryptor(aes.Key, aes.IV);
             byte[] xBuff = null;
 
@@ -121,19 +124,21 @@ namespace Microservice.Library.WeChat.Extension
             return Output;
         }
 
-        private static String AES_encrypt(byte[] Input, byte[] Iv, byte[] Key)
+        public static String AES_encrypt(byte[] Input, byte[] Iv, byte[] Key)
         {
-            var aes = new RijndaelManaged();
-            //秘钥的大小，以位为单位
-            aes.KeySize = 256;
-            //支持的块大小
-            aes.BlockSize = 128;
-            //填充模式
-            //aes.Padding = PaddingMode.PKCS7;
-            aes.Padding = PaddingMode.None;
-            aes.Mode = CipherMode.CBC;
-            aes.Key = Key;
-            aes.IV = Iv;
+            var aes = new RijndaelManaged
+            {
+                //秘钥的大小，以位为单位
+                KeySize = 256,
+                //支持的块大小
+                BlockSize = 128,
+                //填充模式
+                //aes.Padding = PaddingMode.PKCS7;
+                Padding = PaddingMode.None,
+                Mode = CipherMode.CBC,
+                Key = Key,
+                IV = Iv
+            };
             var encrypt = aes.CreateEncryptor(aes.Key, aes.IV);
             byte[] xBuff = null;
 
@@ -172,7 +177,7 @@ namespace Microservice.Library.WeChat.Extension
                 amount_to_pad = block_size;
             }
             // 获得补位所用的字符
-            char pad_chr = chr(amount_to_pad);
+            char pad_chr = Chr(amount_to_pad);
             string tmp = "";
             for (int index = 0; index < amount_to_pad; index++)
             {
@@ -180,27 +185,31 @@ namespace Microservice.Library.WeChat.Extension
             }
             return Encoding.UTF8.GetBytes(tmp);
         }
+
         /**
          * 将数字转化成ASCII码对应的字符，用于对明文进行补码
          * 
          * @param a 需要转化的数字
          * @return 转化得到的字符
          */
-        static char chr(int a)
+        static char Chr(int a)
         {
 
             byte target = (byte)(a & 0xFF);
             return (char)target;
         }
+
         private static byte[] AES_decrypt(String Input, byte[] Iv, byte[] Key)
         {
-            RijndaelManaged aes = new RijndaelManaged();
-            aes.KeySize = 256;
-            aes.BlockSize = 128;
-            aes.Mode = CipherMode.CBC;
-            aes.Padding = PaddingMode.None;
-            aes.Key = Key;
-            aes.IV = Iv;
+            RijndaelManaged aes = new RijndaelManaged
+            {
+                KeySize = 256,
+                BlockSize = 128,
+                Mode = CipherMode.CBC,
+                Padding = PaddingMode.None,
+                Key = Key,
+                IV = Iv
+            };
             var decrypt = aes.CreateDecryptor(aes.Key, aes.IV);
             byte[] xBuff = null;
             using (var ms = new MemoryStream())
@@ -212,11 +221,12 @@ namespace Microservice.Library.WeChat.Extension
                     Array.Copy(xXml, msg, xXml.Length);
                     cs.Write(xXml, 0, xXml.Length);
                 }
-                xBuff = decode2(ms.ToArray());
+                xBuff = Decode2(ms.ToArray());
             }
             return xBuff;
         }
-        private static byte[] decode2(byte[] decrypted)
+
+        private static byte[] Decode2(byte[] decrypted)
         {
             int pad = (int)decrypted[decrypted.Length - 1];
             if (pad < 1 || pad > 32)
