@@ -4,6 +4,75 @@
         <name>Microservice.Library.File</name>
     </assembly>
     <members>
+        <member name="T:Microservice.Library.File.ExecutableHelper">
+            <summary>
+            可执行文件帮助类
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.File.ExecutableHelper.GetProcess(System.String,System.String,System.String,System.Text.Encoding,System.Text.Encoding)">
+            <summary>
+            获取进程
+            </summary>
+            <param name="filename">文件名</param>
+            <param name="arguments">启动参数</param>
+            <param name="workingDirectory">工作目录</param>
+            <param name="outputEncoding">输出流编码</param>
+            <param name="errorEncoding">错误流编码</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.File.ExecutableHelper.SimpleCall(System.String,System.String,System.String,System.String,System.Text.Encoding,System.Text.Encoding)">
+            <summary>
+            执行命令
+            </summary>
+            <param name="filename">文件</param>
+            <param name="arguments">启动参数</param>
+            <param name="input">输入内容</param>
+            <param name="workingDirectory">工作目录</param>
+            <param name="outputEncoding">输出流编码</param>
+            <param name="errorEncoding">错误流编码</param>
+            <returns>(<see cref="P:System.Diagnostics.Process.StandardOutput"/>, <see cref="P:System.Diagnostics.Process.StandardError"/>, <see cref="P:System.Diagnostics.Process.ExitCode"/>)</returns>
+        </member>
+        <member name="M:Microservice.Library.File.ExecutableHelper.Call(System.String,System.String,System.Action{System.Action{System.String}},System.Action{System.String},System.Action{System.String},System.String,System.Text.Encoding,System.Text.Encoding)">
+            <summary>
+            执行命令
+            </summary>
+            <param name="filename">文件</param>
+            <param name="arguments">启动参数</param>
+            <param name="getInputWriteLine">读取输入内容</param>
+            <param name="outputReadLine">写入输出</param>
+            <param name="errorReadLine">写入错误</param>
+            <param name="workingDirectory">工作目录</param>
+            <param name="outputEncoding">输出流编码</param>
+            <param name="errorEncoding">错误流编码</param>
+            <returns><see cref="P:System.Diagnostics.Process.ExitCode"/></returns>
+        </member>
+        <member name="M:Microservice.Library.File.ExecutableHelper.GetCmdFilename">
+            <summary>
+            获取命令行文件名
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.File.ExecutableHelper.GetCmdProcess(System.String,System.String,System.Text.Encoding,System.Text.Encoding)">
+            <summary>
+            获取命令行进程
+            </summary>
+            <param name="arguments">启动参数</param>
+            <param name="workingDirectory">工作目录</param>
+            <param name="outputEncoding">输出流编码</param>
+            <param name="errorEncoding">错误流编码</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.File.ExecutableHelper.CallCmd(System.String,System.String,System.String,System.Text.Encoding,System.Text.Encoding)">
+            <summary>
+            执行命令
+            </summary>
+            <param name="cmd">命令</param>
+            <param name="arguments">参数</param>
+            <param name="workingDirectory">工作目录</param>
+            <param name="outputEncoding">输出流编码</param>
+            <param name="errorEncoding">错误流编码</param>
+            <returns>(<see cref="P:System.Diagnostics.Process.StandardOutput"/>, <see cref="P:System.Diagnostics.Process.StandardError"/>, <see cref="P:System.Diagnostics.Process.ExitCode"/>)</returns>
+        </member>
         <member name="T:Microservice.Library.File.FileHelper">
             <summary>
             文件操作帮助类
@@ -727,14 +796,6 @@
             <summary>
             视频文件帮助类
             </summary>
-        </member>
-        <member name="M:Microservice.Library.File.VideoHelper.GetProcess(System.String,System.String)">
-            <summary>
-            获取进程
-            </summary>
-            <param name="filename">文件绝对路径</param>
-            <param name="arguments">参数</param>
-            <returns></returns>
         </member>
         <member name="M:Microservice.Library.File.VideoHelper.Screenshot(System.String,System.String,System.String,System.TimeSpan,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32})">
             <summary>

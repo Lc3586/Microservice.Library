@@ -1,4 +1,5 @@
 ﻿using NLog;
+using System.Collections.Generic;
 
 namespace Microservice.Library.NLogger.Application
 {
@@ -29,7 +30,7 @@ namespace Microservice.Library.NLogger.Application
         public LogLevel MaxLevel { get; set; }
 
         /// <summary>
-        /// 自定义目标
+        /// 自定义日志对象
         /// </summary>
         /// <remarks>不指定时自动创建</remarks>
         public NLog.Targets.Target Target { get; set; }

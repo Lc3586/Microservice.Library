@@ -1702,6 +1702,21 @@
             <param name="encoding">编码</param>
             <returns></returns>
         </member>
+        <member name="T:Microservice.Library.Extension.Helper.SystemInfoHelper">
+            <summary>
+            系统信息帮助类
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.Extension.Helper.SystemInfoHelper.CurrentOS">
+            <summary>
+            当前操作系统平台
+            </summary>
+        </member>
+        <member name="P:Microservice.Library.Extension.Helper.SystemInfoHelper._CurrentOS">
+            <summary>
+            当前操作系统平台
+            </summary>
+        </member>
         <member name="T:Microservice.Library.Extension.Helper.TimeTickHelper">
             <summary>
             定时器

@@ -43,7 +43,7 @@
         </member>
         <member name="P:Microservice.Library.NLogger.Application.TargetGeneratorOptions.Target">
             <summary>
-            自定义目标
+            自定义日志对象
             </summary>
             <remarks>不指定时自动创建</remarks>
         </member>

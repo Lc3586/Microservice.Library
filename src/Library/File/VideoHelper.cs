@@ -1,12 +1,9 @@
-﻿using Microservice.Library.Extension;
+﻿using Microservice.Library.Extension.Helper;
 using Microservice.Library.File.Model;
 using Newtonsoft.Json;
 using System;
-using System.Diagnostics;
 using System.IO;
-using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Microservice.Library.File
 {
@@ -15,56 +12,6 @@ namespace Microservice.Library.File
     /// </summary>
     public static class VideoHelper
     {
-        ///// <summary>
-        ///// 获取程序
-        ///// </summary>
-        ///// <param name="name"></param>
-        ///// <returns></returns>
-        //private static string GetEXE(string name = "ffmpeg")
-        //{
-        //    string path;
-        //    if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-        //        path = Path.Combine(AppContext.BaseDirectory, $"{name}.exe");
-        //    else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-        //        path = $"/usr/bin/{name}";
-        //    //else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-        //    //    return name;
-        //    else
-        //        throw new ApplicationException($"当前操作系统不支持使用{name}.");
-
-        //    if (!System.IO.File.Exists(path))
-        //        throw new ApplicationException($"所需的文件不存在: {path}.");
-
-        //    return path;
-        //}
-
-        /// <summary>
-        /// 获取进程
-        /// </summary>
-        /// <param name="filename">文件绝对路径</param>
-        /// <param name="arguments">参数</param>
-        /// <returns></returns>
-        private static Process GetProcess(string filename, string arguments)
-        {
-            if (!filename.Exists())
-                throw new ApplicationException($"指定文件不存在: {filename}.");
-
-            var process = new Process();
-            process.StartInfo.CreateNoWindow = true;
-            process.StartInfo.UseShellExecute = false;
-            process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-
-            process.StartInfo.RedirectStandardOutput = true;
-            process.StartInfo.StandardOutputEncoding = Encoding.UTF8;
-            process.StartInfo.RedirectStandardError = true;
-            process.StartInfo.StandardErrorEncoding = Encoding.UTF8;
-
-            process.StartInfo.FileName = filename;
-            process.StartInfo.Arguments = arguments;
-
-            return process;
-        }
-
         /// <summary>
         /// 视频截图
         /// </summary>
@@ -75,7 +22,7 @@ namespace Microservice.Library.File
         /// <param name="quality">图片质量[2-31]</param>
         /// <param name="width">图片宽度</param>
         /// <param name="height">图片高度</param>
-        public static async Task Screenshot(this string videoFile, string ffmpegFile, string imageFile, TimeSpan time, int quality = 31, int? width = null, int? height = null)
+        public static void Screenshot(this string videoFile, string ffmpegFile, string imageFile, TimeSpan time, int quality = 31, int? width = null, int? height = null)
         {
             if (!videoFile.Exists())
                 throw new ApplicationException($"视频文件不存在[{videoFile}].");
@@ -93,22 +40,16 @@ namespace Microservice.Library.File
             else
                 arguments += $" -s \"{imageFile}\"";
 
-            using (var process = GetProcess(ffmpegFile, arguments))
-            {
-                process.Start();
+            var (output, error, exitCode) = ExecutableHelper.SimpleCall(ffmpegFile, arguments, null, null, Encoding.UTF8, Encoding.UTF8);
 
-                var output = await process.StandardOutput.ReadToEndAsync();
-                var error = await process.StandardError.ReadToEndAsync();
-
-                process.WaitForExit();
 #if DEBUG
-                Console.WriteLine(process.ExitCode);
-                Console.WriteLine(output);
-                Console.WriteLine(error);
+            Console.WriteLine(exitCode);
+            Console.WriteLine(output);
+            Console.WriteLine(error);
 #endif
-                if (process.ExitCode != 0)
-                    throw new ApplicationException($"截图失败.{error}");
-            }
+
+            if (exitCode != 0)
+                throw new ApplicationException($"截图失败.{error}");
         }
 
         /// <summary>
@@ -122,7 +63,7 @@ namespace Microservice.Library.File
         /// <param name="programs">获取有关程序及其输入多媒体流中包含的流的信息</param>
         /// <param name="version">获取与程序版本有关的信息、获取与库版本有关的信息、获取与程序和库版本有关的信息</param>
         /// <returns></returns>
-        public static async Task<VideoInfo> GetVideoInfo(this string videoFile, string ffprobeFile, bool format = true, bool streams = true, bool chapters = false, bool programs = false, bool version = false)
+        public static VideoInfo GetVideoInfo(this string videoFile, string ffprobeFile, bool format = true, bool streams = true, bool chapters = false, bool programs = false, bool version = false)
         {
             if (!videoFile.Exists())
                 throw new ApplicationException($"视频文件不存在[{videoFile}].");
@@ -142,24 +83,18 @@ namespace Microservice.Library.File
             if (version)
                 arguments += " -show_versions";
 
-            using (var process = GetProcess(ffprobeFile, arguments))
-            {
-                process.Start();
+            var (output, error, exitCode) = ExecutableHelper.SimpleCall(ffprobeFile, arguments, null, null, Encoding.UTF8, Encoding.UTF8);
 
-                var output = await process.StandardOutput.ReadToEndAsync();
-                var error = await process.StandardError.ReadToEndAsync();
-
-                process.WaitForExit();
 #if DEBUG
-                Console.WriteLine(process.ExitCode);
-                Console.WriteLine(output);
-                Console.WriteLine(error);
+            Console.WriteLine(exitCode);
+            Console.WriteLine(output);
+            Console.WriteLine(error);
 #endif
-                if (process.ExitCode != 0)
-                    throw new ApplicationException($"获取视频信息失败. {error}");
 
-                return JsonConvert.DeserializeObject<VideoInfo>(output);
-            }
+            if (exitCode != 0)
+                throw new ApplicationException($"获取视频信息失败. {error}");
+
+            return JsonConvert.DeserializeObject<VideoInfo>(output);
         }
     }
 }
