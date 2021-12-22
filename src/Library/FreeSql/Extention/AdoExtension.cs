@@ -156,6 +156,76 @@ namespace Microservice.Library.FreeSql.Extention
             }
         }
 
+        ///// <summary>
+        ///// 获取数据库表模式
+        ///// </summary>
+        ///// <param name="ado"></param>
+        ///// <param name="table">表</param>
+        ///// <param name="setToDbTableInfo">处理结果保存至DbTableInfo.Schema属性</param>
+        ///// <returns></returns>
+        //public static string GetDatabaseTableSchema(this IAdo ado, DbTableInfo table, bool setToDbTableInfo = true)
+        //{
+        //    if (!string.IsNullOrWhiteSpace(table.Schema))
+        //        return table.Schema;
+
+        //    //var schema = ado.DataType switch
+        //    //{
+        //    //    DataType.MySql or
+        //    //    DataType.OdbcMySql or
+        //    //    DataType.SqlServer or
+        //    //    DataType.OdbcSqlServer or
+        //    //    DataType.PostgreSQL or
+        //    //    DataType.OdbcPostgreSQL => ado.QuerySingle<string>($"SELECT table_schema FROM information_schema.tables WHERE table_name = '{table.Name}'"),
+        //    //    DataType.Oracle or
+        //    //    DataType.OdbcOracle or
+        //    //    DataType.Dameng or
+        //    //    DataType.OdbcDameng => ado.QuerySingle<string>($"SELECT OWNER FROM sys.dba_tables WHERE table_name = '{table.Name}'"),
+        //    //    DataType.Sqlite or
+        //    //    DataType.Odbc or
+        //    //    DataType.MsAccess or
+        //    //    DataType.OdbcKingbaseES or
+        //    //    DataType.ShenTong or
+        //    //    DataType.KingbaseES or
+        //    //    DataType.Firebird or
+        //    //    DataType.Custom or
+        //    //   _ => string.Empty
+        //    //};
+
+        //    var schema = string.Empty;
+        //    switch (ado.DataType)
+        //    {
+        //        case DataType.MySql:
+        //        case DataType.OdbcMySql:
+        //        case DataType.SqlServer:
+        //        case DataType.OdbcSqlServer:
+        //        case DataType.PostgreSQL:
+        //        case DataType.OdbcPostgreSQL:
+        //            schema = ado.QuerySingle<string>($"SELECT table_schema FROM information_schema.tables WHERE table_name = '{table.Name}'");
+        //            break;
+        //        case DataType.Oracle:
+        //        case DataType.OdbcOracle:
+        //        case DataType.Dameng:
+        //        case DataType.OdbcDameng:
+        //            schema = ado.QuerySingle<string>($"SELECT OWNER FROM sys.dba_tables WHERE table_name = '{table.Name}'");
+        //            break;
+        //        case DataType.Sqlite:
+        //        case DataType.Odbc:
+        //        case DataType.MsAccess:
+        //        case DataType.OdbcKingbaseES:
+        //        case DataType.ShenTong:
+        //        case DataType.KingbaseES:
+        //        case DataType.Firebird:
+        //        case DataType.Custom:
+        //        default:
+        //            break;
+        //    }
+
+        //    if (setToDbTableInfo)
+        //        table.Schema = schema;
+
+        //    return schema;
+        //}
+
         /// <summary>
         /// 获取数据库表名
         /// </summary>
@@ -165,7 +235,9 @@ namespace Microservice.Library.FreeSql.Extention
         /// <returns></returns>
         public static string GetDatabaseTableName(this IAdo ado, DbTableInfo table, bool withCharacter = true)
         {
+            //ado.GetDatabaseTableSchema(table);
             var character = withCharacter ? ado.GetCharacter() : char.MinValue;
+            //return $"{character}{table.Schema}{character}.{character}{table.Name}{character}".Replace($"{character}{character}.", "");
             return $"{character}{(new[] { "public", "dbo" }.Contains(table.Schema) ? "" : table.Schema)}{character}.{character}{table.Name}{character}".Replace($"{character}{character}.", "");
         }
     }
