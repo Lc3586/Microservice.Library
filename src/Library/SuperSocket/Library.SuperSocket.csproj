@@ -41,7 +41,7 @@ JT协议</Description>
     <PackageReference Include="SuperSocket" Version="2.0.0-beta.8" />
     <PackageReference Include="SuperSocket.Udp" Version="2.0.0-beta.8" />
     <PackageReference Include="SuperSocket.WebSocket.Server" Version="2.0.0-beta.8" />
-    <PackageReference Include="System.Text.Encoding.CodePages" Version="5.0.0" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>

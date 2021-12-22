@@ -35,10 +35,10 @@ Redis缓存</Description>
 
   <ItemGroup>
     <PackageReference Include="FreeRedis" Version="0.3.7" />
-    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="5.0.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="NodaTime" Version="3.0.7" />
+    <PackageReference Include="NodaTime" Version="3.0.9" />
   </ItemGroup>
 
 </Project>
