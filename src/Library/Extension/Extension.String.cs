@@ -29,12 +29,13 @@ namespace Microservice.Library.Extension
         /// <summary>
         /// 转换为MD5加密后的字符串（默认加密为32位）
         /// </summary>
-        /// <param name="str"></param>
+        /// <param name="str">明文</param>
+        /// <param name="encoding">编码（默认UTF8）</param>
         /// <returns></returns>
-        public static string ToMD5String(this string str)
+        public static string ToMD5String(this string str, Encoding encoding = null)
         {
             MD5 md5 = MD5.Create();
-            byte[] inputBytes = Encoding.UTF8.GetBytes(str);
+            byte[] inputBytes = (encoding ?? Encoding.UTF8).GetBytes(str);
             byte[] hashBytes = md5.ComputeHash(inputBytes);
 
             StringBuilder sb = new StringBuilder();

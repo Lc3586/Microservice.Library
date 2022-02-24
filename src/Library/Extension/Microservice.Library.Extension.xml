@@ -1020,11 +1020,12 @@
             <param name="base64Str">base64字符串</param>
             <returns></returns>
         </member>
-        <member name="M:Microservice.Library.Extension.Extension.ToMD5String(System.String)">
+        <member name="M:Microservice.Library.Extension.Extension.ToMD5String(System.String,System.Text.Encoding)">
             <summary>
             转换为MD5加密后的字符串（默认加密为32位）
             </summary>
-            <param name="str"></param>
+            <param name="str">明文</param>
+            <param name="encoding">编码（默认UTF8）</param>
             <returns></returns>
         </member>
         <member name="M:Microservice.Library.Extension.Extension.Base64Encode(System.String)">
@@ -1530,6 +1531,107 @@
             <summary>
             https://blog.csdn.net/weixin_43145361/article/details/90939154
             </summary>
+        </member>
+        <member name="T:Microservice.Library.Extension.Helper.CryptographyHelper">
+            <summary>
+            密码帮助类
+            </summary>
+        </member>
+        <member name="M:Microservice.Library.Extension.Helper.CryptographyHelper.ToSHA1Bytes(System.String,System.Text.Encoding)">
+            <summary>
+            计算SHA1摘要
+            </summary>
+            <param name="data">字符串</param>
+            <param name="encoding">编码（默认UTF8）</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Helper.CryptographyHelper.ToSHA1String(System.String,System.Boolean,System.Text.Encoding)">
+            <summary>
+            转为SHA1哈希
+            </summary>
+            <param name="data">字符串</param>
+            <param name="toLower">转为小写</param>
+            <param name="encoding">编码（默认UTF8）</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Helper.CryptographyHelper.GetMD5(System.String,System.Boolean,System.Text.Encoding)">
+            <summary>
+            获取MD5值
+            </summary>
+            <param name="data"></param>
+            <param name="lower">小写</param>
+            <param name="encoding">编码（默认UTF8）</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Helper.CryptographyHelper.DecryptWithAES_256_GCM(System.String,System.String,System.String,System.String,System.Text.Encoding)">
+            <summary>
+            解密
+            <para>AES-256-GCM</para>
+            </summary>
+            <param name="ciphertext">密文</param>
+            <param name="nonce">长度为12个字节的随机字符串</param>'
+            <param name="associatedData">长度小于16个字节的字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Helper.CryptographyHelper.DecryptWithAES_256(System.String,System.String,System.Boolean,System.Text.Encoding)">
+            <summary>
+            解密
+            <para>AES-256-ECB</para>
+            <para>填充方案: PKCS7Padding</para>
+            </summary>
+            <param name="ciphertext">密文</param>
+            <param name="key"></param>
+            <param name="fPKCS7Padding">
+            <para>true: PKCS7填充方案</para>
+            <para>false: PKCS5填充方案（用于解密在java中加密的数据）</para>
+            </param>
+            <param name="encoding">编码（默认UTF8）</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Helper.CryptographyHelper.EncryptWithRSA(System.String,System.String,System.Security.Cryptography.RSAEncryptionPadding,System.Text.Encoding)">
+            <summary>
+            RSA公钥加密
+            </summary>
+            <param name="data">明文</param>
+            <param name="publicKey">公钥</param>
+            <param name="padding">填充方案（默认SHA256）</param>
+            <param name="encoding">编码（默认UTF8）</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Helper.CryptographyHelper.DecryptWithRSA(System.String,System.String,System.Security.Cryptography.RSAEncryptionPadding,System.Text.Encoding)">
+            <summary>
+            RSA私钥解密
+            </summary>
+            <param name="data">密文</param>
+            <param name="privateKey">私钥</param>
+            <param name="padding">填充方案（默认SHA256）</param>
+            <param name="encoding">编码（默认UTF8）</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Helper.CryptographyHelper.EncryptWithRSA(System.String,System.String,System.Boolean,System.Text.Encoding)">
+            <summary>
+            RSA公钥加密
+            </summary>
+            <param name="data">明文</param>
+            <param name="pemFile">pem公钥文件地址</param>
+            <param name="fOAEP">
+            <para>true: OAEP填充方案(Optimal Asymmetric Encryption Padding)</para>
+            <para>false: PKCS填充方案（PKCS#1 v1.5 padding）</para></param>
+            <param name="encoding">编码（默认UTF8）</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Helper.CryptographyHelper.DecryptWithRSA(System.String,System.String,System.String,System.Boolean,System.Text.Encoding)">
+            <summary>
+            RSA私钥解密
+            </summary>
+            <param name="data">密文</param>
+            <param name="certFile">p12证书地址</param>
+            <param name="certPassword">证书密码</param>
+            <param name="fOAEP">
+            <para>true: OAEP填充方案(Optimal Asymmetric Encryption Padding)</para>
+            <para>false: PKCS填充方案（PKCS#1 v1.5 padding）</para></param>
+            <param name="encoding">编码（默认UTF8）</param>
+            <returns></returns>
         </member>
         <member name="T:Microservice.Library.Extension.Helper.LinqHelper">
             <summary>

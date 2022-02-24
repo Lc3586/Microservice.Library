@@ -27,11 +27,11 @@ namespace Microservice.Library.Extension.Helper
                 throw new ApplicationException($"未找到指定的证书文件: {certFile}.");
 
             var publicKey = File.ReadAllBytes(pemFile);
-            PrivateKeyProvider = (RSACryptoServiceProvider)(new X509Certificate2(publicKey).PublicKey.Key);
+            PublicKeyProvider = (RSACryptoServiceProvider)(new X509Certificate2(publicKey).PublicKey.Key);
 
             var privateCert = new X509Certificate2(certFile, certPassword, X509KeyStorageFlags.Exportable);
 
-            PublicKeyProvider = (RSACryptoServiceProvider)privateCert.PrivateKey;
+            PrivateKeyProvider = (RSACryptoServiceProvider)privateCert.PrivateKey;
 
             //需要重新导入参数
             var parameters = PrivateKey.ExportParameters(true);
@@ -87,7 +87,7 @@ namespace Microservice.Library.Extension.Helper
 
         #region 此部分代码来源于：https://www.cnblogs.com/stulzq/p/7757915.html 作者：晓晨Master（李志强）
 
-        RSA CreateRsaProviderFromPrivateKey(string privateKey)
+        public static RSA CreateRsaProviderFromPrivateKey(string privateKey)
         {
             var privateKeyBits = Convert.FromBase64String(privateKey);
 
@@ -128,7 +128,7 @@ namespace Microservice.Library.Extension.Helper
             return rsa;
         }
 
-        RSA CreateRsaProviderFromPublicKey(string publicKeyString)
+        public static RSA CreateRsaProviderFromPublicKey(string publicKeyString)
         {
             // encoded OID sequence for  PKCS #1 rsaEncryption szOID_RSA_RSA = "1.2.840.113549.1.1.1"
             byte[] seqOid = { 0x30, 0x0D, 0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x01, 0x01, 0x05, 0x00 };
@@ -221,7 +221,7 @@ namespace Microservice.Library.Extension.Helper
             }
         }
 
-        int GetIntegerSize(BinaryReader binr)
+        static int GetIntegerSize(BinaryReader binr)
         {
             byte bt = 0;
             int count = 0;
@@ -253,7 +253,7 @@ namespace Microservice.Library.Extension.Helper
             return count;
         }
 
-        bool CompareBytearrays(byte[] a, byte[] b)
+        static bool CompareBytearrays(byte[] a, byte[] b)
         {
             if (a.Length != b.Length)
                 return false;
