@@ -62,7 +62,35 @@
             NPOI拓展方法
             </summary>
         </member>
-        <member name="M:Microservice.Library.OfficeDocuments.NPOIExtension.DataTableToExcelBytes(System.Data.DataTable,System.Boolean,System.Boolean)">
+        <member name="M:Microservice.Library.OfficeDocuments.NPOIExtension.DefaultTitleStyle(NPOI.SS.UserModel.IWorkbook)">
+            <summary>
+            标题单元格默认样式
+            </summary>
+            <param name="workbook"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OfficeDocuments.NPOIExtension.DefaultTitleFont(NPOI.SS.UserModel.IWorkbook)">
+            <summary>
+            标题字体默认样式
+            </summary>
+            <param name="workbook"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OfficeDocuments.NPOIExtension.DefaultDataStyle(NPOI.SS.UserModel.IWorkbook)">
+            <summary>
+            数据单元格默认样式
+            </summary>
+            <param name="workbook"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OfficeDocuments.NPOIExtension.DefaultDataFont(NPOI.SS.UserModel.IWorkbook)">
+            <summary>
+            数据字体默认样式
+            </summary>
+            <param name="workbook"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.OfficeDocuments.NPOIExtension.DataTableToExcelBytes(System.Data.DataTable,System.Boolean,System.Boolean,NPOI.SS.UserModel.ICellStyle,NPOI.SS.UserModel.IFont,NPOI.SS.UserModel.ICellStyle,NPOI.SS.UserModel.IFont)">
             <summary>
             将DataTable输出为字节数组
             </summary>
@@ -73,6 +101,10 @@
             <para>false .xls</para>
             <para>默认 true</para>
             </param>
+            <param name="titleStyle">标题单元格样式</param>
+            <param name="titleFont">标题字体</param>
+            <param name="dataStyle">数据单元格样式</param>
+            <param name="dataFont">数据字体</param>
             <returns>Byte数组</returns>
         </member>
         <member name="M:Microservice.Library.OfficeDocuments.NPOIExtension.ReadSheet(NPOI.SS.UserModel.ISheet,System.Boolean,System.Int32,System.Int32)">
