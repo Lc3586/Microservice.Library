@@ -16,6 +16,69 @@ namespace Microservice.Library.OfficeDocuments
         #region Excel
 
         /// <summary>
+        /// 标题单元格默认样式
+        /// </summary>
+        /// <param name="workbook"></param>
+        /// <returns></returns>
+        private static HSSFCellStyle DefaultTitleStyle(IWorkbook workbook)
+        {
+            var cellStyle = (HSSFCellStyle)workbook.CreateCellStyle();
+            cellStyle.Alignment = HorizontalAlignment.Center;
+            cellStyle.VerticalAlignment = VerticalAlignment.Center;
+            cellStyle.WrapText = false;
+            cellStyle.BorderBottom = BorderStyle.Thick;
+            cellStyle.BorderRight = BorderStyle.Thick;
+            cellStyle.BorderTop = BorderStyle.Thick;
+            cellStyle.BorderLeft = BorderStyle.Thick;
+
+            return cellStyle;
+        }
+
+        /// <summary>
+        /// 标题字体默认样式
+        /// </summary>
+        /// <param name="workbook"></param>
+        /// <returns></returns>
+        private static HSSFFont DefaultTitleFont(IWorkbook workbook)
+        {
+            var cellStyleFont = (HSSFFont)workbook.CreateFont();
+            cellStyleFont.IsBold = true;
+
+            return cellStyleFont;
+        }
+
+        /// <summary>
+        /// 数据单元格默认样式
+        /// </summary>
+        /// <param name="workbook"></param>
+        /// <returns></returns>
+        private static HSSFCellStyle DefaultDataStyle(IWorkbook workbook)
+        {
+            var cellStyle = (HSSFCellStyle)workbook.CreateCellStyle();
+            cellStyle.Alignment = HorizontalAlignment.Center;
+            cellStyle.VerticalAlignment = VerticalAlignment.Center;
+            cellStyle.WrapText = false;
+            cellStyle.BorderBottom = BorderStyle.Thin;
+            cellStyle.BorderRight = BorderStyle.Thin;
+            cellStyle.BorderTop = BorderStyle.Thin;
+            cellStyle.BorderLeft = BorderStyle.Thin;
+
+            return cellStyle;
+        }
+
+        /// <summary>
+        /// 数据字体默认样式
+        /// </summary>
+        /// <param name="workbook"></param>
+        /// <returns></returns>
+        private static HSSFFont DefaultDataFont(IWorkbook workbook)
+        {
+            var cellStyleFont = (HSSFFont)workbook.CreateFont();
+
+            return cellStyleFont;
+        }
+
+        /// <summary>
         /// 将DataTable输出为字节数组
         /// </summary>
         /// <param name="dt">表格数据</param>
@@ -25,11 +88,24 @@ namespace Microservice.Library.OfficeDocuments
         /// <para>false .xls</para>
         /// <para>默认 true</para>
         /// </param>
+        /// <param name="titleStyle">标题单元格样式</param>
+        /// <param name="titleFont">标题字体</param>
+        /// <param name="dataStyle">数据单元格样式</param>
+        /// <param name="dataFont">数据字体</param>
         /// <returns>Byte数组</returns>
-        public static byte[] DataTableToExcelBytes(this DataTable dt, bool firstRowIsTitle = true, bool xslx = true)
+        public static byte[] DataTableToExcelBytes(this DataTable dt, bool firstRowIsTitle = true, bool xslx = true, HSSFCellStyle titleStyle = null, HSSFFont titleFont = null, HSSFCellStyle dataStyle = null, HSSFFont dataFont = null)
         {
             var workbook = xslx ? (IWorkbook)new XSSFWorkbook() : new HSSFWorkbook();
+
             var sheet = workbook.CreateSheet();
+
+            titleStyle = titleStyle ?? DefaultTitleStyle(workbook);
+
+            titleFont = titleFont ?? DefaultTitleFont(workbook);
+
+            dataStyle = dataStyle ?? DefaultDataStyle(workbook);
+
+            dataFont = dataFont ?? DefaultDataFont(workbook);
 
             int colnum = dt.Columns.Count;//表格列数 
             int rownum = dt.Rows.Count;//表格行数
@@ -42,6 +118,9 @@ namespace Microservice.Library.OfficeDocuments
                     var cell = row_title.CreateCell(i);
                     cell.SetCellType(CellType.String);
                     cell.SetCellValue(dt.Columns[i].ColumnName);
+
+                    cell.CellStyle = titleStyle;
+                    cell.CellStyle.SetFont(titleFont);
                 }
 
             //生成数据行 
@@ -64,6 +143,9 @@ namespace Microservice.Library.OfficeDocuments
                         cell.SetCellValue((DateTime)dt.Rows[i][j]);
                     else
                         cell.SetCellValue(dt.Rows[i][j].ToString());
+
+                    cell.CellStyle = dataStyle;
+                    cell.CellStyle.SetFont(dataFont);
                 }
             }
 
