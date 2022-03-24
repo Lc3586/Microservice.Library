@@ -4,6 +4,7 @@ using NPOI.XSSF.UserModel;
 using System;
 using System.Data;
 using System.IO;
+using System.Text;
 
 namespace Microservice.Library.OfficeDocuments
 {
@@ -70,6 +71,16 @@ namespace Microservice.Library.OfficeDocuments
             for (int i = 0; i < colnum; i++)
             {
                 sheet.AutoSizeColumn(i);
+
+                int columnWidth = sheet.GetColumnWidth(colnum) / 256;//获取当前列宽度
+                for (int rowIndex = 1; rowIndex <= sheet.LastRowNum; rowIndex++)
+                {
+                    IRow row = sheet.GetRow(rowIndex);
+                    ICell cell = row.GetCell(colnum);
+                    int contextLength = Encoding.UTF8.GetBytes(cell.ToString()).Length;//获取当前单元格的内容宽度
+                    columnWidth = columnWidth < contextLength ? contextLength : columnWidth;
+                }
+                sheet.SetColumnWidth(colnum, columnWidth * 200);
             }
 
             //将DataTable写入内存流
