@@ -68,19 +68,26 @@ namespace Microservice.Library.OfficeDocuments
             }
 
             //自适应列宽
-            for (int i = 0; i < colnum; i++)
+            for (int c = 0; c < colnum; c++)
             {
-                sheet.AutoSizeColumn(i);
+                sheet.AutoSizeColumn(c);
 
-                int columnWidth = sheet.GetColumnWidth(colnum) / 256;//获取当前列宽度
-                for (int rowIndex = 1; rowIndex <= sheet.LastRowNum; rowIndex++)
+                int columnWidth = sheet.GetColumnWidth(c) / 256;
+                for (int i = 1; i <= rownum; i++)
                 {
-                    IRow row = sheet.GetRow(rowIndex);
-                    ICell cell = row.GetCell(colnum);
-                    int contextLength = Encoding.UTF8.GetBytes(cell.ToString()).Length;//获取当前单元格的内容宽度
+                    IRow row = sheet.GetRow(i + (firstRowIsTitle ? 1 : 0));
+                    if (row == null)
+                        continue;
+
+                    ICell cell = row.GetCell(c);
+                    if (cell == null)
+                        continue;
+
+                    int contextLength = Encoding.UTF8.GetBytes(cell.ToString()).Length;
                     columnWidth = columnWidth < contextLength ? contextLength : columnWidth;
                 }
-                sheet.SetColumnWidth(colnum, columnWidth * 200);
+
+                sheet.SetColumnWidth(c, columnWidth * 200);
             }
 
             //将DataTable写入内存流
