@@ -20,9 +20,28 @@ namespace Microservice.Library.OfficeDocuments
         /// </summary>
         /// <param name="workbook"></param>
         /// <returns></returns>
-        private static ICellStyle DefaultTitleStyle(IWorkbook workbook)
+        private static XSSFCellStyle DefaultTitleStyle(XSSFWorkbook workbook)
         {
-            var cellStyle = workbook.CreateCellStyle();
+            var cellStyle = (XSSFCellStyle)workbook.CreateCellStyle();
+            cellStyle.Alignment = HorizontalAlignment.Center;
+            cellStyle.VerticalAlignment = VerticalAlignment.Center;
+            cellStyle.WrapText = false;
+            cellStyle.BorderBottom = BorderStyle.Thick;
+            cellStyle.BorderRight = BorderStyle.Thick;
+            cellStyle.BorderTop = BorderStyle.Thick;
+            cellStyle.BorderLeft = BorderStyle.Thick;
+
+            return cellStyle;
+        }
+
+        /// <summary>
+        /// 标题单元格默认样式
+        /// </summary>
+        /// <param name="workbook"></param>
+        /// <returns></returns>
+        private static HSSFCellStyle DefaultTitleStyle(HSSFWorkbook workbook)
+        {
+            var cellStyle = (HSSFCellStyle)workbook.CreateCellStyle();
             cellStyle.Alignment = HorizontalAlignment.Center;
             cellStyle.VerticalAlignment = VerticalAlignment.Center;
             cellStyle.WrapText = false;
@@ -39,9 +58,22 @@ namespace Microservice.Library.OfficeDocuments
         /// </summary>
         /// <param name="workbook"></param>
         /// <returns></returns>
-        private static IFont DefaultTitleFont(IWorkbook workbook)
+        private static XSSFFont DefaultTitleFont(XSSFWorkbook workbook)
         {
-            var cellStyleFont = workbook.CreateFont();
+            var cellStyleFont = (XSSFFont)workbook.CreateFont();
+            cellStyleFont.IsBold = true;
+
+            return cellStyleFont;
+        }
+
+        /// <summary>
+        /// 标题字体默认样式
+        /// </summary>
+        /// <param name="workbook"></param>
+        /// <returns></returns>
+        private static HSSFFont DefaultTitleFont(HSSFWorkbook workbook)
+        {
+            var cellStyleFont = (HSSFFont)workbook.CreateFont();
             cellStyleFont.IsBold = true;
 
             return cellStyleFont;
@@ -52,9 +84,28 @@ namespace Microservice.Library.OfficeDocuments
         /// </summary>
         /// <param name="workbook"></param>
         /// <returns></returns>
-        private static ICellStyle DefaultDataStyle(IWorkbook workbook)
+        private static XSSFCellStyle DefaultDataStyle(XSSFWorkbook workbook)
         {
-            var cellStyle = workbook.CreateCellStyle();
+            var cellStyle = (XSSFCellStyle)workbook.CreateCellStyle();
+            cellStyle.Alignment = HorizontalAlignment.Center;
+            cellStyle.VerticalAlignment = VerticalAlignment.Center;
+            cellStyle.WrapText = false;
+            cellStyle.BorderBottom = BorderStyle.Thin;
+            cellStyle.BorderRight = BorderStyle.Thin;
+            cellStyle.BorderTop = BorderStyle.Thin;
+            cellStyle.BorderLeft = BorderStyle.Thin;
+
+            return cellStyle;
+        }
+
+        /// <summary>
+        /// 数据单元格默认样式
+        /// </summary>
+        /// <param name="workbook"></param>
+        /// <returns></returns>
+        private static HSSFCellStyle DefaultDataStyle(HSSFWorkbook workbook)
+        {
+            var cellStyle = (HSSFCellStyle)workbook.CreateCellStyle();
             cellStyle.Alignment = HorizontalAlignment.Center;
             cellStyle.VerticalAlignment = VerticalAlignment.Center;
             cellStyle.WrapText = false;
@@ -71,9 +122,21 @@ namespace Microservice.Library.OfficeDocuments
         /// </summary>
         /// <param name="workbook"></param>
         /// <returns></returns>
-        private static IFont DefaultDataFont(IWorkbook workbook)
+        private static XSSFFont DefaultDataFont(XSSFWorkbook workbook)
         {
-            var cellStyleFont = workbook.CreateFont();
+            var cellStyleFont = (XSSFFont)workbook.CreateFont();
+
+            return cellStyleFont;
+        }
+
+        /// <summary>
+        /// 数据字体默认样式
+        /// </summary>
+        /// <param name="workbook"></param>
+        /// <returns></returns>
+        private static HSSFFont DefaultDataFont(HSSFWorkbook workbook)
+        {
+            var cellStyleFont = (HSSFFont)workbook.CreateFont();
 
             return cellStyleFont;
         }
@@ -99,13 +162,13 @@ namespace Microservice.Library.OfficeDocuments
 
             var sheet = workbook.CreateSheet();
 
-            titleStyle = titleStyle ?? DefaultTitleStyle(workbook);
+            var titleStyle_ = titleStyle != null ? titleStyle : (xslx ? (ICellStyle)DefaultTitleStyle((XSSFWorkbook)workbook) : DefaultTitleStyle((HSSFWorkbook)workbook));
 
-            titleFont = titleFont ?? DefaultTitleFont(workbook);
+            var titleFont_ = titleFont != null ? titleFont : (xslx ? (IFont)DefaultTitleFont((XSSFWorkbook)workbook) : DefaultTitleFont((HSSFWorkbook)workbook));
 
-            dataStyle = dataStyle ?? DefaultDataStyle(workbook);
+            var dataStyle_ = dataStyle != null ? dataStyle : (xslx ? (ICellStyle)DefaultDataStyle((XSSFWorkbook)workbook) : DefaultDataStyle((HSSFWorkbook)workbook));
 
-            dataFont = dataFont ?? DefaultDataFont(workbook);
+            var dataFont_ = dataFont != null ? dataFont : (xslx ? (IFont)DefaultDataFont((XSSFWorkbook)workbook) : DefaultDataFont((HSSFWorkbook)workbook));
 
             int colnum = dt.Columns.Count;//表格列数 
             int rownum = dt.Rows.Count;//表格行数
@@ -119,8 +182,8 @@ namespace Microservice.Library.OfficeDocuments
                     cell.SetCellType(CellType.String);
                     cell.SetCellValue(dt.Columns[i].ColumnName);
 
-                    cell.CellStyle = titleStyle;
-                    cell.CellStyle.SetFont(titleFont);
+                    cell.CellStyle = titleStyle_;
+                    cell.CellStyle.SetFont(titleFont_);
                 }
 
             //生成数据行 
@@ -144,8 +207,8 @@ namespace Microservice.Library.OfficeDocuments
                     else
                         cell.SetCellValue(dt.Rows[i][j].ToString());
 
-                    cell.CellStyle = dataStyle;
-                    cell.CellStyle.SetFont(dataFont);
+                    cell.CellStyle = dataStyle_;
+                    cell.CellStyle.SetFont(dataFont_);
                 }
             }
 
