@@ -52,9 +52,9 @@ namespace Microservice.Library.OfficeDocuments
         /// </summary>
         /// <param name="workbook"></param>
         /// <returns></returns>
-        private static HSSFCellStyle DefaultDataStyle(IWorkbook workbook)
+        private static ICellStyle DefaultDataStyle(IWorkbook workbook)
         {
-            var cellStyle = (HSSFCellStyle)workbook.CreateCellStyle();
+            var cellStyle = workbook.CreateCellStyle();
             cellStyle.Alignment = HorizontalAlignment.Center;
             cellStyle.VerticalAlignment = VerticalAlignment.Center;
             cellStyle.WrapText = false;
@@ -71,9 +71,9 @@ namespace Microservice.Library.OfficeDocuments
         /// </summary>
         /// <param name="workbook"></param>
         /// <returns></returns>
-        private static HSSFFont DefaultDataFont(IWorkbook workbook)
+        private static IFont DefaultDataFont(IWorkbook workbook)
         {
-            var cellStyleFont = (HSSFFont)workbook.CreateFont();
+            var cellStyleFont = workbook.CreateFont();
 
             return cellStyleFont;
         }
