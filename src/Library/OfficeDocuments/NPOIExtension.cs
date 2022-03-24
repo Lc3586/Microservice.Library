@@ -20,9 +20,9 @@ namespace Microservice.Library.OfficeDocuments
         /// </summary>
         /// <param name="workbook"></param>
         /// <returns></returns>
-        private static HSSFCellStyle DefaultTitleStyle(IWorkbook workbook)
+        private static ICellStyle DefaultTitleStyle(IWorkbook workbook)
         {
-            var cellStyle = (HSSFCellStyle)workbook.CreateCellStyle();
+            var cellStyle = workbook.CreateCellStyle();
             cellStyle.Alignment = HorizontalAlignment.Center;
             cellStyle.VerticalAlignment = VerticalAlignment.Center;
             cellStyle.WrapText = false;
@@ -39,9 +39,9 @@ namespace Microservice.Library.OfficeDocuments
         /// </summary>
         /// <param name="workbook"></param>
         /// <returns></returns>
-        private static HSSFFont DefaultTitleFont(IWorkbook workbook)
+        private static IFont DefaultTitleFont(IWorkbook workbook)
         {
-            var cellStyleFont = (HSSFFont)workbook.CreateFont();
+            var cellStyleFont = workbook.CreateFont();
             cellStyleFont.IsBold = true;
 
             return cellStyleFont;
@@ -93,7 +93,7 @@ namespace Microservice.Library.OfficeDocuments
         /// <param name="dataStyle">数据单元格样式</param>
         /// <param name="dataFont">数据字体</param>
         /// <returns>Byte数组</returns>
-        public static byte[] DataTableToExcelBytes(this DataTable dt, bool firstRowIsTitle = true, bool xslx = true, HSSFCellStyle titleStyle = null, HSSFFont titleFont = null, HSSFCellStyle dataStyle = null, HSSFFont dataFont = null)
+        public static byte[] DataTableToExcelBytes(this DataTable dt, bool firstRowIsTitle = true, bool xslx = true, ICellStyle titleStyle = null, IFont titleFont = null, ICellStyle dataStyle = null, IFont dataFont = null)
         {
             var workbook = xslx ? (IWorkbook)new XSSFWorkbook() : new HSSFWorkbook();
 
