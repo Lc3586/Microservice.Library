@@ -121,6 +121,8 @@ namespace Microservice.Library.OfficeDocuments
 
                     cell.CellStyle = titleStyle;
                     cell.CellStyle.SetFont(titleFont);
+
+                    sheet.SetDefaultColumnStyle(i, dataStyle);
                 }
 
             //生成数据行 
