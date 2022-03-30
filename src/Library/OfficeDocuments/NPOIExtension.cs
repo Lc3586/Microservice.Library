@@ -99,6 +99,8 @@ namespace Microservice.Library.OfficeDocuments
 
             var sheet = workbook.CreateSheet(String.IsNullOrWhiteSpace(dt.TableName) ? "工作簿" : dt.TableName);
 
+            sheet.DisplayGridlines = false;
+
             titleStyle = titleStyle ?? DefaultTitleStyle(workbook);
 
             titleFont = titleFont ?? DefaultTitleFont(workbook);
