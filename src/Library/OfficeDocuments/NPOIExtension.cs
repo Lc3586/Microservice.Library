@@ -92,14 +92,15 @@ namespace Microservice.Library.OfficeDocuments
         /// <param name="titleFont">标题字体</param>
         /// <param name="dataStyle">数据单元格样式</param>
         /// <param name="dataFont">数据字体</param>
+        /// <param name="displayGridlines">显示网格线</param>
         /// <returns>Byte数组</returns>
-        public static byte[] DataTableToExcelBytes(this DataTable dt, bool firstRowIsTitle = true, bool xslx = true, ICellStyle titleStyle = null, IFont titleFont = null, ICellStyle dataStyle = null, IFont dataFont = null)
+        public static byte[] DataTableToExcelBytes(this DataTable dt, bool firstRowIsTitle = true, bool xslx = true, ICellStyle titleStyle = null, IFont titleFont = null, ICellStyle dataStyle = null, IFont dataFont = null, bool displayGridlines = true)
         {
             var workbook = xslx ? (IWorkbook)new XSSFWorkbook() : new HSSFWorkbook();
 
             var sheet = workbook.CreateSheet(String.IsNullOrWhiteSpace(dt.TableName) ? "工作簿" : dt.TableName);
 
-            sheet.DisplayGridlines = false;
+            sheet.DisplayGridlines = displayGridlines;
 
             titleStyle = titleStyle ?? DefaultTitleStyle(workbook);
 
@@ -131,6 +132,9 @@ namespace Microservice.Library.OfficeDocuments
             for (int i = 0; i < rownum; i++)
             {
                 var row = sheet.CreateRow(i + (firstRowIsTitle ? 1 : 0));
+
+                row.RowStyle = dataStyle;
+
                 for (int j = 0; j < colnum; j++)
                 {
                     var cell = row.CreateCell(j);
