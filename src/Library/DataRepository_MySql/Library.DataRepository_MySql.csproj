@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <RootNamespace>Microservice.Library.DataRepository_MySql</RootNamespace>
     <Version>0.0.0.1-alpha</Version>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>

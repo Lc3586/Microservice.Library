@@ -98,7 +98,7 @@ namespace Microservice.Library.DataRepository
         /// <typeparam name="T">数据类型</typeparam>
         /// <param name="source">数据源</param>
         /// <returns></returns>
-        public static IQueryable<T> AsExpandable<T>(this IQueryable<T> source)
+        public static IQueryable<T> AsExpandable1<T>(this IQueryable<T> source)
         {
             return LinqKit.Extensions.AsExpandable(source);
         }

@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using AutoMapper.Internal;
 using Microservice.Library.DataMapping.Annotations;
-using Microservice.Library.DataMapping.Application;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -65,7 +64,11 @@ namespace Microservice.Library.DataMapping.Extention
 
                 var options = soureType.GetMemberMapOptions(fromOrTo);
 
-                options?.ForAll(o => map.ForMember(o.Key, o.Value));
+                if(options!=null)
+                    foreach (var item in options)
+                    {
+                        map.ForMember(item.Key, item.Value);
+                    }
             }
         }
 
