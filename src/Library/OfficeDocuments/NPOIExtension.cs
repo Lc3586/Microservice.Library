@@ -133,7 +133,7 @@ namespace Microservice.Library.OfficeDocuments
             {
                 var row = sheet.CreateRow(i + (firstRowIsTitle ? 1 : 0));
 
-                row.RowStyle = dataStyle;
+                //row.RowStyle = dataStyle;
 
                 for (int j = 0; j < colnum; j++)
                 {

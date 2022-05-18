@@ -90,7 +90,7 @@
             <param name="workbook"></param>
             <returns></returns>
         </member>
-        <member name="M:Microservice.Library.OfficeDocuments.NPOIExtension.DataTableToExcelBytes(System.Data.DataTable,System.Boolean,System.Boolean,NPOI.SS.UserModel.ICellStyle,NPOI.SS.UserModel.IFont,NPOI.SS.UserModel.ICellStyle,NPOI.SS.UserModel.IFont)">
+        <member name="M:Microservice.Library.OfficeDocuments.NPOIExtension.DataTableToExcelBytes(System.Data.DataTable,System.Boolean,System.Boolean,NPOI.SS.UserModel.ICellStyle,NPOI.SS.UserModel.IFont,NPOI.SS.UserModel.ICellStyle,NPOI.SS.UserModel.IFont,System.Boolean)">
             <summary>
             将DataTable输出为字节数组
             </summary>
@@ -105,6 +105,7 @@
             <param name="titleFont">标题字体</param>
             <param name="dataStyle">数据单元格样式</param>
             <param name="dataFont">数据字体</param>
+            <param name="displayGridlines">显示网格线</param>
             <returns>Byte数组</returns>
         </member>
         <member name="M:Microservice.Library.OfficeDocuments.NPOIExtension.ReadSheet(NPOI.SS.UserModel.ISheet,System.Boolean,System.Int32,System.Int32)">
