@@ -35,15 +35,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FreeSql.Provider.Dameng" Version="3.2.640" />
-    <PackageReference Include="FreeSql.Provider.MsAccess" Version="3.2.640" />
-    <PackageReference Include="FreeSql.Provider.MySqlConnector" Version="3.2.640" />
-    <PackageReference Include="FreeSql.Provider.Odbc" Version="3.2.640" />
-    <PackageReference Include="FreeSql.Provider.Oracle" Version="3.2.640" />
-    <PackageReference Include="FreeSql.Provider.PostgreSQL" Version="3.2.640" />
-    <PackageReference Include="FreeSql.Provider.Sqlite" Version="3.2.640" />
-    <PackageReference Include="FreeSql.Provider.SqlServer" Version="3.2.640" />
-    <PackageReference Include="FreeSql.Repository" Version="3.2.640" />
+    <PackageReference Include="FreeSql.Provider.Dameng" Version="3.2.651" />
+    <PackageReference Include="FreeSql.Provider.MsAccess" Version="3.2.651" />
+    <PackageReference Include="FreeSql.Provider.MySqlConnector" Version="3.2.651" />
+    <PackageReference Include="FreeSql.Provider.Odbc" Version="3.2.651" />
+    <PackageReference Include="FreeSql.Provider.Oracle" Version="3.2.651" />
+    <PackageReference Include="FreeSql.Provider.PostgreSQL" Version="3.2.651" />
+    <PackageReference Include="FreeSql.Provider.Sqlite" Version="3.2.651" />
+    <PackageReference Include="FreeSql.Provider.SqlServer" Version="3.2.651" />
+    <PackageReference Include="FreeSql.Repository" Version="3.2.651" />
     <PackageReference Include="IdleBus" Version="1.5.2" />
     <PackageReference Include="JetBrains.Annotations" Version="2022.1.0" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
