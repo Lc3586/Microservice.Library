@@ -399,6 +399,7 @@ namespace Microservice.Library.Extension.Helper
 
         /// <summary>
         /// 加密
+        /// <para>明文长度不可超过117个字节</para>
         /// </summary>
         /// <param name="data">明文</param>
         /// <param name="padding">填充方案（默认SHA256）</param>
