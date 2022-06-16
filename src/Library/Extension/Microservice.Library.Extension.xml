@@ -1788,7 +1788,7 @@
         </member>
         <member name="M:Microservice.Library.Extension.Helper.RSAHelper.Encrypt(System.String,System.Security.Cryptography.RSAEncryptionPadding,System.Text.Encoding)">
             <summary>
-            加密
+            公钥加密
             <para>明文长度不可超过117个字节</para>
             </summary>
             <param name="data">明文</param>
@@ -1796,9 +1796,68 @@
             <param name="encoding">编码</param>
             <returns></returns>
         </member>
+        <member name="M:Microservice.Library.Extension.Helper.RSAHelper.Encrypt(System.Byte[],System.Security.Cryptography.RSAEncryptionPadding)">
+            <summary>
+            公钥加密
+            <para>明文长度不可超过117个字节</para>
+            </summary>
+            <param name="data">明文</param>
+            <param name="padding">填充方案（默认SHA256）</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Helper.RSAHelper.EncryptLongText(System.String,System.Security.Cryptography.RSAEncryptionPadding,System.Text.Encoding)">
+            <summary>
+            公钥加密
+            <para>数据长度超过117个字节时会分段加密后再合并</para>
+            </summary>
+            <param name="data">明文</param>
+            <param name="padding">填充方案（默认SHA256）</param>
+            <param name="encoding">编码</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Helper.RSAHelper.EncryptLongText(System.Byte[],System.Security.Cryptography.RSAEncryptionPadding)">
+            <summary>
+            公钥加密
+            <para>数据长度超过117个字节时会分段加密后再合并</para>
+            </summary>
+            <param name="data">明文</param>
+            <param name="padding">填充方案（默认SHA256）</param>
+            <returns></returns>
+        </member>
         <member name="M:Microservice.Library.Extension.Helper.RSAHelper.Decrypt(System.String,System.Security.Cryptography.RSAEncryptionPadding,System.Text.Encoding)">
             <summary>
-            解密
+            私钥解密
+            <para>密文长度不可超过128个字节</para>
+            </summary>
+            <param name="data">密文</param>
+            <param name="padding">填充方案（默认SHA256）</param>
+            <param name="encoding">编码</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Helper.RSAHelper.Decrypt(System.Byte[],System.Security.Cryptography.RSAEncryptionPadding,System.Text.Encoding)">
+            <summary>
+            私钥解密
+            <para>密文长度不可超过128个字节</para>
+            </summary>
+            <param name="data">密文</param>
+            <param name="padding">填充方案（默认SHA256）</param>
+            <param name="encoding">编码</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Helper.RSAHelper.DecryptLongText(System.String,System.Security.Cryptography.RSAEncryptionPadding,System.Text.Encoding)">
+            <summary>
+            私钥解密
+            <para>数据长度超过128个字节时会分段加密后再合并</para>
+            </summary>
+            <param name="data">密文</param>
+            <param name="padding">填充方案（默认SHA256）</param>
+            <param name="encoding">编码</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microservice.Library.Extension.Helper.RSAHelper.DecryptLongText(System.Byte[],System.Security.Cryptography.RSAEncryptionPadding,System.Text.Encoding)">
+            <summary>
+            私钥解密
+            <para>数据长度超过128个字节时会分段加密后再合并</para>
             </summary>
             <param name="data">密文</param>
             <param name="padding">填充方案（默认SHA256）</param>

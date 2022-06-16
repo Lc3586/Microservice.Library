@@ -398,8 +398,7 @@ namespace Microservice.Library.Extension.Helper
         }
 
         /// <summary>
-        /// 加密
-        /// <para>明文长度不可超过117个字节</para>
+        /// 公钥加密
         /// </summary>
         /// <param name="data">明文</param>
         /// <param name="padding">填充方案（默认SHA256）</param>
@@ -407,22 +406,47 @@ namespace Microservice.Library.Extension.Helper
         /// <returns></returns>
         public string Encrypt(string data, RSAEncryptionPadding padding = null, Encoding encoding = null)
         {
-            padding = padding ?? DefaultEncryptionPadding;
-            encoding = encoding ?? DefaultEncoding;
+            return Encrypt((encoding ?? DefaultEncoding).GetBytes(data), padding);
+        }
 
-            var bytes = encoding.GetBytes(data);
+        /// <summary>
+        /// 公钥加密
+        /// </summary>
+        /// <param name="data">明文</param>
+        /// <param name="padding">填充方案（默认SHA256）</param>
+        /// <returns></returns>
+        public string Encrypt(byte[] data, RSAEncryptionPadding padding = null)
+        {
+            padding = padding ?? DefaultEncryptionPadding;
 
             var result = UseProvider
                 ? (padding == null
-                    ? PublicKeyProvider.Encrypt(bytes, true)
-                    : PublicKeyProvider.Encrypt(bytes, padding))
-                : PublicKey.Encrypt(bytes, padding);
+                    ? PublicKeyProvider.Encrypt(data, true)
+                    : PublicKeyProvider.Encrypt(data, padding))
+                : PublicKey.Encrypt(data, padding);
 
             return Convert.ToBase64String(result);
         }
 
         /// <summary>
-        /// 解密
+        /// 公钥加密
+        /// <para>明文会按照切片大小分段加密后再合并</para>
+        /// </summary>
+        /// <param name="data">明文</param>
+        /// <param name="chunkSize">切片大小</param>
+        /// <param name="padding">填充方案（默认SHA256）</param>
+        /// <param name="encoding">编码</param>
+        /// <returns></returns>
+        public string EncryptLongText(string data, int chunkSize, RSAEncryptionPadding padding = null, Encoding encoding = null)
+        {
+            string result = "";
+            for (int i = 0; i < data.Length; i += chunkSize)
+                result += Encrypt(data.Substring(i, (data.Length - i) > chunkSize ? chunkSize : data.Length - i), padding);
+            return result;
+        }
+
+        /// <summary>
+        /// 私钥解密
         /// </summary>
         /// <param name="data">密文</param>
         /// <param name="padding">填充方案（默认SHA256）</param>
@@ -430,18 +454,44 @@ namespace Microservice.Library.Extension.Helper
         /// <returns></returns>
         public string Decrypt(string data, RSAEncryptionPadding padding = null, Encoding encoding = null)
         {
-            padding = padding ?? DefaultEncryptionPadding;
-            encoding = encoding ?? DefaultEncoding;
+            return Decrypt((encoding ?? DefaultEncoding).GetBytes(data), padding, encoding);
+        }
 
-            var bytes = Convert.FromBase64String(data);
+        /// <summary>
+        /// 私钥解密
+        /// </summary>
+        /// <param name="data">密文</param>
+        /// <param name="padding">填充方案（默认SHA256）</param>
+        /// <param name="encoding">编码</param>
+        /// <returns></returns>
+        public string Decrypt(byte[] data, RSAEncryptionPadding padding = null, Encoding encoding = null)
+        {
+            padding = padding ?? DefaultEncryptionPadding;
 
             var result = UseProvider
                 ? (padding == null
-                    ? PrivateKeyProvider.Decrypt(bytes, true)
-                    : PrivateKeyProvider.Decrypt(bytes, padding))
-                : PrivateKey.Decrypt(bytes, padding);
+                    ? PrivateKeyProvider.Decrypt(data, true)
+                    : PrivateKeyProvider.Decrypt(data, padding))
+                : PrivateKey.Decrypt(data, padding);
 
-            return encoding.GetString(result);
+            return (encoding ?? DefaultEncoding).GetString(result);
+        }
+
+        /// <summary>
+        /// 私钥解密
+        /// <para>密文会按照切片大小分段解密后再合并</para>
+        /// </summary>
+        /// <param name="data">密文</param>
+        /// <param name="chunkSize">切片大小</param>
+        /// <param name="padding">填充方案（默认SHA256）</param>
+        /// <param name="encoding">编码</param>
+        /// <returns></returns>
+        public string DecryptLongText(string data, int chunkSize, RSAEncryptionPadding padding = null, Encoding encoding = null)
+        {
+            string result = "";
+            for (int i = 0; i < data.Length; i += chunkSize)
+                result += Decrypt(data.Substring(i, 172), padding, encoding);
+            return result;
         }
     }
 }
