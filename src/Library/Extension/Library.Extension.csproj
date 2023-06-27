@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup Label="Globals">
     <Platforms>AnyCPU;x64</Platforms>
@@ -41,7 +41,7 @@
     <PackageReference Include="Portable.BouncyCastle" Version="1.9.0" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
     <PackageReference Include="System.Diagnostics.PerformanceCounter" Version="6.0.1" />
-    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.18" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.3.0" />
   </ItemGroup>
 
 </Project>
